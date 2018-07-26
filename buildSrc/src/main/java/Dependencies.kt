@@ -20,6 +20,7 @@ object Versions {
     val rxKotlin = "2.2.0"
     val retrofitVersion = "2.3.0"
     val okHttp3Version = "3.8.0"
+    val archComponents = "1.1.1"
 }
 
 object Dependencies {
@@ -38,4 +39,6 @@ object Dependencies {
     val retrofit_gson_converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
     val retrofit_rxjava2_adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
     val okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3Version}"
+    val lifecycle_extensions = "android.arch.lifecycle:extensions:${Versions.archComponents}"
+    val lifecycle_viewmodel = "android.arch.lifecycle:viewmodel:${Versions.archComponents}"
 }

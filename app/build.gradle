@@ -40,4 +40,6 @@ dependencies {
     implementation Dependencies.retrofit_rxjava2_adapter
     implementation Dependencies.okhttp3_logging_interceptor
 
+    implementation Dependencies.lifecycle_extensions
+    implementation Dependencies.lifecycle_viewmodel
 }
