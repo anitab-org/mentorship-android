@@ -11,7 +11,7 @@ import retrofit2.HttpException
  */
 object CommonUtils {
 
-    val gson = Gson()
+    private val gson = Gson()
 
     fun getErrorResponse(@NonNull throwable: Throwable): CustomResponse {
         val httpException = throwable as HttpException

@@ -1,5 +1,6 @@
 package org.systers.mentorship.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import org.systers.mentorship.MentorshipApplication
@@ -18,7 +19,12 @@ class PreferenceManager {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
             APPLICATION_PREFERENCE, Context.MODE_PRIVATE)
 
-    var authToken: String
-        set(authToken) = sharedPreferences.edit().putString(AUTH_TOKEN, "Bearer $authToken").apply()
+    @SuppressLint("ApplySharedPref")
+    //Cannot use .apply(), it will take time to save the token. We need token ASAP
+    fun putAuthToken(authToken: String) {
+        sharedPreferences.edit().putString(AUTH_TOKEN, "Bearer $authToken").commit()
+    }
+
+    val authToken: String
         get() = sharedPreferences.getString(AUTH_TOKEN, "")
 }
