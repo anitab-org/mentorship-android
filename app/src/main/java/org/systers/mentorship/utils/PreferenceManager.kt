@@ -10,8 +10,8 @@ import org.systers.mentorship.MentorshipApplication
 class PreferenceManager {
 
     companion object {
-        const val APPLICATION_PREFERENCE = "auth_token"
-        const val AUTH_TOKEN = "auth_token"
+        const val APPLICATION_PREFERENCE = "app-preferences"
+        const val AUTH_TOKEN = "auth-token"
     }
 
     private val context: Context = MentorshipApplication.getContext()
