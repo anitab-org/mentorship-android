@@ -18,7 +18,7 @@ class MentorshipApplication : Application() {
             return instance
         }
 
-        fun getContext(): Context? {
+        fun getContext(): Context {
             return instance.applicationContext
         }
     }
