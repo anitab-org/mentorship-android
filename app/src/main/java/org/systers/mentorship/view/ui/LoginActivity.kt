@@ -8,6 +8,9 @@ import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.LoginRequest
 import org.systers.mentorship.viewmodel.LoginViewModel
 
+/**
+ * This activity will let the user to login using username/email and password.
+ */
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel

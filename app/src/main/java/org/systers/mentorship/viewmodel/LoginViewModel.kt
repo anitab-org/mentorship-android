@@ -19,9 +19,15 @@ import java.util.concurrent.TimeoutException
  */
 class LoginViewModel : ViewModel() {
 
+    val TAG = LoginViewModel::class.java.simpleName
+
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val authDataManager: AuthDataManager = AuthDataManager()
-    
+
+    /**
+     * Will be used to run the login method of the AuthService
+     * @param loginRequest a login request object containing the credentials
+     */
     fun login(@NonNull loginRequest: LoginRequest) {
         authDataManager.login(loginRequest)
                 .subscribeOn(Schedulers.newThread())
@@ -32,16 +38,16 @@ class LoginViewModel : ViewModel() {
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> //TODO: Show no internet error
-                                Log.d("LoginViewModel", "IOException")
+                                Log.d(TAG, "IOException")
                             is TimeoutException -> //TODO: Show timeout exception
-                                Log.d("LoginViewModel", "TimeoutException")
+                                Log.d(TAG, "TimeoutException")
                             is HttpException -> {
                                 val error = CommonUtils.getErrorResponse(throwable)
-                                Log.d("LoginViewModel", error.message)
+                                Log.d(TAG, error.message)
                                 //TODO: Show custom error message error.message
                             }
                             else -> //TODO: Show general error message
-                                Log.d("LoginViewModel", "general error message")
+                                Log.d(TAG, "general error message")
                         }
                     }
                     override fun onComplete() {

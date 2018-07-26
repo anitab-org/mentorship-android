@@ -6,6 +6,9 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import org.systers.mentorship.R
 
+/**
+ * This activity will show the organisation logo for sometime and then start the next activity
+ */
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var handler: Handler

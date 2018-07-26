@@ -12,6 +12,11 @@ class AuthDataManager {
 
     private val apiManager: ApiManager = ApiManager()
 
+    /**
+     * This will call the login method of AuthService interface
+     * @param loginRequest The login request body containing the credentials
+     * @return an Observable LoginResponse
+     */
     fun login(loginRequest: LoginRequest): Observable<LoginResponse> {
         return apiManager.getAuthService().login(loginRequest)
     }

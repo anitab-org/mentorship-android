@@ -1,7 +1,6 @@
 /**
- * Created by murad on 7/26/18.
+ * Contains the versions of the dependencies being used
  */
-
 object Versions {
     val compileSdkVersion = 27
     val minSdkVersion = 19
@@ -23,6 +22,9 @@ object Versions {
     val archComponents = "1.1.1"
 }
 
+/**
+ * Contains the dependencies being used by the project
+ */
 object Dependencies {
     val gradle_build_tool = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
     val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"

@@ -14,10 +14,16 @@ class MentorshipApplication : Application() {
 
         lateinit var instance: MentorshipApplication
 
+        /**
+         * @return the instance of the Application
+         */
         fun getApplication(): MentorshipApplication {
             return instance
         }
 
+        /**
+         * @return the context of the Application
+         */
         fun getContext(): Context {
             return instance.applicationContext
         }

@@ -13,6 +13,11 @@ object CommonUtils {
 
     private val gson = Gson()
 
+    /**
+     * Extracts a CustomResponse object from a throwable
+     * @param throwable from which the object is to be extracted
+     * @return a CustomResponse object
+     */
     fun getErrorResponse(@NonNull throwable: Throwable): CustomResponse {
         val httpException = throwable as HttpException
         val response = httpException.response().errorBody()?.string()

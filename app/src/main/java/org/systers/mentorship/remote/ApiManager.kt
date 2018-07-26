@@ -19,12 +19,12 @@ class ApiManager {
         initialiseRetrofit()
     }
 
-    private fun <T> createApi(clazz: Class<T>): T {
+    private fun <T> createService(clazz: Class<T>): T {
         return retrofit.create(clazz)
     }
 
-    fun initServices() {
-        authService = createApi(AuthService::class.java)
+    private fun initServices() {
+        authService = createService(AuthService::class.java)
     }
 
     private fun initialiseRetrofit() {
@@ -46,6 +46,9 @@ class ApiManager {
         initServices()
     }
 
+    /**
+     * @return a pointer to an initialised AuthService
+     */
     fun getAuthService(): AuthService {
         return authService
     }
