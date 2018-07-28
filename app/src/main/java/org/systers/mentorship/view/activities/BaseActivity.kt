@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package org.systers.mentorship.view.base
+package org.systers.mentorship.view.activities
 
 import android.app.ProgressDialog
 import android.content.Context

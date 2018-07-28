@@ -1,4 +1,4 @@
-package org.systers.mentorship.viewmodel
+package org.systers.mentorship.viewmodels
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

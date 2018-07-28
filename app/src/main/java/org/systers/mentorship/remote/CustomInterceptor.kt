@@ -5,7 +5,6 @@ import android.text.TextUtils
 import okhttp3.Interceptor
 import okhttp3.Response
 import org.systers.mentorship.utils.PreferenceManager
-import org.systers.mentorship.utils.PreferenceManager.Companion.AUTH_TOKEN
 
 /**
  * Created by murad on 7/26/18.

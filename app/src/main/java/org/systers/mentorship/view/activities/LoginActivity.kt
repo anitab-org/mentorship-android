@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.ui
+package org.systers.mentorship.view.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -7,8 +7,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.LoginRequest
-import org.systers.mentorship.view.base.BaseActivity
-import org.systers.mentorship.viewmodel.LoginViewModel
+import org.systers.mentorship.viewmodels.LoginViewModel
 
 /**
  * This activity will let the user to login using username/email and password.

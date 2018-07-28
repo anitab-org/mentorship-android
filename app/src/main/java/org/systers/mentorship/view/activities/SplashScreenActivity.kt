@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.ui
+package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
