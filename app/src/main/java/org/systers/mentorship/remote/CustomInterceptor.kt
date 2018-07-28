@@ -22,7 +22,7 @@ class CustomInterceptor: Interceptor {
         val accessToken = preferenceManager.authToken
 
         if (!TextUtils.isEmpty(accessToken)) {
-            builder.header(AUTH_TOKEN, preferenceManager.authToken)
+            builder.header("Authorization", preferenceManager.authToken)
         }
 
         val request = builder.build()
