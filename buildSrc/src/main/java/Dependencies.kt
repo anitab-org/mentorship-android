@@ -30,6 +30,7 @@ object Dependencies {
     val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:${Versions.kotlinVersion}"
     val appcompat_v7 = "com.android.support:appcompat-v7:${Versions.supportLib}"
+    val design = "com.android.support:design:${Versions.supportLib}"
     val constraint_layout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
     val junit = "junit:junit:${Versions.junit}"
     val test_runner = "com.android.support.test:runner:${Versions.testRunner}"
