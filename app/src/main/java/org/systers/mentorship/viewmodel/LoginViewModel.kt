@@ -1,10 +1,12 @@
 package org.systers.mentorship.viewmodel
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import org.systers.mentorship.MentorshipApplication
+import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
 import org.systers.mentorship.remote.requests.LoginRequest
 import org.systers.mentorship.remote.responses.LoginResponse
@@ -19,10 +21,14 @@ import java.util.concurrent.TimeoutException
  */
 class LoginViewModel : ViewModel() {
 
-    val TAG = LoginViewModel::class.java.simpleName
-
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val authDataManager: AuthDataManager = AuthDataManager()
+
+    val error: MutableLiveData<String> = MutableLiveData()
+
+    init {
+        error.value = null
+    }
 
     /**
      * Will be used to run the login method of the AuthService
@@ -34,22 +40,30 @@ class LoginViewModel : ViewModel() {
                 .subscribeWith(object : DisposableObserver<LoginResponse>() {
                     override fun onNext(loginResponse: LoginResponse) {
                         preferenceManager.putAuthToken(loginResponse.authToken)
+                        error.value = null
                     }
+
                     override fun onError(throwable: Throwable) {
+
                         when (throwable) {
-                            is IOException -> //TODO: Show no internet error
-                                Log.d(TAG, "IOException")
-                            is TimeoutException -> //TODO: Show timeout exception
-                                Log.d(TAG, "TimeoutException")
-                            is HttpException -> {
-                                val error = CommonUtils.getErrorResponse(throwable)
-                                Log.d(TAG, error.message)
-                                //TODO: Show custom error message error.message
+                            is IOException -> {
+                                error.postValue(MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet))
                             }
-                            else -> //TODO: Show general error message
-                                Log.d(TAG, "general error message")
+                            is TimeoutException -> {
+                                error.postValue(MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out))
+                            }
+                            is HttpException -> {
+                                error.postValue(CommonUtils.getErrorResponse(throwable).message)
+                            }
+                            else -> {
+                                error.postValue(MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong))
+                            }
                         }
                     }
+
                     override fun onComplete() {
                     }
                 })
