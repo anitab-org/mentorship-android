@@ -47,4 +47,8 @@ open class BaseActivity: AppCompatActivity() {
         inputManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager
                 .RESULT_UNCHANGED_SHOWN)
     }
+
+    protected fun getRootView(): View {
+        return window.decorView.findViewById(android.R.id.content)
+    }
 }

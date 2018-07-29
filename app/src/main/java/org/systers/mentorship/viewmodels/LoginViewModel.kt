@@ -2,6 +2,8 @@ package org.systers.mentorship.viewmodels
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.util.Log
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -21,14 +23,13 @@ import java.util.concurrent.TimeoutException
  */
 class LoginViewModel : ViewModel() {
 
+    var TAG = LoginViewModel::class.java.simpleName
+
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val authDataManager: AuthDataManager = AuthDataManager()
 
-    val error: MutableLiveData<String> = MutableLiveData()
-
-    init {
-        error.value = null
-    }
+    val successful: MutableLiveData<Boolean> = MutableLiveData()
+    lateinit var message: String
 
     /**
      * Will be used to run the login method of the AuthService
@@ -37,31 +38,33 @@ class LoginViewModel : ViewModel() {
     fun login(@NonNull loginRequest: LoginRequest) {
         authDataManager.login(loginRequest)
                 .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<LoginResponse>() {
                     override fun onNext(loginResponse: LoginResponse) {
+                        successful.value = true
                         preferenceManager.putAuthToken(loginResponse.authToken)
-                        error.value = null
                     }
 
                     override fun onError(throwable: Throwable) {
-
                         when (throwable) {
                             is IOException -> {
-                                error.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet))
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
                             }
                             is TimeoutException -> {
-                                error.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out))
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                error.postValue(CommonUtils.getErrorResponse(throwable).message)
+                                message = CommonUtils.getErrorResponse(throwable).message.toString()
                             }
                             else -> {
-                                error.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong))
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TAG, throwable.localizedMessage)
                             }
                         }
+                        successful.value = false
                     }
 
                     override fun onComplete() {

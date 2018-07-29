@@ -2,7 +2,9 @@ package org.systers.mentorship.view.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
@@ -20,13 +22,21 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginViewModel  = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        loginViewModel.error.value = null
-        loginViewModel.error.observe(this, Observer {
-            error ->
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        loginViewModel.successful.observe(this, Observer {
+            successful ->
             hideProgressDialog()
-            if (!error.isNullOrEmpty()) {
-                Toast.makeText(applicationContext, error, Toast.LENGTH_SHORT).show()
+            if (successful != null) {
+                if (successful) {
+                    Toast.makeText(this, R.string.logging_successful, Toast.LENGTH_LONG)
+                            .show()
+                    intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
+                            .show()
+                }
             }
         })
 
@@ -35,5 +45,11 @@ class LoginActivity : BaseActivity() {
             loginViewModel.login(LoginRequest("12345678", "12345678"))
             showProgressDialog(getString(R.string.logging_in))
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        loginViewModel.successful.removeObservers(this)
+        loginViewModel.successful.value = null
     }
 }
