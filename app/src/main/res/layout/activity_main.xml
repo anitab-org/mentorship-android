@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.systers.mentorship.view.activities.LoginActivity">
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login"/>
+    tools:context="org.systers.mentorship.view.activities.MainActivity">
 
 </android.support.constraint.ConstraintLayout>

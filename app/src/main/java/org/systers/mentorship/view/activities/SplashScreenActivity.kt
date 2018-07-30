@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.ui
+package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +13,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var handler: Handler
     private lateinit var runnable: Runnable
+    private var SPLASH_DISPLAY_LENGTH: Long = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,6 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        val SPLASH_DISPLAY_LENGTH: Long = 1000
         handler = Handler()
         handler.postDelayed(runnable, SPLASH_DISPLAY_LENGTH)
     }

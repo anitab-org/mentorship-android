@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Systers Mentorship</string>
+    <string name="logo">Logo</string>
+    <string name="login">Login</string>
+    <string name="logging_in">Logging in…</string>
+    <string name="logging_successful">Logging successful</string>
+    <string name="error_please_check_internet">Please check your internet connection</string>
+    <string name="error_request_timed_out">Request timed out</string>
+    <string name="error_something_went_wrong">Something went wrong</string>
 </resources>
