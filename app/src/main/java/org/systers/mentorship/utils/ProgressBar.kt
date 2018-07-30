@@ -10,7 +10,8 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 
 /**
- * Created by murad on 7/28/18.
+ * This class will show and hide a Progressbar in an activity or a fragment.
+ * @param context of the activity or fragment where the progressbar is to be shown.
  */
 class ProgressBar(context: Context) {
 
@@ -36,10 +37,16 @@ class ProgressBar(context: Context) {
         hide()
     }
 
+    /**
+     * Shows the progressbar
+     */
     fun show() {
         progressBar.visibility = View.VISIBLE
     }
 
+    /**
+     * Hides the progressbar
+     */
     fun hide() {
         progressBar.visibility = View.INVISIBLE
     }
