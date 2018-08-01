@@ -3,6 +3,8 @@ package org.systers.mentorship.remote.datamanager
 import io.reactivex.Observable
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.LoginRequest
+import org.systers.mentorship.remote.requests.RegisterRequest
+import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.remote.responses.LoginResponse
 
 /**
@@ -21,4 +23,13 @@ class AuthDataManager {
         return apiManager.getAuthService().login(loginRequest)
     }
 
+    /**
+     * This will call the register method of AuthService interface
+     * @param registerRequest The registration request body containing
+     *                        the registration required fields
+     * @return an Observable CustomResponse
+     */
+    fun register(registerRequest: RegisterRequest): Observable<CustomResponse> {
+        return apiManager.getAuthService().register(registerRequest)
+    }
 }

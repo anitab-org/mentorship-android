@@ -5,6 +5,7 @@ object Versions {
     val compileSdkVersion = 27
     val minSdkVersion = 19
     val targetSdkVersion = 27
+    val buildToolsVersion = "27.0.3"
     val versionCode = 1
     val versionName = "1"
     val gradleBuildTool = "3.1.3"
