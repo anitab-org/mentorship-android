@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion Versions.compileSdkVersion
+    buildToolsVersion Versions.buildToolsVersion
     defaultConfig {
         applicationId "org.systers.mentorship"
         minSdkVersion Versions.minSdkVersion
@@ -23,7 +24,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation Dependencies.kotlin_stdlib
     implementation Dependencies.appcompat_v7
     implementation Dependencies.design

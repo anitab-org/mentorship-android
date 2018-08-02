@@ -4,6 +4,7 @@ package org.systers.mentorship.view.activities
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -50,5 +51,15 @@ open class BaseActivity: AppCompatActivity() {
 
     protected fun getRootView(): View {
         return window.decorView.findViewById(android.R.id.content)
+    }
+
+    /**
+     * The [fragment] is added to the container view with id [containerId]. The operation is
+     * performed by the FragmentManager.
+     */
+    fun replaceFragment(containerId: Int, fragment: Fragment, title: Int) {
+        supportFragmentManager.beginTransaction()
+                .replace(containerId, fragment, getString(title)).commit()
+        supportActionBar?.setTitle(title)
     }
 }

@@ -18,6 +18,9 @@ class LoginActivity : BaseActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
 
+    private lateinit var username: String
+    private lateinit var password: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -41,10 +44,36 @@ class LoginActivity : BaseActivity() {
         })
 
         btnLogin.setOnClickListener {
-            //TODO: Get credentials from views
-            loginViewModel.login(LoginRequest("12345678", "12345678"))
-            showProgressDialog(getString(R.string.logging_in))
+            username = tiUsername.editText?.text.toString()
+            password = tiPassword.editText?.text.toString()
+            if (validateCredentials()) {
+                loginViewModel.login(LoginRequest(username, password))
+                showProgressDialog(getString(R.string.logging_in))
+            }
         }
+
+        btnSignUp.setOnClickListener {
+            intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun validateCredentials() : Boolean {
+        var validCredentials = true
+        if (username.isBlank()) {
+            tiUsername.error = getString(R.string.error_empty_username)
+            validCredentials = false
+        } else {
+            tiUsername.error = null
+        }
+        if (password.isBlank()) {
+            tiPassword.error = getString(R.string.error_empty_password)
+            validCredentials = false
+        } else {
+            tiPassword.error = null
+        }
+        return validCredentials
     }
 
     override fun onDestroy() {
