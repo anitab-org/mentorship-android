@@ -5,6 +5,8 @@
     <string name="sign_up">Sign Up</string>
     <string name="logging_in">Logging in…</string>
     <string name="signing_up">Signing up…</string>
+    <string name="fetching_users">Fetching users…</string>
+    <string name="fetch_user_profile">Fetching user profile…</string>
     <string name="logging_successful">Logging successful</string>
     <string name="registration_successful">Registration successful. Please confirm your email!</string>
     <string name="username_or_email">Username or Email</string>
@@ -36,4 +38,22 @@
     <string name="fragment_title_profile">My Profile</string>
     <string name="fragment_title_relation">Current Relation</string>
     <string name="fragment_title_requests">Mentorship Requests</string>
+    <string name="send_request">Send request</string>
+    <string name="member_profile">Member Profile</string>
+    <string name="bio">Bio</string>
+    <string name="slack_username">Slack username</string>
+    <string name="interests">Interests</string>
+    <string name="occupation">Occupation</string>
+    <string name="organization">Organization</string>
+    <string name="location">Location</string>
+    <string name="skills">Skills</string>
+    <string name="available_to_mentor">Available to mentor</string>
+    <string name="need_mentoring">Need mentoring</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="available_to_mentor_and_mentee">Available to mentor and be a mentee</string>
+    <string name="only_available_to_mentor">Only available to mentor</string>
+    <string name="only_available_to_mentee">Only available to be a mentee</string>
+    <string name="not_available_to_mentor_or_mentee">Not available to be a mentor or a mentee</string>
+    <string name="user_photo">User Photo</string>
 </resources>
