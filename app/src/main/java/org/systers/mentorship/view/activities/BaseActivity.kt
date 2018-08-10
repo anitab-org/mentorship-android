@@ -19,7 +19,11 @@ open class BaseActivity: AppCompatActivity() {
     private var progressDialog: ProgressDialog? = null
     private var progressBar: ProgressBar? = null
 
-    protected fun showProgressDialog(message: String) {
+    /**
+     * Shows a [ProgressDialog]. This is used when fetching data from a remote source
+     * @param message text to be shown while he progress dialog is being shown
+     */
+    fun showProgressDialog(message: String) {
         if (progressDialog == null) {
             progressDialog = ProgressDialog(this, ProgressDialog.STYLE_SPINNER)
             progressDialog?.setCancelable(false)
@@ -28,7 +32,10 @@ open class BaseActivity: AppCompatActivity() {
         progressDialog?.show()
     }
 
-    protected fun hideProgressDialog() {
+    /**
+     * Hides the [ProgressDialog]. This is called when fetching data from a remote source finishes
+     */
+    fun hideProgressDialog() {
         if (progressDialog != null && progressDialog!!.isShowing)
             progressDialog?.dismiss()
     }

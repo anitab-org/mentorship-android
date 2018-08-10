@@ -10,7 +10,7 @@ import org.systers.mentorship.utils.BottomNavigationViewHelper
 import org.systers.mentorship.view.fragments.*
 
 /**
- * This activity has the bottom navigation bra which allows the user to switch between fragments
+ * This activity has the bottom navigation which allows the user to switch between fragments
  */
 class MainActivity : BaseActivity() {
 
