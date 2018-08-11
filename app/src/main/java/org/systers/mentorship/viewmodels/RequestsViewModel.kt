@@ -6,38 +6,38 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import org.systers.mentorship.MentorshipApplication
-import org.systers.mentorship.R
-import org.systers.mentorship.remote.datamanager.UserDataManager
-import org.systers.mentorship.remote.responses.UserResponse
-import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import org.systers.mentorship.MentorshipApplication
+import org.systers.mentorship.R
+import org.systers.mentorship.remote.datamanager.RelationDataManager
+import org.systers.mentorship.remote.responses.MentorshipRelationResponse
+import org.systers.mentorship.utils.CommonUtils
 
 /**
- * This class represents the [ViewModel] component used for the Members Activity
+ * This class represents the [ViewModel] used for Requests Screen
  */
-class MembersViewModel : ViewModel() {
+class RequestsViewModel : ViewModel() {
 
-    var TAG = MembersViewModel::class.java.simpleName
+    var TAG = RequestsViewModel::class.java.simpleName
 
-    private val userDataManager: UserDataManager = UserDataManager()
+    private val relationDataManager = RelationDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
-    lateinit var usersList: List<UserResponse>
+    lateinit var allRequestsList: List<MentorshipRelationResponse>
 
     /**
-     * Fetches users list from getUsers method of the UserService
+     * Fetches list of all Mentorship relations and requests
      */
-    fun getUsers() {
-        userDataManager.getUsers()
+    fun getAllMentorshipRelations() {
+        relationDataManager.getAllMentorshipRelationsAndRequests()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<UserResponse>>() {
-                    override fun onNext(userListResponse: List<UserResponse>) {
-                        usersList = userListResponse
+                .subscribeWith(object : DisposableObserver<List<MentorshipRelationResponse>>() {
+                    override fun onNext(relationsList: List<MentorshipRelationResponse>) {
+                        allRequestsList = relationsList
                         successful.value = true
                     }
 
