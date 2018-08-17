@@ -49,7 +49,7 @@ class SignUpActivity : BaseActivity() {
             username = tiUsername.editText?.text.toString()
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
-            confirmedPassword = cbTC.text.toString()
+            confirmedPassword = tiConfirmPassword.editText?.text.toString()
 
             if (validateDetails()) {
                 val requestData = RegisterRequest(name, username, password, email, true)
