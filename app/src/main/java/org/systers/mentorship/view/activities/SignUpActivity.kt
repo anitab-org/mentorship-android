@@ -52,7 +52,7 @@ class SignUpActivity : BaseActivity() {
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
 
             if (validateDetails()) {
-                val requestData = RegisterRequest(name, username, password, email, true)
+                val requestData = RegisterRequest(name, username, email, password, true)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             }
