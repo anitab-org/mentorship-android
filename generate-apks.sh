@@ -37,7 +37,7 @@ if [ "$TRAVIS_BRANCH" == "develop" ]; then
 
     # Copy the generated apks in to the repository we just created
     cp $HOME/build/systers/mentorship-android/app/build/outputs/apk/debug/app-debug.apk $HOME/apk/
-    cp $HOME/build/m-murad/mentorship-android/app/build/outputs/apk/release/app-release-unsigned.apk $HOME/apk/
+    cp $HOME/build/systers/mentorship-android/app/build/outputs/apk/release/app-release-unsigned.apk $HOME/apk/
 
     # Add and commit the apks
     git add app-debug.apk

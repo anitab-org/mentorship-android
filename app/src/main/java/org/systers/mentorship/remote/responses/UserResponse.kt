@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName
  * @param id identifier of the user
  * @param username username of the user
  * @param name name of the user
+ * @param email email of the user
  * @param bio bio of the user
  * @param location location, e.g., country or/and city where the user lives
  * @param occupation current occupation of the user
@@ -22,6 +23,7 @@ data class UserResponse(
         var id: Int,
         var username: String,
         var name: String,
+        var email: String,
         var bio: String,
         var location: String,
         var occupation: String,

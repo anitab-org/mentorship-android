@@ -2,6 +2,7 @@
     <string name="app_name">Systers Mentorship</string>
     <string name="logo">Logo</string>
     <string name="login">Login</string>
+    <string name="update_profile">Update</string>
     <string name="sign_up">Sign Up</string>
     <string name="logging_in">Logging in…</string>
     <string name="signing_up">Signing up…</string>
@@ -9,6 +10,7 @@
     <string name="fetch_user_profile">Fetching user profile…</string>
     <string name="logging_successful">Logging successful</string>
     <string name="registration_successful">Registration successful. Please confirm your email!</string>
+    <string name="update_successful">Update profile was successful!</string>
     <string name="username_or_email">Username or Email</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
@@ -84,4 +86,6 @@
     <string name="rejected">Rejected</string>
     <string name="completed">Completed</string>
     <string name="cancelled">Cancelled</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="updating_profile">Updating profile…</string>
 </resources>
