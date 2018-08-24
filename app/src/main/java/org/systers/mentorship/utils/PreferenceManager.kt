@@ -31,4 +31,11 @@ class PreferenceManager {
 
     val authToken: String
         get() = sharedPreferences.getString(AUTH_TOKEN, "")
+
+    /**
+     * Clears all the data that has been saved in the preferences file.
+     */
+    fun clear() {
+        sharedPreferences.edit().clear().apply()
+    }
 }
