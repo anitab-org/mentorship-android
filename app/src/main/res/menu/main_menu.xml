@@ -13,4 +13,8 @@
         android:id="@+id/menu_feedback"
         android:title="@string/popup_menu_feedback"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_logout"
+        android:icon="@android:drawable/ic_lock_power_off"
+        android:title="@string/popup_menu_logout" />
 </menu>
