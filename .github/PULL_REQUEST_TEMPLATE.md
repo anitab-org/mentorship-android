@@ -31,6 +31,7 @@ Describe the tests you ran to verify your changes. Provide instructions or GIFs 
 - [ ] I have commented my code or provided relevant documentation, particularly in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation
 - [ ] Any dependent changes have been merged
+- [ ] I have written Kotlin Docs whenever is applicable
 
 
 **Code/Quality Assurance Only**
