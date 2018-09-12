@@ -9,6 +9,7 @@ object Versions {
     val versionCode = 1
     val versionName = "1"
     val gradleBuildTool = "3.1.3"
+    val dataBinding = "3.1.3"
     val kotlinVersion = "1.1.51"
     val supportLib = "27.1.1"
     val constraintLayout = "1.1.2"
@@ -28,6 +29,7 @@ object Versions {
  */
 object Dependencies {
     val gradle_build_tool = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
+    val databinding = "com.android.databinding:compiler:${Versions.dataBinding}"
     val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:${Versions.kotlinVersion}"
     val appcompat_v7 = "com.android.support:appcompat-v7:${Versions.supportLib}"

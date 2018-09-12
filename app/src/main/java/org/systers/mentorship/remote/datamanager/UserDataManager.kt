@@ -2,6 +2,8 @@ package org.systers.mentorship.remote.datamanager
 
 import io.reactivex.Observable
 import org.systers.mentorship.remote.ApiManager
+import org.systers.mentorship.remote.requests.UpdateUserRequest
+import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.remote.responses.UserResponse
 
 /**
@@ -25,5 +27,21 @@ class UserDataManager {
      */
     fun getUserById(userId: Int): Observable<UserResponse> {
         return apiManager.getUserService().getUserById(userId)
+    }
+
+    /**
+     * This will call the getUser method of UserService interface
+     * @return an Observable of [UserResponse]
+     */
+    fun getUser(): Observable<UserResponse> {
+        return apiManager.getUserService().getUser()
+    }
+
+    /**
+     * This will call the updateUser method of UserService interface
+     * @return an Observable of [CustomResponse]
+     */
+    fun updateUser(updateUserRequest: UpdateUserRequest): Observable<CustomResponse> {
+        return apiManager.getUserService().updateUser(updateUserRequest)
     }
 }
