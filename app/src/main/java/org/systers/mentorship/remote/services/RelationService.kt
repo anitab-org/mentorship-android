@@ -40,10 +40,24 @@ interface RelationService {
     fun deleteMentorshipRelation(@Path("relation_id") relationId: Int): Observable<CustomResponse>
 
     /**
+     * This function performs the cancellation of a mentorship relation
+     * @return an observable instance of [CustomResponse] with a proper error or success message
+     */
+    @PUT("mentorship_relation/{relation_id}/cancel")
+    fun cancelMentorshipRelation(@Path("relation_id") relationId: Int): Observable<CustomResponse>
+
+    /**
      * This function performs sending a mentorship request
      * @param sendRequest data required to send a mentorship request
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
     @POST("mentorship_relation/send_request")
     fun sendMentorshipRequest(@Body sendRequest: SendRequest): Observable<CustomResponse>
+
+    /**
+     * This function return the current mentorship relation
+     * @return an observable instance of [MentorshipRelationResponse]
+     */
+    @GET("mentorship_relations/current")
+    fun getCurrentMentorshipRelation(): Observable<MentorshipRelationResponse>
 }
