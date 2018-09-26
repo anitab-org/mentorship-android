@@ -11,7 +11,7 @@ import retrofit2.HttpException
  */
 object CommonUtils {
 
-    private val gson = Gson()
+    val gson = Gson()
 
     /**
      * Extracts a CustomResponse object from a throwable

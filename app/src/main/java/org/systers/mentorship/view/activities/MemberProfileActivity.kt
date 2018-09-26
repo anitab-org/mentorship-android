@@ -2,6 +2,7 @@ package org.systers.mentorship.view.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.MenuItem
@@ -18,6 +19,7 @@ import org.systers.mentorship.viewmodels.MemberProfileViewModel
 class MemberProfileActivity : BaseActivity() {
 
     private lateinit var memberProfileViewModel: MemberProfileViewModel
+    private lateinit var memberProfile: UserResponse
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +45,13 @@ class MemberProfileActivity : BaseActivity() {
 
         showProgressDialog(getString(R.string.fetch_user_profile))
         memberProfileViewModel.getUserProfile(userId)
+
+        btnSendRequest.setOnClickListener {
+            val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+            intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, memberProfile.id)
+            intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, memberProfile.name)
+            startActivity(intent)
+        }
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
@@ -56,6 +65,7 @@ class MemberProfileActivity : BaseActivity() {
     }
 
     private fun setUserProfile(userData: UserResponse) {
+        memberProfile = userData
         tvName.text = userData.name
         setTextViewStartingWithBoldSpan(
                 tvAvailableToMentor,

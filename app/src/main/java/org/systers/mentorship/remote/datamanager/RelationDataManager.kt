@@ -2,6 +2,7 @@ package org.systers.mentorship.remote.datamanager
 
 import io.reactivex.Observable
 import org.systers.mentorship.remote.ApiManager
+import org.systers.mentorship.remote.requests.SendRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.remote.responses.MentorshipRelationResponse
 
@@ -46,5 +47,14 @@ class RelationDataManager {
      */
     fun deleteMentorshipRelation(relationId: Int): Observable<CustomResponse> {
         return apiManager.getMentorshipRelationService().deleteMentorshipRelation(relationId)
+    }
+
+    /**
+     * This will call a method from RelationService interface to send mentorship request
+     * @param sendRequest object with fields to send a mentorship request
+     * @return an Observable of [CustomResponse]
+     */
+    fun sendMentorshipRequest(sendRequest: SendRequest): Observable<CustomResponse> {
+        return apiManager.getMentorshipRelationService().sendMentorshipRequest(sendRequest)
     }
 }

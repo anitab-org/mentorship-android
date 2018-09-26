@@ -1,12 +1,10 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import org.systers.mentorship.remote.requests.SendRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.remote.responses.MentorshipRelationResponse
-import retrofit2.http.DELETE
+import retrofit2.http.*
 
 /**
  * This interface describes the methods related to Mentorship Relation REST API
@@ -40,4 +38,12 @@ interface RelationService {
      */
     @DELETE("mentorship_relation/{relation_id}")
     fun deleteMentorshipRelation(@Path("relation_id") relationId: Int): Observable<CustomResponse>
+
+    /**
+     * This function performs sending a mentorship request
+     * @param sendRequest data required to send a mentorship request
+     * @return an observable instance of [CustomResponse] with a proper error or success message
+     */
+    @POST("mentorship_relation/send_request")
+    fun sendMentorshipRequest(@Body sendRequest: SendRequest): Observable<CustomResponse>
 }

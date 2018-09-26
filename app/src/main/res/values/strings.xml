@@ -88,4 +88,7 @@
     <string name="cancelled">Cancelled</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="updating_profile">Updating profile…</string>
+    <string name="end_date_label">End Date:</string>
+    <string name="i_will_be_a">I will be a ...</string>
+    <string name="end_date_format">dd/mm/YYYY</string>
 </resources>

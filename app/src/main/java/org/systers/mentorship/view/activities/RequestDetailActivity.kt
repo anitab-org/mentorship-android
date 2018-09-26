@@ -47,10 +47,18 @@ class RequestDetailActivity: BaseActivity() {
 
         val requestDirection = getString(if (relationResponse.sentByMe) R.string.to else R.string.from)
 
-        val otherUserName = if (relationResponse.sentByMe && isFromMentee) {
-            relationResponse.mentor.name
+        val otherUserName = if (relationResponse.sentByMe) {
+            if (isFromMentee) {
+                relationResponse.mentor.name
+            } else {
+                relationResponse.mentee.name
+            }
         } else {
-            relationResponse.mentee.name
+            if (isFromMentee) {
+                relationResponse.mentee.name
+            } else {
+                relationResponse.mentor.name
+            }
         }
         tvOtherUserName.text = getString(R.string.request_direction_formatted, requestDirection, otherUserName)
 
