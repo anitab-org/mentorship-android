@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 const val DATE_FORMAT = "dd MMM yyyy"
+const val SEND_REQUEST_END_DATE_FORMAT = "dd/MM/yyyy"
 const val EXTENDED_DATE_FORMAT = "dd MMMM yyyy"
 const val MILLISECONDS_FACTOR = 1000L
 
@@ -26,3 +27,15 @@ fun convertUnixTimestampIntoStr(unixTimestamp: Float, format: String) : String {
  * @return unix timestamp in milliseconds
  */
 fun getUnixTimestampInMilliseconds(unixTimestamp: Float) : Long = (unixTimestamp * MILLISECONDS_FACTOR).toLong()
+
+/**
+ * Convert Date to UnixTimestamp [Long] format
+ * @param dateStr date in string format
+ * @param format  string format used to parse dateStr
+ * @return unix timestamp in milliseconds
+ */
+fun convertDateIntoUnixTimestamp(dateStr: String, format: String) : Long {
+
+    val date = SimpleDateFormat(format, Locale.US).parse(dateStr)
+    return date.time / MILLISECONDS_FACTOR
+}

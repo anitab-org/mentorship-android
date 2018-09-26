@@ -27,6 +27,7 @@
         <activity android:name=".view.activities.MainActivity" />
         <activity android:name=".view.activities.RequestDetailActivity" />
         <activity android:name=".view.activities.MemberProfileActivity" />
+        <activity android:name=".view.activities.SendRequestActivity" />
     </application>
 
 </manifest>
