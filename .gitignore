@@ -68,3 +68,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+app/src/main/java/org/systers/mentorship/view/.DS_Store
+app/src/main/java/org/systers/.DS_Store
+.DS_Store

@@ -14,6 +14,7 @@ import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import org.systers.mentorship.utils.getAuthTokenPayload
 
 /**
  * This class represents the [ViewModel] component used for the Members Activity
@@ -37,7 +38,11 @@ class MembersViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<UserResponse>>() {
                     override fun onNext(userListResponse: List<UserResponse>) {
-                        usersList = userListResponse
+
+                        // Exclude current user from the list
+                        val currentUserId = getAuthTokenPayload().identity
+                        usersList = (userListResponse as ArrayList<UserResponse>).filter { userResponse -> userResponse.id != currentUserId }
+
                         successful.value = true
                     }
 
