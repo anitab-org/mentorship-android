@@ -50,11 +50,28 @@ class RelationDataManager {
     }
 
     /**
+     * This will call a method from RelationService interface to cancel a mentorship relation
+     * @param relationId id of the request being canceled
+     * @return an Observable of [CustomResponse]
+     */
+    fun cancelMentorshipRelation(relationId: Int): Observable<CustomResponse> {
+        return apiManager.getMentorshipRelationService().cancelMentorshipRelation(relationId)
+    }
+
+    /**
      * This will call a method from RelationService interface to send mentorship request
      * @param sendRequest object with fields to send a mentorship request
      * @return an Observable of [CustomResponse]
      */
     fun sendMentorshipRequest(sendRequest: SendRequest): Observable<CustomResponse> {
         return apiManager.getMentorshipRelationService().sendMentorshipRequest(sendRequest)
+    }
+
+    /**
+     * This will call a method from RelationService interface to get accepted mentorship relation
+     * @return an Observable of [CustomResponse]
+     */
+    fun getCurrentMentorshipRelation(): Observable<MentorshipRelationResponse> {
+        return apiManager.getMentorshipRelationService().getCurrentMentorshipRelation()
     }
 }
