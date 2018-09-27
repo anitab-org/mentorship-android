@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
 
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
+                // Enables menu navigation that might have been disabled by the Option menu.
                 bottomNavigation.getMenu().setGroupCheckable(0, true, true)
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -74,6 +75,7 @@ class MainActivity : BaseActivity() {
                 R.id.menu_about -> {
                     replaceFragment(R.id.contentFrame, AboutFragment.newInstance(),
                             R.string.fragment_title_about)
+                    // Disables and un-selects navigation menu.
                     bottomNavigation.getMenu().setGroupCheckable(0, false, true)
 
                     true
