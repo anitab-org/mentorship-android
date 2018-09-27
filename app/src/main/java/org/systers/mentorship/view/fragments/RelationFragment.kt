@@ -45,7 +45,7 @@ class RelationFragment : BaseFragment() {
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    populateView(relationViewModel.mentorshipRelation)
+                    populateView(relationViewModel.mentorshipRelation,true)
                 } else {
                     view?.let {
                         Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -59,8 +59,8 @@ class RelationFragment : BaseFragment() {
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    relationViewModel.getCurrentRelationDetails()
-                    populateView(relationViewModel.mentorshipRelation)
+
+                    populateView(relationViewModel.mentorshipRelation,false)
                 } else {
                     view?.let {
                         Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -77,13 +77,13 @@ class RelationFragment : BaseFragment() {
         relationViewModel.getCurrentRelationDetails()
     }
 
-    private fun populateView(relationResponse: MentorshipRelationResponse) {
+    private fun populateView(relationResponse: MentorshipRelationResponse, showRelation: Boolean) {
 
         // TODO this is a way to prevent crash when a user is not in a relation
         // and receives just a simple message
 
         // Empty state
-        if (relationResponse.mentor == null) {
+        if (relationResponse.mentor == null || showRelation == false ) {
             tvNoCurrentRelation.visibility = View.VISIBLE
             tvNotesLabel.visibility = View.GONE
             tvEndDateLabel.visibility = View.GONE
