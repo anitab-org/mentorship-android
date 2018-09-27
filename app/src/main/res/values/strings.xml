@@ -36,6 +36,7 @@
     <string name="popup_menu_about">About</string>
     <string name="popup_menu_settings">Settings</string>
     <string name="popup_menu_logout">Logout</string>
+    <string name="fragment_title_about"><h1>About Our App</h1></string>
     <string name="fragment_title_home">Home</string>
     <string name="fragment_title_members">Members</string>
     <string name="fragment_title_profile">My Profile</string>
@@ -92,5 +93,15 @@
     <string name="end_date_label">End Date:</string>
     <string name="i_will_be_a">I will be a ...</string>
     <string name="end_date_format">dd/mm/YYYY</string>
+    <string name="about_mission_statement">"<b>Mentorship System</b> is an application that "
+        "matches women in tech to mentor each other, on career development, through 1:1 relations "
+        "during a certain period of time. &#xA;&#xA;"
+        "This project was proposed as an original project Google Summer of Code 2018 edition, "
+        "by Isabel Costa. Isabel was mentored by Dilushi, Murad, Roopal and May as a project manager."
+        "You can learn more about the idea through \"Mentorship System by Systers\" blog post."
+    </string>
+    <string name="about_code_of_conduct">Code of Conduct: www.ghc.anitab.org/code-of-conduct/</string>
+    <string name="about_terms">Terms: www.anitab.org/terms-of-use/</string>
+    <string name="about_privacy_policy">Privacy Policy: www.anitab.org/privacy-policy/</string>
     <string name="no_current_mentorship_relation">You are not in a current mentorship relation.</string>
 </resources>

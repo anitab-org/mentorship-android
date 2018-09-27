@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
 
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
+                bottomNavigation.getMenu().setGroupCheckable(0, true, true)
         when (item.itemId) {
             R.id.navigation_home -> {
                 replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
@@ -71,6 +72,10 @@ class MainActivity : BaseActivity() {
                     true
                 }
                 R.id.menu_about -> {
+                    replaceFragment(R.id.contentFrame, AboutFragment.newInstance(),
+                            R.string.fragment_title_about)
+                    bottomNavigation.getMenu().setGroupCheckable(0, false, true)
+
                     true
                 }
                 R.id.menu_feedback -> {
