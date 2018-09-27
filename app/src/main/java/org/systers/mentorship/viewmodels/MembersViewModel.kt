@@ -41,8 +41,11 @@ class MembersViewModel : ViewModel() {
 
                         // Exclude current user from the list
                         val currentUserId = getAuthTokenPayload().identity
-                        usersList = (userListResponse as ArrayList<UserResponse>).filter { userResponse -> userResponse.id != currentUserId }
+                        usersList = ArrayList<UserResponse>()
 
+                        if(userListResponse is ArrayList<UserResponse>){
+                            userListResponse.filter { userResponse -> userResponse.id != currentUserId }
+                        }
                         successful.value = true
                     }
 
