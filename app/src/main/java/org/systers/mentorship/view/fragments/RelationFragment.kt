@@ -59,6 +59,7 @@ class RelationFragment : BaseFragment() {
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
+                    relationViewModel.getCurrentRelationDetails()
                     populateView(relationViewModel.mentorshipRelation)
                 } else {
                     view?.let {
@@ -84,6 +85,15 @@ class RelationFragment : BaseFragment() {
         // Empty state
         if (relationResponse.mentor == null) {
             tvNoCurrentRelation.visibility = View.VISIBLE
+            tvNotesLabel.visibility = View.GONE
+            tvEndDateLabel.visibility = View.GONE
+            tvMenteeLabel.visibility = View.GONE
+            tvMentorLabel.visibility = View.GONE
+            btnCancelRelation.visibility = View.GONE
+            tvMentorName.text =""
+            tvMenteeName.text = ""
+            tvEndDate.text = ""
+            tvRelationNotes.text = ""
         } else {
             tvNoCurrentRelation.visibility = View.GONE
             tvNotesLabel.visibility = View.VISIBLE
