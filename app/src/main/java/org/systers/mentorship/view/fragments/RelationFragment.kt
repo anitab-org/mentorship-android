@@ -84,21 +84,20 @@ class RelationFragment : BaseFragment() {
         // Empty state
         if (relationResponse.mentor == null) {
             tvNoCurrentRelation.visibility = View.VISIBLE
-
-            btnCancelRelation.visibility = View.GONE
-            tvEndDateLabel.visibility = View.GONE
-            tvNotesLabel.visibility = View.GONE
-            tvMenteeLabel.visibility = View.GONE
-            tvMentorLabel.visibility = View.GONE
         } else {
             tvNoCurrentRelation.visibility = View.GONE
+            tvNotesLabel.visibility = View.VISIBLE
+            tvEndDateLabel.visibility = View.VISIBLE
+            tvMenteeLabel.visibility = View.VISIBLE
+            tvMentorLabel.visibility = View.VISIBLE
+            btnCancelRelation.visibility = View.VISIBLE
+
             tvMentorName.text = relationResponse.mentor.name
             tvMenteeName.text = relationResponse.mentee.name
             tvEndDate.text = convertUnixTimestampIntoStr(
                     relationResponse.endAtTimestamp, EXTENDED_DATE_FORMAT)
             tvRelationNotes.text = relationResponse.notes
 
-            btnCancelRelation.visibility = View.VISIBLE
             btnCancelRelation.setOnClickListener {
                 relationViewModel.cancelMentorshipRelation(relationResponse.id)
             }
