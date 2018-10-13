@@ -22,6 +22,7 @@ object Versions {
     val retrofitVersion = "2.3.0"
     val okHttp3Version = "3.8.0"
     val archComponents = "1.1.1"
+    val testRule = "1.0.2"
 }
 
 /**
@@ -37,6 +38,7 @@ object Dependencies {
     val constraint_layout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
     val junit = "junit:junit:${Versions.junit}"
     val test_runner = "com.android.support.test:runner:${Versions.testRunner}"
+    val test_rules = "com.android.support.test:rules:${Versions.testRule}"
     val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espresso}"
     val rx_java = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     val rx_android = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
