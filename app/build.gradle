@@ -29,6 +29,12 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        forcedModules = ['com.android.support:support-annotations:25.1.0']
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation Dependencies.kotlin_stdlib
@@ -38,6 +44,7 @@ dependencies {
     kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
+    androidTestImplementation Dependencies.test_rules
     androidTestImplementation Dependencies.espresso
 
     implementation Dependencies.rx_java
