@@ -10,6 +10,11 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.RegisterRequest
 import org.systers.mentorship.viewmodels.SignUpViewModel
+import android.text.method.LinkMovementMethod
+import android.view.View
+import android.widget.TextView
+
+
 
 /**
  * This activity will let the user to sign up into the system using name, username,
@@ -28,6 +33,10 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        val checkboxText = findViewById<View>(R.id.cbTCText) as TextView
+        checkboxText.movementMethod = LinkMovementMethod.getInstance()
+
         signUpViewModel  = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         signUpViewModel.successful.observe(this, Observer {
             successful ->

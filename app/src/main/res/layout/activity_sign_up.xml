@@ -140,10 +140,11 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/cbTCText"
-                android:paddingLeft="8dp"
                 android:layout_width="242dp"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/cbTC"
+
+                android:paddingLeft="8dp"
                 android:text="@string/terms_and_conditions_acceptance_statement" />
         </RelativeLayout>
 
