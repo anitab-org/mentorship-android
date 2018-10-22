@@ -25,7 +25,9 @@ class MainActivity : BaseActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(bottomNavigation)
 
-        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
+        if (savedInstanceState == null) {
+            replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
+        }
     }
 
     private val mOnNavigationItemSelectedListener =
