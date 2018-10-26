@@ -52,8 +52,6 @@ class RequestPagerFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        Log.e("RequestPagerFragment", "onActivityCreated Called")
-
         arguments?.let {
             requestsList = it.getParcelableArrayList(REQUESTS_LIST_BUNDLE_ARG)
             emptyListText = it.getString(EMPTY_LIST_TEXT_BUNDLE_ARG)
@@ -77,43 +75,4 @@ class RequestPagerFragment : BaseFragment() {
                 intent.putExtra(RELATION_INTENT_EXTRA, requestDetail)
                 startActivity(intent)
             }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        Log.e("RequestPagerFragment", "onAttach Called")
     }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e("RequestPagerFragment", "onResume Called")
-
-
-
-        /**  var pendingList : List<MentorshipRelationResponse> = requestsList.filter {
-        val isPendingState = MentorshipRelationState.PENDING.value == it.state
-        val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endAtTimestamp) < System.currentTimeMillis()
-        isPendingState && !hasEndTimePassed
-        }
-
-        newInstance(pendingList, context!!.getString(R.string.empty_pending_requests))
-
-        arguments?.let {
-        requestsList = it.getParcelableArrayList(REQUESTS_LIST_BUNDLE_ARG)
-        emptyListText = it.getString(EMPTY_LIST_TEXT_BUNDLE_ARG)
-        }
-
-        if (requestsList.isEmpty()) {
-        tvEmptyList.text = emptyListText
-        rvRequestsList.visibility = View.GONE
-        } else {
-        rvRequestsList.apply {
-        layoutManager = LinearLayoutManager(context)
-        adapter = RequestsAdapter(requestsList, openRequestDetail)
-        }
-        tvEmptyList.visibility = View.GONE
-        }
-        } */
-
-
-    }
-}
