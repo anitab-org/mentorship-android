@@ -32,13 +32,13 @@ import org.systers.mentorship.view.activities.LoginActivity
 @RunWith(AndroidJUnit4::class)
 class LoginActivityTest {
 
-    val EMPTY_USERNAME_ERROR : String = "Username cannot be empty"
-    val EMPTY_PASSWORD_ERROR : String = "Password cannot be empty"
+    val EMPTY_USERNAME_ERROR: String = "Username cannot be empty"
+    val EMPTY_PASSWORD_ERROR: String = "Password cannot be empty"
 
     @get:Rule
-      var mActivityTestRule : ActivityTestRule<LoginActivity> = ActivityTestRule(LoginActivity::class.java)
+      var mActivityTestRule: ActivityTestRule<LoginActivity> = ActivityTestRule(LoginActivity::class.java)
 
-     private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
+     private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
           return onView(allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
       }
@@ -48,9 +48,9 @@ class LoginActivityTest {
         /**
          * This simply implements the null check, checks the type and then casts.
          */
-        fun hasTextInputLayoutErrorText(expectedErrorText : String) : Matcher<View> {
+        fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
-          return object : TypeSafeMatcher<View>() {
+          return object: TypeSafeMatcher<View>() {
               /**
                * Generates a description of the object.  The description may be part of a
                * a description of a larger object of which this is just a component, so it
@@ -73,12 +73,12 @@ class LoginActivityTest {
                       return false
                   }
 
-                  var error : CharSequence? = item.error
+                  var error: CharSequence? = item.error
                   if (error == null) {
                       return false
                   }
 
-                  var errorMsg : String = error.toString()
+                  var errorMsg: String = error.toString()
                   return expectedErrorText.equals(errorMsg)
               }
           }

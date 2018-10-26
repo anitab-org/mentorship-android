@@ -32,16 +32,18 @@ class RequestsPagerAdapter(
         ALL(2)
     }
 
+
+
     val context = MentorshipApplication.getContext()
 
-    private val pendingList: List<MentorshipRelationResponse> by lazy {
-        requestsList.filter {
-            val isPendingState = MentorshipRelationState.PENDING.value == it.state
-            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endAtTimestamp) < System.currentTimeMillis()
-
-            isPendingState && !hasEndTimePassed
+   private val pendingList: List<MentorshipRelationResponse> by lazy {
+         requestsList.filter {
+             val isPendingState = MentorshipRelationState.PENDING.value == it.state
+             val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endAtTimestamp) < System.currentTimeMillis()
+             isPendingState && !hasEndTimePassed
+            }
         }
-    }
+
     private val pastList: List<MentorshipRelationResponse> by lazy {
         requestsList.filter {
             val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endAtTimestamp) < System.currentTimeMillis()

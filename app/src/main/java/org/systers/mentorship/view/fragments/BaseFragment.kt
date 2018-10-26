@@ -2,6 +2,7 @@ package org.systers.mentorship.view.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 abstract class BaseFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.e("BaseFragment", "onCreateView Called")
         return inflater.inflate(getLayoutResourceId(), container, false)
     }
 

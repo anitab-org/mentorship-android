@@ -2,8 +2,10 @@ package org.systers.mentorship.view.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_request_detail.*
@@ -13,6 +15,8 @@ import org.systers.mentorship.remote.responses.MentorshipRelationResponse
 import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
 import org.systers.mentorship.utils.*
+import org.systers.mentorship.view.adapters.RequestsAdapter
+import org.systers.mentorship.view.fragments.RequestPagerFragment
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 
 /**
@@ -153,6 +157,10 @@ class RequestDetailActivity: BaseActivity() {
                 }
             }
         })
+    }
+
+    fun showFragment(fragment : Fragment) : Fragment{
+        return fragment
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
