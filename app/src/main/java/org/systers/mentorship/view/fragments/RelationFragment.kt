@@ -59,7 +59,16 @@ class RelationFragment : BaseFragment() {
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    populateView(relationViewModel.mentorshipRelation)
+                    tvNoCurrentRelation.visibility = View.VISIBLE
+                    tvMenteeLabel.visibility = View.GONE
+                    tvMentorLabel.visibility = View.GONE
+                    tvEndDateLabel.visibility = View.GONE
+                    tvNotesLabel.visibility = View.GONE
+                    btnCancelRelation.visibility = View.GONE
+                    tvMentorName.visibility = View.GONE
+                    tvMenteeName.visibility = View.GONE
+                    tvEndDate.visibility = View.GONE
+                    tvRelationNotes.visibility = View.GONE
                 } else {
                     view?.let {
                         Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
