@@ -8,7 +8,6 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compileSdkVersion
-    buildToolsVersion Versions.buildToolsVersion
     defaultConfig {
         applicationId "org.systers.mentorship"
         minSdkVersion Versions.minSdkVersion
