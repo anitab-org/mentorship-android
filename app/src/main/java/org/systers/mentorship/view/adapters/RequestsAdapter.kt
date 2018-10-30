@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_requests_item.view.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.DATE_FORMAT
 import org.systers.mentorship.utils.convertUnixTimestampIntoStr
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
@@ -19,8 +19,8 @@ import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
  * @param openDetailFunction function to be called when an item from Requests list is clicked
  */
 class RequestsAdapter (
-        private val requestsList: List<MentorshipRelationResponse>,
-        private val openDetailFunction: (requestDetail: MentorshipRelationResponse) -> Unit
+        private val requestsList: List<Relationship>,
+        private val openDetailFunction: (requestDetail: Relationship) -> Unit
 ) : RecyclerView.Adapter<RequestsAdapter.RequestsViewHolder>() {
 
     val context = MentorshipApplication.getContext()
@@ -37,9 +37,9 @@ class RequestsAdapter (
 
         setTextViewStartingWithBoldSpan(itemView.tvMentorName, context.getString(R.string.mentor), item.mentor.name)
         setTextViewStartingWithBoldSpan(itemView.tvMenteeName, context.getString(R.string.mentee), item.mentee.name)
-        setTextViewStartingWithBoldSpan(itemView.tvEndDate, context.getString(R.string.end_date), convertUnixTimestampIntoStr(item.endAtTimestamp, DATE_FORMAT))
+        setTextViewStartingWithBoldSpan(itemView.tvEndDate, context.getString(R.string.end_date), convertUnixTimestampIntoStr(item.endsOn, DATE_FORMAT))
         setTextViewStartingWithBoldSpan(itemView.tvNotes, context.getString(R.string.notes), item.notes)
-        itemView.tvCreationDate.text = convertUnixTimestampIntoStr(item.createdAtTimestamp, DATE_FORMAT)
+        itemView.tvCreationDate.text = convertUnixTimestampIntoStr(item.sentOn, DATE_FORMAT)
 
         // switch arrow direction according to the user that sent a mentorship request
         if (!item.sentByMe) {

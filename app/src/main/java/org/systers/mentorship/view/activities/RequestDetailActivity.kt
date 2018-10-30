@@ -8,10 +8,10 @@ import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.MentorshipRelationState
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
+import org.systers.mentorship.models.Relationship
 import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
+import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 
@@ -27,7 +27,7 @@ class RequestDetailActivity: BaseActivity() {
     private lateinit var requestDetailViewModel: RequestDetailViewModel
 
     private val mentorshipRelationResponse by lazy {
-        intent.getParcelableExtra<MentorshipRelationResponse>(RELATION_INTENT_EXTRA)
+        intent.getParcelableExtra<Relationship>(RELATION_INTENT_EXTRA)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class RequestDetailActivity: BaseActivity() {
         setOnClickListeners(mentorshipRelationResponse)
     }
 
-    private fun populateView(relationResponse: MentorshipRelationResponse) {
+    private fun populateView(relationResponse: Relationship) {
         tvRequestNotes.text = relationResponse.notes
         val isFromMentee: Boolean = relationResponse.actionUserId == relationResponse.mentee.id
 
@@ -69,13 +69,13 @@ class RequestDetailActivity: BaseActivity() {
         }
         val actionUserRole = getString(if (isFromMentee) R.string.mentee else R.string.mentor)
         val requestEndDate = convertUnixTimestampIntoStr(
-                relationResponse.endAtTimestamp, EXTENDED_DATE_FORMAT)
+                relationResponse.endsOn, EXTENDED_DATE_FORMAT)
 
         val requestSummaryMessage = getString(summaryStrId,
                 otherUserName, actionUserRole, requestEndDate)
         tvRequestSummary.text = requestSummaryMessage
 
-        if (relationResponse.state == MentorshipRelationState.PENDING.value) {
+        if (relationResponse.state == RelationState.PENDING.value) {
             setActionButtons(relationResponse)
         } else {
             setStateMessage(relationResponse)
@@ -85,8 +85,8 @@ class RequestDetailActivity: BaseActivity() {
         tvRequestNotes.movementMethod = ScrollingMovementMethod()
     }
 
-    private fun setActionButtons(relationResponse: MentorshipRelationResponse) {
-        val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.endAtTimestamp) < System.currentTimeMillis()
+    private fun setActionButtons(relationResponse: Relationship) {
+        val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.endsOn) < System.currentTimeMillis()
         if (!hasEndTimePassed) {
             if (relationResponse.sentByMe) {
                 btnDelete.visibility = View.VISIBLE
@@ -104,12 +104,12 @@ class RequestDetailActivity: BaseActivity() {
         }
     }
 
-    private fun setStateMessage(relationResponse: MentorshipRelationResponse) {
+    private fun setStateMessage(relationResponse: Relationship) {
         val stateStrId = when (relationResponse.state) {
-            MentorshipRelationState.ACCEPTED.value -> R.string.accepted
-            MentorshipRelationState.REJECTED.value -> R.string.rejected
-            MentorshipRelationState.CANCELLED.value -> R.string.cancelled
-            MentorshipRelationState.COMPLETED.value -> R.string.completed
+            RelationState.ACCEPTED.value -> R.string.accepted
+            RelationState.REJECTED.value -> R.string.rejected
+            RelationState.CANCELLED.value -> R.string.cancelled
+            RelationState.COMPLETED.value -> R.string.completed
             else -> {
                 null
             }
@@ -123,7 +123,7 @@ class RequestDetailActivity: BaseActivity() {
         }
     }
 
-    private fun setOnClickListeners(relationResponse: MentorshipRelationResponse) {
+    private fun setOnClickListeners(relationResponse: Relationship) {
 
         btnDelete.setOnClickListener {
             requestDetailViewModel.deleteRequest(relationResponse.id)

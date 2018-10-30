@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -35,6 +36,7 @@ class LoginViewModel : ViewModel() {
      * Will be used to run the login method of the AuthService
      * @param login a login request object containing the credentials
      */
+    @SuppressLint("CheckResult")
     fun login(@NonNull login: Login) {
         authDataManager.login(login)
                 .subscribeOn(Schedulers.newThread())

@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -31,6 +32,7 @@ class RequestDetailViewModel : ViewModel() {
      * Accepts a mentorship request
      * @param requestId id of the mentorship request
      */
+    @SuppressLint("CheckResult")
     fun acceptRequest(requestId: Int) {
         relationDataManager.acceptMentorshipRelation(requestId)
                 .subscribeOn(Schedulers.newThread())
@@ -73,6 +75,7 @@ class RequestDetailViewModel : ViewModel() {
      * Rejects a mentorship request
      * @param requestId id of the mentorship request
      */
+    @SuppressLint("CheckResult")
     fun rejectRequest(requestId: Int) {
         relationDataManager.rejectMentorshipRelation(requestId)
                 .subscribeOn(Schedulers.newThread())
@@ -115,6 +118,7 @@ class RequestDetailViewModel : ViewModel() {
      * Deletes a mentorship request
      * @param requestId id of the mentorship request
      */
+    @SuppressLint("CheckResult")
     fun deleteRequest(requestId: Int) {
         relationDataManager.deleteMentorshipRelation(requestId)
                 .subscribeOn(Schedulers.newThread())

@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -33,6 +34,7 @@ class SignUpViewModel : ViewModel() {
      * Will be used to run the register method of the AuthService
      * @param register a registration request object containing the a user's registration fields
      */
+    @SuppressLint("CheckResult")
     fun register(@NonNull register: Register) {
         authDataManager.register(register)
                 .subscribeOn(Schedulers.newThread())

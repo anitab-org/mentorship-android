@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -31,6 +32,7 @@ class MembersViewModel : ViewModel() {
     /**
      * Fetches users list from getUsers method of the UserService
      */
+    @SuppressLint("CheckResult")
     fun getUsers() {
         userDataManager.getUsers()
                 .subscribeOn(Schedulers.newThread())

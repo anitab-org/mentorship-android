@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -33,6 +34,7 @@ class MemberProfileViewModel : ViewModel() {
      * Fetches profile from a user with id [userId] by calling getUser method from UserService
      * @param userId id of a member
      */
+    @SuppressLint("CheckResult")
     fun getUserProfile(@NonNull userId: Int) {
         userDataManager.getUserById(userId)
                 .subscribeOn(Schedulers.newThread())

@@ -1,4 +1,4 @@
-package org.systers.mentorship.remote.responses
+package org.systers.mentorship.models
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -14,24 +14,27 @@ import kotlinx.android.parcel.Parcelize
  * @param sentByMe indication if the current user was the action user
  * @param mentor user with mentor role in the relation
  * @param mentee user with mentee role in the relation
- * @param createdAtTimestamp date of creation unix timestamp
- * @param acceptedAtTimestamp date of acceptance unix timestamp
- * @param startAtTimestamp start date unix timestamp
- * @param endAtTimestamp end date unix timestamp
- * @param state state of the relation (@link to MentorshipRelationState)
+ * @param sentOn date of creation unix timestamp
+ * @param acceptedOn date of acceptance unix timestamp
+ * @param startsOn start date unix timestamp
+ * @param endsOn end date unix timestamp
+ * @param state state of the relation (@link to RelationState)
  * @param notes notes related to the mentorship relation
  */
 @Parcelize
-data class MentorshipRelationResponse(
+data class Relationship(
         val id: Int,
         @SerializedName("action_user_id") val actionUserId: Int,
         @SerializedName("sent_by_me") val sentByMe: Boolean,
         val mentor: RelationUserResponse,
         val mentee: RelationUserResponse,
-        @SerializedName("creation_date")  val createdAtTimestamp: Float,
-        @SerializedName("accept_date")  val acceptedAtTimestamp: Float,
-        @SerializedName("start_date")  val startAtTimestamp: Float,
-        @SerializedName("end_date")  val endAtTimestamp: Float,
+        @SerializedName("creation_date")  val sentOn: Float,
+        @SerializedName("accept_date")  val acceptedOn: Float,
+        @SerializedName("start_date")  val startsOn: Float,
+        @SerializedName("end_date")  val endsOn: Float,
         val state: Int,
-        val notes: String
-): Parcelable
+        val notes: String): Parcelable {
+    @Parcelize
+    data class RelationUserResponse (val id: Int,
+                                     val name: String): Parcelable
+}

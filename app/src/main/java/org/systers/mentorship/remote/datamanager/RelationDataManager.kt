@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.remote.responses.CustomResponse
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
+import org.systers.mentorship.models.Relationship
 
 /**
  * This class represents the data manager related to Mentorship Relation API
@@ -16,9 +16,9 @@ class RelationDataManager {
     /**
      * This will call a method of RelationService interface to fetch
      * all mentorship requests and relations
-     * @return an Observable of a list of [MentorshipRelationResponse]
+     * @return an Observable of a list of [Relationship]
      */
-    fun getAllMentorshipRelationsAndRequests(): Observable<List<MentorshipRelationResponse>> {
+    fun getAllMentorshipRelationsAndRequests(): Observable<List<Relationship>> {
         return apiManager.getMentorshipRelationService().getAllMentorshipRelations()
     }
 
@@ -71,7 +71,7 @@ class RelationDataManager {
      * This will call a method from RelationService interface to get accepted mentorship relation
      * @return an Observable of [CustomResponse]
      */
-    fun getCurrentMentorshipRelation(): Observable<MentorshipRelationResponse> {
+    fun getCurrentMentorshipRelation(): Observable<Relationship> {
         return apiManager.getMentorshipRelationService().getCurrentMentorshipRelation()
     }
 }
