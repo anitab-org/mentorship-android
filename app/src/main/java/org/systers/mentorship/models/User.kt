@@ -1,5 +1,6 @@
 package org.systers.mentorship.models
 
+import android.annotation.SuppressLint
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -21,6 +22,7 @@ import kotlinx.android.parcel.Parcelize
  * @param isAvailableToMentor true, if user is available to mentor, false if otherwise
  * @param slackUsername Slack username
  */
+@SuppressLint("ParcelCreator")
 @Parcelize
 data class User(
         var id: Int? = null,
