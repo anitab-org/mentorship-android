@@ -16,7 +16,8 @@ import org.systers.mentorship.viewmodels.MembersViewModel
 /**
  * The fragment is responsible for showing all the members of the system in a list format
  */
-class MembersFragment : BaseFragment() {
+class
+MembersFragment : BaseFragment() {
 
     companion object {
         /**

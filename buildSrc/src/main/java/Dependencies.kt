@@ -32,6 +32,7 @@ object Dependencies {
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
     const val appcompat_v7 = "com.android.support:appcompat-v7:${Versions.supportLib}"
+    const val support_v4 = "com.android.support:support-v4:${Versions.supportLib}"
     const val design = "com.android.support:design:${Versions.supportLib}"
     const val constraint_layout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
     const val junit = "junit:junit:${Versions.junit}"

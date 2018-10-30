@@ -38,6 +38,7 @@ dependencies {
     implementation Dependencies.appcompat_v7
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
+    implementation Dependencies.support_v4
     kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
