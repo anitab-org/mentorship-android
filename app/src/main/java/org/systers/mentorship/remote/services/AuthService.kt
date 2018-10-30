@@ -1,10 +1,10 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
-import org.systers.mentorship.remote.requests.LoginRequest
-import org.systers.mentorship.remote.requests.RegisterRequest
+import org.systers.mentorship.remote.requests.Login
+import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.CustomResponse
-import org.systers.mentorship.remote.responses.LoginResponse
+import org.systers.mentorship.remote.responses.AuthToken
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -15,17 +15,17 @@ interface AuthService {
 
     /**
      * This function allows a user to login into the system
-     * @param loginRequest data required to login a user
-     * @return an observable instance of the [LoginResponse]
+     * @param login data required to login a user
+     * @return an observable instance of the [AuthToken]
      */
     @POST("login")
-    fun login(@Body loginRequest: LoginRequest): Observable<LoginResponse>
+    fun login(@Body login: Login): Observable<AuthToken>
 
     /**
      * This function allows a user to sign up into the system
-     * @param registerRequest data required to register a user
+     * @param register data required to register a user
      * @return an observable instance of the [CustomResponse]
      */
     @POST("register")
-    fun register(@Body registerRequest: RegisterRequest) : Observable<CustomResponse>
+    fun register(@Body register: Register) : Observable<CustomResponse>
 }

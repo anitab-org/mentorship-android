@@ -44,7 +44,7 @@ class MembersFragment : BaseFragment() {
 
                     rvMembers.apply {
                         layoutManager = LinearLayoutManager(context)
-                        adapter = MembersAdapter(membersViewModel.usersList, openUserProfile)
+                        adapter = MembersAdapter(membersViewModel.userList, openUserProfile)
                     }
                 } else {
                     view?.let {

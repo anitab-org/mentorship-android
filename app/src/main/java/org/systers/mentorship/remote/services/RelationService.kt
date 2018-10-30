@@ -1,7 +1,7 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
-import org.systers.mentorship.remote.requests.SendRequest
+import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.remote.responses.MentorshipRelationResponse
 import retrofit2.http.*
@@ -48,11 +48,11 @@ interface RelationService {
 
     /**
      * This function performs sending a mentorship request
-     * @param sendRequest data required to send a mentorship request
+     * @param relationshipRequest data required to send a mentorship request
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
     @POST("mentorship_relation/send_request")
-    fun sendMentorshipRequest(@Body sendRequest: SendRequest): Observable<CustomResponse>
+    fun sendMentorshipRequest(@Body relationshipRequest: RelationshipRequest): Observable<CustomResponse>
 
     /**
      * This function return the current mentorship relation

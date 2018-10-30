@@ -33,7 +33,7 @@ class RequestsAdapter (
 
     override fun onBindViewHolder(@NonNull holder: RequestsViewHolder, position: Int) {
         val item = requestsList[position]
-        val itemView = holder.itemView ?: return
+        val itemView = holder.itemView
 
         setTextViewStartingWithBoldSpan(itemView.tvMentorName, context.getString(R.string.mentor), item.mentor.name)
         setTextViewStartingWithBoldSpan(itemView.tvMenteeName, context.getString(R.string.mentee), item.mentee.name)

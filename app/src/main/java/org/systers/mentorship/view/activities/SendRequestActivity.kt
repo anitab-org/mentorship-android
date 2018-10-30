@@ -11,7 +11,7 @@ import android.widget.DatePicker
 import org.systers.mentorship.R
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
-import org.systers.mentorship.remote.requests.SendRequest
+import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.utils.SEND_REQUEST_END_DATE_FORMAT
 import org.systers.mentorship.utils.convertDateIntoUnixTimestamp
 import org.systers.mentorship.utils.getAuthTokenPayload
@@ -92,7 +92,7 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-            val sendRequestData = SendRequest(
+            val sendRequestData = RelationshipRequest(
                     menteeId = menteeId,
                     mentorId = mentorId,
                     notes = notes,

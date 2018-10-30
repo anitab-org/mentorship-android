@@ -37,8 +37,9 @@ class MainActivity : BaseActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-                replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
-                        R.string.fragment_title_profile)
+                //TODO: Implement this
+//                replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
+//                        R.string.fragment_title_profile)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_relation -> {

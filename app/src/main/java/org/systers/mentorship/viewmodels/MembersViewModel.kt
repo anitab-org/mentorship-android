@@ -8,8 +8,8 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
-import org.systers.mentorship.remote.responses.UserResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -26,7 +26,7 @@ class MembersViewModel : ViewModel() {
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
-    lateinit var usersList: List<UserResponse>
+    lateinit var userList: List<User>
 
     /**
      * Fetches users list from getUsers method of the UserService
@@ -35,9 +35,9 @@ class MembersViewModel : ViewModel() {
         userDataManager.getUsers()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<UserResponse>>() {
-                    override fun onNext(userListResponse: List<UserResponse>) {
-                        usersList = userListResponse
+                .subscribeWith(object : DisposableObserver<List<User>>() {
+                    override fun onNext(userListResponse: List<User>) {
+                        userList = userListResponse
                         successful.value = true
                     }
 
