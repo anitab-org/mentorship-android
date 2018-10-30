@@ -3,7 +3,7 @@ package org.systers.mentorship.remote.responses
 /**
  * Response encoded in JSON Web Token, holding the token information and the current's user identity
  */
-data class JwtPayloadResponse(
+data class JwtPayload(
         val identity: Int,
         val iat: Long,
         val nbf: Long,
