@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
+import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.activities.MemberProfileActivity
 import org.systers.mentorship.view.adapters.MembersAdapter
@@ -23,7 +24,6 @@ class MembersFragment: BaseFragment() {
          * Creates an instance of [MembersFragment]
          */
         fun newInstance() = MembersFragment()
-        const val MEMBER_USER_ID_EXTRA = "MEMBER_USER_ID_EXTRA"
     }
 
     private lateinit var membersViewModel: MembersViewModel
@@ -60,7 +60,7 @@ class MembersFragment: BaseFragment() {
     private val openUserProfile: (Int) -> Unit =
             { memberId ->
                 val intent = Intent(activity, MemberProfileActivity::class.java)
-                intent.putExtra(MEMBER_USER_ID_EXTRA, memberId)
+                intent.putExtra(Constants.MEMBER_USER_ID, memberId)
                 startActivity(intent)
             }
 }

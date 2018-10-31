@@ -11,6 +11,7 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
+import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -25,7 +26,8 @@ class ProfileViewModel: ViewModel() {
 
     private val userDataManager: UserDataManager = UserDataManager()
 
-    val successful: MutableLiveData<Boolean> = MutableLiveData()
+    val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
+    val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var user: User
     lateinit var message: String
 
@@ -40,7 +42,7 @@ class ProfileViewModel: ViewModel() {
                 .subscribeWith(object : DisposableObserver<User>() {
                     override fun onNext(userprofile: User) {
                         user = userprofile
-                        successful.value = true
+                        successfulGet.value = true
                     }
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
@@ -53,7 +55,7 @@ class ProfileViewModel: ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -61,7 +63,45 @@ class ProfileViewModel: ViewModel() {
                                 Log.e(TAG, throwable.localizedMessage)
                             }
                         }
-                        successful.value = false
+                        successfulGet.value = false
+                    }
+                    override fun onComplete() {
+                    }
+                })
+    }
+
+    /**
+     * Updates the current user profile with data changed by the user
+     */
+    @SuppressLint("CheckResult")
+    fun updateProfile(user: User) {
+        userDataManager.updateUser(user)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                    override fun onNext(response: CustomResponse) {
+                        successfulUpdate.value = true
+                    }
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TAG, throwable.localizedMessage)
+                            }
+                        }
+                        successfulGet.value = false
                     }
                     override fun onComplete() {
                     }

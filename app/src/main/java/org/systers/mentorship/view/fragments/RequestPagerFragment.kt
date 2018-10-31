@@ -7,14 +7,14 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_request_pager.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
+import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.view.activities.RequestDetailActivity
-import org.systers.mentorship.view.activities.RequestDetailActivity.Companion.RELATION_INTENT_EXTRA
 import org.systers.mentorship.view.adapters.RequestsAdapter
 
 /**
  * This fragment is instantiated per each tab from the RequestsFragment ViewPager
  */
-class RequestPagerFragment : BaseFragment() {
+class RequestPagerFragment: BaseFragment() {
 
     companion object {
         /**
@@ -23,18 +23,14 @@ class RequestPagerFragment : BaseFragment() {
         fun newInstance(requestsList: List<Relationship>, emptyListText: String) : BaseFragment {
 
             val args = Bundle()
-            args.putParcelableArrayList(REQUESTS_LIST_BUNDLE_ARG, ArrayList(requestsList))
-            args.putString(EMPTY_LIST_TEXT_BUNDLE_ARG, emptyListText)
+            args.putParcelableArrayList(Constants.REQUEST_LIST, ArrayList(requestsList))
+            args.putString(Constants.REQUEST_EMPTY_LIST_TEXT, emptyListText)
 
             val frag = RequestPagerFragment()
             frag.arguments = args
 
             return frag
         }
-        private const val REQUESTS_LIST_BUNDLE_ARG = "REQUESTS_LIST_BUNDLE_ARG"
-        private const val EMPTY_LIST_TEXT_BUNDLE_ARG = "EMPTY_LIST_TEXT_BUNDLE_ARG"
-
-        val TAG = RequestPagerFragment::class.java.simpleName
     }
 
     private lateinit var requestsList: List<Relationship>
@@ -46,8 +42,8 @@ class RequestPagerFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         arguments?.let {
-            requestsList = it.getParcelableArrayList(REQUESTS_LIST_BUNDLE_ARG)
-            emptyListText = it.getString(EMPTY_LIST_TEXT_BUNDLE_ARG)
+            requestsList = it.getParcelableArrayList(Constants.REQUEST_LIST)
+            emptyListText = it.getString(Constants.REQUEST_EMPTY_LIST_TEXT)
         }
 
         if (requestsList.isEmpty()) {
@@ -65,7 +61,7 @@ class RequestPagerFragment : BaseFragment() {
     private val openRequestDetail: (Relationship) -> Unit =
             { requestDetail ->
                 val intent = Intent(activity, RequestDetailActivity::class.java)
-                intent.putExtra(RELATION_INTENT_EXTRA, requestDetail)
+                intent.putExtra(Constants.RELATIONSHIP_EXTRA, requestDetail)
                 startActivity(intent)
             }
 }

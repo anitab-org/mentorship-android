@@ -23,7 +23,6 @@ class RequestsFragment : BaseFragment() {
         fun newInstance() = RequestsFragment()
 
         val TAG = RelationFragment::class.java.simpleName
-        const val NUMBER_OF_PAGES = 3
     }
 
     private lateinit var requestsViewModel: RequestsViewModel

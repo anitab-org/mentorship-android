@@ -9,6 +9,7 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
+import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
 import org.systers.mentorship.view.fragments.MembersFragment
 import org.systers.mentorship.viewmodels.MemberProfileViewModel
@@ -28,7 +29,7 @@ class MemberProfileActivity : BaseActivity() {
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val userId = intent.getIntExtra(MembersFragment.MEMBER_USER_ID_EXTRA, 0)
+        val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
 
         memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
         memberProfileViewModel.successful.observe(this, Observer {
