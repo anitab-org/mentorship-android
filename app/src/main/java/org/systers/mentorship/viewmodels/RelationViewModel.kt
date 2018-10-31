@@ -9,9 +9,9 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
-import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -36,7 +36,7 @@ class RelationViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun getCurrentRelationDetails() {
-        relationDataManager.getCurrentMentorshipRelation()
+        relationDataManager.getCurrentRelationship()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Relationship>() {
@@ -77,7 +77,7 @@ class RelationViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun cancelMentorshipRelation(relationId: Int) {
-        relationDataManager.cancelMentorshipRelation(relationId)
+        relationDataManager.cancelRelationship(relationId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {

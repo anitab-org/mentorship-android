@@ -4,15 +4,18 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
-import org.systers.mentorship.models.Relationship
-import android.text.method.ScrollingMovementMethod
-import android.widget.Toast
 import org.systers.mentorship.models.RelationState
-import org.systers.mentorship.utils.*
+import org.systers.mentorship.models.Relationship
+import org.systers.mentorship.utils.EXTENDED_DATE_FORMAT
+import org.systers.mentorship.utils.convertUnixTimestampIntoStr
+import org.systers.mentorship.utils.getTextWithBoldWord
+import org.systers.mentorship.utils.getUnixTimestampInMilliseconds
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 
 /**

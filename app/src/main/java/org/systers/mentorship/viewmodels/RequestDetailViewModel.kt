@@ -34,7 +34,7 @@ class RequestDetailViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun acceptRequest(requestId: Int) {
-        relationDataManager.acceptMentorshipRelation(requestId)
+        relationDataManager.acceptRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
@@ -77,7 +77,7 @@ class RequestDetailViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun rejectRequest(requestId: Int) {
-        relationDataManager.rejectMentorshipRelation(requestId)
+        relationDataManager.rejectRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
@@ -120,7 +120,7 @@ class RequestDetailViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun deleteRequest(requestId: Int) {
-        relationDataManager.deleteMentorshipRelation(requestId)
+        relationDataManager.deleteRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {

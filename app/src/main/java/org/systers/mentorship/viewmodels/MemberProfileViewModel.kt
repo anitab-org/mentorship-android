@@ -36,7 +36,7 @@ class MemberProfileViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun getUserProfile(@NonNull userId: Int) {
-        userDataManager.getUserById(userId)
+        userDataManager.getUser(userId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<User>() {

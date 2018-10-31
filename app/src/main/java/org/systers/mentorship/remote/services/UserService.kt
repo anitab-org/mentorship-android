@@ -25,14 +25,14 @@ interface UserService {
      * @return an observable instance of a list of [User]s
      */
     @GET("users/verified")
-    fun getUsersVerified(): Observable<List<User>>
+    fun getVerifiedUsers(): Observable<List<User>>
 
     /**
      * This function returns a user's public profile of the system
      * @return an observable instance of the [User]
      */
     @GET("users/{userId}")
-    fun getUserById(@Path("userId") userId: Int): Observable<User>
+    fun getUser(@Path("userId") userId: Int): Observable<User>
 
     /**
      * This function returns the current user profile

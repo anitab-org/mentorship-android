@@ -4,15 +4,15 @@ import io.reactivex.Observable
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
-import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.remote.responses.AuthToken
+import org.systers.mentorship.remote.responses.CustomResponse
 
 /**
  * Created by murad on 7/26/18.
  */
 class AuthDataManager {
 
-    private val apiManager: ApiManager = ApiManager()
+    private val apiManager = ApiManager.instance
 
     /**
      * This will call the login method of AuthService interface
@@ -20,7 +20,7 @@ class AuthDataManager {
      * @return an Observable AuthToken
      */
     fun login(login: Login): Observable<AuthToken> {
-        return apiManager.getAuthService().login(login)
+        return apiManager.authService.login(login)
     }
 
     /**
@@ -30,6 +30,6 @@ class AuthDataManager {
      * @return an Observable CustomResponse
      */
     fun register(register: Register): Observable<CustomResponse> {
-        return apiManager.getAuthService().register(register)
+        return apiManager.authService.register(register)
     }
 }

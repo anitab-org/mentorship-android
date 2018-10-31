@@ -10,22 +10,22 @@ import org.systers.mentorship.remote.responses.CustomResponse
  */
 class UserDataManager {
 
-    private val apiManager: ApiManager = ApiManager()
+    private val apiManager = ApiManager.instance
 
     /**
-     * This will call the getUsersVerified method of UserService interface
+     * This will call the getVerifiedUsers method of UserService interface
      * @return an Observable of a list of [User]
      */
     fun getUsers(): Observable<List<User>> {
-        return apiManager.getUserService().getUsersVerified()
+        return apiManager.userService.getVerifiedUsers()
     }
 
     /**
-     * This will call the getUserById method of UserService interface
+     * This will call the getUser method of UserService interface
      * @return an Observable of [User]
      */
-    fun getUserById(userId: Int): Observable<User> {
-        return apiManager.getUserService().getUserById(userId)
+    fun getUser(userId: Int): Observable<User> {
+        return apiManager.userService.getUser(userId)
     }
 
     /**
@@ -33,7 +33,7 @@ class UserDataManager {
      * @return an Observable of [User]
      */
     fun getUser(): Observable<User> {
-        return apiManager.getUserService().getUser()
+        return apiManager.userService.getUser()
     }
 
     /**
@@ -41,6 +41,6 @@ class UserDataManager {
      * @return an Observable of [CustomResponse]
      */
     fun updateUser(user: User): Observable<CustomResponse> {
-        return apiManager.getUserService().updateUser(user)
+        return apiManager.userService.updateUser(user)
     }
 }

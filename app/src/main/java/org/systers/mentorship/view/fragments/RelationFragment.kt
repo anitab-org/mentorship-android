@@ -4,10 +4,10 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import kotlinx.android.synthetic.main.fragment_relation.*
-import org.systers.mentorship.R
 import android.text.method.ScrollingMovementMethod
 import android.view.View
+import kotlinx.android.synthetic.main.fragment_relation.*
+import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.EXTENDED_DATE_FORMAT
 import org.systers.mentorship.utils.convertUnixTimestampIntoStr

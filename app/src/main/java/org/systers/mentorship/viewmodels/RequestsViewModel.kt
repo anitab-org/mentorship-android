@@ -7,14 +7,14 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import org.systers.mentorship.MentorshipApplication
+import org.systers.mentorship.R
+import org.systers.mentorship.models.Relationship
+import org.systers.mentorship.remote.datamanager.RelationDataManager
+import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
-import org.systers.mentorship.MentorshipApplication
-import org.systers.mentorship.R
-import org.systers.mentorship.remote.datamanager.RelationDataManager
-import org.systers.mentorship.models.Relationship
-import org.systers.mentorship.utils.CommonUtils
 
 /**
  * This class represents the [ViewModel] used for Requests Screen
@@ -34,7 +34,7 @@ class RequestsViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun getAllMentorshipRelations() {
-        relationDataManager.getAllMentorshipRelationsAndRequests()
+        relationDataManager.getAllRelationsAndRequests()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<Relationship>>() {

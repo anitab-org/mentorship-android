@@ -36,7 +36,7 @@ class SendRequestViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun sendRequest(@NonNull relationshipRequest: RelationshipRequest) {
-        relationDataManager.sendMentorshipRequest(relationshipRequest)
+        relationDataManager.sendRequest(relationshipRequest)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
