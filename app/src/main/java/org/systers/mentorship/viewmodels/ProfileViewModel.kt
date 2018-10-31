@@ -16,6 +16,9 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
+/**
+ * This class represents the [ViewModel] used for ProfileFragment
+ */
 class ProfileViewModel: ViewModel() {
 
     var TAG = ProfileViewModel::class.java.simpleName
@@ -26,6 +29,9 @@ class ProfileViewModel: ViewModel() {
     lateinit var user: User
     lateinit var message: String
 
+    /**
+     * Fetches the current users full profile
+     */
     @SuppressLint("CheckResult")
     fun getProfile() {
         userDataManager.getUser()

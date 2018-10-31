@@ -55,11 +55,13 @@ class MembersAdapter (
 
     private fun getMentorshipAvailabilityText(availableToMentor: Boolean?, needMentoring: Boolean?): String {
 
-//        return if (availableToMentor && needMentoring) context.getString(R.string.available_to_mentor_and_mentee)
-//        else if (availableToMentor) context.getString(R.string.only_available_to_mentor)
-//        else if (needMentoring) context.getString(R.string.only_available_to_mentee)
-//        else context.getString(R.string.not_available_to_mentor_or_mentee)
+        if (availableToMentor != null && needMentoring != null) {
+            return if (availableToMentor && needMentoring) context.getString(R.string.available_to_mentor_and_mentee)
+            else if (availableToMentor) context.getString(R.string.only_available_to_mentor)
+            else if (needMentoring) context.getString(R.string.only_available_to_mentee)
+            else context.getString(R.string.not_available_to_mentor_or_mentee)
+        }
 
-        return ""
+        return context.getString(R.string.not_available_to_mentor_or_mentee)
     }
 }
