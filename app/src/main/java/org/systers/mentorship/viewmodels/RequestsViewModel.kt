@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -12,7 +13,7 @@ import java.util.concurrent.TimeoutException
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.RelationDataManager
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.CommonUtils
 
 /**
@@ -26,17 +27,18 @@ class RequestsViewModel : ViewModel() {
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
-    lateinit var allRequestsList: List<MentorshipRelationResponse>
+    lateinit var allRequestsList: List<Relationship>
 
     /**
      * Fetches list of all Mentorship relations and requests
      */
+    @SuppressLint("CheckResult")
     fun getAllMentorshipRelations() {
         relationDataManager.getAllMentorshipRelationsAndRequests()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<MentorshipRelationResponse>>() {
-                    override fun onNext(relationsList: List<MentorshipRelationResponse>) {
+                .subscribeWith(object : DisposableObserver<List<Relationship>>() {
+                    override fun onNext(relationsList: List<Relationship>) {
                         allRequestsList = relationsList
                         successful.value = true
                     }

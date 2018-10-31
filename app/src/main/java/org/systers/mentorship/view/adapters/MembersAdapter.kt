@@ -8,16 +8,16 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.list_member_item.view.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.responses.UserResponse
+import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
 
 /**
  * This class represents the adapter that fills in each view of the Members recyclerView
- * @param usersList list of users to show
+ * @param userList list of users to show
  * @param openDetailFunction function to be called when an item from Members list is clicked
  */
 class MembersAdapter (
-        private val usersList: List<UserResponse>,
+        private val userList: List<User>,
         private val openDetailFunction: (memberId: Int) -> Unit
 ) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
 
@@ -30,8 +30,8 @@ class MembersAdapter (
             )
 
     override fun onBindViewHolder(@NonNull holder: MembersViewHolder, position: Int) {
-        val item = usersList[position]
-        val itemView = holder.itemView ?: return
+        val item = userList[position]
+        val itemView = holder.itemView
 
         itemView.tvName.text = item.name
         itemView.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.isAvailableToMentor, item.needsMentoring)
@@ -42,10 +42,10 @@ class MembersAdapter (
         val keyValueText = "$keyText: $validText"
         itemView.tvInterests.text = keyValueText
 
-        itemView.setOnClickListener { openDetailFunction(item.id) }
+        itemView.setOnClickListener { openDetailFunction(item.id!!) }
     }
 
-    override fun getItemCount(): Int = usersList.size
+    override fun getItemCount(): Int = userList.size
 
     /**
      * This class holds a view for each item of the Members list
@@ -53,15 +53,15 @@ class MembersAdapter (
      */
     class MembersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private fun getMentorshipAvailabilityText(availableToMentor: Boolean, needMentoring: Boolean): String {
+    private fun getMentorshipAvailabilityText(availableToMentor: Boolean?, needMentoring: Boolean?): String {
 
-        if (availableToMentor && needMentoring)
-            return context.getString(R.string.available_to_mentor_and_mentee)
-        if (availableToMentor)
-            return context.getString(R.string.only_available_to_mentor)
-        if (needMentoring)
-            return context.getString(R.string.only_available_to_mentee)
-        else
-            return context.getString(R.string.not_available_to_mentor_or_mentee)
+        if (availableToMentor != null && needMentoring != null) {
+            return if (availableToMentor && needMentoring) context.getString(R.string.available_to_mentor_and_mentee)
+            else if (availableToMentor) context.getString(R.string.only_available_to_mentor)
+            else if (needMentoring) context.getString(R.string.only_available_to_mentee)
+            else context.getString(R.string.not_available_to_mentor_or_mentee)
+        }
+
+        return context.getString(R.string.not_available_to_mentor_or_mentee)
     }
 }

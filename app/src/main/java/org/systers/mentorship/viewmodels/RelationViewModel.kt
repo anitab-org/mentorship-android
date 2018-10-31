@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -10,7 +11,7 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -27,19 +28,20 @@ class RelationViewModel : ViewModel() {
 
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulCancel: MutableLiveData<Boolean> = MutableLiveData()
-    lateinit var mentorshipRelation: MentorshipRelationResponse
+    lateinit var mentorshipRelation: Relationship
     lateinit var message: String
 
     /**
      * Fetches current relation details
      */
+    @SuppressLint("CheckResult")
     fun getCurrentRelationDetails() {
         relationDataManager.getCurrentMentorshipRelation()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<MentorshipRelationResponse>() {
-                    override fun onNext(mentorshipRelationResponse: MentorshipRelationResponse) {
-                        mentorshipRelation = mentorshipRelationResponse
+                .subscribeWith(object : DisposableObserver<Relationship>() {
+                    override fun onNext(relationship: Relationship) {
+                        mentorshipRelation = relationship
                         successfulGet.value = true
                     }
 
@@ -73,6 +75,7 @@ class RelationViewModel : ViewModel() {
     /**
      * Cancels a mentorship relation
      */
+    @SuppressLint("CheckResult")
     fun cancelMentorshipRelation(relationId: Int) {
         relationDataManager.cancelMentorshipRelation(relationId)
                 .subscribeOn(Schedulers.newThread())

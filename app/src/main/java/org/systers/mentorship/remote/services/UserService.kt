@@ -1,9 +1,8 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
-import org.systers.mentorship.remote.requests.UpdateUserRequest
+import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.responses.CustomResponse
-import org.systers.mentorship.remote.responses.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
@@ -16,37 +15,37 @@ interface UserService {
 
     /**
      * This function returns all users of the system
-     * @return an observable instance of a list of [UserResponse]s
+     * @return an observable instance of a list of [User]s
      */
     @GET("users")
-    fun getUsers(): Observable<List<UserResponse>>
+    fun getUsers(): Observable<List<User>>
 
     /**
      * This function returns all users, with email verified, of the system
-     * @return an observable instance of a list of [UserResponse]s
+     * @return an observable instance of a list of [User]s
      */
     @GET("users/verified")
-    fun getUsersVerified(): Observable<List<UserResponse>>
+    fun getUsersVerified(): Observable<List<User>>
 
     /**
      * This function returns a user's public profile of the system
-     * @return an observable instance of the [UserResponse]
+     * @return an observable instance of the [User]
      */
     @GET("users/{userId}")
-    fun getUserById(@Path("userId") userId: Int): Observable<UserResponse>
+    fun getUserById(@Path("userId") userId: Int): Observable<User>
 
     /**
      * This function returns the current user profile
-     * @return an observable instance of the [UserResponse]
+     * @return an observable instance of the [User]
      */
     @GET("user")
-    fun getUser(): Observable<UserResponse>
+    fun getUser(): Observable<User>
 
     /**
      * This function updates the current user's profile
-     * @return an observable instance of the [UserResponse]
+     * @return an observable instance of the [CustomResponse]
      */
     @PUT("user")
-    fun updateUser(@Body updateUserRequest: UpdateUserRequest): Observable<CustomResponse>
+    fun updateUser(@Body user: User): Observable<CustomResponse>
 
 }

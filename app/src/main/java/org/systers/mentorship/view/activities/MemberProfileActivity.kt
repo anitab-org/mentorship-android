@@ -8,7 +8,7 @@ import android.support.design.widget.Snackbar
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.responses.UserResponse
+import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
 import org.systers.mentorship.view.fragments.MembersFragment
 import org.systers.mentorship.viewmodels.MemberProfileViewModel
@@ -19,11 +19,12 @@ import org.systers.mentorship.viewmodels.MemberProfileViewModel
 class MemberProfileActivity : BaseActivity() {
 
     private lateinit var memberProfileViewModel: MemberProfileViewModel
-    private lateinit var memberProfile: UserResponse
+    private lateinit var userProfile: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_profile)
+
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -48,8 +49,8 @@ class MemberProfileActivity : BaseActivity() {
 
         btnSendRequest.setOnClickListener {
             val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
-            intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, memberProfile.id)
-            intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, memberProfile.name)
+            intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
+            intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
             startActivity(intent)
         }
     }
@@ -64,34 +65,39 @@ class MemberProfileActivity : BaseActivity() {
         return super.onOptionsItemSelected(menuItem)
     }
 
-    private fun setUserProfile(userData: UserResponse) {
-        memberProfile = userData
-        tvName.text = userData.name
+    private fun setUserProfile(user: User) {
+        userProfile = user
+        tvName.text = user.name
+
+        if (user.isAvailableToMentor != null) {
+            setTextViewStartingWithBoldSpan(
+                    tvAvailableToMentor,
+                    getString(R.string.available_to_mentor),
+                    if (user.isAvailableToMentor!!)
+                        getString(R.string.yes) else getString(R.string.no))
+        }
+        if (user.needsMentoring != null) {
+            setTextViewStartingWithBoldSpan(
+                    tvNeedMentoring,
+                    getString(R.string.need_mentoring),
+                    if (user.needsMentoring!!)
+                        getString(R.string.yes) else getString(R.string.no))
+        }
+        setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
         setTextViewStartingWithBoldSpan(
-                tvAvailableToMentor,
-                getString(R.string.available_to_mentor),
-                if (userData.isAvailableToMentor)
-                    getString(R.string.yes) else getString(R.string.no))
+                tvLocation, getString(R.string.location), user.location)
         setTextViewStartingWithBoldSpan(
-                tvNeedMentoring,
-                getString(R.string.need_mentoring),
-                if (userData.needsMentoring)
-                    getString(R.string.yes) else getString(R.string.no))
-        setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), userData.bio)
+                tvOrganization, getString(R.string.organization), user.organization)
         setTextViewStartingWithBoldSpan(
-                tvLocation, getString(R.string.location), userData.location)
+                tvOccupation, getString(R.string.occupation), user.occupation)
         setTextViewStartingWithBoldSpan(
-                tvOrganization, getString(R.string.organization), userData.organization)
+                tvInterests, getString(R.string.interests), user.interests)
         setTextViewStartingWithBoldSpan(
-                tvOccupation, getString(R.string.occupation), userData.occupation)
+                tvSkills, getString(R.string.skills), user.skills)
         setTextViewStartingWithBoldSpan(
-                tvInterests, getString(R.string.interests), userData.interests)
+                tvUsername, getString(R.string.username), user.username)
         setTextViewStartingWithBoldSpan(
-                tvSkills, getString(R.string.skills), userData.skills)
-        setTextViewStartingWithBoldSpan(
-                tvUsername, getString(R.string.username), userData.username)
-        setTextViewStartingWithBoldSpan(
-                tvSlackUsername, getString(R.string.slack_username), userData.slackUsername)
+                tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
     }
 
     override fun onDestroy() {

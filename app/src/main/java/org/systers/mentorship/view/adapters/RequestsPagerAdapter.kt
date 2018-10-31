@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.MentorshipRelationState
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
+import org.systers.mentorship.models.RelationState
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.getUnixTimestampInMilliseconds
 import org.systers.mentorship.view.fragments.RequestPagerFragment
 import org.systers.mentorship.view.fragments.RequestsFragment
@@ -19,7 +19,7 @@ import org.systers.mentorship.view.fragments.RequestsFragment
  * @param fm fragment manager
  */
 class RequestsPagerAdapter(
-        private val requestsList: List<MentorshipRelationResponse>,
+        private val requestsList: List<Relationship>,
         fm: FragmentManager
 ) : FragmentPagerAdapter(fm) {
 
@@ -34,25 +34,25 @@ class RequestsPagerAdapter(
 
     val context = MentorshipApplication.getContext()
 
-    private val pendingList: List<MentorshipRelationResponse> by lazy {
+    private val pendingList: List<Relationship> by lazy {
         requestsList.filter {
-            val isPendingState = MentorshipRelationState.PENDING.value == it.state
-            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endAtTimestamp) < System.currentTimeMillis()
+            val isPendingState = RelationState.PENDING.value == it.state
+            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()
 
             isPendingState && !hasEndTimePassed
         }
     }
-    private val pastList: List<MentorshipRelationResponse> by lazy {
+    private val pastList: List<Relationship> by lazy {
         requestsList.filter {
-            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endAtTimestamp) < System.currentTimeMillis()
-            val isAcceptedState = MentorshipRelationState.ACCEPTED.value == it.state
+            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()
+            val isAcceptedState = RelationState.ACCEPTED.value == it.state
 
             !isAcceptedState && hasEndTimePassed
         }
     }
-    private val allList: List<MentorshipRelationResponse> by lazy {
+    private val allList: List<Relationship> by lazy {
         requestsList.filter {
-            val isAcceptedState = MentorshipRelationState.ACCEPTED.value == it.state
+            val isAcceptedState = RelationState.ACCEPTED.value == it.state
 
             !isAcceptedState
         }
