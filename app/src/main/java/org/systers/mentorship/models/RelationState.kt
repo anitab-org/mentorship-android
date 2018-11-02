@@ -1,4 +1,4 @@
-package org.systers.mentorship.remote
+package org.systers.mentorship.models
 
 /**
  * This [Enum] represents all the states of a Mentorship Relation.
@@ -11,7 +11,7 @@ package org.systers.mentorship.remote
  * COMPLETED - when a current relation passes the end date it becomes completed,
  *             this happens automatically, does not require action from any user
  */
-enum class MentorshipRelationState(val value: Int) {
+enum class RelationState(val value: Int) {
     PENDING(1),
     ACCEPTED(2),
     REJECTED(3),

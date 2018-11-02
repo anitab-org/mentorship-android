@@ -4,13 +4,11 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import android.text.method.ScrollingMovementMethod
 import android.view.View
-import kotlinx.android.synthetic.main.fragment_members.*
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.EXTENDED_DATE_FORMAT
 import org.systers.mentorship.utils.convertUnixTimestampIntoStr
 import org.systers.mentorship.view.activities.MainActivity
@@ -59,7 +57,16 @@ class RelationFragment : BaseFragment() {
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    populateView(relationViewModel.mentorshipRelation)
+                    tvNoCurrentRelation.visibility = View.VISIBLE
+                    tvMenteeLabel.visibility = View.GONE
+                    tvMentorLabel.visibility = View.GONE
+                    tvEndDateLabel.visibility = View.GONE
+                    tvNotesLabel.visibility = View.GONE
+                    btnCancelRelation.visibility = View.GONE
+                    tvMentorName.visibility = View.GONE
+                    tvMenteeName.visibility = View.GONE
+                    tvEndDate.visibility = View.GONE
+                    tvRelationNotes.visibility = View.GONE
                 } else {
                     view?.let {
                         Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -76,7 +83,7 @@ class RelationFragment : BaseFragment() {
         relationViewModel.getCurrentRelationDetails()
     }
 
-    private fun populateView(relationResponse: MentorshipRelationResponse) {
+    private fun populateView(relationResponse: Relationship) {
 
         // TODO this is a way to prevent crash when a user is not in a relation
         // and receives just a simple message
@@ -95,7 +102,7 @@ class RelationFragment : BaseFragment() {
             tvMentorName.text = relationResponse.mentor.name
             tvMenteeName.text = relationResponse.mentee.name
             tvEndDate.text = convertUnixTimestampIntoStr(
-                    relationResponse.endAtTimestamp, EXTENDED_DATE_FORMAT)
+                    relationResponse.endsOn, EXTENDED_DATE_FORMAT)
             tvRelationNotes.text = relationResponse.notes
 
             btnCancelRelation.visibility = View.VISIBLE
