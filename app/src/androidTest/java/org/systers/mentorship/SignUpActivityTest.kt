@@ -32,21 +32,21 @@ import org.systers.mentorship.view.activities.SignUpActivity
 @RunWith(AndroidJUnit4::class)
 class SignUpActivityTest {
 
-    private val EMPTY_USERNAME_ERROR : String = "Username cannot be empty"
-    private val EMPTY_PASSWORD_ERROR : String = "Password cannot be empty"
-    private val EMPTY_EMAIL_ERROR : String = "Email cannot be empty"
-    private val EMPTY_NAME_ERROR : String = "Name cannot be empty"
+    private val EMPTY_USERNAME_ERROR: String = "Username cannot be empty"
+    private val EMPTY_PASSWORD_ERROR: String = "Password cannot be empty"
+    private val EMPTY_EMAIL_ERROR: String = "Email cannot be empty"
+    private val EMPTY_NAME_ERROR: String = "Name cannot be empty"
 
     /**
      * This basically setups the SignUpActivity before test
       */
     @get:Rule
-    var mActivityRule : ActivityTestRule<SignUpActivity> = ActivityTestRule(SignUpActivity::class.java)
+    var mActivityRule: ActivityTestRule<SignUpActivity> = ActivityTestRule(SignUpActivity::class.java)
 
     /**
      * This method is used to find the EditText within the TextInputLayout. Useful for typing into the TextInputLayout
      */
-    fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
+    fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
         return Espresso.onView(Matchers.allOf(ViewMatchers.isDescendantOfA(ViewMatchers.withId(textInputLayoutId)), ViewMatchers.isAssignableFrom(EditText::class.java)))
     }
@@ -57,9 +57,9 @@ class SignUpActivityTest {
         /**
          * This method simply implements the null check, checks the types and casts
          */
-        fun hasTextInputLayoutErrorText(expectedErrorText : String) : Matcher<View> {
+        fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
-            return object : TypeSafeMatcher<View>() {
+            return object: TypeSafeMatcher<View>() {
                 /**
                  * Generates a description of the object.  The description may be part of a
                  * a description of a larger object of which this is just a component, so it
@@ -83,12 +83,12 @@ class SignUpActivityTest {
                     }
 
 
-                    val error : CharSequence? = item.error
+                    val error: CharSequence? = item.error
                     if (error == null) {
                         return false
                     }
 
-                    var errorMsg : String = error.toString()
+                    var errorMsg: String = error.toString()
                     return expectedErrorText.equals(errorMsg)
 
                 }
