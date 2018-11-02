@@ -21,6 +21,8 @@ object Versions {
     const val retrofitVersion = "2.3.0"
     const val okHttp3Version = "3.10.0"
     const val archComponents = "1.1.1"
+    const val testRule = "1.0.2"
+    const val supportAnnotation = "25.1.0"
 }
 
 /**
@@ -37,6 +39,7 @@ object Dependencies {
     const val constraint_layout = "com.android.support.constraint:constraint-layout:${Versions.constraintLayout}"
     const val junit = "junit:junit:${Versions.junit}"
     const val test_runner = "com.android.support.test:runner:${Versions.testRunner}"
+    const val test_rules = "com.android.support.test:rules:${Versions.testRule}"
     const val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espresso}"
     const val rx_java = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val rx_android = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
@@ -47,4 +50,5 @@ object Dependencies {
     const val okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3Version}"
     const val lifecycle_extensions = "android.arch.lifecycle:extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "android.arch.lifecycle:viewmodel:${Versions.archComponents}"
+    const val support_annotation = "com.android.support:support-annotations:${Versions.supportAnnotation}"
 }
