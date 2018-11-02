@@ -22,6 +22,7 @@ object Versions {
     const val okHttp3Version = "3.10.0"
     const val archComponents = "1.1.1"
     const val testRule = "1.0.2"
+    const val supportAnnotation = "25.1.0"
 }
 
 /**
@@ -49,4 +50,5 @@ object Dependencies {
     const val okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3Version}"
     const val lifecycle_extensions = "android.arch.lifecycle:extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "android.arch.lifecycle:viewmodel:${Versions.archComponents}"
+    const val support_annotation = "com.android.support:support-annotations:${Versions.supportAnnotation}"
 }
