@@ -48,7 +48,7 @@ class SignUpActivityTest {
      */
     fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
-        return Espresso.onView(Matchers.allOf(ViewMatchers.isDescendantOfA(ViewMatchers.withId(textInputLayoutId)), ViewMatchers.isAssignableFrom(EditText::class.java)))
+        return Espresso.onView(Matchers.allOf(ViewMatchers.isDescendantOfA(ViewMatchers.withId(textInputLayoutId)),ViewMatchers.isAssignableFrom(EditText::class.java)))
     }
 
 
