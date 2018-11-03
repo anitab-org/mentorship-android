@@ -8,9 +8,13 @@ import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_request_pager.*
 import org.systers.mentorship.R
+
 import org.systers.mentorship.remote.MentorshipRelationState
 import org.systers.mentorship.remote.responses.MentorshipRelationResponse
 import org.systers.mentorship.utils.getUnixTimestampInMilliseconds
+
+import org.systers.mentorship.models.Relationship
+
 import org.systers.mentorship.view.activities.RequestDetailActivity
 import org.systers.mentorship.view.activities.RequestDetailActivity.Companion.RELATION_INTENT_EXTRA
 import org.systers.mentorship.view.adapters.RequestsAdapter
@@ -26,7 +30,9 @@ class RequestPagerFragment : BaseFragment() {
         /**
          * Creates an instance of [RequestPagerFragment]
          */
-        fun newInstance(requestsList: List<MentorshipRelationResponse>, emptyListText: String): BaseFragment {
+
+        fun newInstance(requestsList: List<Relationship>, emptyListText: String) : BaseFragment {
+
 
             val args = Bundle()
             args.putParcelableArrayList(REQUESTS_LIST_BUNDLE_ARG, ArrayList(requestsList))
@@ -44,7 +50,7 @@ class RequestPagerFragment : BaseFragment() {
         val TAG = RequestPagerFragment::class.java.simpleName
     }
 
-    private lateinit var requestsList: List<MentorshipRelationResponse>
+    private lateinit var requestsList: List<Relationship>
     private lateinit var emptyListText: String
 
     override fun getLayoutResourceId() = R.layout.fragment_request_pager
@@ -69,7 +75,7 @@ class RequestPagerFragment : BaseFragment() {
         }
     }
 
-    private val openRequestDetail: (MentorshipRelationResponse) -> Unit =
+    private val openRequestDetail: (Relationship) -> Unit =
             { requestDetail ->
                 val intent = Intent(activity, RequestDetailActivity::class.java)
                 intent.putExtra(RELATION_INTENT_EXTRA, requestDetail)

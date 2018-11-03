@@ -8,7 +8,7 @@ import android.support.design.widget.Snackbar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.requests.LoginRequest
+import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.viewmodels.LoginViewModel
 
 /**
@@ -47,7 +47,7 @@ class LoginActivity : BaseActivity() {
             username = tiUsername.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             if (validateCredentials()) {
-                loginViewModel.login(LoginRequest(username, password))
+                loginViewModel.login(Login(username, password))
                 showProgressDialog(getString(R.string.logging_in))
             }
         }

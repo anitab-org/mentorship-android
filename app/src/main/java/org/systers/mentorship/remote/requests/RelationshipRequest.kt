@@ -9,9 +9,8 @@ import com.google.gson.annotations.SerializedName
  * @param notes represents a description of the mentorship relation
  * @param endDate represents end date of the mentorship relation
  */
-data class SendRequest (
+data class RelationshipRequest (
         @SerializedName("mentor_id") val mentorId: Int,
         @SerializedName("mentee_id") val menteeId: Int,
         val notes: String,
-        @SerializedName("end_date") val endDate: Long
-)
+        @SerializedName("end_date") val endDate: Long)

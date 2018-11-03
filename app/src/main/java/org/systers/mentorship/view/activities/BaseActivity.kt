@@ -14,7 +14,7 @@ import org.systers.mentorship.utils.ProgressBar
  * An Activity class which other Activities can extend from. It provides some basic functions like
  * showing/hiding progress dialog bars, hiding keyboard etc.
  */
-open class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity: AppCompatActivity() {
 
     private var progressDialog: ProgressDialog? = null
     private var progressBar: ProgressBar? = null

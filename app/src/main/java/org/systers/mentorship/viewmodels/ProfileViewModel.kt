@@ -5,47 +5,43 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.datamanager.RelationDataManager
-import org.systers.mentorship.remote.requests.RelationshipRequest
-import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.models.User
+import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
 /**
- * This class represents the [ViewModel] component used for the Send Request Activity
+ * This class represents the [ViewModel] used for ProfileFragment
  */
-class SendRequestViewModel : ViewModel() {
+class ProfileViewModel: ViewModel() {
 
-    var TAG = SendRequestViewModel::class.java.simpleName
+    var TAG = ProfileViewModel::class.java.simpleName
 
-    private val relationDataManager: RelationDataManager = RelationDataManager()
+    private val userDataManager: UserDataManager = UserDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
+    lateinit var user: User
     lateinit var message: String
 
     /**
-     * Call send a mentorship request service
-     * @param relationshipRequest object containing mentorship request details
+     * Fetches the current users full profile
      */
     @SuppressLint("CheckResult")
-    fun sendRequest(@NonNull relationshipRequest: RelationshipRequest) {
-        relationDataManager.sendMentorshipRequest(relationshipRequest)
+    fun getProfile() {
+        userDataManager.getUser()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<CustomResponse>() {
-                    override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message ?: MentorshipApplication.getContext()
-                                .getString(R.string.registration_successful)
+                .subscribeWith(object : DisposableObserver<User>() {
+                    override fun onNext(userprofile: User) {
+                        user = userprofile
                         successful.value = true
                     }
-
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -67,7 +63,6 @@ class SendRequestViewModel : ViewModel() {
                         }
                         successful.value = false
                     }
-
                     override fun onComplete() {
                     }
                 })
