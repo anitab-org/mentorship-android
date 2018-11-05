@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
+import org.systers.mentorship.utils.BottomNavigationViewHelper
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.*
 
@@ -22,10 +23,9 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigation)
 
-        if (savedInstanceState == null) {
-            replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
-        }
+        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
     }
 
     private val mOnNavigationItemSelectedListener =

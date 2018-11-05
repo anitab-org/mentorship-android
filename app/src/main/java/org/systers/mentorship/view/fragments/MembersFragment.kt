@@ -16,17 +16,19 @@ import org.systers.mentorship.viewmodels.MembersViewModel
 /**
  * The fragment is responsible for showing all the members of the system in a list format
  */
-class MembersFragment: BaseFragment() {
+class MembersFragment : BaseFragment() {
 
     companion object {
         /**
          * Creates an instance of [MembersFragment]
          */
         fun newInstance() = MembersFragment()
+        val TAG = MembersFragment::class.java.simpleName
         const val MEMBER_USER_ID_EXTRA = "MEMBER_USER_ID_EXTRA"
     }
 
     private lateinit var membersViewModel: MembersViewModel
+    private val activityCast by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
@@ -36,13 +38,13 @@ class MembersFragment: BaseFragment() {
         membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
         membersViewModel.successful.observe(this, Observer {
             successful ->
-            (activity as MainActivity).hideProgressDialog()
+            activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
 
                     rvMembers.apply {
                         layoutManager = LinearLayoutManager(context)
-                        adapter = MembersAdapter(membersViewModel.userList, openUserProfile)
+                        adapter = MembersAdapter(membersViewModel.usersList, openUserProfile)
                     }
                 } else {
                     view?.let {
@@ -53,7 +55,7 @@ class MembersFragment: BaseFragment() {
             }
         })
 
-        (activity as MainActivity).showProgressDialog(getString(R.string.fetching_users))
+        activityCast.showProgressDialog(getString(R.string.fetching_users))
         membersViewModel.getUsers()
     }
 

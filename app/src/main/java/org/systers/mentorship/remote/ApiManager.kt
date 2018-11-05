@@ -43,7 +43,7 @@ class ApiManager {
                 .build()
 
         retrofit = Retrofit.Builder()
-                .baseUrl(BaseUrl.apiBaseUrl)
+                .baseUrl(BaseUrl.getBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)

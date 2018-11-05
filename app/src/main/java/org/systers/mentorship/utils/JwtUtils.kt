@@ -2,7 +2,7 @@ package org.systers.mentorship.utils
 
 import android.util.Base64
 import android.util.Log
-import org.systers.mentorship.remote.responses.JwtPayload
+import org.systers.mentorship.remote.responses.JwtPayloadResponse
 
 /**
  * Decodes a JSON Web Token's header and body
@@ -22,19 +22,19 @@ fun decodeJwtPayload(jwt: String) : String {
 }
 
 /**
- * Converts the JWT payload response from string format to [JwtPayload]
+ * Converts the JWT payload response from string format to [JwtPayloadResponse]
  * @param str JSON Web Token payload in string format
- * @return [JwtPayload] holding the token decoded
+ * @return [JwtPayloadResponse] holding the token decoded
  */
-fun convertJwtPayloadToObject(str: String) : JwtPayload {
-    return CommonUtils.gson.fromJson(str, JwtPayload::class.java)
+fun convertJwtPayloadToObject(str: String) : JwtPayloadResponse {
+    return CommonUtils.gson.fromJson(str, JwtPayloadResponse::class.java)
 }
 
 /**
- * Converts the JWT token of the current user to [JwtPayload]
- * @return [JwtPayload] holding the current's user token decoded
+ * Converts the JWT token of the current user to [JwtPayloadResponse]
+ * @return [JwtPayloadResponse] holding the current's user token decoded
  */
-fun getAuthTokenPayload() : JwtPayload {
+fun getAuthTokenPayload() : JwtPayloadResponse {
     val decodedJwtBody = decodeJwtPayload(PreferenceManager().authToken)
     return convertJwtPayloadToObject(decodedJwtBody)
 }

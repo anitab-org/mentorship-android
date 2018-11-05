@@ -11,11 +11,10 @@ import com.google.gson.annotations.SerializedName
  * @param hasAcceptedTermsAndConditions is true if the user checked the terms and
  *                                      conditions checkbox, false if otherwise
  */
-data class Register (
+data class RegisterRequest (
         val name: String,
         val username: String,
         val email: String,
         val password: String,
-        @SerializedName("terms_and_conditions_checked") val hasAcceptedTermsAndConditions: Boolean,
-        @SerializedName("need_mentoring") val needsMentoring: Boolean,
-        @SerializedName("available_to_mentor") val isAvailableToMentor: Boolean)
+        @SerializedName("terms_and_conditions_checked") val hasAcceptedTermsAndConditions: Boolean
+)

@@ -1,6 +1,5 @@
 package org.systers.mentorship.viewmodels
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -11,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
-import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.remote.requests.RegisterRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
@@ -32,11 +31,10 @@ class SignUpViewModel : ViewModel() {
 
     /**
      * Will be used to run the register method of the AuthService
-     * @param register a registration request object containing the a user's registration fields
+     * @param registerRequest a registration request object containing the a user's registration fields
      */
-    @SuppressLint("CheckResult")
-    fun register(@NonNull register: Register) {
-        authDataManager.register(register)
+    fun register(@NonNull registerRequest: RegisterRequest) {
+        authDataManager.register(registerRequest)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {

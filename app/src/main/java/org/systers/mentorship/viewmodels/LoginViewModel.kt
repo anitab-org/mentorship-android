@@ -1,6 +1,5 @@
 package org.systers.mentorship.viewmodels
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -11,8 +10,8 @@ import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
-import org.systers.mentorship.remote.requests.Login
-import org.systers.mentorship.remote.responses.AuthToken
+import org.systers.mentorship.remote.requests.LoginRequest
+import org.systers.mentorship.remote.responses.LoginResponse
 import org.systers.mentorship.utils.CommonUtils
 import org.systers.mentorship.utils.PreferenceManager
 import retrofit2.HttpException
@@ -34,17 +33,16 @@ class LoginViewModel : ViewModel() {
 
     /**
      * Will be used to run the login method of the AuthService
-     * @param login a login request object containing the credentials
+     * @param loginRequest a login request object containing the credentials
      */
-    @SuppressLint("CheckResult")
-    fun login(@NonNull login: Login) {
-        authDataManager.login(login)
+    fun login(@NonNull loginRequest: LoginRequest) {
+        authDataManager.login(loginRequest)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<AuthToken>() {
-                    override fun onNext(authToken: AuthToken) {
+                .subscribeWith(object : DisposableObserver<LoginResponse>() {
+                    override fun onNext(loginResponse: LoginResponse) {
                         successful.value = true
-                        preferenceManager.putAuthToken(authToken.authToken)
+                        preferenceManager.putAuthToken(loginResponse.authToken)
                     }
 
                     override fun onError(throwable: Throwable) {
