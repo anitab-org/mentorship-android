@@ -1,10 +1,14 @@
 package org.systers.mentorship.view.activities
 
+import android.app.DatePickerDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.text.SpannableStringBuilder
+import android.text.TextUtils
 import android.view.MenuItem
+import android.widget.DatePicker
 import org.systers.mentorship.R
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
@@ -13,12 +17,15 @@ import org.systers.mentorship.utils.SEND_REQUEST_END_DATE_FORMAT
 import org.systers.mentorship.utils.convertDateIntoUnixTimestamp
 import org.systers.mentorship.utils.getAuthTokenPayload
 import org.systers.mentorship.viewmodels.SendRequestViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * This activity will show a Mentorship request detail from the Requests List
  */
 class SendRequestActivity: BaseActivity() {
 
+    private lateinit var myCalendar : Calendar
     companion object {
         const val OTHER_USER_ID_INTENT_EXTRA = "OTHER_USER_ID_INTENT_EXTRA"
         const val OTHER_USER_NAME_INTENT_EXTRA = "OTHER_USER_NAME_INTENT_EXTRA"
@@ -29,6 +36,8 @@ class SendRequestActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_request)
+
+        tvRequestEndDate.isEnabled = false
         supportActionBar?.title = getString(R.string.send_request)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val otherUserName = intent.getStringExtra(OTHER_USER_NAME_INTENT_EXTRA)
@@ -36,14 +45,37 @@ class SendRequestActivity: BaseActivity() {
         val currentUserId = getAuthTokenPayload().identity
         setObservables()
         populateView(otherUserName, otherUserId, currentUserId)
+
+        //Setting default date , 1 month after a current date
+        myCalendar = Calendar.getInstance()
+        myCalendar.add(Calendar.MONTH , 1)
+        updateEndDateEditText()
+
+
+        var date : DatePickerDialog.OnDateSetListener = object : DatePickerDialog.OnDateSetListener{
+            override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+                myCalendar.set(Calendar.YEAR , year)
+                myCalendar.set(Calendar.MONTH  , month)
+                myCalendar.set(Calendar.DAY_OF_MONTH  , dayOfMonth)
+                updateEndDateEditText()
+            }
+        }
+        ivCalendar.setOnClickListener {
+          DatePickerDialog(this , date ,
+                  myCalendar.get(Calendar.YEAR) ,
+                  myCalendar.get(Calendar.MONTH) ,
+                  myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+      }
+    }
+    private fun updateEndDateEditText() {
+        var sdf : SimpleDateFormat = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT , Locale.US)
+        var editable = SpannableStringBuilder(sdf.format(myCalendar.time))
+        tvRequestEndDate.text =  editable
     }
 
     private fun populateView(userName: String, otherUserId: Int, currentUserId: Int) {
-
         tvOtherUserName.text = userName
-
         btnSendRequest.setOnClickListener {
-
             val mentorId: Int
             val menteeId: Int
             val notes = etRequestNotes.text.toString()
@@ -67,14 +99,22 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-            val sendRequestData = SendRequest(
-                    menteeId = menteeId,
-                    mentorId = mentorId,
-                    notes = notes,
-                    endDate = endDate
-            )
 
-            sendRequestViewModel.sendRequest(sendRequestData)
+            if(!TextUtils.isEmpty(notes)) {
+
+
+                val sendRequestData = SendRequest(
+                        menteeId = menteeId,
+                        mentorId = mentorId,
+                        notes = notes,
+                        endDate = endDate
+                )
+
+                sendRequestViewModel.sendRequest(sendRequestData)
+            } else {
+
+                etRequestNotes.error = getString(R.string.notes_empty_error)
+            }
         }
     }
 
