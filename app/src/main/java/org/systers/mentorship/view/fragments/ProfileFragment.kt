@@ -8,7 +8,6 @@ import android.support.design.widget.Snackbar
 import android.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
-import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
@@ -26,7 +25,6 @@ class ProfileFragment : BaseFragment() {
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
     private lateinit var profileViewModel: ProfileViewModel
-    private val parentActivity by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
@@ -43,7 +41,7 @@ class ProfileFragment : BaseFragment() {
         profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
         profileViewModel.successfulGet.observe(this, Observer {
             successful ->
-            parentActivity.hideProgressDialog()
+            baseActivity.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
                     fragmentProfileBinding.user = profileViewModel.user
@@ -53,7 +51,7 @@ class ProfileFragment : BaseFragment() {
                 }
             }
         })
-        parentActivity.showProgressDialog(getString(R.string.updating_profile))
+        baseActivity.showProgressDialog(getString(R.string.fetch_user_profile))
         profileViewModel.getProfile()
     }
 
@@ -65,7 +63,7 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(fragmentProfileBinding.user!!).show(fragmentManager,
+                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
                         getString(R.string.fragment_title_edit_profile))
                 true
             }

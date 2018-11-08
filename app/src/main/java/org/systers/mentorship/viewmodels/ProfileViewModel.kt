@@ -101,7 +101,7 @@ class ProfileViewModel: ViewModel() {
                                 Log.e(TAG, throwable.localizedMessage)
                             }
                         }
-                        successfulGet.value = false
+                        successfulUpdate.value = false
                     }
                     override fun onComplete() {
                     }

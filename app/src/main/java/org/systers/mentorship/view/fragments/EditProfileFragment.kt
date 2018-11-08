@@ -4,9 +4,11 @@ package org.systers.mentorship.view.fragments
 import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import android.view.WindowManager
 import android.widget.Toast
 
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
@@ -24,19 +27,20 @@ import org.systers.mentorship.viewmodels.ProfileViewModel
 class EditProfileFragment: DialogFragment() {
 
     companion object {
-        private lateinit var user: User
+        private lateinit var tempUser: User
         /**
          * Creates an instance of EditProfileFragment
          */
         fun newInstance(user: User): EditProfileFragment {
-            this.user = user
+            tempUser = user.copy(id = null, username = null, email = null)
             return EditProfileFragment()
         }
     }
 
-    private lateinit var newUser: User
-
     private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var editProfileBinding: FragmentEditProfileBinding
+
+    private lateinit var currentUser: User
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
@@ -45,7 +49,7 @@ class EditProfileFragment: DialogFragment() {
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    profileViewModel.user = user
+                    Toast.makeText(context,getText(R.string.update_successful),Toast.LENGTH_LONG).show()
                     dismiss()
                 } else {
                     Toast.makeText(activity, profileViewModel.message, Toast.LENGTH_SHORT).show()
@@ -59,12 +63,14 @@ class EditProfileFragment: DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = LayoutInflater.from(context).inflate(R.layout.fragment_edit_profile, null)
+        editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
+                R.layout.fragment_edit_profile, null, false)
 
-        //TODO: Populate view with existing details from [user] object
+        editProfileBinding.user = tempUser.copy()
+        currentUser = tempUser.copy()
 
         val dialogBuilder = AlertDialog.Builder(context!!)
-        dialogBuilder.setView(dialog)
+        dialogBuilder.setView(editProfileBinding.root)
         dialogBuilder.setTitle(R.string.fragment_title_edit_profile)
         dialogBuilder.setPositiveButton(getString(R.string.save), null)
         dialogBuilder.setNegativeButton(getString(R.string.cancel)) { _, _ -> }
@@ -77,11 +83,11 @@ class EditProfileFragment: DialogFragment() {
 
         val editProfileDialog = dialog as AlertDialog
         editProfileDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            //TODO: Construct the object newUser by getting the new information
-            if (newUser == user) {
-                dismiss()
+            // TODO: Add validation
+            if (currentUser != editProfileBinding.user) {
+                profileViewModel.updateProfile(editProfileBinding.user!!)
             } else {
-                profileViewModel.updateProfile(newUser)
+                dismiss()
             }
         }
     }
