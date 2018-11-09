@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_edit_profile.*
 
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
@@ -84,6 +85,8 @@ class EditProfileFragment: DialogFragment() {
         val editProfileDialog = dialog as AlertDialog
         editProfileDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             // TODO: Add validation
+            editProfileBinding.user?.isAvailableToMentor = switchAvailableToMentor.isChecked
+            editProfileBinding.user?.needsMentoring = switchNeedsMentoring.isChecked
             if (currentUser != editProfileBinding.user) {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
             } else {
