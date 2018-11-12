@@ -95,5 +95,6 @@
     <string name="i_will_be_a">I will be a …</string>
     <string name="end_date_format">dd/mm/YYYY</string>
     <string name="no_current_mentorship_relation">You are not in a current mentorship relation.</string>
+    <string name="notes_empty_error">Notes cannot be empty</string>
     <string name="available_to_be_mentor_mentee">Available to be a:</string>
 </resources>

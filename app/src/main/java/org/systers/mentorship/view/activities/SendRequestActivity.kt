@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.text.SpannableStringBuilder
+import android.text.TextUtils
 import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.Toast
@@ -35,6 +36,8 @@ class SendRequestActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_request)
+
+        tvRequestEndDate.isEnabled = false
         supportActionBar?.title = getString(R.string.send_request)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val otherUserName = intent.getStringExtra(OTHER_USER_NAME_INTENT_EXTRA)
@@ -43,7 +46,11 @@ class SendRequestActivity: BaseActivity() {
         setObservables()
         populateView(otherUserName, otherUserId, currentUserId)
 
+        //Setting default date , 1 month after a current date
         myCalendar = Calendar.getInstance()
+        myCalendar.add(Calendar.MONTH , 1)
+        updateEndDateEditText()
+
         var date : DatePickerDialog.OnDateSetListener = object : DatePickerDialog.OnDateSetListener{
             override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
                 myCalendar.set(Calendar.YEAR , year)
@@ -63,7 +70,6 @@ class SendRequestActivity: BaseActivity() {
         var sdf : SimpleDateFormat = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT , Locale.US)
         var editable = SpannableStringBuilder(sdf.format(myCalendar.time))
         tvRequestEndDate.text =  editable
-        tvRequestEndDate.isEnabled = false
     }
 
     private fun populateView(userName: String, otherUserId: Int, currentUserId: Int) {
@@ -92,14 +98,20 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-            val sendRequestData = RelationshipRequest(
-                    menteeId = menteeId,
-                    mentorId = mentorId,
-                    notes = notes,
-                    endDate = endDate
-            )
+            if(!TextUtils.isEmpty(notes)) {
 
-            sendRequestViewModel.sendRequest(sendRequestData)
+                val sendRequestData = RelationshipRequest(
+                        menteeId = menteeId,
+                        mentorId = mentorId,
+                        notes = notes,
+                        endDate = endDate
+                )
+
+                sendRequestViewModel.sendRequest(sendRequestData)
+            } else {
+
+                etRequestNotes.error = getString(R.string.notes_empty_error)
+            }
         }
     }
 
