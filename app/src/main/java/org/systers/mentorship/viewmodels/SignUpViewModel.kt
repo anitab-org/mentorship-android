@@ -41,8 +41,7 @@ class SignUpViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message ?: MentorshipApplication.getContext()
-                                .getString(R.string.registration_successful)
+                        message = customResponse.message
                         successful.value = true
                     }
 
@@ -57,7 +56,7 @@ class SignUpViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()

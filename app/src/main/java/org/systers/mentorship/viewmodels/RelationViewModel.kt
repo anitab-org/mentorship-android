@@ -9,9 +9,9 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
-import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -36,7 +36,7 @@ class RelationViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun getCurrentRelationDetails() {
-        relationDataManager.getCurrentMentorshipRelation()
+        relationDataManager.getCurrentRelationship()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Relationship>() {
@@ -77,13 +77,12 @@ class RelationViewModel : ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun cancelMentorshipRelation(relationId: Int) {
-        relationDataManager.cancelMentorshipRelation(relationId)
+        relationDataManager.cancelRelationship(relationId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message ?: MentorshipApplication.getContext()
-                                .getString(R.string.error_something_went_wrong)
+                        message = customResponse.message
                         successfulCancel.value = true
                     }
 
@@ -98,7 +97,7 @@ class RelationViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()

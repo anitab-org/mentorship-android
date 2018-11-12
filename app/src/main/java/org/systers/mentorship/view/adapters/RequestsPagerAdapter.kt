@@ -7,9 +7,9 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
+import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.getUnixTimestampInMilliseconds
 import org.systers.mentorship.view.fragments.RequestPagerFragment
-import org.systers.mentorship.view.fragments.RequestsFragment
 
 /**
  * This is the [FragmentPagerAdapter] responsible for the configuration each fragment assigned to
@@ -77,7 +77,7 @@ class RequestsPagerAdapter(
                 pendingList, context.getString(R.string.empty_pending_requests))
     }
 
-    override fun getCount(): Int = RequestsFragment.NUMBER_OF_PAGES
+    override fun getCount(): Int = Constants.TOTAL_REQUEST_TABS
 
     override fun getPageTitle(position: Int): CharSequence? {
         when(position){

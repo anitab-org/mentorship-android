@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.systers.mentorship.view.activities.BaseActivity
 
 /**
  * A Fragment class which other Fragments can extend from. It reduces boilerplate of
@@ -22,4 +23,10 @@ abstract class BaseFragment: Fragment() {
      * @return layout resource id of the fragment child view
      */
     protected abstract fun getLayoutResourceId() : Int
+
+    /**
+     * Instance of parent activity as [BaseActivity]
+     */
+    val baseActivity: BaseActivity
+        get() = activity as BaseActivity
 }

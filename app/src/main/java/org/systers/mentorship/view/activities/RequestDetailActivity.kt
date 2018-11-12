@@ -4,14 +4,14 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
-import org.systers.mentorship.models.Relationship
-import android.text.method.ScrollingMovementMethod
-import android.widget.Toast
 import org.systers.mentorship.models.RelationState
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 
@@ -20,14 +20,10 @@ import org.systers.mentorship.viewmodels.RequestDetailViewModel
  */
 class RequestDetailActivity: BaseActivity() {
 
-    companion object {
-        const val RELATION_INTENT_EXTRA = "RELATION_INTENT_EXTRA"
-    }
-
     private lateinit var requestDetailViewModel: RequestDetailViewModel
 
     private val mentorshipRelationResponse by lazy {
-        intent.getParcelableExtra<Relationship>(RELATION_INTENT_EXTRA)
+        intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +77,7 @@ class RequestDetailActivity: BaseActivity() {
             setStateMessage(relationResponse)
         }
 
-        // Needed to enable scrolling on text view
+        // TODD: Needed to enable scrolling on text view
         tvRequestNotes.movementMethod = ScrollingMovementMethod()
     }
 

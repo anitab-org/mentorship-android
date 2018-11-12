@@ -1,9 +1,9 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.remote.responses.CustomResponse
-import org.systers.mentorship.models.Relationship
 import retrofit2.http.*
 
 /**
@@ -16,35 +16,35 @@ interface RelationService {
      * @return an observable instance of a list of [Relationship]s
      */
     @GET("mentorship_relations")
-    fun getAllMentorshipRelations(): Observable<List<Relationship>>
+    fun getAllRelationships(): Observable<List<Relationship>>
 
     /**
      * This function performs the acceptance of a mentorship request
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
     @PUT("mentorship_relation/{relation_id}/accept")
-    fun acceptMentorshipRelation(@Path("relation_id") relationId: Int): Observable<CustomResponse>
+    fun acceptRelationship(@Path("relation_id") relationId: Int): Observable<CustomResponse>
 
     /**
      * This function performs the rejection of a mentorship request
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
     @PUT("mentorship_relation/{relation_id}/reject")
-    fun rejectMentorshipRelation(@Path("relation_id") relationId: Int): Observable<CustomResponse>
+    fun rejectRelationship(@Path("relation_id") relationId: Int): Observable<CustomResponse>
 
     /**
      * This function performs the deletion of a mentorship request
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
     @DELETE("mentorship_relation/{relation_id}")
-    fun deleteMentorshipRelation(@Path("relation_id") relationId: Int): Observable<CustomResponse>
+    fun deleteRelationship(@Path("relation_id") relationId: Int): Observable<CustomResponse>
 
     /**
      * This function performs the cancellation of a mentorship relation
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
     @PUT("mentorship_relation/{relation_id}/cancel")
-    fun cancelMentorshipRelation(@Path("relation_id") relationId: Int): Observable<CustomResponse>
+    fun cancelRelationship(@Path("relation_id") relationId: Int): Observable<CustomResponse>
 
     /**
      * This function performs sending a mentorship request
@@ -52,12 +52,12 @@ interface RelationService {
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
     @POST("mentorship_relation/send_request")
-    fun sendMentorshipRequest(@Body relationshipRequest: RelationshipRequest): Observable<CustomResponse>
+    fun sendRequest(@Body relationshipRequest: RelationshipRequest): Observable<CustomResponse>
 
     /**
      * This function return the current mentorship relation
      * @return an observable instance of [Relationship]
      */
     @GET("mentorship_relations/current")
-    fun getCurrentMentorshipRelation(): Observable<Relationship>
+    fun getCurrentRelationship(): Observable<Relationship>
 }

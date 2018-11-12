@@ -39,8 +39,10 @@
     <string name="fragment_title_home">Home</string>
     <string name="fragment_title_members">Members</string>
     <string name="fragment_title_profile">My Profile</string>
+    <string name="fragment_title_edit_profile">Edit Profile</string>
     <string name="fragment_title_relation">Current Relation</string>
     <string name="fragment_title_requests">Mentorship Requests</string>
+    <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="send_request">Send request</string>
     <string name="member_profile">Member Profile</string>
@@ -90,7 +92,7 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="updating_profile">Updating profile…</string>
     <string name="end_date_label">End Date:</string>
-    <string name="i_will_be_a">I will be a ...</string>
+    <string name="i_will_be_a">I will be a …</string>
     <string name="end_date_format">dd/mm/YYYY</string>
     <string name="no_current_mentorship_relation">You are not in a current mentorship relation.</string>
     <string name="available_to_be_mentor_mentee">Available to be a:</string>

@@ -5,12 +5,9 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
-import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
@@ -28,7 +25,6 @@ class ProfileFragment : BaseFragment() {
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
     private lateinit var profileViewModel: ProfileViewModel
-    private val parentActivity by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
@@ -40,20 +36,45 @@ class ProfileFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-        profileViewModel.successful.observe(this, Observer {
+        setHasOptionsMenu(true)
+
+        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
+        profileViewModel.successfulGet.observe(this, Observer {
             successful ->
-            parentActivity.hideProgressDialog()
+            baseActivity.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
                     fragmentProfileBinding.user = profileViewModel.user
                 } else {
-                    Snackbar.make(fragmentProfileBinding.root, profileViewModel.message, Snackbar.LENGTH_LONG)
-                            .show()
+                    Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
+                            Snackbar.LENGTH_LONG).show()
                 }
             }
         })
-        parentActivity.showProgressDialog(getString(R.string.updating_profile))
+        baseActivity.showProgressDialog(getString(R.string.fetch_user_profile))
         profileViewModel.getProfile()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_my_profile, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_edit_profile -> {
+                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
+                        getString(R.string.fragment_title_edit_profile))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        profileViewModel.successfulGet.removeObservers(activity!!)
+        profileViewModel.successfulGet.value = null
     }
 }

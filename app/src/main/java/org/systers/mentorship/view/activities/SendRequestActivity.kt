@@ -8,9 +8,9 @@ import android.support.design.widget.Snackbar
 import android.text.SpannableStringBuilder
 import android.view.MenuItem
 import android.widget.DatePicker
-import org.systers.mentorship.R
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
+import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.utils.SEND_REQUEST_END_DATE_FORMAT
 import org.systers.mentorship.utils.convertDateIntoUnixTimestamp

@@ -3,8 +3,8 @@ package org.systers.mentorship.remote.services
 import io.reactivex.Observable
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
-import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.remote.responses.AuthToken
+import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
