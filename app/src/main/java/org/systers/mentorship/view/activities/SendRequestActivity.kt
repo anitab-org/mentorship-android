@@ -9,7 +9,6 @@ import android.text.SpannableStringBuilder
 import android.text.TextUtils
 import android.view.MenuItem
 import android.widget.DatePicker
-import org.systers.mentorship.R
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
