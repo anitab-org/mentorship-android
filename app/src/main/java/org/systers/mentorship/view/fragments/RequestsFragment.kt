@@ -2,7 +2,6 @@ package org.systers.mentorship.view.fragments
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import kotlinx.android.synthetic.main.fragment_requests.*
@@ -24,7 +23,6 @@ class RequestsFragment : BaseFragment() {
         fun newInstance() = RequestsFragment()
 
         val TAG = RelationFragment::class.java.simpleName
-        const val NUMBER_OF_PAGES = 3
     }
 
     private lateinit var requestsViewModel: RequestsViewModel

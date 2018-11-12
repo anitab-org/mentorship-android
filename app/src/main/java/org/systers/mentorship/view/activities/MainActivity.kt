@@ -2,19 +2,21 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.design.widget.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
-import org.systers.mentorship.utils.BottomNavigationViewHelper
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.*
 
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
  */
-class MainActivity : BaseActivity() {
+class MainActivity: BaseActivity() {
+
+    private var atHome = true
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
@@ -23,9 +25,12 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigation)
 
-        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
+        if (savedInstanceState == null) {
+            showHomeFragment()
+        } else {
+            atHome = savedInstanceState.getBoolean("atHome")
+        }
     }
 
     private val mOnNavigationItemSelectedListener =
@@ -34,26 +39,31 @@ class MainActivity : BaseActivity() {
             R.id.navigation_home -> {
                 replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
                         R.string.fragment_title_home)
+                atHome = true
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
                 replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
                         R.string.fragment_title_profile)
+                atHome = false
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_relation -> {
                 replaceFragment(R.id.contentFrame, RelationFragment.newInstance(),
                         R.string.fragment_title_relation)
+                atHome = false
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_members -> {
                 replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
                         R.string.fragment_title_members)
+                atHome = false
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_requests -> {
                 replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
                         R.string.fragment_title_requests)
+                atHome = false
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -78,11 +88,30 @@ class MainActivity : BaseActivity() {
                 }
                 R.id.menu_logout -> {
                     preferenceManager.clear()
-                    intent = Intent(this, LoginActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                     true
                 }
                 else -> false
             }
+
+    private fun showHomeFragment() {
+        atHome = true
+        bottomNavigation.selectedItemId = R.id.navigation_home
+        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putBoolean("atHome", atHome)
+    }
+
+    override fun onBackPressed() {
+        if (!atHome) {
+            showHomeFragment()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }

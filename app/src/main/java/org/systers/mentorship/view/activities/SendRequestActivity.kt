@@ -12,7 +12,8 @@ import android.widget.DatePicker
 import org.systers.mentorship.R
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
-import org.systers.mentorship.remote.requests.SendRequest
+import org.systers.mentorship.R
+import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.utils.SEND_REQUEST_END_DATE_FORMAT
 import org.systers.mentorship.utils.convertDateIntoUnixTimestamp
 import org.systers.mentorship.utils.getAuthTokenPayload
@@ -50,7 +51,6 @@ class SendRequestActivity: BaseActivity() {
         myCalendar = Calendar.getInstance()
         myCalendar.add(Calendar.MONTH , 1)
         updateEndDateEditText()
-
 
         var date : DatePickerDialog.OnDateSetListener = object : DatePickerDialog.OnDateSetListener{
             override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
@@ -99,11 +99,9 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-
             if(!TextUtils.isEmpty(notes)) {
 
-
-                val sendRequestData = SendRequest(
+                val sendRequestData = RelationshipRequest(
                         menteeId = menteeId,
                         mentorId = mentorId,
                         notes = notes,

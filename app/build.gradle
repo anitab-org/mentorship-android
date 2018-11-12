@@ -8,7 +8,6 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compileSdkVersion
-    buildToolsVersion Versions.buildToolsVersion
     defaultConfig {
         applicationId "org.systers.mentorship"
         minSdkVersion Versions.minSdkVersion
@@ -27,6 +26,16 @@ android {
     dataBinding {
         enabled = true
     }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        forcedModules = [Dependencies.support_annotation]
+    }
 }
 
 dependencies {
@@ -35,9 +44,11 @@ dependencies {
     implementation Dependencies.appcompat_v7
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
+    implementation Dependencies.support_v4
     kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
+    androidTestImplementation Dependencies.test_rules
     androidTestImplementation Dependencies.espresso
 
     implementation Dependencies.rx_java

@@ -8,7 +8,7 @@ import android.support.design.widget.Snackbar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.requests.RegisterRequest
+import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.viewmodels.SignUpViewModel
 
 /**
@@ -24,6 +24,8 @@ class SignUpActivity : BaseActivity() {
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var confirmedPassword: String
+    private var isAvailableToMentor: Boolean = false
+    private var needsMentoring: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +52,11 @@ class SignUpActivity : BaseActivity() {
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
+            needsMentoring = cbMentee.isChecked
+            isAvailableToMentor = cbMentor.isChecked
 
             if (validateDetails()) {
-                val requestData = RegisterRequest(name, username, email, password, true)
+                val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             }

@@ -9,8 +9,8 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
-import org.systers.mentorship.models.Relationship
-import org.systers.mentorship.remote.datamanager.RelationDataManager
+import org.systers.mentorship.models.User
+import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
@@ -18,74 +18,32 @@ import java.io.IOException
 import java.util.concurrent.TimeoutException
 
 /**
- * This class represents the [ViewModel] component used for the Sign Up Activity
+ * This class represents the [ViewModel] used for ProfileFragment
  */
-class RelationViewModel : ViewModel() {
+class ProfileViewModel: ViewModel() {
 
-    var TAG = RelationViewModel::class.java.simpleName
+    var TAG = ProfileViewModel::class.java.simpleName
 
-    private val relationDataManager: RelationDataManager = RelationDataManager()
+    private val userDataManager: UserDataManager = UserDataManager()
 
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
-    val successfulCancel: MutableLiveData<Boolean> = MutableLiveData()
-    lateinit var mentorshipRelation: Relationship
+    val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
+    lateinit var user: User
     lateinit var message: String
 
     /**
-     * Fetches current relation details
+     * Fetches the current users full profile
      */
     @SuppressLint("CheckResult")
-    fun getCurrentRelationDetails() {
-        relationDataManager.getCurrentRelationship()
+    fun getProfile() {
+        userDataManager.getUser()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<Relationship>() {
-                    override fun onNext(relationship: Relationship) {
-                        mentorshipRelation = relationship
+                .subscribeWith(object : DisposableObserver<User>() {
+                    override fun onNext(userprofile: User) {
+                        user = userprofile
                         successfulGet.value = true
                     }
-
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
-                            }
-                        }
-                        successfulGet.value = false
-                    }
-
-                    override fun onComplete() {
-                    }
-                })
-    }
-
-    /**
-     * Cancels a mentorship relation
-     */
-    @SuppressLint("CheckResult")
-    fun cancelMentorshipRelation(relationId: Int) {
-        relationDataManager.cancelRelationship(relationId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<CustomResponse>() {
-                    override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message
-                        successfulCancel.value = true
-                    }
-
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -105,9 +63,46 @@ class RelationViewModel : ViewModel() {
                                 Log.e(TAG, throwable.localizedMessage)
                             }
                         }
-                        successfulCancel.value = false
+                        successfulGet.value = false
                     }
+                    override fun onComplete() {
+                    }
+                })
+    }
 
+    /**
+     * Updates the current user profile with data changed by the user
+     */
+    @SuppressLint("CheckResult")
+    fun updateProfile(user: User) {
+        userDataManager.updateUser(user)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                    override fun onNext(response: CustomResponse) {
+                        successfulUpdate.value = true
+                    }
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TAG, throwable.localizedMessage)
+                            }
+                        }
+                        successfulUpdate.value = false
+                    }
                     override fun onComplete() {
                     }
                 })

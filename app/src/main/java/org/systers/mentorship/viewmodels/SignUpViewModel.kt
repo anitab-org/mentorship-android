@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
@@ -10,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
-import org.systers.mentorship.remote.requests.RegisterRequest
+import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
@@ -31,16 +32,16 @@ class SignUpViewModel : ViewModel() {
 
     /**
      * Will be used to run the register method of the AuthService
-     * @param registerRequest a registration request object containing the a user's registration fields
+     * @param register a registration request object containing the a user's registration fields
      */
-    fun register(@NonNull registerRequest: RegisterRequest) {
-        authDataManager.register(registerRequest)
+    @SuppressLint("CheckResult")
+    fun register(@NonNull register: Register) {
+        authDataManager.register(register)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message ?: MentorshipApplication.getContext()
-                                .getString(R.string.registration_successful)
+                        message = customResponse.message
                         successful.value = true
                     }
 
@@ -55,7 +56,7 @@ class SignUpViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
