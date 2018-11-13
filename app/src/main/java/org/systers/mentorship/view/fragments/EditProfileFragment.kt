@@ -8,14 +8,12 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Switch
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_edit_profile.*
-
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
@@ -26,6 +24,9 @@ import org.systers.mentorship.viewmodels.ProfileViewModel
  * The fragment is responsible for editing the User's profile
  */
 class EditProfileFragment: DialogFragment() {
+
+    private lateinit var mentorSwitch: Switch
+    private lateinit var menteeSwitch: Switch
 
     companion object {
         private lateinit var tempUser: User
@@ -51,13 +52,13 @@ class EditProfileFragment: DialogFragment() {
             if (successful != null) {
                 if (successful) {
                     Toast.makeText(context,getText(R.string.update_successful),Toast.LENGTH_LONG).show()
+                    profileViewModel.getProfile()
                     dismiss()
                 } else {
                     Toast.makeText(activity, profileViewModel.message, Toast.LENGTH_SHORT).show()
                 }
             }
         })
-
         dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
@@ -83,10 +84,20 @@ class EditProfileFragment: DialogFragment() {
         super.onResume()
 
         val editProfileDialog = dialog as AlertDialog
+
+        mentorSwitch = editProfileBinding.switchAvailableToMentor.findViewById(R.id.switchAvailableToMentor)
+        menteeSwitch = editProfileBinding.switchNeedsMentoring.findViewById(R.id.switchNeedsMentoring)
+
+        mentorSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            editProfileBinding.user?.isAvailableToMentor = isChecked
+        }
+
+        menteeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            editProfileBinding.user?.needsMentoring = isChecked
+        }
+
         editProfileDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             // TODO: Add validation
-            editProfileBinding.user?.isAvailableToMentor = switchAvailableToMentor.isChecked
-            editProfileBinding.user?.needsMentoring = switchNeedsMentoring.isChecked
             if (currentUser != editProfileBinding.user) {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
             } else {
