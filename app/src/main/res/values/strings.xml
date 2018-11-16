@@ -97,4 +97,5 @@
     <string name="no_current_mentorship_relation">You are not in a current mentorship relation.</string>
     <string name="notes_empty_error">Notes cannot be empty</string>
     <string name="available_to_be_mentor_mentee">Available to be a:</string>
+    <string name="cannot_send_request">This user is not available to be a mentor or a mentee</string>
 </resources>
