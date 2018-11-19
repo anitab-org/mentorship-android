@@ -78,18 +78,7 @@ class MainActivity: BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem) =
             when (item.itemId) {
                 R.id.menu_settings -> {
-                    true
-                }
-                R.id.menu_about -> {
-                    true
-                }
-                R.id.menu_feedback -> {
-                    true
-                }
-                R.id.menu_logout -> {
-                    preferenceManager.clear()
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    finish()
+                    startActivity(Intent(this, SettingsActivity::class.java))
                     true
                 }
                 else -> false
