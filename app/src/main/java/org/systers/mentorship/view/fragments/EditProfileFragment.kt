@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Switch
 import android.widget.Toast
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
@@ -24,9 +23,6 @@ import org.systers.mentorship.viewmodels.ProfileViewModel
  * The fragment is responsible for editing the User's profile
  */
 class EditProfileFragment: DialogFragment() {
-
-    private lateinit var mentorSwitch: Switch
-    private lateinit var menteeSwitch: Switch
 
     companion object {
         private lateinit var tempUser: User
@@ -84,17 +80,6 @@ class EditProfileFragment: DialogFragment() {
         super.onResume()
 
         val editProfileDialog = dialog as AlertDialog
-
-        mentorSwitch = editProfileBinding.switchAvailableToMentor.findViewById(R.id.switchAvailableToMentor)
-        menteeSwitch = editProfileBinding.switchNeedsMentoring.findViewById(R.id.switchNeedsMentoring)
-
-        mentorSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            editProfileBinding.user?.isAvailableToMentor = isChecked
-        }
-
-        menteeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            editProfileBinding.user?.needsMentoring = isChecked
-        }
 
         editProfileDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             // TODO: Add validation

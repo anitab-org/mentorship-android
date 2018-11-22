@@ -92,7 +92,7 @@
                         android:id="@+id/switchAvailableToMentor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@{user.availableToMentor}" />
+                        android:checked="@={user.availableToMentor}" />
 
                 </LinearLayout>
 
@@ -111,7 +111,7 @@
                         android:id="@+id/switchNeedsMentoring"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@{user.needsMentoring}" />
+                        android:checked="@={user.needsMentoring}" />
 
                 </LinearLayout>
 
