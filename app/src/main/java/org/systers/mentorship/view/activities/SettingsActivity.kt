@@ -16,11 +16,17 @@ class SettingsActivity : BaseActivity() {
         setContentView(R.layout.activity_settings)
 
         supportActionBar?.title = getString(R.string.settings)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayShowHomeEnabled(true);
 
         tvLogout.setOnClickListener {
             preferenceManager.clear()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }
