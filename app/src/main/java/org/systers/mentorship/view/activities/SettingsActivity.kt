@@ -22,7 +22,7 @@ class SettingsActivity : BaseActivity() {
         tvLogout.setOnClickListener {
             preferenceManager.clear()
             startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            finishAffinity()
         }
     }
     override fun onSupportNavigateUp(): Boolean {
