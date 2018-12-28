@@ -81,4 +81,8 @@ class LoginActivity : BaseActivity() {
         loginViewModel.successful.removeObservers(this)
         loginViewModel.successful.value = null
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
 }

@@ -120,4 +120,9 @@ class SignUpActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
 }
