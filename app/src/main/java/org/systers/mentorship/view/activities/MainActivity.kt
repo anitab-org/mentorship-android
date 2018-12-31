@@ -49,7 +49,7 @@ class MainActivity: BaseActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_relation -> {
-                replaceFragment(R.id.contentFrame, RelationFragment.newInstance(),
+                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
                         R.string.fragment_title_relation)
                 atHome = false
                 return@OnNavigationItemSelectedListener true

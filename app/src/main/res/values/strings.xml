@@ -101,4 +101,10 @@
     <string name="settings">Settings</string>
     <string name="error_name_too_short">Name should have a minimum of %1$d characters</string>
     <string name="error_name_too_long">Name should have a maximum of %1$d characters</string>
+    <string name="model_task_1">Add Projects section to CV</string>
+    <string name="model_task_2">Prepare questions for Job Interview X</string>
+    <string name="model_task_3">Share a Professional update on Twitter</string>
+    <string name="details">Details</string>
+    <string name="tasks">Tasks</string>
+    <string name="add_new_task">Add a new task</string>
 </resources>

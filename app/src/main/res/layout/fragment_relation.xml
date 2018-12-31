@@ -1,133 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnCancelRelation"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvMenteeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Mentee:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMentorLabel" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvMentorLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Mentor:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvEndDateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="End date:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMenteeLabel" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvNotesLabel"
-        android:layout_width="295dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Notes:"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEndDateLabel" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvMentorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        tools:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toEndOf="@+id/tvMentorLabel"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvMenteeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        tools:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toEndOf="@+id/tvMenteeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvMentorName" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvEndDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        tools:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toEndOf="@+id/tvEndDateLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvMenteeName" />
-
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvRelationNotes"
-        android:layout_width="296dp"
-        android:layout_height="215dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="false"
-        tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not onlyt of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also th five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        app:layout_constraintBottom_toTopOf="@+id/btnCancelRelation"
+        android:id="@+id/tlMentorshipRelation"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabIndicatorColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNotesLabel"
-        app:layout_constraintVertical_bias="0.056" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/tvNoCurrentRelation"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/no_current_mentorship_relation"
-        android:textAlignment="center"
-        android:textSize="24sp"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpMentorshipRelation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tlMentorshipRelation" />
 
 </android.support.constraint.ConstraintLayout>
