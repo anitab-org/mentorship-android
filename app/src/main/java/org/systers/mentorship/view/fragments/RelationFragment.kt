@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.text.method.ScrollingMovementMethod
 import android.view.View
-import kotlinx.android.synthetic.main.fragment_relation.*
+import kotlinx.android.synthetic.main.fragment_relation_pager.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.EXTENDED_DATE_FORMAT
@@ -31,7 +31,7 @@ class RelationFragment : BaseFragment() {
     private val activityCast by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int {
-        return R.layout.fragment_relation
+        return R.layout.fragment_relation_pager
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
