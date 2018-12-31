@@ -16,6 +16,7 @@ import android.widget.Toast
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
+import org.systers.mentorship.utils.EditProfileFragmentErrorStates
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
@@ -42,12 +43,11 @@ class EditProfileFragment: DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
-        profileViewModel.successfulUpdate.observe(this, Observer {
-            successful ->
+        profileViewModel.successfulUpdate.observe(this, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    Toast.makeText(context,getText(R.string.update_successful),Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG).show()
                     profileViewModel.getProfile()
                     dismiss()
                 } else {
@@ -82,11 +82,28 @@ class EditProfileFragment: DialogFragment() {
         val editProfileDialog = dialog as AlertDialog
 
         editProfileDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            // TODO: Add validation
-            if (currentUser != editProfileBinding.user) {
+            val errors = validateProfileInput(editProfileBinding.user?.name?.trim())
+
+            with(editProfileBinding.tiName) {
+                this.error = when (errors.firstOrNull()) {
+                    is EditProfileFragmentErrorStates.EmptyNameError ->
+                        context.getString(R.string.error_empty_name)
+                    is EditProfileFragmentErrorStates.NameTooShortError -> {
+                        val minLength = resources.getInteger(R.integer.min_name_length)
+                        context.getString(R.string.error_name_too_short, minLength)
+                    }
+                    is EditProfileFragmentErrorStates.NameTooLongError -> {
+                        val maxLength = resources.getInteger(R.integer.max_name_length)
+                        context.getString(R.string.error_name_too_long, maxLength)
+                    }
+                    else -> {
+                        this.isErrorEnabled = false
+                        null
+                    }
+                }
+            }
+            if (currentUser != editProfileBinding.user && errors.isEmpty()) {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
-            } else {
-                dismiss()
             }
         }
     }
@@ -96,5 +113,21 @@ class EditProfileFragment: DialogFragment() {
 
         profileViewModel.successfulUpdate.removeObservers(activity!!)
         profileViewModel.successfulUpdate.value = null
+    }
+
+    private fun validateProfileInput(name: String?): Array<EditProfileFragmentErrorStates> {
+
+        var errors = arrayOf<EditProfileFragmentErrorStates>()
+
+        if (name.isNullOrEmpty()) errors += EditProfileFragmentErrorStates.EmptyNameError
+
+        if (name?.length ?: 0 < resources.getInteger(R.integer.min_name_length)) {
+            errors += EditProfileFragmentErrorStates.NameTooShortError
+        }
+
+        if (name?.length ?: 0 > resources.getInteger(R.integer.max_name_length)) {
+            errors += EditProfileFragmentErrorStates.NameTooLongError
+        }
+        return errors
     }
 }
