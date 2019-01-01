@@ -1,7 +1,9 @@
 package org.systers.mentorship.remote.datamanager
 
 import io.reactivex.Observable
+import io.reactivex.Single
 import org.systers.mentorship.remote.ApiManager
+import org.systers.mentorship.remote.requests.Email
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.AuthToken
@@ -31,5 +33,14 @@ class AuthDataManager {
      */
     fun register(register: Register): Observable<CustomResponse> {
         return apiManager.authService.register(register)
+    }
+    /**
+     * This will call the resendEmail method of AuthService interface
+     * @param email The resend email request body containing
+     *                        the resend email required fields
+     * @return an Single CustomResponse
+     */
+    fun resendEmail(email: Email): Single<CustomResponse> {
+        return apiManager.authService.resendEmail(email)
     }
 }

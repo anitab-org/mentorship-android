@@ -1,6 +1,8 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
+import io.reactivex.Single
+import org.systers.mentorship.remote.requests.Email
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.AuthToken
@@ -28,4 +30,14 @@ interface AuthService {
      */
     @POST("register")
     fun register(@Body register: Register) : Observable<CustomResponse>
+
+    /**
+     * This function resends a confirmation email to the
+     * registered user. [Single] can only emit either an success or
+     * an error
+     * @param email data required to resend an email
+     * @return an SingleObservable instance of the [CustomResponse]
+     */
+    @POST("user/resend_email")
+    fun resendEmail(@Body email: Email): Single<CustomResponse>
 }

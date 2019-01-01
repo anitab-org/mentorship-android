@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
+import org.systers.mentorship.remote.requests.Email
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.viewmodels.LoginViewModel
 
@@ -37,6 +38,24 @@ class LoginActivity : BaseActivity() {
                     startActivity(intent)
                     finish()
                 } else {
+                    if (loginViewModel.message.equals(getString(R.string.verify_email))) {
+                        Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_INDEFINITE)
+                                .setAction(getString(R.string.resend_email)) {
+                                    loginViewModel.resendEmail(Email(tiUsername.editText?.text.toString()))
+                                }.show()
+                    } else {
+                        Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
+                                .show()
+                    }
+                }
+            }
+        })
+
+        loginViewModel.resendEmailSuccessful.observe(this, Observer {
+            resendEmailSuccessful ->
+            hideProgressDialog()
+            if (resendEmailSuccessful != null) {
+                if (resendEmailSuccessful) {
                     Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
                 }

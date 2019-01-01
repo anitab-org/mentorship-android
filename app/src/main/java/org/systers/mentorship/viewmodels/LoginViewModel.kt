@@ -7,12 +7,15 @@ import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
+import org.systers.mentorship.remote.requests.Email
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.responses.AuthToken
+import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import org.systers.mentorship.utils.PreferenceManager
 import retrofit2.HttpException
@@ -30,6 +33,7 @@ class LoginViewModel : ViewModel() {
     private val authDataManager: AuthDataManager = AuthDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
+    val resendEmailSuccessful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
     /**
@@ -71,6 +75,46 @@ class LoginViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
+                })
+    }
+
+    /**
+     * Will be used to run the resendEmail method of the AuthService
+     * @param email a email request object containing the data
+     */
+    @SuppressLint("CheckResult")
+    fun resendEmail(email: Email) {
+        authDataManager.resendEmail(email)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<CustomResponse>() {
+                    override fun onSuccess(response: CustomResponse) {
+                        message = response.message
+                        resendEmailSuccessful.value = true
+                    }
+
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TAG, throwable.localizedMessage)
+                            }
+                        }
+                        resendEmailSuccessful.value = false
+                    }
+
                 })
     }
 }
