@@ -14,6 +14,8 @@ import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
+import android.content.Intent
+import org.systers.mentorship.view.fragments.RequestPagerFragment
 
 /**
  * This activity will show a Mentorship request detail from the Requests List
@@ -33,7 +35,7 @@ class RequestDetailActivity: BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         populateView(mentorshipRelationResponse)
-        setObservables()
+        setObservables(mentorshipRelationResponse)
         setOnClickListeners(mentorshipRelationResponse)
     }
 
@@ -134,7 +136,7 @@ class RequestDetailActivity: BaseActivity() {
         }
     }
 
-    private fun setObservables() {
+    private fun setObservables(relationResponse: Relationship) {
         requestDetailViewModel  = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
         requestDetailViewModel.successful.observe(this, Observer {
             successful ->
@@ -142,6 +144,9 @@ class RequestDetailActivity: BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     Toast.makeText(this, requestDetailViewModel.message, Toast.LENGTH_LONG).show()
+                    val previousScreen = Intent(applicationContext, RequestPagerFragment::class.java)
+                    previousScreen.putExtra(Constants.REQUEST_ID, relationResponse.id.toString())
+                    setResult(Constants.DELETE_REQUEST_RESULT_ID, previousScreen)
                     finish()
                 } else {
                     Snackbar.make(getRootView(), requestDetailViewModel.message, Snackbar.LENGTH_LONG)

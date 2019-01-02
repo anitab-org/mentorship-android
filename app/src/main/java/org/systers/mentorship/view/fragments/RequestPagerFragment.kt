@@ -33,7 +33,7 @@ class RequestPagerFragment: BaseFragment() {
         }
     }
 
-    private lateinit var requestsList: List<Relationship>
+    private lateinit var requestsList: MutableList<Relationship>
     private lateinit var emptyListText: String
 
     override fun getLayoutResourceId() = R.layout.fragment_request_pager
@@ -45,7 +45,31 @@ class RequestPagerFragment: BaseFragment() {
             requestsList = it.getParcelableArrayList(Constants.REQUEST_LIST)
             emptyListText = it.getString(Constants.REQUEST_EMPTY_LIST_TEXT)
         }
+        setView()
+    }
 
+    private val openRequestDetail: (Relationship) -> Unit =
+            { requestDetail ->
+                val intent = Intent(activity, RequestDetailActivity::class.java)
+                intent.putExtra(Constants.RELATIONSHIP_EXTRA, requestDetail)
+                startActivityForResult(intent, Constants.DELETE_REQUEST_RESULT_ID)
+            }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val id = data?.getStringExtra(Constants.REQUEST_ID)
+        val iter = requestsList.iterator()
+
+        while (iter.hasNext()) {
+            val reqId = iter.next().id
+            if(reqId.toString() == id) {
+                iter.remove()
+            }
+        }
+        setView()
+    }
+    
+    private fun setView() {
         if (requestsList.isEmpty()) {
             tvEmptyList.text = emptyListText
             rvRequestsList.visibility = View.GONE
@@ -57,11 +81,4 @@ class RequestPagerFragment: BaseFragment() {
             tvEmptyList.visibility = View.GONE
         }
     }
-
-    private val openRequestDetail: (Relationship) -> Unit =
-            { requestDetail ->
-                val intent = Intent(activity, RequestDetailActivity::class.java)
-                intent.putExtra(Constants.RELATIONSHIP_EXTRA, requestDetail)
-                startActivity(intent)
-            }
 }
