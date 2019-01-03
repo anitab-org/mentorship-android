@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:textColor="@android:color/holo_purple"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:maxLines="1"
@@ -36,27 +37,28 @@
         android:id="@+id/tvMenteeName"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:maxLines="1"
         android:ellipsize="end"
-        tools:text="Mentee: Lola Zink"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMentorName" />
+        android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@+id/tvCreationDate"
+        app:layout_constraintStart_toEndOf="@+id/tvMentorName"
+        tools:layout_editor_absoluteY="16dp"
+        tools:text="Mentee: Lola Zink" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        tools:text="End date: 10/09/2018"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMenteeName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMenteeName"
+        tools:text="End date: 10/09/2018" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvNotes"

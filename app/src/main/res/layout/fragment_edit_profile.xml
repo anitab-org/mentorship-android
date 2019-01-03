@@ -17,7 +17,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_dark">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/imgUserAvatar"
@@ -48,6 +49,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="@={user.email}"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Email" />
@@ -85,8 +87,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="@string/available_to_mentor" />
+                        android:textColor="@color/white"
+                        android:text="@string/available_to_mentor"
+                        android:layout_marginHorizontal="10sp"/>
 
                     <Switch
                         android:id="@+id/switchAvailableToMentor"
@@ -104,8 +107,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="@string/need_mentoring" />
+                        android:textColor="@color/white"
+                        android:text="@string/need_mentoring"
+                        android:layout_marginHorizontal="10sp"/>
 
                     <Switch
                         android:id="@+id/switchNeedsMentoring"

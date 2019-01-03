@@ -20,8 +20,8 @@
         android:id="@+id/tvMenteeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="20dp"
         android:text="Mentee:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         android:id="@+id/tvMentorLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="32dp"
         android:text="Mentor:"
         android:textStyle="bold"
@@ -42,8 +42,8 @@
         android:id="@+id/tvEndDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="20dp"
         android:text="End date:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,8 +53,8 @@
         android:id="@+id/tvNotesLabel"
         android:layout_width="295dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="180dp"
         android:text="Notes:"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,40 +64,35 @@
         android:id="@+id/tvMentorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        tools:text="TextView"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toEndOf="@+id/tvMentorLabel"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="TextView" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvMenteeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        tools:text="TextView"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.379"
         app:layout_constraintStart_toEndOf="@+id/tvMenteeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvMentorName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMentorName"
+        tools:text="TextView" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        tools:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toEndOf="@+id/tvEndDateLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvMenteeName" />
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="109dp"
+        tools:text="TextView" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvRelationNotes"
@@ -118,16 +113,17 @@
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvNoCurrentRelation"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/no_current_mentorship_relation"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
 
 </android.support.constraint.ConstraintLayout>
