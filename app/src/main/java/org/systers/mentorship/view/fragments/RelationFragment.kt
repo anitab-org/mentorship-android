@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.fragments
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -14,16 +15,17 @@ import org.systers.mentorship.utils.convertUnixTimestampIntoStr
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.RelationViewModel
 
+@SuppressLint("ValidFragment")
 /**
  * The fragment is responsible present the current mentorship relation  details
  */
-class RelationFragment : BaseFragment() {
+class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragment() {
 
     companion object {
         /**
          * Creates an instance of RelationFragment
          */
-        fun newInstance() = RelationFragment()
+        fun newInstance(mentorshipRelation: Relationship) = RelationFragment(mentorshipRelation)
         val TAG = RelationFragment::class.java.simpleName
     }
 
@@ -37,27 +39,15 @@ class RelationFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        activityCast.showProgressDialog(getString(R.string.fetching_users))
+        populateView(mentorshipRelation)
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
-        relationViewModel.successfulGet.observe(this, Observer {
-            successful ->
-            activityCast.hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    populateView(relationViewModel.mentorshipRelation)
-                } else {
-                    view?.let {
-                        Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
-
-                    }
-                }
-            }
-        })
         relationViewModel.successfulCancel.observe(this, Observer {
             successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    tvNoCurrentRelation.visibility = View.VISIBLE
+                    baseActivity.replaceFragment(R.id.contentFragment, RelationPagerFragment.newInstance(), R.string.fragment_title_relation)
                     tvMenteeLabel.visibility = View.GONE
                     tvMentorLabel.visibility = View.GONE
                     tvEndDateLabel.visibility = View.GONE
@@ -75,30 +65,11 @@ class RelationFragment : BaseFragment() {
                 }
             }
         })
-        activityCast.showProgressDialog(getString(R.string.fetching_users))
-
-
-
         tvRelationNotes.movementMethod = ScrollingMovementMethod()
-        relationViewModel.getCurrentRelationDetails()
     }
 
     private fun populateView(relationResponse: Relationship) {
-
-        // TODO this is a way to prevent crash when a user is not in a relation
-        // and receives just a simple message
-
-        // Empty state
-        if (relationResponse.mentor == null) {
-            tvNoCurrentRelation.visibility = View.VISIBLE
-
-            btnCancelRelation.visibility = View.GONE
-            tvEndDateLabel.visibility = View.GONE
-            tvNotesLabel.visibility = View.GONE
-            tvMenteeLabel.visibility = View.GONE
-            tvMentorLabel.visibility = View.GONE
-        } else {
-            tvNoCurrentRelation.visibility = View.GONE
+            activityCast.hideProgressDialog()
             tvMentorName.text = relationResponse.mentor.name
             tvMenteeName.text = relationResponse.mentee.name
             tvEndDate.text = convertUnixTimestampIntoStr(
@@ -110,6 +81,4 @@ class RelationFragment : BaseFragment() {
                 relationViewModel.cancelMentorshipRelation(relationResponse.id)
             }
         }
-
     }
-}
