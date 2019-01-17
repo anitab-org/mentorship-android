@@ -34,6 +34,9 @@ class SettingsActivity : BaseActivity() {
             val dialog: AlertDialog = builder.create()
             dialog.show()
         }
+        tvAbout.setOnClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
+        }
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

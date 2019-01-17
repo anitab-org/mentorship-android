@@ -99,6 +99,18 @@
     <string name="notes_empty_error">Notes cannot be empty</string>
     <string name="available_to_be_mentor_mentee">Available to be a:</string>
     <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="about_systers">Systers is an international community for all women involved in the technical aspects of computing. We welcome the participation of women technologists of all ages and at any stage of their studies or careers.
+
+We engage our community by contributing to open source, collaborating with the global community, and learning/enhancing our coding skills. We are committed to providing a safe, positive online community for our many volunteers that offer their skills, time, and commitment to our projects. </string>
+    <string name="about_app">Mentorship System is an application that matches women in tech to mentor each other, on career development, through 1:1 relations during a certain period of time.</string>
+    <string name="github_repository">Github Repository</string>
+    <string name="systers_open_source_slack">Systers Open Source Slack</string>
+    <string name="systers_open_source_website">Systers Open Source Website</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="code_of_conduct">Code of Conduct</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="version_string">Version: %1$s!</string>
     <string name="error_name_too_short">Name should have a minimum of %1$d characters</string>
     <string name="error_name_too_long">Name should have a maximum of %1$d characters</string>
     <string name="model_task_1">Add Projects section to CV</string>
@@ -111,4 +123,10 @@
     <string name="confirm_logout_msg">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
     <string name="empty_members_list">There are no other members.</string>
+    <string name="url_github">https://github.com/systers/mentorship-android</string>
+    <string name="url_slack">http://systers.io/slack-systers-opensource/</string>
+    <string name="url_website">http://systers.io</string>
+    <string name="url_terms">https://anitab.org/terms-of-use/</string>
+    <string name="url_privacy">https://anitab.org/privacy-policy/</string>
+    <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
 </resources>
