@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
@@ -44,6 +45,12 @@ class SignUpActivity : BaseActivity() {
                 }
             }
         })
+        
+        scrollView.setOnTouchListener { view, motionEvent ->
+            var imm: InputMethodManager = getSystemService( INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0)
+             return@setOnTouchListener false
+        }
 
         btnSignUp.setOnClickListener {
 
