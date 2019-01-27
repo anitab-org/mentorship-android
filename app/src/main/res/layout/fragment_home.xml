@@ -7,7 +7,10 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/fragment_title_home" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/fragment_title_home1"
+        android:textSize="25sp" />
 
 </FrameLayout>
