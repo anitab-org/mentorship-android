@@ -28,6 +28,7 @@
     <string name="error_empty_email">Email cannot be empty</string>
     <string name="error_empty_name">Name cannot be empty</string>
     <string name="navigation_title_home">Home</string>
+    <string name="navigation_title_home1">Welcome !\n Start your activity !</string>
     <string name="navigation_title_profile">Profile</string>
     <string name="navigation_title_relation">Relation</string>
     <string name="navigation_title_members">Members</string>
