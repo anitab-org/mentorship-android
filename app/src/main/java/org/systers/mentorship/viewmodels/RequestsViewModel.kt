@@ -39,7 +39,7 @@ class RequestsViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<Relationship>>() {
                     override fun onNext(relationsList: List<Relationship>) {
-                        allRequestsList = relationsList
+                        allRequestsList = relationsList.sortedByDescending { it.sentOn }
                         successful.value = true
                     }
 
