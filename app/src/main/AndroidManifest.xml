@@ -28,10 +28,14 @@
             android:name=".view.activities.SignUpActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activities.MainActivity" />
-        <activity android:name=".view.activities.RequestDetailActivity" />
-        <activity android:name=".view.activities.MemberProfileActivity" />
-        <activity android:name=".view.activities.SendRequestActivity" />
-        <activity android:name=".view.activities.SettingsActivity"/>
+        <activity android:name=".view.activities.RequestDetailActivity" 
+                 android:theme="@style/HomeTheme"/>
+        <activity android:name=".view.activities.MemberProfileActivity"
+            android:theme="@style/HomeTheme"/>
+        <activity android:name=".view.activities.SendRequestActivity"
+            android:theme="@style/HomeTheme"/>
+        <activity android:name=".view.activities.SettingsActivity"
+            android:theme="@style/HomeTheme"/>
     </application>
 
 </manifest>
