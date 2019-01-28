@@ -12,4 +12,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    
+     <style name="HomeTheme" parent="Theme.AppCompat.Light">
+       
+        <item name="colorPrimary">#FF9800</item>
+      
+        <item name="colorButtonNormal">#FF9800</item>
+    </style>
 </resources>
