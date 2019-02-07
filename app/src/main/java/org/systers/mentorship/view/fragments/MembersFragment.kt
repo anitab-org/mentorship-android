@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.Constants
@@ -40,19 +39,15 @@ class MembersFragment: BaseFragment() {
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    if (membersViewModel.userList.isEmpty()) {
-                        tvEmptyList.text = getString(R.string.empty_members_list)
-                        rvMembers.visibility = View.GONE
-                    } else {
-                        rvMembers.apply {
-                            layoutManager = LinearLayoutManager(context)
-                            adapter = MembersAdapter(membersViewModel.userList, openUserProfile)
-                        }
-                        tvEmptyList.visibility = View.GONE
+
+                    rvMembers.apply {
+                        layoutManager = LinearLayoutManager(context)
+                        adapter = MembersAdapter(membersViewModel.userList, openUserProfile)
                     }
                 } else {
                     view?.let {
                         Snackbar.make(it, membersViewModel.message, Snackbar.LENGTH_LONG).show()
+
                     }
                 }
             }

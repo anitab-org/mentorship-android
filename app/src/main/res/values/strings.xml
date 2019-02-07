@@ -110,5 +110,4 @@
     <string name="confirm_logout">Confirm logout</string>
     <string name="confirm_logout_msg">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
-    <string name="empty_members_list">There are no other members.</string>
 </resources>
