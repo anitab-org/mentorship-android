@@ -107,4 +107,7 @@
     <string name="details">Details</string>
     <string name="tasks">Tasks</string>
     <string name="add_new_task">Add a new task</string>
+    <string name="confirm_logout">Confirm logout</string>
+    <string name="confirm_logout_msg">Are you sure you want to logout?</string>
+    <string name="logout">Logout</string>
 </resources>

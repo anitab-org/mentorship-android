@@ -26,6 +26,8 @@
         android:text="@string/popup_menu_about"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.025"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,10 +55,13 @@
         android:text="@string/popup_menu_feedback"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAbout"
+        />
 
     </LinearLayout>
 
@@ -80,6 +85,8 @@
         android:text="@string/popup_menu_logout"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,6 +112,8 @@
         android:text="@string/popup_menu_delete_account"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="18sp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
