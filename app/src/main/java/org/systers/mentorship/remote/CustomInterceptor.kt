@@ -7,7 +7,7 @@ import okhttp3.Response
 import org.systers.mentorship.utils.PreferenceManager
 
 /**
- * Created by murad on 7/26/18.
+ * Represents a custom HTTP requests interceptor
  */
 class CustomInterceptor: Interceptor {
 

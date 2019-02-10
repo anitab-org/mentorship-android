@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import org.systers.mentorship.MentorshipApplication
 
 /**
- * Created by murad on 7/26/18.
+ * This class contains SharedPreferences utilities, such as methods to save and clear application sensitive data.
  */
 class PreferenceManager {
 

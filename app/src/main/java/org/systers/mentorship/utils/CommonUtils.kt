@@ -7,7 +7,7 @@ import retrofit2.HttpException
 
 
 /**
- * Created by murad on 7/26/18.
+ * Object to store utilities such as a [Gson] instance
  */
 object CommonUtils {
 
