@@ -110,7 +110,11 @@
     <string name="confirm_logout">Confirm logout</string>
     <string name="confirm_logout_msg">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
+    <string name="confirm_cancel_relation">Yes</string>
+    <string name="cancel_relation_text">Are you sure you want to cancel the relation?</string>
+    <string name="cancel_relation_title">Cancel Relation</string>
     <string name="empty_members_list">There are no other members.</string>
+    <string name="cancel_relation_denied">No</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
     <string name="password_not_match">Passwords do not match</string>

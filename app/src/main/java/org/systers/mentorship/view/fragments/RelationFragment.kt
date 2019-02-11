@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AlertDialog
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_relation_pager.*
@@ -30,6 +31,8 @@ class RelationFragment : BaseFragment() {
     private lateinit var relationViewModel: RelationViewModel
     private val activityCast by lazy { activity as MainActivity }
 
+    private val alertDialog by lazy { activity?.let { AlertDialog.Builder(it) } }
+
     override fun getLayoutResourceId(): Int {
         return R.layout.fragment_relation_pager
     }
@@ -38,8 +41,7 @@ class RelationFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
-        relationViewModel.successfulGet.observe(this, Observer {
-            successful ->
+        relationViewModel.successfulGet.observe(this, Observer { successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -47,13 +49,11 @@ class RelationFragment : BaseFragment() {
                 } else {
                     view?.let {
                         Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
-
                     }
                 }
             }
         })
-        relationViewModel.successfulCancel.observe(this, Observer {
-            successful ->
+        relationViewModel.successfulCancel.observe(this, Observer { successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -70,17 +70,15 @@ class RelationFragment : BaseFragment() {
                 } else {
                     view?.let {
                         Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
-
                     }
                 }
             }
         })
         activityCast.showProgressDialog(getString(R.string.fetching_users))
 
-
-
         tvRelationNotes.movementMethod = ScrollingMovementMethod()
         relationViewModel.getCurrentRelationDetails()
+
     }
 
     private fun populateView(relationResponse: Relationship) {
@@ -91,7 +89,6 @@ class RelationFragment : BaseFragment() {
         // Empty state
         if (relationResponse.mentor == null) {
             tvNoCurrentRelation.visibility = View.VISIBLE
-
             btnCancelRelation.visibility = View.GONE
             tvEndDateLabel.visibility = View.GONE
             tvNotesLabel.visibility = View.GONE
@@ -104,12 +101,21 @@ class RelationFragment : BaseFragment() {
             tvEndDate.text = convertUnixTimestampIntoStr(
                     relationResponse.endsOn, EXTENDED_DATE_FORMAT)
             tvRelationNotes.text = relationResponse.notes
-
             btnCancelRelation.visibility = View.VISIBLE
             btnCancelRelation.setOnClickListener {
-                relationViewModel.cancelMentorshipRelation(relationResponse.id)
+
+                with(alertDialog) {
+                    this?.setTitle(getString(R.string.cancel_relation_title))
+                    this?.setMessage(getString(R.string.cancel_relation_text))
+                    this?.setCancelable(false)
+                    this?.setPositiveButton(getString(R.string.confirm_cancel_relation)) { dialog, which ->
+                        relationViewModel.cancelMentorshipRelation(relationResponse.id)
+                    }
+                    this?.setNegativeButton(getString(R.string.cancel_relation_denied)) { dialog, which ->
+                        dialog.dismiss()
+                    }
+                }?.create()?.show()
             }
         }
-
     }
 }
