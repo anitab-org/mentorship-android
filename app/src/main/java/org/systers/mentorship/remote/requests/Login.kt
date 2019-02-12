@@ -1,7 +1,9 @@
 package org.systers.mentorship.remote.requests
 
 /**
- * Created by murad on 7/26/18.
+ * This data class represents all data necessary to create a login
+ * @param username represents username
+ * @param password represents user password
  */
 data class Login(var username: String,
                  var password: String)

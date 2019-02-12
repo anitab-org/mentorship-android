@@ -5,7 +5,7 @@ import android.content.Context
 import android.support.v7.app.AppCompatDelegate
 
 /**
- * Created by murad on 7/24/18.
+ * The entry point, a class that represents Mentorship application.
  */
 
 class MentorshipApplication : Application() {
