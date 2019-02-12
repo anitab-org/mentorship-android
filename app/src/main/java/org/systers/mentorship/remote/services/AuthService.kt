@@ -9,7 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 /**
- * Created by murad on 7/26/18.
+ * This interface describes the methods related to Authentication REST API
  */
 interface AuthService {
 

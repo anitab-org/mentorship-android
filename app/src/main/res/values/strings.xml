@@ -16,7 +16,7 @@
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="confirm_password">Confirm password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="terms_and_conditions_acceptance_statement"><![CDATA[I agree to accept the Terms & Conditions of the Mentorship System]]></string>
     <string name="error_not_matching_passwords">Passwords didn\'t match!</string>
     <string name="error_please_check_internet">Please check your internet connection</string>
@@ -111,4 +111,11 @@
     <string name="confirm_logout_msg">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
     <string name="empty_members_list">There are no other members.</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="password_not_match">Passwords do not match</string>
+    <string name="ok">OK</string>
+    <string name="change_password">Change Password</string>
+    <string name="password_updated">Password updated successfully!</string>
+    <string name="current_new_password_should_not_same">Current and New passwords should not be same</string>
 </resources>

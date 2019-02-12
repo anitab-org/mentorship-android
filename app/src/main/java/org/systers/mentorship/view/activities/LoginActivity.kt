@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
@@ -44,18 +45,20 @@ class LoginActivity : BaseActivity() {
         })
 
         btnLogin.setOnClickListener {
-            username = tiUsername.editText?.text.toString()
-            password = tiPassword.editText?.text.toString()
-            if (validateCredentials()) {
-                loginViewModel.login(Login(username, password))
-                showProgressDialog(getString(R.string.logging_in))
-            }
+           login()
         }
 
         btnSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        tiPassword.editText?.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                login()
+            }
+            false
         }
     }
 
@@ -76,9 +79,19 @@ class LoginActivity : BaseActivity() {
         return validCredentials
     }
 
+    private fun login() {
+        username = tiUsername.editText?.text.toString()
+        password = tiPassword.editText?.text.toString()
+        if (validateCredentials()) {
+            loginViewModel.login(Login(username, password))
+            showProgressDialog(getString(R.string.logging_in))
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         loginViewModel.successful.removeObservers(this)
         loginViewModel.successful.value = null
     }
 }
+

@@ -8,7 +8,7 @@ import org.systers.mentorship.remote.responses.AuthToken
 import org.systers.mentorship.remote.responses.CustomResponse
 
 /**
- * Created by murad on 7/26/18.
+ * This class represents the data manager related to Authentication API
  */
 class AuthDataManager {
 
