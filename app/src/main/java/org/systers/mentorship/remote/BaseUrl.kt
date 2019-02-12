@@ -3,7 +3,7 @@ package org.systers.mentorship.remote
 import org.systers.mentorship.BuildConfig
 
 /**
- * Created by murad on 7/26/18.
+ * Object to keep settings such as URL parts, regions, s3 bucket names.
  */
 object BaseUrl {
 

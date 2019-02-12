@@ -20,7 +20,7 @@ import java.io.IOException
 import java.util.concurrent.TimeoutException
 
 /**
- * Created by murad on 7/26/18.
+ * This class represents the [ViewModel] component used for the Login Activity
  */
 class LoginViewModel : ViewModel() {
 

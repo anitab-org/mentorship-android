@@ -10,7 +10,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Created by murad on 7/26/18.
+ * A class that represents API Manager. It encapsulates three services: authentication, relation and user.
  */
 class ApiManager {
 
