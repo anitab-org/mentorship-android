@@ -1,4 +1,4 @@
-# Contributing Guidelines
+﻿# Contributing Guidelines
 * You can join our [slack channel](http://systers.io/slack-systers-opensource/).  Each active repo has its own channel to direct questions to (for example #powerup or #portal).  
 * Remember that this is an inclusive community, committed to creating a safe, positive environment.  See the full [Code of Conduct](http://www.systers.io/code-of-conduct.html).
 ## General Guidelines
