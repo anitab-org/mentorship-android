@@ -11,4 +11,7 @@
     <color name="navy">#005c88</color>
     <color name="caribbean">#54BCEB</color>
     <color name="scarlet">#EF4135</color>
+      <!-- 1st Gradient color -->
+    <color name="colorPurple_A400">#D500F9</color>
+    <color name="colorPurple_900">#4A148C</color>
 </resources>
