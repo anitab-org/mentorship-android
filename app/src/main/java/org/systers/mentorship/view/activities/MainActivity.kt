@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.*
+import android.view.View
+import android.support.design.widget.Snackbar
 
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
@@ -96,11 +98,33 @@ class MainActivity: BaseActivity() {
         outState.putBoolean("atHome", atHome)
     }
 
+        private var doubleBackToExitPressedOnce = false
+
     override fun onBackPressed() {
         if (!atHome) {
             showHomeFragment()
-        } else {
-            super.onBackPressed()
+        } else if (atHome) {
+
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed()
+                return
+            }
+
+
+
+            doubleBackToExitPressedOnce = true
+
+
+            val snack = Snackbar.make(getRootView(), "Press back again to exit", Snackbar.LENGTH_LONG)
+            snack.setAction("EXIT",
+                    View.OnClickListener {
+                        // executed when DISMISS is clicked
+                        finish()
+
+                    })
+            snack.show()
+
         }
+
     }
 }
