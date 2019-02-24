@@ -21,7 +21,9 @@ class MainActivity: BaseActivity() {
     private var atHome = true
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
-
+    
+    private var doubleBackToExitPressedOnce = false
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,40 +39,40 @@ class MainActivity: BaseActivity() {
 
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.navigation_home -> {
-                        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
-                                R.string.fragment_title_home)
-                        atHome = true
-                        return@OnNavigationItemSelectedListener true
-                    }
-                    R.id.navigation_profile -> {
-                        replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
-                                R.string.fragment_title_profile)
-                        atHome = false
-                        return@OnNavigationItemSelectedListener true
-                    }
-                    R.id.navigation_relation -> {
-                        replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
-                                R.string.fragment_title_relation)
-                        atHome = false
-                        return@OnNavigationItemSelectedListener true
-                    }
-                    R.id.navigation_members -> {
-                        replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
-                                R.string.fragment_title_members)
-                        atHome = false
-                        return@OnNavigationItemSelectedListener true
-                    }
-                    R.id.navigation_requests -> {
-                        replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
-                                R.string.fragment_title_requests)
-                        atHome = false
-                        return@OnNavigationItemSelectedListener true
-                    }
-                }
-                false
+        when (item.itemId) {
+            R.id.navigation_home -> {
+                replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
+                        R.string.fragment_title_home)
+                atHome = true
+                return@OnNavigationItemSelectedListener true
             }
+            R.id.navigation_profile -> {
+                replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
+                        R.string.fragment_title_profile)
+                atHome = false
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_relation -> {
+                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
+                        R.string.fragment_title_relation)
+                atHome = false
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_members -> {
+                replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
+                        R.string.fragment_title_members)
+                atHome = false
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_requests -> {
+                replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
+                        R.string.fragment_title_requests)
+                atHome = false
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -97,34 +99,22 @@ class MainActivity: BaseActivity() {
 
         outState.putBoolean("atHome", atHome)
     }
-
-    private var doubleBackToExitPressedOnce = false
-
+    
     override fun onBackPressed() {
         if (!atHome) {
             showHomeFragment()
         } else if (atHome) {
-
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed()
                 return
             }
-
-
-
             doubleBackToExitPressedOnce = true
-
-
             val snack = Snackbar.make(getRootView(), "Press back again to exit", Snackbar.LENGTH_LONG)
             snack.setAction("EXIT",
                     View.OnClickListener {
-                        // executed when DISMISS is clicked
                         finish()
-
                     })
             snack.show()
-
         }
-
     }
 }
