@@ -49,6 +49,9 @@ class MembersFragment: BaseFragment() {
                             adapter = MembersAdapter(membersViewModel.userList, openUserProfile)
                         }
                         tvEmptyList.visibility = View.GONE
+                        //divider line
+                        rvMembers.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+
                     }
                 } else {
                     view?.let {
