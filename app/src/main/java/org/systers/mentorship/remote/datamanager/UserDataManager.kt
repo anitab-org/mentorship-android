@@ -1,6 +1,7 @@
 package org.systers.mentorship.remote.datamanager
 
 import io.reactivex.Observable
+import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.ChangePassword
@@ -51,5 +52,13 @@ class UserDataManager {
      */
     fun updatePassword(changePassword: ChangePassword): Observable<CustomResponse> {
         return apiManager.userService.updatePassword(changePassword)
+    }
+
+    /**
+     * This function fetches user statistics
+     * @return an observable of [HomeStatistics]
+     */
+    fun getHomeStats(): Observable<HomeStatistics> {
+        return apiManager.userService.getHomeStats()
     }
 }

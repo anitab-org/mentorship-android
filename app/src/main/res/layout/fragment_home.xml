@@ -1,13 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.fragments.HomeFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+        <variable
+            name="stats"
+            type="org.systers.mentorship.models.HomeStatistics" />
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/homeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/fragment_title_home" />
+        android:fillViewport="true">
 
-</FrameLayout>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            tools:context=".view.fragments.HomeFragment">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:animateLayoutChanges="true"
+                android:text="@{stats != null ? (@string/welcome + `, ` + stats.name + `!`) : `Welcome!` }"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Welcome, John" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPendingRequests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/pending_requests"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintStart_toStartOf="@+id/tvWelcome"
+                app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvAcceptedRequests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/accepted_requests"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintStart_toStartOf="@+id/tvPendingRequests"
+                app:layout_constraintTop_toBottomOf="@+id/tvPendingRequests" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvRejectedRequests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/rejected_requests"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintStart_toStartOf="@+id/tvAcceptedRequests"
+                app:layout_constraintTop_toBottomOf="@+id/tvAcceptedRequests" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvCompletedRelations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/completed_relations"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintStart_toStartOf="@+id/tvRejectedRequests"
+                app:layout_constraintTop_toBottomOf="@+id/tvRejectedRequests" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvNumberOfPendingRequests"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{stats != null ? String.valueOf(stats.pendingRequests) : String.valueOf(0)}"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPendingRequests"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tvPendingRequests"
+                app:layout_constraintTop_toTopOf="@+id/tvPendingRequests"
+                tools:text="2" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvNumberOfAcceptedRequests"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{stats != null ? String.valueOf(stats.acceptedRequests) : String.valueOf(0)}"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvAcceptedRequests"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tvAcceptedRequests"
+                app:layout_constraintTop_toTopOf="@+id/tvAcceptedRequests"
+                tools:text="1" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvNumberOfRejectedRequests"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{stats != null ? String.valueOf(stats.rejectedRequests) : String.valueOf(0)}"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvRejectedRequests"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tvRejectedRequests"
+                app:layout_constraintTop_toTopOf="@+id/tvRejectedRequests"
+                tools:text="0" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvNumberOfCompletedRelations"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{stats != null ? String.valueOf(stats.completedRelations) : String.valueOf(0)}"
+                android:textAlignment="textEnd"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCompletedRelations"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tvCompletedRelations"
+                app:layout_constraintTop_toTopOf="@+id/tvCompletedRelations"
+                tools:text="1" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvRecentAchievementsTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/recent_achievements"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCompletedRelations" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvAchievements"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecentAchievementsTitle" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvNoAchievements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/no_recent_achievements"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecentAchievementsTitle" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>
+
