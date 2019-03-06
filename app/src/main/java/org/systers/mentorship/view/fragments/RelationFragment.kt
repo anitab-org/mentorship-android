@@ -46,18 +46,6 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
         populateView(mentorshipRelation)
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
 
-        relationViewModel.successfulGet.observe(this, Observer { successful ->
-            activityCast.hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    populateView(relationViewModel.mentorshipRelation)
-                } else {
-                    view?.let {
-                        Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
-                    }
-                }
-            }
-        })
         relationViewModel.successfulCancel.observe(this, Observer { successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
@@ -83,30 +71,8 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
     }
 
     private fun populateView(relationResponse: Relationship) {
-            activityCast.hideProgressDialog()
 
-        activityCast.showProgressDialog(getString(R.string.fetching_users))
-
-        tvRelationNotes.movementMethod = ScrollingMovementMethod()
-        relationViewModel.getCurrentRelationDetails()
-
-    }
-
-    private fun populateView(relationResponse: Relationship) {
-
-        // TODO this is a way to prevent crash when a user is not in a relation
-        // and receives just a simple message
-
-        // Empty state
-        if (relationResponse.mentor == null) {
-            tvNoCurrentRelation.visibility = View.VISIBLE
-            btnCancelRelation.visibility = View.GONE
-            tvEndDateLabel.visibility = View.GONE
-            tvNotesLabel.visibility = View.GONE
-            tvMenteeLabel.visibility = View.GONE
-            tvMentorLabel.visibility = View.GONE
-        } else {
-            tvNoCurrentRelation.visibility = View.GONE
+        activityCast.hideProgressDialog()
             tvMentorName.text = relationResponse.mentor.name
             tvMenteeName.text = relationResponse.mentee.name
             tvEndDate.text = convertUnixTimestampIntoStr(
@@ -127,6 +93,5 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
                     }
                 }?.create()?.show()
             }
-        }
     }
 }
