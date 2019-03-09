@@ -1,14 +1,14 @@
 package org.systers.mentorship
 
-import android.support.annotation.IdRes
-import android.support.design.widget.TextInputLayout
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.action.ViewActions.*
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.support.test.rule.ActivityTestRule
-import android.support.test.runner.AndroidJUnit4
+import androidx.annotation.IdRes
+import com.google.android.material.textfield.TextInputLayout
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
 import org.hamcrest.CoreMatchers.allOf

@@ -1,12 +1,12 @@
 package org.systers.mentorship.view.fragments
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AlertDialog
+import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.fragment_relation_pager.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
