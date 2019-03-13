@@ -1,9 +1,9 @@
 package org.systers.mentorship.view.fragments
 
 import android.app.AlertDialog
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
 import kotlinx.android.synthetic.main.task_list_item.*

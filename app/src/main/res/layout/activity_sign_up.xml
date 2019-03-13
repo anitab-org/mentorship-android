@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context="org.systers.mentorship.view.activities.SignUpActivity">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -36,13 +36,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSignUp">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiUsername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -52,13 +52,13 @@
             app:layout_constraintStart_toStartOf="@+id/tiName"
             app:layout_constraintTop_toBottomOf="@id/tiName">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -68,13 +68,13 @@
             app:layout_constraintStart_toStartOf="@+id/tiUsername"
             app:layout_constraintTop_toBottomOf="@id/tiUsername">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -85,13 +85,13 @@
             app:layout_constraintTop_toBottomOf="@id/tiEmail"
             app:passwordToggleEnabled="true">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiConfirmPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -102,13 +102,13 @@
             app:layout_constraintTop_toBottomOf="@id/tiPassword"
             app:passwordToggleEnabled="true">
 
-            <android.support.design.widget.TextInputEditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/tiConfirmPassword" />
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbMentor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbMentee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
             app:layout_constraintStart_toEndOf="@+id/cbMentor"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbTC"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -152,7 +152,7 @@
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/cbMentee" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="168dp"
@@ -164,7 +164,7 @@
             app:layout_constraintStart_toStartOf="@+id/cbTC"
             app:layout_constraintTop_toBottomOf="@id/cbTC" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="167dp"
@@ -176,5 +176,5 @@
             app:layout_constraintEnd_toEndOf="@+id/btnSignUp"
             app:layout_constraintStart_toStartOf="@+id/btnSignUp"
             app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,11 +1,11 @@
 package org.systers.mentorship.view.fragments
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import android.view.*
+import androidx.databinding.DataBindingUtil
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
 import org.systers.mentorship.viewmodels.ProfileViewModel

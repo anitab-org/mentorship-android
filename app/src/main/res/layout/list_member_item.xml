@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Larissa" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMentorshipAvailability"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvName"
         tools:text="Available to mentor and be a mentee" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvInterests"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -47,4 +47,4 @@
         app:layout_constraintVertical_bias="1.0"
         tools:text="Interests: Web Dev, LinkedIn Optimization" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
