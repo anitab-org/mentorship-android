@@ -12,7 +12,7 @@ object Versions {
     const val kotlinVersion = "1.3.21"
     const val supportLib = "1.0.0"
     const val designSupportLib = "1.0.0"
-    const val constraintLayout = "1.1.2"
+    const val constraintLayout = "1.1.3"
     const val junit = "4.12"
     const val testRunner = "1.1.0"
     const val espresso = "3.1.0"
