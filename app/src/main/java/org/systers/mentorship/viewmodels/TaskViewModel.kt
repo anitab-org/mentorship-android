@@ -1,6 +1,6 @@
 package org.systers.mentorship.viewmodels
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 
