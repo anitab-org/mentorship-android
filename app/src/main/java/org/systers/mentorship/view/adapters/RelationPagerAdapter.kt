@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.view.fragments.RelationFragment
 import org.systers.mentorship.view.fragments.TasksFragment
 
@@ -14,7 +15,7 @@ import org.systers.mentorship.view.fragments.TasksFragment
  * a detailed information about the tasks.
  * @param fm fragment manager
  */
-class RelationPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class RelationPagerAdapter(fm: FragmentManager, private var mentorshipRelation: Relationship) : FragmentPagerAdapter(fm) {
 
     /**
      * This class represents the number and index of each tab of the layout
@@ -29,7 +30,7 @@ class RelationPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         when (position) {
             TabsIndex.DETAILS.value -> {
-                return RelationFragment.newInstance()
+                return RelationFragment.newInstance(mentorshipRelation)
             }
 
             TabsIndex.TASKS.value -> {

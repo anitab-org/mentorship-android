@@ -107,6 +107,7 @@
     <string name="details">Details</string>
     <string name="tasks">Tasks</string>
     <string name="add_new_task">Add a new task</string>
+    <string name="fetching_current_relation">Fetching Current Relation information…</string>
     <string name="pending_requests">Pending Requests</string>
     <string name="accepted_requests">Accepted Requests</string>
     <string name="rejected_requests">Rejected Requests</string>
