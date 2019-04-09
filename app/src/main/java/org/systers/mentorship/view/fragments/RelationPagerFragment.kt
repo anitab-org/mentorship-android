@@ -58,7 +58,7 @@ class RelationPagerFragment : BaseFragment() {
             tvNoCurrentRelation.visibility = View.VISIBLE
             tlMentorshipRelation.visibility = View.GONE
             vpMentorshipRelation.visibility = View.GONE
-            tlMentorshipRelation.removeAllTabs()
+            baseActivity.tlMentorshipRelation.removeAllTabs()
         } else {
             tvNoCurrentRelation.visibility = View.GONE
             tlMentorshipRelation.visibility = View.VISIBLE
