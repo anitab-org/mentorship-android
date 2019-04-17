@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAbout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
@@ -17,6 +17,10 @@
         android:text="@string/popup_menu_about"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/ic_info_black_24dp"
+        android:drawablePadding="8dp"
+        android:background="@drawable/ripple_click_effect"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +28,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvFeedback"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -33,6 +37,10 @@
         android:text="@string/popup_menu_feedback"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/ic_feedback_black_24dp"
+        android:drawablePadding="8dp"
+        android:background="@drawable/ripple_click_effect"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +48,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvLogout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -49,6 +57,10 @@
         android:text="@string/popup_menu_logout"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
+        android:drawablePadding="8dp"
+        android:background="@drawable/ripple_click_effect"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +68,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvResetPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -65,6 +77,10 @@
         android:text="@string/change_password"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/ic_lock_black_24dp"
+        android:drawablePadding="8dp"
+        android:background="@drawable/ripple_click_effect"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +88,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDeleteAccount"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
@@ -81,6 +97,10 @@
         android:text="@string/popup_menu_delete_account"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/ic_delete_black_24dp"
+        android:drawablePadding="8dp"
+        android:background="@drawable/ripple_click_effect"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
