@@ -1,10 +1,14 @@
 package org.systers.mentorship.view.adapters
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.list_member_item.view.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -42,7 +46,14 @@ class MembersAdapter (
         val keyValueText = "$keyText: $validText"
         itemView.tvInterests.text = keyValueText
 
-        itemView.setOnClickListener { openDetailFunction(item.id!!) }
+        itemView.setOnClickListener {
+            if (isNetworkAvailable()) {
+            openDetailFunction(item.id!!)
+            } else {
+            Snackbar.make(holder.itemView, context.getString(R.string.error_please_check_internet), Snackbar.LENGTH_LONG)
+                    .show()
+            }
+        }
     }
 
     override fun getItemCount(): Int = userList.size
@@ -63,5 +74,13 @@ class MembersAdapter (
         }
 
         return context.getString(R.string.not_available_to_mentor_or_mentee)
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
+        return if (connectivityManager is ConnectivityManager) {
+            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+            networkInfo?.isConnected ?: false
+        } else false
     }
 }
