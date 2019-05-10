@@ -8,4 +8,4 @@ import com.google.gson.annotations.SerializedName
  * @param expiry represents the expiry timestamp
  */
 data class AuthToken(@SerializedName("access_token") var authToken: String,
-                     var expiry: Float)
+                     @SerializedName("access_expiry") var accessExpiry: Float)
