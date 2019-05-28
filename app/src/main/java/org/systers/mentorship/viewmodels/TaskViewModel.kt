@@ -3,6 +3,10 @@ package org.systers.mentorship.viewmodels
 import androidx.lifecycle.ViewModel
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.remote.datamanager.RelationDataManager
+import org.systers.mentorship.remote.datamanager.TaskDataManager
+import org.systers.mentorship.remote.requests.RelationshipRequest
+import org.systers.mentorship.remote.requests.TaskRequest
 
 /**
  * This class represents the [ViewModel] used for Tasks Screen
@@ -10,6 +14,8 @@ import org.systers.mentorship.R
 class TasksViewModel: ViewModel() {
     var taskList = mutableListOf<String>()
     var completedTaskList = mutableListOf<String>()
+
+    private val taskDataManager: TaskDataManager = TaskDataManager()
 
     /**
      * This function lists all tasks from the mentorship relation
@@ -25,9 +31,13 @@ class TasksViewModel: ViewModel() {
      * This function helps in adds a new task to the task list
      * @param taskName title of the new task
      */
-    fun addTask(taskName: String) {
+    fun addTask(requestId: Int, taskName: String) {
+
         taskList.add(taskName)
-        //TODO: Update the backend
+
+        val taskRequest = TaskRequest(description = taskName);
+        taskDataManager.sendRequest(requestId, taskRequest);
+
     }
 
     /**

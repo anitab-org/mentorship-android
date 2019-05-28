@@ -34,10 +34,10 @@ class RelationPagerAdapter(fm: FragmentManager, private var mentorshipRelation: 
             }
 
             TabsIndex.TASKS.value -> {
-                return TasksFragment.newInstance()
+                return TasksFragment.newInstance(mentorshipRelation)
             }
         }
-        return TasksFragment.newInstance()
+        return TasksFragment.newInstance(mentorshipRelation)
     }
 
     override fun getCount(): Int = 2

@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
 import kotlinx.android.synthetic.main.task_list_item.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
-import org.systers.mentorship.view.activities.MainActivity
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.view.adapters.TasksAdapter
 import org.systers.mentorship.viewmodels.TasksViewModel
 
@@ -17,13 +17,13 @@ import org.systers.mentorship.viewmodels.TasksViewModel
  * The fragment is responsible for showing the all mentorship tasks
  * and achievements. It also allows to add new tasks.
  */
-class TasksFragment : BaseFragment() {
+class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment() {
 
     companion object {
         /**
          * Creates an instance of [TasksFragment]
          */
-        fun newInstance() = TasksFragment()
+        fun newInstance(mentorshipRelation: Relationship) = TasksFragment(mentorshipRelation)
         val TAG = TasksFragment::class.java.simpleName
     }
 
@@ -45,14 +45,15 @@ class TasksFragment : BaseFragment() {
         }
 
         ivAddItem.setOnClickListener {
-            showDialog()
+            showDialog(mentorshipRelation)
         }
     }
 
     /**
-     * The function creates a dialog box through whoch new tasks can be added
+     * The function creates a dialog box through which new tasks can be added
      */
-    fun showDialog() {
+    fun showDialog(mentorshipRelation: Relationship) {
+
         val builder = AlertDialog.Builder(context)
         val inflater = layoutInflater
         builder.setTitle(appContext.getString(R.string.add_new_task))
@@ -61,7 +62,7 @@ class TasksFragment : BaseFragment() {
         builder.setView(dialogLayout)
         builder.setPositiveButton(appContext.getString(R.string.save)) { dialogInterface, i ->
             val newTask: String = editText.text.toString()
-            taskViewModel.addTask(newTask)
+            taskViewModel.addTask(mentorshipRelation.id, newTask)
         }
         builder.setNegativeButton(appContext.getString(R.string.cancel)) { dialogInterface, i ->
             dialogInterface.dismiss()
