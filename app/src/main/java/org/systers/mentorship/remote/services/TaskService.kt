@@ -16,5 +16,5 @@ interface TaskService {
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
     @POST("mentorship_relation/{request_id}/task")
-    fun sendRequest(@Path("relation_id") relationId: Int, @Body taskRequest: TaskRequest): Observable<CustomResponse>
+    fun sendRequest(@Path("request_id") relationId: Int, @Body taskRequest: TaskRequest): Observable<CustomResponse>
 }
