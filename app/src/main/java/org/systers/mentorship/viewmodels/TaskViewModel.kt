@@ -3,9 +3,7 @@ package org.systers.mentorship.viewmodels
 import androidx.lifecycle.ViewModel
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.remote.datamanager.TaskDataManager
-import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.remote.requests.TaskRequest
 
 /**
@@ -36,7 +34,7 @@ class TasksViewModel: ViewModel() {
         taskList.add(taskName)
 
         val taskRequest = TaskRequest(description = taskName);
-        taskDataManager.sendRequest(requestId, taskRequest);
+        taskDataManager.createNewTask(requestId, taskRequest);
 
     }
 

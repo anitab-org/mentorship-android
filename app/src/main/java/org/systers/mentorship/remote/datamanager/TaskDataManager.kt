@@ -18,8 +18,8 @@ class TaskDataManager {
      * @param taskRequest object with fields to create a new task
      * @return an Observable of [CustomResponse]
      */
-    fun sendRequest(relationId: Int, taskRequest: TaskRequest): Observable<CustomResponse> {
-        return apiManager.taskService.sendRequest(relationId, taskRequest)
+    fun createNewTask(relationId: Int, taskRequest: TaskRequest): Observable<CustomResponse> {
+        return apiManager.taskService.createNewTask(relationId, taskRequest)
     }
 
 }
