@@ -130,4 +130,5 @@
     <string name="change_password">Change Password</string>
     <string name="password_updated">Password updated successfully!</string>
     <string name="current_new_password_should_not_same">Current and New passwords should not be same</string>
+    <string name="application_exit_message">Please press back once more to exit</string>
 </resources>
