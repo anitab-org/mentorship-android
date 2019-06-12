@@ -3,15 +3,30 @@ package org.systers.mentorship.view.fragments
 import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
+import androidx.lifecycle.MutableLiveData
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
 import kotlinx.android.synthetic.main.task_list_item.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
+import org.systers.mentorship.models.Task
+import org.systers.mentorship.remote.datamanager.RelationDataManager
+import org.systers.mentorship.remote.datamanager.TaskDataManager
+import org.systers.mentorship.remote.requests.RelationshipRequest
+import org.systers.mentorship.remote.requests.TaskRequest
+import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.utils.CommonUtils
 import org.systers.mentorship.view.adapters.TasksAdapter
 import org.systers.mentorship.viewmodels.TasksViewModel
+import retrofit2.HttpException
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 
 /**
  * The fragment is responsible for showing the all mentorship tasks
@@ -61,8 +76,8 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         val editText = dialogLayout.findViewById<EditText>(R.id.etAddTask)
         builder.setView(dialogLayout)
         builder.setPositiveButton(appContext.getString(R.string.save)) { dialogInterface, i ->
-            val newTask: String = editText.text.toString()
-            taskViewModel.addTask(mentorshipRelation.id, newTask)
+            taskViewModel.addTask(mentorshipRelation.id, editText.text.toString())
+
         }
         builder.setNegativeButton(appContext.getString(R.string.cancel)) { dialogInterface, i ->
             dialogInterface.dismiss()
