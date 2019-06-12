@@ -46,8 +46,11 @@ class TasksViewModel: ViewModel() {
     fun addTask(requestId: Int, taskName: String) {
 
         taskList.add(taskName)
-
         val taskRequest = TaskRequest(description = taskName);
+
+        /**
+         * Sends new task via API
+         */
         taskDataManager.createNewTask(requestId, taskRequest)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -6,7 +6,7 @@ import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.*
 
 /**
- * This interface describes the methods related to Mentorship Relation REST API
+ * This interface describes the methods related to Mentorship Task REST API
  */
 interface TaskService {
 
