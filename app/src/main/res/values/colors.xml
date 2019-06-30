@@ -3,7 +3,6 @@
     <color name="colorPrimary">@color/aubergine</color>
     <color name="colorPrimaryDark">@color/navy</color>
     <color name="colorAccent">@color/caribbean</color>
-
     <color name="rich_black">#EF4135</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

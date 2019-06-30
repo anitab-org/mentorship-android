@@ -1,8 +1,8 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
@@ -20,7 +20,7 @@ import java.io.IOException
 import java.util.concurrent.TimeoutException
 
 /**
- * Created by murad on 7/26/18.
+ * This class represents the [ViewModel] component used for the Login Activity
  */
 class LoginViewModel : ViewModel() {
 

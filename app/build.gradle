@@ -14,7 +14,7 @@ android {
         targetSdkVersion Versions.targetSdkVersion
         versionCode Versions.versionCode
         versionName Versions.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -41,10 +41,8 @@ configurations.all {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation Dependencies.kotlin_stdlib
-    implementation Dependencies.appcompat_v7
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
-    implementation Dependencies.support_v4
     kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner

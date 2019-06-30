@@ -1,7 +1,9 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
+import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
+import org.systers.mentorship.remote.requests.ChangePassword
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -48,4 +50,17 @@ interface UserService {
     @PUT("user")
     fun updateUser(@Body user: User): Observable<CustomResponse>
 
+    /**
+     * This function updates the current user password
+     * @return an observable instance of the [CustomResponse]
+     */
+    @PUT("user/change_password")
+    fun updatePassword(@Body changePassword: ChangePassword): Observable<CustomResponse>
+
+    /**
+     * This function gets the current user's home screen statistics
+     * @return an observable instance of [HomeStatistics]
+     */
+    @GET("home")
+    fun getHomeStats(): Observable<HomeStatistics>
 }

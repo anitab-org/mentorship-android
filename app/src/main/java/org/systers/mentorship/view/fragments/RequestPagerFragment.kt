@@ -2,7 +2,7 @@ package org.systers.mentorship.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_request_pager.*
 import org.systers.mentorship.R

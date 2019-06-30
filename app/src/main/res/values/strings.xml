@@ -16,7 +16,7 @@
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="confirm_password">Confirm password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="terms_and_conditions_acceptance_statement"><![CDATA[I agree to accept the Terms & Conditions of the Mentorship System]]></string>
     <string name="error_not_matching_passwords">Passwords didn\'t match!</string>
     <string name="error_please_check_internet">Please check your internet connection</string>
@@ -107,7 +107,27 @@
     <string name="details">Details</string>
     <string name="tasks">Tasks</string>
     <string name="add_new_task">Add a new task</string>
+    <string name="fetching_current_relation">Fetching Current Relation information…</string>
+    <string name="pending_requests">Pending Requests</string>
+    <string name="accepted_requests">Accepted Requests</string>
+    <string name="rejected_requests">Rejected Requests</string>
+    <string name="completed_relations">Completed Relations</string>
+    <string name="welcome">Welcome</string>
+    <string name="no_recent_achievements">No recent achievements</string>
+    <string name="recent_achievements">Recent Achievements</string>
     <string name="confirm_logout">Confirm logout</string>
     <string name="confirm_logout_msg">Are you sure you want to logout?</string>
     <string name="logout">Logout</string>
+    <string name="confirm_cancel_relation">Yes</string>
+    <string name="cancel_relation_text">Are you sure you want to cancel the relation?</string>
+    <string name="cancel_relation_title">Cancel Relation</string>
+    <string name="empty_members_list">There are no other members.</string>
+    <string name="cancel_relation_denied">No</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="password_not_match">Passwords do not match</string>
+    <string name="ok">OK</string>
+    <string name="change_password">Change Password</string>
+    <string name="password_updated">Password updated successfully!</string>
+    <string name="current_new_password_should_not_same">Current and New passwords should not be same</string>
 </resources>
