@@ -99,8 +99,8 @@
                     android:outlineSpotShadowColor="#55111109"
                     android:layout_height="100dp"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
-                    >
+                    app:cardCornerRadius="20dp">
+
 
 
                     <LinearLayout

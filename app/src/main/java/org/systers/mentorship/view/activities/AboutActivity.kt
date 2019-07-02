@@ -19,10 +19,10 @@ class AboutActivity : AppCompatActivity() {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_github))))
         }
         btnSlack.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(R.string.url_slack.toString())))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_slack))))
         }
         btnWebsite.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(R.string.url_website.toString())))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_website))))
         }
         btnTermsCondition.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_terms))))
@@ -31,7 +31,7 @@ class AboutActivity : AppCompatActivity() {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_privacy))))
         }
         btncodeofconduct.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(R.string.url_code_of_conduct.toString())))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_code_of_conduct))))
         }
 
     }
