@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.fragments
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -28,6 +29,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
+@SuppressLint("ValidFragment")
 /**
  * The fragment is responsible for showing the all mentorship tasks
  * and achievements. It also allows to add new tasks.
