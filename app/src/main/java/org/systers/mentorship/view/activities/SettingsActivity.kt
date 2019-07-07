@@ -39,6 +39,9 @@ class SettingsActivity : BaseActivity() {
         tvResetPassword.setOnClickListener {
             ChangePasswordFragment.newInstance().show(supportFragmentManager, null)
         }
+        tvAbout.setOnClickListener {
+            startActivity(Intent(baseContext,AboutActivity::class.java))
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

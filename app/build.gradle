@@ -43,6 +43,7 @@ dependencies {
     implementation Dependencies.kotlin_stdlib
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
+    implementation Dependencies.appCompat
     kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner

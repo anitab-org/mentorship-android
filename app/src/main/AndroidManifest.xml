@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.activities.AboutActivity"></activity>
         <activity
             android:name=".view.activities.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -31,7 +32,7 @@
         <activity android:name=".view.activities.RequestDetailActivity" />
         <activity android:name=".view.activities.MemberProfileActivity" />
         <activity android:name=".view.activities.SendRequestActivity" />
-        <activity android:name=".view.activities.SettingsActivity"/>
+        <activity android:name=".view.activities.SettingsActivity" />
     </application>
 
 </manifest>
