@@ -14,6 +14,8 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
+        supportActionBar?.title = getString(R.string.popup_menu_about)
+
         btnGit.setOnClickListener {
 
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_github))))
