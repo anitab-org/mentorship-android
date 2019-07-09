@@ -14,6 +14,8 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         btnGit.setOnClickListener {
 
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_github))))
@@ -35,4 +37,10 @@ class AboutActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }
