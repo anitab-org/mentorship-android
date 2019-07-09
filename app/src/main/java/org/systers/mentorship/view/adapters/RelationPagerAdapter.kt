@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.adapters
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -9,6 +10,7 @@ import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.view.fragments.RelationFragment
 import org.systers.mentorship.view.fragments.TasksFragment
 
+@SuppressLint("ValidFragment")
 /**
  * This is the [FragmentPagerAdapter] responsible for the configuration each fragment assigned to
  * each tabs. One tab displays the details of the current mentorship relation and the other provides
@@ -34,10 +36,10 @@ class RelationPagerAdapter(fm: FragmentManager, private var mentorshipRelation: 
             }
 
             TabsIndex.TASKS.value -> {
-                return TasksFragment.newInstance()
+                return TasksFragment.newInstance(mentorshipRelation)
             }
         }
-        return TasksFragment.newInstance()
+        return TasksFragment.newInstance(mentorshipRelation)
     }
 
     override fun getCount(): Int = 2
