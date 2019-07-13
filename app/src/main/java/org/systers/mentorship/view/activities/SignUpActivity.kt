@@ -1,11 +1,12 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.text.method.LinkMovementMethod
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
@@ -30,9 +31,8 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        signUpViewModel  = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
-        signUpViewModel.successful.observe(this, Observer {
-            successful ->
+        signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+        signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -44,6 +44,8 @@ class SignUpActivity : BaseActivity() {
                 }
             }
         })
+
+        tvTC.movementMethod = LinkMovementMethod.getInstance()
 
         btnSignUp.setOnClickListener {
 

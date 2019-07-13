@@ -147,10 +147,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/terms_and_conditions_acceptance_statement"
-            app:layout_constraintEnd_toEndOf="@+id/tiConfirmPassword"
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/cbMentee" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTC"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/terms_and_conditions_acceptance_statement"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/tiConfirmPassword"
+            app:layout_constraintStart_toEndOf="@id/cbTC"
+            app:layout_constraintTop_toBottomOf="@id/cbMentee" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"
@@ -160,9 +170,9 @@
             android:layout_marginTop="16dp"
             android:enabled="false"
             android:text="@string/sign_up"
-            app:layout_constraintEnd_toEndOf="@+id/cbTC"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/cbTC"
-            app:layout_constraintTop_toBottomOf="@id/cbTC" />
+            app:layout_constraintTop_toBottomOf="@id/tvTC" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
