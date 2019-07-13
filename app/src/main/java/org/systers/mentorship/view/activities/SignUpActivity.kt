@@ -45,7 +45,7 @@ class SignUpActivity : BaseActivity() {
             }
         })
 
-        cbTOC.movementMethod = LinkMovementMethod.getInstance()
+        tvTC.movementMethod = LinkMovementMethod.getInstance()
 
         btnSignUp.setOnClickListener {
 

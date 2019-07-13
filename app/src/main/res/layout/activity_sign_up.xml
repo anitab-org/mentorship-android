@@ -151,7 +151,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cbMentee" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/cbTOC"
+            android:id="@+id/tvTC"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -172,7 +172,7 @@
             android:text="@string/sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/cbTC"
-            app:layout_constraintTop_toBottomOf="@id/cbTOC" />
+            app:layout_constraintTop_toBottomOf="@id/tvTC" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
