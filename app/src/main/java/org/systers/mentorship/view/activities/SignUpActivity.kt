@@ -4,7 +4,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.snackbar.Snackbar
 import android.widget.Toast
@@ -48,9 +47,8 @@ class SignUpActivity : BaseActivity() {
         })
         
         scrollView.setOnTouchListener { view, motionEvent ->
-            var imm: InputMethodManager = getSystemService( INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0)
-             return@setOnTouchListener false
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm!!.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0)
         }
 
         btnSignUp.setOnClickListener {
