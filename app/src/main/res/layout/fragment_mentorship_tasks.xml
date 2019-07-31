@@ -98,7 +98,7 @@
         app:layout_constraintVertical_weight="0.5" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/ivAddItem"
+        android:id="@+id/fabAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ic_add_black_24dp"
