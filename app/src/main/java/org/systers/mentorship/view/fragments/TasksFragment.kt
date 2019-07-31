@@ -65,7 +65,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
             }
         })
 
-        ivAddItem.setOnClickListener {
+        fabAddItem.setOnClickListener {
             showDialog()
         }
 
