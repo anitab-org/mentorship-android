@@ -24,6 +24,8 @@ object Versions {
     const val archComponents = "2.0.0"
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
+    const val appCompat = "1.0.0-beta01"
+
 }
 
 /**
@@ -32,6 +34,7 @@ object Versions {
 object Dependencies {
     const val gradle_build_tool = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
     const val databinding = "androidx.databinding:compiler:${Versions.dataBinding}"
+    const val appCompat= "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
     const val design = "com.google.android.material:material:${Versions.designSupportLib}"
