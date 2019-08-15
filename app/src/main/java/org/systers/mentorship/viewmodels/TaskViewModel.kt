@@ -11,7 +11,10 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.datamanager.TaskDataManager
+import org.systers.mentorship.remote.requests.TaskRequest
+import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
+import org.systers.mentorship.view.fragments.TasksFragment
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
@@ -23,10 +26,12 @@ class TasksViewModel: ViewModel() {
 
     var TAG = TasksViewModel::class.java.simpleName
 
-    lateinit var tasksList: List<Task>
+    lateinit var todoTasksList: List<Task>
+    lateinit var achievedTasksList: List<Task>
 
     private val taskDataManager: TaskDataManager = TaskDataManager()
-    val successful: MutableLiveData<Boolean> = MutableLiveData()
+    val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
+    val successfulCreate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
     /**
@@ -39,8 +44,9 @@ class TasksViewModel: ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<Task>>() {
                     override fun onNext(taskListResponse: List<Task>) {
-                        tasksList = taskListResponse
-                        successful.value = true
+                        todoTasksList = taskListResponse.filterNot { task -> task.isDone }
+                        achievedTasksList = taskListResponse.filter { task -> task.isDone }
+                        successfulGet.value = true
                     }
 
                     override fun onError(throwable: Throwable) {
@@ -62,7 +68,7 @@ class TasksViewModel: ViewModel() {
                                 Log.e(TAG, throwable.localizedMessage)
                             }
                         }
-                        successful.value = false
+                        successfulGet.value = false
                     }
 
                     override fun onComplete() {
@@ -74,8 +80,46 @@ class TasksViewModel: ViewModel() {
      * This function helps in adds a new task to the task list
      * @param taskName title of the new task
      */
-    fun addTask(taskName: String) {
-        //TODO: Update the backend
+    fun addTask(requestId: Int, taskName: String) {
+
+        val taskRequest = TaskRequest(description = taskName);
+
+        /**
+         * Sends new task via API
+         */
+        taskDataManager.createNewTask(requestId, taskRequest)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                    override fun onNext(customResponse: CustomResponse) {
+                        message = customResponse.message ?: MentorshipApplication.getContext()
+                                .getString(R.string.new_task_added_successful)
+                        successfulCreate.value = true
+                    }
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TasksFragment.TAG, throwable.localizedMessage)
+                            }
+                        }
+                        successfulCreate.value = false
+                    }
+                    override fun onComplete() {
+                    }
+                })
     }
 
     /**
