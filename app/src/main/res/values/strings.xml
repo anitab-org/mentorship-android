@@ -43,6 +43,7 @@
     <string name="fragment_title_edit_profile">Edit Profile</string>
     <string name="fragment_title_relation">Current Relation</string>
     <string name="fragment_title_requests">Mentorship Requests</string>
+    <string name="fragment_title_about">About</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="send_request">Send request</string>
