@@ -13,6 +13,8 @@ class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
+        setTitle(R.string.fragment_title_about);
+
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
