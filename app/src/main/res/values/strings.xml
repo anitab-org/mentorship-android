@@ -148,4 +148,10 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+
+    <string name="confirm_delete">Confirm delete</string>
+    <string name="confirm_delete_msg">Are you sure you want to delete?</string>
+    <string name="user_deleted">Account deleted successfully!</string>
+
+
 </resources>

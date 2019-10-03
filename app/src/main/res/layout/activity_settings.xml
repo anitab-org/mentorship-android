@@ -109,6 +109,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvResetPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/tvResetPassword"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
