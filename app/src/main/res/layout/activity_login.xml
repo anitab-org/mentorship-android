@@ -71,6 +71,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
+        android:background="@drawable/rectbutton"                                       
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="168dp"
         android:layout_height="wrap_content"
