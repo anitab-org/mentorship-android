@@ -11,12 +11,13 @@ import org.systers.mentorship.models.Task
 
 /**
  * This class represents the adapter that fills in each view of the Tasks recyclerView
- * @param taskstsList list of tasks taken up by the mentee
+ * @param tasksList list of tasks taken up by the mentee
  * @param markTask function to be called when an item from Tasks list is clicked
  */
 class TasksAdapter(
         private val tasksList: List<Task>,
-        private val markTask: (taskId: Int) -> Unit
+        private val markTask: (taskId: Int) -> Unit,
+        private val deleteTask: (taskId: Int) -> Unit
 ) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
     val context = MentorshipApplication.getContext();
@@ -31,7 +32,9 @@ class TasksAdapter(
         val itemView = holder.itemView
 
         itemView.cbTask.text = item.description
-        itemView.setOnClickListener { markTask(position) }
+        itemView.setOnClickListener { markTask(item.id) }
+
+        itemView.deleteTask.setOnClickListener { deleteTask(item.id) }
     }
 
     override fun getItemCount(): Int = tasksList.size

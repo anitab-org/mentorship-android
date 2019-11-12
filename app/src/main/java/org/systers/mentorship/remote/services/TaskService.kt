@@ -2,6 +2,7 @@ package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
 import org.systers.mentorship.models.Task
+import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.*
 
 /**
@@ -15,5 +16,13 @@ interface TaskService {
      * @return an observable instance of a list of [Task]s
      */
     @GET("mentorship_relation/{relation_id}/tasks")
-    fun getAllTasksFromMentorshipRelation(@Path("relation_id") relationId: Int): Observable<List<Task>>
+    fun getAllTasksFromMentorshipRelation(@Path("relation_id") relationId: Int): Observable<MutableList<Task>>
+
+
+    /**
+     * This function deletes a mentorship relation task
+     * @return an observable instance of [CustomResponse] with a proper error or success message
+     */
+    @DELETE("mentorship_relation/{relation_id}/task/{task_id}")
+    fun deleteRelationshipTask(@Path("relation_id") relationId: Int, @Path("task_id") taskId: Int): Observable<CustomResponse>
 }

@@ -17,8 +17,16 @@ class TaskDataManager {
      * @param relationId mentorship relation id
      * @return an Observable of [CustomResponse]
      */
-    fun getAllTasks(relationId: Int): Observable<List<Task>> {
+    fun getAllTasks(relationId: Int): Observable<MutableList<Task>> {
         return apiManager.taskService.getAllTasksFromMentorshipRelation(relationId)
+    }
+
+    /**
+     * This will call a method from RelationService interface to delete a mentorship relation task
+     * @return an Observable of [CustomResponse]
+     */
+    fun deleteRelationshipTask(relationId: Int, taskId: Int): Observable<CustomResponse> {
+        return apiManager.taskService.deleteRelationshipTask(relationId, taskId)
     }
 
 }

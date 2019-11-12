@@ -53,7 +53,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                     } else {
                         rvTasks.apply {
                             layoutManager = LinearLayoutManager(context)
-                            adapter = TasksAdapter(taskViewModel.tasksList, markTask)
+                            adapter = TasksAdapter(taskViewModel.tasksList, markTask, deleteTask)
                         }
                         tvNoTask.visibility = View.GONE
                     }
@@ -71,6 +71,20 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
 
         taskViewModel.getTasks(mentorshipRelation.id)
 
+        rvTasks.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = TasksAdapter(taskViewModel.tasksList, markTask, deleteTask)
+        }
+
+        taskViewModel.successful.observe(this, Observer { successful ->
+            if(successful) {
+                rvTasks.adapter?.notifyDataSetChanged()
+            } else {
+                view?.let {
+                    Snackbar.make(it, taskViewModel.message, Snackbar.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 
     /**
@@ -93,8 +107,28 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         builder.show()
     }
 
+    /**
+     * The function creates a dialog box to confirm if user wants to delete the task
+     */
+    fun showDeleteDialog(taskId: Int) {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(appContext.getString(R.string.delete_task))
+        builder.setMessage(appContext.getString(R.string.delete_task_message))
+        builder.setPositiveButton(appContext.getString(R.string.yes)) { dialogInterface, i ->
+            taskViewModel.deleteTask(mentorshipRelation.id, taskId)
+        }
+        builder.setNegativeButton(appContext.getString(R.string.no)) { dialogInterface, i ->
+            dialogInterface.dismiss()
+        }
+        builder.show()
+    }
+
     private val markTask: (Int) -> Unit = { taskId ->
         cbTask.isChecked
         taskViewModel.updateTask(taskId, cbTask.isChecked)
+    }
+
+    private val deleteTask: (Int) -> Unit = { taskId ->
+        showDeleteDialog(taskId)
     }
 }
