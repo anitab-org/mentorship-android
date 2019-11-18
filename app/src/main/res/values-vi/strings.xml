@@ -92,4 +92,7 @@
     <string name="notes">Ghi chú</string>
     <string name="not_available_to_mentor_or_mentee">Không muốn trở thành cố vấn hay được hướng dẫn</string>
     <string name="no_current_mentorship_relation">Bạn đang không có mối quan hệ nào cả.</string>
+    <string name="popup_menu_delete_account">Xóa tài khoản</string>
+    <string name="fragment_title_edit_profile">Chỉnh sửa thông tin</string>
+    <string name="fragment_title_about">Về chúng tôi</string>
 </resources>
