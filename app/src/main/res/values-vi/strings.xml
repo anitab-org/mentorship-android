@@ -95,4 +95,7 @@
     <string name="popup_menu_delete_account">Xóa tài khoản</string>
     <string name="fragment_title_edit_profile">Chỉnh sửa thông tin</string>
     <string name="fragment_title_about">Về chúng tôi</string>
+    <string name="end_date_format">dd/mm/YYYY</string>
+    <string name="request_direction_formatted">%1$s %2$s</string>
+    <string name="save">Lưu</string>
 </resources>
