@@ -1,0 +1,46 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "android",
+            "request": "launch",
+            "name": "Launch App",
+            "appSrcRoot": "${workspaceRoot}/app/src/main",
+            "apkFile": "${workspaceRoot}/app/build/outputs/apk/debug/app-debug.apk",
+            "adbPort": 5037
+        },
+        {
+            "type": "android",
+            "request": "launch",
+            "name": "Launch App",
+            "appSrcRoot": "${workspaceRoot}/app/src/main",
+            "apkFile": "${workspaceRoot}/app/build/outputs/apk/debug/app-debug.apk",
+            "adbPort": 5037
+        },
+        {
+            "type": "android",
+            "request": "launch",
+            "name": "Launch App",
+            "appSrcRoot": "${workspaceRoot}/app/src/main",
+            "apkFile": "${workspaceRoot}/app/build/outputs/apk/debug/app-debug.apk",
+            "adbPort": 5037
+        },
+        {
+            "type": "android",
+            "request": "launch",
+            "name": "Launch App",
+            "appSrcRoot": "${workspaceRoot}/app/src/main",
+            "apkFile": "${workspaceRoot}/app/build/outputs/apk/debug/app-debug.apk",
+            "adbPort": 5037
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
