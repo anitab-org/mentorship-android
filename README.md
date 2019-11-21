@@ -11,12 +11,16 @@ This is the Android client for the Mentorship System.
 
 ## Setting up the project
 
+[![GitHub license](https://img.shields.io/github/license/systers/mentorship-android?logo=github)](https://github.com/systers/mentorship-android/blob/develop/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/systers/mentorship-android?color=dodgerblue&logo=github)](https://github.com/systers/mentorship-android/stargazers) [![GitHub forks](https://img.shields.io/github/forks/systers/mentorship-android?color=red&logo=github)](https://github.com/systers/mentorship-android/network)
+
 To setup the project locally read these wiki pages and follow the instructions:
 
  - [Fork, Clone and Remote](https://github.com/systers/mentorship-android/wiki/Fork%2C-Clone-%26-Remote)
  - [Open project in Android Studio](https://github.com/systers/mentorship-android/wiki/Open-the-project-in-Android-Studio)
 
 ## Contributing 
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github)](https://github.com/systers/mentorship-android/pulls) [![GitHub issues](https://img.shields.io/github/issues-raw/systers/mentorship-android?logo=github)](https://github.com/systers/mentorship-android/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/systers/mentorship-android?logo=github&color=dodgerblue)](https://github.com/systers/mentorship-android/pulls) [![GitHub contributors](https://img.shields.io/github/contributors/systers/mentorship-android?logo=github&color=teal)](https://github.com/systers/mentorship-android/graphs/contributors) 
 
 Please read our [Contributing guidelines](https://github.com/systers/mentorship-android/blob/develop/.github/CONTRIBUTING.md), [Code of Conduct](http://systers.io/code-of-conduct) and [Reporting Guidelines](http://systers.io/reporting-guidelines)
 
@@ -34,6 +38,11 @@ The repository has the following permanent branches:
 
 ## Contact
 
+[![Twitter Follow](https://img.shields.io/twitter/follow/systers_org?style=social)](https://twitter.com/systers_org) [![Slack Status](https://img.shields.io/badge/slack-chat-yellow.svg?logo=slack)](http://systers.io/slack-systers-opensource/)
+
 You can reach maintainers team @mentorship-team on [Systers Open Source Slack](http://systers.io/slack-systers-opensource/) or @systers/maintainers-mentorship-android on GitHub.
 
 We use [#mentorship-system](https://systers-opensource.slack.com/messages/CAE8QK41L/) channel on Slack to discuss this project. If you're interested in contributing to this project, join us there!
+
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/vinitshahdeo)
+
