@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvOtherUserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Lola Zink" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNotesLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRequestSummary" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvRequestNotes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNotesLabel" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvRequestSummary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvOtherUserName"
         tools:text="TextView" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnReject"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="150dp"
@@ -82,7 +82,7 @@
         app:layout_constraintVertical_bias="0.8"
         tools:visibility="visible" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDelete"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="150dp"
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRequestNotes"
         app:layout_constraintVertical_bias="0.801" />
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAccept"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="150dp"
@@ -114,7 +114,7 @@
         app:layout_constraintVertical_bias="0.8"
         tools:visibility="visible" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvStateMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -134,4 +134,4 @@
         app:layout_constraintVertical_bias="0.092"
         tools:text="TextView" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

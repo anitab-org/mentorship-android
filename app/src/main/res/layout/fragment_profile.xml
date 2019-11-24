@@ -3,21 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View" />
+        <import type="android.view.View"/>
         <variable
-            name="vm"
-            type="org.systers.mentorship.viewmodels.MyProfileViewModel" />
+            name="user"
+            type="org.systers.mentorship.models.User" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiUsername"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -25,19 +23,17 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/username"
-                android:enabled="@{vm.isEditMode}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.533"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etUserName">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.username}"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                    android:enabled="false"
+                    android:text="@={user.username}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -49,15 +45,13 @@
                 app:layout_constraintHorizontal_bias="0.49"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiUsername">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
-                    android:text="@={vm.email}"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.v7.widget.AppCompatTextView
+                    android:text="@={user.email}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
@@ -68,30 +62,27 @@
                 app:layout_constraintEnd_toStartOf="@+id/switchAvailableToMentor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
-
             <Switch
                 android:id="@+id/switchAvailableToMentor"
                 android:layout_width="0dp"
                 android:layout_height="19dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
-                android:enabled="@{vm.isEditMode}"
-                android:checked="@={vm.availableToMentor}"
+                android:enabled="false"
+                android:checked="@{safeUnbox(user.availableToMentor)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
-
             <Switch
                 android:id="@+id/switchNeedMentorship"
                 android:layout_width="0dp"
                 android:layout_height="13dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="12dp"
-                android:enabled="@{vm.isEditMode}"
-                android:checked="@={vm.needMentorship}"
+                android:enabled="false"
+                android:checked="@{safeUnbox(user.needsMentoring)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/switchAvailableToMentor" />
-
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="27dp"
@@ -102,8 +93,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/switchNeedMentorship"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiBio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -111,18 +101,16 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:hint="@string/bio"
-                android:enabled="@{vm.isEditMode}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.bio}" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.v7.widget.AppCompatEditText
+                    android:enabled="false"
+                    android:text="@={user.bio}" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,13 +121,12 @@
                 android:gravity="center_horizontal"
                 android:hint="@string/name"
                 android:inputType="textPersonName"
-                android:enabled="@{vm.isEditMode}"
-                android:text="@={vm.name}"
+                android:enabled="false"
+                android:text="@={user.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiSlackUsername"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -147,18 +134,16 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:hint="@string/slack_username"
-                android:enabled="@{vm.isEditMode}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiBio">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.slackUsername}" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                    android:enabled="false"
+                    android:text="@={user.slackUsername}" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiLocation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -166,18 +151,16 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:hint="@string/location"
-                android:enabled="@{vm.isEditMode}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiSlackUsername">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.location}" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                    android:enabled="false"
+                    android:text="@={user.location}" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiOrganization"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -185,18 +168,16 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:hint="@string/organization"
-                android:enabled="@{vm.isEditMode}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiOccupation">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.organization}" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                    android:enabled="false"
+                    android:text="@={user.organization}" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiOccupation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -204,18 +185,16 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:hint="@string/occupation"
-                android:enabled="@{vm.isEditMode}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiLocation">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.occupation}" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                    android:enabled="false"
+                    android:text="@={user.occupation}" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiSkills"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -223,18 +202,16 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:hint="@string/skills"
-                android:enabled="@{vm.isEditMode}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiOrganization">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.skills}" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+                    android:enabled="false"
+                    android:text="@={user.skills}" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiInterests"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -242,34 +219,15 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:hint="@string/interests"
-                android:enabled="@{vm.isEditMode}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiSkills">
-
-                <android.support.design.widget.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={vm.interests}" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btnUpdate"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="168dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="@string/update_profile"
-                android:visibility="@{vm.isEditMode ? View.VISIBLE : View.GONE}"
-                android:onClick="@{() -> vm.updateProfile()}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tiInterests"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-        </android.support.constraint.ConstraintLayout>
+                    android:enabled="false"
+                    android:text="@={user.interests}" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

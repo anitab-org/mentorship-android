@@ -1,33 +1,31 @@
 package org.systers.mentorship.view.activities
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
+import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
-import org.systers.mentorship.remote.MentorshipRelationState
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
-import android.text.method.ScrollingMovementMethod
-import android.widget.Toast
+import org.systers.mentorship.models.RelationState
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
+import android.content.Intent
+import org.systers.mentorship.view.fragments.RequestPagerFragment
 
 /**
  * This activity will show a Mentorship request detail from the Requests List
  */
 class RequestDetailActivity: BaseActivity() {
 
-    companion object {
-        const val RELATION_INTENT_EXTRA = "RELATION_INTENT_EXTRA"
-    }
-
     private lateinit var requestDetailViewModel: RequestDetailViewModel
 
     private val mentorshipRelationResponse by lazy {
-        intent.getParcelableExtra<MentorshipRelationResponse>(RELATION_INTENT_EXTRA)
+        intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,11 +35,11 @@ class RequestDetailActivity: BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         populateView(mentorshipRelationResponse)
-        setObservables()
+        setObservables(mentorshipRelationResponse)
         setOnClickListeners(mentorshipRelationResponse)
     }
 
-    private fun populateView(relationResponse: MentorshipRelationResponse) {
+    private fun populateView(relationResponse: Relationship) {
         tvRequestNotes.text = relationResponse.notes
         val isFromMentee: Boolean = relationResponse.actionUserId == relationResponse.mentee.id
 
@@ -69,24 +67,24 @@ class RequestDetailActivity: BaseActivity() {
         }
         val actionUserRole = getString(if (isFromMentee) R.string.mentee else R.string.mentor)
         val requestEndDate = convertUnixTimestampIntoStr(
-                relationResponse.endAtTimestamp, EXTENDED_DATE_FORMAT)
+                relationResponse.endsOn, EXTENDED_DATE_FORMAT)
 
         val requestSummaryMessage = getString(summaryStrId,
                 otherUserName, actionUserRole, requestEndDate)
         tvRequestSummary.text = requestSummaryMessage
 
-        if (relationResponse.state == MentorshipRelationState.PENDING.value) {
+        if (relationResponse.state == RelationState.PENDING.value) {
             setActionButtons(relationResponse)
         } else {
             setStateMessage(relationResponse)
         }
 
-        // Needed to enable scrolling on text view
+        // TODD: Needed to enable scrolling on text view
         tvRequestNotes.movementMethod = ScrollingMovementMethod()
     }
 
-    private fun setActionButtons(relationResponse: MentorshipRelationResponse) {
-        val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.endAtTimestamp) < System.currentTimeMillis()
+    private fun setActionButtons(relationResponse: Relationship) {
+        val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.endsOn) < System.currentTimeMillis()
         if (!hasEndTimePassed) {
             if (relationResponse.sentByMe) {
                 btnDelete.visibility = View.VISIBLE
@@ -104,12 +102,12 @@ class RequestDetailActivity: BaseActivity() {
         }
     }
 
-    private fun setStateMessage(relationResponse: MentorshipRelationResponse) {
+    private fun setStateMessage(relationResponse: Relationship) {
         val stateStrId = when (relationResponse.state) {
-            MentorshipRelationState.ACCEPTED.value -> R.string.accepted
-            MentorshipRelationState.REJECTED.value -> R.string.rejected
-            MentorshipRelationState.CANCELLED.value -> R.string.cancelled
-            MentorshipRelationState.COMPLETED.value -> R.string.completed
+            RelationState.ACCEPTED.value -> R.string.accepted
+            RelationState.REJECTED.value -> R.string.rejected
+            RelationState.CANCELLED.value -> R.string.cancelled
+            RelationState.COMPLETED.value -> R.string.completed
             else -> {
                 null
             }
@@ -123,7 +121,7 @@ class RequestDetailActivity: BaseActivity() {
         }
     }
 
-    private fun setOnClickListeners(relationResponse: MentorshipRelationResponse) {
+    private fun setOnClickListeners(relationResponse: Relationship) {
 
         btnDelete.setOnClickListener {
             requestDetailViewModel.deleteRequest(relationResponse.id)
@@ -138,7 +136,7 @@ class RequestDetailActivity: BaseActivity() {
         }
     }
 
-    private fun setObservables() {
+    private fun setObservables(relationResponse: Relationship) {
         requestDetailViewModel  = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
         requestDetailViewModel.successful.observe(this, Observer {
             successful ->
@@ -146,6 +144,9 @@ class RequestDetailActivity: BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     Toast.makeText(this, requestDetailViewModel.message, Toast.LENGTH_LONG).show()
+                    val previousScreen = Intent(applicationContext, RequestPagerFragment::class.java)
+                    previousScreen.putExtra(Constants.REQUEST_ID, relationResponse.id.toString())
+                    setResult(Constants.DELETE_REQUEST_RESULT_ID, previousScreen)
                     finish()
                 } else {
                     Snackbar.make(getRootView(), requestDetailViewModel.message, Snackbar.LENGTH_LONG)

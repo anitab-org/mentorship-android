@@ -1,19 +1,20 @@
 package org.systers.mentorship.viewmodels
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import android.annotation.SuppressLint
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import org.systers.mentorship.MentorshipApplication
+import org.systers.mentorship.R
+import org.systers.mentorship.models.Relationship
+import org.systers.mentorship.remote.datamanager.RelationDataManager
+import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
-import org.systers.mentorship.MentorshipApplication
-import org.systers.mentorship.R
-import org.systers.mentorship.remote.datamanager.RelationDataManager
-import org.systers.mentorship.remote.responses.MentorshipRelationResponse
-import org.systers.mentorship.utils.CommonUtils
 
 /**
  * This class represents the [ViewModel] used for Requests Screen
@@ -26,17 +27,18 @@ class RequestsViewModel : ViewModel() {
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
-    lateinit var allRequestsList: List<MentorshipRelationResponse>
+    lateinit var allRequestsList: List<Relationship>
 
     /**
      * Fetches list of all Mentorship relations and requests
      */
+    @SuppressLint("CheckResult")
     fun getAllMentorshipRelations() {
-        relationDataManager.getAllMentorshipRelationsAndRequests()
+        relationDataManager.getAllRelationsAndRequests()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<MentorshipRelationResponse>>() {
-                    override fun onNext(relationsList: List<MentorshipRelationResponse>) {
+                .subscribeWith(object : DisposableObserver<List<Relationship>>() {
+                    override fun onNext(relationsList: List<Relationship>) {
                         allRequestsList = relationsList
                         successful.value = true
                     }

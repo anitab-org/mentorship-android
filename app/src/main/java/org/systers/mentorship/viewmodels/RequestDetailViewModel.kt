@@ -1,7 +1,8 @@
 package org.systers.mentorship.viewmodels
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import android.annotation.SuppressLint
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
@@ -31,14 +32,14 @@ class RequestDetailViewModel : ViewModel() {
      * Accepts a mentorship request
      * @param requestId id of the mentorship request
      */
+    @SuppressLint("CheckResult")
     fun acceptRequest(requestId: Int) {
-        relationDataManager.acceptMentorshipRelation(requestId)
+        relationDataManager.acceptRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message ?: MentorshipApplication.getContext()
-                                .getString(R.string.error_something_went_wrong)
+                        message = customResponse.message
                         successful.value = true
                     }
 
@@ -53,7 +54,7 @@ class RequestDetailViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -73,14 +74,14 @@ class RequestDetailViewModel : ViewModel() {
      * Rejects a mentorship request
      * @param requestId id of the mentorship request
      */
+    @SuppressLint("CheckResult")
     fun rejectRequest(requestId: Int) {
-        relationDataManager.rejectMentorshipRelation(requestId)
+        relationDataManager.rejectRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message ?: MentorshipApplication.getContext()
-                                .getString(R.string.error_something_went_wrong)
+                        message = customResponse.message
                         successful.value = true
                     }
 
@@ -95,7 +96,7 @@ class RequestDetailViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -115,14 +116,14 @@ class RequestDetailViewModel : ViewModel() {
      * Deletes a mentorship request
      * @param requestId id of the mentorship request
      */
+    @SuppressLint("CheckResult")
     fun deleteRequest(requestId: Int) {
-        relationDataManager.deleteMentorshipRelation(requestId)
+        relationDataManager.deleteRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message ?: MentorshipApplication.getContext()
-                                .getString(R.string.error_something_went_wrong)
+                        message = customResponse.message
                         successful.value = true
                     }
 
@@ -137,7 +138,7 @@ class RequestDetailViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()

@@ -1,7 +1,8 @@
 package org.systers.mentorship.viewmodels
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import android.annotation.SuppressLint
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
@@ -10,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.RelationDataManager
-import org.systers.mentorship.remote.requests.SendRequest
+import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
@@ -31,10 +32,11 @@ class SendRequestViewModel : ViewModel() {
 
     /**
      * Call send a mentorship request service
-     * @param sendRequest object containing mentorship request details
+     * @param relationshipRequest object containing mentorship request details
      */
-    fun sendRequest(@NonNull sendRequest: SendRequest) {
-        relationDataManager.sendMentorshipRequest(sendRequest)
+    @SuppressLint("CheckResult")
+    fun sendRequest(@NonNull relationshipRequest: RelationshipRequest) {
+        relationDataManager.sendRequest(relationshipRequest)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
