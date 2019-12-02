@@ -19,15 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/imgUserAvatar"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:layout_marginTop="16dp"
                 app:srcCompat="@drawable/ic_launcher_background" />
-
 
             <TextView
                 android:id="@+id/tvUsername"

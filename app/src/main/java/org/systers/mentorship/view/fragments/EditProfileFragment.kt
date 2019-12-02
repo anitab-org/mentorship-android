@@ -1,24 +1,34 @@
 package org.systers.mentorship.view.fragments
 
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.DialogFragment
 import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.Toast
+import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.databinding.DataBindingUtil
+import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
+import org.systers.mentorship.databinding.FragmentEditProfileBinding.bind
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.EditProfileFragmentErrorStates
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
+import java.util.jar.Manifest
 
 /**
  * The fragment is responsible for editing the User's profile
@@ -59,6 +69,7 @@ class EditProfileFragment: DialogFragment() {
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
+
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
@@ -106,6 +117,7 @@ class EditProfileFragment: DialogFragment() {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
             }
         }
+
     }
 
     override fun onDestroy() {

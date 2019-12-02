@@ -149,4 +149,11 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="feedback">Feedback</string>
+    <string name="submit">Submit</string>
+    <string name="feedback_desc">Our team is always happy to receive feedback. Fill out the form below.</string>
+    <string name="contactus">Contact Us</string>
+    <string name="message">Message</string>
+    <string name="entervalidemail">Enter a valid email address</string>
+    <string name="feedbacksent">Feedback sent!</string>
 </resources>

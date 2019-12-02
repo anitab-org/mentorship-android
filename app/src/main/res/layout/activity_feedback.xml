@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    tools:context=".view.activities.FeedbackActivity">
+
+    <TextView
+        android:id="@+id/contact_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/contactus"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        android:layout_marginTop="78dp"/>
+
+    <TextView
+        android:id="@+id/prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/feedback_desc"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@id/contact_tv"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="19sp"
+        android:layout_marginTop="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/prompt"
+        android:layout_marginTop="55dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorPrimary"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:hint="@string/email"
+            android:textColorHint="@color/colorPrimary"
+            app:hintEnabled="true">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:inputType="textEmailAddress"
+                android:id="@+id/emailEtFB"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/colorPrimary"
+            android:hint="@string/message"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="25dp"
+            android:textColorHint="@color/colorPrimary"
+            android:layout_marginEnd="25dp"
+            app:hintEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="200">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/messageFBet"
+                android:textColor="@color/colorPrimary"
+                android:inputType="textMultiLine"
+                android:maxLength="200" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sendButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:padding="5dp"
+            android:layout_marginTop="35dp"
+            android:textSize="20sp"
+            android:layout_marginStart="45dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:layout_marginEnd="45dp"
+            app:cornerRadius="5dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
