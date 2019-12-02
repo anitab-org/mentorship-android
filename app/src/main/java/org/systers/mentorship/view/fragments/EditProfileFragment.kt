@@ -19,6 +19,23 @@ import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.EditProfileFragmentErrorStates
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
+import android.graphics.BitmapFactory
+import android.provider.MediaStore
+import android.content.Intent
+import androidx.core.app.ActivityCompat.startActivityForResult
+import android.Manifest.permission
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import androidx.core.app.ActivityCompat
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
+import android.app.Activity.RESULT_OK
+import android.content.ContentResolver
+import android.media.Image
+import android.widget.EditText
+import android.widget.ImageView
+import kotlinx.android.synthetic.main.fragment_edit_profile.*
+import java.util.jar.Manifest
+
 
 /**
  * The fragment is responsible for editing the User's profile
@@ -72,14 +89,18 @@ class EditProfileFragment: DialogFragment() {
         dialogBuilder.setTitle(R.string.fragment_title_edit_profile)
         dialogBuilder.setPositiveButton(getString(R.string.save), null)
         dialogBuilder.setNegativeButton(getString(R.string.cancel)) { _, _ -> }
-
         return dialogBuilder.create()
     }
+
 
     override fun onResume() {
         super.onResume()
 
         val editProfileDialog = dialog as AlertDialog
+
+        editProfileDialog.imgUserAvatar.setOnClickListener {
+            selectImage()
+        }
 
         editProfileDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             val errors = validateProfileInput(editProfileBinding.user?.name?.trim())
@@ -102,10 +123,68 @@ class EditProfileFragment: DialogFragment() {
                     }
                 }
             }
-            if (currentUser != editProfileBinding.user && errors.isEmpty()) {
+            if (errors.isEmpty()) {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
             }
         }
+    }
+
+    private fun checkPermissions() {
+        if (ContextCompat.checkSelfPermission(context!!, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity!!, arrayOf(WRITE_EXTERNAL_STORAGE),
+                    1001)
+            println("Not granted.")
+        } else {
+            println("Permission is granted.")
+        }
+    }
+
+    private fun selectImage() {
+        checkPermissions()
+        // Create intent to Open Image applications like Gallery, Google Photos
+        val galleryIntent = Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        // Start the Intent
+        startActivityForResult(galleryIntent, 1)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val editProfileDialog = dialog as AlertDialog
+
+        try {
+            // When an Image is picked
+            if (requestCode == 1 && resultCode == RESULT_OK
+                    && null != data) {
+                // Get the Image from data
+
+                val selectedImage = data.data
+                val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+
+                // Get the cursor
+                val cursor = context!!.getContentResolver().query(selectedImage,
+                        filePathColumn, null, null, null)
+                // Move to first row
+                cursor.moveToFirst()
+
+                val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                val imgDecodableString = cursor.getString(columnIndex)
+                cursor.close()
+                // Set the Image in ImageView after decoding the String
+                val imgView = editProfileDialog.imgUserAvatar as ImageView
+                imgView.setImageBitmap(BitmapFactory
+                        .decodeFile(imgDecodableString))
+
+            } else {
+                Toast.makeText(activity, R.string.notpickedimage,
+                        Toast.LENGTH_LONG).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(activity, R.string.error_something_went_wrong, Toast.LENGTH_LONG)
+                    .show()
+        }
+
     }
 
     override fun onDestroy() {
