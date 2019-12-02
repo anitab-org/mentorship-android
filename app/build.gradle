@@ -26,6 +26,10 @@ android {
         debug {
             manifestPlaceholders = [usesCleartextTraffic:"true"]
         }
+
+        debug_local {
+            initWith debug
+        }
     }
     dataBinding {
         enabled = true

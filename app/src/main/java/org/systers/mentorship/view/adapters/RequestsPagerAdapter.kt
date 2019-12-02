@@ -20,6 +20,7 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
  */
 class RequestsPagerAdapter(
         private val requestsList: List<Relationship>,
+        private val pastRequestsList: List<Relationship>,
         fm: FragmentManager
 ) : FragmentPagerAdapter(fm) {
 
@@ -42,14 +43,7 @@ class RequestsPagerAdapter(
             isPendingState && !hasEndTimePassed
         }
     }
-    private val pastList: List<Relationship> by lazy {
-        requestsList.filter {
-            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()
-            val isAcceptedState = RelationState.ACCEPTED.value == it.state
 
-            !isAcceptedState && hasEndTimePassed
-        }
-    }
     private val allList: List<Relationship> by lazy {
         requestsList.filter {
             val isAcceptedState = RelationState.ACCEPTED.value == it.state
@@ -66,7 +60,7 @@ class RequestsPagerAdapter(
             }
             TabsIndex.PAST.value  -> {
                 return RequestPagerFragment.newInstance(
-                        pastList, context.getString(R.string.empty_past_requests))
+                        pastRequestsList, context.getString(R.string.empty_past_requests))
             }
             TabsIndex.ALL.value  -> {
                 return RequestPagerFragment.newInstance(

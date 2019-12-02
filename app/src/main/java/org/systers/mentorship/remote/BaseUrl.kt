@@ -6,10 +6,10 @@ import org.systers.mentorship.BuildConfig
  * Object to keep settings such as URL parts, regions, s3 bucket names.
  */
 object BaseUrl {
-
     private const val PROTOCOL_HTTPS = "http://"
     private const val PRODUCTION_URL = "systers-mentorship"
     private const val DEVELOPMENT_URL = "systers-mentorship-dev"
+    private const val FULL_DEVELOPMENT_URL_LOCAL = "http://10.0.2.2:5000/"
     private const val EB_REGION = ".eu-central-1.elasticbeanstalk.com/"
 
     private const val PROTOCOL_S3 = "s3://"
@@ -19,7 +19,15 @@ object BaseUrl {
 
     val apiBaseUrl: String
         get() = if (BuildConfig.DEBUG) {
-            "$PROTOCOL_HTTPS$DEVELOPMENT_URL$EB_REGION"
+
+            /*
+             * IDE will complain that "this condition is always true".
+             * No, it's not! It depends on the build type.
+             */
+            if (BuildConfig.BUILD_TYPE == "debug_local") {
+                FULL_DEVELOPMENT_URL_LOCAL
+            } else "$PROTOCOL_HTTPS$DEVELOPMENT_URL$EB_REGION"
+
         } else {
             "$PROTOCOL_HTTPS$PRODUCTION_URL$EB_REGION"
         }
