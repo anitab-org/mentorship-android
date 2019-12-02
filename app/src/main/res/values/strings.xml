@@ -149,4 +149,10 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="settings_DeleteAccountDelete">Delete</string>
+    <string name="settings_DeleteAccountTitle">Confirm account deletion</string>
+    <string name="settings_DeleteAccountMessage">Please type in DELETE in the text box to confirm account deletion\n\nOnce the account has been deleted, it cannot be retained\n</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
