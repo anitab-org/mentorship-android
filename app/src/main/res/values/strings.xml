@@ -82,6 +82,8 @@
     <string name="end_date">End date</string>
     <string name="request_sent_by_other_user_message">%1$s wants to be your %2$s until %3$s</string>
     <string name="request_sent_by_current_user_message">You want to be %1$s\'s %2$s until %3$s</string>
+    <string name="confirm_account_delete">Confirm Account Deletion</string>
+    <string name="confirm_account_delete_msg">Are you sure you want to delete your account? This cannot be undone.</string>
     <string name="delete">Delete</string>
     <string name="accept">Accept</string>
     <string name="reject">Reject</string>

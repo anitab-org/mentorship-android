@@ -42,6 +42,24 @@ class SettingsActivity : BaseActivity() {
         tvAbout.setOnClickListener {
             startActivity(Intent(baseContext,AboutActivity::class.java))
         }
+        tvDeleteAccount.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.confirm_account_delete)
+            builder.setMessage(R.string.confirm_account_delete_msg)
+            builder.setPositiveButton(R.string.delete) { _, _ ->
+                deleteAccount()
+            }
+            builder.setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.cancel()
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
+    }
+
+    private fun deleteAccount() {
+        // Delete account here
     }
 
     override fun onSupportNavigateUp(): Boolean {
