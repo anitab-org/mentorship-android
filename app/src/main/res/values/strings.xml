@@ -51,6 +51,7 @@
     <string name="bio">Bio</string>
     <string name="slack_username">Slack username</string>
     <string name="interests">Interests</string>
+    <string name="linkedin">LinkedIn</string>
     <string name="occupation">Occupation</string>
     <string name="organization">Organization</string>
     <string name="location">Location</string>
