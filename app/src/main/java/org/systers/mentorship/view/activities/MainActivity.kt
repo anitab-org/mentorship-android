@@ -2,6 +2,7 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
@@ -10,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.*
+import android.widget.Toast
 
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
@@ -35,40 +37,40 @@ class MainActivity: BaseActivity() {
 
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
-                        R.string.fragment_title_home)
-                atHome = true
-                return@OnNavigationItemSelectedListener true
+                when (item.itemId) {
+                    R.id.navigation_home -> {
+                        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
+                                R.string.fragment_title_home)
+                        atHome = true
+                        return@OnNavigationItemSelectedListener true
+                    }
+                    R.id.navigation_profile -> {
+                        replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
+                                R.string.fragment_title_profile)
+                        atHome = false
+                        return@OnNavigationItemSelectedListener true
+                    }
+                    R.id.navigation_relation -> {
+                        replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
+                                R.string.fragment_title_relation)
+                        atHome = false
+                        return@OnNavigationItemSelectedListener true
+                    }
+                    R.id.navigation_members -> {
+                        replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
+                                R.string.fragment_title_members)
+                        atHome = false
+                        return@OnNavigationItemSelectedListener true
+                    }
+                    R.id.navigation_requests -> {
+                        replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
+                                R.string.fragment_title_requests)
+                        atHome = false
+                        return@OnNavigationItemSelectedListener true
+                    }
+                }
+                false
             }
-            R.id.navigation_profile -> {
-                replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
-                        R.string.fragment_title_profile)
-                atHome = false
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_relation -> {
-                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
-                        R.string.fragment_title_relation)
-                atHome = false
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_members -> {
-                replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
-                        R.string.fragment_title_members)
-                atHome = false
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_requests -> {
-                replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
-                        R.string.fragment_title_requests)
-                atHome = false
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
@@ -96,11 +98,19 @@ class MainActivity: BaseActivity() {
         outState.putBoolean("atHome", atHome)
     }
 
+    private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
         if (!atHome) {
             showHomeFragment()
         } else {
-            super.onBackPressed()
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed()
+                return
+            }
+            this.doubleBackToExitPressedOnce = true
+
+            Toast.makeText(this, "Press AGAIN to EXIT", Toast.LENGTH_SHORT ).show()
+            Handler().postDelayed( {doubleBackToExitPressedOnce = false}, 3000)
         }
     }
 }
