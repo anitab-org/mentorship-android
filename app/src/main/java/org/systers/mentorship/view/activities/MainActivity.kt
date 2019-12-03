@@ -2,6 +2,7 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
@@ -10,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.*
+import android.widget.Toast
 
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
@@ -96,11 +98,23 @@ class MainActivity: BaseActivity() {
         outState.putBoolean("atHome", atHome)
     }
 
+    private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
         if (!atHome) {
             showHomeFragment()
         } else {
-            super.onBackPressed()
+                if (doubleBackToExitPressedOnce) {
+                    super.onBackPressed()
+                    return
+                }
+            this.doubleBackToExitPressedOnce = true
+
+            Toast.makeText(this, "Press AGAIN to EXIT", Toast.LENGTH_SHORT ).show()
+            Handler().postDelayed( {doubleBackToExitPressedOnce = false}, 3000)
         }
     }
+
+
+
+
 }
