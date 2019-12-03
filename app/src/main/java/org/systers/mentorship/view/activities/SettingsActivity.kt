@@ -36,6 +36,10 @@ class SettingsActivity : BaseActivity() {
             dialog.show()
         }
 
+        tvFeedback.setOnClickListener {
+            startActivity(Intent(baseContext,FeedbackActivity::class.java))
+        }
+
         tvResetPassword.setOnClickListener {
             ChangePasswordFragment.newInstance().show(supportFragmentManager, null)
         }
