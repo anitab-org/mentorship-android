@@ -9,4 +9,12 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
+    const val NAME = "Name"
+    const val URL = "URL"
+    const val GITHUB = "Github"
+    const val SLACK = "Slack"
+    const val WEBSITE = "Systers"
+    const val TERMS = "Terms and Conditions"
+    const val PRIVACY_POLICY = "Privacy Policy"
+    const val CODE_OF_CONDUCT = "Code of Conduct"
 }
