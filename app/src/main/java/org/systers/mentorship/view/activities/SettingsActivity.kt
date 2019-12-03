@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.ChangePasswordFragment
+import org.systers.mentorship.view.fragments.DeleteAccountFragment
 
 class SettingsActivity : BaseActivity() {
 
@@ -41,6 +42,9 @@ class SettingsActivity : BaseActivity() {
         }
         tvAbout.setOnClickListener {
             startActivity(Intent(baseContext,AboutActivity::class.java))
+        }
+        tvDeleteAccount.setOnClickListener{
+            DeleteAccountFragment.newInstance().show(supportFragmentManager, null)
         }
     }
 
