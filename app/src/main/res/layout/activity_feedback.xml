@@ -186,7 +186,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="50"
+                app:counterMaxLength="500"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
