@@ -34,6 +34,7 @@ data class User(
         var occupation: String? = null,
         var organization: String? = null,
         var interests: String? = null,
+        var linkedin: String? = null,
         var skills: String? = null,
         @SerializedName("need_mentoring") var needsMentoring: Boolean? = null,
         @SerializedName("available_to_mentor") var isAvailableToMentor: Boolean? = null,
