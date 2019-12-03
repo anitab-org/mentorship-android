@@ -96,7 +96,7 @@
     <string name="end_date_label">End Date:</string>
     <string name="i_will_be_a">I will be a …</string>
     <string name="end_date_format">dd/mm/YYYY</string>
-    <string name="no_current_mentorship_relation">You are not in a current mentorship relation.</string>
+    <string name="no_current_mentorship_relation">Looks like you are not in a mentorship relation right now.\nLets find you someone!</string>
     <string name="notes_empty_error">Notes cannot be empty</string>
     <string name="available_to_be_mentor_mentee">Available to be a:</string>
     <string name="settings">Settings</string>
@@ -149,4 +149,5 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="relationpage_btntext">Find members</string>
 </resources>
