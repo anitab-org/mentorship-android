@@ -47,6 +47,11 @@ class SettingsActivity : BaseActivity() {
         tvDeleteAccount.setOnClickListener{
             DeleteAccountFragment.newInstance().show(supportFragmentManager, null)
         }
+
+        tvFeedback.setOnClickListener {
+            startActivity(Intent(baseContext, FeedbackActivity::class.java))
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
