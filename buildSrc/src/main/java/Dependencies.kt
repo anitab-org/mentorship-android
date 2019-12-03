@@ -11,7 +11,7 @@ object Versions {
     const val dataBinding = "3.2.0-alpha11"
     const val kotlinVersion = "1.3.21"
     const val supportLib = "1.0.0"
-    const val designSupportLib = "1.0.0"
+    const val designSupportLib = "1.2.0-alpha02"
     const val constraintLayout = "1.1.3"
     const val junit = "4.12"
     const val testRunner = "1.1.0"

@@ -1,26 +1,33 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import android.Manifest
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
-import org.systers.mentorship.viewmodels.RequestDetailViewModel
-import android.content.Intent
 import org.systers.mentorship.view.fragments.RequestPagerFragment
+import org.systers.mentorship.viewmodels.RequestDetailViewModel
+
 
 /**
  * This activity will show a Mentorship request detail from the Requests List
  */
-class RequestDetailActivity: BaseActivity() {
+class RequestDetailActivity : BaseActivity() {
 
     private lateinit var requestDetailViewModel: RequestDetailViewModel
 
@@ -128,18 +135,37 @@ class RequestDetailActivity: BaseActivity() {
         }
 
         btnReject.setOnClickListener {
-            requestDetailViewModel.rejectRequest(relationResponse.id)
+            MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog)
+                    .setTitle(R.string.are_you_sure)
+                    .setMessage(R.string.are_you_sure_reject)
+                    .setPositiveButton(R.string.reject) { _, _ ->
+                        requestDetailViewModel.rejectRequest(relationResponse.id)
+
+                    }
+                    .setNegativeButton(R.string.cancel) { _, _ ->
+                        // Nothing to do
+                    }
+            .show()
+
         }
 
         btnAccept.setOnClickListener {
-            requestDetailViewModel.acceptRequest(relationResponse.id)
+            MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog)
+                    .setTitle(R.string.are_you_sure)
+                    .setMessage(R.string.are_you_sure_accept)
+                    .setPositiveButton(R.string.accept) { _, _ ->
+                        requestDetailViewModel.acceptRequest(relationResponse.id)
+                    }
+                    .setNegativeButton(R.string.cancel) { _, _ ->
+                    }
+                    .show()
+
         }
     }
 
     private fun setObservables(relationResponse: Relationship) {
-        requestDetailViewModel  = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
-        requestDetailViewModel.successful.observe(this, Observer {
-            successful ->
+        requestDetailViewModel = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
+        requestDetailViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
