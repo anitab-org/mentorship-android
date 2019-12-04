@@ -1,5 +1,7 @@
 package org.systers.mentorship.view.activities
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -15,6 +17,10 @@ import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 import android.content.Intent
+import android.view.LayoutInflater
+import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.android.synthetic.main.requestdetail_acceptalertbox.view.*
 import org.systers.mentorship.view.fragments.RequestPagerFragment
 
 /**
@@ -121,6 +127,7 @@ class RequestDetailActivity: BaseActivity() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setOnClickListeners(relationResponse: Relationship) {
 
         btnDelete.setOnClickListener {
@@ -128,11 +135,49 @@ class RequestDetailActivity: BaseActivity() {
         }
 
         btnReject.setOnClickListener {
-            requestDetailViewModel.rejectRequest(relationResponse.id)
+
+
+            val alertboxview : View = LayoutInflater.from(this).inflate(R.layout.requestdetail_acceptalertbox, null)
+            val builder = MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
+                    .setTitle("Confirm rejection")
+                    .setMessage("Are you sure you want to reject " + relationResponse.mentor.name + " as your mentor?")
+                    .setView(alertboxview)
+
+
+            val dialog : androidx.appcompat.app.AlertDialog = builder.create()
+            dialog.show()
+
+            alertboxview.rdAcceptDialogLaterBtn.setOnClickListener{
+                dialog.cancel()
+            }
+            alertboxview.rdAcceptDialogAcceptBtn.text = "Reject"
+            alertboxview.rdAcceptDialogAcceptBtn.setTextColor(ContextCompat.getColor(this,android.R.color.holo_red_dark))
+            alertboxview.rdAcceptDialogAcceptBtn.setOnClickListener{
+                requestDetailViewModel.rejectRequest(relationResponse.id)
+            }
+
         }
 
         btnAccept.setOnClickListener {
-            requestDetailViewModel.acceptRequest(relationResponse.id)
+
+            val alertboxview : View = LayoutInflater.from(this).inflate(R.layout.requestdetail_acceptalertbox, null)
+            val builder = MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
+                    .setTitle("Confirm acceptance")
+                    .setMessage("Are you sure you want to make " + relationResponse.mentor.name + " your mentor?")
+                    .setView(alertboxview)
+
+
+            val dialog : androidx.appcompat.app.AlertDialog = builder.create()
+            dialog.show()
+
+            alertboxview.rdAcceptDialogLaterBtn.setOnClickListener{
+                dialog.cancel()
+            }
+
+            alertboxview.rdAcceptDialogAcceptBtn.setOnClickListener{
+                requestDetailViewModel.acceptRequest(relationResponse.id)
+            }
+
         }
     }
 
