@@ -149,4 +149,10 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="select_image_camera">Take Photo</string>
+    <string name="select_image_gallery">Choose from Gallery</string>
+    <string name="select_image_cancel">Cancel</string>
+    <string name="permission_granted">permission granted</string>
+    <string name="permission_rejected">permission rejected</string>
+
 </resources>

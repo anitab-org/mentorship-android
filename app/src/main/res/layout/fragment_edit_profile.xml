@@ -26,7 +26,23 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/profilePictureButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgUserAvatar"
+                android:layout_marginLeft="-40dp"
+                android:layout_marginTop="-42dp"
+                android:layout_toRightOf="@id/imgUserAvatar"
+                android:clickable="true"
+                app:backgroundTint="@android:color/holo_blue_light"
+                app:backgroundTintMode="src_in"
+                app:fabSize="auto"
+                app:maxImageSize="30dp"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
 
 
             <TextView
