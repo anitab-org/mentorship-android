@@ -50,6 +50,9 @@ class RelationPagerFragment : BaseFragment() {
             }
         })
 
+        /**
+        *This button will navigate the user from the Relations tab to Members tab.
+        */
         btnFindMembers.setOnClickListener {
             activity?.bottomNavigation?.menu?.findItem(R.id.navigation_members)?.setChecked(true)
             fragmentManager
