@@ -3,7 +3,7 @@
     package="org.systers.mentorship">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:name=".MentorshipApplication"
         android:allowBackup="true"

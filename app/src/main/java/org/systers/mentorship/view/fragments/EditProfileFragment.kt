@@ -1,7 +1,9 @@
 package org.systers.mentorship.view.fragments
 
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -27,6 +29,7 @@ class EditProfileFragment: DialogFragment() {
 
     companion object {
         private lateinit var tempUser: User
+        val IMAGE_PICK_CODE : Int = 1000
         /**
          * Creates an instance of EditProfileFragment
          */
@@ -63,16 +66,16 @@ class EditProfileFragment: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
                 R.layout.fragment_edit_profile, null, false)
-
         editProfileBinding.user = tempUser.copy()
         currentUser = tempUser.copy()
-
+        editProfileBinding.imgUserAvatar.setOnClickListener{
+            pickImageFromGallery()
+        }
         val dialogBuilder = AlertDialog.Builder(context!!)
         dialogBuilder.setView(editProfileBinding.root)
         dialogBuilder.setTitle(R.string.fragment_title_edit_profile)
         dialogBuilder.setPositiveButton(getString(R.string.save), null)
         dialogBuilder.setNegativeButton(getString(R.string.cancel)) { _, _ -> }
-
         return dialogBuilder.create()
     }
 
@@ -129,5 +132,19 @@ class EditProfileFragment: DialogFragment() {
             errors += EditProfileFragmentErrorStates.NameTooLongError
         }
         return errors
+    }
+
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            editProfileBinding.imgUserAvatar.setImageURI(data?.data)
+        }
     }
 }
