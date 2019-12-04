@@ -49,15 +49,6 @@ class RelationPagerFragment : BaseFragment() {
             }
         })
 
-        /**
-         * This button will navigate to Members fragment...
-         * */
-        btnFindMembers.setOnClickListener {
-            val transaction = getFragmentManager()?.beginTransaction()
-            transaction?.replace(R.id.contentFrame, MembersFragment.newInstance(), "Members")
-            transaction?.commit()
-        }
-
         activityCast.showProgressDialog(getString(R.string.fetching_current_relation))
         relationViewModel.getCurrentRelationDetails()
     }
