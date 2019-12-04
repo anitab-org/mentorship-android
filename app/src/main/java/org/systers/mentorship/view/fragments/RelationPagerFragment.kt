@@ -57,7 +57,6 @@ class RelationPagerFragment : BaseFragment() {
     private fun updateView(mentorshipRelation: Relationship) {
         if (mentorshipRelation.mentor == null) {
             tvNoCurrentRelation.visibility = View.VISIBLE
-            tvFindMembersCard.visibility = View.VISIBLE
             tvFindPeopleBtn.visibility = View.VISIBLE
             tlMentorshipRelation.visibility = View.GONE
             vpMentorshipRelation.visibility = View.GONE
@@ -67,7 +66,6 @@ class RelationPagerFragment : BaseFragment() {
                 baseActivity.replaceFragment(R.id.contentFrame, MembersFragment.newInstance(), R.string.navigation_title_members)
             }
         } else {
-            tvFindMembersCard.visibility = View.GONE
             tvFindPeopleBtn.visibility = View.GONE
             tvNoCurrentRelation.visibility = View.GONE
             tlMentorshipRelation.visibility = View.VISIBLE
