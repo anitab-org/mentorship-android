@@ -58,9 +58,15 @@ class RelationPagerFragment : BaseFragment() {
             tvNoCurrentRelation.visibility = View.VISIBLE
             tlMentorshipRelation.visibility = View.GONE
             vpMentorshipRelation.visibility = View.GONE
+            btnFindMembers.visibility = View.VISIBLE
+            btnFindMembers.setOnClickListener {
+                baseActivity.replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
+                        R.string.fragment_title_members)
+            }
             baseActivity.tlMentorshipRelation.removeAllTabs()
         } else {
             tvNoCurrentRelation.visibility = View.GONE
+            btnFindMembers.visibility = View.GONE
             tlMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
