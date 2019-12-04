@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
@@ -56,11 +57,17 @@ class RelationPagerFragment : BaseFragment() {
     private fun updateView(mentorshipRelation: Relationship) {
         if (mentorshipRelation.mentor == null) {
             tvNoCurrentRelation.visibility = View.VISIBLE
+            tvFindPeopleBtn.visibility = View.VISIBLE
             tlMentorshipRelation.visibility = View.GONE
             vpMentorshipRelation.visibility = View.GONE
             baseActivity.tlMentorshipRelation.removeAllTabs()
+            tvFindPeopleBtn.setOnClickListener{
+                baseActivity.bottomNavigation.selectedItemId = R.id.navigation_members
+                baseActivity.replaceFragment(R.id.contentFrame, MembersFragment.newInstance(), R.string.navigation_title_members)
+            }
         } else {
             tvNoCurrentRelation.visibility = View.GONE
+            tvFindPeopleBtn.visibility = View.GONE
             tlMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
