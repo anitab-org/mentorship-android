@@ -98,7 +98,7 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-            if(!TextUtils.isEmpty(notes.trim())) {
+            if(!TextUtils.isEmpty(notes)) {
 
                 val sendRequestData = RelationshipRequest(
                         menteeId = menteeId,
