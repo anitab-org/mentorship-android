@@ -48,7 +48,6 @@
     <string name="cancel">Cancel</string>
     <string name="send_request">Send request</string>
     <string name="member_profile">Member Profile</string>
-    <string name="findMembers">Find Members</string>
     <string name="bio">Bio</string>
     <string name="slack_username">Slack username</string>
     <string name="interests">Interests</string>
@@ -150,5 +149,4 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
-
 </resources>
