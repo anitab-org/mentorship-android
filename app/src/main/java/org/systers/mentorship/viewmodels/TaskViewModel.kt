@@ -9,8 +9,10 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.datamanager.TaskDataManager
+import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -19,18 +21,20 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for Tasks Screen
  */
-class TasksViewModel: ViewModel() {
+class TasksViewModel(val mentorshipRelation: Relationship) : ViewModel() {
 
-    var TAG = TasksViewModel::class.java.simpleName
+    private val TAG = TasksViewModel::class.java.simpleName
 
     lateinit var tasksList: List<Task>
 
     private val taskDataManager: TaskDataManager = TaskDataManager()
-    val successful: MutableLiveData<Boolean> = MutableLiveData()
+    val relationFetchSuccessful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
     /**
-     * This function lists all tasks from the mentorship relation
+     * This function fetches all tasks from the mentorship relation
+     * It should be triggered after every operation (e.g [addTask] or [deleteTask]) to keep
+     * the task list updated
      */
     @SuppressLint("CheckResult")
     fun getTasks(relationId: Int) {
@@ -40,7 +44,7 @@ class TasksViewModel: ViewModel() {
                 .subscribeWith(object : DisposableObserver<List<Task>>() {
                     override fun onNext(taskListResponse: List<Task>) {
                         tasksList = taskListResponse
-                        successful.value = true
+                        relationFetchSuccessful.value = true
                     }
 
                     override fun onError(throwable: Throwable) {
@@ -54,7 +58,7 @@ class TasksViewModel: ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -62,7 +66,7 @@ class TasksViewModel: ViewModel() {
                                 Log.e(TAG, throwable.localizedMessage)
                             }
                         }
-                        successful.value = false
+                        relationFetchSuccessful.value = false
                     }
 
                     override fun onComplete() {
@@ -71,26 +75,62 @@ class TasksViewModel: ViewModel() {
     }
 
     /**
-     * This function helps in adds a new task to the task list
-     * @param taskName title of the new task
+     * This function adds a new task to the task list
+     * If the operation is successful, [getTasks] is automatically triggered
+     * @param description description/title of the new task
      */
-    fun addTask(taskName: String) {
-        //TODO: Update the backend
+    @SuppressLint("CheckResult")
+    fun addTask(description: String) {
+        // TODO: Update the backend
     }
 
     /**
-     * This function helps in updating completed tasks
-     * @param taskId id of the task that is clicked
-     * @param isChecked boolean value to specify if the task was marked or unmarked
+     * This function deletes the specific task permamently from the task list
+     * If the operation is successful, [getTasks] is automatically triggered
+     * @param taskId mentoring task id
      */
-    fun updateTask(taskId: Int, isChecked: Boolean){
-        if(isChecked) {
-            //completedTaskList.add(taskList.get(taskId))
-            //TODO: Update the backend
-        }
-        else {
-            //completedTaskList.remove(taskList.get(taskId))
-            //TODO: Update the backend
-        }
+    @SuppressLint("CheckResult")
+    fun deleteTask(taskId: Int) {
+        // TODO: Update the backend
+    }
+
+    /**
+     * This function marks the task as completed
+     * If the operation is successful, [getTasks] is automatically triggered
+     * @param taskId id of the task that is clicked
+     * @param isChecked currently unused because API doesn't support "unchecking"
+     */
+    @SuppressLint("CheckResult")
+    fun updateTask(taskId: Int, isChecked: Boolean) {
+        taskDataManager.completeTask(mentorshipRelation.id, taskId)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                    override fun onNext(response: CustomResponse) {
+                    }
+
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TAG, throwable.localizedMessage)
+                            }
+                        }
+                    }
+
+                    override fun onComplete() {}
+                })
     }
 }
