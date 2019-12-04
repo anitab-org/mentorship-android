@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
@@ -48,6 +49,14 @@ class RelationPagerFragment : BaseFragment() {
                 }
             }
         })
+
+        btnFindMembers.setOnClickListener {
+            activity?.bottomNavigation?.menu?.findItem(R.id.navigation_members)?.setChecked(true)
+            fragmentManager
+                    ?.beginTransaction()
+                    ?.replace(R.id.contentFrame,MembersFragment.newInstance(),"Members")
+                    ?.commit()
+        }
 
         activityCast.showProgressDialog(getString(R.string.fetching_current_relation))
         relationViewModel.getCurrentRelationDetails()
