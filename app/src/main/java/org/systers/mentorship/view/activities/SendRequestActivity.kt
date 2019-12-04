@@ -77,7 +77,7 @@ class SendRequestActivity: BaseActivity() {
         btnSendRequest.setOnClickListener {
             val mentorId: Int
             val menteeId: Int
-            val notes = etRequestNotes.text.toString().trimEnd()
+            val notes = etRequestNotes.text.toString()
             val endDate = convertDateIntoUnixTimestamp(
                     tvRequestEndDate.text.toString(), SEND_REQUEST_END_DATE_FORMAT)
 

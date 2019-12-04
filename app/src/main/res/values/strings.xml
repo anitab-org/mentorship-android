@@ -48,6 +48,7 @@
     <string name="cancel">Cancel</string>
     <string name="send_request">Send request</string>
     <string name="member_profile">Member Profile</string>
+    <string name="find_members">Find Members</string>
     <string name="bio">Bio</string>
     <string name="slack_username">Slack username</string>
     <string name="interests">Interests</string>
