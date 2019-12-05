@@ -72,7 +72,7 @@ class SendRequestActivity: BaseActivity() {
         tvRequestEndDate.text =  editable
     }
 
-    private fun populateView(userName: String, otherUserId: Int, currentUserId: Int) {
+    private fun populateView(userName: String?, otherUserId: Int, currentUserId: Int) {
         tvOtherUserName.text = userName
         btnSendRequest.setOnClickListener {
             val mentorId: Int
