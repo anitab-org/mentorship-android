@@ -19,6 +19,16 @@ import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.EditProfileFragmentErrorStates
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
+import android.content.Intent
+import android.content.pm.PackageManager
+import kotlinx.android.synthetic.main.fragment_edit_profile.*
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.graphics.BitmapFactory
+import android.provider.MediaStore
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import android.app.Activity.RESULT_OK
+import android.widget.ImageView
 
 /**
  * The fragment is responsible for editing the User's profile
@@ -35,30 +45,10 @@ class EditProfileFragment: DialogFragment() {
             return EditProfileFragment()
         }
     }
-
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var editProfileBinding: FragmentEditProfileBinding
 
     private lateinit var currentUser: User
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
-        profileViewModel.successfulUpdate.observe(this, Observer { successful ->
-            (activity as MainActivity).hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG).show()
-                    profileViewModel.getProfile()
-                    dismiss()
-                } else {
-                    Toast.makeText(activity, profileViewModel.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        isCancelable = false
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
@@ -75,12 +65,14 @@ class EditProfileFragment: DialogFragment() {
 
         return dialogBuilder.create()
     }
-
     override fun onResume() {
         super.onResume()
 
         val editProfileDialog = dialog as AlertDialog
+        editProfileDialog.imgUserAvatar.setOnClickListener {//if clicked
 
+            selectImage()
+        }
         editProfileDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             val errors = validateProfileInput(editProfileBinding.user?.name?.trim())
 
@@ -107,14 +99,54 @@ class EditProfileFragment: DialogFragment() {
             }
         }
     }
+    private fun selectImage ()
+    {
+        if (checkIfPermitted()) {
+            val pick = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(pick, 1)
+        }
+    }
+    override fun onActivityResult (requestCode: Int, resultCode: Int, data: Intent?)
+    {
+        super.onActivityResult(requestCode, resultCode, data)
+        val editProfileDialog = dialog as AlertDialog
 
+        if (requestCode == 1 && resultCode == RESULT_OK && null != data)
+        {
+            val Image = data.data
+            val path = arrayOf(MediaStore.Images.Media.DATA)
+            if (Image != null) {
+                val cursor = context!!.getContentResolver().query(Image, path, null, null, null)
+                //cursor.moveToFirst()
+                if (cursor.moveToFirst()) {
+                    val imgPath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA))
+                    val bitmap = BitmapFactory.decodeFile(imgPath)
+                    cursor.close()
+                    val imgView = editProfileDialog.imgUserAvatar as ImageView
+                    imgView.setImageBitmap(bitmap)
+                }
+            }
+            else {
+                Toast.makeText(activity, R.string.Failed_to_get_img, Toast.LENGTH_SHORT).show()
+            }
+    }}
+    private fun checkIfPermitted() :Boolean
+    {
+        if (ContextCompat.checkSelfPermission(context!!, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity!!, arrayOf(WRITE_EXTERNAL_STORAGE), 1001)
+                println("Permission is not granted")
+                return false
+            }
+            else {
+                Toast.makeText(activity, R.string.Granted_permission, Toast.LENGTH_SHORT).show()
+                return true 
+            }
+    }
     override fun onDestroy() {
         super.onDestroy()
-
         profileViewModel.successfulUpdate.removeObservers(activity!!)
         profileViewModel.successfulUpdate.value = null
     }
-
     private fun validateProfileInput(name: String?): Array<EditProfileFragmentErrorStates> {
 
         var errors = arrayOf<EditProfileFragmentErrorStates>()
@@ -124,10 +156,27 @@ class EditProfileFragment: DialogFragment() {
         if (name?.length ?: 0 < resources.getInteger(R.integer.min_name_length)) {
             errors += EditProfileFragmentErrorStates.NameTooShortError
         }
-
         if (name?.length ?: 0 > resources.getInteger(R.integer.max_name_length)) {
             errors += EditProfileFragmentErrorStates.NameTooLongError
         }
         return errors
+    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
+        profileViewModel.successfulUpdate.observe(this, Observer { successful ->
+            (activity as MainActivity).hideProgressDialog()
+            if (successful != null) {
+                if (successful) {
+                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG).show()
+                    profileViewModel.getProfile()
+                    dismiss()
+                } else {
+                    Toast.makeText(activity, profileViewModel.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        isCancelable = false
+        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
 }
