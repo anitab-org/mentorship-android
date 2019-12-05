@@ -50,18 +50,6 @@ class RelationPagerFragment : BaseFragment() {
             }
         })
 
-        /**
-         * The 'Find Members' button.
-         * This button will navigate the user to the Members tab.
-         * */
-        btnFindMembers.setOnClickListener {
-            activity?.bottomNavigation?.menu?.findItem(R.id.navigation_members)?.setChecked(true)
-            fragmentManager
-                    ?.beginTransaction()
-                    ?.replace(R.id.contentFrame,MembersFragment.newInstance(),"Members")
-                    ?.commit()
-        }
-
         activityCast.showProgressDialog(getString(R.string.fetching_current_relation))
         relationViewModel.getCurrentRelationDetails()
     }

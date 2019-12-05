@@ -77,7 +77,10 @@ class SendRequestActivity: BaseActivity() {
         btnSendRequest.setOnClickListener {
             val mentorId: Int
             val menteeId: Int
-            val notes = etRequestNotes.text.toString()
+            /**
+             * The trimEnd() method removes the trailing spaces in the notes.
+             * */
+            val notes = etRequestNotes.text.toString().trimEnd()
             val endDate = convertDateIntoUnixTimestamp(
                     tvRequestEndDate.text.toString(), SEND_REQUEST_END_DATE_FORMAT)
 
