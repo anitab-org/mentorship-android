@@ -1,0 +1,89 @@
+package org.systers.mentorship
+
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
+import android.view.View
+import android.widget.EditText
+import androidx.test.espresso.Espresso
+import org.hamcrest.Description
+import org.hamcrest.Matcher
+import org.hamcrest.TypeSafeMatcher
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.systers.mentorship.view.activities.SendRequestActivity
+
+/**
+ * This class specifies the UI test for SendRequestActivity
+ */
+@RunWith(AndroidJUnit4::class)
+class SendRequestTest {
+
+    private val EMPTY_NOTES_ERROR: String = "Notes cannot be empty"
+
+    @get:Rule
+    var mActivityRule: ActivityTestRule<SendRequestActivity> = ActivityTestRule(SendRequestActivity::class.java)
+
+    companion object {
+
+        /**
+         * This method checks for the type of <View>,
+         * checks for null values,
+         * and compares the expected and actual error messages.
+         * */
+        fun compareErrorMsg(expectedErrorMsg:String):Matcher<View>{
+
+            return object :TypeSafeMatcher<View>(){
+
+                /**
+                 * Generates a description of the object.  The description may be part of a
+                 * a description of a larger object of which this is just a component, so it
+                 * should be worded appropriately.
+                 */
+                override fun describeTo(description: Description?) {
+                    //("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                /**
+                 * This method checks the type of item(View) and,
+                 * compares the expectedErrorMsg with the actual error message.
+                 * */
+                override fun matchesSafely(item: View?): Boolean {
+                    if (item !is EditText){
+                        return false
+                    }
+                    val error:CharSequence?=item.error
+                    if (error==null){
+                        return false
+                    }
+
+                    return expectedErrorMsg.equals(error.toString())
+                }
+
+            }
+        }
+    }
+
+    /**
+     * This test checks that error messages are shown after the Send Request button is clicked
+     *  with just whitespaces in Notes.
+     */
+    @Test
+    fun testBlankNotesNotSendWithRequests() {
+
+        // Type string with only whitespaces in the Notes.
+        Espresso.onView(withId(R.id.etRequestNotes)).perform(typeText("     "), closeSoftKeyboard())
+        //Perform Click operation on a radio button, it's required before sending request
+        Espresso.onView(withId(R.id.btnMenteeRadio)).perform(click())
+
+        // Perform Click operation on Send Request Button
+        onView(withId(R.id.btnSendRequest)).perform(click())
+
+        // Checks that the error message in the 'Notes' editText appears after button click
+        onView(withId(R.id.etRequestNotes)).check(matches(compareErrorMsg(EMPTY_NOTES_ERROR)))
+    }
+}
