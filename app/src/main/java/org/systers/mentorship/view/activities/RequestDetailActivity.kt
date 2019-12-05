@@ -15,6 +15,7 @@ import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 import android.content.Intent
+import androidx.appcompat.app.AlertDialog
 import org.systers.mentorship.view.fragments.RequestPagerFragment
 
 /**
@@ -122,17 +123,35 @@ class RequestDetailActivity: BaseActivity() {
     }
 
     private fun setOnClickListeners(relationResponse: Relationship) {
-
+        val builder = AlertDialog.Builder(this@RequestDetailActivity)
         btnDelete.setOnClickListener {
             requestDetailViewModel.deleteRequest(relationResponse.id)
         }
-
         btnReject.setOnClickListener {
-            requestDetailViewModel.rejectRequest(relationResponse.id)
+            builder.setTitle(getString(R.string.reject_warning_title))
+            builder.setMessage(getString(R.string.reject_warning_message))
+            builder.setPositiveButton(getString(R.string.yes)){dialog, which ->
+                requestDetailViewModel.rejectRequest(relationResponse.id)
+                Toast.makeText(applicationContext,R.string.reject_yes_toast,Toast.LENGTH_LONG).show()
+            }
+            builder.setNegativeButton(getString(R.string.no)){dialog,which ->
+                Toast.makeText(applicationContext,getString(R.string.reject_no_toast),Toast.LENGTH_LONG).show()
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
-
         btnAccept.setOnClickListener {
-            requestDetailViewModel.acceptRequest(relationResponse.id)
+            builder.setTitle(getString(R.string.accept_warning_title))
+            builder.setMessage(getString(R.string.accept_warning_message))
+            builder.setPositiveButton(getString(R.string.yes)){dialog, which ->
+                requestDetailViewModel.acceptRequest(relationResponse.id)
+                Toast.makeText(applicationContext,getString(R.string.accept_yes_toast),Toast.LENGTH_LONG).show()
+            }
+            builder.setNegativeButton(getString(R.string.no)){dialog,which ->
+                Toast.makeText(applicationContext,getString(R.string.accept_no_toast),Toast.LENGTH_LONG).show()
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
     }
 
