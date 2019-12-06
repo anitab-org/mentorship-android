@@ -8,7 +8,7 @@
     tools:context=".view.activities.AvatarEditActivity">
 
     <ImageView
-        android:id="@+id/imgUserAvatar"
+        android:id="@+id/imgUserAvatarBig"
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:layout_gravity="center"
