@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
