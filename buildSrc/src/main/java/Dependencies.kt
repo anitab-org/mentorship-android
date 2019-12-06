@@ -25,7 +25,8 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
-
+    const val imageCropper = "2.8.0"
+    const val glide = "4.10.0"
 }
 
 /**
@@ -53,4 +54,7 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val image_cropper = "com.theartofdev.edmodo:android-image-cropper:${Versions.imageCropper}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glide_annotation_processor = "com.github.bumptech.glide:compiler:${Versions.glide}"
 }
