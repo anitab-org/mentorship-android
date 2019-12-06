@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".view.activities.AvatarEditActivity">
+
+    <ImageView
+        android:id="@+id/imgUserAvatar"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/profile_image"
+        android:transitionName="@string/profile_image"
+        app:srcCompat="@drawable/ic_person_grey_24dp"
+        tools:targetApi="lollipop" />
+
+    <Button
+        android:id="@+id/btnEditAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/border"
+        android:padding="16dp"
+        android:text="@string/edit_avatar"
+        android:textColor="@color/white" />
+
+</FrameLayout>
