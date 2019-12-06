@@ -2,6 +2,7 @@ package org.systers.mentorship.view.fragments
 
 
 import android.app.Dialog
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -12,18 +13,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import androidx.databinding.DataBindingUtil
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.EditProfileFragmentErrorStates
+import org.systers.mentorship.view.activities.AvatarEditActivity
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
  * The fragment is responsible for editing the User's profile
  */
-class EditProfileFragment: DialogFragment() {
+class EditProfileFragment : DialogFragment() {
 
     companion object {
         private lateinit var tempUser: User
@@ -73,6 +76,12 @@ class EditProfileFragment: DialogFragment() {
         dialogBuilder.setPositiveButton(getString(R.string.save), null)
         dialogBuilder.setNegativeButton(getString(R.string.cancel)) { _, _ -> }
 
+        editProfileBinding.imgUserAvatar.setOnClickListener {
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(),
+                    editProfileBinding.imgUserAvatar, getString(R.string.profile_image))
+            startActivity(Intent(context, AvatarEditActivity::class.java), options.toBundle())
+        }
+
         return dialogBuilder.create()
     }
 
@@ -106,6 +115,15 @@ class EditProfileFragment: DialogFragment() {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
             }
         }
+        editProfileBinding.fabEditAvatar.show()
+        editProfileBinding.fabEditAvatar.setOnClickListener {
+            //TODO: intent to choose an avatar
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        editProfileBinding.fabEditAvatar.hide()
     }
 
     override fun onDestroy() {
