@@ -40,7 +40,7 @@ class SendRequestActivity: BaseActivity() {
         tvRequestEndDate.isEnabled = false
         supportActionBar?.title = getString(R.string.send_request)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val otherUserName = intent.getStringExtra(OTHER_USER_NAME_INTENT_EXTRA)
+        val otherUserName = intent.getStringExtra(OTHER_USER_NAME_INTENT_EXTRA) ?: ""
         val otherUserId = intent.getIntExtra(OTHER_USER_ID_INTENT_EXTRA, 0)
         val currentUserId = getAuthTokenPayload().identity
         setObservables()
@@ -92,7 +92,7 @@ class SendRequestActivity: BaseActivity() {
                 }
                 else -> {
 
-                    Snackbar.make(getRootView(), "Please select your role for the mentorship relation", Snackbar.LENGTH_LONG)
+                    Snackbar.make(getRootView(), getString(R.string.error_send_request_relation), Snackbar.LENGTH_LONG)
                             .show()
                     return@setOnClickListener
                 }
