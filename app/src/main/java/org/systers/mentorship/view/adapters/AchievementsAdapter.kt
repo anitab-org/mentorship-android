@@ -17,12 +17,12 @@ import org.systers.mentorship.models.Task
  */
 class AchievementsAdapter : ListAdapter<Task, AchievementsAdapter.ViewHolder>(AchievementsItemCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchievementsAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.achievement_list_item, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AchievementsAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 

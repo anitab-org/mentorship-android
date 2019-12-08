@@ -31,7 +31,7 @@ fun setTextViewStartingWithBoldSpan(textView: TextView, spanText: String, text: 
  * @param boldWord string that should have bold text style
  * @return [SpannableStringBuilder] with [boldWord] within [mainText] with Bold text style
  */
-fun getTextWithBoldWord(mainText: String, boldWord: String) : SpannableStringBuilder {
+fun getTextWithBoldWord(mainText: String, boldWord: String): SpannableStringBuilder {
     val sb = SpannableStringBuilder(mainText)
     val start = mainText.indexOf(boldWord)
     val end = start + boldWord.length

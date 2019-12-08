@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException
  */
 class RequestsViewModel : ViewModel() {
 
-    var TAG = RequestsViewModel::class.java.simpleName
+    private val TAG = RequestsViewModel::class.java.simpleName
 
     private val relationDataManager = RelationDataManager()
 
@@ -54,7 +54,7 @@ class RequestsViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()

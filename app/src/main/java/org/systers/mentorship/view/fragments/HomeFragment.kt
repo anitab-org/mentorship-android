@@ -31,6 +31,7 @@ class HomeFragment : BaseFragment() {
          * Creates an instance of HomeFragment
          */
         fun newInstance() = HomeFragment()
+
         val TAG: String = HomeFragment::class.java.simpleName
     }
 

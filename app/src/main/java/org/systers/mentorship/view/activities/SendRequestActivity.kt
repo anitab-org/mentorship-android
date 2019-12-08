@@ -8,7 +8,6 @@ import com.google.android.material.snackbar.Snackbar
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
 import android.view.MenuItem
-import android.widget.DatePicker
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
@@ -23,9 +22,10 @@ import java.util.*
 /**
  * This activity will show a Mentorship request detail from the Requests List
  */
-class SendRequestActivity: BaseActivity() {
+class SendRequestActivity : BaseActivity() {
 
-    private lateinit var myCalendar : Calendar
+    private lateinit var myCalendar: Calendar
+
     companion object {
         const val OTHER_USER_ID_INTENT_EXTRA = "OTHER_USER_ID_INTENT_EXTRA"
         const val OTHER_USER_NAME_INTENT_EXTRA = "OTHER_USER_NAME_INTENT_EXTRA"
@@ -48,28 +48,28 @@ class SendRequestActivity: BaseActivity() {
 
         //Setting default date , 1 month after a current date
         myCalendar = Calendar.getInstance()
-        myCalendar.add(Calendar.MONTH , 1)
+        myCalendar.add(Calendar.MONTH, 1)
         updateEndDateEditText()
 
-        var date : DatePickerDialog.OnDateSetListener = object : DatePickerDialog.OnDateSetListener{
-            override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-                myCalendar.set(Calendar.YEAR , year)
-                myCalendar.set(Calendar.MONTH  , month)
-                myCalendar.set(Calendar.DAY_OF_MONTH  , dayOfMonth)
-                updateEndDateEditText()
-            }
-        }
+        val date: DatePickerDialog.OnDateSetListener =
+                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                    myCalendar.set(Calendar.YEAR, year)
+                    myCalendar.set(Calendar.MONTH, month)
+                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    updateEndDateEditText()
+                }
         ivCalendar.setOnClickListener {
-          DatePickerDialog(this , date ,
-                  myCalendar.get(Calendar.YEAR) ,
-                  myCalendar.get(Calendar.MONTH) ,
-                  myCalendar.get(Calendar.DAY_OF_MONTH)).show()
-      }
+            DatePickerDialog(this, date,
+                    myCalendar.get(Calendar.YEAR),
+                    myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
     }
+
     private fun updateEndDateEditText() {
-        var sdf : SimpleDateFormat = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT , Locale.US)
-        var editable = SpannableStringBuilder(sdf.format(myCalendar.time))
-        tvRequestEndDate.text =  editable
+        val sdf = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT, Locale.US)
+        val editable = SpannableStringBuilder(sdf.format(myCalendar.time))
+        tvRequestEndDate.text = editable
     }
 
     private fun populateView(userName: String, otherUserId: Int, currentUserId: Int) {
@@ -81,12 +81,12 @@ class SendRequestActivity: BaseActivity() {
             val endDate = convertDateIntoUnixTimestamp(
                     tvRequestEndDate.text.toString(), SEND_REQUEST_END_DATE_FORMAT)
 
-            when {
-                rgCurrentUserRole.checkedRadioButtonId == btnMentorRadio.id -> {
+            when (rgCurrentUserRole.checkedRadioButtonId) {
+                btnMentorRadio.id -> {
                     mentorId = currentUserId
                     menteeId = otherUserId
                 }
-                rgCurrentUserRole.checkedRadioButtonId == btnMenteeRadio.id -> {
+                btnMenteeRadio.id -> {
                     menteeId = currentUserId
                     mentorId = otherUserId
                 }
@@ -98,7 +98,7 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-            if(!TextUtils.isEmpty(notes)) {
+            if (!TextUtils.isEmpty(notes)) {
 
                 val sendRequestData = RelationshipRequest(
                         menteeId = menteeId,
@@ -116,9 +116,8 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private fun setObservables() {
-        sendRequestViewModel  = ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
-        sendRequestViewModel.successful.observe(this, Observer {
-            successful ->
+        sendRequestViewModel = ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
+        sendRequestViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {

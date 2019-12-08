@@ -27,8 +27,7 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
 
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        loginViewModel.successful.observe(this, Observer {
-            successful ->
+        loginViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -45,7 +44,7 @@ class LoginActivity : BaseActivity() {
         })
 
         btnLogin.setOnClickListener {
-           login()
+            login()
         }
 
         btnSignUp.setOnClickListener {
@@ -62,7 +61,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun validateCredentials() : Boolean {
+    private fun validateCredentials(): Boolean {
         var validCredentials = true
         if (username.isBlank()) {
             tiUsername.error = getString(R.string.error_empty_username)

@@ -19,9 +19,9 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for Tasks Screen
  */
-class TasksViewModel: ViewModel() {
+class TasksViewModel : ViewModel() {
 
-    var TAG = TasksViewModel::class.java.simpleName
+    private val TAG = TasksViewModel::class.java.simpleName
 
     lateinit var tasksList: List<Task>
 
@@ -54,7 +54,7 @@ class TasksViewModel: ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -83,12 +83,11 @@ class TasksViewModel: ViewModel() {
      * @param taskId id of the task that is clicked
      * @param isChecked boolean value to specify if the task was marked or unmarked
      */
-    fun updateTask(taskId: Int, isChecked: Boolean){
-        if(isChecked) {
+    fun updateTask(taskId: Int, isChecked: Boolean) {
+        if (isChecked) {
             //completedTaskList.add(taskList.get(taskId))
             //TODO: Update the backend
-        }
-        else {
+        } else {
             //completedTaskList.remove(taskList.get(taskId))
             //TODO: Update the backend
         }

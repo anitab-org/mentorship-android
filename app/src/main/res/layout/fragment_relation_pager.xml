@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/contentFragment">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCancelRelation"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Mentee:"
+        android:text="@string/mentee_relation"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMentorLabel" />
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Mentor:"
+        android:text="@string/mentor_relation"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="End date:"
+        android:text="@string/end_date_relation"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMenteeLabel" />
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Notes:"
+        android:text="@string/notes_relation"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEndDateLabel" />
@@ -65,51 +65,51 @@
         android:id="@+id/tvMentorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        tools:text="TextView"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toEndOf="@+id/tvMentorLabel"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="TextView" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMenteeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        tools:text="TextView"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toEndOf="@+id/tvMenteeLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvMentorName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMentorName"
+        tools:text="TextView" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        tools:text="TextView"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toEndOf="@+id/tvEndDateLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvMenteeName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMenteeName"
+        tools:text="TextView" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvRelationNotes"
         android:layout_width="296dp"
         android:layout_height="215dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:scrollbars="vertical"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:fadeScrollbars="false"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnCancelRelation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

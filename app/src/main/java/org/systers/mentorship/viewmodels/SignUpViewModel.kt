@@ -23,7 +23,7 @@ import java.util.concurrent.TimeoutException
  */
 class SignUpViewModel : ViewModel() {
 
-    var TAG = SignUpViewModel::class.java.simpleName
+    private val TAG = SignUpViewModel::class.java.simpleName
 
     private val authDataManager: AuthDataManager = AuthDataManager()
 

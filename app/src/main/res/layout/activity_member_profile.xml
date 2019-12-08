@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,145 +14,147 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
             android:textSize="@dimen/generic_28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvSlackUsername"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvAvailableToMentor"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSlackUsername" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSlackUsername"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvNeedMentoring"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAvailableToMentor" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAvailableToMentor"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvInterests"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNeedMentoring" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNeedMentoring"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvBio"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInterests" />
+            app:layout_constraintTop_toBottomOf="@+id/tvInterests"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvLocation"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvBio" />
+            app:layout_constraintTop_toBottomOf="@+id/tvBio"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvOccupation"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvOrganization"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOccupation" />
+            app:layout_constraintTop_toBottomOf="@+id/tvOccupation"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/tvSkills"
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOrganization" />
+            app:layout_constraintTop_toBottomOf="@+id/tvOrganization"
+            tools:text="TextView" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSendRequest"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="168dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/send_request"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSkills" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

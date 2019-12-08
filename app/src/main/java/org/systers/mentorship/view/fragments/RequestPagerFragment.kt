@@ -14,13 +14,13 @@ import org.systers.mentorship.view.adapters.RequestsAdapter
 /**
  * This fragment is instantiated per each tab from the RequestsFragment ViewPager
  */
-class RequestPagerFragment: BaseFragment() {
+class RequestPagerFragment : BaseFragment() {
 
     companion object {
         /**
          * Creates an instance of [RequestPagerFragment]
          */
-        fun newInstance(requestsList: List<Relationship>, emptyListText: String) : BaseFragment {
+        fun newInstance(requestsList: List<Relationship>, emptyListText: String): BaseFragment {
 
             val args = Bundle()
             args.putParcelableArrayList(Constants.REQUEST_LIST, ArrayList(requestsList))
@@ -62,13 +62,13 @@ class RequestPagerFragment: BaseFragment() {
 
         while (iter.hasNext()) {
             val reqId = iter.next().id
-            if(reqId.toString() == id) {
+            if (reqId.toString() == id) {
                 iter.remove()
             }
         }
         setView()
     }
-    
+
     private fun setView() {
         if (requestsList.isEmpty()) {
             tvEmptyList.text = emptyListText

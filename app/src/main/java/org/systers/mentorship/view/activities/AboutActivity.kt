@@ -1,7 +1,6 @@
 package org.systers.mentorship.view.activities
 
 import android.content.Intent
-import android.content.res.Resources
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +12,7 @@ class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
-        setTitle(R.string.fragment_title_about);
+        setTitle(R.string.fragment_title_about)
 
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

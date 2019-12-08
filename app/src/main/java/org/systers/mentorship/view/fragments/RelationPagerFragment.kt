@@ -35,8 +35,7 @@ class RelationPagerFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
-        relationViewModel.successfulGet.observe(this, Observer {
-            successfull ->
+        relationViewModel.successfulGet.observe(this, Observer { successfull ->
             activityCast.hideProgressDialog()
             if (successfull != null) {
                 if (successfull) {
@@ -54,17 +53,10 @@ class RelationPagerFragment : BaseFragment() {
     }
 
     private fun updateView(mentorshipRelation: Relationship) {
-        if (mentorshipRelation.mentor == null) {
-            tvNoCurrentRelation.visibility = View.VISIBLE
-            tlMentorshipRelation.visibility = View.GONE
-            vpMentorshipRelation.visibility = View.GONE
-            baseActivity.tlMentorshipRelation.removeAllTabs()
-        } else {
-            tvNoCurrentRelation.visibility = View.GONE
-            tlMentorshipRelation.visibility = View.VISIBLE
-            vpMentorshipRelation.visibility = View.VISIBLE
-            vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
-            tlMentorshipRelation.setupWithViewPager(vpMentorshipRelation)
-        }
+        tvNoCurrentRelation.visibility = View.GONE
+        tlMentorshipRelation.visibility = View.VISIBLE
+        vpMentorshipRelation.visibility = View.VISIBLE
+        vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
+        tlMentorshipRelation.setupWithViewPager(vpMentorshipRelation)
     }
 }

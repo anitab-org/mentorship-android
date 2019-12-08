@@ -30,12 +30,12 @@ data class Relationship(
         @SerializedName("sent_by_me") val sentByMe: Boolean,
         val mentor: RelationUserResponse,
         val mentee: RelationUserResponse,
-        @SerializedName("creation_date")  val sentOn: Float,
-        @SerializedName("accept_date")  val acceptedOn: Float,
-        @SerializedName("start_date")  val startsOn: Float,
-        @SerializedName("end_date")  val endsOn: Float,
+        @SerializedName("creation_date") val sentOn: Float,
+        @SerializedName("accept_date") val acceptedOn: Float,
+        @SerializedName("start_date") val startsOn: Float,
+        @SerializedName("end_date") val endsOn: Float,
         val state: Int,
-        val notes: String): Parcelable {
+        val notes: String) : Parcelable {
     /**
      * This data class represents partial information of user of the system.
      * This is used in APIs not directly related with Users, such as in responses
@@ -45,6 +45,6 @@ data class Relationship(
      * @param name name of the user
      */
     @Parcelize
-    data class RelationUserResponse (val id: Int,
-                                     val name: String): Parcelable
+    data class RelationUserResponse(val id: Int,
+                                    val name: String) : Parcelable
 }

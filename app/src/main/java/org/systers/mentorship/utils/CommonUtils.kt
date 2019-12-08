@@ -5,7 +5,6 @@ import io.reactivex.annotations.NonNull
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.HttpException
 
-
 /**
  * Object to store utilities such as a [Gson] instance
  */

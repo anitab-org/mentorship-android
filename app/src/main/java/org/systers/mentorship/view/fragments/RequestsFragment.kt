@@ -22,7 +22,7 @@ class RequestsFragment : BaseFragment() {
          */
         fun newInstance() = RequestsFragment()
 
-        val TAG = RelationFragment::class.java.simpleName
+        val TAG: String = RelationFragment::class.java.simpleName
     }
 
     private lateinit var requestsViewModel: RequestsViewModel
@@ -35,13 +35,12 @@ class RequestsFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
-        requestsViewModel.successful.observe(this, Observer {
-            successful ->
+        requestsViewModel.successful.observe(this, Observer { successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                        vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
-                        tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                    vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
+                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
                 } else {
                     view?.let {
                         Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()

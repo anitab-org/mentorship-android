@@ -76,7 +76,7 @@ class ChangePasswordFragment : DialogFragment() {
         }
     }
 
-    private fun validatePassword() : Boolean {
+    private fun validatePassword(): Boolean {
         return if (newPassword == confirmPassword && newPassword != currentPassword) {
             true
         } else {

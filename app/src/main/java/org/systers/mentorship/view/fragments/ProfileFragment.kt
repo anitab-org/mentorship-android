@@ -20,6 +20,7 @@ class ProfileFragment : BaseFragment() {
          * Creates an instance of ProfileFragment
          */
         fun newInstance() = ProfileFragment()
+
         val TAG: String = ProfileFragment::class.java.simpleName
     }
 
@@ -39,8 +40,7 @@ class ProfileFragment : BaseFragment() {
         setHasOptionsMenu(true)
 
         profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
-        profileViewModel.successfulGet.observe(this, Observer {
-            successful ->
+        profileViewModel.successfulGet.observe(this, Observer { successful ->
             baseActivity.hideProgressDialog()
             if (successful != null) {
                 if (successful) {

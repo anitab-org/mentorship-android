@@ -19,7 +19,6 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
-
 /**
  * This class represents the ViewModel for the HomeFragment
  */
@@ -42,7 +41,7 @@ class HomeViewModel : ViewModel() {
         userDataManager.getHomeStats()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<HomeStatistics>() {
+                .subscribeWith(object : DisposableObserver<HomeStatistics>() {
 
                     override fun onComplete() {
                         // Do nothing

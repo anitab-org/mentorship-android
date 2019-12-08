@@ -11,7 +11,6 @@ import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
-import org.systers.mentorship.view.fragments.MembersFragment
 import org.systers.mentorship.viewmodels.MemberProfileViewModel
 
 /**
@@ -32,8 +31,7 @@ class MemberProfileActivity : BaseActivity() {
         val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
 
         memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
-        memberProfileViewModel.successful.observe(this, Observer {
-            successful ->
+        memberProfileViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {

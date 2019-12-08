@@ -27,5 +27,5 @@ data class Task(
         val createdAt: Float,
         @SerializedName("completed_at")
         val completedAt: Float
-): Parcelable
+) : Parcelable
 

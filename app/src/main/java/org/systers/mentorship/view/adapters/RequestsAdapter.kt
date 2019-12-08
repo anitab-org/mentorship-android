@@ -18,7 +18,7 @@ import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
  * @param requestsList list of request and relation to show
  * @param openDetailFunction function to be called when an item from Requests list is clicked
  */
-class RequestsAdapter (
+class RequestsAdapter(
         private val requestsList: List<Relationship>,
         private val openDetailFunction: (requestDetail: Relationship) -> Unit
 ) : RecyclerView.Adapter<RequestsAdapter.RequestsViewHolder>() {

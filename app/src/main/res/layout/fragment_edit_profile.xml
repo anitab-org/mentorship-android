@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="user"
             type="org.systers.mentorship.models.User" />
+
     </data>
 
     <ScrollView
@@ -15,222 +18,233 @@
         android:layout_height="match_parent"
         tools:context=".view.fragments.EditProfileFragment">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgUserAvatar"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_launcher_background" />
-
 
             <TextView
                 android:id="@+id/tvUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/imgUserAvatar"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
                 android:text="@={user.username}"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgUserAvatar" />
 
             <TextView
                 android:id="@+id/tvEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvUsername"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="@={user.email}"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUsername"
                 tools:text="Email" />
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvEmail"
-                android:layout_marginStart="18dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="18dp"
-                android:orientation="vertical">
+                android:hint="@string/name"
+                android:textColorHint="@color/aubergine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tiName"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/name">
+                    android:inputType="textPersonName"
+                    android:text="@={user.name}"
+                    android:textColor="@color/black" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/black"
-                        android:text="@={user.name}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/tvAvailableToMentorFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/available_to_mentor"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiName" />
 
-                <LinearLayout
+            <Switch
+                android:id="@+id/switchAvailableToMentor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:checked="@={user.availableToMentor}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvAvailableToMentorFragment"
+                app:layout_constraintStart_toEndOf="@+id/tvAvailableToMentorFragment"
+                app:layout_constraintTop_toTopOf="@+id/tvAvailableToMentorFragment" />
+
+            <TextView
+                android:id="@+id/tvNeedsMentoring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/need_mentoring"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAvailableToMentorFragment" />
+
+            <Switch
+                android:id="@+id/switchNeedsMentoring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:checked="@={user.needsMentoring}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvNeedsMentoring"
+                app:layout_constraintStart_toEndOf="@+id/tvNeedsMentoring"
+                app:layout_constraintTop_toTopOf="@+id/tvNeedsMentoring" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/bio"
+                android:textColorHint="@color/aubergine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNeedsMentoring">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:inputType="text"
+                    android:text="@={user.bio}"
+                    android:textColor="@color/black" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="@string/available_to_mentor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <Switch
-                        android:id="@+id/switchAvailableToMentor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="@={user.availableToMentor}" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiSlack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/slack_username"
+                android:textColorHint="@color/aubergine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiBio">
 
-                </LinearLayout>
-
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:inputType="textPersonName"
+                    android:text="@={user.slackUsername}"
+                    android:textColor="@color/black" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="@string/need_mentoring" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <Switch
-                        android:id="@+id/switchNeedsMentoring"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="@={user.needsMentoring}" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/location"
+                android:textColorHint="@color/aubergine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiSlack">
 
-                </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tiBio"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/bio">
+                    android:inputType="textPostalAddress"
+                    android:text="@={user.location}"
+                    android:textColor="@color/black" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.bio}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiOccupation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/occupation"
+                android:textColorHint="@color/aubergine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiLocation">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tiSlack"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/slack_username">
+                    android:inputType="text"
+                    android:text="@={user.occupation}"
+                    android:textColor="@color/black" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/black"
-                        android:text="@={user.slackUsername}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiOrganization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/organization"
+                android:textColorHint="@color/aubergine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiOccupation">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tiLocation"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/location">
+                    android:inputType="text"
+                    android:text="@={user.organization}"
+                    android:textColor="@color/black" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPostalAddress"
-                        android:textColor="@color/black"
-                        android:text="@={user.location}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiSkills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/skills"
+                android:textColorHint="@color/aubergine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiOrganization">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tiOccupation"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/occupation">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.occupation}" />
+                    android:inputType="text"
+                    android:text="@={user.skills}"
+                    android:textColor="@color/black" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tiOrganization"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiInterests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/interests"
+                android:textColorHint="@color/aubergine"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiSkills">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/organization">
+                    android:inputType="text"
+                    android:text="@={user.interests}"
+                    android:textColor="@color/black" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.organization}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tiSkills"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/skills">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.skills}" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tiInterests"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/interests">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.interests}" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 

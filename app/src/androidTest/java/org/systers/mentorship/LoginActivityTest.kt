@@ -35,7 +35,7 @@ class LoginActivityTest {
     @get:Rule
     var mActivityRule: ActivityTestRule<LoginActivity> = ActivityTestRule(LoginActivity::class.java)
 
-    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
+    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
         return onView(allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }
@@ -45,7 +45,7 @@ class LoginActivityTest {
         /**
          * This simply implements the null check, checks the type and then casts.
          */
-        fun hasTextInputLayoutErrorText(expectedErrorText : String) : Matcher<View> {
+        fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
             return object : TypeSafeMatcher<View>() {
                 /**
@@ -70,13 +70,10 @@ class LoginActivityTest {
                         return false
                     }
 
-                    val error = item.error
-                    if (error == null) {
-                        return false
-                    }
+                    val error = item.error ?: return false
 
                     val errorMsg: String = error.toString()
-                    return expectedErrorText.equals(errorMsg)
+                    return expectedErrorText == errorMsg
                 }
             }
         }

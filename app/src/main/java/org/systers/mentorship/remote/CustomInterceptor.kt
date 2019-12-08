@@ -9,7 +9,7 @@ import org.systers.mentorship.utils.PreferenceManager
 /**
  * Represents a custom HTTP requests interceptor
  */
-class CustomInterceptor: Interceptor {
+class CustomInterceptor : Interceptor {
 
     var preferenceManager: PreferenceManager = PreferenceManager()
 

@@ -11,7 +11,7 @@ import org.systers.mentorship.view.activities.BaseActivity
  * A Fragment class which other Fragments can extend from. It reduces boilerplate of
  * other fragments setting up their own views and  action bat title
  */
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutResourceId(), container, false)
@@ -22,7 +22,7 @@ abstract class BaseFragment: Fragment() {
      * so that the view can be set by the parent fragment
      * @return layout resource id of the fragment child view
      */
-    protected abstract fun getLayoutResourceId() : Int
+    protected abstract fun getLayoutResourceId(): Int
 
     /**
      * Instance of parent activity as [BaseActivity]

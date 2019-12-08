@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,8 +10,8 @@
         android:id="@+id/imageViewLogo"
         android:layout_width="wrap_content"
         android:layout_height="160dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,10 +25,10 @@
         android:id="@+id/tiUsername"
         android:layout_width="270dp"
         android:layout_height="91dp"
-        android:layout_marginBottom="256dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="256dp"
         android:hint="@string/username_or_email"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,11 +36,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewLogo">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:id="@+id/etUsername"
-            android:maxLines="1"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,24 +48,24 @@
         android:id="@+id/tiPassword"
         android:layout_width="271dp"
         android:layout_height="87dp"
-        android:layout_marginBottom="220dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="220dp"
         android:hint="@string/password"
-        app:passwordToggleEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tiUsername"
-        app:layout_constraintVertical_bias="0.098">
+        app:layout_constraintVertical_bias="0.098"
+        app:passwordToggleEnabled="true">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:id="@+id/etPassword"
-            android:maxLines="1"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -87,10 +86,10 @@
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="166dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

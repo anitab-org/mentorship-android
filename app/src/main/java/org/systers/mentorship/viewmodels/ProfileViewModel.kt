@@ -20,9 +20,9 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
 
-    var TAG = ProfileViewModel::class.java.simpleName
+    private val TAG = ProfileViewModel::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 
@@ -44,6 +44,7 @@ class ProfileViewModel: ViewModel() {
                         user = userprofile
                         successfulGet.value = true
                     }
+
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -65,6 +66,7 @@ class ProfileViewModel: ViewModel() {
                         }
                         successfulGet.value = false
                     }
+
                     override fun onComplete() {
                     }
                 })
@@ -82,6 +84,7 @@ class ProfileViewModel: ViewModel() {
                     override fun onNext(response: CustomResponse) {
                         successfulUpdate.value = true
                     }
+
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -103,6 +106,7 @@ class ProfileViewModel: ViewModel() {
                         }
                         successfulUpdate.value = false
                     }
+
                     override fun onComplete() {
                     }
                 })

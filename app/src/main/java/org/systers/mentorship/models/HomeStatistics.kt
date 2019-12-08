@@ -30,5 +30,5 @@ data class HomeStatistics(
         val cancelledRelations: Int,
         @SerializedName("rejected_requests")
         val rejectedRequests: Int,
-        val achievements: List<Task>): Parcelable
+        val achievements: List<Task>) : Parcelable
 

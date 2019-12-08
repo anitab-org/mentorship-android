@@ -16,7 +16,7 @@ import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
  * @param userList list of users to show
  * @param openDetailFunction function to be called when an item from Members list is clicked
  */
-class MembersAdapter (
+class MembersAdapter(
         private val userList: List<User>,
         private val openDetailFunction: (memberId: Int) -> Unit
 ) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {

@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
  * @param currentPassword the current password of the user
  * @param newPassword new password which will replace the current password.
  */
-data class ChangePassword (
+data class ChangePassword(
         @SerializedName("current_password") val currentPassword: String,
         @SerializedName("new_password") val newPassword: String
 )

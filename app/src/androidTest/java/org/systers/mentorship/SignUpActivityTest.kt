@@ -1,14 +1,10 @@
 package org.systers.mentorship
 
 import androidx.annotation.IdRes
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
@@ -17,10 +13,7 @@ import android.widget.EditText
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
-import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -39,18 +32,15 @@ class SignUpActivityTest {
 
     /**
      * This basically setups the SignUpActivity before test
-      */
+     */
     @get:Rule
     var mActivityRule: ActivityTestRule<SignUpActivity> = ActivityTestRule(SignUpActivity::class.java)
 
     /**
      * This method is used to find the EditText within the TextInputLayout. Useful for typing into the TextInputLayout
      */
-    fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
-
-        return Espresso.onView(Matchers.allOf(ViewMatchers.isDescendantOfA(ViewMatchers.withId(textInputLayoutId)),ViewMatchers.isAssignableFrom(EditText::class.java)))
-    }
-
+    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int) =
+            onView(Matchers.allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
 
     companion object {
 
@@ -59,7 +49,7 @@ class SignUpActivityTest {
          */
         fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
-            return object: TypeSafeMatcher<View>() {
+            return object : TypeSafeMatcher<View>() {
                 /**
                  * Generates a description of the object.  The description may be part of a
                  * a description of a larger object of which this is just a component, so it
@@ -82,21 +72,14 @@ class SignUpActivityTest {
                         return false
                     }
 
+                    val error: CharSequence = item.error ?: return false
 
-                    val error: CharSequence? = item.error
-                    if (error == null) {
-                        return false
-                    }
-
-                    var errorMsg: String = error.toString()
-                    return expectedErrorText.equals(errorMsg)
+                    val errorMsg: String = error.toString()
+                    return expectedErrorText == errorMsg
 
                 }
-
             }
-
         }
-
     }
 
     /**
@@ -139,8 +122,7 @@ class SignUpActivityTest {
 
         onView(withId(R.id.btnSignUp)).perform(click())
 
-        onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText("Passwords didn't match!")))
-
-
+        onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText(
+                "Passwords didn't match!")))
     }
 }

@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.task_list_item.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
-import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.adapters.TasksAdapter
 import org.systers.mentorship.viewmodels.TasksViewModel
 
@@ -30,21 +29,21 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
          * Creates an instance of [TasksFragment]
          */
         fun newInstance(mentorshipRelation: Relationship) = TasksFragment(mentorshipRelation)
-        val TAG = TasksFragment::class.java.simpleName
+
+        val TAG: String = TasksFragment::class.java.simpleName
     }
 
-    val appContext = MentorshipApplication.getContext()
+    private val appContext = MentorshipApplication.getContext()
 
     private lateinit var taskViewModel: TasksViewModel
 
-    override fun getLayoutResourceId(): Int = R.layout.fragment_mentorship_tasks;
+    override fun getLayoutResourceId(): Int = R.layout.fragment_mentorship_tasks
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         taskViewModel = ViewModelProviders.of(this).get(TasksViewModel::class.java)
-        taskViewModel.successful.observe(this, Observer {
-            successful ->
+        taskViewModel.successful.observe(this, Observer { successful ->
             if (successful != null) {
                 if (successful) {
                     if (taskViewModel.tasksList.isEmpty()) {
@@ -74,20 +73,20 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     }
 
     /**
-     * The function creates a dialog box through whoch new tasks can be added
+     * The function creates a dialog box through which new tasks can be added
      */
-    fun showDialog() {
+    private fun showDialog() {
         val builder = AlertDialog.Builder(context)
         val inflater = layoutInflater
         builder.setTitle(appContext.getString(R.string.add_new_task))
         val dialogLayout = inflater.inflate(R.layout.dialog_add_task, null)
         val editText = dialogLayout.findViewById<EditText>(R.id.etAddTask)
         builder.setView(dialogLayout)
-        builder.setPositiveButton(appContext.getString(R.string.save)) { dialogInterface, i ->
+        builder.setPositiveButton(appContext.getString(R.string.save)) { _, _ ->
             val newTask: String = editText.text.toString()
             taskViewModel.addTask(newTask)
         }
-        builder.setNegativeButton(appContext.getString(R.string.cancel)) { dialogInterface, i ->
+        builder.setNegativeButton(appContext.getString(R.string.cancel)) { dialogInterface, _ ->
             dialogInterface.dismiss()
         }
         builder.show()

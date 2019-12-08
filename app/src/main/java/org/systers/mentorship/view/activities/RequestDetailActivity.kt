@@ -20,7 +20,7 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
 /**
  * This activity will show a Mentorship request detail from the Requests List
  */
-class RequestDetailActivity: BaseActivity() {
+class RequestDetailActivity : BaseActivity() {
 
     private lateinit var requestDetailViewModel: RequestDetailViewModel
 
@@ -137,9 +137,8 @@ class RequestDetailActivity: BaseActivity() {
     }
 
     private fun setObservables(relationResponse: Relationship) {
-        requestDetailViewModel  = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
-        requestDetailViewModel.successful.observe(this, Observer {
-            successful ->
+        requestDetailViewModel = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
+        requestDetailViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {

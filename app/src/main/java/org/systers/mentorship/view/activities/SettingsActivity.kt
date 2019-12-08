@@ -40,7 +40,7 @@ class SettingsActivity : BaseActivity() {
             ChangePasswordFragment.newInstance().show(supportFragmentManager, null)
         }
         tvAbout.setOnClickListener {
-            startActivity(Intent(baseContext,AboutActivity::class.java))
+            startActivity(Intent(baseContext, AboutActivity::class.java))
         }
     }
 

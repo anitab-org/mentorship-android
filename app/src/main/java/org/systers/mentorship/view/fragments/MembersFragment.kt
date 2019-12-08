@@ -18,7 +18,7 @@ import org.systers.mentorship.viewmodels.MembersViewModel
 /**
  * The fragment is responsible for showing all the members of the system in a list format
  */
-class MembersFragment: BaseFragment() {
+class MembersFragment : BaseFragment() {
 
     companion object {
         /**
@@ -35,8 +35,7 @@ class MembersFragment: BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
-        membersViewModel.successful.observe(this, Observer {
-            successful ->
+        membersViewModel.successful.observe(this, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {

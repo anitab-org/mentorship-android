@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException
  */
 class MembersViewModel : ViewModel() {
 
-    var TAG = MembersViewModel::class.java.simpleName
+    private val TAG = MembersViewModel::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 
@@ -54,7 +54,7 @@ class MembersViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="stats"
             type="org.systers.mentorship.models.HomeStatistics" />
@@ -188,6 +189,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvRecentAchievementsTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-</layout>
 
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

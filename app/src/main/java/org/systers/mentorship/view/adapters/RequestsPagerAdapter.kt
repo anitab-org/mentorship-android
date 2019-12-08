@@ -59,16 +59,16 @@ class RequestsPagerAdapter(
     }
 
     override fun getItem(position: Int): Fragment {
-        when(position){
+        when (position) {
             TabsIndex.PENDING.value -> {
                 return RequestPagerFragment.newInstance(
                         pendingList, context.getString(R.string.empty_pending_requests))
             }
-            TabsIndex.PAST.value  -> {
+            TabsIndex.PAST.value -> {
                 return RequestPagerFragment.newInstance(
                         pastList, context.getString(R.string.empty_past_requests))
             }
-            TabsIndex.ALL.value  -> {
+            TabsIndex.ALL.value -> {
                 return RequestPagerFragment.newInstance(
                         allList, context.getString(R.string.empty_requests))
             }
@@ -80,14 +80,14 @@ class RequestsPagerAdapter(
     override fun getCount(): Int = Constants.TOTAL_REQUEST_TABS
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when(position){
+        when (position) {
             TabsIndex.PENDING.value -> {
                 return context.getString(R.string.pending)
             }
-            TabsIndex.PAST.value  -> {
+            TabsIndex.PAST.value -> {
                 return context.getString(R.string.past)
             }
-            TabsIndex.ALL.value  -> {
+            TabsIndex.ALL.value -> {
                 return context.getString(R.string.all)
             }
         }

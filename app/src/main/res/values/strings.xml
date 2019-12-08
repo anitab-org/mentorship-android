@@ -149,4 +149,13 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="to_do">To do</string>
+    <string name="no_tasks">No tasks</string>
+    <string name="achievements">Achievements</string>
+    <string name="no_achievements">No achievements</string>
+    <string name="mentee_relation">Mentee:</string>
+    <string name="mentor_relation">Mentor:</string>
+    <string name="end_date_relation">End date:</string>
+    <string name="notes_relation">Notes:</string>
+    <string name="checkbox">CheckBox</string>
 </resources>
