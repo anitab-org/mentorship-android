@@ -52,5 +52,6 @@ class RequestsFragment : BaseFragment() {
 
         activityCast.showProgressDialog(getString(R.string.fetching_requests))
         requestsViewModel.getAllMentorshipRelations()
+        requestsViewModel.getPastMentorshipRelations()
     }
 }
