@@ -53,7 +53,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                     } else {
                         rvTasks.apply {
                             layoutManager = LinearLayoutManager(context)
-                            adapter = TasksAdapter(taskViewModel.tasksList, markTask)
+                            adapter = TasksAdapter(activity!!, taskViewModel.tasksList, ::markTask)
                         }
                         tvNoTask.visibility = View.GONE
                     }
@@ -93,8 +93,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         builder.show()
     }
 
-    private val markTask: (Int) -> Unit = { taskId ->
-        cbTask.isChecked
-        taskViewModel.updateTask(taskId, cbTask.isChecked)
+    private fun markTask(taskId: Int, isChecked: Boolean){
+        taskViewModel.updateTask(taskId, mentorshipRelation.id, isChecked)
     }
 }

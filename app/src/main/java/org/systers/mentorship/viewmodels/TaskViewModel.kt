@@ -11,6 +11,7 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.datamanager.TaskDataManager
+import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -28,7 +29,6 @@ class TasksViewModel: ViewModel() {
     private val taskDataManager: TaskDataManager = TaskDataManager()
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
-
     /**
      * This function lists all tasks from the mentorship relation
      */
@@ -81,16 +81,42 @@ class TasksViewModel: ViewModel() {
     /**
      * This function helps in updating completed tasks
      * @param taskId id of the task that is clicked
-     * @param isChecked boolean value to specify if the task was marked or unmarked
+     * @param relationId id of the mentorship relation
+     * @param isChecked currently not in use because API doesn't support un checking a task
      */
-    fun updateTask(taskId: Int, isChecked: Boolean){
-        if(isChecked) {
-            //completedTaskList.add(taskList.get(taskId))
-            //TODO: Update the backend
-        }
-        else {
-            //completedTaskList.remove(taskList.get(taskId))
-            //TODO: Update the backend
-        }
+    fun updateTask(taskId: Int, relationId: Int, isChecked: Boolean){
+            taskDataManager.updateTaskToComplete(relationId, taskId)
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                        override fun onComplete() {
+
+                        }
+
+                        override fun onNext(t: CustomResponse) {
+
+                        }
+
+                        override fun onError(e: Throwable) {
+                            when (e) {
+                                is IOException -> {
+                                    message = MentorshipApplication.getContext()
+                                            .getString(R.string.error_please_check_internet)
+                                }
+                                is TimeoutException -> {
+                                    message = MentorshipApplication.getContext()
+                                            .getString(R.string.error_request_timed_out)
+                                }
+                                is HttpException -> {
+                                    message = CommonUtils.getErrorResponse(e).message.toString()
+                                }
+                                else -> {
+                                    message = MentorshipApplication.getContext()
+                                            .getString(R.string.error_something_went_wrong)
+                                    Log.e(TAG, e.localizedMessage)
+                                }
+                            }
+                        }
+                    })
     }
 }

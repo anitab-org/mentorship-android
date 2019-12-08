@@ -21,4 +21,13 @@ class TaskDataManager {
         return apiManager.taskService.getAllTasksFromMentorshipRelation(relationId)
     }
 
+    /**
+     * This will call a method from Taskservice interface to update a task to complete
+     * @param relationId mentorship relation id
+     * @param taskId mentorship relation's task's id
+     * @return an Observable of [CustomResponse]
+     */
+    fun updateTaskToComplete(relationId: Int, taskId: Int): Observable<CustomResponse> {
+        return apiManager.taskService.updateTaskToComplete(relationId, taskId)
+    }
 }

@@ -2,6 +2,7 @@ package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
 import org.systers.mentorship.models.Task
+import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.*
 
 /**
@@ -16,4 +17,13 @@ interface TaskService {
      */
     @GET("mentorship_relation/{relation_id}/tasks")
     fun getAllTasksFromMentorshipRelation(@Path("relation_id") relationId: Int): Observable<List<Task>>
+
+    /**
+     * This function updates the task of given Id to complete
+     * @param relationId id of the mentorship relation in question
+     * @param taskId id of the task in the mentorship relation
+     * @return an Observable instance of [CustomResponse]
+     */
+    @PUT("mentorship_relation/{request_id}/task/{task_id}/complete")
+    fun updateTaskToComplete(@Path("request_id") relationId: Int, @Path("task_id") taskId: Int): Observable<CustomResponse>
 }

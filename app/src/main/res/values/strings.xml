@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Systers Mentorship</string>
     <string name="logo">Logo</string>
     <string name="login">Login</string>
@@ -149,4 +149,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="task_update_confirm">Update task</string>
+    <string name="task_update_title">Complete task?</string>
+    <string name="task_update_message">Are you sure you want to task:\u0020</string>
+    <string name="task_update_message2">\?</string>
 </resources>
