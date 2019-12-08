@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item>
+        <color android:color="#ffffff" />
+    </item>
+
+    <item
+        android:width="264dp"
+        android:height="264dp"
+        android:bottom="20dp"
+        android:drawable="@drawable/systers_logo"
+        android:gravity="center"
+        tools:ignore="UnusedAttribute"
+        tools:targetApi="m" />
+
+    <item
+        android:width="214dp"
+        android:height="96dp"
+        android:bottom="20dp"
+        android:drawable="@drawable/anitab_logo"
+        android:gravity="bottom|center"
+        tools:ignore="UnusedAttribute"
+        tools:targetApi="m" />
+
+</layer-list>
