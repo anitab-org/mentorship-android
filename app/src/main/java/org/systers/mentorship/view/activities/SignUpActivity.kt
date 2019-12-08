@@ -1,13 +1,21 @@
 package org.systers.mentorship.view.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_sign_up.btnLogin
+import kotlinx.android.synthetic.main.activity_sign_up.btnSignUp
+import kotlinx.android.synthetic.main.activity_sign_up.tiPassword
+import kotlinx.android.synthetic.main.activity_sign_up.tiUsername
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.viewmodels.SignUpViewModel
@@ -69,6 +77,21 @@ class SignUpActivity : BaseActivity() {
         cbTC.setOnCheckedChangeListener { _, b ->
             btnSignUp.isEnabled = b
         }
+        imgUserAvatarSignUp.setOnClickListener {
+            CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .start(this)
+        }
+
+        btnSignUpGoogle.setOnClickListener {
+            // TODO: add SignUp function via Google
+        }
+        btnSignUpFacebook.setOnClickListener {
+            // TODO: add SignUp function via Facebook
+        }
+        btnSignUpTwitter.setOnClickListener {
+            // TODO: add SignUp function via Twitter
+        }
     }
 
     override fun onDestroy() {
@@ -117,9 +140,28 @@ class SignUpActivity : BaseActivity() {
         return isValid
     }
 
+    override fun onBackPressed() {
+        navigateToLoginActivity()
+    }
+
     private fun navigateToLoginActivity() {
-        intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
         finish()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            val result = CropImage.getActivityResult(data)
+            if (resultCode == Activity.RESULT_OK) {
+                val resultUri = result.uri
+                Glide.with(this)
+                        .load(resultUri)
+                        .centerCrop()
+                        .into(imgUserAvatarSignUp)
+                //TODO: upload the image
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                result.error.printStackTrace()
+            }
+        }
+    }
+
 }

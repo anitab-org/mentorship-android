@@ -27,8 +27,7 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
 
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        loginViewModel.successful.observe(this, Observer {
-            successful ->
+        loginViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -45,13 +44,12 @@ class LoginActivity : BaseActivity() {
         })
 
         btnLogin.setOnClickListener {
-           login()
+            login()
         }
 
         btnSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         tiPassword.editText?.setOnEditorActionListener { _, actionId, _ ->
@@ -60,9 +58,19 @@ class LoginActivity : BaseActivity() {
             }
             false
         }
+
+        btnLoginGoogle.setOnClickListener {
+            // TODO: add Login function via Google
+        }
+        btnLoginFacebook.setOnClickListener {
+            // TODO: add Login function via Facebook
+        }
+        btnLoginTwitter.setOnClickListener {
+            // TODO: add Login function via Twitter
+        }
     }
 
-    private fun validateCredentials() : Boolean {
+    private fun validateCredentials(): Boolean {
         var validCredentials = true
         if (username.isBlank()) {
             tiUsername.error = getString(R.string.error_empty_username)
@@ -93,5 +101,6 @@ class LoginActivity : BaseActivity() {
         loginViewModel.successful.removeObservers(this)
         loginViewModel.successful.value = null
     }
+
 }
 

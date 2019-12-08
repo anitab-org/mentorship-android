@@ -65,4 +65,8 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+
+    api Dependencies.image_cropper
+    implementation Dependencies.glide
+    annotationProcessor Dependencies.glide_annotation_processor
 }
