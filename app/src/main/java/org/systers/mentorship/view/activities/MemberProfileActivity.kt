@@ -31,6 +31,28 @@ class MemberProfileActivity : BaseActivity() {
 
         val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
 
+        /**
+         * Getting the current user profile here.
+         * */
+        lateinit var currUser:User
+        userProfileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        userProfileViewModel.successfulGet.observe(this, Observer {
+            successful ->
+            hideProgressDialog()
+            if (successful != null) {
+                if (successful) {
+                    currUser=userProfileViewModel.user
+                } else {
+                    Snackbar.make(getRootView(), userProfileViewModel.message, Snackbar.LENGTH_LONG)
+                            .show()
+                }
+            }
+        })
+        userProfileViewModel.getProfile()
+
+        /**
+         * Getting the member profile here
+         * */
         memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
         memberProfileViewModel.successful.observe(this, Observer {
             successful ->
@@ -52,7 +74,19 @@ class MemberProfileActivity : BaseActivity() {
             val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
             intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
             intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
-            startActivity(intent)
+
+            /**
+             * If another user is available as a mentor and not as a mentee and,
+             * current user is also available only as a mentor then,
+             * request can't be send
+             * */
+            if ((userProfile.isAvailableToMentor!! && !userProfile.needsMentoring!!) &&
+                    (currUser.isAvailableToMentor!! && !currUser.needsMentoring!!)  ){
+                Snackbar.make(getRootView(), R.string.invalidRequest, Snackbar.LENGTH_LONG)
+                        .show()
+            }else{
+                startActivity(intent)
+            }
         }
     }
 
