@@ -1,12 +1,15 @@
 package org.systers.mentorship.view.fragments
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.miguelcatalan.materialsearchview.MaterialSearchView
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.Constants
@@ -18,7 +21,7 @@ import org.systers.mentorship.viewmodels.MembersViewModel
 /**
  * The fragment is responsible for showing all the members of the system in a list format
  */
-class MembersFragment: BaseFragment() {
+class MembersFragment : BaseFragment() {
 
     companion object {
         /**
@@ -28,15 +31,40 @@ class MembersFragment: BaseFragment() {
     }
 
     private lateinit var membersViewModel: MembersViewModel
+    private lateinit var searchView: MaterialSearchView
+    private lateinit var membersAdapter: MembersAdapter
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setHasOptionsMenu(true)
+        searchView = requireActivity().findViewById(R.id.search_view)
+
+        searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                membersAdapter.filterByName(newText)
+
+                // if there are no elements show TextView and hide RecyclerView
+                if (membersAdapter.itemCount == 0) {
+                    rvMembers.visibility = View.GONE
+                    tv_no_results.visibility = View.VISIBLE
+                    tv_no_results.text = String.format(getString(R.string.no_results_found), newText)
+                } else {
+                    rvMembers.visibility = View.VISIBLE
+                    tv_no_results.visibility = View.GONE
+                }
+                return true
+            }
+        })
+
         membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
-        membersViewModel.successful.observe(this, Observer {
-            successful ->
+        membersViewModel.successful.observe(this, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -46,7 +74,8 @@ class MembersFragment: BaseFragment() {
                     } else {
                         rvMembers.apply {
                             layoutManager = LinearLayoutManager(context)
-                            adapter = MembersAdapter(membersViewModel.userList, openUserProfile)
+                            membersAdapter = MembersAdapter(membersViewModel.userList, openUserProfile)
+                            adapter = membersAdapter
                         }
                         tvEmptyList.visibility = View.GONE
                     }
@@ -68,4 +97,11 @@ class MembersFragment: BaseFragment() {
                 intent.putExtra(Constants.MEMBER_USER_ID, memberId)
                 startActivity(intent)
             }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_members, menu)
+        searchView.setMenuItem(menu.findItem(R.id.search_member))
+    }
+
 }
