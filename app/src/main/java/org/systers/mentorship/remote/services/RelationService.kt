@@ -19,6 +19,13 @@ interface RelationService {
     fun getAllRelationships(): Observable<List<Relationship>>
 
     /**
+     * this function returns all pending mentorship requests and relations of the current user
+     * @return an observable instance of a list of [Relationship]s
+     * */
+    @GET("mentorship_relations/pending")
+    fun getAllPendingRelationships(): Observable<List<Relationship>>
+
+    /**
      * This function performs the acceptance of a mentorship request
      * @return an observable instance of [CustomResponse] with a proper error or success message
      */
