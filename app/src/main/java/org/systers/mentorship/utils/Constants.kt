@@ -9,4 +9,6 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
+    const val SHARED_PREFERENCE_NAME="org.systers.mentorship.utils"
+    const val SHARED_PREFERENCE_KEY="DELETED_REQUESTS_SET"
 }
