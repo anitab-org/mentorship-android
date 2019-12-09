@@ -6,45 +6,66 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground">
 
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/tvProfile"
+        android:layout_width="49dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        app:srcCompat="@drawable/ic_account_circle_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+         />
+
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="279dp"
+        android:layout_height="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/tvProfile"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Larissa" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMentorshipAvailability"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="279dp"
+        android:layout_height="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
+        app:layout_constraintLeft_toRightOf="@id/tvProfile"
         tools:text="Available to mentor and be a mentee" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvInterests"
-        android:layout_width="0dp"
+        android:layout_width="279dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:ellipsize="end"
         android:maxLines="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMentorshipAvailability"
+        app:layout_constraintLeft_toRightOf="@id/tvProfile"
         app:layout_constraintVertical_bias="1.0"
         tools:text="Interests: Web Dev, LinkedIn Optimization" />
 
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
