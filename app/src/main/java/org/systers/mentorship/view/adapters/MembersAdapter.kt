@@ -1,33 +1,39 @@
 package org.systers.mentorship.view.adapters
 
-import androidx.annotation.NonNull
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
+import androidx.annotation.NonNull
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_member_item.view.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * This class represents the adapter that fills in each view of the Members recyclerView
  * @param userList list of users to show
  * @param openDetailFunction function to be called when an item from Members list is clicked
  */
-class MembersAdapter (
-        private val userList: List<User>,
-        private val openDetailFunction: (memberId: Int) -> Unit
-) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
+class MembersAdapter(
+    private val userList: MutableList<User>,
+    private val openDetailFunction: (memberId: Int) -> Unit
+) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>(), Filterable {
+
+    private val usersListFull: MutableList<User> = ArrayList(userList)
 
     val context = MentorshipApplication.getContext()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersViewHolder =
-            MembersViewHolder(
-                    LayoutInflater.from(parent.context)
-                            .inflate(R.layout.list_member_item, parent, false)
-            )
+        MembersViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.list_member_item, parent, false)
+        )
 
     override fun onBindViewHolder(@NonNull holder: MembersViewHolder, position: Int) {
         val item = userList[position]
@@ -63,5 +69,48 @@ class MembersAdapter (
         }
 
         return context.getString(R.string.not_available_to_mentor_or_mentee)
+    }
+
+    override fun getFilter(): Filter = object : Filter() {
+        override fun performFiltering(constraints: CharSequence?): FilterResults {
+            val filteredList: MutableList<User> = ArrayList()
+
+            val newConstraint = constraints.toString().toLowerCase(Locale.getDefault()).trim()
+
+            if (newConstraint.isBlank()) filteredList.addAll(usersListFull)
+            else {
+                usersListFull.forEach {
+                    if (it.name == null) {
+                        return@forEach
+                    }
+
+                    if (it.name != null) {
+                        if (it.name!!.toLowerCase(Locale.getDefault()).trim().contains(newConstraint)
+                        ) {
+                            filteredList.add(it)
+                            return@forEach
+                        }
+                    }
+
+
+                    if (it.username != null) {
+                        if (it.username!!.toLowerCase(Locale.getDefault()).trim().contains(newConstraint)) {
+                            filteredList.add(it)
+                            return@forEach
+                        }
+                    }
+                }
+            }
+
+            return FilterResults().apply {
+                values = filteredList
+            }
+        }
+
+        override fun publishResults(text: CharSequence?, results: FilterResults?) {
+            userList.clear()
+            userList.addAll(results?.values as List<User>)
+            notifyDataSetChanged()
+        }
     }
 }

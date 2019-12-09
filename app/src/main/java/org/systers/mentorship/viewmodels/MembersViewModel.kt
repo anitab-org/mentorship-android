@@ -25,6 +25,8 @@ class MembersViewModel : ViewModel() {
 
     private val userDataManager: UserDataManager = UserDataManager()
 
+    private val query: MutableLiveData<Boolean> = MutableLiveData()
+
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
     lateinit var userList: List<User>
@@ -54,7 +56,7 @@ class MembersViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()

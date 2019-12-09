@@ -9,7 +9,7 @@ import org.systers.mentorship.view.activities.BaseActivity
 
 /**
  * A Fragment class which other Fragments can extend from. It reduces boilerplate of
- * other fragments setting up their own views and  action bat title
+ * other fragments setting up their own views and action bar title
  */
 abstract class BaseFragment: Fragment() {
 
