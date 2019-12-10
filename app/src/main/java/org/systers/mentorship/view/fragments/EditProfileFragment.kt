@@ -19,7 +19,7 @@ import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.EditProfileFragmentErrorStates
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
-
+private const val RETRIEVE_USER = "user"
 /**
  * The fragment is responsible for editing the User's profile
  */
@@ -64,7 +64,8 @@ class EditProfileFragment: DialogFragment() {
         editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
                 R.layout.fragment_edit_profile, null, false)
 
-        editProfileBinding.user = tempUser.copy()
+        editProfileBinding.user = savedInstanceState?.getParcelable(RETRIEVE_USER) ?: tempUser.copy()
+        //Restore state
         currentUser = tempUser.copy()
 
         val dialogBuilder = AlertDialog.Builder(context!!)
@@ -74,6 +75,11 @@ class EditProfileFragment: DialogFragment() {
         dialogBuilder.setNegativeButton(getString(R.string.cancel)) { _, _ -> }
 
         return dialogBuilder.create()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(RETRIEVE_USER, editProfileBinding.user)//Save State
     }
 
     override fun onResume() {
