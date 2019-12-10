@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
         <variable
             name="user"
             type="org.systers.mentorship.models.User" />
@@ -11,223 +12,335 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".view.fragments.ProfileFragment">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgUserAvatar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/default_profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/white"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgCamera"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="140dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/ic_photo_camera_caribbean_24dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.82"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="30dp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiUsername"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/username"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.533"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etUserName">
+                app:layout_constraintTop_toBottomOf="@+id/etUserName"
+                >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
-                    android:text="@={user.username}"/>
+                    android:text="@={user.username}" />
+
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.49"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiUsername">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
-                    android:text="@={user.email}"/>
+                    android:text="@={user.email}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/available_to_mentor"
                 app:layout_constraintEnd_toStartOf="@+id/switchAvailableToMentor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
-            <Switch
+
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchAvailableToMentor"
                 android:layout_width="0dp"
                 android:layout_height="19dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
-                android:enabled="false"
+                android:theme="@drawable/switch_color"
                 android:checked="@{safeUnbox(user.availableToMentor)}"
+                android:clickable="false"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
-            <Switch
+                app:layout_constraintTop_toBottomOf="@+id/tiEmail"
+                tools:layout_editor_absoluteY="341dp"
+                android:layout_marginRight="16dp" />
+
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switchNeedMentorship"
                 android:layout_width="0dp"
                 android:layout_height="13dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="12dp"
-                android:enabled="false"
+                android:layout_marginEnd="16dp"
+                android:theme="@drawable/switch_color"
                 android:checked="@{safeUnbox(user.needsMentoring)}"
+                android:clickable="false"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switchAvailableToMentor" />
+                app:layout_constraintTop_toBottomOf="@+id/switchAvailableToMentor"
+                android:layout_marginRight="16dp" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
                 android:layout_height="27dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/need_mentoring"
                 app:layout_constraintEnd_toStartOf="@+id/switchNeedMentorship"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiBio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/bio"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
                     android:text="@={user.bio}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:ems="10"
+                android:enabled="false"
                 android:gravity="center_horizontal"
                 android:hint="@string/name"
+                android:textColor="@color/text_color_selector"
+                android:backgroundTint="#00000000"
                 android:inputType="textPersonName"
-                android:enabled="false"
                 android:text="@={user.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/imgUserAvatar" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiSlackUsername"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/slack_username"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiBio">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
                     android:text="@={user.slackUsername}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiLocation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/location"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiSlackUsername">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
                     android:text="@={user.location}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiOrganization"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/organization"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiOccupation">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
                     android:text="@={user.organization}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiOccupation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/occupation"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiLocation">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
                     android:text="@={user.occupation}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiSkills"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/skills"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiOrganization">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
                     android:text="@={user.skills}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tiInterests"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
                 android:hint="@string/interests"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tiSkills">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_selector"
+                    android:backgroundTint="#00000000"
                     android:enabled="false"
                     android:text="@={user.interests}" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnUpdateProfile"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="175dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/ic_check_caribbean_24dp"
+                android:background="@null"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiInterests"
+                android:layout_marginLeft="175dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnCancelUpdateProfile"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="175dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/ic_clear_aubergine_24dp"
+                android:background="@null"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiInterests"
+                android:layout_marginRight="175dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

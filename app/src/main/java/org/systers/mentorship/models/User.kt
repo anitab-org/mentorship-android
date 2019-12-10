@@ -21,6 +21,7 @@ import kotlinx.android.parcel.Parcelize
  * @param needsMentoring true, if user wants to be mentored, false if otherwise
  * @param isAvailableToMentor true, if user is available to mentor, false if otherwise
  * @param slackUsername Slack username
+ * @param photoUrl URI of the user's profile photo
  */
 @SuppressLint("ParcelCreator")
 @Parcelize
@@ -37,5 +38,6 @@ data class User(
         var skills: String? = null,
         @SerializedName("need_mentoring") var needsMentoring: Boolean? = null,
         @SerializedName("available_to_mentor") var isAvailableToMentor: Boolean? = null,
-        @SerializedName("slack_username") var slackUsername: String? = null
+        @SerializedName("slack_username") var slackUsername: String? = null,
+        @SerializedName("photo_url") var photoUrl: String? = null
 ) : Parcelable
