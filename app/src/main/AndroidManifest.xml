@@ -14,6 +14,7 @@
         android:usesCleartextTraffic="${usesCleartextTraffic}"
         android:theme="@style/AppTheme">
         <activity android:name=".view.activities.AboutActivity"></activity>
+        <activity android:name=".view.activities.FeedbackActivity"/>
         <activity
             android:name=".view.activities.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
