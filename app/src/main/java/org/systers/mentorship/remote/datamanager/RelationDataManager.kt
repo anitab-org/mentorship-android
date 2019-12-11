@@ -74,4 +74,12 @@ class RelationDataManager {
     fun getCurrentRelationship(): Observable<Relationship> {
         return apiManager.relationService.getCurrentRelationship()
     }
+
+    /**
+     * This will call a method from RelationService interface to get pending mentorship relations
+     * @return an Observable of a list of [Relationship]
+     */
+    fun getPendingRelationships(): Observable<List<Relationship>> {
+        return apiManager.relationService.getPendingRelationship()
+    }
 }

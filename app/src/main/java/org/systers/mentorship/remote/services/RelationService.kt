@@ -60,4 +60,11 @@ interface RelationService {
      */
     @GET("mentorship_relations/current")
     fun getCurrentRelationship(): Observable<Relationship>
+
+    /**
+     * This function return the pending mentorship relation
+     * @return an Observable of a list of [Relationship]
+     */
+    @GET("mentorship_relations/pending")
+    fun getPendingRelationship(): Observable<List<Relationship>>
 }

@@ -10,6 +10,7 @@ import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.getUnixTimestampInMilliseconds
 import org.systers.mentorship.view.fragments.RequestPagerFragment
+import org.systers.mentorship.view.fragments.RequestsFragment
 
 /**
  * This is the [FragmentPagerAdapter] responsible for the configuration each fragment assigned to
@@ -34,14 +35,11 @@ class RequestsPagerAdapter(
 
     val context = MentorshipApplication.getContext()
 
-    private val pendingList: List<Relationship> by lazy {
-        requestsList.filter {
-            val isPendingState = RelationState.PENDING.value == it.state
-            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()
+    /**
+     * stores the pendingRequestList from the RequestsFragment
+     * */
+    private val pendingList: List<Relationship> =  RequestsFragment.pendingRequestsList
 
-            isPendingState && !hasEndTimePassed
-        }
-    }
     private val pastList: List<Relationship> by lazy {
         requestsList.filter {
             val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()

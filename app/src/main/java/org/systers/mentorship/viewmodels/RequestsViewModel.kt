@@ -26,8 +26,10 @@ class RequestsViewModel : ViewModel() {
     private val relationDataManager = RelationDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
+    val successfulPending: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
     lateinit var allRequestsList: List<Relationship>
+    lateinit var pendingRequestsList: List<Relationship>
 
     /**
      * Fetches list of all Mentorship relations and requests
@@ -63,6 +65,47 @@ class RequestsViewModel : ViewModel() {
                             }
                         }
                         successful.value = false
+                    }
+
+                    override fun onComplete() {
+                    }
+                })
+    }
+
+    /**
+     * Fetches list of pending Mentorship relations and requests
+     */
+    @SuppressLint("CheckResult")
+    fun getPendingMentorshipRelations() {
+        relationDataManager.getPendingRelationships()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<Relationship>>() {
+                    override fun onNext(relationsList: List<Relationship>) {
+                        pendingRequestsList = relationsList
+                        successfulPending.value = true
+                    }
+
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TAG, throwable.localizedMessage)
+                            }
+                        }
+                        successfulPending.value = false
                     }
 
                     override fun onComplete() {
