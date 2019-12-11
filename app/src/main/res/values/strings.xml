@@ -149,4 +149,11 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="your_profile">Your profile</string>
+    <string name="profile_update">Profile update</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="update">Update</string>
+    <string name="continue_editing">Continue editing</string>
+    <string name="cancel_profile_update">Cancel profile update</string>
+    <string name="not_implemented">This functionality is not yet implemented</string>
 </resources>

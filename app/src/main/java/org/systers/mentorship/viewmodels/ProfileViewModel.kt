@@ -22,14 +22,19 @@ import java.util.concurrent.TimeoutException
  */
 class ProfileViewModel: ViewModel() {
 
-    var TAG = ProfileViewModel::class.java.simpleName
+    private val TAG = ProfileViewModel::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 
+    val editInProgress: MutableLiveData<Boolean> = MutableLiveData()
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var user: User
     lateinit var message: String
+
+    init {
+        editInProgress.value = false
+    }
 
     /**
      * Fetches the current users full profile

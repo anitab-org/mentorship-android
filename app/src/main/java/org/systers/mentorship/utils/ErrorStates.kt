@@ -12,17 +12,17 @@ sealed class EditProfileFragmentErrorStates {
      * An object to represent the error case when the
      * entered name of the user is empty.
      */
-    object EmptyNameError: EditProfileFragmentErrorStates()
+    object EmptyNameError : EditProfileFragmentErrorStates()
 
     /**
      * An object to represent the error case when the
      * entered name of the user is too short.
      */
-    object NameTooShortError: EditProfileFragmentErrorStates()
+    object NameTooShortError : EditProfileFragmentErrorStates()
 
     /**
      * An object to represent the error case when the
      * entered name of the user is too long.
      */
-    object NameTooLongError: EditProfileFragmentErrorStates()
+    object NameTooLongError : EditProfileFragmentErrorStates()
 }

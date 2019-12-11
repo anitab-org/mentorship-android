@@ -4,6 +4,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
@@ -12,6 +15,7 @@ import org.systers.mentorship.R
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.activities.MemberProfileActivity
+import org.systers.mentorship.view.activities.SettingsActivity
 import org.systers.mentorship.view.adapters.MembersAdapter
 import org.systers.mentorship.viewmodels.MembersViewModel
 
@@ -33,6 +37,9 @@ class MembersFragment: BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        setHasOptionsMenu(true)
+        baseActivity.setSupportActionBar(tbMembers)
 
         membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
         membersViewModel.successful.observe(this, Observer {
@@ -68,4 +75,18 @@ class MembersFragment: BaseFragment() {
                 intent.putExtra(Constants.MEMBER_USER_ID, memberId)
                 startActivity(intent)
             }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
+            R.id.menu_settings -> {
+                startActivity(Intent(context, SettingsActivity::class.java))
+                true
+            }
+            else -> false
+        }
 }

@@ -70,20 +70,6 @@ class MainActivity: BaseActivity() {
         false
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) =
-            when (item.itemId) {
-                R.id.menu_settings -> {
-                    startActivity(Intent(this, SettingsActivity::class.java))
-                    true
-                }
-                else -> false
-            }
-
     private fun showHomeFragment() {
         atHome = true
         bottomNavigation.selectedItemId = R.id.navigation_home

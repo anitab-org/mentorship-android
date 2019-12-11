@@ -1,9 +1,7 @@
 package org.systers.mentorship.view.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -31,10 +29,12 @@ class HomeFragment : BaseFragment() {
          * Creates an instance of HomeFragment
          */
         fun newInstance() = HomeFragment()
+
         val TAG: String = HomeFragment::class.java.simpleName
     }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_home
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
         return binding.root
@@ -57,6 +57,9 @@ class HomeFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setHasOptionsMenu(true)
+        baseActivity.setSupportActionBar(tbHome)
+
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
         with(homeViewModel) {
@@ -76,6 +79,11 @@ class HomeFragment : BaseFragment() {
                 Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
             })
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.main_menu, menu)
     }
 }
 

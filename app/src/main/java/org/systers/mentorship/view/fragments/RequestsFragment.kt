@@ -1,8 +1,10 @@
 package org.systers.mentorship.view.fragments
 
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
@@ -34,14 +36,17 @@ class RequestsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setHasOptionsMenu(true)
+        baseActivity.setSupportActionBar(tbRequests)
+
         requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
-        requestsViewModel.successful.observe(this, Observer {
-            successful ->
+        requestsViewModel.successful.observe(this, Observer { successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                        vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
-                        tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                    vpMentorshipRequests.adapter =
+                        RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
+                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
                 } else {
                     view?.let {
                         Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -52,5 +57,10 @@ class RequestsFragment : BaseFragment() {
 
         activityCast.showProgressDialog(getString(R.string.fetching_requests))
         requestsViewModel.getAllMentorshipRelations()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.main_menu, menu)
     }
 }
