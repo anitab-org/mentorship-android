@@ -1,9 +1,8 @@
 package org.systers.mentorship.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentHomeBinding
+import org.systers.mentorship.view.activities.SettingsActivity
 import org.systers.mentorship.view.adapters.AchievementsAdapter
 import org.systers.mentorship.viewmodels.HomeViewModel
 
@@ -31,12 +31,14 @@ class HomeFragment : BaseFragment() {
          * Creates an instance of HomeFragment
          */
         fun newInstance() = HomeFragment()
+
         val TAG: String = HomeFragment::class.java.simpleName
     }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_home
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -77,5 +79,18 @@ class HomeFragment : BaseFragment() {
             })
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
+        R.id.menu_settings -> {
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
+            true
+        }
+        else -> false
+    }
+
 }
 

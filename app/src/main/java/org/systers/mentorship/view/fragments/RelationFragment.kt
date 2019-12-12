@@ -2,11 +2,15 @@ package org.systers.mentorship.view.fragments
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.fragment_relation_pager.*
@@ -15,6 +19,7 @@ import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.EXTENDED_DATE_FORMAT
 import org.systers.mentorship.utils.convertUnixTimestampIntoStr
 import org.systers.mentorship.view.activities.MainActivity
+import org.systers.mentorship.view.activities.SettingsActivity
 import org.systers.mentorship.viewmodels.RelationViewModel
 
 @SuppressLint("ValidFragment")
@@ -42,6 +47,7 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
 
         activityCast.showProgressDialog(getString(R.string.fetching_users))
         populateView(mentorshipRelation)
@@ -95,4 +101,17 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
                 }?.create()?.show()
             }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
+        R.id.menu_settings -> {
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
+            true
+        }
+        else -> false
+    }
+
 }

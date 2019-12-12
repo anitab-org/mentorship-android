@@ -10,9 +10,11 @@ import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
+import org.systers.mentorship.models.UserCopy
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
+import org.systers.mentorship.utils.toUserCopy
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
@@ -20,15 +22,16 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
 
-    var TAG = ProfileViewModel::class.java.simpleName
+    private val TAG = ProfileViewModel::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
-    lateinit var user: User
+    val edit: MutableLiveData<Boolean> = MutableLiveData()
+    lateinit var user: UserCopy
     lateinit var message: String
 
     /**
@@ -41,9 +44,10 @@ class ProfileViewModel: ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<User>() {
                     override fun onNext(userprofile: User) {
-                        user = userprofile
+                        user = userprofile.toUserCopy()
                         successfulGet.value = true
                     }
+
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -65,6 +69,7 @@ class ProfileViewModel: ViewModel() {
                         }
                         successfulGet.value = false
                     }
+
                     override fun onComplete() {
                     }
                 })
@@ -82,6 +87,7 @@ class ProfileViewModel: ViewModel() {
                     override fun onNext(response: CustomResponse) {
                         successfulUpdate.value = true
                     }
+
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -103,8 +109,10 @@ class ProfileViewModel: ViewModel() {
                         }
                         successfulUpdate.value = false
                     }
+
                     override fun onComplete() {
                     }
                 })
     }
+
 }
