@@ -60,10 +60,12 @@ class SendRequestActivity: BaseActivity() {
             }
         }
         ivCalendar.setOnClickListener {
-          DatePickerDialog(this , date ,
+          val datepicker = DatePickerDialog(this , date ,
                   myCalendar.get(Calendar.YEAR) ,
                   myCalendar.get(Calendar.MONTH) ,
-                  myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+                  myCalendar.get(Calendar.DAY_OF_MONTH))
+            datepicker.datePicker.minDate = myCalendar.time.time
+            datepicker.show()
       }
     }
     private fun updateEndDateEditText() {
