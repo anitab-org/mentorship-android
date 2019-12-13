@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.activities
 
+import android.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -11,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.viewmodels.LoginViewModel
+import androidx.appcompat.widget.AppCompatEditText
+import android.view.LayoutInflater
 
 /**
  * This activity will let the user to login using username/email and password.
@@ -43,6 +46,9 @@ class LoginActivity : BaseActivity() {
                 }
             }
         })
+        btnForgotPassword.setOnClickListener {
+            forgotPassword()
+        }
 
         btnLogin.setOnClickListener {
            login()
@@ -77,6 +83,27 @@ class LoginActivity : BaseActivity() {
             tiPassword.error = null
         }
         return validCredentials
+    }
+
+    private fun forgotPassword(){
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle(R.string.forgot_password)
+        builder.setMessage(R.string.enter_email)
+
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_enter_email, null)
+        val input = view.findViewById(R.id.etEnterEmail) as AppCompatEditText
+        builder.setView(view)
+        builder.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.cancel() }
+
+        builder.setPositiveButton(R.string.enter) { _, _ ->
+            username = input.getText().toString()
+            Toast.makeText(this, getString(R.string.email_sent, username),
+                    Toast.LENGTH_LONG).show()
+        }
+
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun login() {

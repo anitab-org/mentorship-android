@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Systers Mentorship</string>
     <string name="logo">Logo</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="enter_email">Please enter your email id to receive password reset instructions</string>
+    <string name="enter">Enter</string>
+    <string name="email_sent">An email has been sent to %1$s</string>
     <string name="login">Login</string>
     <string name="update_profile">Update</string>
     <string name="sign_up">Sign Up</string>
