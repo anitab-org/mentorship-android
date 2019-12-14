@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
@@ -14,7 +13,7 @@ import org.systers.mentorship.view.fragments.*
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
  */
-class MainActivity: BaseActivity() {
+class MainActivity : BaseActivity() {
 
     private var atHome = true
 
@@ -23,6 +22,8 @@ class MainActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setSupportActionBar(toolbar)
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
