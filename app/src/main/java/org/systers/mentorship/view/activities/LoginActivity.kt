@@ -54,6 +54,10 @@ class LoginActivity : BaseActivity() {
             finish()
         }
 
+        btnForgotPassword.setOnClickListener {
+            onForgotPassword()
+        }
+
         tiPassword.editText?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 login()
@@ -92,6 +96,13 @@ class LoginActivity : BaseActivity() {
         super.onDestroy()
         loginViewModel.successful.removeObservers(this)
         loginViewModel.successful.value = null
+    }
+
+    private fun onForgotPassword() {
+        val toast = Toast.makeText(applicationContext,
+                getString(R.string.forgot_password) + " " + username,
+                Toast.LENGTH_LONG)
+        toast.show()
     }
 }
 
