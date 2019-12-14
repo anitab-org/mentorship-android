@@ -22,7 +22,7 @@ class RequestsFragment : BaseFragment() {
          */
         fun newInstance() = RequestsFragment()
 
-        val TAG = RelationFragment::class.java.simpleName
+        private val TAG = RelationFragment::class.java.simpleName
     }
 
     private lateinit var requestsViewModel: RequestsViewModel
@@ -35,22 +35,32 @@ class RequestsFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
-        requestsViewModel.successful.observe(this, Observer {
-            successful ->
+        requestsViewModel.successful.observe(this, Observer { successful ->
             activityCast.hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                        vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
+            if (successful) {
+                // wait till the pending requests are loaded
+                requestsViewModel.pendingSuccessful.observe(this, Observer { pendingSuccessful ->
+                    if (pendingSuccessful) {
+                        vpMentorshipRequests.adapter = RequestsPagerAdapter(
+                                requestsViewModel.allRequestsList,
+                                requestsViewModel.pendingRequestsList,
+                                childFragmentManager)
                         tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
-                } else {
-                    view?.let {
-                        Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()
+                    } else {
+                        view?.let {
+                            Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()
+                        }
                     }
+                })
+            } else {
+                view?.let {
+                    Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()
                 }
             }
         })
 
         activityCast.showProgressDialog(getString(R.string.fetching_requests))
         requestsViewModel.getAllMentorshipRelations()
+        requestsViewModel.getPendingMentorshipRelations()
     }
 }

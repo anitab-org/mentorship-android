@@ -21,13 +21,15 @@ import java.util.concurrent.TimeoutException
  */
 class RequestsViewModel : ViewModel() {
 
-    var TAG = RequestsViewModel::class.java.simpleName
+    private val TAG = RequestsViewModel::class.java.simpleName
 
     private val relationDataManager = RelationDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
+    val pendingSuccessful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
     lateinit var allRequestsList: List<Relationship>
+    lateinit var pendingRequestsList: List<Relationship>
 
     /**
      * Fetches list of all Mentorship relations and requests
@@ -54,7 +56,7 @@ class RequestsViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -65,8 +67,48 @@ class RequestsViewModel : ViewModel() {
                         successful.value = false
                     }
 
-                    override fun onComplete() {
-                    }
+                    override fun onComplete() {}
                 })
     }
+
+    /**
+     * Fetches list of all  pending Mentorship relations and requests
+     */
+    @SuppressLint("CheckResult")
+    fun getPendingMentorshipRelations() {
+        relationDataManager.getPendingRelationsAndRequests()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<Relationship>>() {
+                    override fun onNext(relationsList: List<Relationship>) {
+                        pendingRequestsList = relationsList
+                        pendingSuccessful.value = true
+                    }
+
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TAG, throwable.localizedMessage)
+                            }
+                        }
+                        pendingSuccessful.value = false
+                    }
+
+                    override fun onComplete() {}
+                })
+    }
+
 }
