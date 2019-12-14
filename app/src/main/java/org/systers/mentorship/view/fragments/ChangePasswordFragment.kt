@@ -38,7 +38,11 @@ class ChangePasswordFragment : DialogFragment() {
 
             if (successful != null) {
                 when {
-                    successful -> Toast.makeText(activity, getString(R.string.password_updated), Toast.LENGTH_SHORT).show()
+                    successful -> Toast.makeText(
+                        activity,
+                        getString(R.string.password_updated),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     else -> Toast.makeText(activity, changePasswordViewModel.message, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -47,14 +51,17 @@ class ChangePasswordFragment : DialogFragment() {
         })
 
         changePasswordView = LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(getString(R.string.change_password))
-        builder.setView(changePasswordView)
-        builder.setPositiveButton(getString(R.string.ok)) { _, _ -> }
-        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-            dialog.cancel()
-        }
-        return builder.create()
+
+        isCancelable = false
+
+        return AlertDialog.Builder(requireContext()).apply {
+            setTitle(getString(R.string.change_password))
+            setView(changePasswordView)
+            setPositiveButton(getString(R.string.ok)) { _, _ -> }
+            setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                dialog.cancel()
+            }
+        }.show()
     }
 
     override fun onResume() {
@@ -76,7 +83,7 @@ class ChangePasswordFragment : DialogFragment() {
         }
     }
 
-    private fun validatePassword() : Boolean {
+    private fun validatePassword(): Boolean {
         return if (newPassword == confirmPassword && newPassword != currentPassword) {
             true
         } else {
