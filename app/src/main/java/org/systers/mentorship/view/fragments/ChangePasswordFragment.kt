@@ -46,6 +46,8 @@ class ChangePasswordFragment : DialogFragment() {
 
         })
 
+        isCancelable = false
+
         changePasswordView = LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(getString(R.string.change_password))
