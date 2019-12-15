@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.activities
 
+import android.app.Dialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -15,6 +16,9 @@ import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 import android.content.Intent
+import android.view.Window
+import android.widget.TextView
+import kotlinx.android.synthetic.main.dialog_confirm_request.*
 import org.systers.mentorship.view.fragments.RequestPagerFragment
 
 /**
@@ -27,6 +31,9 @@ class RequestDetailActivity: BaseActivity() {
     private val mentorshipRelationResponse by lazy {
         intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)
     }
+
+    private var otherUserName:String=""
+    private var isFromMentee:Boolean=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +48,11 @@ class RequestDetailActivity: BaseActivity() {
 
     private fun populateView(relationResponse: Relationship) {
         tvRequestNotes.text = relationResponse.notes
-        val isFromMentee: Boolean = relationResponse.actionUserId == relationResponse.mentee.id
+        isFromMentee = relationResponse.actionUserId == relationResponse.mentee.id
 
         val requestDirection = getString(if (relationResponse.sentByMe) R.string.to else R.string.from)
 
-        val otherUserName = if (relationResponse.sentByMe) {
+        otherUserName = if (relationResponse.sentByMe) {
             if (isFromMentee) {
                 relationResponse.mentor.name
             } else {
@@ -123,17 +130,65 @@ class RequestDetailActivity: BaseActivity() {
 
     private fun setOnClickListeners(relationResponse: Relationship) {
 
+        /**
+         * The onClickListeners() passes the control to generateDialog() method
+         * which generates the dialog box according to the params provided.
+         * */
+
         btnDelete.setOnClickListener {
             requestDetailViewModel.deleteRequest(relationResponse.id)
         }
 
         btnReject.setOnClickListener {
-            requestDetailViewModel.rejectRequest(relationResponse.id)
+            generateDialog(resources.getString(R.string.reject_lower_case),relationResponse)
         }
 
         btnAccept.setOnClickListener {
-            requestDetailViewModel.acceptRequest(relationResponse.id)
+            generateDialog(resources.getString(R.string.accept_lower_case),relationResponse)
         }
+
+    }
+
+    /**
+     * This method generates the dialog box for different types of request according to the params,
+     * asking for the confirmation of user choice.
+     * */
+
+    private fun generateDialog(typeRequest:String,relationResponse: Relationship){
+
+        var role=if(isFromMentee)resources.getString(R.string.mentee_lower_case) else resources.getString(R.string.mentor_lower_case)
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.dialog_confirm_request)
+
+        /**
+         * Customising the text to be displayed on DialogBox
+         * In this, three values are variables
+         *      1. typeRequest --> which takes value of 'accept/reject/delete'.
+         *      2. otherUserName --> the username of the person who has sent this request
+         *      3. role --> the role of the person, whether a 'mentor/mentee'
+         * */
+        var message=resources.getString(R.string.confirm_dialog_message,typeRequest,otherUserName,role)
+        dialog.findViewById<TextView>(R.id.tvTitleDialog)
+                .setText(message)
+
+        dialog.btnYes.setOnClickListener {
+
+            if (typeRequest.equals(R.string.accept_lower_case)){
+                requestDetailViewModel.acceptRequest(relationResponse.id)
+            }
+            else if (typeRequest.equals(R.string.reject_lower_case)){
+                requestDetailViewModel.rejectRequest(relationResponse.id)
+            }
+        }
+
+        dialog.btnNo.setOnClickListener {
+            dialog.hide()
+        }
+
+        dialog.show()
     }
 
     private fun setObservables(relationResponse: Relationship) {

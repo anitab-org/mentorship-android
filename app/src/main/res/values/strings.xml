@@ -149,4 +149,9 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="accept_lower_case">accept</string>
+    <string name="reject_lower_case">reject</string>
+    <string name="mentee_lower_case">mentee</string>
+    <string name="mentor_lower_case">mentor</string>
+    <string name="confirm_dialog_message">Are you sure you want to %1$s the request of %2$s as your %3$s..?</string>
 </resources>
