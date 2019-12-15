@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -32,39 +33,36 @@ class ChangePasswordFragment : DialogFragment() {
     private lateinit var newPassword: String
     private lateinit var confirmPassword: String
 
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         changePasswordViewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
         changePasswordViewModel.successfulUpdate.observe(this, Observer { successful ->
+            Toast.makeText(activity,
+                    if (successful != null && successful) getString(R.string.password_updated)
+                    else changePasswordViewModel.message,
+                    Toast.LENGTH_SHORT).show()
 
-            if (successful != null) {
-                when {
-                    successful -> Toast.makeText(activity, getString(R.string.password_updated), Toast.LENGTH_SHORT).show()
-                    else -> Toast.makeText(activity, changePasswordViewModel.message, Toast.LENGTH_SHORT).show()
-                }
-            }
             dismiss()
-
         })
 
         isCancelable = false
 
         changePasswordView = LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(getString(R.string.change_password))
-        builder.setView(changePasswordView)
-        builder.setPositiveButton(getString(R.string.ok)) { _, _ -> }
-        builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-            dialog.cancel()
-        }
-        return builder.create()
+
+        return AlertDialog.Builder(requireContext()).apply {
+            setTitle(getString(R.string.change_password))
+            setView(changePasswordView)
+            setPositiveButton(getString(R.string.ok)) { _, _ -> }
+            setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                dialog.cancel()
+            }
+        }.create()
     }
 
     override fun onResume() {
         super.onResume()
 
-        val passwordDialog = dialog as? AlertDialog
-
-        passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
+        (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
             currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
             newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
             confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
@@ -72,22 +70,21 @@ class ChangePasswordFragment : DialogFragment() {
             changePasswordView.tilConfirmPassword?.error = null
             changePasswordView.tilNewPassword?.error = null
 
-            if (validatePassword()) {
+            if (validatePassword())
                 changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword, newPassword))
-            }
         }
     }
 
-    private fun validatePassword() : Boolean {
-        return if (newPassword == confirmPassword && newPassword != currentPassword) {
+    private fun validatePassword(): Boolean {
+        return if (newPassword == confirmPassword && newPassword != currentPassword)
             true
-        } else {
-            if (currentPassword == newPassword) {
+        else {
+            if (currentPassword == newPassword)
                 changePasswordView.tilNewPassword?.error = getString(R.string.current_new_password_should_not_same)
-            }
-            if (newPassword != confirmPassword) {
+
+            if (newPassword != confirmPassword)
                 changePasswordView.tilConfirmPassword?.error = getString(R.string.password_not_match)
-            }
+
             false
         }
     }
@@ -97,4 +94,5 @@ class ChangePasswordFragment : DialogFragment() {
         changePasswordViewModel.successfulUpdate.removeObservers(this)
         changePasswordViewModel.successfulUpdate.value = null
     }
+
 }
