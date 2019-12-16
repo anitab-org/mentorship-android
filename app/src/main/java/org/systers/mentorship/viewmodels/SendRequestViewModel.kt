@@ -41,8 +41,7 @@ class SendRequestViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message ?: MentorshipApplication.getContext()
-                                .getString(R.string.registration_successful)
+                        message = customResponse.message
                         successful.value = true
                     }
 
