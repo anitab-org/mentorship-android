@@ -74,6 +74,8 @@ class ChangePasswordFragment : DialogFragment() {
                 changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword, newPassword))
             }
         }
+
+        passwordDialog?.setCancelable(false)
     }
 
     private fun validatePassword() : Boolean {
