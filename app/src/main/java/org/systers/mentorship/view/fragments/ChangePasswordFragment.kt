@@ -54,7 +54,10 @@ class ChangePasswordFragment : DialogFragment() {
         builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
             dialog.cancel()
         }
-        return builder.create()
+        builder.setCancelable(false)
+        val dialog = builder.create()
+        dialog.setCanceledOnTouchOutside(false)
+        return dialog
     }
 
     override fun onResume() {
