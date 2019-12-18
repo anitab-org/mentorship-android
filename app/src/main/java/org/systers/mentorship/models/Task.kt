@@ -16,7 +16,7 @@ import kotlinx.android.parcel.Parcelize
  * @param completedAt Unix timestamp of when this task was completed
  */
 
-@SuppressLint("ParcelCreator")
+
 @Parcelize
 data class Task(
         val id: Int,

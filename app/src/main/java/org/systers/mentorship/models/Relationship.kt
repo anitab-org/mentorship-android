@@ -22,7 +22,7 @@ import kotlinx.android.parcel.Parcelize
  * @param state state of the relation (@link to RelationState)
  * @param notes notes related to the mentorship relation
  */
-@SuppressLint("ParcelCreator")
+
 @Parcelize
 data class Relationship(
         val id: Int,
