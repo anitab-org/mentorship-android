@@ -25,6 +25,7 @@ class ProfileFragment : BaseFragment() {
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
     private lateinit var profileViewModel: ProfileViewModel
+    private var enableProfileEdit = false
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
@@ -45,6 +46,7 @@ class ProfileFragment : BaseFragment() {
             if (successful != null) {
                 if (successful) {
                     fragmentProfileBinding.user = profileViewModel.user
+                    enableProfileEdit = true
                 } else {
                     Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
                             Snackbar.LENGTH_LONG).show()
@@ -63,8 +65,11 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
-                        getString(R.string.fragment_title_edit_profile))
+                // true if profileViewModel returns success
+                if (enableProfileEdit){
+                    EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
+                            getString(R.string.fragment_title_edit_profile))
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
