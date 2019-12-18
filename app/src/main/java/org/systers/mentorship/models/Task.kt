@@ -1,6 +1,5 @@
 package org.systers.mentorship.models
 
-
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -15,7 +14,6 @@ import kotlinx.android.parcel.Parcelize
  * @param createdAt Unix timestamp of when this task was created
  * @param completedAt Unix timestamp of when this task was completed
  */
-
 
 @Parcelize
 data class Task(
