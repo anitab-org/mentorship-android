@@ -22,7 +22,6 @@ import kotlinx.android.parcel.Parcelize
  * @param isAvailableToMentor true, if user is available to mentor, false if otherwise
  * @param slackUsername Slack username
  */
-@SuppressLint("ParcelCreator")
 @Parcelize
 data class User(
         var id: Int? = null,

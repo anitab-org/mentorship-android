@@ -16,7 +16,6 @@ import kotlinx.android.parcel.Parcelize
  * @param achievements a list of up-to 3 completed tasks
  */
 
-@SuppressLint("ParcelCreator")
 @Parcelize
 data class HomeStatistics(
         val name: String,
