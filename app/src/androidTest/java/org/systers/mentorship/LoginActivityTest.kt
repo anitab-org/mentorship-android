@@ -8,7 +8,6 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
 import org.hamcrest.CoreMatchers.allOf
@@ -18,13 +17,11 @@ import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.systers.mentorship.view.activities.LoginActivity
 
 /**
  * This class specifies the UI test for LoginActivity
  */
-@RunWith(AndroidJUnit4::class)
 class LoginActivityTest {
     private val EMPTY_USERNAME_ERROR: String = "Username cannot be empty"
     private val EMPTY_PASSWORD_ERROR: String = "Password cannot be empty"

@@ -11,7 +11,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
 import org.hamcrest.Description
@@ -23,13 +22,11 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.systers.mentorship.view.activities.SignUpActivity
 
 /**
  * This class specifies the UI test for SignUpActivity
  */
-@RunWith(AndroidJUnit4::class)
 class SignUpActivityTest {
 
     private val EMPTY_USERNAME_ERROR: String = "Username cannot be empty"
