@@ -1,6 +1,6 @@
 package org.systers.mentorship.models
 
-import android.annotation.SuppressLint
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -16,7 +16,7 @@ import kotlinx.android.parcel.Parcelize
  * @param achievements a list of up-to 3 completed tasks
  */
 
-@SuppressLint("ParcelCreator")
+
 @Parcelize
 data class HomeStatistics(
         val name: String,
