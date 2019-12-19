@@ -150,4 +150,5 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
     <string name="forgot_password_string">Forgot Password</string>
+    <string name="toast_email_sent_string">An email has been sent to</string>
 </resources>

@@ -45,7 +45,7 @@ class LoginActivity : BaseActivity() {
         })
 
         btnForgotPassword.setOnClickListener {
-            Toast.makeText(this, "An email has been sent to <user's-email-id>", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_email_sent_string)+tiUsername.editText?.text.toString(), Toast.LENGTH_SHORT).show()
         }
 
         btnLogin.setOnClickListener {
