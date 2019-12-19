@@ -149,4 +149,11 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="btn_filter_dialog_positive">Set</string>
+    <string name="btn_filter_dialog_negative">Cancel</string>
+    <string name="title_filter_dialog">"Filter pattern for the %1$s:"</string>
+    <string name="apply">Apply</string>
+    <string name="filters">Filters</string>
+    <string name="clear_filters">Clear</string>
+    <string name="filter_applied">true</string>
 </resources>
