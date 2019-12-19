@@ -23,7 +23,7 @@ import java.util.concurrent.TimeoutException
  */
 class SendRequestViewModel : ViewModel() {
 
-    var TAG = SendRequestViewModel::class.java.simpleName
+    var tag = SendRequestViewModel::class.java.simpleName!!
 
     private val relationDataManager: RelationDataManager = RelationDataManager()
 
@@ -62,7 +62,7 @@ class SendRequestViewModel : ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successful.value = false
@@ -73,3 +73,4 @@ class SendRequestViewModel : ViewModel() {
                 })
     }
 }
+
