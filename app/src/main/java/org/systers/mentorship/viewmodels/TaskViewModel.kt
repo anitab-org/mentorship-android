@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException
  */
 class TasksViewModel: ViewModel() {
 
-    var TAG = TasksViewModel::class.java.simpleName
+    var tag = TasksViewModel::class.java.simpleName!!
 
     lateinit var tasksList: List<Task>
 
@@ -59,7 +59,7 @@ class TasksViewModel: ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successful.value = false
