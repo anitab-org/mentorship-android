@@ -1,6 +1,5 @@
 package org.systers.mentorship.models
 
-import android.annotation.SuppressLint
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
