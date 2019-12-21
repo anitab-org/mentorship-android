@@ -30,6 +30,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/generic_28sp"
                 android:text="@string/about_systers"
+                android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -38,6 +39,7 @@
                 android:layout_height="76dp"
                 android:layout_gravity="center"
                 android:text="@string/about_app"
+                android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
