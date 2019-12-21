@@ -44,6 +44,10 @@ class LoginActivity : BaseActivity() {
             }
         })
 
+        btnForgotPassword.setOnClickListener {
+            Toast.makeText(this, getString(R.string.toast_email_sent_string)+" "+tiUsername.editText?.text.toString(), Toast.LENGTH_SHORT).show()
+        }
+
         btnLogin.setOnClickListener {
            login()
         }
