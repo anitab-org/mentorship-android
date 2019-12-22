@@ -1,11 +1,13 @@
 package org.systers.mentorship.view.activities
 
+import android.content.Context
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
@@ -45,7 +47,8 @@ class LoginActivity : BaseActivity() {
         })
 
         btnLogin.setOnClickListener {
-           login()
+            hideKeyboard()
+            login()
         }
 
         btnSignUp.setOnClickListener {
@@ -77,6 +80,14 @@ class LoginActivity : BaseActivity() {
             tiPassword.error = null
         }
         return validCredentials
+    }
+
+    /**
+     * This method closes the virtual keyboard on the device.
+     * */
+    private fun hideKeyboard(){
+        var inputMethodManager:InputMethodManager= getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(if(null==currentFocus) null else currentFocus.windowToken,InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     private fun login() {
