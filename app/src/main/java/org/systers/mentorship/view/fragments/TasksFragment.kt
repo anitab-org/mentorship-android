@@ -8,6 +8,8 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
 import kotlinx.android.synthetic.main.task_list_item.*
@@ -33,7 +35,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         val TAG = TasksFragment::class.java.simpleName
     }
 
-    val appContext = MentorshipApplication.getContext()
+    private val appContext = MentorshipApplication.getContext()
 
     private lateinit var taskViewModel: TasksViewModel
 
@@ -42,8 +44,8 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        taskViewModel = ViewModelProviders.of(this).get(TasksViewModel::class.java)
-        taskViewModel.successful.observe(this, Observer {
+        taskViewModel = ViewModelProvider(this).get(TasksViewModel::class.java)
+        taskViewModel.successful.observe(viewLifecycleOwner) {
             successful ->
             if (successful != null) {
                 if (successful) {
@@ -63,7 +65,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                     }
                 }
             }
-        })
+        }
 
         fabAddItem.setOnClickListener {
             showDialog()

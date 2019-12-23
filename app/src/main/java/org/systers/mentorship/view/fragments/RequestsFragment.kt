@@ -1,8 +1,8 @@
 package org.systers.mentorship.view.fragments
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
@@ -34,14 +34,14 @@ class RequestsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
-        requestsViewModel.successful.observe(this, Observer {
-            successful ->
+        requestsViewModel = ViewModelProvider(this).get(RequestsViewModel::class.java)
+        requestsViewModel.successful.observe(viewLifecycleOwner, Observer { successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                        vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
-                        tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                    vpMentorshipRequests.adapter = RequestsPagerAdapter(
+                            requestsViewModel.allRequestsList, childFragmentManager)
+                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
                 } else {
                     view?.let {
                         Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()

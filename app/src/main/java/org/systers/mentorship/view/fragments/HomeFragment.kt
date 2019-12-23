@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -31,6 +31,7 @@ class HomeFragment : BaseFragment() {
          * Creates an instance of HomeFragment
          */
         fun newInstance() = HomeFragment()
+
         val TAG: String = HomeFragment::class.java.simpleName
     }
 
@@ -57,24 +58,21 @@ class HomeFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel.userStats.observe(viewLifecycleOwner) {
+            binding.stats = it
+            if (it.achievements.isEmpty()) {
+                tvNoAchievements.visibility = View.VISIBLE
+                rvAchievements.visibility = View.GONE
+            } else {
+                tvNoAchievements.visibility = View.GONE
+                rvAchievements.visibility = View.VISIBLE
+                achievementsAdapter.submitList(it.achievements)
+            }
+        }
 
-        with(homeViewModel) {
-            userStats.observe(viewLifecycleOwner, Observer { stats ->
-                binding.stats = stats
-                if (stats?.achievements?.isEmpty() != false) {
-                    tvNoAchievements.visibility = View.VISIBLE
-                    rvAchievements.visibility = View.GONE
-                } else {
-                    tvNoAchievements.visibility = View.GONE
-                    rvAchievements.visibility = View.VISIBLE
-                    achievementsAdapter.submitList(stats.achievements)
-                }
-            })
-
-            message.observe(viewLifecycleOwner, Observer { message ->
-                Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
-            })
+        homeViewModel.message.observe(viewLifecycleOwner) { message ->
+            Snackbar.make(homeContainer, message, Snackbar.LENGTH_SHORT).show()
         }
     }
 }

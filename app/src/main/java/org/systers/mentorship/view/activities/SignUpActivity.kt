@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
@@ -31,7 +31,7 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+        signUpViewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
         signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
@@ -39,8 +39,8 @@ class SignUpActivity : BaseActivity() {
                     Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
                     navigateToLoginActivity()
                 } else {
-                    Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
-                            .show()
+                    Snackbar.make(getRootView(), signUpViewModel.message,
+                            Snackbar.LENGTH_LONG).show()
                 }
             }
         })
@@ -58,7 +58,8 @@ class SignUpActivity : BaseActivity() {
             isAvailableToMentor = cbMentor.isChecked
 
             if (validateDetails()) {
-                val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
+                val requestData = Register(name, username, email, password, true, needsMentoring,
+                        isAvailableToMentor)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             }

@@ -1,12 +1,10 @@
 package org.systers.mentorship.viewmodels
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Task
@@ -19,9 +17,11 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for Tasks Screen
  */
-class TasksViewModel: ViewModel() {
+class TasksViewModel : ViewModel() {
 
-    var TAG = TasksViewModel::class.java.simpleName
+    private val TAG = TasksViewModel::class.java.simpleName
+
+    private val appContext = MentorshipApplication.getContext()
 
     lateinit var tasksList: List<Task>
 
@@ -32,42 +32,29 @@ class TasksViewModel: ViewModel() {
     /**
      * This function lists all tasks from the mentorship relation
      */
-    @SuppressLint("CheckResult")
-    fun getTasks(relationId: Int) {
-        taskDataManager.getAllTasks(relationId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<Task>>() {
-                    override fun onNext(taskListResponse: List<Task>) {
-                        tasksList = taskListResponse
-                        successful.value = true
-                    }
+    fun getTasks(relationId: Int) = viewModelScope.launch {
+        try {
+            tasksList = taskDataManager.getAllTasks(relationId)
+            successful.value = true
+        } catch (throwable: Throwable) {
+            message = when (throwable) {
+                is IOException -> {
+                    appContext.getString(R.string.error_please_check_internet)
+                }
+                is TimeoutException -> {
+                    appContext.getString(R.string.error_request_timed_out)
+                }
+                is HttpException -> {
+                    CommonUtils.getErrorResponse(throwable).message
+                }
+                else -> {
+                    Log.e(TAG, throwable.localizedMessage)
 
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
-                            }
-                        }
-                        successful.value = false
-                    }
-
-                    override fun onComplete() {
-                    }
-                })
+                    appContext.getString(R.string.error_something_went_wrong)
+                }
+            }
+            successful.value = false
+        }
     }
 
     /**
@@ -83,12 +70,11 @@ class TasksViewModel: ViewModel() {
      * @param taskId id of the task that is clicked
      * @param isChecked boolean value to specify if the task was marked or unmarked
      */
-    fun updateTask(taskId: Int, isChecked: Boolean){
-        if(isChecked) {
+    fun updateTask(taskId: Int, isChecked: Boolean) {
+        if (isChecked) {
             //completedTaskList.add(taskList.get(taskId))
             //TODO: Update the backend
-        }
-        else {
+        } else {
             //completedTaskList.remove(taskList.get(taskId))
             //TODO: Update the backend
         }

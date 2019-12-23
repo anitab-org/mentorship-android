@@ -2,17 +2,17 @@ package org.systers.mentorship.view.fragments
 
 
 import android.app.Dialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
-import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
@@ -23,7 +23,7 @@ import org.systers.mentorship.viewmodels.ProfileViewModel
 /**
  * The fragment is responsible for editing the User's profile
  */
-class EditProfileFragment: DialogFragment() {
+class EditProfileFragment : DialogFragment() {
 
     companion object {
         private lateinit var tempUser: User
@@ -42,20 +42,8 @@ class EditProfileFragment: DialogFragment() {
     private lateinit var currentUser: User
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
-        profileViewModel.successfulUpdate.observe(this, Observer { successful ->
-            (activity as MainActivity).hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG).show()
-                    profileViewModel.getProfile()
-                    dismiss()
-                } else {
-                    Toast.makeText(activity, profileViewModel.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        profileViewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
@@ -86,8 +74,8 @@ class EditProfileFragment: DialogFragment() {
 
             with(editProfileBinding.tiName) {
                 this.error = when (errors.firstOrNull()) {
-                    is EditProfileFragmentErrorStates.EmptyNameError ->
-                        context.getString(R.string.error_empty_name)
+                    is EditProfileFragmentErrorStates.EmptyNameError -> context.getString(
+                            R.string.error_empty_name)
                     is EditProfileFragmentErrorStates.NameTooShortError -> {
                         val minLength = resources.getInteger(R.integer.min_name_length)
                         context.getString(R.string.error_name_too_short, minLength)
@@ -102,17 +90,29 @@ class EditProfileFragment: DialogFragment() {
                     }
                 }
             }
+
             if (currentUser != editProfileBinding.user && errors.isEmpty()) {
-                profileViewModel.updateProfile(editProfileBinding.user!!)
+                updateProfile()
             }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun updateProfile() {
+        editProfileBinding.user?.let { user ->
+            profileViewModel.updateProfile(user).observe(viewLifecycleOwner, Observer {
+                (activity as MainActivity).hideProgressDialog()
+                if (it == true) {
 
-        profileViewModel.successfulUpdate.removeObservers(activity!!)
-        profileViewModel.successfulUpdate.value = null
+                    Toast.makeText(context, getText(R.string.update_successful),
+                            Toast.LENGTH_LONG).show()
+                    profileViewModel.getProfile()
+                    dismiss()
+                } else {
+                    Toast.makeText(activity, profileViewModel.message, Toast.LENGTH_SHORT).show()
+                }
+
+            })
+        }
     }
 
     private fun validateProfileInput(name: String?): Array<EditProfileFragmentErrorStates> {

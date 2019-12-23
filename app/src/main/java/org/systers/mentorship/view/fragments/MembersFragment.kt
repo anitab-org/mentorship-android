@@ -35,7 +35,7 @@ class MembersFragment: BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
-        membersViewModel.successful.observe(this, Observer {
+        membersViewModel.successful.observe(viewLifecycleOwner, Observer {
             successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {

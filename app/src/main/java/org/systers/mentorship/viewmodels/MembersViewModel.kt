@@ -1,12 +1,10 @@
 package org.systers.mentorship.viewmodels
 
-import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -21,7 +19,7 @@ import java.util.concurrent.TimeoutException
  */
 class MembersViewModel : ViewModel() {
 
-    var TAG = MembersViewModel::class.java.simpleName
+    private val TAG = MembersViewModel::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 
@@ -32,41 +30,30 @@ class MembersViewModel : ViewModel() {
     /**
      * Fetches users list from getUsers method of the UserService
      */
-    @SuppressLint("CheckResult")
-    fun getUsers() {
-        userDataManager.getUsers()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<User>>() {
-                    override fun onNext(userListResponse: List<User>) {
-                        userList = userListResponse
-                        successful.value = true
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
-                            }
-                        }
-                        successful.value = false
-                    }
-
-                    override fun onComplete() {
-                    }
-                })
+    fun getUsers() = viewModelScope.launch {
+        try {
+            userList = userDataManager.getUsers()
+            successful.value = true
+        } catch (throwable: Exception) {
+            when (throwable) {
+                is IOException -> {
+                    message = MentorshipApplication.getContext().getString(
+                            R.string.error_please_check_internet)
+                }
+                is TimeoutException -> {
+                    message = MentorshipApplication.getContext().getString(
+                            R.string.error_request_timed_out)
+                }
+                is HttpException -> {
+                    message = CommonUtils.getErrorResponse(throwable).message
+                }
+                else -> {
+                    message = MentorshipApplication.getContext().getString(
+                            R.string.error_something_went_wrong)
+                    Log.e(TAG, throwable.localizedMessage)
+                }
+            }
+            successful.value = false
+        }
     }
 }

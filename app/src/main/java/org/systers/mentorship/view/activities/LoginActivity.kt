@@ -1,12 +1,12 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
@@ -26,26 +26,24 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        loginViewModel.successful.observe(this, Observer {
-            successful ->
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        loginViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    Toast.makeText(this, R.string.logging_successful, Toast.LENGTH_LONG)
-                            .show()
+                    Toast.makeText(this, R.string.logging_successful, Toast.LENGTH_LONG).show()
                     intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
-                            .show()
+                    Snackbar.make(getRootView(), loginViewModel.message,
+                            Snackbar.LENGTH_LONG).show()
                 }
             }
         })
 
         btnLogin.setOnClickListener {
-           login()
+            login()
         }
 
         btnSignUp.setOnClickListener {
@@ -62,7 +60,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun validateCredentials() : Boolean {
+    private fun validateCredentials(): Boolean {
         var validCredentials = true
         if (username.isBlank()) {
             tiUsername.error = getString(R.string.error_empty_username)

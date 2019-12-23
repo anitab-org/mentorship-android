@@ -7,7 +7,6 @@ import org.systers.mentorship.remote.services.RelationService
 import org.systers.mentorship.remote.services.TaskService
 import org.systers.mentorship.remote.services.UserService
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
@@ -44,7 +43,6 @@ class ApiManager {
         val retrofit = Retrofit.Builder()
                 .baseUrl(BaseUrl.apiBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build()
 

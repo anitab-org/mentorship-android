@@ -1,11 +1,11 @@
 package org.systers.mentorship.view.fragments
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
 import org.systers.mentorship.viewmodels.ProfileViewModel
@@ -20,6 +20,7 @@ class ProfileFragment : BaseFragment() {
          * Creates an instance of ProfileFragment
          */
         fun newInstance() = ProfileFragment()
+
         val TAG: String = ProfileFragment::class.java.simpleName
     }
 
@@ -29,7 +30,8 @@ class ProfileFragment : BaseFragment() {
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        fragmentProfileBinding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
+        fragmentProfileBinding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container,
+                false)
         return fragmentProfileBinding.root
     }
 
@@ -38,21 +40,17 @@ class ProfileFragment : BaseFragment() {
 
         setHasOptionsMenu(true)
 
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
-        profileViewModel.successfulGet.observe(this, Observer {
-            successful ->
+        profileViewModel = ViewModelProvider(baseActivity).get(ProfileViewModel::class.java)
+        profileViewModel.user.observe(viewLifecycleOwner, Observer { user ->
             baseActivity.hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    fragmentProfileBinding.user = profileViewModel.user
-                } else {
-                    Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
-                            Snackbar.LENGTH_LONG).show()
-                }
+            if (user != null) {
+                fragmentProfileBinding.user = user
+            } else {
+                Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
+                        Snackbar.LENGTH_LONG).show()
             }
         })
         baseActivity.showProgressDialog(getString(R.string.fetch_user_profile))
-        profileViewModel.getProfile()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -63,18 +61,11 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
+                EditProfileFragment.newInstance(fragmentProfileBinding.user!!).show(parentFragmentManager,
                         getString(R.string.fragment_title_edit_profile))
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        profileViewModel.successfulGet.removeObservers(activity!!)
-        profileViewModel.successfulGet.value = null
     }
 }
