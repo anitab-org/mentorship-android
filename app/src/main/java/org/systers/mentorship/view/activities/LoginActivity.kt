@@ -10,6 +10,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
+import org.systers.mentorship.utils.encrypt
 import org.systers.mentorship.viewmodels.LoginViewModel
 
 /**
@@ -83,7 +84,7 @@ class LoginActivity : BaseActivity() {
         username = tiUsername.editText?.text.toString()
         password = tiPassword.editText?.text.toString()
         if (validateCredentials()) {
-            loginViewModel.login(Login(username, password))
+            loginViewModel.login(Login(username, password.encrypt()))
             showProgressDialog(getString(R.string.logging_in))
         }
     }

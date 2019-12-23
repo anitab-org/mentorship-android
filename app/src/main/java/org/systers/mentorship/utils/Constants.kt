@@ -9,4 +9,7 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
+    const val PASSWORD_MIN_LENGTH = 7
+    const val PASSWORD_MAX_LENGTH = 26
+
 }

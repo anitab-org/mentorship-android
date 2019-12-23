@@ -10,6 +10,9 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.Constants.PASSWORD_MAX_LENGTH
+import org.systers.mentorship.utils.Constants.PASSWORD_MIN_LENGTH
+import org.systers.mentorship.utils.encrypt
 import org.systers.mentorship.viewmodels.SignUpViewModel
 
 /**
@@ -58,7 +61,8 @@ class SignUpActivity : BaseActivity() {
             isAvailableToMentor = cbMentor.isChecked
 
             if (validateDetails()) {
-                val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
+                val requestData = Register(name, username, email, password.encrypt()
+                        , true, needsMentoring, isAvailableToMentor)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             }
@@ -100,8 +104,9 @@ class SignUpActivity : BaseActivity() {
             tiEmail.error = null
         }
 
-        if (password.isBlank()) {
-            tiPassword.error = getString(R.string.error_empty_password)
+        if (password.length <= PASSWORD_MIN_LENGTH || password.length >= PASSWORD_MAX_LENGTH) {
+            tiPassword.error = getString(R.string.error_wrong_password_length,
+                    PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH)
             isValid = false
         } else {
             tiPassword.error = null

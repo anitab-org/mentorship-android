@@ -9,9 +9,14 @@ import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
+import org.systers.mentorship.utils.Constants
+import org.systers.mentorship.utils.Constants.PASSWORD_MAX_LENGTH
+import org.systers.mentorship.utils.Constants.PASSWORD_MIN_LENGTH
+import org.systers.mentorship.utils.encrypt
 import org.systers.mentorship.viewmodels.ChangePasswordViewModel
 
 /**
@@ -71,12 +76,18 @@ class ChangePasswordFragment : DialogFragment() {
             changePasswordView.tilNewPassword?.error = null
 
             if (validatePassword()) {
-                changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword, newPassword))
+                changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword.encrypt(), newPassword.encrypt()))
             }
         }
     }
 
-    private fun validatePassword() : Boolean {
+    private fun validatePassword(): Boolean {
+        if (newPassword.length <= PASSWORD_MIN_LENGTH || newPassword.length >= PASSWORD_MAX_LENGTH) {
+            changePasswordView.tilNewPassword?.error = getString(R.string.error_wrong_password_length,
+                    PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH)
+            return false
+        } else
+            changePasswordView.tilNewPassword?.error = null
         return if (newPassword == confirmPassword && newPassword != currentPassword) {
             true
         } else {
