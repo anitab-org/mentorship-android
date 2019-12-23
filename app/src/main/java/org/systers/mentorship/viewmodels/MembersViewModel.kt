@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException
  */
 class MembersViewModel : ViewModel() {
 
-    var TAG = MembersViewModel::class.java.simpleName
+    private val TAG = MembersViewModel::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 

@@ -30,7 +30,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
          * Creates an instance of [TasksFragment]
          */
         fun newInstance(mentorshipRelation: Relationship) = TasksFragment(mentorshipRelation)
-        val TAG = TasksFragment::class.java.simpleName
+        val TAG: String = TasksFragment::class.java.simpleName
     }
 
     val appContext = MentorshipApplication.getContext()

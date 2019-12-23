@@ -22,7 +22,7 @@ import java.util.concurrent.TimeoutException
  */
 class RelationViewModel : ViewModel() {
 
-    var TAG = RelationViewModel::class.java.simpleName
+    private val TAG = RelationViewModel::class.java.simpleName
 
     private val relationDataManager: RelationDataManager = RelationDataManager()
 

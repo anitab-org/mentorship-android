@@ -28,7 +28,7 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
          * Creates an instance of RelationFragment
          */
         fun newInstance(mentorshipRelation: Relationship) = RelationFragment(mentorshipRelation)
-        val TAG = RelationFragment::class.java.simpleName
+        val TAG: String = RelationFragment::class.java.simpleName
     }
 
     private lateinit var relationViewModel: RelationViewModel

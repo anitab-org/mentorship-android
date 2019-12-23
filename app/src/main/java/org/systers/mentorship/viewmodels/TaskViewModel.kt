@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException
  */
 class TasksViewModel: ViewModel() {
 
-    var TAG = TasksViewModel::class.java.simpleName
+    private val TAG = TasksViewModel::class.java.simpleName
 
     lateinit var tasksList: List<Task>
 

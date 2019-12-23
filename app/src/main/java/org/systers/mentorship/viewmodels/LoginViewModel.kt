@@ -24,7 +24,7 @@ import java.util.concurrent.TimeoutException
  */
 class LoginViewModel : ViewModel() {
 
-    var TAG = LoginViewModel::class.java.simpleName
+    private val TAG = LoginViewModel::class.java.simpleName
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val authDataManager: AuthDataManager = AuthDataManager()

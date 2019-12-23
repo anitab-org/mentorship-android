@@ -22,7 +22,7 @@ import java.util.concurrent.TimeoutException
  */
 class ProfileViewModel: ViewModel() {
 
-    var TAG = ProfileViewModel::class.java.simpleName
+    private val TAG = ProfileViewModel::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 

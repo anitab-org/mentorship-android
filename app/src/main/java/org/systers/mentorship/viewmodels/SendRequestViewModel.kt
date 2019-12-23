@@ -23,7 +23,7 @@ import java.util.concurrent.TimeoutException
  */
 class SendRequestViewModel : ViewModel() {
 
-    var TAG = SendRequestViewModel::class.java.simpleName
+    private val TAG = SendRequestViewModel::class.java.simpleName
 
     private val relationDataManager: RelationDataManager = RelationDataManager()
 

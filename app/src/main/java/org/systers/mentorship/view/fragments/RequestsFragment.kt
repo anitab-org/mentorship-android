@@ -22,7 +22,7 @@ class RequestsFragment : BaseFragment() {
          */
         fun newInstance() = RequestsFragment()
 
-        val TAG = RelationFragment::class.java.simpleName
+        val TAG: String = RelationFragment::class.java.simpleName
     }
 
     private lateinit var requestsViewModel: RequestsViewModel
