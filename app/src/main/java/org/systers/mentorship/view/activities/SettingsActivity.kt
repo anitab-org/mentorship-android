@@ -2,6 +2,7 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.systers.mentorship.R
@@ -41,6 +42,20 @@ class SettingsActivity : BaseActivity() {
         }
         tvAbout.setOnClickListener {
             startActivity(Intent(baseContext,AboutActivity::class.java))
+        }
+        tvDeleteAccount.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(R.string.delete_account)
+            builder.setMessage(R.string.delete_account_message)
+            builder.setPositiveButton(R.string.delete) { _, _ ->
+                //@todo any function here
+                Toast.makeText(applicationContext,"Account deleted", Toast.LENGTH_SHORT).show()
+            }
+            builder.setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
     }
 
