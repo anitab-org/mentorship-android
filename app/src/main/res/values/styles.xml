@@ -12,4 +12,13 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="TextViewSettings">
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>
