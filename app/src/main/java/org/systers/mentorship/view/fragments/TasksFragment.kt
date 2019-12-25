@@ -41,7 +41,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        retainInstance=true
         taskViewModel = ViewModelProviders.of(this).get(TasksViewModel::class.java)
         taskViewModel.successful.observe(this, Observer {
             successful ->
