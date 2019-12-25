@@ -19,7 +19,7 @@ import java.util.concurrent.TimeoutException
  */
 class SignUpViewModel : ViewModel() {
 
-    var TAG = SignUpViewModel::class.java.simpleName
+    private val TAG = SignUpViewModel::class.java.simpleName
 
     private val authDataManager: AuthDataManager = AuthDataManager()
     private val appContext = MentorshipApplication.getContext()
@@ -51,46 +51,4 @@ class SignUpViewModel : ViewModel() {
             successful.value = false
         }
     }
-
-    /**
-     * Used used to run the register method of the AuthService
-     * @param register a registration request object containing the a user's registration fields
-     */
-//    @SuppressLint("CheckResult")
-//    fun register(@NonNull register: Register) {
-//        authDataManager.register(register)
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeWith(object : DisposableObserver<CustomResponse>() {
-//                    override fun onNext(customResponse: CustomResponse) {
-//                        message = customResponse.message
-//                        successful.value = true
-//                    }
-//
-//                    override fun onError(throwable: Throwable) {
-//                        when (throwable) {
-//                            is IOException -> {
-//                                message = MentorshipApplication.getContext()
-//                                        .getString(R.string.error_please_check_internet)
-//                            }
-//                            is TimeoutException -> {
-//                                message = MentorshipApplication.getContext()
-//                                        .getString(R.string.error_request_timed_out)
-//                            }
-//                            is HttpException -> {
-//                                message = CommonUtils.getErrorResponse(throwable).message
-//                            }
-//                            else -> {
-//                                message = MentorshipApplication.getContext()
-//                                        .getString(R.string.error_something_went_wrong)
-//                                Log.e(TAG, throwable.localizedMessage)
-//                            }
-//                        }
-//                        successful.value = false
-//                    }
-//
-//                    override fun onComplete() {
-//                    }
-//                })
-//    }
 }

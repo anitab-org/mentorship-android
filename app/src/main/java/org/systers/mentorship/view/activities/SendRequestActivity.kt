@@ -7,8 +7,8 @@ import android.text.TextUtils
 import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
@@ -92,8 +92,7 @@ class SendRequestActivity : BaseActivity() {
                 }
                 else -> {
 
-                    Snackbar.make(getRootView(),
-                            "Please select your role for the mentorship relation",
+                    Snackbar.make(getRootView(), R.string.error_please_select_relation_role,
                             Snackbar.LENGTH_LONG).show()
                     return@setOnClickListener
                 }
@@ -113,8 +112,8 @@ class SendRequestActivity : BaseActivity() {
     }
 
     private fun setObservables() {
-        sendRequestViewModel = ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
-        sendRequestViewModel.successful.observe(this, Observer { successful ->
+        sendRequestViewModel = ViewModelProvider(this).get(SendRequestViewModel::class.java)
+        sendRequestViewModel.successful.observe(this) { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -125,7 +124,7 @@ class SendRequestActivity : BaseActivity() {
                             Snackbar.LENGTH_LONG).show()
                 }
             }
-        })
+        }
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {

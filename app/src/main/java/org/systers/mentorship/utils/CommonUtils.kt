@@ -20,6 +20,9 @@ object CommonUtils {
     fun getErrorResponse(throwable: Throwable): CustomResponse {
         val httpException = throwable as HttpException
         val response = httpException.response()?.errorBody()?.string()
-        return gson.fromJson(response.toString(), CustomResponse::class.java)
+        response?.let {
+            return gson.fromJson(it, CustomResponse::class.java)
+        }
+        return CustomResponse("Unknown error occurred")
     }
 }

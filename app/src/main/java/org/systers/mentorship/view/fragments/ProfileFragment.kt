@@ -61,9 +61,12 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(fragmentProfileBinding.user!!).show(parentFragmentManager,
-                        getString(R.string.fragment_title_edit_profile))
-                true
+                fragmentProfileBinding.user?.let {
+                    EditProfileFragment.newInstance(it).show(parentFragmentManager,
+                            getString(R.string.fragment_title_edit_profile))
+                    true
+                }
+                super.onOptionsItemSelected(item)
             }
             else -> super.onOptionsItemSelected(item)
         }
