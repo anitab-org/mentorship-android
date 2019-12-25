@@ -154,8 +154,11 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="delete_account">Delete Account</string>
     <string name="delete_account_message">Are you sure want to delete your account?</string>
     <string name="deleted_account_message">Account deleted</string>
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 66145d3... Task 1 Add a confirmation dialog when user click the "delete my account button"
 =======
 >>>>>>> parent of 66145d3... Task 1 Add a confirmation dialog when user click the "delete my account button"
+=======
+>>>>>>> 6fadf3ba98d773ee196bea0d7d448d352f31f8fe
 </resources>
