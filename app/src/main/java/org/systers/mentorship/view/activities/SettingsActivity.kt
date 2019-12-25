@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.systers.mentorship.R
@@ -43,6 +42,7 @@ class SettingsActivity : BaseActivity() {
         tvAbout.setOnClickListener {
             startActivity(Intent(baseContext,AboutActivity::class.java))
         }
+<<<<<<< HEAD
         tvDeleteAccount.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle(R.string.delete_account)
@@ -57,6 +57,8 @@ class SettingsActivity : BaseActivity() {
             val dialog: AlertDialog = builder.create()
             dialog.show()
         }
+=======
+>>>>>>> parent of 66145d3... Task 1 Add a confirmation dialog when user click the "delete my account button"
     }
 
     override fun onSupportNavigateUp(): Boolean {
