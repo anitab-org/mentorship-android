@@ -43,6 +43,7 @@ class SettingsActivity : BaseActivity() {
             startActivity(Intent(baseContext,AboutActivity::class.java))
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         tvDeleteAccount.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle(R.string.delete_account)
@@ -57,6 +58,8 @@ class SettingsActivity : BaseActivity() {
             val dialog: AlertDialog = builder.create()
             dialog.show()
         }
+=======
+>>>>>>> parent of 66145d3... Task 1 Add a confirmation dialog when user click the "delete my account button"
 =======
 >>>>>>> parent of 66145d3... Task 1 Add a confirmation dialog when user click the "delete my account button"
     }
