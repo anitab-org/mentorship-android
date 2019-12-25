@@ -154,6 +154,7 @@ We engage our community by contributing to open source, collaborating with the g
 <<<<<<< HEAD
     <string name="delete_account">Delete Account</string>
     <string name="delete_account_message">Are you sure want to delete your account?</string>
+<<<<<<< HEAD
     <string name="deleted_account_message">Account deleted</string>
 <<<<<<< HEAD
 =======
@@ -167,4 +168,6 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="delete_account_message">Are you sure want to delete your account?</string>
     <string name="deleted_account_message">Account deleted</string>
 >>>>>>> parent of 7cfdf98... feat : delete account confirmation dialog
+=======
+>>>>>>> parent of f6471ca... feat: Delete account confirmation dialog
 </resources>
