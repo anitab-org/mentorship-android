@@ -49,7 +49,7 @@ class SettingsActivity : BaseActivity() {
             builder.setMessage(R.string.delete_account_message)
             builder.setPositiveButton(R.string.delete) { _, _ ->
                 //@todo any function here
-                Toast.makeText(applicationContext,"Account deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,R.string.deleted_account_message, Toast.LENGTH_SHORT).show()
             }
             builder.setNegativeButton(R.string.cancel) { dialog, _ ->
                 dialog.dismiss()
