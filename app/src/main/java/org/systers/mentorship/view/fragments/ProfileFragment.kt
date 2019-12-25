@@ -63,7 +63,7 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
+                EditProfileFragment.newInstance(profileViewModel.user).show(requireFragmentManager(),
                         getString(R.string.fragment_title_edit_profile))
                 true
             }

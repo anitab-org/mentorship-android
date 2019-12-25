@@ -7,24 +7,22 @@ object Versions {
     const val targetSdkVersion = 28
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "3.3.1"
-    const val dataBinding = "3.2.0-alpha11"
-    const val kotlinVersion = "1.3.21"
-    const val supportLib = "1.0.0"
+    const val gradleBuildTool = "3.5.3"
+    const val kotlinVersion = "1.3.61"
     const val designSupportLib = "1.0.0"
     const val constraintLayout = "1.1.3"
     const val junit = "4.12"
-    const val testRunner = "1.1.0"
-    const val espresso = "3.1.0"
-    const val rxJava = "2.1.10"
-    const val rxAndroid = "2.0.2"
-    const val rxKotlin = "2.2.0"
-    const val retrofitVersion = "2.3.0"
-    const val okHttp3Version = "3.10.0"
-    const val archComponents = "2.0.0"
-    const val testRule = "1.1.0"
-    const val supportAnnotation = "1.0.0"
-    const val appCompat = "1.0.0-beta01"
+    const val testRunner = "1.2.0"
+    const val espresso = "3.2.0"
+    const val rxJava = "2.2.16"
+    const val rxAndroid = "2.1.1"
+    const val rxKotlin = "2.4.0"
+    const val retrofitVersion = "2.7.0"
+    const val okHttp3Version = "4.2.2"
+    const val archComponents = "2.1.0"
+    const val testRule = "1.2.0"
+    const val supportAnnotation = "1.1.0"
+    const val appCompat = "1.1.0"
 
 }
 
@@ -33,7 +31,6 @@ object Versions {
  */
 object Dependencies {
     const val gradle_build_tool = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
-    const val databinding = "androidx.databinding:compiler:${Versions.dataBinding}"
     const val appCompat= "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"

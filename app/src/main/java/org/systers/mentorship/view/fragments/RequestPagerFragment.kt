@@ -42,8 +42,9 @@ class RequestPagerFragment: BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         arguments?.let {
-            requestsList = it.getParcelableArrayList(Constants.REQUEST_LIST)
-            emptyListText = it.getString(Constants.REQUEST_EMPTY_LIST_TEXT)
+            requestsList = it.getParcelableArrayList<Relationship>(Constants.REQUEST_LIST)
+                    ?.toMutableList() ?: mutableListOf()
+            emptyListText = it.getString(Constants.REQUEST_EMPTY_LIST_TEXT).toString()
         }
         setView()
     }

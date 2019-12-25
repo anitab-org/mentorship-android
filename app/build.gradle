@@ -34,6 +34,13 @@ android {
     androidExtensions {
         experimental = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 configurations.all {
@@ -48,7 +55,6 @@ dependencies {
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
     implementation Dependencies.appCompat
-    kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
     androidTestImplementation Dependencies.test_rules
