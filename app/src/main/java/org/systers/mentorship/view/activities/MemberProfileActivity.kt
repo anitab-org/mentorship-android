@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -38,9 +39,17 @@ class MemberProfileActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     setUserProfile(memberProfileViewModel.userProfile)
+                    btnSendRequest.apply {
+                        visibility = View.VISIBLE
+                        isEnabled = true
+                    }
                 } else {
                     Snackbar.make(getRootView(), memberProfileViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
+                    btnSendRequest.apply {
+                        visibility = View.GONE
+                        isEnabled = false
+                    }
                 }
             }
         })
