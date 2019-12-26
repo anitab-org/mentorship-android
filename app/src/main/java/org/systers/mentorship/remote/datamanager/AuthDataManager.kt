@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.remote.responses.AuthRefreshToken
 import org.systers.mentorship.remote.responses.AuthToken
 import org.systers.mentorship.remote.responses.CustomResponse
 
@@ -17,9 +18,9 @@ class AuthDataManager {
     /**
      * This will call the login method of AuthService interface
      * @param login The login request body containing the credentials
-     * @return an Observable AuthToken
+     * @return an Observable AuthRefreshToken
      */
-    fun login(login: Login): Observable<AuthToken> {
+    fun login(login: Login): Observable<AuthRefreshToken> {
         return apiManager.authService.login(login)
     }
 
@@ -32,4 +33,13 @@ class AuthDataManager {
     fun register(register: Register): Observable<CustomResponse> {
         return apiManager.authService.register(register)
     }
+
+    /**
+     * This will call the refresh method of AuthService interface
+     * @return an Observable AuthToken
+     */
+    fun refreshToken(): Observable<AuthToken> {
+        return apiManager.refreshService.refreshToken()
+    }
+
 }

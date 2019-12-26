@@ -12,7 +12,7 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
 import org.systers.mentorship.remote.requests.Login
-import org.systers.mentorship.remote.responses.AuthToken
+import org.systers.mentorship.remote.responses.AuthRefreshToken
 import org.systers.mentorship.utils.CommonUtils
 import org.systers.mentorship.utils.PreferenceManager
 import retrofit2.HttpException
@@ -41,10 +41,10 @@ class LoginViewModel : ViewModel() {
         authDataManager.login(login)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<AuthToken>() {
-                    override fun onNext(authToken: AuthToken) {
+                .subscribeWith(object : DisposableObserver<AuthRefreshToken>() {
+                    override fun onNext(authRefreshToken: AuthRefreshToken) {
                         successful.value = true
-                        preferenceManager.putAuthToken(authToken.authToken)
+                        preferenceManager.putAuthRefreshToken(authRefreshToken)
                     }
 
                     override fun onError(throwable: Throwable) {
@@ -58,7 +58,7 @@ class LoginViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()

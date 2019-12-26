@@ -3,9 +3,11 @@ package org.systers.mentorship.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
+import org.systers.mentorship.utils.getUnixTimestampInMilliseconds
 
 /**
  * This activity will show the organisation logo for sometime and then start the next activity
@@ -21,11 +23,16 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        val intent = if (preferenceManager.authToken.isEmpty()) {
-            Intent(this, LoginActivity::class.java)
-        } else {
-            Intent(this, MainActivity::class.java)
-        }
+        var intent =
+                Intent(this,
+                        if (preferenceManager.authToken.isEmpty()) LoginActivity::class.java
+                        else MainActivity::class.java)
+
+        if (getUnixTimestampInMilliseconds(preferenceManager.authExpiry) < System.currentTimeMillis())
+            if (getUnixTimestampInMilliseconds(preferenceManager.refreshExpiry) < System.currentTimeMillis()) {
+                intent = Intent(this, LoginActivity::class.java)
+                Toast.makeText(applicationContext, R.string.token_expired, Toast.LENGTH_LONG).show()
+            }
 
         runnable = Runnable {
             startActivity(intent)
