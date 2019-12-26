@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.dsl.handleNetworkExceptionWithMessage
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.datamanager.TaskDataManager
 import org.systers.mentorship.utils.CommonUtils
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeoutException
  */
 class TasksViewModel : ViewModel() {
 
-    private val TAG = TasksViewModel::class.java.simpleName
+    private val TAG = this::class.java.simpleName
 
     private val appContext = MentorshipApplication.getContext()
 
@@ -36,23 +37,8 @@ class TasksViewModel : ViewModel() {
         try {
             tasksList = taskDataManager.getAllTasks(relationId)
             successful.value = true
-        } catch (throwable: Throwable) {
-            message = when (throwable) {
-                is IOException -> {
-                    appContext.getString(R.string.error_please_check_internet)
-                }
-                is TimeoutException -> {
-                    appContext.getString(R.string.error_request_timed_out)
-                }
-                is HttpException -> {
-                    CommonUtils.getErrorResponse(throwable).message
-                }
-                else -> {
-                    Log.e(TAG, throwable.localizedMessage)
-
-                    appContext.getString(R.string.error_something_went_wrong)
-                }
-            }
+        } catch (throwable: Exception) {
+            message = throwable.handleNetworkExceptionWithMessage(TAG)
             successful.value = false
         }
     }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.dsl.handleNetworkExceptionWithMessage
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.utils.CommonUtils
@@ -19,7 +20,7 @@ import java.util.concurrent.TimeoutException
  */
 class MemberProfileViewModel : ViewModel() {
 
-    private val TAG = MemberProfileViewModel::class.java.simpleName
+    private val TAG = this::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 
@@ -35,24 +36,7 @@ class MemberProfileViewModel : ViewModel() {
             userProfile = userDataManager.getUser(userId)
             successful.value = true
         } catch (throwable: Exception) {
-            when (throwable) {
-                is IOException -> {
-                    message = MentorshipApplication.getContext().getString(
-                            R.string.error_please_check_internet)
-                }
-                is TimeoutException -> {
-                    message = MentorshipApplication.getContext().getString(
-                            R.string.error_request_timed_out)
-                }
-                is HttpException -> {
-                    message = CommonUtils.getErrorResponse(throwable).message
-                }
-                else -> {
-                    message = MentorshipApplication.getContext().getString(
-                            R.string.error_something_went_wrong)
-                    Log.e(TAG, throwable.localizedMessage)
-                }
-            }
+            message = throwable.handleNetworkExceptionWithMessage(TAG)
             successful.value = false
         }
     }

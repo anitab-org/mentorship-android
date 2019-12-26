@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.dsl.handleNetworkExceptionWithMessage
 import org.systers.mentorship.remote.datamanager.AuthDataManager
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.CommonUtils
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeoutException
  */
 class LoginViewModel : ViewModel() {
 
-    private val TAG = LoginViewModel::class.java.simpleName
+    private val TAG = this::class.java.simpleName
 
     private val appContext = MentorshipApplication.getContext()
     private val preferenceManager: PreferenceManager = PreferenceManager()
@@ -41,21 +42,7 @@ class LoginViewModel : ViewModel() {
 
             successful.value = true
         } catch (throwable: Exception) {
-            when (throwable) {
-                is IOException -> {
-                    message = appContext.getString(R.string.error_please_check_internet)
-                }
-                is TimeoutException -> {
-                    message = appContext.getString(R.string.error_request_timed_out)
-                }
-                is HttpException -> {
-                    message = CommonUtils.getErrorResponse(throwable).message
-                }
-                else -> {
-                    message = appContext.getString(R.string.error_something_went_wrong)
-                    Log.e(TAG, throwable.localizedMessage)
-                }
-            }
+            message = throwable.handleNetworkExceptionWithMessage(TAG)
             successful.value = false
         }
     }
