@@ -49,11 +49,11 @@ class SignUpActivity : BaseActivity() {
 
         btnSignUp.setOnClickListener {
 
-            name = tiName.editText?.text.toString()
-            username = tiUsername.editText?.text.toString()
-            email = tiEmail.editText?.text.toString()
-            password = tiPassword.editText?.text.toString()
-            confirmedPassword = tiConfirmPassword.editText?.text.toString()
+            name = etName.text.toString()
+            username = etUsername.text.toString()
+            email = etEmail.text.toString()
+            password = etPassword.text.toString()
+            confirmedPassword = etConfirmPassword.text.toString()
             needsMentoring = cbMentee.isChecked
             isAvailableToMentor = cbMentor.isChecked
 
