@@ -19,6 +19,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="terms_and_conditions_acceptance_statement">By checking this box, I affirm that I have read and accept to be bound by the AnitaB.org <a href="https://ghc.anitab.org/code-of-conduct/">Code of Conduct</a>, <a href="https://anitab.org/terms-of-use/">Terms</a>, and <a href="https://anitab.org/privacy-policy/">Privacy Policy</a>. Further, I consent to the use of my information for the stated purpose.</string>
     <string name="error_not_matching_passwords">Passwords didn\'t match!</string>
+    <string name="error_password_too_weak">Your password is too weak! Use at least one small and capital letter, one number and one special sign!</string>
     <string name="error_please_check_internet">Please check your internet connection</string>
     <string name="error_request_timed_out">Request timed out</string>
     <string name="error_something_went_wrong">Something went wrong</string>
