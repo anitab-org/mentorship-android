@@ -14,6 +14,7 @@ import org.systers.mentorship.R
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.utils.CommonUtils
+import org.systers.mentorship.utils.NetworkStateReceiver
 import org.systers.mentorship.utils.SingleLiveEvent
 import retrofit2.HttpException
 import java.io.IOException
@@ -39,6 +40,10 @@ class HomeViewModel : ViewModel() {
         get() = _message
 
     init {
+        getHomeStats()
+    }
+
+    fun getHomeStats() {
         userDataManager.getHomeStats()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -57,6 +62,9 @@ class HomeViewModel : ViewModel() {
                             is IOException -> {
                                 _message.postValue(MentorshipApplication.getContext()
                                         .getString(R.string.error_please_check_internet))
+                                NetworkStateReceiver.isOnline.observeForever {
+                                    if (it) getHomeStats()
+                                }
                             }
                             is TimeoutException -> {
                                 _message.postValue(MentorshipApplication.getContext()
