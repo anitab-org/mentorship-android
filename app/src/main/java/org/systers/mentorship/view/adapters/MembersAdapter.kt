@@ -1,15 +1,21 @@
 package org.systers.mentorship.view.adapters
 
-import androidx.annotation.NonNull
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.NonNull
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_member_item.view.*
+import kotlinx.android.synthetic.main.list_member_item.view.tvInterests
+import kotlinx.android.synthetic.main.list_member_item.view.tvName
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
+
 
 /**
  * This class represents the adapter that fills in each view of the Members recyclerView
@@ -18,10 +24,12 @@ import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
  */
 class MembersAdapter (
         private val userList: List<User>,
-        private val openDetailFunction: (memberId: Int) -> Unit
+        private val openDetailFunction: (memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) -> Unit
 ) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
 
     val context = MentorshipApplication.getContext()
+
+    var lastPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersViewHolder =
             MembersViewHolder(
@@ -34,6 +42,7 @@ class MembersAdapter (
         val itemView = holder.itemView
 
         itemView.tvName.text = item.name
+        itemView.tvUsername.text = item.username
         itemView.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.isAvailableToMentor, item.needsMentoring)
 
         val userInterests = item.interests
@@ -42,7 +51,12 @@ class MembersAdapter (
         val keyValueText = "$keyText: $validText"
         itemView.tvInterests.text = keyValueText
 
-        itemView.setOnClickListener { openDetailFunction(item.id!!) }
+        itemView.setOnClickListener { openDetailFunction(item.id!!, itemView.circleImageView, itemView.tvName) }
+
+        val animation = AnimationUtils.loadAnimation(context,
+                if (position > lastPosition) R.anim.bottom_to_top else R.anim.top_to_bottom)
+        holder.itemView.startAnimation(animation)
+        lastPosition = position
     }
 
     override fun getItemCount(): Int = userList.size
@@ -63,5 +77,10 @@ class MembersAdapter (
         }
 
         return context.getString(R.string.not_available_to_mentor_or_mentee)
+    }
+
+    override fun onViewDetachedFromWindow(holder: MembersViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.clearAnimation()
     }
 }
