@@ -12,16 +12,16 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circleImageView"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="@dimen/profile_photo_large"
+                android:layout_height="@dimen/profile_photo_large"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/example"
+                android:src="@drawable/ic_person_placeholder"
+                android:transitionName="@string/transition_profile_img"
                 app:layout_constraintBottom_toTopOf="@+id/tvName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:transitionName="@string/transition_profile_img"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
                 android:id="@+id/tvName"

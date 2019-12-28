@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="generic_28sp">28sp</dimen>
+    <dimen name="profile_photo_medium">48dp</dimen>
+    <dimen name="profile_photo_large">96dp</dimen>
 </resources>

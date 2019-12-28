@@ -8,13 +8,13 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImageView"
-            android:layout_width="@android:dimen/app_icon_size"
-            android:layout_height="@android:dimen/app_icon_size"
+            android:layout_width="@dimen/profile_photo_medium"
+            android:layout_height="@dimen/profile_photo_medium"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/example"
+            android:src="@drawable/ic_person_placeholder"
             android:transitionName="@string/transition_profile_img"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -70,9 +70,9 @@
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/tvName"
-            app:layout_constraintStart_toEndOf="@+id/tvName"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvName"
             tools:text="@tools:sample/first_names" />
 

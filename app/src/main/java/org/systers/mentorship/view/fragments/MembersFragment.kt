@@ -86,8 +86,6 @@ class MembersFragment : BaseFragment() {
     private fun openUserProfile(memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) {
         val intent = Intent(activity, MemberProfileActivity::class.java)
         intent.putExtra(Constants.MEMBER_USER_ID, memberId)
-
-
         val imgAnim = Pair.create<View, String>(sharedImageView,
                 ViewCompat.getTransitionName(sharedImageView)!!)
 
