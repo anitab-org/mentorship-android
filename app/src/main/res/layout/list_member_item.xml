@@ -6,45 +6,76 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvImg"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        app:cardCornerRadius="@dimen/card_corner_radius_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgUserAvatarMembers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/profile_image"
+            android:transitionName="@string/profile_image"
+            app:srcCompat="@drawable/ic_person_grey_24dp"
+            tools:targetApi="lollipop" />
+
+    </androidx.cardview.widget.CardView>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cvImg"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Larissa" />
+        tools:text="@string/member_item_name" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMentorshipAvailability"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:layout_marginEnd="@dimen/margin_normal"
+        app:layout_constraintBottom_toTopOf="@id/tvInterests"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cvImg"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
-        tools:text="Available to mentor and be a mentee" />
+        tools:text="@string/member_item_mentorship_availability" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvInterests"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_normal"
         android:ellipsize="end"
         android:maxLines="2"
+        app:layout_constraintBottom_toTopOf="@id/itemDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cvImg"
+        app:layout_constraintTop_toBottomOf="@+id/tvMentorshipAvailability"
+        tools:text="@string/member_item_interests" />
+
+    <View
+        android:id="@+id/itemDivider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/item_divider_height"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:background="@color/itemDivider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMentorshipAvailability"
-        app:layout_constraintVertical_bias="1.0"
-        tools:text="Interests: Web Dev, LinkedIn Optimization" />
+        app:layout_constraintStart_toEndOf="@id/cvImg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

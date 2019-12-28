@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.list_member_item.view.*
+import kotlinx.android.synthetic.main.list_member_item.view.tvInterests
+import kotlinx.android.synthetic.main.list_member_item.view.tvName
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -16,9 +20,9 @@ import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
  * @param userList list of users to show
  * @param openDetailFunction function to be called when an item from Members list is clicked
  */
-class MembersAdapter (
+class MembersAdapter(
         private val userList: List<User>,
-        private val openDetailFunction: (memberId: Int) -> Unit
+        private val openDetailFunction: (memberId: Int, getView: () -> View) -> Unit
 ) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
 
     val context = MentorshipApplication.getContext()
@@ -42,7 +46,17 @@ class MembersAdapter (
         val keyValueText = "$keyText: $validText"
         itemView.tvInterests.text = keyValueText
 
-        itemView.setOnClickListener { openDetailFunction(item.id!!) }
+        if (item.avatar.isNotEmpty())
+            Glide.with(context).load(item.avatar).into(itemView.imgUserAvatarMembers)
+
+        itemView.setOnClickListener {
+            openDetailFunction(item.id!!) {
+                return@openDetailFunction itemView.imgUserAvatarMembers
+            }
+        }
+
+        val anim = AnimationUtils.loadAnimation(context, R.anim.item_animation_slide_from_right)
+        itemView.startAnimation(anim)
     }
 
     override fun getItemCount(): Int = userList.size

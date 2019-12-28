@@ -6,12 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
-import org.systers.mentorship.view.fragments.MembersFragment
 import org.systers.mentorship.viewmodels.MemberProfileViewModel
 
 /**
@@ -32,8 +32,7 @@ class MemberProfileActivity : BaseActivity() {
         val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
 
         memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
-        memberProfileViewModel.successful.observe(this, Observer {
-            successful ->
+        memberProfileViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -68,6 +67,10 @@ class MemberProfileActivity : BaseActivity() {
 
     private fun setUserProfile(user: User) {
         userProfile = user
+
+        if (user.avatar.isNotEmpty())
+            Glide.with(this).load(user.avatar).into(imgUserAvatarMemberProfile)
+
         tvName.text = user.name
 
         if (user.isAvailableToMentor != null) {
@@ -106,4 +109,5 @@ class MemberProfileActivity : BaseActivity() {
         memberProfileViewModel.successful.removeObservers(this)
         memberProfileViewModel.successful.value = null
     }
+
 }

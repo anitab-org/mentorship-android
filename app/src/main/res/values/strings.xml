@@ -149,4 +149,11 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="search_member">Search member</string>
+    <string name="filter_members">Filter members</string>
+    <string name="member_item_name">Larissa</string>
+    <string name="member_item_mentorship_availability">Available to mentor and be a mentee</string>
+    <string name="member_item_interests">Interests: Web Dev, LinkedIn Optimization</string>
+    <string name="text_sample">TextView</string>
 </resources>

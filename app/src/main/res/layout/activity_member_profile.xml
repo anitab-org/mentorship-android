@@ -1,159 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvImg"
+            android:layout_width="@dimen/avatar_size_big"
+            android:layout_height="@dimen/avatar_size_big"
+            android:layout_marginTop="@dimen/margin_small"
+            app:cardCornerRadius="@dimen/card_corner_radius_big"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgUserAvatarMemberProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/profile_image"
+                android:transitionName="@string/profile_image"
+                app:srcCompat="@drawable/ic_person_grey_24dp"
+                tools:targetApi="lollipop" />
+
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginTop="@dimen/margin_small"
             android:textSize="@dimen/generic_28sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/cvImg"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvUsername"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvSlackUsername"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
+            app:layout_constraintTop_toBottomOf="@+id/tvUsername"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvAvailableToMentor"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSlackUsername" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSlackUsername"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvNeedMentoring"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAvailableToMentor" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAvailableToMentor"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvInterests"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNeedMentoring" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNeedMentoring"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvBio"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInterests" />
+            app:layout_constraintTop_toBottomOf="@+id/tvInterests"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvLocation"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvBio" />
+            app:layout_constraintTop_toBottomOf="@+id/tvBio"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvOccupation"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvOrganization"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOccupation" />
+            app:layout_constraintTop_toBottomOf="@+id/tvOccupation"
+            tools:text="@string/text_sample" />
 
         <TextView
             android:id="@+id/tvSkills"
-            android:layout_width="320dp"
+            android:layout_width="@dimen/text_width_big"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            tools:text="TextView"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_big"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOrganization" />
+            app:layout_constraintTop_toBottomOf="@+id/tvOrganization"
+            tools:text="@string/text_sample" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSendRequest"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="168dp"
+            android:layout_width="@dimen/send_request_button_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
             android:text="@string/send_request"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSkills" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

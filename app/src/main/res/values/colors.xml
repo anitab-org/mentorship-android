@@ -6,6 +6,7 @@
     <color name="rich_black">#EF4135</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="itemDivider">#22000000</color>
     <color name="aubergine">#8D2165</color>
     <color name="navy">#005c88</color>
     <color name="caribbean">#54BCEB</color>
