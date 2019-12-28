@@ -42,6 +42,8 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        retainInstance = true
+
         taskViewModel = ViewModelProviders.of(this).get(TasksViewModel::class.java)
         taskViewModel.successful.observe(this, Observer {
             successful ->
@@ -74,23 +76,10 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     }
 
     /**
-     * The function creates a dialog box through whoch new tasks can be added
+     * The function creates a dialog box through which new tasks can be added
      */
-    fun showDialog() {
-        val builder = AlertDialog.Builder(context)
-        val inflater = layoutInflater
-        builder.setTitle(appContext.getString(R.string.add_new_task))
-        val dialogLayout = inflater.inflate(R.layout.dialog_add_task, null)
-        val editText = dialogLayout.findViewById<EditText>(R.id.etAddTask)
-        builder.setView(dialogLayout)
-        builder.setPositiveButton(appContext.getString(R.string.save)) { dialogInterface, i ->
-            val newTask: String = editText.text.toString()
-            taskViewModel.addTask(newTask)
-        }
-        builder.setNegativeButton(appContext.getString(R.string.cancel)) { dialogInterface, i ->
-            dialogInterface.dismiss()
-        }
-        builder.show()
+    private fun showDialog() {
+        AddTaskFragment.newInstance().show(fragmentManager, null)
     }
 
     private val markTask: (Int) -> Unit = { taskId ->

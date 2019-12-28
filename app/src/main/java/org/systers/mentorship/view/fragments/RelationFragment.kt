@@ -43,6 +43,8 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        retainInstance = true
+
         activityCast.showProgressDialog(getString(R.string.fetching_users))
         populateView(mentorshipRelation)
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)

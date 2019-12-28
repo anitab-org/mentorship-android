@@ -25,7 +25,9 @@ class RelationPagerFragment : BaseFragment() {
     }
 
     private lateinit var relationViewModel: RelationViewModel
+    private var currentItem = 0
     private val activityCast by lazy { activity as MainActivity }
+    private val currentItemKey = "currentItemKey"
 
     override fun getLayoutResourceId(): Int {
         return R.layout.fragment_relation
@@ -34,12 +36,13 @@ class RelationPagerFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        currentItem = savedInstanceState?.getInt(currentItemKey) ?: 0
+
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
-        relationViewModel.successfulGet.observe(this, Observer {
-            successfull ->
+        relationViewModel.successfulGet.observe(this, Observer { successful ->
             activityCast.hideProgressDialog()
-            if (successfull != null) {
-                if (successfull) {
+            if (successful != null) {
+                if (successful) {
                     updateView(relationViewModel.mentorshipRelation)
                 } else {
                     view?.let {
@@ -53,6 +56,11 @@ class RelationPagerFragment : BaseFragment() {
         relationViewModel.getCurrentRelationDetails()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(currentItemKey, vpMentorshipRelation.currentItem)
+        super.onSaveInstanceState(outState)
+    }
+
     private fun updateView(mentorshipRelation: Relationship) {
         if (mentorshipRelation.mentor == null) {
             tvNoCurrentRelation.visibility = View.VISIBLE
@@ -64,6 +72,7 @@ class RelationPagerFragment : BaseFragment() {
             tlMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
+            vpMentorshipRelation.currentItem = currentItem
             tlMentorshipRelation.setupWithViewPager(vpMentorshipRelation)
         }
     }
