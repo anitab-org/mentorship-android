@@ -65,4 +65,8 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+
+    // for avatar-view
+    implementation 'agency.tango.android:avatar-view:0.0.2'
+    implementation 'agency.tango.android:avatar-view-picasso:0.0.2'
 }

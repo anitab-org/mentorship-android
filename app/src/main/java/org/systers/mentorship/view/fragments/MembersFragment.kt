@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.Constants
@@ -44,10 +45,14 @@ class MembersFragment: BaseFragment() {
                         tvEmptyList.text = getString(R.string.empty_members_list)
                         rvMembers.visibility = View.GONE
                     } else {
+                        val mLayoutManager = LinearLayoutManager(context)
                         rvMembers.apply {
                             layoutManager = LinearLayoutManager(context)
                             adapter = MembersAdapter(membersViewModel.userList, openUserProfile)
                         }
+                        val mDividerItemDecoration = DividerItemDecoration(rvMembers.context,
+                                mLayoutManager.orientation)
+                        rvMembers.addItemDecoration(mDividerItemDecoration)
                         tvEmptyList.visibility = View.GONE
                     }
                 } else {

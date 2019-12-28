@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.adapters
 
+import agency.tango.android.avatarview.loader.PicassoLoader
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -43,6 +44,7 @@ class MembersAdapter (
         itemView.tvInterests.text = keyValueText
 
         itemView.setOnClickListener { openDetailFunction(item.id!!) }
+        PicassoLoader().loadImage(itemView.avatarView, "http://example.com/user/someUserAvatar.png", item.name)
     }
 
     override fun getItemCount(): Int = userList.size
