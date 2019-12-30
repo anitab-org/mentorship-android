@@ -69,17 +69,18 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/reject"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.677"
         app:layout_constraintStart_toEndOf="@+id/btnAccept"
         app:layout_constraintTop_toBottomOf="@+id/tvRequestNotes"
-        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_bias="0.81"
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -103,15 +104,15 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="104dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/accept"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRequestNotes"
-        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintVertical_bias="0.81"
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
