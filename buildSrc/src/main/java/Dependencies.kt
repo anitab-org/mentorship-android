@@ -25,7 +25,7 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
-
+    const val playServicesAuth = "17.0.0"
 }
 
 /**
@@ -53,4 +53,5 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val play_services_auth = "com.google.android.gms:play-services-auth:${Versions.playServicesAuth}"
 }

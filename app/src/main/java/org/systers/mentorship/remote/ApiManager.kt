@@ -9,6 +9,7 @@ import org.systers.mentorship.remote.services.UserService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * A class that represents API Manager. It encapsulates three services: authentication, relation and user.
@@ -37,6 +38,9 @@ class ApiManager {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val okHttpClient = OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.SECONDS) // Because it throws TimeoutException
+                .writeTimeout(30, TimeUnit.SECONDS) // Because it throws TimeoutException
+                .readTimeout(30, TimeUnit.SECONDS) // Because it throws TimeoutException
                 .addInterceptor(interceptor)
                 .addInterceptor(CustomInterceptor())
                 .build()

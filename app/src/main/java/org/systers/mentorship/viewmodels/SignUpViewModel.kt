@@ -1,9 +1,9 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
@@ -18,17 +18,20 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
+
 /**
  * This class represents the [ViewModel] component used for the Sign Up Activity
  */
 class SignUpViewModel : ViewModel() {
 
-    var TAG = SignUpViewModel::class.java.simpleName
+    private val TAG = SignUpViewModel::class.java.simpleName
 
     private val authDataManager: AuthDataManager = AuthDataManager()
 
-    val successful: MutableLiveData<Boolean> = MutableLiveData()
+    val signUpData: MutableLiveData<Register> = MutableLiveData()
+    val smartLockSuccessful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
+
 
     /**
      * Will be used to run the register method of the AuthService
@@ -37,38 +40,41 @@ class SignUpViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun register(@NonNull register: Register) {
         authDataManager.register(register)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<CustomResponse>() {
-                    override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message
-                        successful.value = true
-                    }
+            .subscribeOn(Schedulers.newThread()).
+            observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                override fun onNext(customResponse: CustomResponse) {
+                    message = customResponse.message
+                    signUpData.value = register
+                }
 
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
-                            }
+                override fun onError(throwable: Throwable) {
+                    when (throwable) {
+                        is IOException -> {
+                            message = MentorshipApplication.getContext().getString(
+                                R.string.error_please_check_internet
+                            )
                         }
-                        successful.value = false
+                        is TimeoutException -> {
+                            message = MentorshipApplication.getContext().getString(
+                                R.string.error_request_timed_out
+                            )
+                        }
+                        is HttpException -> {
+                            message = CommonUtils.getErrorResponse(throwable).message
+                        }
+                        else -> {
+                            message = MentorshipApplication.getContext().getString(
+                                R.string.error_something_went_wrong
+                            )
+                            Log.e(TAG, throwable.localizedMessage)
+                        }
                     }
+                    signUpData.value = null
+                }
 
-                    override fun onComplete() {
-                    }
-                })
+                override fun onComplete() {
+                }
+        })
     }
 }

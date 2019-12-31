@@ -1,24 +1,38 @@
 package org.systers.mentorship.view.activities
 
+import android.app.Activity
 import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.auth.api.credentials.Credential
+import com.google.android.gms.auth.api.credentials.Credentials
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.viewmodels.SignUpViewModel
+
 
 /**
  * This activity will let the user to sign up into the system using name, username,
  * email and password.
  */
 class SignUpActivity : BaseActivity() {
+    private val TAG = this::class.java.simpleName
+    private val RC_SAVE_CREDENTIALS = 1
 
     private lateinit var signUpViewModel: SignUpViewModel
+
+    private val credentialsClient = Credentials.getClient(MentorshipApplication.getContext())
 
     private lateinit var name: String
     private lateinit var username: String
@@ -28,19 +42,55 @@ class SignUpActivity : BaseActivity() {
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
 
+    private val listener = object : OnCompleteListener<Void> {
+        override fun onComplete(task: Task<Void>) {
+            if (task.isSuccessful) {
+                signUpViewModel.smartLockSuccessful.value = true
+            } else {
+                val e = task.exception
+                if(e is ResolvableApiException) {
+                    try {
+                        e.startResolutionForResult(this@SignUpActivity, RC_SAVE_CREDENTIALS)
+                    } catch (e: IntentSender.SendIntentException) {
+                        // Could not resolve the request
+                        Log.e(TAG, "Failed to send resolution.", e)
+                        signUpViewModel.smartLockSuccessful.value = false
+                    }
+                } else {
+                    Log.e(TAG, "Unresolvable exception.", e)
+                    signUpViewModel.smartLockSuccessful.value = false
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
-        signUpViewModel.successful.observe(this, Observer { successful ->
+        signUpViewModel.signUpData.observe(this, Observer {
             hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
+            if (it != null) {
+                val credential = Credential.Builder(it.email).setName(it.name)
+                    .setPassword(it.password).build()
+
+                credentialsClient.save(credential).addOnCompleteListener(listener)
+                Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
+            }
+            else {
+                Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
+                    .show()
+            }
+        })
+
+        signUpViewModel.smartLockSuccessful.observe(this, Observer {
+            if (it != null) {
+                if (it) {
+                    Log.d(TAG, "Credential save: OK")
                     navigateToLoginActivity()
                 } else {
-                    Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
-                            .show()
+                    Log.d(TAG, "Credential save: FAILED")
+                    navigateToLoginActivity()
                 }
             }
         })
@@ -71,10 +121,24 @@ class SignUpActivity : BaseActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SAVE_CREDENTIALS) {
+            if (resultCode == Activity.RESULT_OK) {
+                Log.d(TAG, "Credential save: OK")
+                signUpViewModel.smartLockSuccessful.value = true
+            } else {
+                Log.e(TAG, "Credential save: Canceled by user")
+                signUpViewModel.smartLockSuccessful.value = false
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        signUpViewModel.successful.removeObservers(this)
-        signUpViewModel.successful.value = null
+        signUpViewModel.signUpData.removeObservers(this)
+        signUpViewModel.signUpData.value = null
     }
 
     private fun validateDetails(): Boolean {
