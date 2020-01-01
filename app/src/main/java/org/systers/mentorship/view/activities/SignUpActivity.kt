@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -10,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.Constants.RC_SAVE
 import org.systers.mentorship.viewmodels.SignUpViewModel
 
 /**
@@ -28,6 +30,10 @@ class SignUpActivity : BaseActivity() {
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
 
+    companion object {
+        lateinit var instance: SignUpActivity
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -37,12 +43,14 @@ class SignUpActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
-                    navigateToLoginActivity()
                 } else {
                     Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
                 }
             }
+        })
+        signUpViewModel.successfulCredentials.observe(this, Observer {
+            navigateToLoginActivity()
         })
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
@@ -69,6 +77,8 @@ class SignUpActivity : BaseActivity() {
         cbTC.setOnCheckedChangeListener { _, b ->
             btnSignUp.isEnabled = b
         }
+
+        instance = this
     }
 
     override fun onDestroy() {
@@ -122,4 +132,15 @@ class SignUpActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SAVE && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, R.string.credentials_saved_successfully,
+                    Toast.LENGTH_SHORT).show()
+            navigateToLoginActivity()
+        }
+    }
+
 }

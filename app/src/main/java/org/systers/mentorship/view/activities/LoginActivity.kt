@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.activities
 
+import android.app.Activity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -7,9 +8,12 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import com.google.android.gms.auth.api.credentials.Credential
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
+import org.systers.mentorship.utils.Constants
+import org.systers.mentorship.utils.Constants.RC_REQUEST
 import org.systers.mentorship.viewmodels.LoginViewModel
 
 /**
@@ -22,13 +26,36 @@ class LoginActivity : BaseActivity() {
     private lateinit var username: String
     private lateinit var password: String
 
+    private var saveCredentials = true
+    /*
+        we need to save credentials and then compare them to actual credentials
+        so that if the user changes them, they will be saved to Smart Lock
+    */
+    private var savedName = ""
+    private var savedPassword = ""
+
+    companion object {
+        lateinit var instance: LoginActivity
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        loginViewModel.successful.observe(this, Observer {
-            successful ->
+
+        loginViewModel.getCredentials()
+        loginViewModel.successfulCredentials.observe(this, Observer {
+            if (it) {
+                savedName = loginViewModel.username
+                savedPassword = loginViewModel.password
+                tiUsername.editText?.setText(savedName)
+                tiPassword.editText?.setText(savedPassword)
+                saveCredentials = false
+            }
+        })
+
+        loginViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -60,6 +87,8 @@ class LoginActivity : BaseActivity() {
             }
             false
         }
+
+        instance = this
     }
 
     private fun validateCredentials() : Boolean {
@@ -82,8 +111,10 @@ class LoginActivity : BaseActivity() {
     private fun login() {
         username = tiUsername.editText?.text.toString()
         password = tiPassword.editText?.text.toString()
+        if (savedName != username || savedPassword != password)
+            saveCredentials = true
         if (validateCredentials()) {
-            loginViewModel.login(Login(username, password))
+            loginViewModel.login(Login(username, password), saveCredentials)
             showProgressDialog(getString(R.string.logging_in))
         }
     }
@@ -93,5 +124,23 @@ class LoginActivity : BaseActivity() {
         loginViewModel.successful.removeObservers(this)
         loginViewModel.successful.value = null
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == RC_REQUEST ) {
+                val credential = data?.getParcelableExtra<Credential>(Credential.EXTRA_KEY)
+                savedName = credential?.name ?: ""
+                savedPassword = credential?.password ?: ""
+                tiUsername.editText?.setText(savedName)
+                tiPassword.editText?.setText(savedPassword)
+                saveCredentials = false
+            }
+            if (requestCode == Constants.RC_SAVE)
+                Toast.makeText(this, R.string.credentials_saved_successfully,
+                        Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
 
