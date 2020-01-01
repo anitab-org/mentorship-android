@@ -1,11 +1,17 @@
 package org.systers.mentorship.view.activities
 
 import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.auth.api.credentials.Credential
+import com.google.android.gms.auth.api.credentials.Credentials
+import com.google.android.gms.auth.api.credentials.CredentialsClient
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
@@ -16,6 +22,8 @@ import org.systers.mentorship.viewmodels.SignUpViewModel
  * This activity will let the user to sign up into the system using name, username,
  * email and password.
  */
+private const val TAG = "SignUpActivity"
+private const val RC_SAVE = 1
 class SignUpActivity : BaseActivity() {
 
     private lateinit var signUpViewModel: SignUpViewModel
@@ -25,6 +33,7 @@ class SignUpActivity : BaseActivity() {
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var confirmedPassword: String
+    private lateinit var mCredentialsClient: CredentialsClient
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
 
@@ -58,7 +67,47 @@ class SignUpActivity : BaseActivity() {
             isAvailableToMentor = cbMentor.isChecked
 
             if (validateDetails()) {
+                //save credentials
+                mCredentialsClient = Credentials.getClient(this)
+                val credential = Credential.Builder(username)
+                        .setPassword(password)
+                        .build()
+                mCredentialsClient.save(credential).addOnCompleteListener {task -> run {
+                        if (task.isSuccessful){
+                            Log.d(TAG, "SAVE: OK")
+                            Toast.makeText(
+                                    this, "Credentials saved", Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        else {
+                            val exception = task.exception
+                            if (exception is ResolvableApiException){
+                                //prompt user if credential is new
+                                try {
+                                    Log.i(TAG, "starting resolution")
+                                    exception.startResolutionForResult(this, RC_SAVE)
+                                }
+                                catch (e: IntentSender.SendIntentException) {
+                                    Log.e(TAG, "Failed to send resolution.", e)
+                                    Toast.makeText(
+                                            this,
+                                            "Credential Save failed",
+                                            Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                            else{
+                                // Request has no resolution
+                                Toast.makeText(
+                                        this, "Credential Save failed",
+                                        Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                }
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
+
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             }
