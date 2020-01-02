@@ -19,6 +19,9 @@ import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.EditProfileFragmentErrorStates
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
+import android.app.DatePickerDialog
+import java.util.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 /**
  * The fragment is responsible for editing the User's profile

@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.activities
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -11,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.viewmodels.SignUpViewModel
+import java.util.*
+import javax.xml.datatype.DatatypeConstants.MONTHS
 
 /**
  * This activity will let the user to sign up into the system using name, username,
@@ -47,15 +50,41 @@ class SignUpActivity : BaseActivity() {
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
 
+        // DOB
+        val c = Calendar.getInstance()
+        val currentYear = c.get(Calendar.YEAR)
+        val year = currentYear - 13
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        btnDOB.setOnClickListener {
+
+            val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                // Display Selected date in textbox
+                if (year > 2007) {
+                    showDate.setText("You must be 13 Years old")
+                } else {
+                    showDate.setText("" + dayOfMonth + " " + monthOfYear + 1 + ", " + year)
+                }
+            }, currentYear, month, day)
+            datePickerDialog.show()
+        }
+
         btnSignUp.setOnClickListener {
 
             name = tiName.editText?.text.toString()
+
+            // ADD DOB FOR MINIMUM AGE 13 YEARS OLD
+
+
             username = tiUsername.editText?.text.toString()
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
             needsMentoring = cbMentee.isChecked
             isAvailableToMentor = cbMentor.isChecked
+            year > 0
 
             if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)

@@ -108,6 +108,34 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDOB"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/dob"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tiConfirmPassword"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
+            app:layout_constraintTop_toBottomOf="@id/tiConfirmPassword"
+            app:layout_constraintVertical_bias="0.0"/>
+
+        <TextView
+            android:id="@+id/showDate"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnDOB"
+            app:layout_constraintStart_toStartOf="@+id/btnDOB"
+            app:layout_constraintTop_toBottomOf="@id/btnDOB"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0"/>
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView"
             android:layout_width="wrap_content"
@@ -115,9 +143,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/available_to_be_mentor_mentee"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tiConfirmPassword"
-            app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/tiConfirmPassword" />
+            app:layout_constraintEnd_toEndOf="@+id/btnDOB"
+            app:layout_constraintStart_toStartOf="@+id/btnDOB"
+            app:layout_constraintTop_toBottomOf="@+id/btnDOB" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbMentor"
