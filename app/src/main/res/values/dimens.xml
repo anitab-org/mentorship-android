@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="generic_28sp">28sp</dimen>
+    <dimen name="text_size_big">36sp</dimen>
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_big">24dp</dimen>
+    <dimen name="margin_large">48dp</dimen>
+    <dimen name="text_size_normal">20sp</dimen>
+    <dimen name="button_width_request_detail">150dp</dimen>
 </resources>

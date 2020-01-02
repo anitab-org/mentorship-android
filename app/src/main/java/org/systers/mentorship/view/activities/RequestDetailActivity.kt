@@ -81,6 +81,14 @@ class RequestDetailActivity: BaseActivity() {
 
         // TODD: Needed to enable scrolling on text view
         tvRequestNotes.movementMethod = ScrollingMovementMethod()
+        tvRequestNotes.setOnTouchListener { _, _ ->
+            tvRequestNotes.parent.requestDisallowInterceptTouchEvent(true)
+            return@setOnTouchListener false
+        }
+        scrollViewRequestDetail.setOnTouchListener { _, _ ->
+            tvRequestNotes.parent.requestDisallowInterceptTouchEvent(false)
+            return@setOnTouchListener false
+        }
     }
 
     private fun setActionButtons(relationResponse: Relationship) {
