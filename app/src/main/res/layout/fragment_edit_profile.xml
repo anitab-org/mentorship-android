@@ -114,6 +114,20 @@
                         android:checked="@={user.needsMentoring}" />
 
                 </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tiDOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/aubergine"
+                    android:hint="@string/enter_dob">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tiBio"

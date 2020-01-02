@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.viewmodels.SignUpViewModel
+import android.app.DatePickerDialog
+import java.util.*
 
 /**
  * This activity will let the user to sign up into the system using name, username,
@@ -46,7 +48,21 @@ class SignUpActivity : BaseActivity() {
         })
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
+        val cal = Calendar.getInstance()
+        var yearnow = cal.get(Calendar.YEAR)
+        val year=yearnow-13
+        val month = cal.get(Calendar.MONTH)
+        val day = cal.get(Calendar.DAY_OF_MONTH)
 
+        btnDOB.setOnClickListener{
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                // Display Selected date in TextView
+                display_date.setText("" + day + "-" + month + "-" + year)
+            }, year, month, day)
+            cal.set(year, month, day)
+            dpd.datePicker.maxDate=(cal.timeInMillis)
+            dpd.show()
+        }
         btnSignUp.setOnClickListener {
 
             name = tiName.editText?.text.toString()
