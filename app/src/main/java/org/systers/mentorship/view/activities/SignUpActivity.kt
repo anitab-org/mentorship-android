@@ -1,15 +1,19 @@
 package org.systers.mentorship.view.activities
 
 import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.auth.api.credentials.*
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.Constants.RESOLUTION_ACTIVITY_REQ_CODE
 import org.systers.mentorship.viewmodels.SignUpViewModel
 
 /**
@@ -27,6 +31,9 @@ class SignUpActivity : BaseActivity() {
     private lateinit var confirmedPassword: String
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
+    private lateinit var credential: Credential
+    private lateinit var credentialClient: CredentialsClient
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +44,10 @@ class SignUpActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
+                    /**
+                     * Storing user credentials to the Google Smart Lock.
+                     * */
+                    saveCredentialstoAPI(credential)
                     navigateToLoginActivity()
                 } else {
                     Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
@@ -46,6 +57,8 @@ class SignUpActivity : BaseActivity() {
         })
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
+
+        credentialClient = Credentials.getClient(this)
 
         btnSignUp.setOnClickListener {
 
@@ -60,6 +73,9 @@ class SignUpActivity : BaseActivity() {
             if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
                 signUpViewModel.register(requestData)
+                credential = Credential.Builder(email)
+                             .setPassword(password)
+                             .build()
                 showProgressDialog(getString(R.string.signing_up))
             }
         }
@@ -68,6 +84,41 @@ class SignUpActivity : BaseActivity() {
         }
         cbTC.setOnCheckedChangeListener { _, b ->
             btnSignUp.isEnabled = b
+        }
+    }
+
+
+    private fun saveCredentialstoAPI(credential: Credential) {
+        credentialClient.save(credential).addOnCompleteListener { task ->
+            run{
+                if(task.isSuccessful){
+                    Toast.makeText(this, R.string.credentials_saved_successfully, Toast.LENGTH_SHORT).show()
+                }
+                var exception = task.exception
+                if(exception is ResolvableApiException){
+                    /**
+                     * This prompts the user to get whether the user wants to save the information on Google Smart Lock , if the user is new.
+                     * */
+                    try{
+                        exception.startResolutionForResult(this, RESOLUTION_ACTIVITY_REQ_CODE)
+                    }catch(ex : IntentSender.SendIntentException){
+                        Toast.makeText(this, R.string.credentials_save_failed, Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, R.string.credentials_save_failed, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RESOLUTION_ACTIVITY_REQ_CODE) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, R.string.credentials_saved_successfully, Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, R.string.credentials_save_cancelled, Toast.LENGTH_LONG).show()
+            }
         }
     }
 
