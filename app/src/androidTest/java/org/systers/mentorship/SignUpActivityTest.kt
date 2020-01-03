@@ -24,7 +24,11 @@ import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.systers.mentorship.utils.Constants
+import org.systers.mentorship.utils.Constants.MIN_AGE
 import org.systers.mentorship.view.activities.SignUpActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * This class specifies the UI test for SignUpActivity
@@ -113,7 +117,7 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText(""), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
 
-        onView(withId(R.id.btnSignUp)).perform(click())
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(),click())
 
         onView(withId(R.id.tiName)).check(matches(hasTextInputLayoutErrorText(EMPTY_NAME_ERROR)))
         onView(withId(R.id.tiUsername)).check(matches(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR)))
@@ -130,17 +134,74 @@ class SignUpActivityTest {
     @Test
     fun whenPassAreUnequalShowsErrorTest() {
 
-        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("Mohak Gupta"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("mohak1283"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("mohak1283@gmail.com"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("mohak@1283"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("mohak@128345"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("username"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@gmail.com"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertzui"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("12345678"), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
 
-        onView(withId(R.id.btnSignUp)).perform(click())
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(),click())
 
         onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText("Passwords didn't match!")))
-
-
     }
+
+    /**
+     * This test method simply checks that if the date of birth is empty
+     * and user clicks on signUp button then the error message is coming in date of birth editText
+     */
+    @Test
+    fun whenBirthdayIsNotEnteredErrorTest() {
+        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("username"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@gmail.com"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertzui"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertzui"), closeSoftKeyboard())
+        onView(withId(R.id.cbTC)).perform(click())
+
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(),click())
+
+        onView(withId(R.id.tiDateOfBirth)).check(matches(hasTextInputLayoutErrorText("Enter the whole date!")))
+    }
+
+    /**
+     * This test method simply checks that if the date of birth is incorrect
+     * and user clicks on signUp button then the error message is coming in date of birth editText
+     */
+    @Test
+    fun whenIncorrectBirthdayIsEnteredErrorTest() {
+        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("username"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@gmail.com"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiDateOfBirth).perform(typeText("99999999"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertzui"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertzui"), closeSoftKeyboard())
+        onView(withId(R.id.cbTC)).perform(click())
+
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(),click())
+
+        onView(withId(R.id.tiDateOfBirth)).check(matches(hasTextInputLayoutErrorText("You entered incorrect date!")))
+    }
+
+    /**
+     * This test method simply checks that if the user hasn't reached min age
+     * and user clicks on signUp button then the error message is coming in date of birth editText
+     */
+    @Test
+    fun whenMinAgeIsNotReachedErrorTest() {
+        val sdf = SimpleDateFormat(Constants.DATE_FORMAT.replace("/", ""), Locale.getDefault())
+
+        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("username"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@gmail.com"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiDateOfBirth).perform(typeText(sdf.format(System.currentTimeMillis())), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertzui"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertzui"), closeSoftKeyboard())
+        onView(withId(R.id.cbTC)).perform(click())
+
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(),click())
+
+        onView(withId(R.id.tiDateOfBirth)).check(matches(hasTextInputLayoutErrorText("You must be at least ${-MIN_AGE} years old!")))
+    }
+
 }

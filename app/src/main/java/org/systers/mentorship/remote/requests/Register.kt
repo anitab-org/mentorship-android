@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName
  * @param password represents the password of the new user, used for login
  * @param hasAcceptedTermsAndConditions is true if the user checked the terms and
  *                                      conditions checkbox, false if otherwise
+ * @param birthday represents the birthday date of the user in milliseconds
  */
 data class Register (
         val name: String,
@@ -18,4 +19,5 @@ data class Register (
         val password: String,
         @SerializedName("terms_and_conditions_checked") val hasAcceptedTermsAndConditions: Boolean,
         @SerializedName("need_mentoring") val needsMentoring: Boolean,
-        @SerializedName("available_to_mentor") val isAvailableToMentor: Boolean)
+        @SerializedName("available_to_mentor") val isAvailableToMentor: Boolean,
+        val birthday: Float)

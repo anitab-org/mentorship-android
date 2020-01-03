@@ -9,4 +9,7 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
+    const val MIN_AGE = -13
+    const val MAX_BIRTHDAY_YEAR = 1900
+    const val DATE_FORMAT = "dd/MM/yyyy"
 }

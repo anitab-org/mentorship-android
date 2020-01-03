@@ -75,14 +75,44 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiDateOfBirth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:focusableInTouchMode="true"
+            android:hint="@string/date_of_birth"
+            app:layout_constraintEnd_toStartOf="@+id/ivCalendar"
+            app:layout_constraintStart_toStartOf="@+id/tiEmail"
+            app:layout_constraintTop_toBottomOf="@+id/tiEmail">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:maxLength="10" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/ivCalendar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/ic_calendar_accent_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/tiDateOfBirth"
+            app:layout_constraintEnd_toEndOf="@id/tiEmail"
+            app:layout_constraintTop_toTopOf="@+id/tiDateOfBirth"
+            android:contentDescription="@string/date_picker" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/password"
-            app:layout_constraintEnd_toEndOf="@+id/tiEmail"
-            app:layout_constraintStart_toStartOf="@+id/tiEmail"
-            app:layout_constraintTop_toBottomOf="@id/tiEmail"
+            app:layout_constraintEnd_toEndOf="@+id/ivCalendar"
+            app:layout_constraintStart_toStartOf="@+id/tiDateOfBirth"
+            app:layout_constraintTop_toBottomOf="@id/tiDateOfBirth"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText

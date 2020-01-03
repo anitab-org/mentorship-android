@@ -149,4 +149,10 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="date_of_birth">Date of birth (dd/mm/yyyy)</string>
+    <string name="date_hint">dd/mm/yyyy</string>
+    <string name="date_picker">DatePicker</string>
+    <string name="enter_whole_date">Enter the whole date!</string>
+    <string name="entered_incorrect_date">You entered incorrect date!</string>
+    <string name="min_age_error">You must be at least %d years old!</string>
 </resources>

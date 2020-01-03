@@ -6,9 +6,13 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
+import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.viewmodels.ProfileViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * The fragment is responsible for showing the User's profile
@@ -45,6 +49,11 @@ class ProfileFragment : BaseFragment() {
             if (successful != null) {
                 if (successful) {
                     fragmentProfileBinding.user = profileViewModel.user
+                    if (profileViewModel.user.birthday != null) {
+                        val sdf = SimpleDateFormat(Constants.DATE_FORMAT, Locale.getDefault())
+                        fragmentProfileBinding.tiDateOfBirth.editText
+                                ?.setText(sdf.format(profileViewModel.user.birthday))
+                    }
                 } else {
                     Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
                             Snackbar.LENGTH_LONG).show()

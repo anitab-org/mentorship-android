@@ -51,6 +51,22 @@
                     android:enabled="false"
                     android:text="@={user.email}"/>
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiDateOfBirth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/date_of_birth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tiEmail">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
@@ -61,7 +77,7 @@
                 android:text="@string/available_to_mentor"
                 app:layout_constraintEnd_toStartOf="@+id/switchAvailableToMentor"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/tiDateOfBirth" />
             <Switch
                 android:id="@+id/switchAvailableToMentor"
                 android:layout_width="0dp"
@@ -71,7 +87,7 @@
                 android:enabled="false"
                 android:checked="@{safeUnbox(user.availableToMentor)}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/tiDateOfBirth" />
             <Switch
                 android:id="@+id/switchNeedMentorship"
                 android:layout_width="0dp"
