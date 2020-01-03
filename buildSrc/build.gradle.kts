@@ -9,4 +9,5 @@ plugins {
  */
 repositories {
     jcenter()
+    google()
 }

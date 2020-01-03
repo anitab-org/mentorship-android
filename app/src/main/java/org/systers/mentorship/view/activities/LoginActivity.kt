@@ -3,10 +3,13 @@ package org.systers.mentorship.view.activities
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import com.google.android.gms.auth.api.credentials.*
+import com.google.android.gms.common.api.ResolvableApiException
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
@@ -21,6 +24,8 @@ class LoginActivity : BaseActivity() {
 
     private lateinit var username: String
     private lateinit var password: String
+    private lateinit var credentialsClient: CredentialsClient
+    private lateinit var credentialRequest: CredentialRequest
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,15 @@ class LoginActivity : BaseActivity() {
             }
         })
 
+        credentialsClient = Credentials.getClient(this)
+        credentialRequest = CredentialRequest.Builder()
+                            .setPasswordLoginSupported(true)
+                            .build()
+        /**
+         * Requesting stored user's credentials from Google Smart Lock.
+         * */
+        requestCredentials(credentialRequest)
+
         btnLogin.setOnClickListener {
            login()
         }
@@ -59,6 +73,51 @@ class LoginActivity : BaseActivity() {
                 login()
             }
             false
+        }
+    }
+
+    private fun requestCredentials(credentialRequest: CredentialRequest) {
+        credentialsClient.request(credentialRequest).addOnCompleteListener{task ->
+            run{
+                if(task.isSuccessful){
+                    onCredentialRetrieved(task.getResult()!!.credential)
+                }
+                var exception = task.exception
+                if(exception is ResolvableApiException){
+                    /**
+                     * This prompts the user if the user has multiple accounts saved.
+                     * */
+                    try{
+                        exception.startResolutionForResult(this, 1)
+                    }catch(ex : IntentSender.SendIntentException){
+                        Toast.makeText(this, "Failed to retrieve the credentials", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Failed to retrieve the credentials", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun onCredentialRetrieved(credential: Credential) {
+        var accountType = credential.accountType
+        if(accountType == null) {
+            username = credential.id
+            password = credential.password.toString()
+            loginViewModel.login(Login(username, password))
+            showProgressDialog(getString(R.string.logging_in))
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                var credential = data!!.getParcelableExtra<Credential>(Credential.EXTRA_KEY)
+                onCredentialRetrieved(credential)
+            } else {
+                Toast.makeText(this, "Failed to retrieve the credentials", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
