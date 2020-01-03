@@ -74,6 +74,34 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDOB"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/dob"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tiEmail"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tiEmail"
+            app:layout_constraintTop_toBottomOf="@id/tiEmail"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/display_date"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnDOB"
+            app:layout_constraintStart_toStartOf="@+id/btnDOB"
+            app:layout_constraintTop_toBottomOf="@id/btnDOB"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiPassword"
             android:layout_width="0dp"
@@ -81,8 +109,8 @@
             android:layout_marginTop="16dp"
             android:hint="@string/password"
             app:layout_constraintEnd_toEndOf="@+id/tiEmail"
-            app:layout_constraintStart_toStartOf="@+id/tiEmail"
-            app:layout_constraintTop_toBottomOf="@id/tiEmail"
+            app:layout_constraintStart_toStartOf="@+id/btnDOB"
+            app:layout_constraintTop_toBottomOf="@id/btnDOB"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -186,5 +214,6 @@
             app:layout_constraintEnd_toEndOf="@+id/btnSignUp"
             app:layout_constraintStart_toStartOf="@+id/btnSignUp"
             app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
