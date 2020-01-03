@@ -1,11 +1,18 @@
 package org.systers.mentorship.view.activities
 
+import android.app.Activity
 import android.content.Intent
+import android.content.IntentSender
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.auth.api.credentials.Credential
+import com.google.android.gms.auth.api.credentials.Credentials
+import com.google.android.gms.auth.api.credentials.CredentialsClient
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
@@ -16,6 +23,8 @@ import org.systers.mentorship.viewmodels.SignUpViewModel
  * This activity will let the user to sign up into the system using name, username,
  * email and password.
  */
+private const val TAG = "SignUpActivity"
+private const val RC_SAVE = 1
 class SignUpActivity : BaseActivity() {
 
     private lateinit var signUpViewModel: SignUpViewModel
@@ -27,6 +36,8 @@ class SignUpActivity : BaseActivity() {
     private lateinit var confirmedPassword: String
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
+
+    private lateinit var mCredentialsClient: CredentialsClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +69,36 @@ class SignUpActivity : BaseActivity() {
             isAvailableToMentor = cbMentor.isChecked
 
             if (validateDetails()) {
+                mCredentialsClient = Credentials.getClient(this)
+                val credential = Credential.Builder(username)
+                        .setPassword(password)
+                        .build()
+                mCredentialsClient.save(credential).addOnCompleteListener { task -> run {
+                    if (task.isSuccessful)
+                    {
+                        Toast.makeText(this, R.string.cred_saved, Toast.LENGTH_SHORT).show()
+                    }
+                    else
+                    {
+                        val exception = task.exception
+                        if (exception is ResolvableApiException)
+                        {
+                            try
+                            {
+                                exception.startResolutionForResult(this, RC_SAVE)
+                            }
+                            catch (exception: IntentSender.SendIntentException)
+                            {
+                                Log.e(TAG, "Failed to send resolution.", exception)
+                                Toast.makeText(this, R.string.cred_save_fail, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(this, R.string.cred_save_fail, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } }
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
@@ -68,6 +109,17 @@ class SignUpActivity : BaseActivity() {
         }
         cbTC.setOnCheckedChangeListener { _, b ->
             btnSignUp.isEnabled = b
+        }
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SAVE) {
+            if (resultCode == Activity.RESULT_OK) {
+                Toast.makeText(this, R.string.cred_saved, Toast.LENGTH_SHORT).show()
+            } else {
+                Log.e(TAG, "SAVE: Canceled by user")
+            }
         }
     }
 
