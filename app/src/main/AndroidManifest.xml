@@ -28,6 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activities.SignUpActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activities.MainActivity" />
         <activity android:name=".view.activities.RequestDetailActivity" />
