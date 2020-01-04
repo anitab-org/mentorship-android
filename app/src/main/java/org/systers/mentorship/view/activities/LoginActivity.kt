@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.viewmodels.LoginViewModel
+import java.lang.Exception
 
 /**
  * This activity will let the user to login using username/email and password.
@@ -60,6 +61,19 @@ class LoginActivity : BaseActivity() {
             }
             false
         }
+        //message when session expired
+        try {
+            val bundle = intent.extras
+            val toastTokenExpired = bundle.getInt("toastTokenExpired")
+            if(toastTokenExpired == 1){
+                Snackbar.make(
+                        getRootView(),
+                        "Session expired, please login again",
+                        Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
+        catch (exception: Exception){}
     }
 
     private fun validateCredentials() : Boolean {
