@@ -75,14 +75,41 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiDOB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/date_of_birth"
+            app:layout_constraintEnd_toEndOf="@+id/tiEmail"
+            app:layout_constraintStart_toStartOf="@+id/tiEmail"
+            app:layout_constraintTop_toBottomOf="@id/tiEmail" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCalendar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="96dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tiDOB"
+            app:layout_constraintTop_toTopOf="@+id/tiDOB"
+            app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:hint="@string/password"
-            app:layout_constraintEnd_toEndOf="@+id/tiEmail"
-            app:layout_constraintStart_toStartOf="@+id/tiEmail"
-            app:layout_constraintTop_toBottomOf="@id/tiEmail"
+            app:layout_constraintEnd_toEndOf="@+id/tiDOB"
+            app:layout_constraintStart_toStartOf="@+id/tiDOB"
+            app:layout_constraintTop_toBottomOf="@id/tiDOB"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText

@@ -5,6 +5,7 @@ import java.util.*
 
 const val DATE_FORMAT = "dd MMM yyyy"
 const val SEND_REQUEST_END_DATE_FORMAT = "dd/MM/yyyy"
+const val DOB_FORMAT = "dd-MM-yyyy"
 const val EXTENDED_DATE_FORMAT = "dd MMMM yyyy"
 const val MILLISECONDS_FACTOR = 1000L
 

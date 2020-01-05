@@ -25,4 +25,10 @@ sealed class EditProfileFragmentErrorStates {
      * entered name of the user is too long.
      */
     object NameTooLongError: EditProfileFragmentErrorStates()
+
+    /**
+     * An object to represent the error case when the
+     * entered date of birth of the user is empty.
+     */
+    object EmptyDOBError: EditProfileFragmentErrorStates()
 }

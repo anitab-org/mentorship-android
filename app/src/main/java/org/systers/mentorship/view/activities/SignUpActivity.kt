@@ -1,8 +1,11 @@
 package org.systers.mentorship.view.activities
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,7 +13,10 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.DOB_FORMAT
 import org.systers.mentorship.viewmodels.SignUpViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * This activity will let the user to sign up into the system using name, username,
@@ -23,14 +29,23 @@ class SignUpActivity : BaseActivity() {
     private lateinit var name: String
     private lateinit var username: String
     private lateinit var email: String
+    private lateinit var dob: String
     private lateinit var password: String
     private lateinit var confirmedPassword: String
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
 
+    private lateinit var datePickerDialog: DatePickerDialog
+    private lateinit var datePicker: DatePicker
+    private lateinit var calender: Calendar
+    private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        tiDOB.isEnabled = false
+
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
@@ -47,15 +62,27 @@ class SignUpActivity : BaseActivity() {
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
 
+        calender = Calendar.getInstance()
+
+        initDatePickerDialog()
+
+        ivCalendar.setOnClickListener {
+
+            Toast.makeText(this, R.string.dob_validity, Toast.LENGTH_LONG).show()
+            datePickerDialog.show()
+        }
+
         btnSignUp.setOnClickListener {
 
             name = tiName.editText?.text.toString()
             username = tiUsername.editText?.text.toString()
             email = tiEmail.editText?.text.toString()
+            dob = tiDOB.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
             needsMentoring = cbMentee.isChecked
             isAvailableToMentor = cbMentor.isChecked
+
 
             if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
@@ -69,6 +96,43 @@ class SignUpActivity : BaseActivity() {
         cbTC.setOnCheckedChangeListener { _, b ->
             btnSignUp.isEnabled = b
         }
+    }
+
+    private fun updateDOB() {
+        /**
+         * This method updates the Date of Birth field.
+         * */
+        var sdf = SimpleDateFormat(DOB_FORMAT, Locale.US)
+        var dob = SpannableStringBuilder(sdf.format(calender.time))
+        tiDOB.editText?.text = dob
+    }
+
+    private fun initDatePickerDialog(){
+        /**
+         * Setting the onDateSetListener for DatePickerDialog.
+         * */
+        dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            calender.set(year, month, dayOfMonth)
+            updateDOB()
+        }
+
+        /**
+         * Initialising DatePickerDialog
+         * */
+        datePickerDialog = DatePickerDialog(
+                this,
+                dateSetListener,
+                calender.get(Calendar.YEAR),
+                calender.get(Calendar.MONTH),
+                calender.get(Calendar.DAY_OF_MONTH))
+
+        /**
+         * Restricting the age limit of the user to 13 years and older.
+         * */
+        datePicker = datePickerDialog.datePicker
+        calender.add(Calendar.YEAR, -13)
+        datePicker.maxDate = calender.timeInMillis
+
     }
 
     override fun onDestroy() {
@@ -105,6 +169,13 @@ class SignUpActivity : BaseActivity() {
             isValid = false
         } else {
             tiPassword.error = null
+        }
+
+        if (dob.isBlank()) {
+            tiDOB.error = getString(R.string.error_empty_dob)
+            isValid = false
+        } else {
+            tiDOB.error = null
         }
 
         if (password != confirmedPassword) {
