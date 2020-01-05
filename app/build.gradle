@@ -65,4 +65,7 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+
+    implementation Dependencies.circle_image_view
+    implementation Dependencies.material
 }

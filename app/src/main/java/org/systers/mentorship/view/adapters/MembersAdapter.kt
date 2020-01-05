@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.list_member_item.view.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -32,6 +33,11 @@ class MembersAdapter (
     override fun onBindViewHolder(@NonNull holder: MembersViewHolder, position: Int) {
         val item = userList[position]
         val itemView = holder.itemView
+
+        /**
+         * Setting the animation for the card view member container.
+         * */
+        itemView.cvmemberContainer.animation = AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation)
 
         itemView.tvName.text = item.name
         itemView.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.isAvailableToMentor, item.needsMentoring)

@@ -25,6 +25,8 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
+    const val deHdodenhofVersion = "3.0.1"
+    const val androidMaterialVersion = "1.0.0"
 
 }
 
@@ -53,4 +55,6 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val circle_image_view = "de.hdodenhof:circleimageview:${Versions.deHdodenhofVersion}"
+    const val material = "com.google.android.material:material:${Versions.androidMaterialVersion}"
 }

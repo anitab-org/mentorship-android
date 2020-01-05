@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="generic_28sp">28sp</dimen>
+    <dimen name="circleImageView">80dp</dimen>
+    <dimen name="border">12dp</dimen>
+    <dimen name="elevation">5dp</dimen>
 </resources>
