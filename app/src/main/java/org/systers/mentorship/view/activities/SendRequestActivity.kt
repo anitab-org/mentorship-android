@@ -12,10 +12,13 @@ import android.widget.DatePicker
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
+import org.systers.mentorship.models.RelationState
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.utils.SEND_REQUEST_END_DATE_FORMAT
 import org.systers.mentorship.utils.convertDateIntoUnixTimestamp
 import org.systers.mentorship.utils.getAuthTokenPayload
+import org.systers.mentorship.viewmodels.RequestsViewModel
 import org.systers.mentorship.viewmodels.SendRequestViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +35,8 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private lateinit var sendRequestViewModel: SendRequestViewModel
+    private lateinit var requestsViewModel: RequestsViewModel
+    private var pendingRelations = listOf<Relationship>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,21 +103,42 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-            if(!TextUtils.isEmpty(notes)) {
+            if (!TextUtils.isEmpty(notes)) {
 
-                val sendRequestData = RelationshipRequest(
-                        menteeId = menteeId,
-                        mentorId = mentorId,
-                        notes = notes,
-                        endDate = endDate
-                )
+                var duplicateRequest = isDuplicateRequest(mentorId, menteeId, endDate)
 
-                sendRequestViewModel.sendRequest(sendRequestData)
+                if(!duplicateRequest) {
+
+                    val sendRequestData = RelationshipRequest(
+                            menteeId = menteeId,
+                            mentorId = mentorId,
+                            notes = notes,
+                            endDate = endDate
+                    )
+
+                    sendRequestViewModel.sendRequest(sendRequestData)
+
+                } else {
+                    Snackbar.make(getRootView(), getString(R.string.request_already_sent,tvOtherUserName.text),Snackbar.LENGTH_LONG)
+                            .show()
+                }
             } else {
 
                 etRequestNotes.error = getString(R.string.notes_empty_error)
             }
         }
+    }
+
+    /**
+     * This method checks whether the user has already sent a similar request(pending) in the past to the same user.
+     * */
+    private fun isDuplicateRequest(mentorId: Int, menteeId: Int, endDate: Long): Boolean {
+
+        pendingRelations.iterator().forEach {rel ->
+            if(rel.mentor.id == mentorId && rel.mentee.id == menteeId && rel.endsOn == endDate.toFloat()) return true
+        }
+
+        return false
     }
 
     private fun setObservables() {
@@ -130,6 +156,30 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
         })
+
+        /**
+         * Setting up the requestsViewModel to get the pending requests of the current user.
+         * These pending requests would be used to compare them with the current request to be send, to check for duplicacy.
+         * */
+        requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
+        requestsViewModel.successful.observe(this, Observer { successful ->
+            if (successful != null) {
+                if (successful) {
+                    var allRelations = requestsViewModel.allRequestsList
+                    /**
+                     * Filtering out pending relations from all the relations.
+                     * */
+                    pendingRelations = allRelations.filter { rel ->
+                        rel.state == RelationState.PENDING.value
+                    }
+
+                } else {
+                    Snackbar.make(getRootView(), requestsViewModel.message, Snackbar.LENGTH_LONG).show()
+                }
+            }
+        })
+
+        requestsViewModel.getAllMentorshipRelations()
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
