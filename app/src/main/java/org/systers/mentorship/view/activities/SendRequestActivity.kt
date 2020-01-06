@@ -12,10 +12,12 @@ import android.widget.DatePicker
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
+import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.utils.SEND_REQUEST_END_DATE_FORMAT
 import org.systers.mentorship.utils.convertDateIntoUnixTimestamp
 import org.systers.mentorship.utils.getAuthTokenPayload
+import org.systers.mentorship.viewmodels.RequestsViewModel
 import org.systers.mentorship.viewmodels.SendRequestViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +34,8 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private lateinit var sendRequestViewModel: SendRequestViewModel
+    private lateinit var requestsViewModel: RequestsViewModel
+    private var requestsSuccessful = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,15 +103,21 @@ class SendRequestActivity: BaseActivity() {
             }
 
             if(!TextUtils.isEmpty(notes)) {
-
                 val sendRequestData = RelationshipRequest(
                         menteeId = menteeId,
                         mentorId = mentorId,
                         notes = notes,
                         endDate = endDate
                 )
-
-                sendRequestViewModel.sendRequest(sendRequestData)
+                // if the list of requests was received and it contains a similar request return an error
+                if (requestsSuccessful && !requestsViewModel.allRequestsList.none {
+                            it.state == RelationState.PENDING.value &&
+                                    it.mentee.id == menteeId &&
+                                    it.mentor.id == mentorId &&
+                                    it.endsOn == endDate.toFloat()
+                        })
+                    Snackbar.make(getRootView(), R.string.similar_request_error, Snackbar.LENGTH_SHORT).show()
+                else sendRequestViewModel.sendRequest(sendRequestData)
             } else {
 
                 etRequestNotes.error = getString(R.string.notes_empty_error)
@@ -130,6 +140,11 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
         })
+        requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
+        requestsViewModel.successful.observe(this, Observer {
+            requestsSuccessful = it != null && it
+        })
+        requestsViewModel.getAllMentorshipRelations()
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
