@@ -12,10 +12,14 @@ import android.widget.DatePicker
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
+import org.systers.mentorship.models.RelationState
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.utils.SEND_REQUEST_END_DATE_FORMAT
 import org.systers.mentorship.utils.convertDateIntoUnixTimestamp
 import org.systers.mentorship.utils.getAuthTokenPayload
+import org.systers.mentorship.utils.getUnixTimestampInMilliseconds
+import org.systers.mentorship.viewmodels.RequestsViewModel
 import org.systers.mentorship.viewmodels.SendRequestViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +36,8 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private lateinit var sendRequestViewModel: SendRequestViewModel
+    private lateinit var pendingSentRelationships: List<Relationship>
+    private lateinit var requestsViewModel: RequestsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,8 +112,13 @@ class SendRequestActivity: BaseActivity() {
                         notes = notes,
                         endDate = endDate
                 )
-
-                sendRequestViewModel.sendRequest(sendRequestData)
+                if (!isRequestDuplicate(sendRequestData)) {
+                    sendRequestViewModel.sendRequest(sendRequestData)
+                }
+                else{
+                    Snackbar.make(getRootView(), getString(R.string.same_request_already_sent) + tvOtherUserName.text, Snackbar.LENGTH_LONG)
+                            .show()
+                }
             } else {
 
                 etRequestNotes.error = getString(R.string.notes_empty_error)
@@ -130,6 +141,24 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
         })
+        requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
+        requestsViewModel.successful.observe(this, Observer {
+            successful ->
+            if (successful != null) {
+                if (successful) {
+                    pendingSentRelationships = requestsViewModel.allRequestsList.filter {
+                        val isPendingState = RelationState.PENDING.value == it.state
+                        val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()
+
+                        isPendingState && !hasEndTimePassed
+                    }
+                } else {
+                    Snackbar.make(getRootView(), requestsViewModel.message, Snackbar.LENGTH_LONG)
+                            .show()
+                    }
+                }
+        })
+        requestsViewModel.getAllMentorshipRelations()
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
@@ -140,5 +169,15 @@ class SendRequestActivity: BaseActivity() {
             }
         }
         return super.onOptionsItemSelected(menuItem)
+    }
+
+    private fun isRequestDuplicate(newRelationship: RelationshipRequest): Boolean{
+        pendingSentRelationships.forEach { relationship: Relationship -> Unit
+            if (newRelationship.menteeId == relationship.mentee.id && newRelationship.mentorId == relationship.mentor.id
+                    && newRelationship.endDate.toFloat() == relationship.endsOn) {
+                return true
+            }
+        }
+        return false
     }
 }
