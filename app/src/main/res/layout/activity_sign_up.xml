@@ -108,6 +108,36 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiDoB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/DoB_format"
+            app:layout_constraintEnd_toStartOf="@id/calendarButton"
+            app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
+            app:layout_constraintTop_toBottomOf="@+id/tiConfirmPassword">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiDoBEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/calendarButton"
+            android:contentDescription="@string/DoB_button_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/screen_background_light_transparent"
+            android:tint="@color/caribbean"
+            app:layout_constraintBottom_toBottomOf="@id/tiDoB"
+            app:layout_constraintEnd_toEndOf="@id/tiConfirmPassword"
+            app:layout_constraintTop_toTopOf="@id/tiDoB"
+            app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView"
             android:layout_width="wrap_content"
@@ -115,9 +145,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/available_to_be_mentor_mentee"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/tiConfirmPassword"
-            app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/tiConfirmPassword" />
+            app:layout_constraintEnd_toEndOf="@+id/tiDoB"
+            app:layout_constraintStart_toStartOf="@+id/tiDoB"
+            app:layout_constraintTop_toBottomOf="@+id/tiDoB" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbMentor"

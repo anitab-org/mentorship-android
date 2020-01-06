@@ -29,6 +29,7 @@ data class User(
         var username: String? = null,
         var name: String? = null,
         var email: String? = null,
+        var dateOfBirth: String? = null,
         var bio: String? = null,
         var location: String? = null,
         var occupation: String? = null,
