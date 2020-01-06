@@ -38,6 +38,12 @@ class MemberProfileActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     setUserProfile(memberProfileViewModel.userProfile)
+                    // disable button if not available as mentor and mentee
+                    if (!memberProfileViewModel.userProfile.needsMentoring!! &&
+                            !memberProfileViewModel.userProfile.isAvailableToMentor!!){
+                        btnSendRequest?.isEnabled = false
+                        btnSendRequest?.isClickable = false
+                    }
                 } else {
                     Snackbar.make(getRootView(), memberProfileViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
