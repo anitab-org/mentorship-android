@@ -53,6 +53,7 @@ class MemberProfileActivity : BaseActivity() {
             intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
             intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
             startActivity(intent)
+            overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
         }
     }
 
@@ -99,6 +100,11 @@ class MemberProfileActivity : BaseActivity() {
                 tvUsername, getString(R.string.username), user.username)
         setTextViewStartingWithBoldSpan(
                 tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.card_in, R.anim.card_out)
     }
 
     override fun onDestroy() {

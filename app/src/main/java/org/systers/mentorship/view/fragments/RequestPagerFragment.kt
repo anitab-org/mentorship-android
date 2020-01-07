@@ -53,6 +53,7 @@ class RequestPagerFragment: BaseFragment() {
                 val intent = Intent(activity, RequestDetailActivity::class.java)
                 intent.putExtra(Constants.RELATIONSHIP_EXTRA, requestDetail)
                 startActivityForResult(intent, Constants.DELETE_REQUEST_RESULT_ID)
+                activity?.overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
             }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

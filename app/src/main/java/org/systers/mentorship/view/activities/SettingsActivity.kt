@@ -27,6 +27,7 @@ class SettingsActivity : BaseActivity() {
             builder.setPositiveButton(R.string.logout) { _, _ ->
                 preferenceManager.clear()
                 startActivity(Intent(this, LoginActivity::class.java))
+                overridePendingTransition(R.anim.inout_enter,R.anim.inout_exit)
                 finishAffinity()
             }
             builder.setNegativeButton(R.string.cancel) { dialog, _ ->
@@ -41,6 +42,7 @@ class SettingsActivity : BaseActivity() {
         }
         tvAbout.setOnClickListener {
             startActivity(Intent(baseContext,AboutActivity::class.java))
+            overridePendingTransition(R.anim.inout_enter,R.anim.inout_exit)
         }
     }
 
@@ -48,4 +50,10 @@ class SettingsActivity : BaseActivity() {
         onBackPressed()
         return true
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.diagonal_in,R.anim.diagonal_out)
+    }
+
 }

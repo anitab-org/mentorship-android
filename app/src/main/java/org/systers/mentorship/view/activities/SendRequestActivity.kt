@@ -141,4 +141,9 @@ class SendRequestActivity: BaseActivity() {
         }
         return super.onOptionsItemSelected(menuItem)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
+    }
 }

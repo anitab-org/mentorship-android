@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import org.systers.mentorship.R
 import org.systers.mentorship.utils.ProgressBar
 
 /**
@@ -66,6 +67,7 @@ abstract class BaseActivity: AppCompatActivity() {
      */
     fun replaceFragment(containerId: Int, fragment: Fragment, title: Int) {
         supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.inout_enter,R.anim.inout_exit)
                 .replace(containerId, fragment, getString(title)).commit()
         supportActionBar?.setTitle(title)
     }

@@ -36,6 +36,7 @@ class LoginActivity : BaseActivity() {
                             .show()
                     intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(R.anim.slide_up_in,R.anim.slide_up_out)
                     finish()
                 } else {
                     Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
@@ -51,6 +52,7 @@ class LoginActivity : BaseActivity() {
         btnSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.card_in,R.anim.card_out)
             finish()
         }
 
@@ -86,6 +88,11 @@ class LoginActivity : BaseActivity() {
             loginViewModel.login(Login(username, password))
             showProgressDialog(getString(R.string.logging_in))
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_up_in,R.anim.slide_up_out)
     }
 
     override fun onDestroy() {

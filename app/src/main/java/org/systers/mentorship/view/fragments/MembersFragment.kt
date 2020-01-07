@@ -1,13 +1,22 @@
 package org.systers.mentorship.view.fragments
 
+import android.annotation.TargetApi
+import android.app.ActivityOptions
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import androidx.core.util.Pair
 import com.google.android.material.snackbar.Snackbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import kotlinx.android.synthetic.main.fragment_members.*
+import kotlinx.android.synthetic.main.list_member_item.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.view.activities.MainActivity
@@ -63,9 +72,10 @@ class MembersFragment: BaseFragment() {
     }
 
     private val openUserProfile: (Int) -> Unit =
-            { memberId ->
-                val intent = Intent(activity, MemberProfileActivity::class.java)
-                intent.putExtra(Constants.MEMBER_USER_ID, memberId)
-                startActivity(intent)
-            }
+        { memberId ->
+            val intent = Intent(activity, MemberProfileActivity::class.java)
+            intent.putExtra(Constants.MEMBER_USER_ID, memberId)
+            startActivity(intent)
+            activity?.overridePendingTransition(R.anim.card_in, R.anim.card_out)
+        }
 }

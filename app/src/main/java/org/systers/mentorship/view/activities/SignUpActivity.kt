@@ -71,6 +71,11 @@ class SignUpActivity : BaseActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.card_in,R.anim.card_out)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         signUpViewModel.successful.removeObservers(this)
@@ -120,6 +125,7 @@ class SignUpActivity : BaseActivity() {
     private fun navigateToLoginActivity() {
         intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(R.anim.card_in,R.anim.card_out)
         finish()
     }
 }

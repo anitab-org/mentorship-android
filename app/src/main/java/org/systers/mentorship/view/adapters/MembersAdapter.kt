@@ -43,6 +43,7 @@ class MembersAdapter (
         itemView.tvInterests.text = keyValueText
 
         itemView.setOnClickListener { openDetailFunction(item.id!!) }
+
     }
 
     override fun getItemCount(): Int = userList.size

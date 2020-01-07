@@ -13,7 +13,7 @@ class AboutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
-        setTitle(R.string.fragment_title_about);
+        setTitle(R.string.fragment_title_about)
 
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -38,6 +38,11 @@ class AboutActivity : AppCompatActivity() {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_code_of_conduct))))
         }
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.inout_enter,R.anim.inout_exit)
     }
 
     override fun onSupportNavigateUp(): Boolean {
