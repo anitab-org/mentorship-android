@@ -14,17 +14,20 @@ import org.systers.mentorship.view.fragments.*
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
  */
-class MainActivity: BaseActivity() {
+class MainActivity: BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private var atHome = true
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
+    private lateinit var bottomNavigationView: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        bottomNavigationView = bottomNavigation
+        bottomNavigationView.setOnNavigationItemSelectedListener(this)
 
         if (savedInstanceState == null) {
             showHomeFragment()
@@ -33,41 +36,40 @@ class MainActivity: BaseActivity() {
         }
     }
 
-    private val mOnNavigationItemSelectedListener =
-            BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.navigation_home -> {
                 replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
-                        R.string.fragment_title_home)
+                    R.string.fragment_title_home)
                 atHome = true
-                return@OnNavigationItemSelectedListener true
+                return true
             }
             R.id.navigation_profile -> {
                 replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
-                        R.string.fragment_title_profile)
+                    R.string.fragment_title_profile)
                 atHome = false
-                return@OnNavigationItemSelectedListener true
+                return true
             }
             R.id.navigation_relation -> {
                 replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
-                        R.string.fragment_title_relation)
+                    R.string.fragment_title_relation)
                 atHome = false
-                return@OnNavigationItemSelectedListener true
+                return true
             }
             R.id.navigation_members -> {
                 replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
-                        R.string.fragment_title_members)
+                    R.string.fragment_title_members)
                 atHome = false
-                return@OnNavigationItemSelectedListener true
+                return true
             }
             R.id.navigation_requests -> {
                 replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
-                        R.string.fragment_title_requests)
+                    R.string.fragment_title_requests)
                 atHome = false
-                return@OnNavigationItemSelectedListener true
+                return true
             }
+            else -> false
         }
-        false
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -84,11 +86,36 @@ class MainActivity: BaseActivity() {
                 else -> false
             }
 
-    private fun showHomeFragment() {
+    fun showHomeFragment() {
         atHome = true
         bottomNavigation.selectedItemId = R.id.navigation_home
         replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
     }
+
+    fun showProfileFragment() {
+        atHome = false
+        bottomNavigation.selectedItemId = R.id.navigation_profile
+        replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(), R.string.fragment_title_profile)
+    }
+
+    fun showRelationFragment() {
+        atHome = false
+        bottomNavigation.selectedItemId = R.id.navigation_relation
+        replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(), R.string.fragment_title_relation)
+    }
+
+    fun showMembersFragment() {
+        atHome = false
+        bottomNavigation.selectedItemId = R.id.navigation_members
+        replaceFragment(R.id.contentFrame, MembersFragment.newInstance(), R.string.fragment_title_members)
+    }
+
+    fun showRequestsFragment() {
+        atHome = false
+        bottomNavigation.selectedItemId = R.id.navigation_requests
+        replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(), R.string.fragment_title_requests)
+    }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

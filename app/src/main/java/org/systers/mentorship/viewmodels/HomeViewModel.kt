@@ -77,6 +77,13 @@ class HomeViewModel : ViewModel() {
                 .addTo(compositeDisposable)
     }
 
+    /**
+     * Adds a new task to the task list
+     */
+    fun addTask(taskDescription: String) {
+        //TODO: Implement adding tasks
+    }
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
