@@ -21,6 +21,7 @@ class MemberProfileActivity : BaseActivity() {
 
     private lateinit var memberProfileViewModel: MemberProfileViewModel
     private lateinit var userProfile: User
+    private var isAvailable = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +50,13 @@ class MemberProfileActivity : BaseActivity() {
         memberProfileViewModel.getUserProfile(userId)
 
         btnSendRequest.setOnClickListener {
-            val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
-            intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
-            intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
-            startActivity(intent)
+            if (isAvailable) {
+                val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+                intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
+                intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
+                startActivity(intent)
+            } else
+                Snackbar.make(getRootView(), R.string.user_not_available, Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -70,19 +74,25 @@ class MemberProfileActivity : BaseActivity() {
         userProfile = user
         tvName.text = user.name
 
-        if (user.isAvailableToMentor != null) {
+        val isAvailableToMentor = user.isAvailableToMentor
+        val needsMentoring = user.needsMentoring
+
+        if (isAvailableToMentor != null) {
             setTextViewStartingWithBoldSpan(
                     tvAvailableToMentor,
                     getString(R.string.available_to_mentor),
-                    if (user.isAvailableToMentor!!)
+                    if (isAvailableToMentor)
                         getString(R.string.yes) else getString(R.string.no))
+            isAvailable = isAvailableToMentor
         }
-        if (user.needsMentoring != null) {
+        if (needsMentoring != null) {
             setTextViewStartingWithBoldSpan(
                     tvNeedMentoring,
                     getString(R.string.need_mentoring),
-                    if (user.needsMentoring!!)
+                    if (needsMentoring)
                         getString(R.string.yes) else getString(R.string.no))
+            if (!isAvailable)
+                isAvailable = needsMentoring
         }
         setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
         setTextViewStartingWithBoldSpan(
