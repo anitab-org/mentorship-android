@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activities.AboutActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="252dp"
+                android:layout_height="176dp"
+                android:layout_gravity="center"
+                android:background="@drawable/mentorship_system_logo" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="343dp"
+                android:layout_height="199dp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/generic_28sp"
+                android:text="@string/about_systers"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="343dp"
+                android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:text="@string/about_app"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alignmentMode="alignMargins"
+
+                android:columnCount="2"
+                android:padding="14dp"
+                android:rowCount="2">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnGit"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="20dp"
+                    android:outlineAmbientShadowColor="#55111109"
+                    android:outlineSpotShadowColor="#55111109"
+                    app:cardBackgroundColor="@color/aubergine"
+                    app:cardCornerRadius="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="114dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="3"
+                            app:srcCompat="@drawable/ic_github" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/our_github_link"
+                            android:textColor="#fff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnSlack"
+                    android:layout_width="130dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="20dp"
+                    android:outlineAmbientShadowColor="#55111109"
+                    android:outlineSpotShadowColor="#55111109"
+                    android:layout_height="100dp"
+                    app:cardBackgroundColor="@color/aubergine"
+                    app:cardCornerRadius="20dp">
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="114dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="3"
+                            app:srcCompat="@drawable/ic_slack" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/systers_open_source_slack"
+                            android:textColor="#fff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnWebsite"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="20dp"
+                    android:outlineAmbientShadowColor="#55111109"
+                    android:outlineSpotShadowColor="#55111109"
+                    app:cardBackgroundColor="@color/aubergine"
+                    app:cardCornerRadius="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="114dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="3"
+                            app:srcCompat="@drawable/ic_web" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/our_website"
+                            android:textColor="#fff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnTermsCondition"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="20dp"
+                    android:outlineAmbientShadowColor="#55111109"
+                    android:outlineSpotShadowColor="#55111109"
+                    app:cardBackgroundColor="@color/aubergine"
+                    app:cardCornerRadius="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="114dp"
+                            android:layout_height="0dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="3"
+                            app:srcCompat="@drawable/ic_terms_and_condition" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/terms_and_conditions"
+                            android:textColor="#fff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnprivacypolicy"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="20dp"
+                    app:cardBackgroundColor="@color/aubergine"
+                    android:outlineAmbientShadowColor="#55111109"
+                    android:outlineSpotShadowColor="#55111109"
+                    app:cardCornerRadius="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="114dp"
+                            android:layout_height="0dp"
+                            app:srcCompat="@drawable/ic_privacy"
+                            android:layout_gravity="center"
+                            android:layout_weight="3" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/privacy_policy"
+                            android:textColor="#fff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btncodeofconduct"
+                    android:layout_width="130dp"
+                    android:layout_height="100dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_margin="20dp"
+                    android:outlineAmbientShadowColor="#55111109"
+                    android:outlineSpotShadowColor="#55111109"
+                    app:cardBackgroundColor="@color/aubergine"
+                    app:cardCornerRadius="20dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="114dp"
+                            android:layout_height="0dp"
+                            app:srcCompat="@drawable/ic_code_of_conduct"
+                            android:layout_gravity="center"
+                            android:layout_weight="3" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/code_of_conduct"
+                            android:textColor="#fff"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
