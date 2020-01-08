@@ -1,8 +1,10 @@
 package org.systers.mentorship.remote.services
 
+import androidx.lifecycle.LiveData
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.requests.ChangePassword
+import org.systers.mentorship.remote.responses.ApiResponse
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -21,6 +23,9 @@ interface UserService {
     @GET("users")
     suspend fun getUsers(): List<User>
 
+    // TODO: Refactor to use only this, remove getVerifiedUsers below
+    @GET("users")
+    fun getVerifiedUsersLD(): LiveData<ApiResponse<List<User>>>
     /**
      * This function returns all users, with email verified, of the system
      * @return an instance of a list of [User]s

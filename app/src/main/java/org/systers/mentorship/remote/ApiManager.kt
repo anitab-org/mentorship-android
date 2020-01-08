@@ -43,6 +43,7 @@ class ApiManager {
         val retrofit = Retrofit.Builder()
                 .baseUrl(BaseUrl.apiBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
                 .client(okHttpClient)
                 .build()
 
