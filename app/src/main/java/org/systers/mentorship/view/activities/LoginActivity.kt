@@ -10,6 +10,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
+import org.systers.mentorship.utils.Constants.TOKEN_EXPIRED
 import org.systers.mentorship.viewmodels.LoginViewModel
 
 /**
@@ -25,6 +26,9 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        if(intent.getBooleanExtra(TOKEN_EXPIRED,false))
+            Snackbar.make(getRootView(), R.string.token_has_expired, Snackbar.LENGTH_LONG).show()
 
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         loginViewModel.successful.observe(this, Observer {

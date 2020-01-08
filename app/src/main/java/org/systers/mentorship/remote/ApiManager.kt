@@ -39,6 +39,7 @@ class ApiManager {
         val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .addInterceptor(CustomInterceptor())
+                .authenticator(TokenAuthenticator())
                 .build()
 
         val retrofit = Retrofit.Builder()
