@@ -10,7 +10,7 @@ import org.systers.mentorship.vo.UserVO
 @Database(entities = arrayOf(UserVO::class), version = 1, exportSchema = false)
 abstract class UsersDatabase : RoomDatabase() {
 
-//    abstract fun userDao(): UserDao
+    abstract fun userDao(): UserDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
