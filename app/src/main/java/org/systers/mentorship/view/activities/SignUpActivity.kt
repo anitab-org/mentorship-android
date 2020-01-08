@@ -1,6 +1,5 @@
 package org.systers.mentorship.view.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.widget.Toast
@@ -37,7 +36,7 @@ class SignUpActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
-                    navigateToLoginActivity()
+                    finish()
                 } else {
                     Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
@@ -64,7 +63,7 @@ class SignUpActivity : BaseActivity() {
             }
         }
         btnLogin.setOnClickListener {
-            navigateToLoginActivity()
+            finish()
         }
         cbTC.setOnCheckedChangeListener { _, b ->
             btnSignUp.isEnabled = b
@@ -117,9 +116,14 @@ class SignUpActivity : BaseActivity() {
         return isValid
     }
 
-    private fun navigateToLoginActivity() {
-        intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+    override fun onBackPressed() {
         finish()
     }
+
+    // need to overwrite finish() function for transition animation
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.anim_stop, R.anim.anim_slide_from_left)
+    }
+
 }

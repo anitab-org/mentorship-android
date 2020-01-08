@@ -36,6 +36,7 @@ class LoginActivity : BaseActivity() {
                             .show()
                     intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    overridePendingTransition(R.anim.anim_slide_down,  R.anim.anim_stop)
                     finish()
                 } else {
                     Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
@@ -51,7 +52,7 @@ class LoginActivity : BaseActivity() {
         btnSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            finish()
+            overridePendingTransition(R.anim.anim_slide_from_right,  R.anim.anim_stop)
         }
 
         tiPassword.editText?.setOnEditorActionListener { _, actionId, _ ->

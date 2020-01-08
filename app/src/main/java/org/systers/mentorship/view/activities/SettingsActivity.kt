@@ -41,6 +41,7 @@ class SettingsActivity : BaseActivity() {
         }
         tvAbout.setOnClickListener {
             startActivity(Intent(baseContext,AboutActivity::class.java))
+            overridePendingTransition(R.anim.anim_slide_from_right,  R.anim.anim_stop)
         }
     }
 
@@ -48,4 +49,11 @@ class SettingsActivity : BaseActivity() {
         onBackPressed()
         return true
     }
+
+    // need to overwrite finish() function for transition animation
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.anim_stop,  R.anim.anim_slide_up)
+    }
+
 }

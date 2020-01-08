@@ -1,7 +1,6 @@
 package org.systers.mentorship.view.activities
 
 import android.content.Intent
-import android.content.res.Resources
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -43,6 +42,12 @@ class AboutActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    // need to overwrite finish() function for transition animation
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.anim_stop, R.anim.anim_slide_from_left)
     }
 
 }

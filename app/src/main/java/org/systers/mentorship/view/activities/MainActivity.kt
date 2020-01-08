@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
@@ -79,6 +78,7 @@ class MainActivity: BaseActivity() {
             when (item.itemId) {
                 R.id.menu_settings -> {
                     startActivity(Intent(this, SettingsActivity::class.java))
+                    overridePendingTransition(R.anim.anim_slide_down,  R.anim.anim_stop)
                     true
                 }
                 else -> false
