@@ -26,13 +26,17 @@ class RelationPagerFragment : BaseFragment() {
 
     private lateinit var relationViewModel: RelationViewModel
     private val activityCast by lazy { activity as MainActivity }
-
+    private var currentItem: Int = 0
+    private val CURRENT_ITEM_EXTRA = "current_item"
     override fun getLayoutResourceId(): Int {
         return R.layout.fragment_relation
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        if (savedInstanceState != null)
+            currentItem = savedInstanceState.getInt(CURRENT_ITEM_EXTRA)
 
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
         relationViewModel.successfulGet.observe(this, Observer {
@@ -64,7 +68,13 @@ class RelationPagerFragment : BaseFragment() {
             tlMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
+            vpMentorshipRelation.currentItem = currentItem
             tlMentorshipRelation.setupWithViewPager(vpMentorshipRelation)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(CURRENT_ITEM_EXTRA, vpMentorshipRelation.currentItem)
+        super.onSaveInstanceState(outState)
     }
 }
