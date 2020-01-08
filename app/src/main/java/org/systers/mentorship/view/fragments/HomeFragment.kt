@@ -43,6 +43,14 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /**
+         * Animating views.
+         * */
+        cvPendingRequests.animate().setDuration(2000).alpha(1f).start()
+        cvAcceptedRequests.animate().setDuration(2000).alpha(1f).start()
+        cvRejectedRequests.animate().setDuration(2000).alpha(1f).start()
+        cvCompletedRelations.animate().setDuration(2000).alpha(1f).start()
+
         achievementsAdapter = AchievementsAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
         val divider = DividerItemDecoration(context, linearLayoutManager.orientation)
@@ -52,6 +60,29 @@ class HomeFragment : BaseFragment() {
             layoutManager = linearLayoutManager
             addItemDecoration(divider)
         }
+
+        cvPendingRequests.setOnClickListener { gotoRequestsFragment() }
+        cvAcceptedRequests.setOnClickListener { gotoRelationFragment() }
+        cvRejectedRequests.setOnClickListener { gotoRequestsFragment() }
+        cvCompletedRelations.setOnClickListener { gotoRequestsFragment() }
+        rvAchievements.setOnClickListener { gotoRelationFragment() }
+
+    }
+
+    /**
+     * Replaces the current fragment with the 'Relation' fragment.
+     * */
+    private fun gotoRelationFragment() {
+        replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
+                R.string.fragment_title_relation)
+    }
+
+    /**
+     * Replaces the current fragment with the 'Requests' fragment.
+     * */
+    private fun gotoRequestsFragment() {
+        replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
+                R.string.fragment_title_requests)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -62,6 +93,15 @@ class HomeFragment : BaseFragment() {
         with(homeViewModel) {
             userStats.observe(viewLifecycleOwner, Observer { stats ->
                 binding.stats = stats
+
+                var total = stats.pendingRequests + stats.acceptedRequests + stats.rejectedRequests + stats.completedRelations
+                binding.totalRequests = total
+
+                sbPendingRequests.progress = if(total>0) (stats.pendingRequests * 100) / total else 0
+                sbAcceptedRequests.progress = if(total>0) (stats.acceptedRequests * 100) / total else 0
+                sbRejectedRequests.progress = if(total>0) (stats.rejectedRequests * 100) / total else 0
+                sbCompletedRequests.progress = if(total>0) (stats.completedRelations * 100) / total else 0
+
                 if (stats?.achievements?.isEmpty() != false) {
                     tvNoAchievements.visibility = View.VISIBLE
                     rvAchievements.visibility = View.GONE
@@ -76,6 +116,9 @@ class HomeFragment : BaseFragment() {
                 Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
             })
         }
+
     }
+
+
 }
 

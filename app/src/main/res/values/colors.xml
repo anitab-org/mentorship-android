@@ -9,5 +9,7 @@
     <color name="aubergine">#8D2165</color>
     <color name="navy">#005c88</color>
     <color name="caribbean">#54BCEB</color>
-    <color name="scarlet">#EF4135</color>
+    <color name="scarlet">#FF5722</color>
+    <color name="red">#FFFF0000</color>
+    <color name="green">#FF00FF0B</color>
 </resources>
