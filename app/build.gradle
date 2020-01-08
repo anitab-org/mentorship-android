@@ -68,4 +68,8 @@ dependencies {
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
     implementation Dependencies.lifecycle_livedata
+
+    implementation Dependencies.room_runtime
+    kapt Dependencies.room_compiler
+    implementation Dependencies.room_ktx
 }

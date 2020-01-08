@@ -22,6 +22,7 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
+    const val roomVersion = "2.2.3"
 
 }
 
@@ -47,4 +48,7 @@ object Dependencies {
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.archComponents}"
     const val lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val room_runtime = "androidx.room:room-runtime:${Versions.roomVersion}"
+    const val room_compiler = "androidx.room:room-compiler:${Versions.roomVersion}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.roomVersion}"
 }
