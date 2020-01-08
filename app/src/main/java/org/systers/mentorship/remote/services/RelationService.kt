@@ -1,7 +1,9 @@
 package org.systers.mentorship.remote.services
 
+import androidx.lifecycle.LiveData
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.RelationshipRequest
+import org.systers.mentorship.remote.responses.ApiResponse
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.*
 
@@ -15,7 +17,7 @@ interface RelationService {
      * @return an instance of a list of [Relationship]s
      */
     @GET("mentorship_relations")
-    suspend fun getAllRelationships(): List<Relationship>
+    fun getAllRelationships(): LiveData<ApiResponse<List<Relationship>>>
 
     /**
      * This function performs the acceptance of a mentorship request

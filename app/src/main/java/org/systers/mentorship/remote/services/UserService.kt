@@ -6,6 +6,7 @@ import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.requests.ChangePassword
 import org.systers.mentorship.remote.responses.ApiResponse
 import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.vo.UserVO
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
@@ -23,22 +24,18 @@ interface UserService {
     @GET("users")
     suspend fun getUsers(): List<User>
 
-    // TODO: Refactor to use only this, remove getVerifiedUsers below
-    @GET("users")
-    fun getVerifiedUsersLD(): LiveData<ApiResponse<List<User>>>
     /**
-     * This function returns all users, with email verified, of the system
-     * @return an instance of a list of [User]s
+     * Returns all users, with email verified, of the system
      */
     @GET("users/verified")
-    suspend fun getVerifiedUsers(): List<User>
+    fun getVerifiedUsers(): LiveData<ApiResponse<List<UserVO>>>
 
     /**
      * This function returns a user's public profile of the system
      * @return an instance of the [User]
      */
     @GET("users/{userId}")
-    suspend fun getUser(@Path("userId") userId: Int): User
+    fun getUser(@Path("userId") userId: Int): LiveData<ApiResponse<UserVO>>
 
     /**
      * This function returns the current user profile
@@ -62,5 +59,5 @@ interface UserService {
      * This function gets the current user's home screen statistics
      */
     @GET("home")
-    suspend fun getHomeStats(): HomeStatistics
+    fun getHomeStats(): LiveData<ApiResponse<HomeStatistics>>
 }

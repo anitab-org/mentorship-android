@@ -7,7 +7,8 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
- * This data class represents all the information related to a user of the system
+ * This data class represents all the information related to a user of the system.
+ * It has some values non-nullable, because they serve e.g as Primary Key in Room.
  *
  * @param id identifier of the user
  * @param username username of the user
@@ -28,7 +29,7 @@ data class UserVO(
     val id: Int,
     val username: String,
     val name: String?,
-    val email: String,
+    val email: String?,
     val bio: String?,
     val location: String?,
     val occupation: String?,

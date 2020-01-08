@@ -10,6 +10,7 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
+import org.systers.mentorship.vo.UserVO
 
 /**
  * This class represents the adapter that fills in each view of the Members recyclerView
@@ -17,8 +18,8 @@ import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
  * @param openDetailFunction function to be called when an item from Members list is clicked
  */
 class MembersAdapter (
-        private val userList: List<User>,
-        private val openDetailFunction: (memberId: Int) -> Unit
+    private val userList: List<UserVO>,
+    private val openDetailFunction: (memberId: Int) -> Unit
 ) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
 
     val context = MentorshipApplication.getContext()
@@ -42,7 +43,7 @@ class MembersAdapter (
         val keyValueText = "$keyText: $validText"
         itemView.tvInterests.text = keyValueText
 
-        itemView.setOnClickListener { openDetailFunction(item.id!!) }
+        itemView.setOnClickListener { openDetailFunction(item.id) }
     }
 
     override fun getItemCount(): Int = userList.size

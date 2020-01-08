@@ -2,8 +2,11 @@ package org.systers.mentorship.models
 
 import android.annotation.SuppressLint
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import org.systers.mentorship.db.TaskConverter
 
 /**
  * This class represents statistics of the user actions on the app.
@@ -18,6 +21,8 @@ import kotlinx.android.parcel.Parcelize
 
 @SuppressLint("ParcelCreator")
 @Parcelize
+@Entity(tableName = "home_stats", primaryKeys = ["name"])
+@TypeConverters(TaskConverter::class)
 data class HomeStatistics(
         val name: String,
         @SerializedName("pending_requests")

@@ -1,23 +1,27 @@
 package org.systers.mentorship.vo
 
-import org.systers.mentorship.vo.Status.*
 
 /**
  * A generic class that holds a value with its loading status.
- * @param <T>
-</T> */
-data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
+ **/
+sealed class Resource<out T> {
     companion object {
-        fun <T> success(data: T?): Resource<T> {
-            return Resource(SUCCESS, data, null)
+        fun <T> success(data: T): SuccessResource<T> {
+            return SuccessResource(data)
         }
 
-        fun <T> error(msg: String, data: T?): Resource<T> {
-            return Resource(ERROR, data, msg)
+        fun <T> error(message: String, data: T?): ErrorResource<T> {
+            return ErrorResource(message, data)
         }
 
-        fun <T> loading(data: T?): Resource<T> {
-            return Resource(LOADING, data, null)
+        fun <T> loading(data: T?): LoadingResource<T> {
+            return LoadingResource(data)
         }
     }
 }
+
+data class SuccessResource<T>(val data: T) : Resource<T>()
+
+data class ErrorResource<T>(val message: String, val data: T?) : Resource<T>()
+
+data class LoadingResource<T>(val data: T?) : Resource<T>()

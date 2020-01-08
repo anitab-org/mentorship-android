@@ -15,6 +15,9 @@ import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentHomeBinding
 import org.systers.mentorship.view.adapters.AchievementsAdapter
 import org.systers.mentorship.viewmodels.HomeViewModel
+import org.systers.mentorship.vo.ErrorResource
+import org.systers.mentorship.vo.LoadingResource
+import org.systers.mentorship.vo.SuccessResource
 
 /**
  * The fragment is responsible for showing a welcoming message and show some statistics of the User
@@ -36,7 +39,9 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_home
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
         return binding.root
     }
@@ -59,20 +64,23 @@ class HomeFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        homeViewModel.userStats.observe(viewLifecycleOwner) {
-            binding.stats = it
-            if (it.achievements.isEmpty()) {
-                tvNoAchievements.visibility = View.VISIBLE
-                rvAchievements.visibility = View.GONE
-            } else {
-                tvNoAchievements.visibility = View.GONE
-                rvAchievements.visibility = View.VISIBLE
-                achievementsAdapter.submitList(it.achievements)
-            }
-        }
+        homeViewModel.homeStats.observe(viewLifecycleOwner) { resource ->
+            when (resource) {
+                is SuccessResource -> {
+                    binding.stats = resource.data
+                    tvNoAchievements.visibility = View.GONE
+                    rvAchievements.visibility = View.VISIBLE
+                    achievementsAdapter.submitList(resource.data.achievements)
+                }
+                is LoadingResource -> {
 
-        homeViewModel.message.observe(viewLifecycleOwner) { message ->
-            Snackbar.make(homeContainer, message, Snackbar.LENGTH_SHORT).show()
+                }
+                is ErrorResource -> {
+                    Snackbar.make(homeContainer, resource.message, Snackbar.LENGTH_SHORT).show()
+                    tvNoAchievements.visibility = View.VISIBLE
+                    rvAchievements.visibility = View.GONE
+                }
+            }
         }
     }
 }

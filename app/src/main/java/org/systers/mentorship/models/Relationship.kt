@@ -2,8 +2,11 @@ package org.systers.mentorship.models
 
 import android.annotation.SuppressLint
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import org.systers.mentorship.db.RelationshipConverter
 
 /**
  * This data class represents partial information of user of the system.
@@ -24,6 +27,8 @@ import kotlinx.android.parcel.Parcelize
  */
 @SuppressLint("ParcelCreator")
 @Parcelize
+@Entity(tableName = "relations", primaryKeys = ["id"])
+@TypeConverters(RelationshipConverter::class)
 data class Relationship(
         val id: Int,
         @SerializedName("action_user_id") val actionUserId: Int,
