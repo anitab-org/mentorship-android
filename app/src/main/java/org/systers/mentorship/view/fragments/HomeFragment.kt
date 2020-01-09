@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentHomeBinding
-import org.systers.mentorship.view.adapters.AchievementsAdapter
+import org.systers.mentorship.view.adapters.HomePagePagerAdapter
 import org.systers.mentorship.viewmodels.HomeViewModel
 
 /**
@@ -24,7 +22,6 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var achievementsAdapter: AchievementsAdapter
 
     companion object {
         /**
@@ -40,20 +37,6 @@ class HomeFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        achievementsAdapter = AchievementsAdapter()
-        val linearLayoutManager = LinearLayoutManager(context)
-        val divider = DividerItemDecoration(context, linearLayoutManager.orientation)
-
-        rvAchievements.apply {
-            adapter = achievementsAdapter
-            layoutManager = linearLayoutManager
-            addItemDecoration(divider)
-        }
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -62,14 +45,9 @@ class HomeFragment : BaseFragment() {
         with(homeViewModel) {
             userStats.observe(viewLifecycleOwner, Observer { stats ->
                 binding.stats = stats
-                if (stats?.achievements?.isEmpty() != false) {
-                    tvNoAchievements.visibility = View.VISIBLE
-                    rvAchievements.visibility = View.GONE
-                } else {
-                    tvNoAchievements.visibility = View.GONE
-                    rvAchievements.visibility = View.VISIBLE
-                    achievementsAdapter.submitList(stats.achievements)
-                }
+                vpHomePages.adapter = HomePagePagerAdapter(stats.achievements, stats.pendingRequests, stats.acceptedRequests, stats.completedRelations,
+                        stats.rejectedRequests, childFragmentManager)
+                tlHomePages.setupWithViewPager(vpHomePages)
             })
 
             message.observe(viewLifecycleOwner, Observer { message ->
