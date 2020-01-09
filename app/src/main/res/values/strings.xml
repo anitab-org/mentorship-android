@@ -149,4 +149,9 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="channel_id">DEFAULT_CHANNEL</string>
+    <string name="channel_name">Default channel</string>
+    <string name="channel_description">Default notification channel for all notifications.</string>
+    <string name="popup_menu_notifications">Notifications</string>
+    <string name="no_notifications">No notifications</string>
 </resources>

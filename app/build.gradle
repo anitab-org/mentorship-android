@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion Versions.compileSdkVersion
     defaultConfig {
@@ -65,4 +67,9 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+    implementation Dependencies.firebase_messaging
+
+    implementation Dependencies.room_runtime
+    kapt Dependencies.room_compiler
+    implementation Dependencies.room_ktx
 }

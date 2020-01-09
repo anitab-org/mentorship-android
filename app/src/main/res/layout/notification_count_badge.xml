@@ -1,0 +1,39 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageButton
+            android:id="@+id/menu_notifications_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_notifications_white_24dp"
+            tools:tint="@android:color/holo_red_dark" />
+
+    <TextView
+            android:id="@+id/actionbar_notifcation_textview"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/blue_circle"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:scaleY="1"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/menu_notifications_button"
+            app:layout_constraintEnd_toEndOf="@+id/menu_notifications_button"
+            app:layout_constraintStart_toEndOf="@+id/menu_notifications_button"
+            app:layout_constraintTop_toBottomOf="@+id/menu_notifications_button"
+            tools:text="99" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

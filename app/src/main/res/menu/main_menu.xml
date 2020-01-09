@@ -2,9 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/menu_notifications"
+        android:title="@string/popup_menu_notifications"
+        app:showAsAction="ifRoom"
+        android:menuCategory="container"
+        android:actionLayout="@layout/notification_count_badge"
+        android:icon="@drawable/ic_notifications_white_24dp"/>
+
+    <item
         android:id="@+id/menu_settings"
         android:title="@string/popup_menu_settings"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:menuCategory="container"
         android:icon="@drawable/ic_settings_white_24dp"/>
 </menu>
