@@ -9,4 +9,6 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
+    const val HTTP_CACHE_SIZE : Long = 10*1024*1024
+    const val CACHE_CONTROL_MAX_AGE = 20
 }
