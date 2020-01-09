@@ -4,7 +4,15 @@ import com.google.gson.Gson
 import io.reactivex.annotations.NonNull
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.HttpException
+import java.math.BigInteger
+import java.security.MessageDigest
 
+fun String.md5(): String {
+    val md = MessageDigest.getInstance("MD5")
+    return BigInteger(1, md.digest(toByteArray()))
+            .toString(16)
+            .padStart(32, '0')
+}
 
 /**
  * Object to store utilities such as a [Gson] instance

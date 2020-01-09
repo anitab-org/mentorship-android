@@ -12,6 +12,15 @@ object BaseUrl {
     private const val DEVELOPMENT_URL = "systers-mentorship-dev"
     private const val EB_REGION = ".eu-central-1.elasticbeanstalk.com/"
 
+    /*
+        Strings for storing calls paths that are used to delete file containing cash of that request
+     */
+    val GET_USER_URL = "${apiBaseUrl}user"
+    val GET_HOME_STATS_URL = "${apiBaseUrl}home"
+    val GET_CURRENT_RELATION_URL = "${apiBaseUrl}mentorship_relations/current"
+    val GET_USERS_URL = "${apiBaseUrl}users/verified"
+    val GET_REQUESTS_URL = "${apiBaseUrl}mentorship_relations"
+
     private const val PROTOCOL_S3 = "s3://"
     private const val S3_BUCKET_NAME = "systers-mentorship/"
     private const val S3_PRODUCTION_DIRECTORY = "prod/"

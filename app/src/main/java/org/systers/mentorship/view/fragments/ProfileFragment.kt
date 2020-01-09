@@ -6,9 +6,13 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
+import org.systers.mentorship.remote.BaseUrl.GET_USER_URL
+import org.systers.mentorship.utils.md5
 import org.systers.mentorship.viewmodels.ProfileViewModel
+import java.io.File
 
 /**
  * The fragment is responsible for showing the User's profile
@@ -38,9 +42,18 @@ class ProfileFragment : BaseFragment() {
 
         setHasOptionsMenu(true)
 
+        srlProfile.setOnRefreshListener {
+            //deleting the cache file
+            File("${context?.cacheDir?.absolutePath}/${GET_USER_URL.md5()}.1").delete()
+
+            baseActivity.showProgressDialog(getString(R.string.fetch_user_profile))
+            profileViewModel.getProfile()
+        }
+
         profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
         profileViewModel.successfulGet.observe(this, Observer {
             successful ->
+            srlProfile.isRefreshing = false
             baseActivity.hideProgressDialog()
             if (successful != null) {
                 if (successful) {

@@ -9,11 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
+import org.systers.mentorship.remote.BaseUrl.GET_USERS_URL
 import org.systers.mentorship.utils.Constants
+import org.systers.mentorship.utils.md5
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.activities.MemberProfileActivity
 import org.systers.mentorship.view.adapters.MembersAdapter
 import org.systers.mentorship.viewmodels.MembersViewModel
+import java.io.File
 
 /**
  * The fragment is responsible for showing all the members of the system in a list format
@@ -34,9 +37,18 @@ class MembersFragment: BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        srlMembers.setOnRefreshListener {
+            //deleting the cache file
+            File("${context?.cacheDir?.absolutePath}/${GET_USERS_URL.md5()}.1").delete()
+
+            (activity as MainActivity).showProgressDialog(getString(R.string.fetching_users))
+            membersViewModel.getUsers()
+        }
+
         membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
         membersViewModel.successful.observe(this, Observer {
             successful ->
+            srlMembers.isRefreshing = false
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {

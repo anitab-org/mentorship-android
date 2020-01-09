@@ -39,6 +39,10 @@ class HomeViewModel : ViewModel() {
         get() = _message
 
     init {
+        getHomeStats()
+    }
+
+    fun getHomeStats() {
         userDataManager.getHomeStats()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

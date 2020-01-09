@@ -8,9 +8,12 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
+import org.systers.mentorship.remote.BaseUrl.GET_CURRENT_RELATION_URL
+import org.systers.mentorship.utils.md5
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.adapters.RelationPagerAdapter
 import org.systers.mentorship.viewmodels.RelationViewModel
+import java.io.File
 
 /**
  * This fragment is instantiated per each tab from the RelationFragment ViewPager
@@ -34,14 +37,22 @@ class RelationPagerFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        srlRelation.setOnRefreshListener {
+            //deleting the cache file
+            File("${context?.cacheDir?.absolutePath}/${GET_CURRENT_RELATION_URL.md5()}.1").delete()
+
+            activityCast.showProgressDialog(getString(R.string.fetching_current_relation))
+            relationViewModel.getCurrentRelationDetails()
+        }
+
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
         relationViewModel.successfulGet.observe(this, Observer {
-            successfull ->
+            successful ->
+            srlRelation.isRefreshing = false
             activityCast.hideProgressDialog()
-            if (successfull != null) {
-                if (successfull) {
-                    updateView(relationViewModel.mentorshipRelation)
-                } else {
+            if (successful != null) {
+                updateView(relationViewModel.mentorshipRelation)
+                if (!successful) {
                     view?.let {
                         Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
                     }
@@ -54,7 +65,7 @@ class RelationPagerFragment : BaseFragment() {
     }
 
     private fun updateView(mentorshipRelation: Relationship) {
-        if (mentorshipRelation.mentor == null) {
+        if (mentorshipRelation.id == 0) {
             tvNoCurrentRelation.visibility = View.VISIBLE
             tlMentorshipRelation.visibility = View.GONE
             vpMentorshipRelation.visibility = View.GONE
