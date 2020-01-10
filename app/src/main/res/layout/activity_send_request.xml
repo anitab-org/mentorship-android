@@ -14,13 +14,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
             android:gravity="center_vertical"
-            tools:text="Lola Zink"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lola Zink" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView7"
