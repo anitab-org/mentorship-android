@@ -53,7 +53,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                     } else {
                         rvTasks.apply {
                             layoutManager = LinearLayoutManager(context)
-                            adapter = TasksAdapter(taskViewModel.tasksList, markTask)
+                            adapter = TasksAdapter(taskViewModel.tasksList, false, markTask)
                         }
                         tvNoTask.visibility = View.GONE
                     }

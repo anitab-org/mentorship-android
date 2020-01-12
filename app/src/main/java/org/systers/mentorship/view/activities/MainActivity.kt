@@ -16,7 +16,13 @@ import org.systers.mentorship.view.fragments.*
  */
 class MainActivity: BaseActivity() {
 
+    companion object{
+        lateinit var instance: MainActivity
+    }
+
     private var atHome = true
+    // need this to directly open TasksFragment
+    private var page = 0
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
@@ -31,6 +37,8 @@ class MainActivity: BaseActivity() {
         } else {
             atHome = savedInstanceState.getBoolean("atHome")
         }
+
+        instance = this
     }
 
     private val mOnNavigationItemSelectedListener =
@@ -49,8 +57,9 @@ class MainActivity: BaseActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_relation -> {
-                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
+                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(page),
                         R.string.fragment_title_relation)
+                page = 0
                 atHome = false
                 return@OnNavigationItemSelectedListener true
             }
@@ -85,9 +94,24 @@ class MainActivity: BaseActivity() {
             }
 
     private fun showHomeFragment() {
-        atHome = true
         bottomNavigation.selectedItemId = R.id.navigation_home
-        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
+    }
+
+    fun showProfileFragment() {
+        bottomNavigation.selectedItemId = R.id.navigation_profile
+    }
+
+    fun showRelationFragment(page: Int) {
+        this.page = page
+        bottomNavigation.selectedItemId = R.id.navigation_relation
+    }
+
+    fun showMembersFragment() {
+        bottomNavigation.selectedItemId = R.id.navigation_members
+    }
+
+    fun showRequestsFragment() {
+        bottomNavigation.selectedItemId = R.id.navigation_requests
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

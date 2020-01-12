@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import kotlinx.android.synthetic.main.task_list_item.view.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -16,6 +17,7 @@ import org.systers.mentorship.models.Task
  */
 class TasksAdapter(
         private val tasksList: List<Task>,
+        private val fromHome: Boolean,
         private val markTask: (taskId: Int) -> Unit
 ) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
@@ -28,10 +30,14 @@ class TasksAdapter(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val item = tasksList[position]
-        val itemView = holder.itemView
 
-        itemView.cbTask.text = item.description
-        itemView.setOnClickListener { markTask(position) }
+        with(holder.itemView) {
+            if (fromHome)
+                cbTask.isEnabled = false
+            cbTask.text = item.description
+            setOnClickListener { markTask(position) }
+            startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_appear_from_right))
+        }
     }
 
     override fun getItemCount(): Int = tasksList.size

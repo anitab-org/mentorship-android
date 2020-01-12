@@ -3,6 +3,7 @@ package org.systers.mentorship.view.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -37,7 +38,10 @@ class AchievementsAdapter : ListAdapter<Task, AchievementsAdapter.ViewHolder>(Ac
          * @param task The Achievement whose description is to be bound
          */
         fun bind(task: Task) {
-            itemView.tvDescription.text = task.description
+            with(itemView) {
+                tvDescription.text = task.description
+                startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_appear_from_top))
+            }
         }
     }
 

@@ -37,5 +37,6 @@ data class User(
         var skills: String? = null,
         @SerializedName("need_mentoring") var needsMentoring: Boolean? = null,
         @SerializedName("available_to_mentor") var isAvailableToMentor: Boolean? = null,
-        @SerializedName("slack_username") var slackUsername: String? = null
+        @SerializedName("slack_username") var slackUsername: String? = null,
+        var avatar: String? = null // URL or Base64 encoded string
 ) : Parcelable

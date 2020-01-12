@@ -34,6 +34,10 @@
         <activity android:name=".view.activities.MemberProfileActivity" />
         <activity android:name=".view.activities.SendRequestActivity" />
         <activity android:name=".view.activities.SettingsActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

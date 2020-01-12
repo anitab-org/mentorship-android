@@ -10,4 +10,11 @@
     <color name="navy">#005c88</color>
     <color name="caribbean">#54BCEB</color>
     <color name="scarlet">#EF4135</color>
+    <color name="textColorBlack">#252525</color>
+    <color name="lightBlue">#66BBDEFB</color>
+    <color name="lightGreen">#2655C259</color>
+    <color name="darkGreen">#00530B</color>
+    <color name="lightYellow">#41FFEB3B</color>
+    <color name="darkOrange">#CA6B09</color>
+    <color name="grayLight">#66A7A7A7</color>
 </resources>

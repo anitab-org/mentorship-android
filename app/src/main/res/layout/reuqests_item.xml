@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/request_card_size"
+    android:layout_height="@dimen/request_card_size"
+    android:layout_margin="@dimen/margin_small"
+    android:background="@drawable/background_rounded_primary"
+    android:elevation="@dimen/margin_tiny"
+    tools:targetApi="lollipop">
+
+    <TextView
+        android:id="@+id/tvRequestItemCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:fontFamily="@font/open_sans"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/generic_28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRequestItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_normal"
+        android:fontFamily="@font/open_sans"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/test_size_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

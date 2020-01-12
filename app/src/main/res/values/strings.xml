@@ -149,4 +149,27 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="welcome_example">Welcome, John!</string>
+    <string name="past_relationships">Past Relationships</string>
+    <string name="you_haven_t_been_in_a_relationship_yet">You haven\'t been in a relationship yet.</string>
+    <string name="next_meeting">Next meeting</string>
+    <string name="next_meeting_holder">Your next meeting will be on %1$s</string>
+    <string name="no_tasks">No tasks</string>
+    <string name="checkbox_text_sample">CheckBox</string>
+    <string name="close">close</string>
+    <string name="get_started_title">Find a mentor/mentee</string>
+    <string name="get_started_text">Choose the right person for you and achieve your goals</string>
+    <string name="get_started">Get started</string>
+    <string name="complete_your_profile_title">Complete your profile</string>
+    <string name="complete_your_profile_text">Add more information about you, so that more people can find you</string>
+    <string name="progress_text_example">70%</string>
+    <string name="go_to_profile">Go to profile</string>
+    <string name="see_details">See details</string>
+    <string name="see_all_tasks">See all tasks</string>
+    <string name="see_all_achievements">See all achievements</string>
+    <string name="see_all_past_relationships">See all past relationships</string>
+    <string name="avatar">avatar</string>
+    <string name="no_meetings">You don\'t have any meetings at the moment.</string>
+    <string name="not_implemented">This feature is not implemented yet.</string>
+    <string name="progress">%1$d%%</string>
 </resources>

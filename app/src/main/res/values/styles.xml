@@ -12,4 +12,37 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="TextTitleBlack">
+        <item name="android:textSize">@dimen/test_size_title</item>
+        <item name="android:textColor">@color/textColorBlack</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="TextTitleLightBlack">
+        <item name="android:textSize">@dimen/test_size_title</item>
+        <item name="android:textColor">@color/textColorBlack</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <style name="TextButtonBlack">
+        <item name="android:textSize">@dimen/test_size_title</item>
+        <item name="android:textColor">@color/textColorBlack</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="TextTitleBigBlack">
+        <item name="android:textSize">@dimen/test_size_title_big</item>
+        <item name="android:textColor">@color/textColorBlack</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <style name="TextBlack">
+        <item name="android:textSize">@dimen/test_size_normal</item>
+        <item name="android:textColor">@color/textColorBlack</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
 </resources>

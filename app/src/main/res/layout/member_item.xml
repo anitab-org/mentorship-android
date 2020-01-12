@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/member_card_width"
+    android:layout_height="@dimen/member_card_height"
+    android:layout_margin="@dimen/margin_small"
+    android:background="@drawable/background_rounded_gray"
+    android:elevation="@dimen/margin_tiny"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_normal"
+    tools:targetApi="lollipop">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvImg"
+        android:layout_width="@dimen/avatar_size"
+        android:layout_height="@dimen/avatar_size"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="@dimen/avatar_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivMemberAvatar"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:contentDescription="@string/avatar"
+            app:srcCompat="@drawable/ic_person_grey_24dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvMemberName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:fontFamily="@font/open_sans_light"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textColor="#252525"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvImg" />
+
+    <TextView
+        android:id="@+id/tvMemberOccupation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="@font/open_sans_light"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textSize="@dimen/test_size_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMemberName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

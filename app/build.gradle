@@ -65,4 +65,7 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+
+    implementation Dependencies.glide
+    annotationProcessor Dependencies.glide_annotation_processor
 }

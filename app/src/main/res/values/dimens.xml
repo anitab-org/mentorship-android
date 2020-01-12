@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="generic_28sp">28sp</dimen>
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_medium">24dp</dimen>
+    <dimen name="margin_big">32dp</dimen>
+    <dimen name="test_size_normal">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="test_size_title">18sp</dimen>
+    <dimen name="test_size_title_big">20sp</dimen>
+    <dimen name="text_size_big">32sp</dimen>
+    <dimen name="avatar_corner_radius">48dp</dimen>
+    <dimen name="avatar_size">96dp</dimen>
+    <dimen name="request_card_size">128dp</dimen>
+    <dimen name="rv_home_max_height">160dp</dimen>
+    <dimen name="member_card_width">160dp</dimen>
+    <dimen name="member_card_height">192dp</dimen>
 </resources>
