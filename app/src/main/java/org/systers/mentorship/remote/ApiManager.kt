@@ -45,6 +45,7 @@ class ApiManager {
                 .baseUrl(BaseUrl.apiBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(SimpleCallAdapterFactory.create())
                 .client(okHttpClient)
                 .build()
 

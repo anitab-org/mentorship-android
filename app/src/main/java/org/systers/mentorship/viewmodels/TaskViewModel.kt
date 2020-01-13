@@ -32,42 +32,21 @@ class TasksViewModel: ViewModel() {
     /**
      * This function lists all tasks from the mentorship relation
      */
-    @SuppressLint("CheckResult")
     fun getTasks(relationId: Int) {
-        taskDataManager.getAllTasks(relationId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<Task>>() {
-                    override fun onNext(taskListResponse: List<Task>) {
-                        tasksList = taskListResponse
-                        successful.value = true
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
-                            }
-                        }
-                        successful.value = false
-                    }
-
-                    override fun onComplete() {
-                    }
-                })
+        taskDataManager.getAllTasks(relationId).process { list, throwable ->
+            if (throwable != null) {
+                throwable.printStackTrace()
+                message = throwable.localizedMessage
+                successful.postValue(false)
+            } else {
+                if (list != null) {
+                    successful.postValue(true)
+                    tasksList = list
+                } else {
+                    successful.postValue(false)
+                }
+            }
+        }
     }
 
     /**

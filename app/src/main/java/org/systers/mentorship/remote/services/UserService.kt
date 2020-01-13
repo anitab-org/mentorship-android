@@ -3,6 +3,7 @@ package org.systers.mentorship.remote.services
 import io.reactivex.Observable
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
+import org.systers.mentorship.remote.Simple
 import org.systers.mentorship.remote.requests.ChangePassword
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.Body
@@ -27,28 +28,28 @@ interface UserService {
      * @return an observable instance of a list of [User]s
      */
     @GET("users/verified")
-    fun getVerifiedUsers(): Observable<List<User>>
+    fun getVerifiedUsers(): Simple<List<User>>
 
     /**
      * This function returns a user's public profile of the system
      * @return an observable instance of the [User]
      */
     @GET("users/{userId}")
-    fun getUser(@Path("userId") userId: Int): Observable<User>
+    fun getUser(@Path("userId") userId: Int): Simple<User>
 
     /**
      * This function returns the current user profile
      * @return an observable instance of the [User]
      */
     @GET("user")
-    fun getUser(): Observable<User>
+    fun getUser(): Simple<User>
 
     /**
      * This function updates the current user's profile
      * @return an observable instance of the [CustomResponse]
      */
     @PUT("user")
-    fun updateUser(@Body user: User): Observable<CustomResponse>
+    fun updateUser(@Body user: User): Simple<CustomResponse>
 
     /**
      * This function updates the current user password
@@ -62,5 +63,5 @@ interface UserService {
      * @return an observable instance of [HomeStatistics]
      */
     @GET("home")
-    fun getHomeStats(): Observable<HomeStatistics>
+    fun getHomeStats(): Simple<HomeStatistics>
 }
