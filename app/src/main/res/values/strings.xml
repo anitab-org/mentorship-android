@@ -149,4 +149,10 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="notification_icon">Notification icon</string>
+    <string name="notification_new_request">%1$s wants to be your %2$s</string>
+    <string name="notification_accepted">%1$s accepted your mentorship request</string>
+    <string name="notification_rejected">%1$s rejected your mentorship request</string>
+    <string name="notification_cancelled">Your relationship with %1$s (%2$s) is cancelled</string>
+    <string name="notification_completed">Your relationship with %1$s (%2$s) is complete</string>
 </resources>
