@@ -25,7 +25,12 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
-
+    const val googleServices = "4.3.3"
+    const val firebaseAuth = "19.2.0"
+    const val firebaseUi = "4.3.1"
+    const val facebook = "5.13.0"
+    const val twitter = "3.1.1"
+    const val multidex = "2.0.1"
 }
 
 /**
@@ -53,4 +58,10 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val google_services = "com.google.gms:google-services:${Versions.googleServices}"
+    const val firebase_auth = "com.google.firebase:firebase-auth:${Versions.firebaseAuth}"
+    const val firebase_ui = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUi}"
+    const val facebook = "com.facebook.android:facebook-android-sdk:${Versions.facebook}"
+    const val twitter = "com.twitter.sdk.android:twitter-core:${Versions.twitter}"
+    const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
 }

@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion Versions.compileSdkVersion
     defaultConfig {
@@ -16,6 +18,7 @@ android {
         versionName Versions.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -44,6 +47,8 @@ configurations.all {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation Dependencies.multidex
+
     implementation Dependencies.kotlin_stdlib
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
@@ -65,4 +70,9 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+
+    implementation Dependencies.firebase_auth
+    implementation Dependencies.firebase_ui
+    implementation Dependencies.facebook
+    implementation Dependencies.twitter
 }
