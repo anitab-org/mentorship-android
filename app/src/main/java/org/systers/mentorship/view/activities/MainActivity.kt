@@ -6,6 +6,8 @@ import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
@@ -19,12 +21,41 @@ class MainActivity: BaseActivity() {
     private var atHome = true
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
+    private lateinit var newFragment: Fragment
+    private var newFragmentTag: Int = 0
+    private lateinit var currentFragment: Fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        pullToRefresh.setOnRefreshListener{
+            // find current fragment instance and name
+            currentFragment = supportFragmentManager.fragments[0]
+            if(currentFragment is HomeFragment){
+                newFragment = HomeFragment.newInstance()
+                newFragmentTag = R.string.fragment_title_home
+            }
+            else if(currentFragment is ProfileFragment){
+                newFragment = ProfileFragment.newInstance()
+                newFragmentTag = R.string.fragment_title_profile
+            }
+            else if(currentFragment is RelationPagerFragment){
+                newFragment = RelationPagerFragment.newInstance()
+                newFragmentTag = R.string.fragment_title_relation
+            }
+            else if(currentFragment is MembersFragment){
+                newFragment = MembersFragment.newInstance()
+                newFragmentTag = R.string.fragment_title_members
+            }
+            else{
+                newFragment = RequestsFragment.newInstance()
+                newFragmentTag = R.string.fragment_title_requests
+            }
+            replaceFragment(R.id.contentFrame, newFragment, newFragmentTag)
+            pullToRefresh.isRefreshing = false //stop spinner
+        }
 
         if (savedInstanceState == null) {
             showHomeFragment()

@@ -54,6 +54,10 @@ class MemberProfileActivity : BaseActivity() {
             intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
             startActivity(intent)
         }
+        pullToRefresh.setOnRefreshListener {
+            pullToRefresh.isRefreshing = false //stop spinner
+            memberProfileViewModel.getUserProfile(userId)
+        }
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
