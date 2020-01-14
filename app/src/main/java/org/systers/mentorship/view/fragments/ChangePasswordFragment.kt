@@ -34,7 +34,7 @@ class ChangePasswordFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         changePasswordViewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
-        changePasswordViewModel.successfulUpdate.observe(this, Observer { successful ->
+        changePasswordViewModel.successful.observe(this, Observer { successful ->
 
             if (successful != null) {
                 when {
@@ -92,7 +92,7 @@ class ChangePasswordFragment : DialogFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        changePasswordViewModel.successfulUpdate.removeObservers(this)
-        changePasswordViewModel.successfulUpdate.value = null
+        changePasswordViewModel.successful.removeObservers(this)
+        changePasswordViewModel.successful.value = null
     }
 }

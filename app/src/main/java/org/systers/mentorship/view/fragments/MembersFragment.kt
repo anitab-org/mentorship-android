@@ -40,7 +40,7 @@ class MembersFragment: BaseFragment() {
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    if (membersViewModel.userList.isEmpty()) {
+                    if (membersViewModel.userList.isNullOrEmpty()) {
                         tvEmptyList.text = getString(R.string.empty_members_list)
                         rvMembers.visibility = View.GONE
                     } else {

@@ -69,12 +69,10 @@ class HomeFragment : BaseFragment() {
                     tvNoAchievements.visibility = View.GONE
                     rvAchievements.visibility = View.VISIBLE
                     achievementsAdapter.submitList(stats.achievements)
+                    Snackbar.make(homeContainer, message, Snackbar.LENGTH_SHORT).show()
                 }
             })
 
-            message.observe(viewLifecycleOwner, Observer { message ->
-                Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
-            })
         }
     }
 }
