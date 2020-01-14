@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentHomeBinding
+import org.systers.mentorship.models.Task
 import org.systers.mentorship.view.adapters.AchievementsAdapter
 import org.systers.mentorship.viewmodels.HomeViewModel
 
@@ -24,7 +25,6 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var achievementsAdapter: AchievementsAdapter
 
     companion object {
         /**
@@ -40,42 +40,41 @@ class HomeFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        achievementsAdapter = AchievementsAdapter()
-        val linearLayoutManager = LinearLayoutManager(context)
-        val divider = DividerItemDecoration(context, linearLayoutManager.orientation)
-
-        rvAchievements.apply {
-            adapter = achievementsAdapter
-            layoutManager = linearLayoutManager
-            addItemDecoration(divider)
-        }
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        var linearLayoutManager = LinearLayoutManager(context)
+        var divider = DividerItemDecoration(context, linearLayoutManager.orientation)
+        var achievements = mutableListOf<Task>()
+
+        rvAchievements.apply {
+            adapter = AchievementsAdapter(achievements)
+            layoutManager = linearLayoutManager
+            addItemDecoration(divider)
+        }
+
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
-        with(homeViewModel) {
-            userStats.observe(viewLifecycleOwner, Observer { stats ->
-                binding.stats = stats
-                if (stats?.achievements?.isEmpty() != false) {
-                    tvNoAchievements.visibility = View.VISIBLE
-                    rvAchievements.visibility = View.GONE
-                } else {
-                    tvNoAchievements.visibility = View.GONE
-                    rvAchievements.visibility = View.VISIBLE
-                    achievementsAdapter.submitList(stats.achievements)
-                }
-            })
+        homeViewModel.userStats.observe(viewLifecycleOwner, Observer { stats ->
+            binding.stats = stats
+            if (stats?.achievements?.isEmpty() != false) {
+                tvNoAchievements.visibility = View.VISIBLE
+                rvAchievements.visibility = View.GONE
+            } else {
+                tvNoAchievements.visibility = View.GONE
+                rvAchievements.visibility = View.VISIBLE
+                achievements.clear()
+                achievements.addAll(stats.achievements)
+                rvAchievements.adapter?.notifyDataSetChanged()
+            }
+        })
 
-            message.observe(viewLifecycleOwner, Observer { message ->
-                Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
-            })
-        }
+        homeViewModel.message.observe(viewLifecycleOwner, Observer { message ->
+            Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
+        })
+
+        homeViewModel.getUserStatistics()
+
     }
 }
 

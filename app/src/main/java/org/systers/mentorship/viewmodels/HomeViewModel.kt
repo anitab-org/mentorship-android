@@ -1,13 +1,12 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
-import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -27,7 +26,6 @@ class HomeViewModel : ViewModel() {
 
     private val TAG = this::class.java.simpleName
     private val userDataManager by lazy { UserDataManager() }
-    private val compositeDisposable by lazy { CompositeDisposable() }
 
     private val _userStats = MutableLiveData<HomeStatistics>()
     private val _message = SingleLiveEvent<String>()
@@ -38,48 +36,46 @@ class HomeViewModel : ViewModel() {
     val message: LiveData<String>
         get() = _message
 
-    init {
+    /**
+     * This function fetches the user statistics
+     */
+    @SuppressLint("CheckResult")
+    fun getUserStatistics() {
         userDataManager.getHomeStats()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<HomeStatistics>() {
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<HomeStatistics>() {
 
-                    override fun onComplete() {
-                        // Do nothing
-                    }
+                override fun onComplete() {
+                    // Do nothing
+                }
 
-                    override fun onNext(statistics: HomeStatistics) {
-                        _userStats.value = statistics
-                    }
+                override fun onNext(statistics: HomeStatistics) {
+                    _userStats.value = statistics
+                }
 
-                    override fun onError(error: Throwable) {
-                        when (error) {
-                            is IOException -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet))
-                            }
-                            is TimeoutException -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out))
-                            }
-                            is HttpException -> {
-                                _message.postValue(CommonUtils.getErrorResponse(error).message)
-                            }
-                            else -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong))
-                                        .also { Log.d(TAG, error.localizedMessage) }
-                            }
+                override fun onError(error: Throwable) {
+                    when (error) {
+                        is IOException -> {
+                            _message.postValue(MentorshipApplication.getContext()
+                                    .getString(R.string.error_please_check_internet))
+                        }
+                        is TimeoutException -> {
+                            _message.postValue(MentorshipApplication.getContext()
+                                    .getString(R.string.error_request_timed_out))
+                        }
+                        is HttpException -> {
+                            _message.postValue(CommonUtils.getErrorResponse(error).message)
+                        }
+                        else -> {
+                            _message.postValue(MentorshipApplication.getContext()
+                                    .getString(R.string.error_something_went_wrong))
+                                    .also { Log.d(TAG, error.localizedMessage) }
                         }
                     }
+                }
 
-                })
-                .addTo(compositeDisposable)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.dispose()
+            })
     }
 }
 
