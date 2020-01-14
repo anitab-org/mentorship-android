@@ -1,9 +1,7 @@
 package org.systers.mentorship.view.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentHomeBinding
 import org.systers.mentorship.view.adapters.AchievementsAdapter
@@ -52,15 +51,20 @@ class HomeFragment : BaseFragment() {
             layoutManager = linearLayoutManager
             addItemDecoration(divider)
         }
+
+        srlHome.setOnRefreshListener { fetchNewest() }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setHasOptionsMenu(true)
+
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
         with(homeViewModel) {
             userStats.observe(viewLifecycleOwner, Observer { stats ->
+                srlHome.isRefreshing = false
                 binding.stats = stats
                 if (stats?.achievements?.isEmpty() != false) {
                     tvNoAchievements.visibility = View.VISIBLE
@@ -76,6 +80,23 @@ class HomeFragment : BaseFragment() {
                 Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
             })
         }
+
+        fetchNewest()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_refresh -> {
+                fetchNewest()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun fetchNewest()  {
+        srlHome.isRefreshing = true
+        homeViewModel.getHomeStats()
     }
 }
 

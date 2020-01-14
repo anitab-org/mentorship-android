@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -38,7 +39,10 @@ class HomeViewModel : ViewModel() {
     val message: LiveData<String>
         get() = _message
 
-    init {
+    /**
+     * Fetches home stats from getHomeStats method of the UserService
+     */
+    fun getHomeStats() {
         userDataManager.getHomeStats()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

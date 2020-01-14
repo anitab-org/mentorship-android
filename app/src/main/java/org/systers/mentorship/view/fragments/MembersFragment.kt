@@ -4,9 +4,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.Constants
@@ -34,10 +36,13 @@ class MembersFragment: BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setHasOptionsMenu(true)
+        srlMembers.setOnRefreshListener { fetchNewest() }
+
         membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
         membersViewModel.successful.observe(this, Observer {
             successful ->
-            (activity as MainActivity).hideProgressDialog()
+            srlMembers.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     if (membersViewModel.userList.isEmpty()) {
@@ -58,8 +63,7 @@ class MembersFragment: BaseFragment() {
             }
         })
 
-        (activity as MainActivity).showProgressDialog(getString(R.string.fetching_users))
-        membersViewModel.getUsers()
+        fetchNewest()
     }
 
     private val openUserProfile: (Int) -> Unit =
@@ -68,4 +72,19 @@ class MembersFragment: BaseFragment() {
                 intent.putExtra(Constants.MEMBER_USER_ID, memberId)
                 startActivity(intent)
             }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_refresh -> {
+                fetchNewest()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun fetchNewest()  {
+        srlMembers.isRefreshing = true
+        membersViewModel.getUsers()
+    }
 }

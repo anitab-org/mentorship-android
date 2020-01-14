@@ -3,7 +3,9 @@ package org.systers.mentorship.view.fragments
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_members.*
 import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
 import org.systers.mentorship.view.activities.MainActivity
@@ -34,10 +36,13 @@ class RequestsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setHasOptionsMenu(true)
+        srlRequests.setOnRefreshListener { fetchNewest() }
+
         requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
         requestsViewModel.successful.observe(this, Observer {
             successful ->
-            activityCast.hideProgressDialog()
+            srlRequests.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                         vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
@@ -50,7 +55,21 @@ class RequestsFragment : BaseFragment() {
             }
         })
 
-        activityCast.showProgressDialog(getString(R.string.fetching_requests))
+        fetchNewest()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_refresh -> {
+                fetchNewest()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun fetchNewest()  {
+        srlRequests.isRefreshing = true
         requestsViewModel.getAllMentorshipRelations()
     }
 }
