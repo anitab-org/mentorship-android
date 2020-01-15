@@ -28,6 +28,26 @@ class SignUpActivity : BaseActivity() {
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+
+        outState?.putCharSequence("name", tiName.editText?.text.toString())
+        outState?.putCharSequence("userName", tiUsername.editText?.text.toString())
+        outState?.putCharSequence("email", tiEmail.editText?.text.toString())
+        outState?.putCharSequence("password", tiPassword.editText?.text.toString())
+        outState?.putCharSequence("confirmedPassword", tiConfirmPassword.editText?.text.toString())
+    }
+    
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        tiName.editText?.setText(savedInstanceState?.getCharSequence("name"))
+        tiUsername.editText?.setText(savedInstanceState?.getCharSequence("userName"))
+        tiEmail.editText?.setText(savedInstanceState?.getCharSequence("email"))
+        tiPassword.editText?.setText(savedInstanceState?.getCharSequence("password"))
+        tiConfirmPassword.editText?.setText(savedInstanceState?.getCharSequence("confirmedPassword"))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -69,6 +89,7 @@ class SignUpActivity : BaseActivity() {
         cbTC.setOnCheckedChangeListener { _, b ->
             btnSignUp.isEnabled = b
         }
+
     }
 
     override fun onDestroy() {
