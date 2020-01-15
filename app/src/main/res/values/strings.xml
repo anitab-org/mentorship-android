@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Systers Mentorship</string>
     <string name="logo">Logo</string>
     <string name="login">Login</string>
@@ -143,10 +143,26 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="code_of_conduct">Code of Conduct</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="url_github">https://github.com/systers/mentorship-android</string>
+    <string name="url_github_systers">https://github.com/systers/mentorship-android</string>
     <string name="url_slack">http://systers.io/slack-systers-opensource/</string>
     <string name="url_website">http://systers.io</string>
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="login_with_other_accounts">Login with other accounts</string>
+    <string name="facebook_app_id">619891008760606</string>
+    <string name="fb_login_protocol_scheme">fb619891008760606</string>
+    <string name="CONSUMER_KEY" >tDvlOrVDHUIsqxHtVkO1Xl18t</string>
+    <string name="CONSUMER_SECRET" >3DB1Rg8VPiEyhGkCmZO2aMCQadi3iO92jqVrHwO1QOJXJ6vKDV</string>
+    <string name="github_client_id">0c18d7aa774e5f2f1c89</string>
+    <string name="github_client_secret">8e66a21124eb7a0cc70af9f45452512d99e9ea81</string>
+    <string name="url_github">https://github.com</string>
+    <string name="successful_login">Successfully logged in as </string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="url_github_oauth_login">https://github.com/login/oauth/authorize?client_id=%1$s&amp;redirect_uri=%2$s</string>
+    <string name="github_oauth_redirect_uri">systers://callback</string>
+    <string name="first_name">first_name</string>
+    <string name="last_name">last_name</string>
+    <string name="unable_to_login">Unable to login\\nPlease try again.</string>
 </resources>

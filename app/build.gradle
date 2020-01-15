@@ -16,6 +16,7 @@ android {
         versionName Versions.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -65,4 +66,10 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+    implementation Dependencies.circle_image_view
+    implementation Dependencies.multidex
+    implementation Dependencies.google_play_services
+    implementation Dependencies.facebook_sdk
+    implementation Dependencies.twitter_sdk
+    implementation Dependencies.twitter_core_sdk
 }

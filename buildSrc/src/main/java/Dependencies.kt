@@ -25,6 +25,12 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
+    const val circle_image_view = "3.0.1"
+    const val multidex = "1.0.3"
+    const val google_play_services = "17.0.0"
+    const val facebook_sdk = "[5,6)"
+    const val twitter_sdk = "3.1.0"
+    const val twitter_core_sdk = "3.1.0"
 
 }
 
@@ -53,4 +59,16 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val circle_image_view = "de.hdodenhof:circleimageview:${Versions.circle_image_view}"
+    const val multidex = "com.android.support:multidex:${Versions.multidex}"
+    const val google_play_services = "com.google.android.gms:play-services-auth:${Versions.google_play_services}"
+    const val facebook_sdk = "com.facebook.android:facebook-login:${Versions.facebook_sdk}"
+    const val twitter_sdk = "com.twitter.sdk.android:twitter:${Versions.twitter_sdk}"
+    const val twitter_core_sdk = "com.twitter.sdk.android:twitter-core:${Versions.twitter_core_sdk}"
+
+            
+     
+     
+     
+
 }

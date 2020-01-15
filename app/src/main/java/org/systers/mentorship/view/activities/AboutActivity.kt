@@ -20,7 +20,7 @@ class AboutActivity : AppCompatActivity() {
 
         btnGit.setOnClickListener {
 
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_github))))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_github_systers))))
         }
         btnSlack.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_slack))))
