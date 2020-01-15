@@ -2,11 +2,11 @@ package org.systers.mentorship.view.fragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
@@ -35,14 +35,13 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
 
     val appContext = MentorshipApplication.getContext()
 
-    private lateinit var taskViewModel: TasksViewModel
+    private val taskViewModel: TasksViewModel by viewModels()
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_mentorship_tasks;
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        taskViewModel = ViewModelProviders.of(this).get(TasksViewModel::class.java)
         taskViewModel.successful.observe(this, Observer {
             successful ->
             if (successful != null) {

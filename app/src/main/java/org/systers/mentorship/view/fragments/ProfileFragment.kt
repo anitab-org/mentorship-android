@@ -1,11 +1,11 @@
 package org.systers.mentorship.view.fragments
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
 import org.systers.mentorship.viewmodels.ProfileViewModel
@@ -24,7 +24,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
-    private lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
@@ -38,7 +38,6 @@ class ProfileFragment : BaseFragment() {
 
         setHasOptionsMenu(true)
 
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
         profileViewModel.successfulGet.observe(this, Observer {
             successful ->
             baseActivity.hideProgressDialog()
@@ -63,7 +62,7 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
+                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager!!,
                         getString(R.string.fragment_title_edit_profile))
                 true
             }

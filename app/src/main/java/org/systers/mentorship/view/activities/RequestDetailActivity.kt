@@ -1,7 +1,6 @@
 package org.systers.mentorship.view.activities
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
@@ -15,6 +14,7 @@ import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 import android.content.Intent
+import androidx.activity.viewModels
 import org.systers.mentorship.view.fragments.RequestPagerFragment
 
 /**
@@ -22,7 +22,7 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
  */
 class RequestDetailActivity: BaseActivity() {
 
-    private lateinit var requestDetailViewModel: RequestDetailViewModel
+    private val requestDetailViewModel: RequestDetailViewModel by viewModels()
 
     private val mentorshipRelationResponse by lazy {
         intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)
@@ -137,7 +137,6 @@ class RequestDetailActivity: BaseActivity() {
     }
 
     private fun setObservables(relationResponse: Relationship) {
-        requestDetailViewModel  = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
         requestDetailViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()

@@ -1,11 +1,11 @@
 package org.systers.mentorship.view.activities
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
+import androidx.activity.viewModels
 import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -19,7 +19,7 @@ import org.systers.mentorship.viewmodels.MemberProfileViewModel
  */
 class MemberProfileActivity : BaseActivity() {
 
-    private lateinit var memberProfileViewModel: MemberProfileViewModel
+    private val memberProfileViewModel: MemberProfileViewModel by viewModels()
     private lateinit var userProfile: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,6 @@ class MemberProfileActivity : BaseActivity() {
 
         val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
 
-        memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
         memberProfileViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()

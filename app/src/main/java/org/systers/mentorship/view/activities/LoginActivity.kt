@@ -1,12 +1,12 @@
 package org.systers.mentorship.view.activities
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.activity.viewModels
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
@@ -17,7 +17,7 @@ import org.systers.mentorship.viewmodels.LoginViewModel
  */
 class LoginActivity : BaseActivity() {
 
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by viewModels()
 
     private lateinit var username: String
     private lateinit var password: String
@@ -26,7 +26,6 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         loginViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()

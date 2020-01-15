@@ -26,6 +26,10 @@ object Versions {
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
 
+    const val coreKtx = "1.1.0"
+    const val activityKtx = "1.0.0"
+    const val fragmentKtx = "1.1.0"
+
 }
 
 /**
@@ -53,4 +57,8 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+
+    const val core_ktx = "androidx.core:core-ktx:${Versions.coreKtx}"
+    const val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
 }

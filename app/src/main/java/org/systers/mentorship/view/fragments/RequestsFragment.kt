@@ -1,8 +1,8 @@
 package org.systers.mentorship.view.fragments
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
@@ -25,7 +25,7 @@ class RequestsFragment : BaseFragment() {
         val TAG = RelationFragment::class.java.simpleName
     }
 
-    private lateinit var requestsViewModel: RequestsViewModel
+    private val requestsViewModel: RequestsViewModel by viewModels()
 
     private val activityCast by lazy { activity as MainActivity }
 
@@ -34,7 +34,6 @@ class RequestsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
         requestsViewModel.successful.observe(this, Observer {
             successful ->
             activityCast.hideProgressDialog()

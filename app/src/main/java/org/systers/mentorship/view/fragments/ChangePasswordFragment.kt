@@ -2,13 +2,13 @@ package org.systers.mentorship.view.fragments
 
 import android.app.Dialog
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
@@ -26,14 +26,13 @@ class ChangePasswordFragment : DialogFragment() {
         fun newInstance() = ChangePasswordFragment()
     }
 
-    private lateinit var changePasswordViewModel: ChangePasswordViewModel
+    private val changePasswordViewModel: ChangePasswordViewModel by viewModels()
     private lateinit var changePasswordView: View
     private lateinit var currentPassword: String
     private lateinit var newPassword: String
     private lateinit var confirmPassword: String
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        changePasswordViewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
         changePasswordViewModel.successfulUpdate.observe(this, Observer { successful ->
 
             if (successful != null) {

@@ -1,12 +1,12 @@
 package org.systers.mentorship.view.fragments
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
+import androidx.fragment.app.viewModels
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.Constants
@@ -27,14 +27,13 @@ class MembersFragment: BaseFragment() {
         fun newInstance() = MembersFragment()
     }
 
-    private lateinit var membersViewModel: MembersViewModel
+    private val membersViewModel: MembersViewModel by viewModels()
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
         membersViewModel.successful.observe(this, Observer {
             successful ->
             (activity as MainActivity).hideProgressDialog()

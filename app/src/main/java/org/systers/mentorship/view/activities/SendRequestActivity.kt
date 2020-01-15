@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.app.DatePickerDialog
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.text.SpannableStringBuilder
@@ -10,6 +9,7 @@ import android.text.TextUtils
 import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.Toast
+import androidx.activity.viewModels
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.RelationshipRequest
@@ -31,7 +31,7 @@ class SendRequestActivity: BaseActivity() {
         const val OTHER_USER_NAME_INTENT_EXTRA = "OTHER_USER_NAME_INTENT_EXTRA"
     }
 
-    private lateinit var sendRequestViewModel: SendRequestViewModel
+    private val sendRequestViewModel: SendRequestViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,7 +116,6 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private fun setObservables() {
-        sendRequestViewModel  = ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
         sendRequestViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()

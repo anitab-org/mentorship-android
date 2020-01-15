@@ -1,10 +1,10 @@
 package org.systers.mentorship.view.fragments
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
+import androidx.fragment.app.viewModels
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
@@ -24,7 +24,7 @@ class RelationPagerFragment : BaseFragment() {
         fun newInstance() = RelationPagerFragment()
     }
 
-    private lateinit var relationViewModel: RelationViewModel
+    private val relationViewModel: RelationViewModel by viewModels()
     private val activityCast by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int {
@@ -34,7 +34,6 @@ class RelationPagerFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
         relationViewModel.successfulGet.observe(this, Observer {
             successfull ->
             activityCast.hideProgressDialog()
