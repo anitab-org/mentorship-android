@@ -2,6 +2,7 @@ package org.systers.mentorship.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.systers.mentorship.remote.calladapter.SimpleCallAdapterFactory
 import org.systers.mentorship.remote.services.AuthService
 import org.systers.mentorship.remote.services.RelationService
 import org.systers.mentorship.remote.services.TaskService
@@ -44,7 +45,7 @@ class ApiManager {
         val retrofit = Retrofit.Builder()
                 .baseUrl(BaseUrl.apiBaseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(SimpleCallAdapterFactory())
                 .client(okHttpClient)
                 .build()
 

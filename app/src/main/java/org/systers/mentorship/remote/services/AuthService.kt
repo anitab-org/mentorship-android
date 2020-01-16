@@ -1,6 +1,6 @@
 package org.systers.mentorship.remote.services
 
-import io.reactivex.Observable
+import org.systers.mentorship.remote.calladapter.Simple
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.AuthToken
@@ -19,7 +19,7 @@ interface AuthService {
      * @return an observable instance of the [AuthToken]
      */
     @POST("login")
-    fun login(@Body login: Login): Observable<AuthToken>
+    fun login(@Body login: Login): Simple<AuthToken>
 
     /**
      * This function allows a user to sign up into the system
@@ -27,5 +27,5 @@ interface AuthService {
      * @return an observable instance of the [CustomResponse]
      */
     @POST("register")
-    fun register(@Body register: Register) : Observable<CustomResponse>
+    fun register(@Body register: Register) : Simple<CustomResponse>
 }
