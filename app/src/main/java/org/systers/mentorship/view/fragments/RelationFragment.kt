@@ -31,7 +31,9 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
         val TAG = RelationFragment::class.java.simpleName
     }
 
-    private lateinit var relationViewModel: RelationViewModel
+    private val relationViewModel by lazy {
+        ViewModelProviders.of(this).get(RelationViewModel::class.java)
+    }
     private val activityCast by lazy { activity as MainActivity }
 
     private val alertDialog by lazy { activity?.let { AlertDialog.Builder(it) } }
@@ -45,7 +47,6 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
 
         activityCast.showProgressDialog(getString(R.string.fetching_users))
         populateView(mentorshipRelation)
-        relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
 
         relationViewModel.successfulCancel.observe(this, Observer { successful ->
             activityCast.hideProgressDialog()

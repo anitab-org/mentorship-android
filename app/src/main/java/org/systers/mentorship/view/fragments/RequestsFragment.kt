@@ -25,7 +25,9 @@ class RequestsFragment : BaseFragment() {
         val TAG = RelationFragment::class.java.simpleName
     }
 
-    private lateinit var requestsViewModel: RequestsViewModel
+    private val requestsViewModel by lazy {
+        ViewModelProviders.of(this).get(RequestsViewModel::class.java)
+    }
 
     private val activityCast by lazy { activity as MainActivity }
 
@@ -34,7 +36,6 @@ class RequestsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
         requestsViewModel.successful.observe(this, Observer {
             successful ->
             activityCast.hideProgressDialog()

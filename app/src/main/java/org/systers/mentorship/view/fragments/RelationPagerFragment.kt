@@ -24,7 +24,9 @@ class RelationPagerFragment : BaseFragment() {
         fun newInstance() = RelationPagerFragment()
     }
 
-    private lateinit var relationViewModel: RelationViewModel
+    private val relationViewModel by lazy {
+        ViewModelProviders.of(this).get(RelationViewModel::class.java)
+    }
     private val activityCast by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int {
@@ -34,7 +36,6 @@ class RelationPagerFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
         relationViewModel.successfulGet.observe(this, Observer {
             successfull ->
             activityCast.hideProgressDialog()
