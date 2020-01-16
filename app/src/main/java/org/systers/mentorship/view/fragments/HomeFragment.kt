@@ -72,8 +72,8 @@ class HomeFragment : BaseFragment() {
                 }
             })
 
-            message.observe(viewLifecycleOwner, Observer { message ->
-                Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
+            liveMessage.observe(viewLifecycleOwner, Observer { liveMessage ->
+                Snackbar.make(homeContainer, liveMessage.toString(), Snackbar.LENGTH_SHORT).show()
             })
         }
     }
