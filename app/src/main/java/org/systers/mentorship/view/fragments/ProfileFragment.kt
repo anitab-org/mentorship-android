@@ -39,8 +39,7 @@ class ProfileFragment : BaseFragment() {
         setHasOptionsMenu(true)
 
         profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
-        profileViewModel.successfulGet.observe(this, Observer {
-            successful ->
+        profileViewModel.successful.observe(this, Observer { successful ->
             baseActivity.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -69,12 +68,5 @@ class ProfileFragment : BaseFragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        profileViewModel.successfulGet.removeObservers(activity!!)
-        profileViewModel.successfulGet.value = null
     }
 }

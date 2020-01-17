@@ -35,7 +35,7 @@ class RelationPagerFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
-        relationViewModel.successfulGet.observe(this, Observer {
+        relationViewModel.successful.observe(this, Observer {
             successfull ->
             activityCast.hideProgressDialog()
             if (successfull != null) {

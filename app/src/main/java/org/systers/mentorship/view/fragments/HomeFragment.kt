@@ -58,24 +58,27 @@ class HomeFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-
         with(homeViewModel) {
-            userStats.observe(viewLifecycleOwner, Observer { stats ->
-                binding.stats = stats
-                if (stats?.achievements?.isEmpty() != false) {
-                    tvNoAchievements.visibility = View.VISIBLE
-                    rvAchievements.visibility = View.GONE
-                } else {
-                    tvNoAchievements.visibility = View.GONE
-                    rvAchievements.visibility = View.VISIBLE
-                    achievementsAdapter.submitList(stats.achievements)
+            successful.observe(viewLifecycleOwner, Observer { successful ->
+                if (successful == true) {
+                    binding.stats = homeViewModel.homeStats
+                    if (homeViewModel.homeStats.achievements.isEmpty()) {
+                        tvNoAchievements.visibility = View.VISIBLE
+                        rvAchievements.visibility = View.GONE
+
+                    } else {
+                        tvNoAchievements.visibility = View.GONE
+                        rvAchievements.visibility = View.VISIBLE
+                        achievementsAdapter.submitList(homeViewModel.homeStats.achievements)
+                    }
+                } else if (!successful) {
+                    view?.let {
+                        Snackbar.make(it, message, Snackbar.LENGTH_SHORT).show()
+                    }
                 }
             })
-
-            message.observe(viewLifecycleOwner, Observer { message ->
-                Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
-            })
         }
+        homeViewModel.getHomeStats()
     }
 }
 
