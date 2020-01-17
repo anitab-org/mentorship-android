@@ -149,4 +149,12 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="task_completed">Congratulations! Task completed successfully!</string>
+    <string name="task_added">Task added successfully!</string>
+    <string name="task_deleted">Task deleted successfully!</string>
+    <string name="icon_trash_task_delete_description">Icon of a trash can. Touch to delete a task.</string>
+    <string name="complete_task">Complete task</string>
+    <string name="delete_task">Delete task</string>
+    <string name="complete_task_are_you_sure">"Are you sure that you want to complete \"%1$s\"? This action cannot be undone.</string>
+    <string name="delete_task_are_you_sure">Are you sure that you want to delete \"%1$s\"? This action cannot be undone.</string>
 </resources>
