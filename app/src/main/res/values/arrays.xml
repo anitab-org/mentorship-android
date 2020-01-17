@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_members_options">
+        <item>Alphabetically (A-Z)</item>
+        <item>Newest members</item>
+    </string-array>
+    <string-array name="filter_members_options">
+        <item>Only available to mentor</item>
+        <item>Only needs mentoring</item>
+    </string-array>
+</resources>
