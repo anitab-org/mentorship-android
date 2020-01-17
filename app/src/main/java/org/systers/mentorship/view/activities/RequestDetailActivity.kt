@@ -22,8 +22,9 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
  */
 class RequestDetailActivity: BaseActivity() {
 
-    private lateinit var requestDetailViewModel: RequestDetailViewModel
-
+    private val requestDetailViewModel by lazy {
+        ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
+    }
     private val mentorshipRelationResponse by lazy {
         intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)
     }
@@ -137,7 +138,6 @@ class RequestDetailActivity: BaseActivity() {
     }
 
     private fun setObservables(relationResponse: Relationship) {
-        requestDetailViewModel  = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
         requestDetailViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()

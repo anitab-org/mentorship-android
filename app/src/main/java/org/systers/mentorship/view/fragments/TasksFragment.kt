@@ -34,15 +34,15 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     }
 
     val appContext = MentorshipApplication.getContext()
-
-    private lateinit var taskViewModel: TasksViewModel
+    private val taskViewModel by lazy {
+        ViewModelProviders.of(this).get(TasksViewModel::class.java)
+    }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_mentorship_tasks;
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        taskViewModel = ViewModelProviders.of(this).get(TasksViewModel::class.java)
         taskViewModel.successful.observe(this, Observer {
             successful ->
             if (successful != null) {

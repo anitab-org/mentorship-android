@@ -19,7 +19,9 @@ import org.systers.mentorship.viewmodels.MemberProfileViewModel
  */
 class MemberProfileActivity : BaseActivity() {
 
-    private lateinit var memberProfileViewModel: MemberProfileViewModel
+    private val memberProfileViewModel by lazy {
+        ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
+    }
     private lateinit var userProfile: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,6 @@ class MemberProfileActivity : BaseActivity() {
 
         val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
 
-        memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
         memberProfileViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()
