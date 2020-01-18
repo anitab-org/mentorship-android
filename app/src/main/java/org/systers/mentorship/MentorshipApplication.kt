@@ -1,14 +1,14 @@
 package org.systers.mentorship
 
-import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.multidex.MultiDexApplication
 
 /**
  * The entry point, a class that represents Mentorship application.
  */
 
-class MentorshipApplication : Application() {
+class MentorshipApplication : MultiDexApplication() {
 
     companion object {
 

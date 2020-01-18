@@ -155,4 +155,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="login_with_social_networks">or login with social networks</string>
     <string name="signup_with_social_networks">or sign up with social networks</string>
     <string name="profile_image">Profile Image</string>
+    <string name="auth_failed">Authentication failed.</string>
+
+    <string name="facebook_app_id">FACEBOOK_APP_ID</string>
+    <string name="fb_login_protocol_scheme">FB_LOGIN_PROTOCOL_SCHEME</string>
 </resources>

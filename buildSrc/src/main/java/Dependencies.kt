@@ -27,6 +27,11 @@ object Versions {
     const val appCompat = "1.0.0-beta01"
     const val imageCropper = "2.8.0"
     const val glide = "4.10.0"
+    const val googleServices = "4.3.3"
+    const val playServicesAuth = "17.0.0"
+    const val firebaseAuth = "19.2.0"
+    const val facebookLogin = "[5,6)"
+    const val  multiDex = "1.0.3"
 }
 
 /**
@@ -57,4 +62,9 @@ object Dependencies {
     const val image_cropper = "com.theartofdev.edmodo:android-image-cropper:${Versions.imageCropper}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glide_annotation_processor = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val google_services = "com.google.gms:google-services:${Versions.googleServices}"
+    const val play_services_auth = "com.google.android.gms:play-services-auth:${Versions.playServicesAuth}"
+    const val firebase_auth = "com.google.firebase:firebase-auth:${Versions.firebaseAuth}"
+    const val facebook_login = "com.facebook.android:facebook-login:${Versions.facebookLogin}"
+    const val multi_dex = "com.android.support:multidex:${Versions.multiDex}"
 }

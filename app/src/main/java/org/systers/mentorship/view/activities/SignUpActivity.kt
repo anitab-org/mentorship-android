@@ -8,7 +8,10 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.GoogleAuthProvider
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -18,7 +21,9 @@ import kotlinx.android.synthetic.main.activity_sign_up.tiPassword
 import kotlinx.android.synthetic.main.activity_sign_up.tiUsername
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.viewmodels.SignUpViewModel
+import org.systers.mentorship.viewmodels.SocialLoginViewModel
 
 /**
  * This activity will let the user to sign up into the system using name, username,
@@ -27,6 +32,7 @@ import org.systers.mentorship.viewmodels.SignUpViewModel
 class SignUpActivity : BaseActivity() {
 
     private lateinit var signUpViewModel: SignUpViewModel
+    private lateinit var socialLoginViewModel: SocialLoginViewModel
 
     private lateinit var name: String
     private lateinit var username: String
@@ -83,15 +89,34 @@ class SignUpActivity : BaseActivity() {
                     .start(this)
         }
 
+        socialLoginViewModel = ViewModelProviders.of(this).get(SocialLoginViewModel::class.java)
+        socialLoginViewModel.successful.observe(this, Observer {
+            if (it != null)
+                if (it)
+                    socialSignUp()
+                else {
+                    hideProgressDialog()
+                    if (socialLoginViewModel.message.isNotEmpty())
+                        Snackbar.make(getRootView(), socialLoginViewModel.message,
+                                Snackbar.LENGTH_SHORT).show()
+                }
+        })
+
         btnSignUpGoogle.setOnClickListener {
-            // TODO: add SignUp function via Google
+            showProgressDialog(getString(R.string.signing_up))
+            socialLoginViewModel.loginWithGoogle(this)
         }
+
         btnSignUpFacebook.setOnClickListener {
-            // TODO: add SignUp function via Facebook
+            showProgressDialog(getString(R.string.signing_up))
+            socialLoginViewModel.loginWithFacebook(this)
         }
+
         btnSignUpTwitter.setOnClickListener {
-            // TODO: add SignUp function via Twitter
+            showProgressDialog(getString(R.string.signing_up))
+            socialLoginViewModel.loginWithTwitter(this)
         }
+
     }
 
     override fun onDestroy() {
@@ -149,6 +174,35 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        socialLoginViewModel.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == Constants.RC_SIGN_IN_GOOGLE) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                try {
+                    val account = task.getResult(ApiException::class.java)
+                    val token = account?.idToken
+                    if (token != null) {
+                        val credential = GoogleAuthProvider.getCredential(token, null)
+                        socialLoginViewModel.firebaseAuth(credential)
+                    } else {
+                        hideProgressDialog()
+                        Snackbar.make(getRootView(), R.string.auth_failed,
+                                Snackbar.LENGTH_SHORT).show()
+                    }
+                } catch (e: ApiException) {
+                    hideProgressDialog()
+                    e.printStackTrace()
+                    Snackbar.make(getRootView(), R.string.auth_failed,
+                            Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            hideProgressDialog()
+            Snackbar.make(getRootView(), R.string.error_something_went_wrong,
+                    Snackbar.LENGTH_SHORT).show()
+        }
+
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             val result = CropImage.getActivityResult(data)
             if (resultCode == Activity.RESULT_OK) {
@@ -162,6 +216,19 @@ class SignUpActivity : BaseActivity() {
                 result.error.printStackTrace()
             }
         }
+    }
+
+    private fun socialSignUp() {
+        hideProgressDialog()
+        Toast.makeText(baseContext, "Welcome, ${socialLoginViewModel.auth.currentUser?.displayName}!",
+                Toast.LENGTH_SHORT).show()
+        // TODO: Add logic for social sign up
+        /*
+        intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        // we need to finish LoginActivity as well
+        finishAffinity()
+        */
     }
 
 }

@@ -9,4 +9,5 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
+    const val RC_SIGN_IN_GOOGLE = 5000
 }
