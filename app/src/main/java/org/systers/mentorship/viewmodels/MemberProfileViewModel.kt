@@ -3,19 +3,9 @@ package org.systers.mentorship.viewmodels
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
-import org.systers.mentorship.MentorshipApplication
-import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
-import org.systers.mentorship.utils.CommonUtils
-import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * This class represents the [ViewModel] component used for the MemberProfileActivity
@@ -37,38 +27,24 @@ class MemberProfileViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun getUserProfile(@NonNull userId: Int) {
         userDataManager.getUser(userId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<User>() {
-                    override fun onNext(user: User) {
-                        userProfile = user
-                        successful.value = true
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                .process { user, throwable ->
+                    when(throwable){
+                        null ->{
+                            when(user){
+                                null ->{
+                                    successful.postValue(false)
+                                }
+                                else ->{
+                                    successful.postValue(true)
+                                    userProfile = user
+                                }
                             }
                         }
-                        successful.value = false
+                        else ->{
+                            message = throwable.localizedMessage
+                            successful.postValue(false)
+                        }
                     }
-
-                    override fun onComplete() {
-                    }
-                })
+                }
     }
 }

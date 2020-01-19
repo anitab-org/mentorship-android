@@ -1,7 +1,7 @@
 package org.systers.mentorship.remote.services
 
-import io.reactivex.Observable
 import org.systers.mentorship.models.Task
+import org.systers.mentorship.remote.customAdapter.CustomObservable
 import retrofit2.http.*
 
 /**
@@ -15,5 +15,5 @@ interface TaskService {
      * @return an observable instance of a list of [Task]s
      */
     @GET("mentorship_relation/{relation_id}/tasks")
-    fun getAllTasksFromMentorshipRelation(@Path("relation_id") relationId: Int): Observable<List<Task>>
+    fun getAllTasksFromMentorshipRelation(@Path("relation_id") relationId: Int): CustomObservable<List<Task>>
 }

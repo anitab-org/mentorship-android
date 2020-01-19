@@ -3,26 +3,13 @@ package org.systers.mentorship.viewmodels
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
-import org.systers.mentorship.MentorshipApplication
-import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
-import org.systers.mentorship.remote.responses.CustomResponse
-import org.systers.mentorship.utils.CommonUtils
-import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
 class ProfileViewModel: ViewModel() {
-
-    var TAG = ProfileViewModel::class.java.simpleName
 
     private val userDataManager: UserDataManager = UserDataManager()
 
@@ -37,37 +24,25 @@ class ProfileViewModel: ViewModel() {
     @SuppressLint("CheckResult")
     fun getProfile() {
         userDataManager.getUser()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<User>() {
-                    override fun onNext(userprofile: User) {
-                        user = userprofile
-                        successfulGet.value = true
-                    }
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                .process { user, throwable ->
+                    when(throwable){
+                        null ->{
+                            when(user){
+                                null ->{
+                                    successfulGet.postValue(false)
+                                }
+                                else ->{
+                                    successfulGet.postValue(true)
+                                    this.user = user
+                                }
                             }
                         }
-                        successfulGet.value = false
+                        else ->{
+                            message = throwable.localizedMessage
+                            successfulGet.postValue(false)
+                        }
                     }
-                    override fun onComplete() {
-                    }
-                })
+                }
     }
 
     /**
@@ -76,35 +51,17 @@ class ProfileViewModel: ViewModel() {
     @SuppressLint("CheckResult")
     fun updateProfile(user: User) {
         userDataManager.updateUser(user)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<CustomResponse>() {
-                    override fun onNext(response: CustomResponse) {
-                        successfulUpdate.value = true
-                    }
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
-                            }
+                .process { _, throwable ->
+                    when(throwable){
+                        null ->{
+                            successfulUpdate.postValue(true)
                         }
-                        successfulUpdate.value = false
+                        else ->{
+                            message = throwable.localizedMessage
+                            successfulUpdate.postValue(false)
+                        }
                     }
-                    override fun onComplete() {
-                    }
-                })
+                }
     }
+
 }

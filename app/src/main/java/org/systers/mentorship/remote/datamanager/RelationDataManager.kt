@@ -3,6 +3,7 @@ package org.systers.mentorship.remote.datamanager
 import io.reactivex.Observable
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.ApiManager
+import org.systers.mentorship.remote.customAdapter.CustomObservable
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 
@@ -18,7 +19,7 @@ class RelationDataManager {
      * all mentorship requests and relations
      * @return an Observable of a list of [Relationship]
      */
-    fun getAllRelationsAndRequests(): Observable<List<Relationship>> {
+    fun getAllRelationsAndRequests(): CustomObservable<List<Relationship>> {
         return apiManager.relationService.getAllRelationships()
     }
 
@@ -27,7 +28,7 @@ class RelationDataManager {
      * @param relationId id of the request being accepted
      * @return an Observable of [CustomResponse]
      */
-    fun acceptRelationship(relationId: Int): Observable<CustomResponse> {
+    fun acceptRelationship(relationId: Int): CustomObservable<CustomResponse> {
         return apiManager.relationService.acceptRelationship(relationId)
     }
 
@@ -36,7 +37,7 @@ class RelationDataManager {
      * @param relationId id of the request being rejected
      * @return an Observable of [CustomResponse]
      */
-    fun rejectRelationship(relationId: Int): Observable<CustomResponse> {
+    fun rejectRelationship(relationId: Int): CustomObservable<CustomResponse> {
         return apiManager.relationService.rejectRelationship(relationId)
     }
 
@@ -45,7 +46,7 @@ class RelationDataManager {
      * @param relationId id of the request being deleted
      * @return an Observable of [CustomResponse]
      */
-    fun deleteRelationship(relationId: Int): Observable<CustomResponse> {
+    fun deleteRelationship(relationId: Int): CustomObservable<CustomResponse> {
         return apiManager.relationService.deleteRelationship(relationId)
     }
 
@@ -54,7 +55,7 @@ class RelationDataManager {
      * @param relationId id of the request being canceled
      * @return an Observable of [CustomResponse]
      */
-    fun cancelRelationship(relationId: Int): Observable<CustomResponse> {
+    fun cancelRelationship(relationId: Int): CustomObservable<CustomResponse> {
         return apiManager.relationService.cancelRelationship(relationId)
     }
 
@@ -63,7 +64,7 @@ class RelationDataManager {
      * @param relationshipRequest object with fields to send a mentorship request
      * @return an Observable of [CustomResponse]
      */
-    fun sendRequest(relationshipRequest: RelationshipRequest): Observable<CustomResponse> {
+    fun sendRequest(relationshipRequest: RelationshipRequest): CustomObservable<CustomResponse> {
         return apiManager.relationService.sendRequest(relationshipRequest)
     }
 
@@ -71,7 +72,7 @@ class RelationDataManager {
      * This will call a method from RelationService interface to get accepted mentorship relation
      * @return an Observable of [CustomResponse]
      */
-    fun getCurrentRelationship(): Observable<Relationship> {
+    fun getCurrentRelationship(): CustomObservable<Relationship> {
         return apiManager.relationService.getCurrentRelationship()
     }
 }
