@@ -31,6 +31,10 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
+        supportActionBar?.title = getString(R.string.sign_up)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
@@ -121,5 +125,10 @@ class SignUpActivity : BaseActivity() {
         intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

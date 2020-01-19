@@ -27,8 +27,7 @@
             android:name=".view.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.activities.SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".view.activities.SignUpActivity" />
         <activity android:name=".view.activities.MainActivity" />
         <activity android:name=".view.activities.RequestDetailActivity" />
         <activity android:name=".view.activities.MemberProfileActivity" />
