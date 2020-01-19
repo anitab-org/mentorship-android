@@ -32,6 +32,8 @@ class LoginActivityTest {
     private val TEST_USERNAME: String = "test user"
     private val TEST_PASSWORD: String = "test password"
 
+    private val USER_OR_PASSWORD_IS_WRONG = "Username or password is wrong."
+
     @get:Rule
     var mActivityRule: ActivityTestRule<LoginActivity> = ActivityTestRule(LoginActivity::class.java)
 
@@ -39,6 +41,21 @@ class LoginActivityTest {
 
         return onView(allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }
+
+    private fun hasTextInputLayoutHintText(expectedHint: String) =
+            object : TypeSafeMatcher<View>() {
+                override fun describeTo(description: Description?) {}
+
+                override fun matchesSafely(item: View?): Boolean {
+                    if (item !is TextInputLayout)
+                        return false
+
+                    val hint = item.hint.toString()
+
+                    return expectedHint == hint
+                }
+
+            }
 
     companion object {
 
@@ -80,6 +97,20 @@ class LoginActivityTest {
                 }
             }
         }
+    }
+
+    /**
+     * This test simply checks if all views are enabled and have the corresponding text/hint
+     */
+    @Test
+    fun testAllViewsEnabledAndHaveCorrectTextOrHint() {
+        onView(withId(R.id.tiUsername)).check(matches(isEnabled()))
+                .check(matches(hasTextInputLayoutHintText(
+                        mActivityRule.activity.getString(R.string.username_or_email))))
+        onView(withId(R.id.tiPassword)).check(matches(isEnabled()))
+                .check(matches(hasTextInputLayoutHintText(
+                        mActivityRule.activity.getString(R.string.password))))
+        onView(withId(R.id.btnLogin)).check(matches(isEnabled())).check(matches(withText(R.string.login)))
     }
 
     /**
@@ -141,4 +172,23 @@ class LoginActivityTest {
         onView(withId(R.id.tiUsername)).check(matches(not(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR))))
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
     }
+
+    /**
+     *  This test checks that the error message that the data is wrong is being showed
+     *  in the SnackBar as the user just can't exist because of the whitespaces in password.
+     */
+    @Test
+    fun testLoginButtonClickedWhenAllFieldsAreFilled() {
+        // Type in a username and a password
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText(TEST_USERNAME), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText(TEST_PASSWORD), closeSoftKeyboard())
+
+        // Perform Click operation on Login Button
+        onView(withId(R.id.btnLogin)).perform(click())
+
+        // Check for the error message in SnackBar, the user does not exist
+        onView(withId(com.google.android.material.R.id.snackbar_text))
+                .check(matches(withText(USER_OR_PASSWORD_IS_WRONG)))
+    }
+
 }
