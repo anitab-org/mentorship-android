@@ -54,6 +54,13 @@ class MemberProfileActivity : BaseActivity() {
             intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
             startActivity(intent)
         }
+
+        swipeLayout.setOnRefreshListener {
+            val intent = intent
+            finish()
+            startActivity(intent)
+            swipeLayout.isRefreshing = false
+        }
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {

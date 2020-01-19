@@ -31,6 +31,22 @@ class MainActivity: BaseActivity() {
         } else {
             atHome = savedInstanceState.getBoolean("atHome")
         }
+
+        swipeLayout.setOnRefreshListener {
+            var newFragment = supportFragmentManager.fragments[0]
+            val fragmentTag = newFragment.tag
+            when (newFragment) {
+                is HomeFragment -> newFragment = HomeFragment.newInstance()
+                is ProfileFragment -> newFragment = ProfileFragment.newInstance()
+                is RelationPagerFragment -> newFragment = RelationPagerFragment.newInstance()
+                is MembersFragment -> newFragment = MembersFragment.newInstance()
+                is RequestsFragment -> newFragment = RequestsFragment.newInstance()
+            }
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.contentFrame, newFragment, fragmentTag).commit()
+            supportActionBar?.title = fragmentTag
+            swipeLayout.isRefreshing = false
+        }
     }
 
     private val mOnNavigationItemSelectedListener =
