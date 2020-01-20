@@ -57,6 +57,24 @@ class AssertFunctions {
                 }
             }
         }
+
+        /*
+         * This method checks that the given TextInputLayout has a corresponding hint
+         */
+        fun hasTextInputLayoutHintText(expectedHint: String) =
+                object : TypeSafeMatcher<View>() {
+                    override fun describeTo(description: Description?) {}
+
+                    override fun matchesSafely(item: View?): Boolean {
+                        if (item !is TextInputLayout)
+                            return false
+
+                        val hint = item.hint.toString()
+
+                        return expectedHint == hint
+                    }
+
+                }
     }
 
 }
