@@ -6,6 +6,7 @@ import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
+import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
@@ -14,7 +15,44 @@ import org.systers.mentorship.view.fragments.*
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
  */
-class MainActivity: BaseActivity() {
+class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
+    override fun onPageScrollStateChanged(state: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        when (position) {
+            0 -> {
+                replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
+                        R.string.fragment_title_home)
+                atHome = true
+            }
+            1 -> {
+                replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
+                        R.string.fragment_title_profile)
+                atHome = false
+            }
+            2 -> {
+                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
+                        R.string.fragment_title_relation)
+                atHome = false
+            }
+            3 -> {
+                replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
+                        R.string.fragment_title_members)
+                atHome = false
+            }
+            4 -> {
+                replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
+                        R.string.fragment_title_requests)
+                atHome = false
+            }
+        }
+    }
+
+    override fun onPageSelected(position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var atHome = true
 
@@ -31,6 +69,8 @@ class MainActivity: BaseActivity() {
         } else {
             atHome = savedInstanceState.getBoolean("atHome")
         }
+
+
     }
 
     private val mOnNavigationItemSelectedListener =
