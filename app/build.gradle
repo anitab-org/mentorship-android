@@ -18,6 +18,8 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
+        def (Object testUsername) = getTestUsername()
+        def (Object testPassword) = getTestPassword()
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -25,6 +27,8 @@ android {
         }
         debug {
             manifestPlaceholders = [usesCleartextTraffic:"true"]
+            buildConfigField "String", "TEST_USERNAME", testUsername
+            buildConfigField "String", "TEST_PASSWORD", testPassword
         }
     }
     dataBinding {
@@ -65,4 +69,28 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+
+    //to test for intent change
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+
+}
+
+private List getTestUsername() {
+    def testUsername = "\"username\""
+    ext.TESTUSERNAME = System.getenv('TEST_USERNAME')
+    if(ext.TESTUSERNAME){
+        testUsername = "\""+ext.TESTUSERNAME+"\""
+    }
+    println testUsername
+    [testUsername]
+}
+
+private List getTestPassword() {
+    def testPassword = "\"password\""
+    ext.TESTPASSWORD = System.getenv('TEST_PASSWORD')
+    if(ext.TESTPASSWORD){
+        testPassword = "\""+ext.TESTPASSWORD+"\""
+    }
+    println testPassword
+    [testPassword]
 }

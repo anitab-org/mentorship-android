@@ -11,6 +11,9 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import androidx.test.espresso.intent.rule.IntentsTestRule
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Description
@@ -20,6 +23,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.systers.mentorship.view.activities.LoginActivity
+import org.systers.mentorship.view.activities.MainActivity
 
 /**
  * This class specifies the UI test for LoginActivity
@@ -34,6 +38,10 @@ class LoginActivityTest {
 
     @get:Rule
     var mActivityRule: ActivityTestRule<LoginActivity> = ActivityTestRule(LoginActivity::class.java)
+
+    @Rule
+    @JvmField
+    val mainActivityRule = IntentsTestRule(MainActivity::class.java)
 
     private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
 
@@ -140,5 +148,64 @@ class LoginActivityTest {
         // Check for no error message on username with an error message on password
         onView(withId(R.id.tiUsername)).check(matches(not(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR))))
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
+    }
+
+    /**
+     *  This test checks whether login is successful when correct username and password are entered
+     */
+    @Test
+    fun testLoginButtonClickedWhenUsernameAndPasswordAreValid() {
+        // Type in valid username
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText(BuildConfig.TEST_USERNAME), closeSoftKeyboard())
+
+        // Type in valid password
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText(BuildConfig.TEST_PASSWORD), closeSoftKeyboard())
+
+        // Perform Click operation on Login Button
+        onView(withId(R.id.btnLogin)).perform(click())
+
+        //check if MainActivity launched (launched when login is successful)
+        intended(hasComponent(MainActivity::class.java.name))
+
+    }
+
+    /**
+     *  This test checks that error messages are shown after valid username and invalid password are
+     *  entered
+     */
+    @Test
+    fun testLoginButtonClickedWhenUsernameValidAndPasswordInvalid() {
+        // Type in valid username
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText(BuildConfig.TEST_USERNAME), closeSoftKeyboard())
+
+        // Type in valid invalid password
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("invalid password"), closeSoftKeyboard())
+
+        // Perform Click operation on Login Button
+        onView(withId(R.id.btnLogin)).perform(click())
+
+        //check if snackbar with error message is shown
+        onView(withId(com.google.android.material.R.id.snackbar_text))
+                .check(matches(withText("Username or password is wrong.")))
+    }
+
+    /**
+     *  This test checks that error messages are shown after invalid username and valid password are
+     *  entered
+     */
+    @Test
+    fun testLoginButtonClickedWhenUsernameInvalidAndPasswordValid() {
+        // Type in invalid username
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("invalid username"), closeSoftKeyboard())
+
+        // Type in valid valid password
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText(BuildConfig.TEST_PASSWORD), closeSoftKeyboard())
+
+        // Perform Click operation on Login Button
+        onView(withId(R.id.btnLogin)).perform(click())
+
+        //check if snackbar with error message is shown
+        onView(withId(com.google.android.material.R.id.snackbar_text))
+                .check(matches(withText("Username or password is wrong.")))
     }
 }
