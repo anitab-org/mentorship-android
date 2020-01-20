@@ -11,7 +11,7 @@ object Versions {
     const val dataBinding = "3.2.0-alpha11"
     const val kotlinVersion = "1.3.21"
     const val supportLib = "1.0.0"
-    const val designSupportLib = "1.0.0"
+    const val designSupportLib = "1.1.0-rc02"
     const val constraintLayout = "1.1.3"
     const val junit = "4.12"
     const val testRunner = "1.1.0"
@@ -25,7 +25,7 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
-
+    const val viewPager2 = "1.0.0"
 }
 
 /**
@@ -53,4 +53,5 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
 }

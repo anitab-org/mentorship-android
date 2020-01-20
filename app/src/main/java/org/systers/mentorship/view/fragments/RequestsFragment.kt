@@ -4,6 +4,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.fragment_relation.*
 import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
 import org.systers.mentorship.view.activities.MainActivity
@@ -40,8 +42,16 @@ class RequestsFragment : BaseFragment() {
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                        vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
-                        tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                    vpMentorshipRequests.adapter = RequestsPagerAdapter(fragmentManager!!, lifecycle, requestsViewModel.allRequestsList)
+
+                    TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests,
+                        TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                            when (position) {
+                                0 -> tab.text = getString(R.string.pending)
+                                1 -> tab.text = getString(R.string.past)
+                                2 -> tab.text = getString(R.string.all)
+                            }
+                        }).attach()
                 } else {
                     view?.let {
                         Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
@@ -63,8 +64,15 @@ class RelationPagerFragment : BaseFragment() {
             tvNoCurrentRelation.visibility = View.GONE
             tlMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.visibility = View.VISIBLE
-            vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
-            tlMentorshipRelation.setupWithViewPager(vpMentorshipRelation)
+            vpMentorshipRelation.adapter = RelationPagerAdapter(fragmentManager!!, lifecycle, mentorshipRelation)
+
+            TabLayoutMediator(tlMentorshipRelation, vpMentorshipRelation,
+                TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                    when (position) {
+                        0 -> tab.text = getString(R.string.details)
+                        1 -> tab.text = getString(R.string.tasks)
+                    }
+                }).attach()
         }
     }
 }
