@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/contentFrame"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
