@@ -76,6 +76,10 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
         activityCast.hideProgressDialog()
             tvMentorName.text = relationResponse.mentor.name
             tvMenteeName.text = relationResponse.mentee.name
+            println("creation date is "+relationResponse.sentOn)
+            println("creation date is (in long) "+relationResponse.sentOn.toLong())
+            println("end date is "+relationResponse.endsOn)
+            println("end date is (in long) "+relationResponse.endsOn.toLong())
             tvEndDate.text = convertUnixTimestampIntoStr(
                     relationResponse.endsOn, EXTENDED_DATE_FORMAT)
             tvRelationNotes.text = relationResponse.notes
