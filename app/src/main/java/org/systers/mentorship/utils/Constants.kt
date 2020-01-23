@@ -9,4 +9,10 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
+    const val RC_NOTIFICATIONS = 4321
+    const val NOTIFICATIONS_CHANNEL_ID = "systers_notifications"
+    const val NOTIFICATION_ID = 4321
+    const val NOTIFICATIONS_DB_NAME = "notifications_database.db"
+    const val CHANNEL_NAME = "systers-notifications"
+    const val CHANNEL_DESCRIPTION = "systers-notifications-requests-tasks-achievements"
 }

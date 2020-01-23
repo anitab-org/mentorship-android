@@ -3,6 +3,7 @@ package org.systers.mentorship
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
+import org.systers.mentorship.remote.notifications.NotificationsUtils
 
 /**
  * The entry point, a class that represents Mentorship application.
@@ -34,5 +35,9 @@ class MentorshipApplication : Application() {
 
         instance = this
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+
+        // create a notifications channel and send token to the backend
+        NotificationsUtils(this)
     }
+
 }

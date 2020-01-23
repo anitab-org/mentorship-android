@@ -21,7 +21,13 @@ class RelationPagerFragment : BaseFragment() {
         /**
          * Creates an instance of [RelationPagerFragment]
          */
-        fun newInstance() = RelationPagerFragment()
+        fun newInstance(page: Int): RelationPagerFragment {
+            if (page == 0 || page == 1)
+                this.page = page
+            return RelationPagerFragment()
+        }
+
+        private var page = 0
     }
 
     private lateinit var relationViewModel: RelationViewModel
@@ -65,6 +71,7 @@ class RelationPagerFragment : BaseFragment() {
             vpMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
             tlMentorshipRelation.setupWithViewPager(vpMentorshipRelation)
+            vpMentorshipRelation.currentItem = page
         }
     }
 }

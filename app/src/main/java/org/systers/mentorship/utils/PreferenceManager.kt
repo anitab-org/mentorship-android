@@ -13,6 +13,7 @@ class PreferenceManager {
     companion object {
         const val APPLICATION_PREFERENCE = "app-preferences"
         const val AUTH_TOKEN = "auth-token"
+        const val UNREAD_NOTIFICATIONS = "unread notifications"
     }
 
     private val context: Context = MentorshipApplication.getContext()
@@ -31,6 +32,17 @@ class PreferenceManager {
 
     val authToken: String
         get() = sharedPreferences.getString(AUTH_TOKEN, "")
+
+    fun addUnreadNotification() {
+        val unreadNotifications = sharedPreferences.getInt(UNREAD_NOTIFICATIONS, 0) + 1
+        sharedPreferences.edit().putInt(UNREAD_NOTIFICATIONS, unreadNotifications).apply()
+    }
+
+    fun resetUnreadNotifications() =
+            sharedPreferences.edit().putInt(UNREAD_NOTIFICATIONS, 0).apply()
+
+    val unreadNotifications: Int
+        get() = sharedPreferences.getInt(UNREAD_NOTIFICATIONS, 0)
 
     /**
      * Clears all the data that has been saved in the preferences file.

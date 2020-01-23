@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +15,13 @@ import org.systers.mentorship.view.fragments.*
  */
 class MainActivity: BaseActivity() {
 
+    companion object{
+        var showFragment = 0
+    }
+
     private var atHome = true
+    // need this to directly open TasksFragment
+    private var page = 0
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
@@ -31,6 +36,13 @@ class MainActivity: BaseActivity() {
         } else {
             atHome = savedInstanceState.getBoolean("atHome")
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (showFragment == 2) showRelationFragment(1)
+        else if (showFragment == 4) showRequestsFragment()
+        showFragment = 0
     }
 
     private val mOnNavigationItemSelectedListener =
@@ -49,8 +61,9 @@ class MainActivity: BaseActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_relation -> {
-                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
+                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(page),
                         R.string.fragment_title_relation)
+                page = 0
                 atHome = false
                 return@OnNavigationItemSelectedListener true
             }
@@ -88,6 +101,15 @@ class MainActivity: BaseActivity() {
         atHome = true
         bottomNavigation.selectedItemId = R.id.navigation_home
         replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
+    }
+
+    private fun showRelationFragment(page: Int) {
+        this.page = page
+        bottomNavigation.selectedItemId = R.id.navigation_relation
+    }
+
+    private fun showRequestsFragment() {
+        bottomNavigation.selectedItemId = R.id.navigation_requests
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

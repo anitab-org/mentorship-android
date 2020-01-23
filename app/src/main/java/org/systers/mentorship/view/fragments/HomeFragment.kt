@@ -1,9 +1,9 @@
 package org.systers.mentorship.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentHomeBinding
+import org.systers.mentorship.view.activities.NotificationsActivity
 import org.systers.mentorship.view.adapters.AchievementsAdapter
 import org.systers.mentorship.viewmodels.HomeViewModel
 
@@ -25,6 +26,7 @@ class HomeFragment : BaseFragment() {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
     private lateinit var achievementsAdapter: AchievementsAdapter
+    private var menuItem: MenuItem? = null
 
     companion object {
         /**
@@ -43,6 +45,8 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
+
         achievementsAdapter = AchievementsAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
         val divider = DividerItemDecoration(context, linearLayoutManager.orientation)
@@ -51,6 +55,35 @@ class HomeFragment : BaseFragment() {
             adapter = achievementsAdapter
             layoutManager = linearLayoutManager
             addItemDecoration(divider)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupBadge(menuItem?.actionView?.findViewById(R.id.badge))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_home, menu)
+        menuItem = menu.findItem(R.id.menu_notifications)
+        setupBadge(menuItem?.actionView?.findViewById(R.id.badge))
+        menuItem?.actionView?.setOnClickListener {
+            startActivity(Intent(context, NotificationsActivity::class.java))
+            requireActivity().overridePendingTransition(R.anim.anim_slide_from_right, R.anim.anim_stay)
+        }
+    }
+
+    // need to update count of new notifications
+    private fun setupBadge(view: TextView?) {
+        val notificationsCount = org.systers.mentorship.utils.PreferenceManager().unreadNotifications
+        if (notificationsCount == 0) {
+            if (view?.visibility != View.GONE)
+                view?.visibility = View.GONE
+        } else {
+            view?.text = notificationsCount.coerceAtMost(99).toString()
+            if (view?.visibility != View.VISIBLE)
+                view?.visibility = View.VISIBLE
         }
     }
 

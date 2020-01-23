@@ -25,7 +25,9 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
-
+    const val googleServices = "4.3.2"
+    const val firebaseMessaging = "20.1.0"
+    const val room = "2.2.3"
 }
 
 /**
@@ -53,4 +55,8 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val google_services = "com.google.gms:google-services:${Versions.googleServices}"
+    const val firebase_messaging = "com.google.firebase:firebase-messaging:${Versions.firebaseMessaging}"
+    const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
+    const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
 }
