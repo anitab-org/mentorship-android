@@ -7,6 +7,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
 import androidx.viewpager.widget.ViewPager
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
@@ -18,6 +19,17 @@ import org.systers.mentorship.view.fragments.*
  */
 class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
 
+    /**
+     * This class represents the index of each tab in the Bottom Navigation View
+     * */
+    enum class BottomNavigationIndex(val value: Int){
+        HOME(0),
+        PROFILE(1),
+        RELATION(2),
+        MEMBERS(3),
+        REQUESTS(4)
+    }
+
     private var atHome = true
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
@@ -26,10 +38,15 @@ class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        initBottomNavigation()
 
-        bottomNavigationVP.adapter = MainPagerAdapter(supportFragmentManager)
-        bottomNavigationVP.addOnPageChangeListener(this)
+        bottomNavigation.setOnClickMenuListener {item ->
+            vpBottomNavigation.currentItem = item.id
+            atHome = item.id == BottomNavigationIndex.HOME.value
+        }
+
+        vpBottomNavigation.adapter = MainPagerAdapter(supportFragmentManager)
+        vpBottomNavigation.addOnPageChangeListener(this)
 
         if (savedInstanceState == null) {
             showHomeFragment()
@@ -39,36 +56,12 @@ class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
 
     }
 
-    private val mOnNavigationItemSelectedListener =
-            BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                bottomNavigationVP.currentItem = 0
-                atHome = true
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_profile -> {
-                bottomNavigationVP.currentItem = 1
-                atHome = false
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_relation -> {
-                bottomNavigationVP.currentItem = 2
-                atHome = false
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_members -> {
-                bottomNavigationVP.currentItem = 3
-                atHome = false
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_requests -> {
-                bottomNavigationVP.currentItem = 4
-                atHome = false
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
+    private fun initBottomNavigation() {
+        bottomNavigation.add(MeowBottomNavigation.Model(BottomNavigationIndex.HOME.value, R.drawable.ic_home_black_24dp))
+        bottomNavigation.add(MeowBottomNavigation.Model(BottomNavigationIndex.PROFILE.value, R.drawable.ic_profile_black_24dp))
+        bottomNavigation.add(MeowBottomNavigation.Model(BottomNavigationIndex.RELATION.value, R.drawable.ic_current_relation_black_24dp))
+        bottomNavigation.add(MeowBottomNavigation.Model(BottomNavigationIndex.MEMBERS.value, R.drawable.ic_members_black_24dp))
+        bottomNavigation.add(MeowBottomNavigation.Model(BottomNavigationIndex.REQUESTS.value, R.drawable.ic_requests_black_24dp))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -87,8 +80,8 @@ class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
 
     private fun showHomeFragment() {
         atHome = true
-        bottomNavigation.selectedItemId = R.id.navigation_home
-        bottomNavigationVP.currentItem = 0
+        bottomNavigation.show(BottomNavigationIndex.HOME.value)
+        bottomNavigation.id = R.id.navigation_home
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -111,15 +104,16 @@ class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
 
     override fun onPageSelected(position: Int) {
         when (position) {
-            0 -> bottomNavigation.selectedItemId = R.id.navigation_home
+            0 -> bottomNavigation.id = R.id.navigation_home
 
-            1 -> bottomNavigation.selectedItemId = R.id.navigation_profile
+            1 -> bottomNavigation.id = R.id.navigation_profile
 
-            2 -> bottomNavigation.selectedItemId = R.id.navigation_relation
+            2 -> bottomNavigation.id = R.id.navigation_relation
 
-            3 -> bottomNavigation.selectedItemId = R.id.navigation_members
+            3 -> bottomNavigation.id = R.id.navigation_members
 
-            4 -> bottomNavigation.selectedItemId = R.id.navigation_requests
+            4 -> bottomNavigation.id = R.id.navigation_requests
         }
+        bottomNavigation.show(position)
     }
 }

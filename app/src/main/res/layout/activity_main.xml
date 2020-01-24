@@ -8,22 +8,23 @@
     tools:context=".view.activities.MainActivity">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/navigationViewPager"
+        android:id="@+id/vpBottomNavigation"
         android:layout_marginBottom="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/bottomNavigation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:background="?android:attr/windowBackground"
+        app:mbn_circleColor="@color/white"
+        app:mbn_backgroundBottomColor="@color/white"
+        app:mbn_defaultIconColor="@color/light_gray"
+        app:mbn_rippleColor="@color/dark_gray"
+        app:mbn_selectedIconColor="@color/aubergine"
+        app:mbn_shadowColor="@color/dark_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_navigation" />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

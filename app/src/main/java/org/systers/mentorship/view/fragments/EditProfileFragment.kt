@@ -55,7 +55,7 @@ class EditProfileFragment: DialogFragment() {
                 }
             }
         })
-        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog!!.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
