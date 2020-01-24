@@ -10,49 +10,13 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
+import org.systers.mentorship.view.adapters.MainPagerAdapter
 import org.systers.mentorship.view.fragments.*
 
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
  */
 class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
-    override fun onPageScrollStateChanged(state: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-        when (position) {
-            0 -> {
-                replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
-                        R.string.fragment_title_home)
-                atHome = true
-            }
-            1 -> {
-                replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
-                        R.string.fragment_title_profile)
-                atHome = false
-            }
-            2 -> {
-                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
-                        R.string.fragment_title_relation)
-                atHome = false
-            }
-            3 -> {
-                replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
-                        R.string.fragment_title_members)
-                atHome = false
-            }
-            4 -> {
-                replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
-                        R.string.fragment_title_requests)
-                atHome = false
-            }
-        }
-    }
-
-    override fun onPageSelected(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     private var atHome = true
 
@@ -64,12 +28,14 @@ class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+        bottomNavigationVP.adapter = MainPagerAdapter(supportFragmentManager)
+        bottomNavigationVP.addOnPageChangeListener(this)
+
         if (savedInstanceState == null) {
             showHomeFragment()
         } else {
             atHome = savedInstanceState.getBoolean("atHome")
         }
-
 
     }
 
@@ -77,32 +43,27 @@ class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
-                        R.string.fragment_title_home)
+                bottomNavigationVP.currentItem = 0
                 atHome = true
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-                replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
-                        R.string.fragment_title_profile)
+                bottomNavigationVP.currentItem = 1
                 atHome = false
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_relation -> {
-                replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
-                        R.string.fragment_title_relation)
+                bottomNavigationVP.currentItem = 2
                 atHome = false
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_members -> {
-                replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
-                        R.string.fragment_title_members)
+                bottomNavigationVP.currentItem = 3
                 atHome = false
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_requests -> {
-                replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
-                        R.string.fragment_title_requests)
+                bottomNavigationVP.currentItem = 4
                 atHome = false
                 return@OnNavigationItemSelectedListener true
             }
@@ -127,7 +88,7 @@ class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
     private fun showHomeFragment() {
         atHome = true
         bottomNavigation.selectedItemId = R.id.navigation_home
-        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
+        bottomNavigationVP.currentItem = 0
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -141,6 +102,24 @@ class MainActivity: BaseActivity(), ViewPager.OnPageChangeListener {
             showHomeFragment()
         } else {
             super.onBackPressed()
+        }
+    }
+
+    override fun onPageScrollStateChanged(state: Int) {}
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+    override fun onPageSelected(position: Int) {
+        when (position) {
+            0 -> bottomNavigation.selectedItemId = R.id.navigation_home
+
+            1 -> bottomNavigation.selectedItemId = R.id.navigation_profile
+
+            2 -> bottomNavigation.selectedItemId = R.id.navigation_relation
+
+            3 -> bottomNavigation.selectedItemId = R.id.navigation_members
+
+            4 -> bottomNavigation.selectedItemId = R.id.navigation_requests
         }
     }
 }
