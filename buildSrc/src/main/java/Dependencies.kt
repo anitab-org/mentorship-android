@@ -25,7 +25,8 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
-
+    const val ossLicenses = "17.0.0"
+    const val ossLicensesPlugin = "0.10.1"
 }
 
 /**
@@ -53,4 +54,6 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val oss_licenses = "com.google.android.gms:play-services-oss-licenses:${Versions.ossLicenses}"
+    const val oss_licenses_plugin = "com.google.android.gms:oss-licenses-plugin:${Versions.ossLicensesPlugin}"
 }

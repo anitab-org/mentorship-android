@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import kotlinx.android.synthetic.main.activity_about.*
 import org.systers.mentorship.R
 
@@ -36,6 +37,9 @@ class AboutActivity : AppCompatActivity() {
         }
         btncodeofconduct.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_code_of_conduct))))
+        }
+        btnosslicenses.setOnClickListener {
+            startActivity(Intent(this, OssLicensesMenuActivity::class.java))
         }
 
     }
