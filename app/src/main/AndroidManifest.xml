@@ -34,7 +34,8 @@
         <activity android:name=".view.activities.RequestDetailActivity" />
         <activity android:name=".view.activities.MemberProfileActivity" />
         <activity android:name=".view.activities.SendRequestActivity" />
-        <activity android:name=".view.activities.SettingsActivity" />
+        <activity android:name=".view.activities.SettingsActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"/>
     </application>
 
 </manifest>
