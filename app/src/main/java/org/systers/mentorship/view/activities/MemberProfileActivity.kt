@@ -76,18 +76,18 @@ class MemberProfileActivity : BaseActivity() {
         userProfile = user
         tvName.text = user.name
 
-        if (user.isAvailableToMentor != null) {
+        if (user.availableToMentor != null) {
             setTextViewStartingWithBoldSpan(
                     tvAvailableToMentor,
                     getString(R.string.available_to_mentor),
-                    if (user.isAvailableToMentor!!)
+                    if (user.availableToMentor!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
-        if (user.needsMentoring != null) {
+        if (user.needMentoring != null) {
             setTextViewStartingWithBoldSpan(
                     tvNeedMentoring,
                     getString(R.string.need_mentoring),
-                    if (user.needsMentoring!!)
+                    if (user.needMentoring!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
         setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)

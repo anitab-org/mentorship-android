@@ -54,8 +54,8 @@ class SignUpActivity : BaseActivity() {
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
-            needsMentoring = cbMentee.isChecked
-            isAvailableToMentor = cbMentor.isChecked
+            needsMentoring = cbMentee.isChecked //old name but works
+            isAvailableToMentor = cbMentor.isChecked //old name but works
 
             if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
