@@ -130,7 +130,10 @@
     <string name="password_not_match">Passwords do not match</string>
     <string name="ok">OK</string>
     <string name="change_password">Change Password</string>
+    <string name="delete_account">Delete Account?</string>
+    <string name="delete_account_msg">Are you sure you want to delete your account?</string>
     <string name="password_updated">Password updated successfully!</string>
+    <string name="account_deleted">Account was deleted successfully!</string>
     <string name="current_new_password_should_not_same">Current and New passwords should not be same</string>
     <string name="about">About</string>
     <string name="about_systers">Systers is an international community for all women involved in the technical aspects of computing. We welcome the participation of women technologists of all ages and at any stage of their studies or careers.
