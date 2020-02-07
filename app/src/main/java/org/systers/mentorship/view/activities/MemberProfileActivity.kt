@@ -49,10 +49,16 @@ class MemberProfileActivity : BaseActivity() {
         memberProfileViewModel.getUserProfile(userId)
 
         btnSendRequest.setOnClickListener {
-            val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
-            intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
-            intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
-            startActivity(intent)
+            if(memberProfileViewModel.userProfile?.isAvailableToMentor ?: false && !(memberProfileViewModel.userProfile?.needsMentoring ?:false)
+                    && (userProfile?.isAvailableToMentor ?: false && !(userProfile?.needsMentoring ?:false))){
+                Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
+                        .show()
+            } else{
+                val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+                intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
+                intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
+                startActivity(intent)
+            }
         }
     }
 

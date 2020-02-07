@@ -63,6 +63,7 @@
     <string name="only_available_to_mentor">Only available to mentor</string>
     <string name="only_available_to_mentee">Only available to be a mentee</string>
     <string name="not_available_to_mentor_or_mentee">Not available to be a mentor or a mentee</string>
+    <string name="both_users_only_available_to_mentor">This request is not possible because both users are only ‘available to mentor\'</string>
     <string name="user_photo">User Photo</string>
     <string name="pending">Pending</string>
     <string name="past">Past</string>
