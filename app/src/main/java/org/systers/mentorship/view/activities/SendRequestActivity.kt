@@ -31,7 +31,9 @@ class SendRequestActivity: BaseActivity() {
         const val OTHER_USER_NAME_INTENT_EXTRA = "OTHER_USER_NAME_INTENT_EXTRA"
     }
 
-    private lateinit var sendRequestViewModel: SendRequestViewModel
+    private val sendRequestViewModel by lazy {
+        ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,7 +118,6 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private fun setObservables() {
-        sendRequestViewModel  = ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
         sendRequestViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()

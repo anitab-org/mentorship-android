@@ -111,7 +111,7 @@
                         android:id="@+id/switchNeedsMentoring"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@={user.needsMentoring}" />
+                        android:checked="@={user.needMentoring}" />
 
                 </LinearLayout>
 
