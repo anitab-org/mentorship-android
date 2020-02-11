@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -13,12 +14,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="TextViewSettings">
-        <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:drawablePadding">8dp</item>
-        <item name="android:padding">16dp</item>
-        <item name="android:textSize">18sp</item>
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
-
 </resources>
