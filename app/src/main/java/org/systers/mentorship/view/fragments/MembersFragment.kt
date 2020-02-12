@@ -33,7 +33,9 @@ class MembersFragment : BaseFragment() {
         fun newInstance() = MembersFragment()
     }
 
-    private lateinit var membersViewModel: MembersViewModel
+    private val membersViewModel by lazy {
+        ViewModelProviders.of(this).get(MembersViewModel::class.java)
+    }
 
     private val openUserProfile: (Int) -> Unit =
             { memberId ->
@@ -50,6 +52,7 @@ class MembersFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
 
         setHasOptionsMenu(true)
 

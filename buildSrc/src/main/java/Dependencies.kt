@@ -14,6 +14,7 @@ object Versions {
     const val designSupportLib = "1.0.0"
     const val constraintLayout = "1.1.3"
     const val junit = "4.12"
+    const val extJunit = "1.1.1"
     const val testRunner = "1.1.0"
     const val espresso = "3.1.0"
     const val rxJava = "2.1.10"
@@ -25,7 +26,6 @@ object Versions {
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appCompat = "1.0.0-beta01"
-
 }
 
 /**
@@ -40,9 +40,11 @@ object Dependencies {
     const val design = "com.google.android.material:material:${Versions.designSupportLib}"
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val junit = "junit:junit:${Versions.junit}"
+    const val ext_junit = "androidx.test.ext:junit:${Versions.extJunit}"
     const val test_runner = "androidx.test:runner:${Versions.testRunner}"
     const val test_rules = "androidx.test:rules:${Versions.testRule}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val espresso_intents = "androidx.test.espresso:espresso-intents:${Versions.espresso}"
     const val rx_java = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val rx_android = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
     const val rx_kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
