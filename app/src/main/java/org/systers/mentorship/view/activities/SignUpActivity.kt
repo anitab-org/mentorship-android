@@ -22,8 +22,9 @@ import java.util.*
  */
 class SignUpActivity : BaseActivity() {
 
-    private lateinit var signUpViewModel: SignUpViewModel
-
+    private val signUpViewModel by lazy {
+        ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+    }
     private lateinit var name: String
     private lateinit var username: String
     private lateinit var email: String
@@ -39,7 +40,6 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {

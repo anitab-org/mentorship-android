@@ -19,7 +19,9 @@ import org.systers.mentorship.viewmodels.MemberProfileViewModel
  */
 class MemberProfileActivity : BaseActivity() {
 
-    private lateinit var memberProfileViewModel: MemberProfileViewModel
+    private val memberProfileViewModel by lazy {
+        ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
+    }
     private lateinit var userProfile: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,6 @@ class MemberProfileActivity : BaseActivity() {
 
         val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
 
-        memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
         memberProfileViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()
@@ -49,10 +50,16 @@ class MemberProfileActivity : BaseActivity() {
         memberProfileViewModel.getUserProfile(userId)
 
         btnSendRequest.setOnClickListener {
-            val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
-            intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
-            intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
-            startActivity(intent)
+            if(memberProfileViewModel.userProfile?.isAvailableToMentor ?: false && !(memberProfileViewModel.userProfile?.needsMentoring ?:false)
+                    && (userProfile?.isAvailableToMentor ?: false && !(userProfile?.needsMentoring ?:false))){
+                Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
+                        .show()
+            } else{
+                val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+                intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
+                intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
+                startActivity(intent)
+            }
         }
     }
 
@@ -70,18 +77,18 @@ class MemberProfileActivity : BaseActivity() {
         userProfile = user
         tvName.text = user.name
 
-        if (user.isAvailableToMentor != null) {
+        if (user.availableToMentor != null) {
             setTextViewStartingWithBoldSpan(
                     tvAvailableToMentor,
                     getString(R.string.available_to_mentor),
-                    if (user.isAvailableToMentor!!)
+                    if (user.availableToMentor!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
-        if (user.needsMentoring != null) {
+        if (user.needMentoring != null) {
             setTextViewStartingWithBoldSpan(
                     tvNeedMentoring,
                     getString(R.string.need_mentoring),
-                    if (user.needsMentoring!!)
+                    if (user.needMentoring!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
         setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
