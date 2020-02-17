@@ -28,7 +28,7 @@ class RequestsViewModel : ViewModel() {
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
     lateinit var allRequestsList: List<Relationship>
-
+    lateinit var pastRequestsList: List<Relationship>
     /**
      * Fetches list of all Mentorship relations and requests
      */
@@ -65,6 +65,47 @@ class RequestsViewModel : ViewModel() {
                         successful.value = false
                     }
 
+                    override fun onComplete() {
+                    }
+                })
+    }
+    /* past mentorship relations working:
+    1. RelationshipService.kt makes API call to mentorship_relations/past
+    2. getPastRelationships() in RelationDataManager.kt reads this as Observable<List<Relationship>>
+    3. getPastMentorshipRelations() in RequestsViewModel.kt subscribes to the data and manages exception handling
+    4. getPastMentorshipRelations() called in RequestsFragment.kt. It displays this data in fragment_requests.xml
+     */
+    @SuppressLint("CheckResult")
+    fun getPastMentorshipRelations() {
+        relationDataManager.getPastRelationships()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<Relationship>>() {
+                    override fun onNext(relationsList: List<Relationship>) {
+                        pastRequestsList = relationsList
+                        successful.value = true
+                    }
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(TAG, throwable.localizedMessage)
+                            }
+                        }
+                        successful.value = false
+                    }
                     override fun onComplete() {
                     }
                 })

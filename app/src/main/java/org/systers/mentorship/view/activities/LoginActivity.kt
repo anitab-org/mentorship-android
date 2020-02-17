@@ -17,8 +17,9 @@ import org.systers.mentorship.viewmodels.LoginViewModel
  */
 class LoginActivity : BaseActivity() {
 
-    private lateinit var loginViewModel: LoginViewModel
-
+    private val loginViewModel by lazy {
+        ViewModelProviders.of(this).get(LoginViewModel::class.java)
+    }
     private lateinit var username: String
     private lateinit var password: String
 
@@ -26,7 +27,6 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         loginViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()
