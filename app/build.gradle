@@ -53,6 +53,8 @@ dependencies {
     androidTestImplementation Dependencies.test_runner
     androidTestImplementation Dependencies.test_rules
     androidTestImplementation Dependencies.espresso
+    androidTestImplementation Dependencies.espresso_intents
+    androidTestImplementation Dependencies.ext_junit
 
     implementation Dependencies.rx_java
     implementation Dependencies.rx_android

@@ -35,9 +35,12 @@ class SendRequestActivity: BaseActivity() {
         const val OTHER_USER_NAME_INTENT_EXTRA = "OTHER_USER_NAME_INTENT_EXTRA"
     }
 
-    private lateinit var sendRequestViewModel: SendRequestViewModel
+  
     private lateinit var pendingSentRelationships: List<Relationship>
     private lateinit var requestsViewModel: RequestsViewModel
+    private val sendRequestViewModel by lazy {
+        ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,10 +69,12 @@ class SendRequestActivity: BaseActivity() {
             }
         }
         ivCalendar.setOnClickListener {
-          DatePickerDialog(this , date ,
-                  myCalendar.get(Calendar.YEAR) ,
-                  myCalendar.get(Calendar.MONTH) ,
-                  myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+            val datePickerDialog = DatePickerDialog(this, date,
+                    myCalendar.get(Calendar.YEAR),
+                    myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH))
+            datePickerDialog.datePicker.minDate = Calendar.getInstance().timeInMillis
+            datePickerDialog.show()
       }
     }
     private fun updateEndDateEditText() {
@@ -104,7 +109,7 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-            if(!TextUtils.isEmpty(notes)) {
+            if(!TextUtils.isEmpty(notes.trim())) {
 
                 val sendRequestData = RelationshipRequest(
                         menteeId = menteeId,
@@ -127,7 +132,6 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private fun setObservables() {
-        sendRequestViewModel  = ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
         sendRequestViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()
