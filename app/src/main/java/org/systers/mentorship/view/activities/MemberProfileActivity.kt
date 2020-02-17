@@ -106,6 +106,8 @@ class MemberProfileActivity : BaseActivity() {
                 tvUsername, getString(R.string.username), user.username)
         setTextViewStartingWithBoldSpan(
                 tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
+        if (!user.isAvailableToMentor!! && !user.needsMentoring!!)
+            btnSendRequest.isEnabled = false
     }
 
     override fun onDestroy() {
