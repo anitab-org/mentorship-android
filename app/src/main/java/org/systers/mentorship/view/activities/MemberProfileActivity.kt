@@ -50,8 +50,8 @@ class MemberProfileActivity : BaseActivity() {
         memberProfileViewModel.getUserProfile(userId)
 
         btnSendRequest.setOnClickListener {
-            if(memberProfileViewModel.userProfile?.isAvailableToMentor ?: false && !(memberProfileViewModel.userProfile?.needsMentoring ?:false)
-                    && (userProfile?.isAvailableToMentor ?: false && !(userProfile?.needsMentoring ?:false))){
+            if(memberProfileViewModel.userProfile?.availableToMentor ?: false && !(memberProfileViewModel.userProfile?.needMentoring ?:false)
+                    && (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false))){
                 Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
                         .show()
             } else{
@@ -106,7 +106,7 @@ class MemberProfileActivity : BaseActivity() {
                 tvUsername, getString(R.string.username), user.username)
         setTextViewStartingWithBoldSpan(
                 tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
-        if (!user.isAvailableToMentor!! && !user.needsMentoring!!)
+        if (!user.availableToMentor!! && !user.needMentoring!!)
             btnSendRequest.isEnabled = false
     }
 
