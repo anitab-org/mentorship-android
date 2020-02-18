@@ -26,9 +26,9 @@ class RequestsViewModel : ViewModel() {
     private val relationDataManager = RelationDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
-    lateinit var message: String
-    lateinit var allRequestsList: List<Relationship>
-    lateinit var pastRequestsList: List<Relationship>
+    var message: String? = null
+    var allRequestsList: List<Relationship>? = null
+    var pastRequestsList: List<Relationship>? = null
     /**
      * Fetches list of all Mentorship relations and requests
      */

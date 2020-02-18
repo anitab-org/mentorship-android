@@ -40,11 +40,15 @@ class RequestsFragment : BaseFragment() {
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                        vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
-                        tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                    requestsViewModel.allRequestsList?.let { allRequestsList ->
+                        vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager)
+                    }
+                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
                 } else {
                     view?.let {
-                        Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()
+                        requestsViewModel.message?.let { message ->
+                            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
+                        }
                     }
                 }
             }
