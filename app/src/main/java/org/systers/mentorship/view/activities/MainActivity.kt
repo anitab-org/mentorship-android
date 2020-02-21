@@ -37,6 +37,7 @@ class MainActivity: BaseActivity() {
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
+                if (!atHome)
                 replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
                         R.string.fragment_title_home)
                 atHome = true
