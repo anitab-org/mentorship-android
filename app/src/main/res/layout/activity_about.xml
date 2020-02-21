@@ -25,19 +25,28 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="343dp"
+                android:layout_width="match_parent"
                 android:layout_height="199dp"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/generic_28sp"
+
+                android:layout_marginStart="@dimen/generic_20sp"
+                android:layout_marginTop="@dimen/generic_20sp"
+                android:layout_marginEnd="@dimen/generic_20sp"
+                android:gravity="center"
                 android:text="@string/about_systers"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="343dp"
+                android:layout_width="match_parent"
                 android:layout_height="76dp"
                 android:layout_gravity="center"
+                android:layout_marginStart="@dimen/generic_20sp"
+                android:layout_marginEnd="@dimen/generic_20sp"
+                android:gravity="center"
                 android:text="@string/about_app"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
