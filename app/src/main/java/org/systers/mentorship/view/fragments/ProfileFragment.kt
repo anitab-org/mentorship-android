@@ -8,6 +8,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
+import org.systers.mentorship.models.User
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
@@ -20,6 +21,7 @@ class ProfileFragment : BaseFragment() {
          * Creates an instance of ProfileFragment
          */
         fun newInstance() = ProfileFragment()
+
         val TAG: String = ProfileFragment::class.java.simpleName
     }
 
@@ -35,12 +37,10 @@ class ProfileFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         setHasOptionsMenu(true)
 
         profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
-        profileViewModel.successfulGet.observe(this, Observer {
-            successful ->
+        profileViewModel.successfulGet.observe(this, Observer { successful ->
             baseActivity.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -63,8 +63,19 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
-                        getString(R.string.fragment_title_edit_profile))
+                profileViewModel.successfulGet.observe(this, Observer { successful ->
+                    baseActivity.hideProgressDialog()
+                    if (successful != null) {
+                        if (successful) {
+                            EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
+                                    getString(R.string.fragment_title_edit_profile))
+                        } else {
+                            Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
+                                    Snackbar.LENGTH_LONG).show()
+                        }
+                    }
+                })
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
