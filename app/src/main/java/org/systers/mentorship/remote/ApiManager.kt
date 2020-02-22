@@ -42,6 +42,7 @@ class ApiManager {
         val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .addInterceptor(CustomInterceptor())
+                .authenticator(TokenAuthenticator())
                 .build()
         val gson = GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
