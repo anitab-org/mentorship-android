@@ -15,15 +15,18 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
+import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.viewmodels.LoginViewModel
+import java.lang.Exception
 
 /**
  * This activity will let the user to login using username/email and password.
  */
 class LoginActivity : BaseActivity() {
 
-    private lateinit var loginViewModel: LoginViewModel
-
+    private val loginViewModel by lazy {
+        ViewModelProviders.of(this).get(LoginViewModel::class.java)
+    }
     private lateinit var username: String
     private lateinit var password: String
 
@@ -33,8 +36,8 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        loginViewModel.successful.observe(this, Observer { successful ->
+        loginViewModel.successful.observe(this, Observer {
+            successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -80,6 +83,12 @@ class LoginActivity : BaseActivity() {
             }
             false
         }
+
+        try {
+            val tokenExpiredVal = intent.extras!!.getInt(Constants.TOKEN_EXPIRED_EXTRA)
+            if (tokenExpiredVal == 0)
+                Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
+        }catch (exception: Exception){}
     }
 
     private fun validateCredentials(): Boolean {
