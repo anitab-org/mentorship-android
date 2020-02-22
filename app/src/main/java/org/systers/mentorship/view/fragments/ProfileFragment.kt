@@ -8,7 +8,6 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
-import org.systers.mentorship.models.User
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
