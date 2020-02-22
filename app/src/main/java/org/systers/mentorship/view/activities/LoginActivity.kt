@@ -21,7 +21,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
+import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.viewmodels.LoginViewModel
+import java.lang.Exception
 
 
 /**
@@ -31,8 +33,9 @@ class LoginActivity : BaseActivity() {
     private val TAG = this::class.java.simpleName
     private val RC_READ_CREDENTIALS = 2
 
-    private lateinit var loginViewModel: LoginViewModel
-
+    private val loginViewModel by lazy {
+        ViewModelProviders.of(this).get(LoginViewModel::class.java)
+    }
     private lateinit var username: String
     private lateinit var password: String
 
@@ -99,7 +102,6 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         loginViewModel.successful.observe(this, Observer { login ->
             hideProgressDialog()
             if (login != null) {
@@ -140,6 +142,12 @@ class LoginActivity : BaseActivity() {
             }
             false
         }
+
+        try {
+            val tokenExpiredVal = intent.extras!!.getInt(Constants.TOKEN_EXPIRED_EXTRA)
+            if (tokenExpiredVal == 0)
+                Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
+        }catch (exception: Exception){}
 
         loginViewModel.usernameText.observe(this, Observer {
             tiUsername.editText?.setText(it)

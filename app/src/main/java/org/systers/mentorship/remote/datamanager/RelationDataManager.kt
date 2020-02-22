@@ -23,6 +23,15 @@ class RelationDataManager {
     }
 
     /**
+     * This will call a method of RelationService interface to fetch
+     * past mentorship requests and relations
+     * @return an Observable of a list of [Relationship]
+     */
+    fun getPastRelationships(): Observable<List<Relationship>> {
+        return apiManager.relationService.getPastRelationships()
+    }
+
+    /**
      * This will call a method from RelationService interface to accept a mentorship request
      * @param relationId id of the request being accepted
      * @return an Observable of [CustomResponse]

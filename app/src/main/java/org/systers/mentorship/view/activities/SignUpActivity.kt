@@ -30,7 +30,9 @@ class SignUpActivity : BaseActivity() {
     private val TAG = this::class.java.simpleName
     private val RC_SAVE_CREDENTIALS = 1
 
-    private lateinit var signUpViewModel: SignUpViewModel
+    private val signUpViewModel by lazy {
+        ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+    }
 
     private val credentialsClient = Credentials.getClient(MentorshipApplication.getContext())
 
@@ -67,7 +69,6 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         signUpViewModel.signUpData.observe(this, Observer {
             hideProgressDialog()
             if (it != null) {
@@ -104,8 +105,8 @@ class SignUpActivity : BaseActivity() {
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
-            needsMentoring = cbMentee.isChecked
-            isAvailableToMentor = cbMentor.isChecked
+            needsMentoring = cbMentee.isChecked //old name but works
+            isAvailableToMentor = cbMentor.isChecked //old name but works
 
             if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
