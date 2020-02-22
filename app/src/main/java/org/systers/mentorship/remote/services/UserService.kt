@@ -6,10 +6,7 @@ import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.Simple
 import org.systers.mentorship.remote.requests.ChangePassword
 import org.systers.mentorship.remote.responses.CustomResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 /**
  * This interface describes the methods related to Users REST API
@@ -64,4 +61,11 @@ interface UserService {
      */
     @GET("home")
     fun getHomeStats(): Simple<HomeStatistics>
+
+    /**
+     * This function deletes current user
+     * @return an observable instance of a [CustomResponse]
+     */
+    @DELETE("user")
+    fun deleteUser(): Observable<CustomResponse>
 }

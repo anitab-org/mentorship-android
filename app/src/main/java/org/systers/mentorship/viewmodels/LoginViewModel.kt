@@ -19,10 +19,6 @@ class LoginViewModel : ViewModel() {
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
-    /**
-     * Will be used to run the login method of the AuthService
-     * @param login a login request object containing the credentials
-     */
     fun login(login: Login) {
         authDataManager.login(login).process { authToken, throwable ->
             if (throwable != null) {
@@ -32,7 +28,7 @@ class LoginViewModel : ViewModel() {
             } else {
                 if (authToken != null) {
                     successful.postValue(true)
-                    preferenceManager.putAuthToken(authToken.authToken)
+                    preferenceManager.putAuthToken(authToken.accessToken)
                 } else {
                     successful.postValue(false)
                 }
