@@ -10,4 +10,7 @@
     <color name="navy">#005c88</color>
     <color name="caribbean">#54BCEB</color>
     <color name="scarlet">#EF4135</color>
+    <color name="yellow">#FFB219</color>
+    <color name="red">#DA0A00</color>
+    <color name="green">#29E000</color>
 </resources>
