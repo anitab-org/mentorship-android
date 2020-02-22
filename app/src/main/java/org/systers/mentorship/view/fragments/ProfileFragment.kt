@@ -20,7 +20,6 @@ class ProfileFragment : BaseFragment() {
          * Creates an instance of ProfileFragment
          */
         fun newInstance() = ProfileFragment()
-
         val TAG: String = ProfileFragment::class.java.simpleName
     }
 
