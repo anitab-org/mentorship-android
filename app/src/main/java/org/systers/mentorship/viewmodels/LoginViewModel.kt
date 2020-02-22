@@ -20,5 +20,5 @@ class LoginViewModel : BaseViewModel() {
      * @param login a login request object containing the credentials
      */
     fun login(login: Login) =
-        observe(authDataManager.login(login), { preferenceManager.putAuthToken(it.authToken) })
+        observe(authDataManager.login(login), { preferenceManager.putAuthToken(it.accessToken) })
 }

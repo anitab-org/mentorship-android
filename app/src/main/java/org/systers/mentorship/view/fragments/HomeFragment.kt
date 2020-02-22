@@ -22,7 +22,9 @@ import org.systers.mentorship.viewmodels.HomeViewModel
  */
 class HomeFragment : BaseFragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel by lazy {
+        ViewModelProviders.of(this).get(HomeViewModel::class.java)
+    }
     private lateinit var binding: FragmentHomeBinding
     private lateinit var achievementsAdapter: AchievementsAdapter
 
@@ -57,7 +59,6 @@ class HomeFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         with(homeViewModel) {
             successful.observe(viewLifecycleOwner, Observer { successful ->
                 if (successful == true) {
