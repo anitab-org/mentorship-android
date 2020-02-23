@@ -73,7 +73,6 @@ class MembersFragment: BaseFragment() {
         3. onQueryTextChange() calls searchUsers() function to search name.
  */
         setHasOptionsMenu(true)
-        membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
         membersViewModel.successful.observe(this, Observer {
             successful ->
             (activity as MainActivity).hideProgressDialog()
