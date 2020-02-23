@@ -111,7 +111,7 @@ class TasksViewModel: ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successfulAdd.value = false
@@ -153,7 +153,7 @@ class TasksViewModel: ViewModel() {
                                 else -> {
                                     message = MentorshipApplication.getContext()
                                             .getString(R.string.error_something_went_wrong)
-                                    Log.e(TAG, throwable.localizedMessage)
+                                    Log.e(tag, throwable.localizedMessage)
                                 }
                             }
                             successfulUpdate.value = false
