@@ -33,8 +33,9 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     }
 
     val appContext = MentorshipApplication.getContext()
-
-    private lateinit var taskViewModel: TasksViewModel
+    private val taskViewModel by lazy {
+        ViewModelProviders.of(this).get(TasksViewModel::class.java)
+    }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_mentorship_tasks
 
@@ -63,9 +64,9 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                 imageView2.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp)
             }
         }
-        taskViewModel = ViewModelProviders.of(this).get(TasksViewModel::class.java)
         //get tasks
         taskViewModel.successfulGet.observe(this, Observer {
+
             successful ->
             if (successful != null) {
                 if (successful) {

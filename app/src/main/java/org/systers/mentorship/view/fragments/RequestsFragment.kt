@@ -25,8 +25,9 @@ class RequestsFragment : BaseFragment() {
         val TAG = RelationFragment::class.java.simpleName
     }
 
-    private lateinit var requestsViewModel: RequestsViewModel
-
+    private val requestsViewModel by lazy {
+        ViewModelProviders.of(this).get(RequestsViewModel::class.java)
+    }
     private val activityCast by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_requests
@@ -34,17 +35,28 @@ class RequestsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
         requestsViewModel.successful.observe(this, Observer {
             successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                        vpMentorshipRequests.adapter = RequestsPagerAdapter(requestsViewModel.allRequestsList, childFragmentManager)
-                        tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                    requestsViewModel.pendingSuccessful.observe(this, Observer {
+                        successful ->
+                        activityCast.hideProgressDialog()
+                        if (successful != null) {
+                            if (successful){
+                                requestsViewModel.allRequestsList?.let { allRequestsList ->
+                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager, requestsViewModel.pendingAllRequestsList)
+                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                                }
+                            }
+                        }
+                    })
                 } else {
                     view?.let {
-                        Snackbar.make(it, requestsViewModel.message, Snackbar.LENGTH_LONG).show()
+                        requestsViewModel.message?.let { message ->
+                            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
+                        }
                     }
                 }
             }
@@ -52,5 +64,7 @@ class RequestsFragment : BaseFragment() {
 
         activityCast.showProgressDialog(getString(R.string.fetching_requests))
         requestsViewModel.getAllMentorshipRelations()
+        requestsViewModel.getAllPendingMentorshipRelations()
+        requestsViewModel.getPastMentorshipRelations()
     }
 }
