@@ -35,7 +35,9 @@ class MembersFragment : BaseFragment() {
         fun newInstance() = MembersFragment()
     }
 
-    private lateinit var membersViewModel: MembersViewModel
+    private val membersViewModel by lazy {
+        ViewModelProviders.of(this).get(MembersViewModel::class.java)
+    }
     private lateinit var rvAdapter: MembersAdapter
     private var filterMap = hashMapOf(SORT_KEY to SortValues.REGISTRATION_DATE.name)
 
@@ -48,8 +50,8 @@ class MembersFragment : BaseFragment() {
 
         rvAdapter = MembersAdapter(listOf(), openUserProfile)
 
-        membersViewModel = ViewModelProviders.of(this).get(MembersViewModel::class.java)
-        membersViewModel.successful.observe(this, Observer { successful ->
+        membersViewModel.successful.observe(this, Observer {
+            successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +8,9 @@
     android:orientation="vertical"
     tools:context=".view.activities.AboutActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -30,6 +26,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/generic_28sp"
                 android:text="@string/about_systers"
+                android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -38,6 +35,7 @@
                 android:layout_height="76dp"
                 android:layout_gravity="center"
                 android:text="@string/about_app"
+                android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -53,15 +51,18 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnGit"
-                    android:layout_width="130dp"
-                    android:layout_height="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -91,15 +92,18 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnSlack"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
-                    android:layout_height="100dp"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
 
@@ -130,15 +134,18 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnWebsite"
-                    android:layout_width="130dp"
-                    android:layout_height="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -168,15 +175,18 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnTermsCondition"
-                    android:layout_width="130dp"
-                    android:layout_height="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -206,15 +216,18 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnprivacypolicy"
-                    android:layout_width="130dp"
-                    android:layout_height="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_margin="20dp"
                     app:cardBackgroundColor="@color/aubergine"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -244,15 +257,18 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btncodeofconduct"
-                    android:layout_width="130dp"
-                    android:layout_height="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_columnWeight="1"
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -284,5 +300,4 @@
             </GridLayout>
 
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>

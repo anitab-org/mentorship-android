@@ -9,7 +9,6 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
-
     // filter function in MembersFragment
     const val FILTER_REQUEST_CODE = 8000
     const val FILTER_MAP = "filter_map"
@@ -19,4 +18,5 @@ object Constants {
     const val INTERESTS_KEY = "interests"
     const val LOCATION_KEY = "location"
     const val SKILLS_KEY = "skills"
+    const val TOKEN_EXPIRED_EXTRA = "JsonAuthTokenExpired"
 }
