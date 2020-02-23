@@ -26,6 +26,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="343dp"
+                android:textAlignment="center"
                 android:layout_height="199dp"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/generic_28sp"
@@ -37,6 +38,7 @@
                 android:layout_width="343dp"
                 android:layout_height="76dp"
                 android:layout_gravity="center"
+                android:textAlignment="center"
                 android:text="@string/about_app"
                 android:textSize="15sp"
                 android:textStyle="bold" />
