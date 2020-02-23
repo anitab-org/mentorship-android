@@ -25,7 +25,7 @@ import java.util.concurrent.TimeoutException
  */
 class HomeViewModel : ViewModel() {
 
-    private val TAG = this::class.java.simpleName
+    private val tag = this::class.java.simpleName!!
     private val userDataManager by lazy { UserDataManager() }
     private val compositeDisposable by lazy { CompositeDisposable() }
 
@@ -68,7 +68,7 @@ class HomeViewModel : ViewModel() {
                             else -> {
                                 _message.postValue(MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong))
-                                        .also { Log.d(TAG, error.localizedMessage) }
+                                        .also { Log.d(tag, error.localizedMessage) }
                             }
                         }
                     }
@@ -82,4 +82,5 @@ class HomeViewModel : ViewModel() {
         compositeDisposable.dispose()
     }
 }
+
 
