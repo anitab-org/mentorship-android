@@ -11,7 +11,7 @@ import org.systers.mentorship.models.Task
 
 /**
  * This class represents the adapter that fills in each view of the Tasks recyclerView
- * @param taskstsList list of tasks taken up by the mentee
+ * @param tasksList list of tasks taken up by the mentee
  * @param markTask function to be called when an item from Tasks list is clicked
  */
 class TasksAdapter(

@@ -24,7 +24,7 @@ import java.util.concurrent.TimeoutException
  */
 class LoginViewModel : ViewModel() {
 
-    var TAG = LoginViewModel::class.java.simpleName
+    var tag = LoginViewModel::class.java.simpleName!!
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val authDataManager: AuthDataManager = AuthDataManager()
@@ -63,7 +63,7 @@ class LoginViewModel : ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successful.value = false
@@ -74,3 +74,4 @@ class LoginViewModel : ViewModel() {
                 })
     }
 }
+

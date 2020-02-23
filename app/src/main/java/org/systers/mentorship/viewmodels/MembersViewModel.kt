@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException
  */
 class MembersViewModel : ViewModel() {
 
-    var TAG = MembersViewModel::class.java.simpleName
+    var tag = MembersViewModel::class.java.simpleName!!
 
     private val userDataManager: UserDataManager = UserDataManager()
 
@@ -59,7 +59,7 @@ class MembersViewModel : ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successful.value = false
@@ -70,3 +70,4 @@ class MembersViewModel : ViewModel() {
                 })
     }
 }
+

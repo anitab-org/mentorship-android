@@ -60,13 +60,11 @@ class SendRequestActivity: BaseActivity() {
         myCalendar.add(Calendar.MONTH , 1)
         updateEndDateEditText()
 
-        var date : DatePickerDialog.OnDateSetListener = object : DatePickerDialog.OnDateSetListener{
-            override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-                myCalendar.set(Calendar.YEAR , year)
-                myCalendar.set(Calendar.MONTH  , month)
-                myCalendar.set(Calendar.DAY_OF_MONTH  , dayOfMonth)
-                updateEndDateEditText()
-            }
+        var date : DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR , year)
+            myCalendar.set(Calendar.MONTH  , month)
+            myCalendar.set(Calendar.DAY_OF_MONTH  , dayOfMonth)
+            updateEndDateEditText()
         }
         ivCalendar.setOnClickListener {
             val datePickerDialog = DatePickerDialog(this, date,
@@ -78,7 +76,7 @@ class SendRequestActivity: BaseActivity() {
       }
     }
     private fun updateEndDateEditText() {
-        var sdf : SimpleDateFormat = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT , Locale.US)
+        var sdf = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT , Locale.US)
         var editable = SpannableStringBuilder(sdf.format(myCalendar.time))
         tvRequestEndDate.text =  editable
     }
@@ -189,3 +187,4 @@ class SendRequestActivity: BaseActivity() {
         return false
     }
 }
+
