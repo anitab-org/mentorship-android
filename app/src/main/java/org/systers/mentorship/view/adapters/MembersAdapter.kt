@@ -73,12 +73,12 @@ class MembersAdapter(
 
         if (map[Constants.NEED_MENTORING_KEY] == "true")
             filteredUserList = filteredUserList.filter {
-                it.needsMentoring == true
+                it.needMentoring == true
             } as MutableList<User>
 
         if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == "true")
             filteredUserList = filteredUserList.filter {
-                it.isAvailableToMentor == true
+                it.availableToMentor == true
             } as MutableList<User>
 
         val interests = map[INTERESTS_KEY]
