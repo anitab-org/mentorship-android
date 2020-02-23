@@ -34,7 +34,7 @@ class MembersAdapter (
         val itemView = holder.itemView
 
         itemView.tvName.text = item.name
-        itemView.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.isAvailableToMentor, item.needsMentoring)
+        itemView.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.availableToMentor, item.needMentoring)
 
         val userInterests = item.interests
         val validText = if (userInterests.isNullOrBlank()) NON_VALID_VALUE_REPLACEMENT else userInterests

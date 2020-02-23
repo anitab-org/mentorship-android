@@ -29,7 +29,9 @@ class MembersFragment: BaseFragment() {
         fun newInstance() = MembersFragment()
     }
 
-    private lateinit var membersViewModel: MembersViewModel
+    private val membersViewModel by lazy {
+        ViewModelProviders.of(this).get(MembersViewModel::class.java)
+    }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
