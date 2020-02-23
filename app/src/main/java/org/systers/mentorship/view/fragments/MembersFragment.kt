@@ -47,20 +47,22 @@ class MembersFragment : BaseFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_search, menu)
-        var searchItem=menu.findItem(R.id.search_item) as MenuItem
-        var searchView=searchItem.actionView as SearchView
-        searchView.queryHint="Search members"
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String): Boolean {
-                searchUsers(newText)
-                return false
-            }
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
-        })
+        inflater.inflate(R.menu.menu_members, menu)
+        menu.findItem(R.id.search_item)?.let { searchItem ->
+            var searchView=searchItem.actionView as SearchView
+            searchView.queryHint="Search members"
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String): Boolean {
+                    searchUsers(newText)
+                    return false
+                }
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return false
+                }
+            })
+        }
     }
+
     fun searchUsers(query: String){
         var userList=mutableListOf<User>()
         for(user in membersViewModel.userList){
@@ -77,12 +79,6 @@ class MembersFragment : BaseFragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-/*      User search working
-        1. New menu_search.xml created having <item> with name "search_item" and actionViewClass "SearchView"
-        2. onCreateOptionsMenu() imports SearchView and adds listener for searching.
-        3. onQueryTextChange() calls searchUsers() function to search name.
- */
         setHasOptionsMenu(true)
         rvAdapter = MembersAdapter(listOf(), openUserProfile)
 
@@ -121,11 +117,6 @@ class MembersFragment : BaseFragment() {
                 intent.putExtra(Constants.MEMBER_USER_ID, memberId)
                 startActivity(intent)
             }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_members, menu)
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
