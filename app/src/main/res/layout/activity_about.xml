@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +8,9 @@
     android:orientation="vertical"
     tools:context=".view.activities.AboutActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -65,7 +61,8 @@
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -105,7 +102,8 @@
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
 
@@ -146,7 +144,8 @@
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -186,7 +185,8 @@
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -226,7 +226,8 @@
                     app:cardBackgroundColor="@color/aubergine"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -266,7 +267,8 @@
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:targetApi="p">
 
 
                     <LinearLayout
@@ -298,5 +300,4 @@
             </GridLayout>
 
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>
