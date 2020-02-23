@@ -8,11 +8,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.*
 import com.google.android.material.snackbar.Snackbar
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.View
+import android.widget.SearchView
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
+import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.Constants.FILTER_MAP
 import org.systers.mentorship.utils.Constants.FILTER_REQUEST_CODE
@@ -43,11 +45,45 @@ class MembersFragment : BaseFragment() {
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_search, menu)
+        var searchItem=menu.findItem(R.id.search_item) as MenuItem
+        var searchView=searchItem.actionView as SearchView
+        searchView.queryHint="Search members"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String): Boolean {
+                searchUsers(newText)
+                return false
+            }
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+        })
+    }
+    fun searchUsers(query: String){
+        var userList=mutableListOf<User>()
+        for(user in membersViewModel.userList){
+            // ""+ to convert String to CharSequence
+            if ((""+user.username).contains(query, ignoreCase = true)){
+                userList.add(user)
+            }
+        }
+        rvMembers.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = MembersAdapter(userList, openUserProfile)
+        }
+        tvEmptyList.visibility = View.GONE
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+/*      User search working
+        1. New menu_search.xml created having <item> with name "search_item" and actionViewClass "SearchView"
+        2. onCreateOptionsMenu() imports SearchView and adds listener for searching.
+        3. onQueryTextChange() calls searchUsers() function to search name.
+ */
         setHasOptionsMenu(true)
-
         rvAdapter = MembersAdapter(listOf(), openUserProfile)
 
         membersViewModel.successful.observe(this, Observer {
