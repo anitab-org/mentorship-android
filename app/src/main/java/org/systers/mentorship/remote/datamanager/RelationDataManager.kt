@@ -24,6 +24,15 @@ class RelationDataManager {
 
     /**
      * This will call a method of RelationService interface to fetch
+     * all pending mentorship requests and relations
+     * @return an Observable of a list of [Relationship]s
+     */
+    fun getAllPendingRelationsAndRequests(): Observable<List<Relationship>> {
+        return apiManager.relationService.getAllPendingRelationships()
+    }
+
+    /**
+     * This will call a method of RelationService interface to fetch
      * past mentorship requests and relations
      * @return an Observable of a list of [Relationship]
      */
