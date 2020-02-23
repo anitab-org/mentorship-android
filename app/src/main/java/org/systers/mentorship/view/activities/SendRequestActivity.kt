@@ -35,7 +35,7 @@ class SendRequestActivity: BaseActivity() {
         const val OTHER_USER_NAME_INTENT_EXTRA = "OTHER_USER_NAME_INTENT_EXTRA"
     }
 
-  
+
     private lateinit var pendingSentRelationships: List<Relationship>
     private lateinit var requestsViewModel: RequestsViewModel
     private val sendRequestViewModel by lazy {
@@ -150,17 +150,21 @@ class SendRequestActivity: BaseActivity() {
             successful ->
             if (successful != null) {
                 if (successful) {
-                    pendingSentRelationships = requestsViewModel.allRequestsList.filter {
-                        val isPendingState = RelationState.PENDING.value == it.state
-                        val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()
+                    requestsViewModel.allRequestsList?.let {
+                        pendingSentRelationships = it.filter {
+                            val isPendingState = RelationState.PENDING.value == it.state
+                            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endDate) < System.currentTimeMillis()
 
-                        isPendingState && !hasEndTimePassed
+                            isPendingState && !hasEndTimePassed
+                        }
                     }
                 } else {
-                    Snackbar.make(getRootView(), requestsViewModel.message, Snackbar.LENGTH_LONG)
+                    requestsViewModel.message?.let {
+                        Snackbar.make(getRootView(), it, Snackbar.LENGTH_LONG)
                             .show()
                     }
                 }
+            }
         })
         requestsViewModel.getAllMentorshipRelations()
     }
@@ -178,7 +182,7 @@ class SendRequestActivity: BaseActivity() {
     private fun isRequestDuplicate(newRelationship: RelationshipRequest): Boolean{
         pendingSentRelationships.forEach { relationship: Relationship -> Unit
             if (newRelationship.menteeId == relationship.mentee.id && newRelationship.mentorId == relationship.mentor.id
-                    && newRelationship.endDate.toFloat() == relationship.endsOn) {
+                    && newRelationship.endDate.toFloat() == relationship.endDate) {
                 return true
             }
         }
