@@ -16,10 +16,14 @@ object BaseUrl {
     private const val S3_BUCKET_NAME = "systers-mentorship/"
     private const val S3_PRODUCTION_DIRECTORY = "prod/"
     private const val S3_DEVELOPMENT_DIRECTORY = "dev/"
+    private const val LOCALHOST_URL = "10.0.2.2"
+    private const val LOCALHOST_PORT = ":5000"
 
     val apiBaseUrl: String
-        get() = if (BuildConfig.DEBUG) {
+        get() = if (BuildConfig.BUILD_TYPE == "debug"){
             "$PROTOCOL_HTTPS$DEVELOPMENT_URL$EB_REGION"
+        } else if (BuildConfig.BUILD_TYPE == "debug_localhost"){
+            "$PROTOCOL_HTTPS$LOCALHOST_URL$LOCALHOST_PORT"
         } else {
             "$PROTOCOL_HTTPS$PRODUCTION_URL$EB_REGION"
         }
