@@ -1,114 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activities.SettingsActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvAbout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:padding="16dp"
-        android:text="@string/popup_menu_about"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@drawable/ic_info_black_24dp"
-        android:drawablePadding="8dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="16dp">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvFeedback"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:padding="16dp"
-        android:text="@string/popup_menu_feedback"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@drawable/ic_feedback_black_24dp"
-        android:drawablePadding="8dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAbout"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_info_black_24dp"
+            android:text="@string/popup_menu_about"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:padding="16dp"
-        android:text="@string/popup_menu_logout"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
-        android:drawablePadding="8dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFeedback" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFeedback"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:drawableStart="@drawable/ic_feedback_black_24dp"
+            android:focusable="true"
+            android:text="@string/popup_menu_feedback"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvResetPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:padding="16dp"
-        android:text="@string/change_password"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@drawable/ic_lock_black_24dp"
-        android:drawablePadding="8dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogout" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLogout"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+            android:text="@string/popup_menu_logout"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tvFeedback" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvDeleteAccount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:padding="16dp"
-        android:text="@string/popup_menu_delete_account"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="18sp"
-        android:gravity="center_vertical"
-        android:drawableLeft="@drawable/ic_delete_black_24dp"
-        android:drawablePadding="8dp"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvResetPassword" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvResetPassword"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:text="@string/change_password"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tvLogout" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDeleteAccount"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_delete_black_24dp"
+            android:text="@string/popup_menu_delete_account"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintTop_toBottomOf="@+id/tvResetPassword" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
