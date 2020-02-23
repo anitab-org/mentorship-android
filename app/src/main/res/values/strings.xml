@@ -153,6 +153,16 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="filter">Filter</string>
+    <string name="sort_by">Sort by</string>
+    <string name="name_a_z">Name (A-Z)</string>
+    <string name="name_z_a">Name (Z-A)</string>
+    <string name="registration_date">Registration date</string>
+    <string name="age">Age</string>
+    <string name="filter_by">Filter by</string>
+    <string name="apply_filter">Apply filter</string>
+    <string name="clear_all">Clear all</string>
+    <string name="not_implemented">This feature is not implemented yet.</string>
     <string name="to_do">To do</string>
     <string name="no_tasks">No tasks</string>
     <string name="achievements">Achievements</string>

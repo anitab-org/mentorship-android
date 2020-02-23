@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="${usesCleartextTraffic}"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".view.activities.FilterActivity"
+            android:theme="@style/FilterTheme" />
         <activity android:name=".view.activities.AboutActivity"></activity>
         <activity
             android:name=".view.activities.SplashScreenActivity"
@@ -37,6 +40,9 @@
         <activity android:name=".view.activities.SendRequestActivity" />
         <activity android:name=".view.activities.SettingsActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
