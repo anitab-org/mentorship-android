@@ -68,6 +68,7 @@ class MemberProfileViewModel : ViewModel() {
                     }
 
                     override fun onComplete() {
+
                     }
                 })
     }

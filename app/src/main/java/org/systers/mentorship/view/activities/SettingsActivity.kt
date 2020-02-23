@@ -42,6 +42,10 @@ class SettingsActivity : BaseActivity() {
         tvAbout.setOnClickListener {
             startActivity(Intent(baseContext,AboutActivity::class.java))
         }
+        tvFeedback.setOnClickListener {
+            startActivity(Intent(baseContext,FeedbackActivity::class.java))
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
