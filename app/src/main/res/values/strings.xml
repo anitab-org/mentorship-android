@@ -153,5 +153,6 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="relationpage_btntext">Find members</string>
 </resources>
