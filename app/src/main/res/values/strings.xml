@@ -156,7 +156,7 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
     <string name="feedback_sendfeedback">Send us your feedback!</string>
     <string name="feedback_feedbacktxt">Do you have a suggestion or want to report a bug?\nLet us know in the field bellow.</string>
-    <string name="feedback_email">for eg. abhinav.wii@gmail.com</string>
+    <string name="feedback_email">for e.g.: example@email.com</string>
     <string name="feedback_message">Message</string>
     <string name="feedback_feedbackmessagehint">describe your experience here</string>
     <string name="feedback_sendfeedbackbtn">Send Feedback</string>
@@ -187,4 +187,3 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="relationpage_btntext">Find members</string>
 </resources>
-
