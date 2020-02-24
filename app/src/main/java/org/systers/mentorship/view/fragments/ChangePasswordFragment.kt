@@ -62,7 +62,7 @@ class ChangePasswordFragment : DialogFragment() {
         super.onResume()
 
         val passwordDialog = dialog as? AlertDialog
-
+        passwordDialog?.setCanceledOnTouchOutside(false)
         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
             currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
             newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
