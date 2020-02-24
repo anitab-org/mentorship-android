@@ -16,11 +16,6 @@ import android.widget.ImageButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_feedback.*
 
-/*
-* Author: Abhinav Srivastava
-* Display Name: asawesome07
-* email ID: abhinav.wii@gmail.com*/
-
 class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
 
 
