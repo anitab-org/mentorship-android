@@ -51,8 +51,6 @@ dependencies {
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
     implementation Dependencies.appCompat
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
