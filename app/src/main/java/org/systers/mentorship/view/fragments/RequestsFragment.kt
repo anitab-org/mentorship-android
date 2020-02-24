@@ -40,10 +40,18 @@ class RequestsFragment : BaseFragment() {
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    requestsViewModel.allRequestsList?.let { allRequestsList ->
-                        vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager)
-                    }
-                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                    requestsViewModel.pendingSuccessful.observe(this, Observer {
+                        successful ->
+                        activityCast.hideProgressDialog()
+                        if (successful != null) {
+                            if (successful){
+                                requestsViewModel.allRequestsList?.let { allRequestsList ->
+                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager, requestsViewModel.pendingAllRequestsList)
+                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                                }
+                            }
+                        }
+                    })
                 } else {
                     view?.let {
                         requestsViewModel.message?.let { message ->
@@ -56,6 +64,7 @@ class RequestsFragment : BaseFragment() {
 
         activityCast.showProgressDialog(getString(R.string.fetching_requests))
         requestsViewModel.getAllMentorshipRelations()
+        requestsViewModel.getAllPendingMentorshipRelations()
         requestsViewModel.getPastMentorshipRelations()
     }
 }
