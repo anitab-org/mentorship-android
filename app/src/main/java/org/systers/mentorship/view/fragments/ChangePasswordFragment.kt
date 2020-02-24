@@ -1,14 +1,16 @@
 package org.systers.mentorship.view.fragments
 
 import android.app.Dialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
-import androidx.appcompat.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
@@ -54,7 +56,31 @@ class ChangePasswordFragment : DialogFragment() {
         builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
             dialog.cancel()
         }
-        return builder.create()
+
+        val passwordDialog = builder.create()
+
+        passwordDialog.setOnShowListener {
+            passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false
+
+            changePasswordView.tilConfirmPassword?.editText?.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {
+                    if (p0!!.isEmpty())
+                        passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = p0 != ""
+                }
+
+            })
+
+        }
+
+        return passwordDialog
     }
 
     override fun onResume() {
@@ -76,7 +102,7 @@ class ChangePasswordFragment : DialogFragment() {
         }
     }
 
-    private fun validatePassword() : Boolean {
+    private fun validatePassword(): Boolean {
         return if (newPassword == confirmPassword && newPassword != currentPassword) {
             true
         } else {
