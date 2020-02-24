@@ -186,4 +186,5 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="no_achievements">No achievements</string>
     <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="relationpage_btntext">Find members</string>
+    <string name="refresh">Refresh</string>
 </resources>

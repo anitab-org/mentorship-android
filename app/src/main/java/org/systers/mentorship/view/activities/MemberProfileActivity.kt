@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_member_profile.*
@@ -11,7 +12,6 @@ import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
-import org.systers.mentorship.view.fragments.MembersFragment
 import org.systers.mentorship.viewmodels.MemberProfileViewModel
 
 /**
@@ -31,11 +31,11 @@ class MemberProfileActivity : BaseActivity() {
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
+        srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
         memberProfileViewModel.successful.observe(this, Observer {
             successful ->
-            hideProgressDialog()
+            srlMemberProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     setUserProfile(memberProfileViewModel.userProfile)
@@ -46,8 +46,12 @@ class MemberProfileActivity : BaseActivity() {
             }
         })
 
-        showProgressDialog(getString(R.string.fetch_user_profile))
-        memberProfileViewModel.getUserProfile(userId)
+        val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, -1)
+
+        memberProfileViewModel.userId = userId
+
+        fetchNewest()
+
 
         btnSendRequest.setOnClickListener {
             if(memberProfileViewModel.userProfile?.availableToMentor ?: false && !(memberProfileViewModel.userProfile?.needMentoring ?:false)
@@ -63,14 +67,28 @@ class MemberProfileActivity : BaseActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
+        return when (menuItem.itemId) {
             android.R.id.home -> {
                 onBackPressed()
-                return true
+                true
             }
+            R.id.menu_refresh -> {
+                fetchNewest()
+                true
+            }
+            else -> super.onOptionsItemSelected(menuItem)
         }
-        return super.onOptionsItemSelected(menuItem)
+    }
+
+    private fun fetchNewest() {
+        srlMemberProfile.isRefreshing = true
+        memberProfileViewModel.getUserProfile()
     }
 
     private fun setUserProfile(user: User) {

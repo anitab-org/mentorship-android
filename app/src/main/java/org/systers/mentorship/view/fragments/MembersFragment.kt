@@ -1,17 +1,17 @@
 package org.systers.mentorship.view.fragments
 
 import android.app.Activity.RESULT_OK
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.*
-import com.google.android.material.snackbar.Snackbar
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.View
 import android.widget.SearchView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -20,7 +20,6 @@ import org.systers.mentorship.utils.Constants.FILTER_MAP
 import org.systers.mentorship.utils.Constants.FILTER_REQUEST_CODE
 import org.systers.mentorship.utils.Constants.SORT_KEY
 import org.systers.mentorship.view.activities.FilterActivity
-import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.activities.MemberProfileActivity
 import org.systers.mentorship.view.adapters.MembersAdapter
 import org.systers.mentorship.viewmodels.MembersViewModel
@@ -81,12 +80,15 @@ class MembersFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
         rvAdapter = MembersAdapter(listOf(), openUserProfile)
+        srlMembers.setOnRefreshListener { fetchNewest() }
 
-        membersViewModel.successful.observe(this, Observer {
-            successful ->
-            (activity as MainActivity).hideProgressDialog()
+        membersViewModel.successful.observe(this, Observer { successful ->
+            srlMembers.isRefreshing = false
             if (successful != null) {
                 if (successful) {
+                    rvAdapter.setData(membersViewModel.userList)
+                    rvAdapter.filter(filterMap)
+
                     if (membersViewModel.userList.isEmpty()) {
                         tvEmptyList.text = getString(R.string.empty_members_list)
                         rvMembers.visibility = View.GONE
@@ -97,8 +99,6 @@ class MembersFragment : BaseFragment() {
                         }
                         tvEmptyList.visibility = View.GONE
                     }
-                    rvAdapter.setData(membersViewModel.userList)
-                    rvAdapter.filter(filterMap)
                 } else {
                     view?.let {
                         Snackbar.make(it, membersViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -107,8 +107,7 @@ class MembersFragment : BaseFragment() {
             }
         })
 
-        (activity as MainActivity).showProgressDialog(getString(R.string.fetching_users))
-        membersViewModel.getUsers()
+        fetchNewest()
     }
 
     private val openUserProfile: (Int) -> Unit =
@@ -129,6 +128,10 @@ class MembersFragment : BaseFragment() {
                         R.anim.anim_stay)
                 true
             }
+            R.id.menu_refresh -> {
+                fetchNewest()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -146,6 +149,11 @@ class MembersFragment : BaseFragment() {
         NAMEAZ,
         NAMEZA,
         REGISTRATION_DATE
+    }
+
+    private fun fetchNewest()  {
+        srlMembers.isRefreshing = true
+        membersViewModel.getUsers()
     }
 
 }
