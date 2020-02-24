@@ -34,9 +34,10 @@
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"/>
-        <activity android:name=".view.activities.RequestDetailActivity"/>
-        <activity android:name=".view.activities.MemberProfileActivity"/>
+        <activity android:name=".view.activities.RequestDetailActivity" />
+        <activity android:name=".view.activities.MemberProfileActivity" />
         <activity android:name=".view.activities.SendRequestActivity" />
         <activity android:name=".view.activities.SettingsActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"/>
