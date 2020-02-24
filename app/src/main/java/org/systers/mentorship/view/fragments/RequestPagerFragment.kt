@@ -31,6 +31,8 @@ class RequestPagerFragment: BaseFragment() {
 
             return frag
         }
+
+        val deletedRequests = mutableSetOf<Int>()
     }
 
     private lateinit var requestsList: MutableList<Relationship>
@@ -58,25 +60,26 @@ class RequestPagerFragment: BaseFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val id = data?.getStringExtra(Constants.REQUEST_ID)
-        val iter = requestsList.iterator()
-
-        while (iter.hasNext()) {
-            val reqId = iter.next().id
-            if(reqId.toString() == id) {
-                iter.remove()
-            }
+        if (id != null) {
+            deletedRequests.add(id.toInt())
         }
+
         setView()
     }
     
     private fun setView() {
-        if (requestsList.isEmpty()) {
+        val filtered = requestsList.filter {
+            val id = it.id
+            !deletedRequests.contains(id)
+        }
+
+        if (filtered.isEmpty()) {
             tvEmptyList.text = emptyListText
             rvRequestsList.visibility = View.GONE
         } else {
             rvRequestsList.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = RequestsAdapter(requestsList, openRequestDetail)
+                adapter = RequestsAdapter(filtered, openRequestDetail)
             }
             tvEmptyList.visibility = View.GONE
         }

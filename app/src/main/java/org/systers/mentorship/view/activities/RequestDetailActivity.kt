@@ -29,8 +29,9 @@ import org.systers.mentorship.viewmodels.RequestDetailViewModel
  */
 class RequestDetailActivity : BaseActivity() {
 
-    private lateinit var requestDetailViewModel: RequestDetailViewModel
-
+    private val requestDetailViewModel by lazy {
+        ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
+    }
     private val mentorshipRelationResponse by lazy {
         intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)
     }
@@ -74,7 +75,7 @@ class RequestDetailActivity : BaseActivity() {
         }
         val actionUserRole = getString(if (isFromMentee) R.string.mentee else R.string.mentor)
         val requestEndDate = convertUnixTimestampIntoStr(
-                relationResponse.endsOn, EXTENDED_DATE_FORMAT)
+                relationResponse.endDate, EXTENDED_DATE_FORMAT)
 
         val requestSummaryMessage = getString(summaryStrId,
                 otherUserName, actionUserRole, requestEndDate)
@@ -91,7 +92,7 @@ class RequestDetailActivity : BaseActivity() {
     }
 
     private fun setActionButtons(relationResponse: Relationship) {
-        val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.endsOn) < System.currentTimeMillis()
+        val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.endDate) < System.currentTimeMillis()
         if (!hasEndTimePassed) {
             if (relationResponse.sentByMe) {
                 btnDelete.visibility = View.VISIBLE
@@ -164,7 +165,6 @@ class RequestDetailActivity : BaseActivity() {
     }
 
     private fun setObservables(relationResponse: Relationship) {
-        requestDetailViewModel = ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
         requestDetailViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {

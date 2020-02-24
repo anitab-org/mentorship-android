@@ -6,5 +6,5 @@
         android:title="@string/popup_menu_settings"
         app:showAsAction="always"
         android:menuCategory="container"
-        android:icon="@drawable/ic_settings_white_24dp"/>
+        android:icon="@drawable/ic_settings_black_24dp"/>
 </menu>

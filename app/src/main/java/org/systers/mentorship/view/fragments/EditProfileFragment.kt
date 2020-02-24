@@ -36,13 +36,14 @@ class EditProfileFragment: DialogFragment() {
         }
     }
 
-    private lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel by lazy {
+        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+    }
     private lateinit var editProfileBinding: FragmentEditProfileBinding
 
     private lateinit var currentUser: User
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
         profileViewModel.successfulUpdate.observe(this, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {

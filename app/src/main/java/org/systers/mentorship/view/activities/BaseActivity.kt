@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.utils.ProgressBar
 
 /**
@@ -68,5 +69,6 @@ abstract class BaseActivity: AppCompatActivity() {
         supportFragmentManager.beginTransaction()
                 .replace(containerId, fragment, getString(title)).commit()
         supportActionBar?.setTitle(title)
+        collapsingToolbarLayout?.title = getString(title)
     }
 }
