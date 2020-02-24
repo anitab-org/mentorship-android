@@ -26,14 +26,15 @@ class ChangePasswordFragment : DialogFragment() {
         fun newInstance() = ChangePasswordFragment()
     }
 
-    private lateinit var changePasswordViewModel: ChangePasswordViewModel
+    private val changePasswordViewModel by lazy {
+        ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
+    }
     private lateinit var changePasswordView: View
     private lateinit var currentPassword: String
     private lateinit var newPassword: String
     private lateinit var confirmPassword: String
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        changePasswordViewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
         changePasswordViewModel.successfulUpdate.observe(this, Observer { successful ->
 
             if (successful != null) {
@@ -61,7 +62,7 @@ class ChangePasswordFragment : DialogFragment() {
         super.onResume()
 
         val passwordDialog = dialog as? AlertDialog
-
+        passwordDialog?.setCanceledOnTouchOutside(false)
         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
             currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
             newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
