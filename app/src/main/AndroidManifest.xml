@@ -11,12 +11,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="${usesCleartextTraffic}"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="${usesCleartextTraffic}">
+        <activity android:name=".view.activities.FeedbackActivity"></activity>
+        <activity android:name=".view.activities.AboutActivity" />
         <activity
             android:name=".view.activities.FilterActivity"
             android:theme="@style/FilterTheme" />
-        <activity android:name=".view.activities.AboutActivity"></activity>
         <activity
             android:name=".view.activities.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -154,6 +154,18 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="feedback_sendfeedback">Send us your feedback!</string>
+    <string name="feedback_feedbacktxt">Do you have a suggestion or want to report a bug?\nLet us know in the field bellow.</string>
+    <string name="feedback_email">for e.g.: example@email.com</string>
+    <string name="feedback_message">Message</string>
+    <string name="feedback_feedbackmessagehint">describe your experience here</string>
+    <string name="feedback_sendfeedbackbtn">Send Feedback</string>
+    <string name="feedback_suggestion">Suggestion</string>
+    <string name="feedback_bug">Bug</string>
+    <string name="feeedback_others">Others</string>
+    <string name="feedback_category">Category</string>
+    <string name="feedback_emailhint">Your email ID</string>
+    <string name="feedback_experience">How was your experience?</string>
     <string name="mark_task_title">Mark task</string>
     <string name="mark_task_message">Mark task as complete?</string>
     <string name="mark_task_success">Task marked as complete</string>
@@ -175,4 +187,3 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="relationpage_btntext">Find members</string>
 </resources>
-

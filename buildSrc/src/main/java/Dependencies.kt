@@ -25,7 +25,7 @@ object Versions {
     const val archComponents = "2.0.0"
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
-    const val appCompat = "1.0.0-beta01"
+    const val appCompat = "1.0.2"
 }
 
 /**
