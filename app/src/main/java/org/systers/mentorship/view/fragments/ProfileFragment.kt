@@ -25,7 +25,9 @@ class ProfileFragment : BaseFragment() {
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
-    private lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel by lazy {
+        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+    }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
@@ -41,7 +43,6 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
         profileViewModel.successfulGet.observe(this, Observer {
             successful ->
             srlProfile.isRefreshing = false

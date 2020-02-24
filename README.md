@@ -32,6 +32,13 @@ The repository has the following permanent branches:
 
  * **apk** This branch contains the apks for the code in the develop branch. The apks are automatically updated when a commit is pushed to `develop` branch.
 
+## Screenshots
+|![Splashscreen](Screenshots/Splashscreen.png)|![SignUp Screen](Screenshots/SignUp%20Screen.png)|![Login Page](Screenshots/Login%20Page.png)| 
+|---|---|---|
+|![Home Page](Screenshots/Home%20Page.png)|![Profile Page](Screenshots/Profile%20Page.png)|![Edit Profile Page](Screenshots/Edit%20Profile%20Page.png)| 
+|![Relations Page](Screenshots/Relations%20Page.png)|![Tasks Page](Screenshots/Tasks%20Page.png)|![Members Page](Screenshots/Members%20Page.png)
+|![Member Profile](Screenshots/Member%20Profile%20Page.png)|![Send Request Page](Screenshots/Send%20Request%20Page.png)|![Requests Page](Screenshots/Requests%20Page.png)|
+![Settings Screen](Screenshots/Settings%20Screen.png)|![About Page](Screenshots/About%20Page.png)|![Change Password Page](Screenshots/Change%20Password%20Page.png)|
 ## Contact
 
 You can reach maintainers team @mentorship-team on [Systers Open Source Slack](http://systers.io/slack-systers-opensource/) or @systers/maintainers-mentorship-android on GitHub.

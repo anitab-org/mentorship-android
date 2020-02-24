@@ -19,7 +19,9 @@ import org.systers.mentorship.viewmodels.MemberProfileViewModel
  */
 class MemberProfileActivity : BaseActivity() {
 
-    private lateinit var memberProfileViewModel: MemberProfileViewModel
+    private val memberProfileViewModel by lazy {
+        ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
+    }
     private lateinit var userProfile: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,6 @@ class MemberProfileActivity : BaseActivity() {
 
         srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
-        memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
         memberProfileViewModel.successful.observe(this, Observer {
             successful ->
             srlMemberProfile.isRefreshing = false
@@ -53,10 +54,16 @@ class MemberProfileActivity : BaseActivity() {
 
 
         btnSendRequest.setOnClickListener {
-            val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
-            intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
-            intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
-            startActivity(intent)
+            if(memberProfileViewModel.userProfile?.availableToMentor ?: false && !(memberProfileViewModel.userProfile?.needMentoring ?:false)
+                    && (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false))){
+                Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
+                        .show()
+            } else{
+                val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+                intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
+                intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
+                startActivity(intent)
+            }
         }
     }
 
@@ -88,18 +95,18 @@ class MemberProfileActivity : BaseActivity() {
         userProfile = user
         tvName.text = user.name
 
-        if (user.isAvailableToMentor != null) {
+        if (user.availableToMentor != null) {
             setTextViewStartingWithBoldSpan(
                     tvAvailableToMentor,
                     getString(R.string.available_to_mentor),
-                    if (user.isAvailableToMentor!!)
+                    if (user.availableToMentor!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
-        if (user.needsMentoring != null) {
+        if (user.needMentoring != null) {
             setTextViewStartingWithBoldSpan(
                     tvNeedMentoring,
                     getString(R.string.need_mentoring),
-                    if (user.needsMentoring!!)
+                    if (user.needMentoring!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
         setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
@@ -117,6 +124,8 @@ class MemberProfileActivity : BaseActivity() {
                 tvUsername, getString(R.string.username), user.username)
         setTextViewStartingWithBoldSpan(
                 tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
+        if (!user.availableToMentor!! && !user.needMentoring!!)
+            btnSendRequest.isEnabled = false
     }
 
     override fun onDestroy() {

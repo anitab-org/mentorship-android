@@ -32,11 +32,15 @@ class RelationPagerAdapter(fm: FragmentManager, private var mentorshipRelation: 
     override fun getItem(position: Int): Fragment {
         when (position) {
             TabsIndex.DETAILS.value -> {
-                return RelationFragment.newInstance(mentorshipRelation)
+                val relationFragment = RelationFragment.newInstance(mentorshipRelation)
+                relationFragment.retainInstance = true
+                return relationFragment
             }
 
             TabsIndex.TASKS.value -> {
-                return TasksFragment.newInstance(mentorshipRelation)
+                val tasksFragment = TasksFragment.newInstance(mentorshipRelation)
+                tasksFragment.retainInstance = true
+                return tasksFragment
             }
         }
         return TasksFragment.newInstance(mentorshipRelation)

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
+import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_relation.*
@@ -27,7 +28,9 @@ class RelationPagerFragment : BaseFragment() {
         fun newInstance() = RelationPagerFragment()
     }
 
-    private lateinit var relationViewModel: RelationViewModel
+    private val relationViewModel by lazy {
+        ViewModelProviders.of(this).get(RelationViewModel::class.java)
+    }
     private val activityCast by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int {
@@ -40,7 +43,6 @@ class RelationPagerFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRelation.setOnRefreshListener { fetchNewest() }
 
-        relationViewModel = ViewModelProviders.of(this).get(RelationViewModel::class.java)
         relationViewModel.successfulGet.observe(this, Observer {
             successfull ->
             srlRelation.isRefreshing = false
@@ -76,11 +78,17 @@ class RelationPagerFragment : BaseFragment() {
     private fun updateView(mentorshipRelation: Relationship) {
         if (mentorshipRelation.mentor == null) {
             tvNoCurrentRelation.visibility = View.VISIBLE
+            tvFindPeopleBtn.visibility = View.VISIBLE
             tlMentorshipRelation.visibility = View.GONE
             vpMentorshipRelation.visibility = View.GONE
             baseActivity.tlMentorshipRelation.removeAllTabs()
+            tvFindPeopleBtn.setOnClickListener{
+                baseActivity.bottomNavigation.selectedItemId = R.id.navigation_members
+                baseActivity.replaceFragment(R.id.contentFrame, MembersFragment.newInstance(), R.string.navigation_title_members)
+            }
         } else {
             tvNoCurrentRelation.visibility = View.GONE
+            tvFindPeopleBtn.visibility = View.GONE
             tlMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.visibility = View.VISIBLE
             vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
