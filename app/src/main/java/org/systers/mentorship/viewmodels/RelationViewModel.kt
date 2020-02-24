@@ -22,7 +22,7 @@ import java.util.concurrent.TimeoutException
  */
 class RelationViewModel : ViewModel() {
 
-    var TAG = RelationViewModel::class.java.simpleName
+    var tag = RelationViewModel::class.java.simpleName!!
 
     private val relationDataManager: RelationDataManager = RelationDataManager()
 
@@ -61,7 +61,7 @@ class RelationViewModel : ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successfulGet.value = false
@@ -102,7 +102,7 @@ class RelationViewModel : ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successfulCancel.value = false
@@ -113,3 +113,4 @@ class RelationViewModel : ViewModel() {
                 })
     }
 }
+
