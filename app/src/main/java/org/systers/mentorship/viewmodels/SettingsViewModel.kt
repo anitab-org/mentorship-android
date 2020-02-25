@@ -27,36 +27,25 @@ class SettingsViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun deleteUser() {
         userDataManager.deleteUser()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<CustomResponse>() {
-                    override fun onNext(customResponse: CustomResponse) {
-                        successfulDelete.value = true
-                    }
-
-                    override fun onError(e: Throwable) {
-                        when (e) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(e).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
+                .process { customResponse, throwable ->
+                    when (throwable) {
+                        null -> {
+                            when (customResponse) {
+                                null -> {
+                                    successfulDelete.postValue(false)
+                                }
+                                else -> {
+                                    message = customResponse.message
+                                    successfulDelete.postValue(true)
+                                }
                             }
                         }
-                        successfulDelete.value = false
+                        else -> {
+                            message = customResponse!!.message
+                            successfulDelete.postValue(false)
+                        }
                     }
-
-                    override fun onComplete() {}
-                })
+                }
     }
 
 }

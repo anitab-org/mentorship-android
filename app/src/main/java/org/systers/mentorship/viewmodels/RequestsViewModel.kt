@@ -3,18 +3,8 @@ package org.systers.mentorship.viewmodels
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
-import org.systers.mentorship.MentorshipApplication
-import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.datamanager.RelationDataManager
-import org.systers.mentorship.utils.CommonUtils
-import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * This class represents the [ViewModel] used for Requests Screen
@@ -32,45 +22,32 @@ class RequestsViewModel : ViewModel() {
     var message: String? = null
     var allRequestsList: List<Relationship>? = null
     var pastRequestsList: List<Relationship>? = null
+
     /**
      * Fetches list of all Mentorship relations and requests
      */
     @SuppressLint("CheckResult")
     fun getAllMentorshipRelations() {
         relationDataManager.getAllRelationsAndRequests()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<Relationship>>() {
-                    override fun onNext(relationsList: List<Relationship>) {
-                        allRequestsList = relationsList
-                        successful.value = true
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
+                .process { list, throwable ->
+                    when (throwable) {
+                        null -> {
+                            when (list) {
+                                null -> {
+                                    successful.postValue(false)
+                                }
+                                else -> {
+                                    allRequestsList = list
+                                    successful.postValue(true)
+                                }
                             }
                         }
-                        successful.value = false
+                        else -> {
+                            message = throwable.localizedMessage
+                            successful.postValue(false)
+                        }
                     }
-
-                    override fun onComplete() {
-                    }
-                })
+                }
     }
 
     /**
@@ -79,39 +56,25 @@ class RequestsViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun getAllPendingMentorshipRelations() {
         relationDataManager.getAllPendingRelationsAndRequests()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableObserver<List<Relationship>>() {
-                override fun onNext(relationsList: List<Relationship>) {
-                    pendingAllRequestsList = relationsList
-                    pendingSuccessful.value = true
-                }
-
-                override fun onError(throwable: Throwable) {
+                .process { list, throwable ->
                     when (throwable) {
-                        is IOException -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_please_check_internet)
-                        }
-                        is TimeoutException -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_request_timed_out)
-                        }
-                        is HttpException -> {
-                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                        null -> {
+                            when (list) {
+                                null -> {
+                                    pendingSuccessful.postValue(false)
+                                }
+                                else -> {
+                                    pendingAllRequestsList = list
+                                    pendingSuccessful.postValue(true)
+                                }
+                            }
                         }
                         else -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_something_went_wrong)
-                            Log.e(tag, throwable.localizedMessage)
+                            message = throwable.localizedMessage
+                            pendingSuccessful.postValue(false)
                         }
                     }
-                    pendingSuccessful.value = false
                 }
-
-                override fun onComplete() {
-                }
-            })
     }
 
 
@@ -124,39 +87,25 @@ class RequestsViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun getPastMentorshipRelations() {
         relationDataManager.getPastRelationships()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableObserver<List<Relationship>>() {
-                override fun onNext(relationsList: List<Relationship>) {
-                    pastRequestsList = relationsList
-                    successful.value = true
-                }
-
-                override fun onError(throwable: Throwable) {
+                .process { list, throwable ->
                     when (throwable) {
-                        is IOException -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_please_check_internet)
-                        }
-                        is TimeoutException -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_request_timed_out)
-                        }
-                        is HttpException -> {
-                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                        null -> {
+                            when (list) {
+                                null -> {
+                                    successful.postValue(false)
+                                }
+                                else -> {
+                                    pastRequestsList = list
+                                    successful.postValue(true)
+                                }
+                            }
                         }
                         else -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_something_went_wrong)
-                            Log.e(tag, throwable.localizedMessage)
+                            message = throwable.localizedMessage
+                            successful.postValue(false)
                         }
                     }
-                    successful.value = false
                 }
-
-                override fun onComplete() {
-                }
-            })
     }
 }
 

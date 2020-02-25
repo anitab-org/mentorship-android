@@ -1,9 +1,9 @@
 package org.systers.mentorship.remote.datamanager
 
-import io.reactivex.Observable
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.CreateTask
+import org.systers.mentorship.remote.customAdapter.CustomObservable
 import org.systers.mentorship.remote.responses.CustomResponse
 
 /**
@@ -18,7 +18,7 @@ class TaskDataManager {
      * @param relationId mentorship relation id
      * @return an Observable of [CustomResponse]
      */
-    fun getAllTasks(relationId: Int): Observable<List<Task>> {
+    fun getAllTasks(relationId: Int): CustomObservable<List<Task>> {
         return apiManager.taskService.getAllTasksFromMentorshipRelation(relationId)
     }
 
@@ -27,7 +27,7 @@ class TaskDataManager {
      * @param relationId mentorship relation id
      * @return an Observable of [CustomResponse]
      */
-    fun completeTask(relationId: Int, taskId: Int): Observable<CustomResponse> {
+    fun completeTask(relationId: Int, taskId: Int): CustomObservable<CustomResponse> {
         return apiManager.taskService.completeTaskFromMentorshipRelation(relationId,taskId)
     }
 
@@ -37,7 +37,7 @@ class TaskDataManager {
      * @param createTask object to serialize task description
      * @return an Observable of [CustomResponse]
      */
-    fun addTask(relationId: Int, createTask: CreateTask): Observable<CustomResponse> {
+    fun addTask(relationId: Int, createTask: CreateTask): CustomObservable<CustomResponse> {
         return apiManager.taskService.addTaskToMentorshipRelation(relationId,createTask)
     }
 
