@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_member_profile.*
@@ -11,7 +12,6 @@ import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
-import org.systers.mentorship.view.fragments.MembersFragment
 import org.systers.mentorship.viewmodels.MemberProfileViewModel
 
 /**
@@ -19,7 +19,9 @@ import org.systers.mentorship.viewmodels.MemberProfileViewModel
  */
 class MemberProfileActivity : BaseActivity() {
 
-    private lateinit var memberProfileViewModel: MemberProfileViewModel
+    private val memberProfileViewModel by lazy {
+        ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
+    }
     private lateinit var userProfile: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,12 +31,11 @@ class MemberProfileActivity : BaseActivity() {
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, 0)
+        srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
-        memberProfileViewModel = ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
         memberProfileViewModel.successful.observe(this, Observer {
             successful ->
-            hideProgressDialog()
+            srlMemberProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     setUserProfile(memberProfileViewModel.userProfile)
@@ -45,43 +46,67 @@ class MemberProfileActivity : BaseActivity() {
             }
         })
 
-        showProgressDialog(getString(R.string.fetch_user_profile))
-        memberProfileViewModel.getUserProfile(userId)
+        val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, -1)
+
+        memberProfileViewModel.userId = userId
+
+        fetchNewest()
+
 
         btnSendRequest.setOnClickListener {
-            val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
-            intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
-            intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
-            startActivity(intent)
+            if(memberProfileViewModel.userProfile?.availableToMentor ?: false && !(memberProfileViewModel.userProfile?.needMentoring ?:false)
+                    && (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false))){
+                Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
+                        .show()
+            } else{
+                val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+                intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
+                intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
+                startActivity(intent)
+            }
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
+        return when (menuItem.itemId) {
             android.R.id.home -> {
                 onBackPressed()
-                return true
+                true
             }
+            R.id.menu_refresh -> {
+                fetchNewest()
+                true
+            }
+            else -> super.onOptionsItemSelected(menuItem)
         }
-        return super.onOptionsItemSelected(menuItem)
+    }
+
+    private fun fetchNewest() {
+        srlMemberProfile.isRefreshing = true
+        memberProfileViewModel.getUserProfile()
     }
 
     private fun setUserProfile(user: User) {
         userProfile = user
         tvName.text = user.name
 
-        if (user.isAvailableToMentor != null) {
+        if (user.availableToMentor != null) {
             setTextViewStartingWithBoldSpan(
                     tvAvailableToMentor,
                     getString(R.string.available_to_mentor),
-                    if (user.isAvailableToMentor!!)
+                    if (user.availableToMentor!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
-        if (user.needsMentoring != null) {
+        if (user.needMentoring != null) {
             setTextViewStartingWithBoldSpan(
                     tvNeedMentoring,
                     getString(R.string.need_mentoring),
-                    if (user.needsMentoring!!)
+                    if (user.needMentoring!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
         setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
@@ -99,6 +124,8 @@ class MemberProfileActivity : BaseActivity() {
                 tvUsername, getString(R.string.username), user.username)
         setTextViewStartingWithBoldSpan(
                 tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
+        if (!user.availableToMentor!! && !user.needMentoring!!)
+            btnSendRequest.isEnabled = false
     }
 
     override fun onDestroy() {

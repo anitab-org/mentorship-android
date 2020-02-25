@@ -1,5 +1,6 @@
 package org.systers.mentorship.viewmodels
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,7 +26,7 @@ import java.util.concurrent.TimeoutException
  */
 class HomeViewModel : ViewModel() {
 
-    private val TAG = this::class.java.simpleName
+    private val tag = this::class.java.simpleName!!
     private val userDataManager by lazy { UserDataManager() }
     private val compositeDisposable by lazy { CompositeDisposable() }
 
@@ -38,7 +39,10 @@ class HomeViewModel : ViewModel() {
     val message: LiveData<String>
         get() = _message
 
-    init {
+    /**
+     * Fetches home stats from getHomeStats method of the UserService
+     */
+    fun getHomeStats() {
         userDataManager.getHomeStats()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -68,7 +72,7 @@ class HomeViewModel : ViewModel() {
                             else -> {
                                 _message.postValue(MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong))
-                                        .also { Log.d(TAG, error.localizedMessage) }
+                                        .also { Log.d(tag, error.localizedMessage) }
                             }
                         }
                     }
@@ -82,4 +86,5 @@ class HomeViewModel : ViewModel() {
         compositeDisposable.dispose()
     }
 }
+
 

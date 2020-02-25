@@ -20,7 +20,8 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
  */
 class RequestsPagerAdapter(
         private val requestsList: List<Relationship>,
-        fm: FragmentManager
+        fm: FragmentManager,
+        private val pendingRequestsList: List<Relationship>
 ) : FragmentPagerAdapter(fm) {
 
     /**
@@ -34,17 +35,9 @@ class RequestsPagerAdapter(
 
     val context = MentorshipApplication.getContext()
 
-    private val pendingList: List<Relationship> by lazy {
-        requestsList.filter {
-            val isPendingState = RelationState.PENDING.value == it.state
-            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()
-
-            isPendingState && !hasEndTimePassed
-        }
-    }
     private val pastList: List<Relationship> by lazy {
         requestsList.filter {
-            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endsOn) < System.currentTimeMillis()
+            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endDate) < System.currentTimeMillis()
             val isAcceptedState = RelationState.ACCEPTED.value == it.state
 
             !isAcceptedState && hasEndTimePassed
@@ -62,7 +55,7 @@ class RequestsPagerAdapter(
         when(position){
             TabsIndex.PENDING.value -> {
                 return RequestPagerFragment.newInstance(
-                        pendingList, context.getString(R.string.empty_pending_requests))
+                        pendingRequestsList, context.getString(R.string.empty_pending_requests))
             }
             TabsIndex.PAST.value  -> {
                 return RequestPagerFragment.newInstance(
@@ -74,7 +67,7 @@ class RequestsPagerAdapter(
             }
         }
         return RequestPagerFragment.newInstance(
-                pendingList, context.getString(R.string.empty_pending_requests))
+                pendingRequestsList, context.getString(R.string.empty_pending_requests))
     }
 
     override fun getCount(): Int = Constants.TOTAL_REQUEST_TABS
