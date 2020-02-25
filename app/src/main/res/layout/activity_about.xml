@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.activities.AboutActivity">
+    tools:context=".view.activities.AboutActivity"
+    android:gravity="center">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center" />
+
+    <WebView
+        android:id="@+id/webView"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,11 +71,11 @@
                     android:id="@+id/btnGit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
                     android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
@@ -94,17 +112,16 @@
                     android:id="@+id/btnSlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
                     android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
                     tools:targetApi="p">
-
 
 
                     <LinearLayout
@@ -136,11 +153,11 @@
                     android:id="@+id/btnWebsite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
                     android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
@@ -177,11 +194,11 @@
                     android:id="@+id/btnTermsCondition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
                     android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
@@ -218,14 +235,14 @@
                     android:id="@+id/btnprivacypolicy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
                     android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_margin="20dp"
-                    app:cardBackgroundColor="@color/aubergine"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
+                    app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
                     tools:targetApi="p">
 
@@ -238,9 +255,9 @@
                         <ImageView
                             android:layout_width="114dp"
                             android:layout_height="0dp"
-                            app:srcCompat="@drawable/ic_privacy"
                             android:layout_gravity="center"
-                            android:layout_weight="3" />
+                            android:layout_weight="3"
+                            app:srcCompat="@drawable/ic_privacy" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
@@ -259,11 +276,11 @@
                     android:id="@+id/btncodeofconduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
                     android:layout_columnWeight="1"
+                    android:layout_gravity="fill"
+                    android:layout_margin="20dp"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_margin="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
@@ -279,9 +296,9 @@
                         <ImageView
                             android:layout_width="114dp"
                             android:layout_height="0dp"
-                            app:srcCompat="@drawable/ic_code_of_conduct"
                             android:layout_gravity="center"
-                            android:layout_weight="3" />
+                            android:layout_weight="3"
+                            app:srcCompat="@drawable/ic_code_of_conduct" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
@@ -300,4 +317,5 @@
             </GridLayout>
 
         </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</FrameLayout>
