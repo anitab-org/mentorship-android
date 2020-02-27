@@ -29,9 +29,6 @@ android {
         debug_localhost {
             initWith debug
         }
-        debug_localhost {
-            initWith debug
-        }
     }
     dataBinding {
         enabled = true
