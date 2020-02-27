@@ -15,14 +15,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vpMentorshipRelation"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:id="@+id/srlRelation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tlMentorshipRelation" />
+        app:layout_constraintTop_toBottomOf="@id/tlMentorshipRelation">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vpMentorshipRelation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoCurrentRelation"

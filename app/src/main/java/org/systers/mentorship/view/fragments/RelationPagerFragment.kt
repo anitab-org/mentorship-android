@@ -3,9 +3,12 @@ package org.systers.mentorship.view.fragments
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
@@ -37,9 +40,12 @@ class RelationPagerFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setHasOptionsMenu(true)
+        srlRelation.setOnRefreshListener { fetchNewest() }
+
         relationViewModel.successfulGet.observe(this, Observer {
             successfull ->
-            activityCast.hideProgressDialog()
+            srlRelation.isRefreshing = false
             if (successfull != null) {
                 if (successfull) {
                     updateView(relationViewModel.mentorshipRelation)
@@ -51,7 +57,21 @@ class RelationPagerFragment : BaseFragment() {
             }
         })
 
-        activityCast.showProgressDialog(getString(R.string.fetching_current_relation))
+        fetchNewest()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_refresh -> {
+                fetchNewest()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun fetchNewest() {
+        srlRelation.isRefreshing = true
         relationViewModel.getCurrentRelationDetails()
     }
 

@@ -21,10 +21,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [usesCleartextTraffic:"false"]
+            manifestPlaceholders = [usesCleartextTraffic: "false"]
         }
         debug {
-            manifestPlaceholders = [usesCleartextTraffic:"true"]
+            manifestPlaceholders = [usesCleartextTraffic: "true"]
+        }
+        debug_localhost {
+            initWith debug
         }
         debug_localhost {
             initWith debug
@@ -70,4 +73,5 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+    implementation Dependencies.circule_image_view
 }

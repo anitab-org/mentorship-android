@@ -2,6 +2,7 @@ package org.systers.mentorship.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -54,13 +55,19 @@ class HomeFragment : BaseFragment() {
             layoutManager = linearLayoutManager
             addItemDecoration(divider)
         }
+
+        srlHome.setOnRefreshListener { fetchNewest() }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setHasOptionsMenu(true)
+
+
         with(homeViewModel) {
             userStats.observe(viewLifecycleOwner, Observer { stats ->
+                srlHome.isRefreshing = false
                 binding.stats = stats
                 if (stats?.achievements?.isEmpty() != false) {
                     tvNoAchievements.visibility = View.VISIBLE
@@ -76,6 +83,23 @@ class HomeFragment : BaseFragment() {
                 Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
             })
         }
+
+        fetchNewest()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_refresh -> {
+                fetchNewest()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun fetchNewest()  {
+        srlHome.isRefreshing = true
+        homeViewModel.getHomeStats()
     }
 }
 
