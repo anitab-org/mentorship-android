@@ -2,10 +2,10 @@
 
 | Branch | [Travis](https://travis-ci.org/) | [Codacy](https://www.codacy.com/) |
 | :---: | :---: | :---: |
-| [master](https://github.com/systers/mentorship-android/tree/master) | [![Build Status](https://travis-ci.org/systers/mentorship-android.svg?branch=master)](https://travis-ci.org/systers/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=master)](https://www.codacy.com/app/m-murad/mentorship-android) |
-| [develop](https://github.com/systers/mentorship-android/tree/develop) | [![Build Status](https://travis-ci.org/systers/mentorship-android.svg?branch=develop)](https://travis-ci.org/systers/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=develop)](https://www.codacy.com/app/m-murad/mentorship-android) |
+| [master](https://github.com/anitab-org/mentorship-android/tree/master) | [![Build Status](https://travis-ci.org/anitab-org/mentorship-android.svg?branch=master)](https://travis-ci.org/anitab-org/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=master)](https://www.codacy.com/app/m-murad/mentorship-android) |
+| [develop](https://github.com/anitab-org/mentorship-android/tree/develop) | [![Build Status](https://travis-ci.org/anitab-org/mentorship-android.svg?branch=develop)](https://travis-ci.org/anitab-org/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=develop)](https://www.codacy.com/app/m-murad/mentorship-android) |
 
-[Mentorship System](https://github.com/systers/mentorship-backend) is an application that allows women in tech to mentor each other, on career development topics, through 1:1 relations for a certain period.
+[Mentorship System](https://github.com/anitab-org/mentorship-backend) is an application that allows women in tech to mentor each other, on career development topics, through 1:1 relations for a certain period.
 
 This is the Android client for the Mentorship System.
 
@@ -13,14 +13,14 @@ This is the Android client for the Mentorship System.
 
 To setup the project locally read these wiki pages and follow the instructions:
 
- - [Fork, Clone and Remote](https://github.com/systers/mentorship-android/wiki/Fork%2C-Clone-%26-Remote)
- - [Open project in Android Studio](https://github.com/systers/mentorship-android/wiki/Open-the-project-in-Android-Studio)
+ - [Fork, Clone and Remote](https://github.com/anitab-org/mentorship-android/wiki/Fork%2C-Clone-%26-Remote)
+ - [Open project in Android Studio](https://github.com/anitab-org/mentorship-android/wiki/Open-the-project-in-Android-Studio)
 
 ## Contributing 
 
-Please read our [Contributing guidelines](https://github.com/systers/mentorship-android/blob/develop/.github/CONTRIBUTING.md), [Code of Conduct](http://systers.io/code-of-conduct) and [Reporting Guidelines](http://systers.io/reporting-guidelines)
+Please read our [Contributing guidelines](https://github.com/anitab-org/mentorship-android/blob/develop/.github/CONTRIBUTING.md), [Code of Conduct](http://systers.io/code-of-conduct) and [Reporting Guidelines](http://systers.io/reporting-guidelines)
 
-Please follow our [Commit Message Style Guide](https://github.com/systers/mentorship-android/wiki/Commit-Message-Style-Guide) while sending PRs.
+Please follow our [Commit Message Style Guide](https://github.com/anitab-org/mentorship-android/wiki/Commit-Message-Style-Guide) while sending PRs.
 
 ## Branches
 
