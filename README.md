@@ -40,4 +40,4 @@ We use [#mentorship-system](https://systers-opensource.slack.com/messages/CAE8QK
 
 ## License
 
-Mentorship System is Copyright © 2007 Free Software Foundation, Inc. It is free software,and may be redistributed under the terms specified in the [LICENSE FILE](LICENSE).
+Mentorship System is licensed under the GNU General Public License v3.0. Learn more about it in the [LICENSE](LICENSE) file.
