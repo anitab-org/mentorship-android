@@ -45,7 +45,7 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         val url = when(v?.id) {
             R.id.btnGit -> getString(R.string.url_github)
-            R.id.btnSlack -> getString(R.string.url_slack)
+            R.id.btnSlack -> getString(R.string.url_zulip)
             R.id.btnWebsite -> getString(R.string.url_website)
             R.id.btnTermsCondition -> getString(R.string.url_terms)
             R.id.btncodeofconduct -> getString(R.string.url_code_of_conduct)
