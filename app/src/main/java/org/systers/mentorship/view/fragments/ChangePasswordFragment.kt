@@ -58,22 +58,21 @@ class ChangePasswordFragment : DialogFragment() {
         }
 
         val passwordDialog = builder.create()
-
         passwordDialog.setOnShowListener {
             passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false
 
             changePasswordView.tilConfirmPassword?.editText?.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(p0: Editable?) {
-                    if (p0!!.isEmpty())
+                override fun afterTextChanged(confirmPasswordEditable: Editable?) {
+                    if (confirmPasswordEditable!!.isEmpty())
                         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false
                 }
 
-                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                override fun beforeTextChanged(confirmPasswordText: CharSequence?, p1: Int, p2: Int, p3: Int) {
                     passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false
                 }
 
-                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = p0 != ""
+                override fun onTextChanged(confirmPasswordText: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = confirmPasswordText != ""
                 }
 
             })
