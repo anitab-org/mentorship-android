@@ -1,11 +1,10 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import android.util.Log
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
@@ -22,20 +21,20 @@ import java.util.concurrent.TimeoutException
  */
 class MemberProfileViewModel : ViewModel() {
 
-    var TAG = MemberProfileViewModel::class.java.simpleName
+    var tag = MemberProfileViewModel::class.java.simpleName!!
 
     private val userDataManager: UserDataManager = UserDataManager()
 
-    val successful: MutableLiveData<Boolean> = MutableLiveData()
+    val successful: MediatorLiveData<Boolean> = MediatorLiveData()
     lateinit var message: String
     lateinit var userProfile: User
+    var userId = -1
 
     /**
-     * Fetches profile from a user with id [userId] by calling getUser method from UserService
-     * @param userId id of a member
+     * Fetches profile from a user with the value of [userId] by calling getUser method from UserService
      */
     @SuppressLint("CheckResult")
-    fun getUserProfile(@NonNull userId: Int) {
+    fun getUserProfile() {
         userDataManager.getUser(userId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -56,12 +55,12 @@ class MemberProfileViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successful.value = false
@@ -70,5 +69,7 @@ class MemberProfileViewModel : ViewModel() {
                     override fun onComplete() {
                     }
                 })
+
     }
 }
+

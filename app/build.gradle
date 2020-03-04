@@ -21,10 +21,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [usesCleartextTraffic:"false"]
+            manifestPlaceholders = [usesCleartextTraffic: "false"]
         }
         debug {
-            manifestPlaceholders = [usesCleartextTraffic:"true"]
+            manifestPlaceholders = [usesCleartextTraffic: "true"]
+        }
+        debug_localhost {
+            initWith debug
         }
     }
     dataBinding {
@@ -53,6 +56,8 @@ dependencies {
     androidTestImplementation Dependencies.test_runner
     androidTestImplementation Dependencies.test_rules
     androidTestImplementation Dependencies.espresso
+    androidTestImplementation Dependencies.espresso_intents
+    androidTestImplementation Dependencies.ext_junit
 
     implementation Dependencies.rx_java
     implementation Dependencies.rx_android
@@ -65,4 +70,5 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+    implementation Dependencies.circule_image_view
 }
