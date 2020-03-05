@@ -4,6 +4,8 @@ import android.app.Dialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.DialogFragment
 import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
@@ -62,11 +64,34 @@ class ChangePasswordFragment : DialogFragment() {
         super.onResume()
 
         val passwordDialog = dialog as? AlertDialog
+        passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setEnabled(false)
+        currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
+        newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
+        confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
+        changePasswordView.tilConfirmPassword?.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable) {
+                if (s.length.equals(0))
+                {
+                    passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setEnabled(false)                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                var lena = changePasswordView.tilCurrentPassword?.editText?.text.toString().length
+                var lenb = changePasswordView.tilNewPassword?.editText?.text.toString().length
+                if (lena!=0&&lenb!=0)
+                {
+                    passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setEnabled(true)
+                }
+            }
+        })
+
         passwordDialog?.setCanceledOnTouchOutside(false)
         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
-            currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
-            newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
-            confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
 
             changePasswordView.tilConfirmPassword?.error = null
             changePasswordView.tilNewPassword?.error = null
