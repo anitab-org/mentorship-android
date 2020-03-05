@@ -134,14 +134,15 @@
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="3"
-                            app:srcCompat="@drawable/ic_slack" />
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/ic_zulip" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="38dp"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="@string/systers_open_source_slack"
+                            android:text="@string/systers_open_source_zulip"
                             android:textColor="#fff"
                             android:textSize="14sp"
                             android:textStyle="bold" />

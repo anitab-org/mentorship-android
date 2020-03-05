@@ -143,13 +143,13 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="our_github_link">Our Github Link</string>
     <string name="github_repository">Github Repository</string>
     <string name="our_website">Our Website</string>
-    <string name="systers_open_source_slack">Systers Open Source Slack</string>
-    <string name="systers_open_source_website">Systers Open Source Website</string>
+    <string name="systers_open_source_zulip">AnitaB.org Zulip</string>
+    <string name="systers_open_source_website">AnitaB.org Website</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="code_of_conduct">Code of Conduct</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="url_github">https://github.com/systers/mentorship-android</string>
-    <string name="url_slack">http://systers.io/slack-systers-opensource/</string>
+    <string name="url_zulip">https://anitab-org.zulipchat.com/</string>
     <string name="url_website">http://systers.io</string>
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
@@ -190,3 +190,4 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="relationpage_btntext">Find members</string>
     <string name="refresh">Refresh</string>
 </resources>
+
