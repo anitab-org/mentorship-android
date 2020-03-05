@@ -114,7 +114,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="155dp"
         android:gravity="bottom"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 </RelativeLayout>
