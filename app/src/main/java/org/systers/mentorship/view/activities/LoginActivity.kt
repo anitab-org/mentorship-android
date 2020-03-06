@@ -88,8 +88,8 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun login() {
-        username = tiUsername.editText?.text.toString()
-        password = tiPassword.editText?.text.toString()
+        username = tiUsername.editText?.text.toString().trim()
+        password = tiPassword.editText?.text.toString().trim()
         if (validateCredentials()) {
             loginViewModel.login(Login(username, password))
             showProgressDialog(getString(R.string.logging_in))
