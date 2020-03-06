@@ -29,13 +29,13 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback)
 
-        supportActionBar?.title = "Feedback"
+        supportActionBar?.title = "@string/Feedback"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
         //init email ID input field
         FeedbackpageEmail.isErrorEnabled = true
-        FeedbackpageEmail.error = "Email ID can't be left blank"
+        FeedbackpageEmail.error = "@string/email_error"
         FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
 
@@ -49,14 +49,14 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
                 if (!FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!))
                 {
                     FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = "please enter a valid email address"
+                    FeedbackpageEmail.error = "@string_error"
                     feedbackEmailErr = true
                 }
                 else
                 {   if (s.toString().isEmpty())
                 {
                     FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = "Email ID can't be left blank"
+                    FeedbackpageEmail.error = "@string/email_error"
                     feedbackEmailErr = true
                 }
                 else
@@ -71,7 +71,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
 
         //init message input field
         FeedbackPageMessage.isErrorEnabled = true
-        FeedbackPageMessage.error = "Message can't be left blank"
+        FeedbackPageMessage.error = "@string/msg_error"
         FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
 
@@ -85,7 +85,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
                 if (s.toString().length > FeedbackPageMessage.counterMaxLength)
                 {
                     FeedbackPageMessage.isErrorEnabled = true
-                    FeedbackPageMessage.error = "Please don't exceed the character limit"
+                    FeedbackPageMessage.error = "@string/char_error"
                     feedbackMsgErr = true
                 }
                 else
@@ -93,7 +93,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
                     if (s.toString().isEmpty())
                     {
                         FeedbackPageMessage.isErrorEnabled = true
-                        FeedbackPageMessage.error = "Message can't be left blank"
+                        FeedbackPageMessage.error = "@string/msg_error"
                         feedbackMsgErr = true
                     }
                     else
@@ -123,18 +123,18 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         FeedbackpageRd2.setOnClickListener(this)
         FeedbackpageRd3.setOnClickListener(this)
         //init category = "bug"
-        feedbackCategory = "Bug"
+        feedbackCategory = "@string/Bug"
 
         //Final submit button
         FeedbackpageSendbtn.setOnClickListener {
             if (!feedbackEmailErr && !feedbackMsgErr && feedbackRating != 0) {
-                Toast.makeText(this, "Thank you for your feedback!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "@string/feedback_thank", Toast.LENGTH_SHORT).show()
                 //add backend code for adding rating, category, message, email ID
             }
             else
             {
                 if (feedbackMsgErr || feedbackEmailErr || feedbackRating == 0) {
-                    Toast.makeText(this, "Please fill in the input fields and/or assign a rating", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "@string/input", Toast.LENGTH_SHORT).show()
                 }
             }
         }
