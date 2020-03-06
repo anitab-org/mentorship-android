@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -21,7 +20,7 @@ import org.systers.mentorship.utils.Constants.SKILLS_KEY
 import org.systers.mentorship.utils.Constants.SORT_KEY
 import org.systers.mentorship.view.fragments.MembersFragment
 
-class FilterActivity : AppCompatActivity() {
+class FilterActivity : BaseActivity() {
 
     // a backup variable for the view that was selected in sort by fragment
     private var previousSelectionSort: View? = null
