@@ -33,35 +33,39 @@ The repository has the following permanent branches:
  * **apk** This branch contains the apks for the code in the develop branch. The apks are automatically updated when a commit is pushed to `develop` branch.
 
 
-##Run Server Locally To Test Android
+## Run Server Locally To Test Android
 
  * **Run server on Local machine methods.**
-	1. Run by local ip :-
-		 Connect your mobile and laptop on the same network. Type command ipconfig if you are using Linux or ipconfig if you are using windows. Modify the run.py by following line 
-
-		if __name__ == "__main__":
-		application.debug=True
-		application.run(host='<local-ip>',port=5000)
-	        <local-ip> be like 192.168.xx.xx
-	2. By using ngrok :-
-	        Install ngrok on your system by following command:- 
-		brew cask install ngrok
-		ngrok http <port>
-		    This outputs, among some other information, a line like
-	        Forwarding                    http://4cc5ac02.ngrok.io -> localhost:5000
-	        Now, you can navigate to http://4cc5ac02.ngrok.io on any device that is connected to the Internet, and this URL redirects to localhost:5000 of your laptop.
+1. Run by local ip :-
+ Connect your mobile and laptop on the same network. Type command ipconfig if you are using Linux or ifconfig if you are using windows. Modify the run.py by following line 
+	```python
+	if __name__ == "__main__":
+	application.debug=True
+	application.run(host='<local-ip>',port=5000)
+	```
+	<local-ip> be like 192.168.xx.xx .
+	
+2. By using ngrok :-
+Install ngrok on your system by following command:
+```
+brew cask install ngrok
+ngrok http <port>
+```
+This outputs, among some other information, a line like
+Forwarding                    http://4cc5ac02.ngrok.io -> localhost:5000
+Now, you can navigate to http://4cc5ac02.ngrok.io on any device that is connected to the Internet, and this URL redirects to localhost:5000 of your laptop.
 
  
  * **Connectivity with Android App.**
-	Your have to change the url in Android app by :-
-            val apiBaseUrl: String 
-                get()=if(BuildConfig.DEBUG){
+Your have to change the url in Android app by :-
+```kotlin
+val apiBaseUrl: String 
+	get()=if(BuildConfig.DEBUG){
 		“http://192.168.xx.xx:5000/” 
-		} else {
+	} else {
 		“http://192.168.xx.xx:5000/”
-		}
-
-
+	}
+```
 
 ## Contact
 
