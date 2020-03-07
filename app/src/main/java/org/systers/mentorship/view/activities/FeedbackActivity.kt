@@ -29,13 +29,13 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback)
 
-        supportActionBar?.title = "@string/Feedback"
+        supportActionBar?.title = getString(R.string.Feedback)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
         //init email ID input field
         FeedbackpageEmail.isErrorEnabled = true
-        FeedbackpageEmail.error = "@string/email_error"
+        FeedbackpageEmail.error = getString(R.string.email_error)
         FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
 
@@ -49,14 +49,14 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
                 if (!FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!))
                 {
                     FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = "@string_error"
+                    FeedbackpageEmail.error = getString(R.string.valid_error)
                     feedbackEmailErr = true
                 }
                 else
                 {   if (s.toString().isEmpty())
                 {
                     FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = "@string/email_error"
+                    FeedbackpageEmail.error = getString(R.string.email_error)
                     feedbackEmailErr = true
                 }
                 else
@@ -71,7 +71,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
 
         //init message input field
         FeedbackPageMessage.isErrorEnabled = true
-        FeedbackPageMessage.error = "@string/msg_error"
+        FeedbackPageMessage.error = getString(R.string.msg_error)
         FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
 
@@ -85,7 +85,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
                 if (s.toString().length > FeedbackPageMessage.counterMaxLength)
                 {
                     FeedbackPageMessage.isErrorEnabled = true
-                    FeedbackPageMessage.error = "@string/char_error"
+                    FeedbackPageMessage.error = getString(R.string.char_error)
                     feedbackMsgErr = true
                 }
                 else
@@ -93,7 +93,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
                     if (s.toString().isEmpty())
                     {
                         FeedbackPageMessage.isErrorEnabled = true
-                        FeedbackPageMessage.error = "@string/msg_error"
+                        FeedbackPageMessage.error = getString(R.string.msg_error)
                         feedbackMsgErr = true
                     }
                     else
@@ -123,18 +123,18 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         FeedbackpageRd2.setOnClickListener(this)
         FeedbackpageRd3.setOnClickListener(this)
         //init category = "bug"
-        feedbackCategory = "@string/Bug"
+        feedbackCategory = getString(R.string.Bug)
 
         //Final submit button
         FeedbackpageSendbtn.setOnClickListener {
             if (!feedbackEmailErr && !feedbackMsgErr && feedbackRating != 0) {
-                Toast.makeText(this, "@string/feedback_thank", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.feedback_thank), Toast.LENGTH_SHORT).show()
                 //add backend code for adding rating, category, message, email ID
             }
             else
             {
                 if (feedbackMsgErr || feedbackEmailErr || feedbackRating == 0) {
-                    Toast.makeText(this, "@string/input", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.input), Toast.LENGTH_SHORT).show()
                 }
             }
         }
