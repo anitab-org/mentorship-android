@@ -33,7 +33,7 @@ The repository has the following permanent branches:
  * **apk** This branch contains the apks for the code in the develop branch. The apks are automatically updated when a commit is pushed to `develop` branch.
 
 
-## Run Server Locally To Test Android
+### Run Server Locally To Test Android
 
  * **Run server on Local machine methods.**
 1. Run by local ip :-
