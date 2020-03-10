@@ -16,7 +16,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_feedback.*
 
-class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
+class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
 
     private var feedbackRating : Int = 0
