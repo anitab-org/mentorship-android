@@ -61,4 +61,12 @@ class UserDataManager {
     fun getHomeStats(): Observable<HomeStatistics> {
         return apiManager.userService.getHomeStats()
     }
+
+    /**
+     * This will call the deleteUser method of UserService interface
+     * @return an Observable of [CustomResponse]
+     */
+    fun deleteUser(): Observable<CustomResponse> {
+        return apiManager.userService.deleteUser()
+    }
 }
