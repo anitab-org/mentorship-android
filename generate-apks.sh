@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Travis build triggered on a forked repository
-if [ "$TRAVIS_REPO_SLUG" != "systers/mentorship-android" ]; then
+if [ "$TRAVIS_REPO_SLUG" != "anitab-org/mentorship-android" ]; then
     echo "Not the original repo. Skip apk upload."
     exit 0
 fi
@@ -36,8 +36,8 @@ if [ "$TRAVIS_BRANCH" == "develop" ]; then
     git init
 
     # Copy the generated apks in to the repository we just created
-    cp $HOME/build/systers/mentorship-android/app/build/outputs/apk/debug/app-debug.apk $HOME/apk/
-    cp $HOME/build/systers/mentorship-android/app/build/outputs/apk/release/app-release-unsigned.apk $HOME/apk/
+    cp $HOME/build/anitab-org/mentorship-android/app/build/outputs/apk/debug/app-debug.apk $HOME/apk/
+    cp $HOME/build/anitab-org/mentorship-android/app/build/outputs/apk/release/app-release-unsigned.apk $HOME/apk/
 
     # Add and commit the apks
     git add app-debug.apk
@@ -47,8 +47,8 @@ if [ "$TRAVIS_BRANCH" == "develop" ]; then
     # Rename the current branch from master to apk
     git branch -m apk
 
-    # Pushing the apk branch to the systers repository
-    git push https://m-murad:$GITHUB_API_KEY@github.com/systers/mentorship-android apk -fq> /dev/null
+    # Pushing the apk branch to the anitab-org repository
+    git push https://m-murad:$GITHUB_API_KEY@github.com/anitab-org/mentorship-android apk -fq> /dev/null
     if [ $? -eq 0 ]; then
         echo "Apk push successful."
     else
