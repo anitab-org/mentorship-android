@@ -35,7 +35,7 @@ import org.systers.mentorship.view.activities.MainActivity
 class LoginActivityTest {
     private val EMPTY_USERNAME_ERROR = "Username cannot be empty"
     private val EMPTY_PASSWORD_ERROR = "Password cannot be empty"
-    private val INCORRECT_CREDENTIALS_ERROR = "Username or password is wrong."
+    private val INCORRECT_CREDENTIALS_ERROR = "Username or password is incorrect."
 
     private val INCORRECT_TEST_USERNAME = "blah"
     private val INCORRECT_TEST_PASSWORD = "blah"
@@ -65,10 +65,10 @@ class LoginActivityTest {
             return object : TypeSafeMatcher<View>() {
                 /**
                  * Generates a description of the object.  The description may be part of a
-                 * a description of a larger object of which this is just a component, so it
+                 * larger object of which this is just a component, so it
                  * should be worded appropriately.
                  *
-                 * @param descrxiption
+                 * @param description
                  * The description to be built or appended to.
                  */
                 override fun describeTo(description: Description?) {
