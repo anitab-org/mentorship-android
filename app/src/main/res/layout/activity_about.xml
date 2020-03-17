@@ -62,44 +62,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alignmentMode="alignMargins"
-
                 android:columnCount="2"
                 android:padding="14dp"
                 android:rowCount="2">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnGit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="40dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
                     tools:targetApi="p">
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
-                            android:layout_height="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="3"
                             app:srcCompat="@drawable/ic_github" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
                             android:text="@string/our_github_link"
                             android:textColor="#fff"
                             android:textSize="14sp"
@@ -110,38 +102,32 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnSlack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="60dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
                     tools:targetApi="p">
 
-
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
-                            android:layout_weight="3"
+                            android:layout_weight="1"
                             android:padding="8dp"
                             app:srcCompat="@drawable/ic_zulip" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
                             android:text="@string/systers_open_source_zulip"
                             android:textColor="#fff"
                             android:textSize="14sp"
@@ -152,13 +138,10 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnWebsite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
@@ -172,18 +155,17 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
-                            android:layout_height="0dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="3"
                             app:srcCompat="@drawable/ic_web" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="38dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="@string/our_website"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
                             android:textColor="#fff"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -193,13 +175,10 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnTermsCondition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
@@ -213,10 +192,10 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
-                            android:layout_height="0dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="3"
+                            android:layout_weight="1"
                             app:srcCompat="@drawable/ic_terms_and_condition" />
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -234,13 +213,10 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnprivacypolicy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
@@ -254,8 +230,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
-                            android:layout_height="0dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="3"
                             app:srcCompat="@drawable/ic_privacy" />
@@ -275,13 +251,10 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btncodeofconduct"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="20dp"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
@@ -295,7 +268,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="3"
@@ -313,7 +286,6 @@
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-
 
             </GridLayout>
 
