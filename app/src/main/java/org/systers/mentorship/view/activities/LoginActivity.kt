@@ -1,18 +1,23 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.viewmodels.LoginViewModel
-import java.lang.Exception
+
 
 /**
  * This activity will let the user to login using username/email and password.
@@ -56,6 +61,14 @@ class LoginActivity : BaseActivity() {
             finish()
         }
 
+        ForgetPassword.setOnClickListener {
+            intent = Intent(this, ResetPasswordActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+
+
         tiPassword.editText?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 login()
@@ -70,6 +83,19 @@ class LoginActivity : BaseActivity() {
         }catch (exception: Exception){}
     }
 
+    private fun forgotpassword(email:EditText)    {
+        if(email.text.toString().isEmpty()) {
+            return
+        }
+        val auth: FirebaseAuth =  FirebaseAuth.getInstance()
+        auth.sendPasswordResetEmail(email.text.toString())
+                .addOnCompleteListener {
+                    if(it.isSuccessful){
+                        Toast.makeText(this,"Reset Password link sent", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+    }
     private fun validateCredentials() : Boolean {
         var validCredentials = true
         if (username.isBlank()) {
