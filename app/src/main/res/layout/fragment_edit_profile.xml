@@ -25,7 +25,7 @@
                 android:layout_height="200dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/size_normal"
                 android:background="@android:color/transparent"
                 app:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgUserAvatar"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/size_8dp"
+                android:layout_marginTop="@dimen/size_small"
                 android:text="@={user.username}"
                 android:textSize="18sp"
                 android:textStyle="bold" />

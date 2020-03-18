@@ -24,7 +24,7 @@
                 style="@style/TextTitleBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/size_normal"
                 android:layout_marginTop="@dimen/margin_medium"
                 android:text="@string/sort_by"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,11 +34,11 @@
                 android:id="@+id/cardSortNameAZ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/size_normal"
+                android:layout_marginTop="@dimen/size_normal"
                 android:elevation="@dimen/margin_small"
                 android:onClick="buttonOnClickSort"
-                app:cardCornerRadius="@dimen/margin_normal"
+                app:cardCornerRadius="@dimen/size_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSortByTitle"
                 tools:targetApi="lollipop">
@@ -48,7 +48,7 @@
                     style="@style/TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
+                    android:layout_margin="@dimen/size_normal"
                     android:text="@string/name_a_z" />
 
             </androidx.cardview.widget.CardView>
@@ -57,11 +57,11 @@
                 android:id="@+id/cardSortNameZA"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/size_normal"
+                android:layout_marginTop="@dimen/size_normal"
                 android:elevation="@dimen/margin_small"
                 android:onClick="buttonOnClickSort"
-                app:cardCornerRadius="@dimen/margin_normal"
+                app:cardCornerRadius="@dimen/size_normal"
                 app:layout_constraintStart_toEndOf="@+id/cardSortNameAZ"
                 app:layout_constraintTop_toBottomOf="@+id/tvSortByTitle"
                 tools:targetApi="lollipop">
@@ -71,7 +71,7 @@
                     style="@style/TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
+                    android:layout_margin="@dimen/size_normal"
                     android:text="@string/name_z_a" />
 
             </androidx.cardview.widget.CardView>
@@ -80,11 +80,11 @@
                 android:id="@+id/cardSortRegistrationDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/size_normal"
+                android:layout_marginTop="@dimen/size_normal"
                 android:elevation="@dimen/margin_small"
                 android:onClick="buttonOnClickSort"
-                app:cardCornerRadius="@dimen/margin_normal"
+                app:cardCornerRadius="@dimen/size_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardSortNameAZ"
                 tools:targetApi="lollipop">
@@ -94,7 +94,7 @@
                     style="@style/TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
+                    android:layout_margin="@dimen/size_normal"
                     android:text="@string/registration_date" />
 
             </androidx.cardview.widget.CardView>
@@ -103,10 +103,10 @@
                 android:id="@+id/cardSortAge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/size_normal"
+                android:layout_marginTop="@dimen/size_normal"
                 android:elevation="@dimen/margin_small"
-                app:cardCornerRadius="@dimen/margin_normal"
+                app:cardCornerRadius="@dimen/size_normal"
                 app:layout_constraintStart_toEndOf="@+id/cardSortRegistrationDate"
                 app:layout_constraintTop_toBottomOf="@+id/cardSortNameAZ"
                 tools:targetApi="lollipop">
@@ -116,7 +116,7 @@
                     style="@style/TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
+                    android:layout_margin="@dimen/size_normal"
                     android:text="@string/age" />
 
             </androidx.cardview.widget.CardView>
@@ -126,7 +126,7 @@
                 style="@style/TextTitleBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/size_normal"
                 android:layout_marginTop="@dimen/margin_big"
                 android:text="@string/filter_by"
                 app:layout_constraintStart_toStartOf="parent"
@@ -136,10 +136,10 @@
                 android:id="@+id/cardFilterNeedMentoring"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/size_normal"
+                android:layout_marginTop="@dimen/size_normal"
                 android:elevation="@dimen/margin_small"
-                app:cardCornerRadius="@dimen/margin_normal"
+                app:cardCornerRadius="@dimen/size_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvFilter"
                 tools:targetApi="lollipop">
@@ -149,7 +149,7 @@
                     style="@style/TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
+                    android:layout_margin="@dimen/size_normal"
                     android:text="@string/need_mentoring" />
 
             </androidx.cardview.widget.CardView>
@@ -158,10 +158,10 @@
                 android:id="@+id/cardFilterAvailableToMentor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginStart="@dimen/size_normal"
+                android:layout_marginTop="@dimen/size_normal"
                 android:elevation="@dimen/margin_small"
-                app:cardCornerRadius="@dimen/margin_normal"
+                app:cardCornerRadius="@dimen/size_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardFilterNeedMentoring"
                 tools:targetApi="lollipop">
@@ -171,7 +171,7 @@
                     style="@style/TextBlack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
+                    android:layout_margin="@dimen/size_normal"
                     android:text="@string/available_to_mentor" />
 
             </androidx.cardview.widget.CardView>
@@ -181,7 +181,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal"
+                android:layout_margin="@dimen/size_normal"
                 android:hint="@string/interests"
                 app:layout_constraintTop_toBottomOf="@id/cardFilterAvailableToMentor">
 
@@ -198,7 +198,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal"
+                android:layout_margin="@dimen/size_normal"
                 android:hint="@string/location"
                 app:layout_constraintTop_toBottomOf="@id/layoutFilterInterests">
 
@@ -215,7 +215,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal"
+                android:layout_margin="@dimen/size_normal"
                 android:hint="@string/skills"
                 app:layout_constraintTop_toBottomOf="@id/layoutFilterLocation">
 
@@ -250,7 +250,7 @@
             style="@style/TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginStart="@dimen/size_normal"
             android:layout_marginTop="@dimen/margin_middle"
             android:text="@string/clear_all"
             android:textColor="@color/textColorBlack"
@@ -264,7 +264,7 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/margin_middle"
             android:backgroundTint="@color/colorPrimary"
-            app:cardCornerRadius="@dimen/margin_normal"
+            app:cardCornerRadius="@dimen/size_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dividerFilter"
             tools:targetApi="lollipop">

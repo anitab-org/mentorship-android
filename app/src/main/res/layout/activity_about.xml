@@ -134,7 +134,7 @@
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="3"
-                            android:padding="@dimen/size_8dp"
+                            android:padding="@dimen/size_small"
                             app:srcCompat="@drawable/ic_zulip" />
 
                         <androidx.appcompat.widget.AppCompatTextView
