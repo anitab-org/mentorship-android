@@ -63,18 +63,18 @@
                 android:layout_height="wrap_content"
                 android:alignmentMode="alignMargins"
                 android:columnCount="2"
-                android:padding="14dp"
+                android:padding="@dimen/grid_padding"
                 android:rowCount="2">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnGit"
-                    android:layout_width="120dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="40dp"
+                    android:layout_width="@dimen/about_card_width"
+                    android:layout_height="@dimen/about_card_height"
+                    android:layout_marginStart="@dimen/about_card_margin_start"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/about_card_corner_radius"
                     tools:targetApi="p">
 
                     <LinearLayout
@@ -91,10 +91,10 @@
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
+                            android:layout_margin="@dimen/margin_extra_small"
                             android:text="@string/our_github_link"
                             android:textColor="#fff"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/test_size_title_small"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -102,13 +102,13 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnSlack"
-                    android:layout_width="120dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="60dp"
+                    android:layout_width="@dimen/about_card_width"
+                    android:layout_height="@dimen/about_card_height"
+                    android:layout_marginStart="@dimen/about_card_margin_start"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/about_card_corner_radius"
                     tools:targetApi="p">
 
                     <LinearLayout
@@ -121,16 +121,16 @@
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:padding="8dp"
+                            android:padding="@dimen/margin_small"
                             app:srcCompat="@drawable/ic_zulip" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
+                            android:layout_margin="@dimen/margin_extra_small"
                             android:text="@string/systers_open_source_zulip"
                             android:textColor="#fff"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/test_size_title_small"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -138,14 +138,14 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnWebsite"
-                    android:layout_width="120dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="@dimen/about_card_width"
+                    android:layout_height="@dimen/about_card_height"
+                    android:layout_marginStart="@dimen/about_card_margin_start"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/about_card_corner_radius"
                     tools:targetApi="p">
 
 
@@ -165,9 +165,9 @@
                             android:layout_height="wrap_content"
                             android:text="@string/our_website"
                             android:layout_gravity="center"
-                            android:layout_margin="10dp"
+                            android:layout_margin="@dimen/margin_extra_small"
                             android:textColor="#fff"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/test_size_title_small"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -175,14 +175,14 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnTermsCondition"
-                    android:layout_width="120dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="@dimen/about_card_width"
+                    android:layout_height="@dimen/about_card_height"
+                    android:layout_marginStart="@dimen/about_card_margin_start"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/about_card_corner_radius"
                     tools:targetApi="p">
 
 
@@ -200,12 +200,12 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="@string/terms_and_conditions"
                             android:textColor="#fff"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/test_size_title_small"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -213,14 +213,14 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnprivacypolicy"
-                    android:layout_width="120dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="@dimen/about_card_width"
+                    android:layout_height="@dimen/about_card_height"
+                    android:layout_marginStart="@dimen/about_card_margin_start"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/about_card_corner_radius"
                     tools:targetApi="p">
 
 
@@ -238,12 +238,12 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="@string/privacy_policy"
                             android:textColor="#fff"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/test_size_title_small"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -251,14 +251,14 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btncodeofconduct"
-                    android:layout_width="120dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_width="@dimen/about_card_width"
+                    android:layout_height="@dimen/about_card_height"
+                    android:layout_marginStart="@dimen/about_card_margin_start"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:outlineAmbientShadowColor="#55111109"
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
+                    app:cardCornerRadius="@dimen/about_card_corner_radius"
                     tools:targetApi="p">
 
 
@@ -269,19 +269,19 @@
 
                         <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="3"
                             app:srcCompat="@drawable/ic_code_of_conduct" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="@string/code_of_conduct"
                             android:textColor="#fff"
-                            android:textSize="14sp"
+                            android:textSize="@dimen/test_size_title_small"
                             android:textStyle="bold" />
                     </LinearLayout>
 
