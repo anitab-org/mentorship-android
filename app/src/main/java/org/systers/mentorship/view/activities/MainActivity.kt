@@ -2,11 +2,10 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
@@ -18,6 +17,7 @@ import org.systers.mentorship.view.fragments.*
 class MainActivity : BaseActivity() {
 
     private var atHome = true
+    private lateinit var activeFragment: String
 
     private val TOAST_DURATION = 4000
     private var mLastPress: Long = 0
@@ -29,6 +29,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        activeFragment = getString(R.string.fragment_title_home)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         if (savedInstanceState == null) {
@@ -42,33 +43,38 @@ class MainActivity : BaseActivity() {
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.navigation_home -> {
-                        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(),
+                        replaceFragment(R.id.contentFrame, activeFragment, HomeFragment.newInstance(),
                                 R.string.fragment_title_home)
                         atHome = true
+                        activeFragment = getString(R.string.fragment_title_home)
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.navigation_profile -> {
-                        replaceFragment(R.id.contentFrame, ProfileFragment.newInstance(),
+                        replaceFragment(R.id.contentFrame, activeFragment, ProfileFragment.newInstance(),
                                 R.string.fragment_title_profile)
                         atHome = false
+                        activeFragment = getString(R.string.fragment_title_profile)
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.navigation_relation -> {
-                        replaceFragment(R.id.contentFrame, RelationPagerFragment.newInstance(),
+                        replaceFragment(R.id.contentFrame, activeFragment, RelationPagerFragment.newInstance(),
                                 R.string.fragment_title_relation)
                         atHome = false
+                        activeFragment = getString(R.string.fragment_title_relation)
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.navigation_members -> {
-                        replaceFragment(R.id.contentFrame, MembersFragment.newInstance(),
+                        replaceFragment(R.id.contentFrame, activeFragment, MembersFragment.newInstance(),
                                 R.string.fragment_title_members)
                         atHome = false
+                        activeFragment = getString(R.string.fragment_title_members)
                         return@OnNavigationItemSelectedListener true
                     }
                     R.id.navigation_requests -> {
-                        replaceFragment(R.id.contentFrame, RequestsFragment.newInstance(),
+                        replaceFragment(R.id.contentFrame, activeFragment, RequestsFragment.newInstance(),
                                 R.string.fragment_title_requests)
                         atHome = false
+                        activeFragment = getString(R.string.fragment_title_requests)
                         return@OnNavigationItemSelectedListener true
                     }
                 }
@@ -92,7 +98,9 @@ class MainActivity : BaseActivity() {
     private fun showHomeFragment() {
         atHome = true
         bottomNavigation.selectedItemId = R.id.navigation_home
-        replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
+        supportFragmentManager.beginTransaction().
+                replace(R.id.contentFrame, HomeFragment.newInstance(), getString(R.string.fragment_title_home))
+                .commit()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

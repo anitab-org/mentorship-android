@@ -52,7 +52,7 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    baseActivity.replaceFragment(R.id.contentFragment, RelationPagerFragment.newInstance(), R.string.fragment_title_relation)
+                    baseActivity.replaceFragment(R.id.contentFragment, this.tag.toString(), RelationPagerFragment.newInstance(), R.string.fragment_title_relation)
                     tvMenteeLabel.visibility = View.GONE
                     tvMentorLabel.visibility = View.GONE
                     tvEndDateLabel.visibility = View.GONE

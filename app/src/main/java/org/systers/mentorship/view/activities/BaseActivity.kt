@@ -15,7 +15,7 @@ import org.systers.mentorship.utils.ProgressBar
  * An Activity class which other Activities can extend from. It provides some basic functions like
  * showing/hiding progress dialog bars, hiding keyboard etc.
  */
-abstract class BaseActivity: AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     private var progressDialog: ProgressDialog? = null
     private var progressBar: ProgressBar? = null
@@ -65,10 +65,15 @@ abstract class BaseActivity: AppCompatActivity() {
      * The [fragment] is added to the container view with id [containerId]. The operation is
      * performed by the FragmentManager.
      */
-    fun replaceFragment(containerId: Int, fragment: Fragment, title: Int) {
-        supportFragmentManager.beginTransaction()
-                .replace(containerId, fragment, getString(title)).commit()
-        supportActionBar?.setTitle(title)
-        collapsingToolbarLayout?.title = getString(title)
+    fun replaceFragment(containerId: Int, activeFragmentTag: String, fragment: Fragment, title: Int) {
+        if (activeFragmentTag != getString(title)) {
+            supportFragmentManager.findFragmentByTag(activeFragmentTag)?.let { activeFragment ->
+                supportFragmentManager.beginTransaction()
+                        .detach(activeFragment)
+                        .replace(containerId, fragment, getString(title)).commit()
+            }
+            supportActionBar?.setTitle(title)
+            collapsingToolbarLayout?.title = getString(title)
+        }
     }
 }
