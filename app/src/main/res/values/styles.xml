@@ -50,5 +50,11 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
-    <style name="TextViewSettings"></style>
+    <style name="TextViewSettings">
+        <item name="android:padding">@dimen/margin_normal</item>
+        <item name="android:focusable">true</item>
+        <item name="android:drawablePadding">@dimen/margin_normal</item>
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 </resources>
