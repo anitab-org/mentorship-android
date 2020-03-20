@@ -43,6 +43,7 @@ class ApiManager {
                 .addInterceptor(interceptor)
                 .addInterceptor(CustomInterceptor())
                 .authenticator(TokenAuthenticator())
+                .readTimeout(60, TimeUnit.SECONDS)
                 .build()
         val gson = GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
