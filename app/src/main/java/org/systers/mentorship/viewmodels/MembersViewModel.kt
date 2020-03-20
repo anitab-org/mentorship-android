@@ -27,7 +27,9 @@ class MembersViewModel : ViewModel() {
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
-    lateinit var userList: List<User>
+    val _userList: MutableList<User> = mutableListOf()
+    val userList: List<User>
+        get() = _userList
 
     /**
      * Fetches users list from getUsers method of the UserService
@@ -39,7 +41,7 @@ class MembersViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<User>>() {
                     override fun onNext(userListResponse: List<User>) {
-                        userList = userListResponse
+                        _userList.addAll(userListResponse)
                         successful.value = true
                     }
 
