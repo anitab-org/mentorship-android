@@ -1,9 +1,9 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     var tag = ProfileViewModel::class.java.simpleName!!
 
@@ -44,6 +44,7 @@ class ProfileViewModel: ViewModel() {
                         user = userprofile
                         successfulGet.value = true
                     }
+
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -65,6 +66,7 @@ class ProfileViewModel: ViewModel() {
                         }
                         successfulGet.value = false
                     }
+
                     override fun onComplete() {
                     }
                 })
@@ -82,6 +84,7 @@ class ProfileViewModel: ViewModel() {
                     override fun onNext(response: CustomResponse) {
                         successfulUpdate.value = true
                     }
+
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -103,6 +106,7 @@ class ProfileViewModel: ViewModel() {
                         }
                         successfulUpdate.value = false
                     }
+
                     override fun onComplete() {
                     }
                 })

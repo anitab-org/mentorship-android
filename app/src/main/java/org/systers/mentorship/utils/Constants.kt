@@ -9,6 +9,7 @@ object Constants {
     const val RELATIONSHIP_EXTRA = "relationship_extra"
     const val DELETE_REQUEST_RESULT_ID = 1000
     const val REQUEST_ID = "request_id"
+
     // filter function in MembersFragment
     const val FILTER_REQUEST_CODE = 8000
     const val FILTER_MAP = "filter_map"

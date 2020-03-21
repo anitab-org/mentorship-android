@@ -1,14 +1,12 @@
 package org.systers.mentorship.view.fragments
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
-import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
@@ -43,8 +41,7 @@ class RelationPagerFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRelation.setOnRefreshListener { fetchNewest() }
 
-        relationViewModel.successfulGet.observe(this, Observer {
-            successfull ->
+        relationViewModel.successfulGet.observe(this, Observer { successfull ->
             srlRelation.isRefreshing = false
             if (successfull != null) {
                 if (successfull) {
@@ -82,7 +79,7 @@ class RelationPagerFragment : BaseFragment() {
             tlMentorshipRelation.visibility = View.GONE
             vpMentorshipRelation.visibility = View.GONE
             baseActivity.tlMentorshipRelation.removeAllTabs()
-            tvFindPeopleBtn.setOnClickListener{
+            tvFindPeopleBtn.setOnClickListener {
                 baseActivity.bottomNavigation.selectedItemId = R.id.navigation_members
                 baseActivity.replaceFragment(R.id.contentFrame, MembersFragment.newInstance(), R.string.navigation_title_members)
             }

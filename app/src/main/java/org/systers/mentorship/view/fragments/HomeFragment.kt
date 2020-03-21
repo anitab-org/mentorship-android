@@ -97,7 +97,7 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun fetchNewest()  {
+    private fun fetchNewest() {
         srlHome.isRefreshing = true
         homeViewModel.getHomeStats()
     }

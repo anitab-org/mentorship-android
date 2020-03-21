@@ -1,9 +1,9 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -32,6 +32,7 @@ class RequestsViewModel : ViewModel() {
     var message: String? = null
     var allRequestsList: List<Relationship>? = null
     var pastRequestsList: List<Relationship>? = null
+
     /**
      * Fetches list of all Mentorship relations and requests
      */
@@ -79,39 +80,39 @@ class RequestsViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun getAllPendingMentorshipRelations() {
         relationDataManager.getAllPendingRelationsAndRequests()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableObserver<List<Relationship>>() {
-                override fun onNext(relationsList: List<Relationship>) {
-                    pendingAllRequestsList = relationsList
-                    pendingSuccessful.value = true
-                }
-
-                override fun onError(throwable: Throwable) {
-                    when (throwable) {
-                        is IOException -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_please_check_internet)
-                        }
-                        is TimeoutException -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_request_timed_out)
-                        }
-                        is HttpException -> {
-                            message = CommonUtils.getErrorResponse(throwable).message.toString()
-                        }
-                        else -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_something_went_wrong)
-                            Log.e(tag, throwable.localizedMessage)
-                        }
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<Relationship>>() {
+                    override fun onNext(relationsList: List<Relationship>) {
+                        pendingAllRequestsList = relationsList
+                        pendingSuccessful.value = true
                     }
-                    pendingSuccessful.value = false
-                }
 
-                override fun onComplete() {
-                }
-            })
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(tag, throwable.localizedMessage)
+                            }
+                        }
+                        pendingSuccessful.value = false
+                    }
+
+                    override fun onComplete() {
+                    }
+                })
     }
 
 
@@ -124,39 +125,39 @@ class RequestsViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun getPastMentorshipRelations() {
         relationDataManager.getPastRelationships()
-            .subscribeOn(Schedulers.newThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableObserver<List<Relationship>>() {
-                override fun onNext(relationsList: List<Relationship>) {
-                    pastRequestsList = relationsList
-                    successful.value = true
-                }
-
-                override fun onError(throwable: Throwable) {
-                    when (throwable) {
-                        is IOException -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_please_check_internet)
-                        }
-                        is TimeoutException -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_request_timed_out)
-                        }
-                        is HttpException -> {
-                            message = CommonUtils.getErrorResponse(throwable).message.toString()
-                        }
-                        else -> {
-                            message = MentorshipApplication.getContext()
-                                .getString(R.string.error_something_went_wrong)
-                            Log.e(tag, throwable.localizedMessage)
-                        }
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<List<Relationship>>() {
+                    override fun onNext(relationsList: List<Relationship>) {
+                        pastRequestsList = relationsList
+                        successful.value = true
                     }
-                    successful.value = false
-                }
 
-                override fun onComplete() {
-                }
-            })
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(tag, throwable.localizedMessage)
+                            }
+                        }
+                        successful.value = false
+                    }
+
+                    override fun onComplete() {
+                    }
+                })
     }
 }
 

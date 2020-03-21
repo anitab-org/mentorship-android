@@ -2,17 +2,17 @@ package org.systers.mentorship.view.fragments
 
 
 import android.app.Dialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
-import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
@@ -23,10 +23,11 @@ import org.systers.mentorship.viewmodels.ProfileViewModel
 /**
  * The fragment is responsible for editing the User's profile
  */
-class EditProfileFragment: DialogFragment() {
+class EditProfileFragment : DialogFragment() {
 
     companion object {
         private lateinit var tempUser: User
+
         /**
          * Creates an instance of EditProfileFragment
          */

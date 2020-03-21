@@ -7,7 +7,7 @@ package org.systers.mentorship.remote.requests
  * @param notes represents a description of the mentorship relation
  * @param endDate represents end date of the mentorship relation
  */
-data class RelationshipRequest (
+data class RelationshipRequest(
         val mentorId: Int,
         val menteeId: Int,
         val notes: String,

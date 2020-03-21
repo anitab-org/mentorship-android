@@ -21,4 +21,4 @@ data class Task(
         val isDone: Boolean,
         val createdAt: Float,
         val completedAt: Float
-): Parcelable
+) : Parcelable

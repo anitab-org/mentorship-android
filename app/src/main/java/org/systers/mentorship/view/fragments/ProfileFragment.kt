@@ -1,11 +1,11 @@
 package org.systers.mentorship.view.fragments
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
@@ -43,8 +43,7 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel.successfulGet.observe(this, Observer {
-            successful ->
+        profileViewModel.successfulGet.observe(this, Observer { successful ->
             srlProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {

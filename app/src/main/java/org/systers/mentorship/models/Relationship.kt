@@ -32,7 +32,7 @@ data class Relationship(
         val startDate: Float,
         val endDate: Float,
         val state: Int,
-        val notes: String): Parcelable {
+        val notes: String) : Parcelable {
     /**
      * This data class represents partial information of user of the system.
      * This is used in APIs not directly related with Users, such as in responses
@@ -42,6 +42,6 @@ data class Relationship(
      * @param name name of the user
      */
     @Parcelize
-    data class RelationUserResponse (val id: Int,
-                                     val name: String): Parcelable
+    data class RelationUserResponse(val id: Int,
+                                    val name: String) : Parcelable
 }

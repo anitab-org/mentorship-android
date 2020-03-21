@@ -1,12 +1,12 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -33,8 +33,7 @@ class MemberProfileActivity : BaseActivity() {
 
         srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
-        memberProfileViewModel.successful.observe(this, Observer {
-            successful ->
+        memberProfileViewModel.successful.observe(this, Observer { successful ->
             srlMemberProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {
@@ -54,11 +53,13 @@ class MemberProfileActivity : BaseActivity() {
 
 
         btnSendRequest.setOnClickListener {
-            if(memberProfileViewModel.userProfile?.availableToMentor ?: false && !(memberProfileViewModel.userProfile?.needMentoring ?:false)
-                    && (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false))){
+            if (memberProfileViewModel.userProfile?.availableToMentor ?: false && !(memberProfileViewModel.userProfile?.needMentoring
+                            ?: false)
+                    && (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring
+                            ?: false))) {
                 Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
                         .show()
-            } else{
+            } else {
                 val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
                 intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
                 intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)

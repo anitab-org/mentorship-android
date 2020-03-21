@@ -1,6 +1,5 @@
 package org.systers.mentorship.viewmodels
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -46,7 +45,7 @@ class HomeViewModel : ViewModel() {
         userDataManager.getHomeStats()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<HomeStatistics>() {
+                .subscribeWith(object : DisposableObserver<HomeStatistics>() {
 
                     override fun onComplete() {
                         // Do nothing
@@ -71,7 +70,7 @@ class HomeViewModel : ViewModel() {
                             }
                             else -> {
                                 _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong))
+                                                .getString(R.string.error_something_went_wrong))
                                         .also { Log.d(tag, error.localizedMessage) }
                             }
                         }

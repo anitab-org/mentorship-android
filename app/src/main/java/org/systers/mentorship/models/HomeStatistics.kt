@@ -22,5 +22,5 @@ data class HomeStatistics(
         val completedRelations: Int,
         val cancelledRelations: Int,
         val rejectedRequests: Int,
-        val achievements: List<Task>): Parcelable
+        val achievements: List<Task>) : Parcelable
 

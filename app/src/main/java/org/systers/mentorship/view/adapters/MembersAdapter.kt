@@ -9,8 +9,6 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_member_item.view.*
-import kotlinx.android.synthetic.main.list_member_item.view.tvInterests
-import kotlinx.android.synthetic.main.list_member_item.view.tvName
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -27,7 +25,7 @@ import org.systers.mentorship.view.fragments.MembersFragment
  * @param userList list of users to show
  * @param openDetailFunction function to be called when an item from Members list is clicked
  */
-class MembersAdapter (
+class MembersAdapter(
         private var userList: List<User>,
         private val openDetailFunction: (memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) -> Unit
 

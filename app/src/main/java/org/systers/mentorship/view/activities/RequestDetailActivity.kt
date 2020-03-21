@@ -1,26 +1,26 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
-import org.systers.mentorship.viewmodels.RequestDetailViewModel
-import android.content.Intent
 import org.systers.mentorship.view.fragments.RequestPagerFragment
+import org.systers.mentorship.viewmodels.RequestDetailViewModel
 
 /**
  * This activity will show a Mentorship request detail from the Requests List
  */
-class RequestDetailActivity: BaseActivity() {
+class RequestDetailActivity : BaseActivity() {
 
     private val requestDetailViewModel by lazy {
         ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
@@ -138,8 +138,7 @@ class RequestDetailActivity: BaseActivity() {
     }
 
     private fun setObservables(relationResponse: Relationship) {
-        requestDetailViewModel.successful.observe(this, Observer {
-            successful ->
+        requestDetailViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {

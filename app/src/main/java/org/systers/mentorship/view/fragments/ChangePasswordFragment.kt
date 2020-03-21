@@ -1,14 +1,14 @@
 package org.systers.mentorship.view.fragments
 
 import android.app.Dialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
-import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
@@ -77,7 +77,7 @@ class ChangePasswordFragment : DialogFragment() {
         }
     }
 
-    private fun validatePassword() : Boolean {
+    private fun validatePassword(): Boolean {
         return if (newPassword == confirmPassword && newPassword != currentPassword) {
             true
         } else {

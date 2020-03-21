@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_refresh"
-        app:showAsAction="never"
-        android:title="@string/refresh"/>
+        android:title="@string/refresh"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/menu_settings"
-        android:title="@string/popup_menu_settings"
-        app:showAsAction="always"
+        android:icon="@drawable/ic_settings_black_24dp"
         android:menuCategory="container"
-        android:icon="@drawable/ic_settings_black_24dp"/>
+        android:title="@string/popup_menu_settings"
+        app:showAsAction="always" />
 </menu>

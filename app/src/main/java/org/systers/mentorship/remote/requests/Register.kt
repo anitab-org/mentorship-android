@@ -12,7 +12,7 @@ package org.systers.mentorship.remote.requests
  * @param availableToMentor is true if user is available as mentor
 
  */
-data class Register (
+data class Register(
         val name: String,
         val username: String,
         val email: String,

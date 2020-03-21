@@ -1,18 +1,17 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.viewmodels.LoginViewModel
-import java.lang.Exception
 
 /**
  * This activity will let the user to login using username/email and password.
@@ -29,8 +28,7 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginViewModel.successful.observe(this, Observer {
-            successful ->
+        loginViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -47,7 +45,7 @@ class LoginActivity : BaseActivity() {
         })
 
         btnLogin.setOnClickListener {
-           login()
+            login()
         }
 
         btnSignUp.setOnClickListener {
@@ -67,10 +65,11 @@ class LoginActivity : BaseActivity() {
             val tokenExpiredVal = intent.extras!!.getInt(Constants.TOKEN_EXPIRED_EXTRA)
             if (tokenExpiredVal == 0)
                 Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
-        }catch (exception: Exception){}
+        } catch (exception: Exception) {
+        }
     }
 
-    private fun validateCredentials() : Boolean {
+    private fun validateCredentials(): Boolean {
         var validCredentials = true
         if (username.isBlank()) {
             tiUsername.error = getString(R.string.error_empty_username)

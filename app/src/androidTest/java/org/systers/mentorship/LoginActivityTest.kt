@@ -12,9 +12,9 @@ import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.android.material.textfield.TextInputLayout
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -50,7 +50,7 @@ class LoginActivityTest {
     @JvmField
     var intentsRule = IntentsTestRule(MainActivity::class.java)
 
-    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
+    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
         return onView(allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }
@@ -60,7 +60,7 @@ class LoginActivityTest {
         /**
          * This simply implements the null check, checks the type and then casts.
          */
-        fun hasTextInputLayoutErrorText(expectedErrorText : String) : Matcher<View> {
+        fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
             return object : TypeSafeMatcher<View>() {
                 /**
@@ -155,7 +155,7 @@ class LoginActivityTest {
 
         // Verify that a Snackbar with a proper message is shown
         onView(withId(com.google.android.material.R.id.snackbar_text))
-            .check(matches(withText("Username or password is wrong.")))
+                .check(matches(withText("Username or password is wrong.")))
     }
 
     /**
@@ -170,7 +170,7 @@ class LoginActivityTest {
 
         // Verify that MainActivity is started
         intended(hasComponent(
-            ComponentName(InstrumentationRegistry.getInstrumentation().context, MainActivity::class.java))
+                ComponentName(InstrumentationRegistry.getInstrumentation().context, MainActivity::class.java))
         )
     }
 
@@ -186,7 +186,7 @@ class LoginActivityTest {
 
         // Verify that a Snackbar with a proper message is shown
         onView(withId(com.google.android.material.R.id.snackbar_text))
-            .check(matches(withText("Username or password is wrong.")))
+                .check(matches(withText("Username or password is wrong.")))
     }
 
     /**
@@ -201,7 +201,7 @@ class LoginActivityTest {
 
         // Verify that a Snackbar with a proper message is shown
         onView(withId(com.google.android.material.R.id.snackbar_text))
-            .check(matches(withText(INCORRECT_CREDENTIALS_ERROR)))
+                .check(matches(withText(INCORRECT_CREDENTIALS_ERROR)))
     }
 
     /**

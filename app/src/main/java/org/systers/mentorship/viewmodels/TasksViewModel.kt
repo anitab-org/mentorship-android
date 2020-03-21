@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for Tasks Screen
  */
-class TasksViewModel: ViewModel() {
+class TasksViewModel : ViewModel() {
 
     var tag = TasksViewModel::class.java.simpleName
 
@@ -33,11 +33,13 @@ class TasksViewModel: ViewModel() {
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
-    var completeTasksList ={
-        -> tasksList.filter { it.isDone }
+    var completeTasksList = {
+        ->
+        tasksList.filter { it.isDone }
     }
-    var incompleteTasksList ={
-        -> tasksList.filter { !it.isDone }
+    var incompleteTasksList = {
+        ->
+        tasksList.filter { !it.isDone }
     }
 
     /**
@@ -95,6 +97,7 @@ class TasksViewModel: ViewModel() {
                     override fun onNext(taskListResponse: CustomResponse) {
                         successfulAdd.value = true
                     }
+
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
@@ -116,6 +119,7 @@ class TasksViewModel: ViewModel() {
                         }
                         successfulAdd.value = false
                     }
+
                     override fun onComplete() {
                     }
                 })
@@ -128,15 +132,16 @@ class TasksViewModel: ViewModel() {
      * @param relationId id of relation
      */
     @SuppressLint("CheckResult")
-    fun updateTask(taskId: Int, isChecked: Boolean, relationId: Int){
-        if(isChecked) {
-            taskDataManager.completeTask(relationId,taskId)
+    fun updateTask(taskId: Int, isChecked: Boolean, relationId: Int) {
+        if (isChecked) {
+            taskDataManager.completeTask(relationId, taskId)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(object : DisposableObserver<CustomResponse>() {
                         override fun onNext(taskListResponse: CustomResponse) {
                             successfulUpdate.value = true
                         }
+
                         override fun onError(throwable: Throwable) {
                             when (throwable) {
                                 is IOException -> {
@@ -158,11 +163,11 @@ class TasksViewModel: ViewModel() {
                             }
                             successfulUpdate.value = false
                         }
+
                         override fun onComplete() {
                         }
                     })
-        }
-        else {
+        } else {
             //completedTaskList.remove(taskList.get(taskId))
             //TODO: Update the backend
         }

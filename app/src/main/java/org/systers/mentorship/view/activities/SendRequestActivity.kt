@@ -1,15 +1,14 @@
 package org.systers.mentorship.view.activities
 
 import android.app.DatePickerDialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
 import android.view.MenuItem
-import android.widget.DatePicker
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
@@ -27,9 +26,10 @@ import java.util.*
 /**
  * This activity will show a Mentorship request detail from the Requests List
  */
-class SendRequestActivity: BaseActivity() {
+class SendRequestActivity : BaseActivity() {
 
-    private lateinit var myCalendar : Calendar
+    private lateinit var myCalendar: Calendar
+
     companion object {
         const val OTHER_USER_ID_INTENT_EXTRA = "OTHER_USER_ID_INTENT_EXTRA"
         const val OTHER_USER_NAME_INTENT_EXTRA = "OTHER_USER_NAME_INTENT_EXTRA"
@@ -57,13 +57,13 @@ class SendRequestActivity: BaseActivity() {
 
         //Setting default date , 1 month after a current date
         myCalendar = Calendar.getInstance()
-        myCalendar.add(Calendar.MONTH , 1)
+        myCalendar.add(Calendar.MONTH, 1)
         updateEndDateEditText()
 
-        var date : DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            myCalendar.set(Calendar.YEAR , year)
-            myCalendar.set(Calendar.MONTH  , month)
-            myCalendar.set(Calendar.DAY_OF_MONTH  , dayOfMonth)
+        var date: DatePickerDialog.OnDateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, month)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             updateEndDateEditText()
         }
         ivCalendar.setOnClickListener {
@@ -73,12 +73,13 @@ class SendRequestActivity: BaseActivity() {
                     myCalendar.get(Calendar.DAY_OF_MONTH))
             datePickerDialog.datePicker.minDate = Calendar.getInstance().timeInMillis
             datePickerDialog.show()
-      }
+        }
     }
+
     private fun updateEndDateEditText() {
-        var sdf = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT , Locale.US)
+        var sdf = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT, Locale.US)
         var editable = SpannableStringBuilder(sdf.format(myCalendar.time))
-        tvRequestEndDate.text =  editable
+        tvRequestEndDate.text = editable
     }
 
     private fun populateView(userName: String, otherUserId: Int, currentUserId: Int) {
@@ -107,7 +108,7 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
 
-            if(!TextUtils.isEmpty(notes.trim())) {
+            if (!TextUtils.isEmpty(notes.trim())) {
 
                 val sendRequestData = RelationshipRequest(
                         menteeId = menteeId,
@@ -117,8 +118,7 @@ class SendRequestActivity: BaseActivity() {
                 )
                 if (!isRequestDuplicate(sendRequestData)) {
                     sendRequestViewModel.sendRequest(sendRequestData)
-                }
-                else{
+                } else {
                     Snackbar.make(getRootView(), getString(R.string.same_request_already_sent) + tvOtherUserName.text, Snackbar.LENGTH_LONG)
                             .show()
                 }
@@ -130,8 +130,7 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private fun setObservables() {
-        sendRequestViewModel.successful.observe(this, Observer {
-            successful ->
+        sendRequestViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -144,8 +143,7 @@ class SendRequestActivity: BaseActivity() {
             }
         })
         requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
-        requestsViewModel.successful.observe(this, Observer {
-            successful ->
+        requestsViewModel.successful.observe(this, Observer { successful ->
             if (successful != null) {
                 if (successful) {
                     requestsViewModel.allRequestsList?.let {
@@ -159,7 +157,7 @@ class SendRequestActivity: BaseActivity() {
                 } else {
                     requestsViewModel.message?.let {
                         Snackbar.make(getRootView(), it, Snackbar.LENGTH_LONG)
-                            .show()
+                                .show()
                     }
                 }
             }
@@ -177,8 +175,9 @@ class SendRequestActivity: BaseActivity() {
         return super.onOptionsItemSelected(menuItem)
     }
 
-    private fun isRequestDuplicate(newRelationship: RelationshipRequest): Boolean{
-        pendingSentRelationships.forEach { relationship: Relationship -> Unit
+    private fun isRequestDuplicate(newRelationship: RelationshipRequest): Boolean {
+        pendingSentRelationships.forEach { relationship: Relationship ->
+            Unit
             if (newRelationship.menteeId == relationship.mentee.id && newRelationship.mentorId == relationship.mentor.id
                     && newRelationship.endDate.toFloat() == relationship.endDate) {
                 return true

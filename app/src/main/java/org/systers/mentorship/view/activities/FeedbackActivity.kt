@@ -1,29 +1,25 @@
 package org.systers.mentorship.view.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import org.systers.mentorship.R
-import android.util.Patterns
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_feedback.*
+import org.systers.mentorship.R
 
 class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
 
 
-    private var feedbackRating : Int = 0
-    private var feedbackEmailErr : Boolean = true
-    private var ratingBtnList : ArrayList<ImageButton>? = null
-    private var feedbackMsgErr : Boolean = true
-    private var feedbackCategory : String = ""
+    private var feedbackRating: Int = 0
+    private var feedbackEmailErr: Boolean = true
+    private var ratingBtnList: ArrayList<ImageButton>? = null
+    private var feedbackMsgErr: Boolean = true
+    private var feedbackCategory: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +32,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         //init email ID input field
         FeedbackpageEmail.isErrorEnabled = true
         FeedbackpageEmail.error = "Email ID can't be left blank"
-        FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
+        FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -46,24 +42,19 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!))
-                {
+                if (!FeedbackpageEmail.editText?.text.isNullOrEmpty() && !isValidEmail(s!!)) {
                     FeedbackpageEmail.isErrorEnabled = true
                     FeedbackpageEmail.error = "please enter a valid email address"
                     feedbackEmailErr = true
-                }
-                else
-                {   if (s.toString().isEmpty())
-                {
-                    FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = "Email ID can't be left blank"
-                    feedbackEmailErr = true
-                }
-                else
-                {
-                    FeedbackpageEmail.isErrorEnabled = false
-                    feedbackEmailErr = false
-                }
+                } else {
+                    if (s.toString().isEmpty()) {
+                        FeedbackpageEmail.isErrorEnabled = true
+                        FeedbackpageEmail.error = "Email ID can't be left blank"
+                        feedbackEmailErr = true
+                    } else {
+                        FeedbackpageEmail.isErrorEnabled = false
+                        feedbackEmailErr = false
+                    }
                 }
             }
 
@@ -72,7 +63,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         //init message input field
         FeedbackPageMessage.isErrorEnabled = true
         FeedbackPageMessage.error = "Message can't be left blank"
-        FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher{
+        FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -82,22 +73,16 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().length > FeedbackPageMessage.counterMaxLength)
-                {
+                if (s.toString().length > FeedbackPageMessage.counterMaxLength) {
                     FeedbackPageMessage.isErrorEnabled = true
                     FeedbackPageMessage.error = "Please don't exceed the character limit"
                     feedbackMsgErr = true
-                }
-                else
-                {
-                    if (s.toString().isEmpty())
-                    {
+                } else {
+                    if (s.toString().isEmpty()) {
                         FeedbackPageMessage.isErrorEnabled = true
                         FeedbackPageMessage.error = "Message can't be left blank"
                         feedbackMsgErr = true
-                    }
-                    else
-                    {
+                    } else {
                         FeedbackPageMessage.isErrorEnabled = false
                         feedbackMsgErr = false
                     }
@@ -113,8 +98,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         ratingBtnList?.add(FeedbackpageS4)
         ratingBtnList?.add(FeedbackpageS5)
         //set the onclick listener for each of the star buttons
-        for(i in ratingBtnList!!)
-        {
+        for (i in ratingBtnList!!) {
             i.setOnClickListener(this)
         }
 
@@ -130,9 +114,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
             if (!feedbackEmailErr && !feedbackMsgErr && feedbackRating != 0) {
                 Toast.makeText(this, "Thank you for your feedback!", Toast.LENGTH_SHORT).show()
                 //add backend code for adding rating, category, message, email ID
-            }
-            else
-            {
+            } else {
                 if (feedbackMsgErr || feedbackEmailErr || feedbackRating == 0) {
                     Toast.makeText(this, "Please fill in the input fields and/or assign a rating", Toast.LENGTH_SHORT).show()
                 }
@@ -152,8 +134,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id)
-        {
+        when (v?.id) {
             R.id.FeedbackpageS1 -> {
                 assignRating(1)
             }
@@ -171,21 +152,18 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
                 assignRating(5)
             }
             R.id.FeedbackpageRd1 -> {
-                if (FeedbackpageRd1.isChecked)
-                {
+                if (FeedbackpageRd1.isChecked) {
                     feedbackCategory = FeedbackpageRd1.text.toString()
                 }
 
             }
             R.id.FeedbackpageRd2 -> {
-                if (FeedbackpageRd2.isChecked)
-                {
+                if (FeedbackpageRd2.isChecked) {
                     feedbackCategory = FeedbackpageRd2.text.toString()
                 }
             }
             R.id.FeedbackpageRd3 -> {
-                if (FeedbackpageRd3.isChecked)
-                {
+                if (FeedbackpageRd3.isChecked) {
                     feedbackCategory = FeedbackpageRd3.text.toString()
                 }
             }
@@ -194,11 +172,10 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     //fun used to assign rating and change image resource of star image buttons
-    fun assignRating(starIndex : Int) {
+    fun assignRating(starIndex: Int) {
         if (feedbackRating != starIndex) {
 
-            for (i in 0 until feedbackRating)
-            {
+            for (i in 0 until feedbackRating) {
                 ratingBtnList?.get(i)?.setImageResource(R.drawable.ic_star_border_black_24dp)
             }
             for (i in 0 until starIndex) {
