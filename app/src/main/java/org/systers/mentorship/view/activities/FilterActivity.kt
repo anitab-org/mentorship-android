@@ -40,7 +40,7 @@ class FilterActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close_black_24dp)
 
-        map = intent?.extras?.get(FILTER_MAP) as HashMap<String, String>?
+        map = intent?.extras?.get(FILTER_MAP) as HashMap<String, String>
         initializeViews()
         initializeClickListeners()
     }
