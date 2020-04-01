@@ -3,6 +3,7 @@ package org.systers.mentorship.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -112,6 +113,14 @@ class SignUpActivity : BaseActivity() {
             isValid = false
         } else {
             tiConfirmPassword.error = null
+        }
+        if (!needsMentoring && !isAvailableToMentor) {
+            isValid = false
+            cbMentee.requestFocus()
+            cbMentor.requestFocus()
+            tvNoteSignUp.visibility = View.VISIBLE
+        } else {
+            tvNoteSignUp.visibility = View.GONE
         }
 
         return isValid
