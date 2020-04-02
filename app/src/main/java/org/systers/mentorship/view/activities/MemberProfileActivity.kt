@@ -13,6 +13,7 @@ import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
 import org.systers.mentorship.viewmodels.MemberProfileViewModel
+import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
  * This activity will show the public profile of a user of the system
@@ -22,7 +23,9 @@ class MemberProfileActivity : BaseActivity() {
     private val memberProfileViewModel by lazy {
         ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
     }
+    private lateinit var profileViewModel: ProfileViewModel
     private lateinit var userProfile: User
+    private lateinit var currentUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +33,21 @@ class MemberProfileActivity : BaseActivity() {
 
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        profileViewModel= ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        profileViewModel.successfulGet.observe(this, Observer {
+            successful ->
+            if (successful != null) {
+                if (successful) {
+                    setCurrentUser(profileViewModel.user)
+                } else {
+                    Snackbar.make(getRootView(), profileViewModel.message, Snackbar.LENGTH_LONG)
+                            .show()
+                }
+            }
+        })
+        profileViewModel.getProfile()
+
 
         srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
@@ -46,20 +64,20 @@ class MemberProfileActivity : BaseActivity() {
             }
         })
 
-        val userId = intent.getIntExtra(Constants.MEMBER_USER_ID, -1)
+        val memberId = intent.getIntExtra(Constants.MEMBER_USER_ID, -1)
 
-        memberProfileViewModel.userId = userId
+        memberProfileViewModel.userId = memberId
 
         fetchNewest()
 
 
         btnSendRequest.setOnClickListener {
-            if(memberProfileViewModel.userProfile?.availableToMentor ?: false && !(memberProfileViewModel.userProfile?.needMentoring ?:false)
-                    && (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false))){
+            if(userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false)
+                    && (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?:false))){
                 Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
                         .show()
             } else{
-                val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+              val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
                 intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
                 intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
                 startActivity(intent)
@@ -91,6 +109,9 @@ class MemberProfileActivity : BaseActivity() {
         memberProfileViewModel.getUserProfile()
     }
 
+    private fun setCurrentUser(user: User) {
+        currentUser = user
+    }
     private fun setUserProfile(user: User) {
         userProfile = user
         tvName.text = user.name
