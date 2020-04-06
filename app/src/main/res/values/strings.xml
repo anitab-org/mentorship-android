@@ -191,11 +191,11 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="refresh">Refresh</string>
 
     <string name="email_error">Email ID can\'t be left blank</string>
-    <string name="Feedback">Feedback</string>
-    <string name="valid_error">please enter a valid email address</string>
+    <string name="feedback">Feedback</string>
+    <string name="valid_error">Please enter a valid email address</string>
     <string name="msg_error">Message can\'t be left blank</string>
     <string name="char_error">Please don\'t exceed the character limit</string>
-    <string name="Bug">Bug</string>
+    <string name="bug">Bug</string>
     <string name="input"> Please fill in the input fields and/or assign a rating</string>
     <string name="feedback_thank">Thank you for your feedback!</string>
 </resources>
