@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.checkPasswordSecurity
 import org.systers.mentorship.viewmodels.SignUpViewModel
 
 /**
@@ -102,6 +103,9 @@ class SignUpActivity : BaseActivity() {
 
         if (password.isBlank()) {
             tiPassword.error = getString(R.string.error_empty_password)
+            isValid = false
+        } else if (!password.checkPasswordSecurity()) {
+            tiPassword.error = getString(R.string.error_password_too_weak)
             isValid = false
         } else {
             tiPassword.error = null
