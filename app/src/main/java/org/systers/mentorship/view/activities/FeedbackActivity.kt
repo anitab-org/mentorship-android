@@ -29,7 +29,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback)
 
-        supportActionBar?.title = getString(R.string.Feedback)
+        supportActionBar?.title = getString(R.string.feedback)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
@@ -123,7 +123,7 @@ class FeedbackActivity : AppCompatActivity(), View.OnClickListener {
         FeedbackpageRd2.setOnClickListener(this)
         FeedbackpageRd3.setOnClickListener(this)
         //init category = "bug"
-        feedbackCategory = getString(R.string.Bug)
+        feedbackCategory = getString(R.string.bug)
 
         //Final submit button
         FeedbackpageSendbtn.setOnClickListener {
