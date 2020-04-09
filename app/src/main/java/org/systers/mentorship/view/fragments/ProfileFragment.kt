@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.fragments
 
+import android.content.DialogInterface
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -66,7 +67,12 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
+                var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
+                editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
+                    fetchNewest()
+                })
+
+               editProfileFragment.show(fragmentManager,
                         getString(R.string.fragment_title_edit_profile))
                 true
             }
