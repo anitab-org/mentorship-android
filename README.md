@@ -37,7 +37,7 @@ The repository has the following permanent branches:
 The Application has the following features:
 
  * Users can **find** and **search** other **members** and check their profile.
- * Users can **send request** to other members as a mentor or mentee according to their interest.
+ * Users can **send request** to other members as a mentor or mentee according to their interests.
  * One can check the status of their **pending, past and rejected requests**.
  * The user can check their **current relationships**.
  * Mentors can add **tasks** in a mentorship relation.
