@@ -31,6 +31,21 @@ The repository has the following permanent branches:
  * **develop** This contains the latest code. All the contributing PRs must be sent to this branch. When we want to release the next version of the app, this branch is merged into the `master` branch.
 
  * **apk** This branch contains the apks for the code in the develop branch. The apks are automatically updated when a commit is pushed to `develop` branch.
+ 
+## Features
+  
+The Application has the following features:
+
+ * Users can **find** and **search** other **members** and check their profile.
+ * Users can **send request** to other members as a mentor or mentee according to their interest.
+ * One can check the status of their **pending, past and rejected requests**.
+ * The user can check their **current relationships**.
+ * Mentors can add **tasks** in a mentorship relation.
+ * Users can check all the tasks in a mentorship relation.
+ * Functionality to **update profile**.
+ * Users also have the privilege to see their **recent achievements**.
+ * Functionality to **give feedback**.
+ * Other functionalities like **change password, delete account and about us**.
 
 ## Screenshots
 |![Splashscreen](Screenshots/Splashscreen.png)|![SignUp Screen](Screenshots/SignUp%20Screen.png)|![Login Page](Screenshots/Login%20Page.png)| 
