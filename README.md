@@ -41,9 +41,9 @@ The repository has the following permanent branches:
 ![Settings Screen](Screenshots/Settings%20Screen.png)|![About Page](Screenshots/About%20Page.png)|![Change Password Page](Screenshots/Change%20Password%20Page.png)|
 ## Contact
 
-You can reach maintainers team @mentorship-team on [Systers Open Source Slack](http://systers.io/slack-systers-opensource/) or @systers/maintainers-mentorship-android on GitHub.
+You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
 
-We use [#mentorship-system](https://systers-opensource.slack.com/messages/CAE8QK41L/) channel on Slack to discuss this project. If you're interested in contributing to this project, join us there!
+We use [#mentorship-system](https://anitab-org.zulipchat.com/#narrow/stream/222534-mentorship-system) stream on Zulip to discuss this project and interact with the community. If you're interested in contributing to this project, join us there!
 
 ## License
 
