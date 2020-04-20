@@ -171,7 +171,7 @@
             android:enabled="false"
             android:text="@string/sign_up"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/cbTC"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTC" />
 
         <androidx.appcompat.widget.AppCompatButton
