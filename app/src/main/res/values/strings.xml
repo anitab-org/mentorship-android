@@ -25,7 +25,7 @@
     <string name="error_something_went_wrong">Something went wrong</string>
     <string name="error_empty_password">Password cannot be empty</string>
     <string name="error_empty_password_confirmation">Password confirmation cannot be empty</string>
-    <string name="error_empty_username">Username cannot be empty</string>
+    <string name="error_empty_username">Username/Email cannot be empty</string>
     <string name="error_empty_email">Email cannot be empty</string>
     <string name="error_empty_name">Name cannot be empty</string>
     <string name="navigation_title_home">Home</string>
