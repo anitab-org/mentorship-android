@@ -19,4 +19,5 @@ data class Register (
         val password: String,
         val termsAndConditionsChecked: Boolean,
         val needMentoring: Boolean,
-        val availableToMentor: Boolean)
+        val availableToMentor: Boolean,
+        val isAvailableForBoth: Boolean)

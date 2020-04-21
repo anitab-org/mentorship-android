@@ -138,39 +138,50 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/cbMentor"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/mentor"
-            android:focusable="true"
-            app:layout_constraintEnd_toStartOf="@+id/cbMentee"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/tvNoteSignUp" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNoteSignUp">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/cbMentee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/mentee"
-            android:focusable="true"
-            app:layout_constraintEnd_toEndOf="@+id/tiConfirmPassword"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/cbMentor"
-            app:layout_constraintTop_toBottomOf="@+id/tvNoteSignUp" />
+            <RadioButton
+                android:id="@+id/cbMentor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:focusable="true"
+                android:text="@string/mentor" />
 
+            <RadioButton
+                android:id="@+id/cbMentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:focusable="true"
+                android:text="@string/mentee" />
 
+            <RadioButton
+                android:id="@+id/cbBoth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:focusable="true"
+                android:text="@string/both" />
+        </RadioGroup>
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbTC"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/cbMentor" />
+            app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTC"
@@ -182,7 +193,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/tiConfirmPassword"
             app:layout_constraintStart_toEndOf="@id/cbTC"
-            app:layout_constraintTop_toBottomOf="@id/cbMentor" />
+            app:layout_constraintTop_toBottomOf="@id/radio_group" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"

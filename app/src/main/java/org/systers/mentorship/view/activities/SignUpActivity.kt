@@ -29,6 +29,7 @@ class SignUpActivity : BaseActivity() {
     private lateinit var confirmedPassword: String
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
+    private var isAvailableForBoth = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,9 +58,10 @@ class SignUpActivity : BaseActivity() {
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
             needsMentoring = cbMentee.isChecked //old name but works
             isAvailableToMentor = cbMentor.isChecked //old name but works
+            isAvailableForBoth = cbBoth.isChecked
 
             if (validateDetails()) {
-                val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
+                val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor, isAvailableForBoth)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             }
@@ -114,10 +116,11 @@ class SignUpActivity : BaseActivity() {
         } else {
             tiConfirmPassword.error = null
         }
-        if (!needsMentoring && !isAvailableToMentor) {
+        if (!needsMentoring && !isAvailableToMentor && !isAvailableForBoth) {
             isValid = false
             cbMentee.requestFocus()
             cbMentor.requestFocus()
+            cbBoth.requestFocus()
             tvNoteSignUp.visibility = View.VISIBLE
         } else {
             tvNoteSignUp.visibility = View.GONE
