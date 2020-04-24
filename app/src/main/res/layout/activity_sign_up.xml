@@ -119,48 +119,81 @@
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/tiConfirmPassword" />
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/cbMentor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/mentor"
-            app:layout_constraintEnd_toStartOf="@+id/cbMentee"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/cbMentee"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNoteSignUp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/mentee"
-            app:layout_constraintEnd_toEndOf="@+id/tiConfirmPassword"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/cbMentor"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/error_checkbox"
+            android:textColor="@color/scarlet"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
 
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNoteSignUp">
+
+            <RadioButton
+                android:id="@+id/cbMentor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:focusable="true"
+                android:text="@string/mentor" />
+
+            <RadioButton
+                android:id="@+id/cbMentee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:focusable="true"
+                android:text="@string/mentee" />
+
+            <RadioButton
+                android:id="@+id/cbBoth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:focusable="true"
+                android:text="@string/both" />
+        </RadioGroup>
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbTC"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/cbMentee" />
+            app:layout_constraintTop_toBottomOf="@+id/radio_group" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTC"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/terms_and_conditions_acceptance_statement"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/tiConfirmPassword"
             app:layout_constraintStart_toEndOf="@id/cbTC"
-            app:layout_constraintTop_toBottomOf="@id/cbMentee" />
+            app:layout_constraintTop_toBottomOf="@id/radio_group" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"
