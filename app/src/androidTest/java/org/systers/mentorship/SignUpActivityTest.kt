@@ -113,7 +113,7 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText(""), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
 
-        onView(withId(R.id.btnSignUp)).perform(click())
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
         onView(withId(R.id.tiName)).check(matches(hasTextInputLayoutErrorText(EMPTY_NAME_ERROR)))
         onView(withId(R.id.tiUsername)).check(matches(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR)))
@@ -129,18 +129,56 @@ class SignUpActivityTest {
      */
     @Test
     fun whenPassAreUnequalShowsErrorTest() {
-
-        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("Mohak Gupta"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("mohak1283"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("mohak1283@gmail.com"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("mohak@1283"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("mohak@128345"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("username"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@test.com"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertz123!45"), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
 
         onView(withId(R.id.btnSignUp)).perform(click())
 
         onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText("Passwords didn't match!")))
-
-
     }
+
+    /**
+     * This test method simply checks that if the password is too weak
+     * and user clicks on signUp button then the error message is coming in
+     * password editText
+     */
+    @Test
+    fun whenPassIsTooWeakShowsErrorTest() {
+        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("username"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@test.com"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
+        onView(withId(R.id.cbTC)).perform(click())
+
+        onView(withId(R.id.btnSignUp)).perform(click())
+
+        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(
+                "Your password is too weak! Use at least one small and capital letter, one number and one special sign!")))
+    }
+
+    /**
+     * This test method simply checks that if the password is too weak
+     * and user clicks on signUp button then the error message is coming in
+     * password editText
+     */
+    @Test
+    fun whenPassIsTooWeakShowsErrorTest2() {
+        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("username"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@test.com"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("Qwertz123"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("Qwertz123"), closeSoftKeyboard())
+        onView(withId(R.id.cbTC)).perform(click())
+
+        onView(withId(R.id.btnSignUp)).perform(click())
+
+        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(
+                "Your password is too weak! Use at least one small and capital letter, one number and one special sign!")))
+    }
+
 }
