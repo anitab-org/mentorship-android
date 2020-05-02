@@ -190,6 +190,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="relationpage_btntext">Find members</string>
     <string name="refresh">Refresh</string>
+    <string name="error_checkbox">Please choose at least one of the following options.\n You may change it later</string>
+    <string name="both">Both</string>
     <string name="email_error">Email ID can\'t be left blank</string>
     <string name="feedback">Feedback</string>
     <string name="valid_error">Please enter a valid email address</string>
