@@ -192,5 +192,13 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="refresh">Refresh</string>
     <string name="error_checkbox">Please choose at least one of the following options.\n You may change it later</string>
     <string name="both">Both</string>
+    <string name="email_error">Email ID can\'t be left blank</string>
+    <string name="feedback">Feedback</string>
+    <string name="valid_error">Please enter a valid email address</string>
+    <string name="msg_error">Message can\'t be left blank</string>
+    <string name="char_error">Please don\'t exceed the character limit</string>
+    <string name="bug">Bug</string>
+    <string name="input"> Please fill in the input fields and/or assign a rating</string>
+    <string name="feedback_thank">Thank you for your feedback!</string>
 </resources>
 
