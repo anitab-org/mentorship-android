@@ -83,8 +83,16 @@ class SignUpActivity : BaseActivity() {
 
     private fun validateDetails(): Boolean {
         var isValid = true
+
+        var nameTemp = name.replace("\\s".toRegex(), "")
         if (name.isBlank()) {
             tiName.error = getString(R.string.error_empty_name)
+            isValid = false
+        } else if (nameTemp.length < 2 || nameTemp.length > 31) {
+            tiName.error = getString(R.string.error_name_length)
+            isValid = false
+        } else if (!validateName(name)) {
+            tiName.error = getString(R.string.error_invalid_name)
             isValid = false
         } else {
             tiName.error = null
@@ -93,16 +101,27 @@ class SignUpActivity : BaseActivity() {
         if (username.isBlank()) {
             tiUsername.error = getString(R.string.error_empty_username)
             isValid = false
+        } else if (username.length < 4 || username.length > 26) {
+            tiUsername.error = getString(R.string.error_username_length)
+            isValid = false
+        } else if (!validateUsername(username)) {
+            tiUsername.error = getString(R.string.error_invalid_username)
+            isValid = false
         } else {
             tiUsername.error = null
         }
 
+
         if (email.isBlank()) {
             tiEmail.error = getString(R.string.error_empty_email)
+            isValid = false
+        } else if (!validateEmail(email)) {
+            tiEmail.error = getString(R.string.error_invalid_email)
             isValid = false
         } else {
             tiEmail.error = null
         }
+
 
         if (password.isBlank()) {
             tiPassword.error = getString(R.string.error_empty_password)
@@ -113,6 +132,7 @@ class SignUpActivity : BaseActivity() {
         } else {
             tiPassword.error = null
         }
+
 
         if (password != confirmedPassword) {
             tiConfirmPassword.error = getString(R.string.error_not_matching_passwords)
@@ -135,6 +155,31 @@ class SignUpActivity : BaseActivity() {
         }
 
         return isValid
+    }
+
+    private fun validateName(string: String): Boolean {
+        //Check if the name has only alphabets and not special characters or numbers
+        for (c in string) {
+            if (c !in 'A'..'Z' && c !in 'a'..'z' && c != ' ') {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun validateUsername(string: String): Boolean {
+        //Check the validity of the username
+        for (c in string) {
+            if (c !in 'A'..'Z' && c !in 'a'..'z' && c !in '0'..'9') {
+                return false
+            }
+        }
+        return true
+    }
+
+    private fun validateEmail(email: String): Boolean {
+        val EMAIL_REGEX = "^[A-Za-z](.*)([@])(.{1,})(\\.)(.{1,})"
+        return EMAIL_REGEX.toRegex().matches(email)
     }
 
     private fun navigateToLoginActivity() {

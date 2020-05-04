@@ -28,6 +28,11 @@
     <string name="error_empty_username">Username/Email cannot be empty</string>
     <string name="error_empty_email">Email cannot be empty</string>
     <string name="error_empty_name">Name cannot be empty</string>
+    <string name="error_name_length">The name has to be longer than 1 character and shorter than 31 characters</string>
+    <string name="error_username_length">The username has to be longer than 1 character and shorter than 26 characters</string>
+    <string name="error_invalid_name">Your name is invalid</string>
+    <string name="error_invalid_username">Username is invalid</string>
+    <string name="error_invalid_email">Email is invalid</string>
     <string name="navigation_title_home">Home</string>
     <string name="navigation_title_profile">Profile</string>
     <string name="navigation_title_relation">Relation</string>
