@@ -80,10 +80,12 @@ class MembersFragment : BaseFragment() {
                 userList.add(user)
             }
         }
+        rvAdapter = MembersAdapter(userList, ::openUserProfile)
         rvMembers.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = MembersAdapter(userList, ::openUserProfile)
+            adapter = rvAdapter
         }
+        rvAdapter.filter(filterMap)
         tvEmptyList.visibility = View.GONE
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
