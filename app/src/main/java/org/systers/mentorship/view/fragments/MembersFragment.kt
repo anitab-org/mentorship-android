@@ -46,6 +46,8 @@ class MembersFragment : BaseFragment() {
         fun newInstance() = MembersFragment()
     }
 
+    private var memberListInitialized = false
+
     private val membersViewModel by lazy {
         ViewModelProviders.of(this).get(MembersViewModel::class.java)
     }
@@ -62,7 +64,8 @@ class MembersFragment : BaseFragment() {
             searchView.queryHint="Search members"
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
-                    searchUsers(newText)
+                    if(memberListInitialized)
+                        searchUsers(newText)
                     return false
                 }
                 override fun onQueryTextSubmit(query: String): Boolean {
@@ -114,6 +117,7 @@ class MembersFragment : BaseFragment() {
                             addItemDecoration(dividerItemDecoration)
                             adapter = rvAdapter
                         }
+                        memberListInitialized = true
                         tvEmptyList.visibility = View.GONE
                     }
                 } else {
