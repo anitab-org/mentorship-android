@@ -20,7 +20,7 @@
             android:theme="@style/FilterTheme" />
         <activity
             android:name=".view.activities.SplashScreenActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
