@@ -1,11 +1,13 @@
 package org.systers.mentorship.view.fragments
 
+import android.content.DialogInterface
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
 import org.systers.mentorship.viewmodels.ProfileViewModel
@@ -24,7 +26,9 @@ class ProfileFragment : BaseFragment() {
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
-    private lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel by lazy {
+        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+    }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
@@ -38,10 +42,11 @@ class ProfileFragment : BaseFragment() {
 
         setHasOptionsMenu(true)
 
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
+        srlProfile.setOnRefreshListener { fetchNewest() }
+
         profileViewModel.successfulGet.observe(this, Observer {
             successful ->
-            baseActivity.hideProgressDialog()
+            srlProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     fragmentProfileBinding.user = profileViewModel.user
@@ -51,8 +56,7 @@ class ProfileFragment : BaseFragment() {
                 }
             }
         })
-        baseActivity.showProgressDialog(getString(R.string.fetch_user_profile))
-        profileViewModel.getProfile()
+        fetchNewest()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -63,12 +67,26 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                EditProfileFragment.newInstance(profileViewModel.user).show(fragmentManager,
-                        getString(R.string.fragment_title_edit_profile))
+                if(fragmentProfileBinding.user != null){
+                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
+                    editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
+                        fetchNewest()
+                    })
+                    editProfileFragment.show(fragmentManager, getString(R.string.fragment_title_edit_profile))
+                }
+                true
+            }
+            R.id.menu_refresh -> {
+                fetchNewest()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun fetchNewest() {
+        srlProfile.isRefreshing = true
+        profileViewModel.getProfile()
     }
 
     override fun onDestroy() {

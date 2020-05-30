@@ -23,7 +23,7 @@ import java.util.concurrent.TimeoutException
  */
 class SignUpViewModel : ViewModel() {
 
-    var TAG = SignUpViewModel::class.java.simpleName
+    var tag = SignUpViewModel::class.java.simpleName!!
 
     private val authDataManager: AuthDataManager = AuthDataManager()
 
@@ -61,7 +61,7 @@ class SignUpViewModel : ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successful.value = false
@@ -72,3 +72,4 @@ class SignUpViewModel : ViewModel() {
                 })
     }
 }
+

@@ -2,6 +2,7 @@ package org.systers.mentorship.view.fragments
 
 
 import android.app.Dialog
+import android.content.DialogInterface
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -36,13 +37,14 @@ class EditProfileFragment: DialogFragment() {
         }
     }
 
-    private lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel by lazy {
+        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+    }
     private lateinit var editProfileBinding: FragmentEditProfileBinding
-
+    private lateinit var onDismissListener:DialogInterface.OnDismissListener
     private lateinit var currentUser: User
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        profileViewModel = ViewModelProviders.of(activity!!).get(ProfileViewModel::class.java)
         profileViewModel.successfulUpdate.observe(this, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
@@ -129,5 +131,16 @@ class EditProfileFragment: DialogFragment() {
             errors += EditProfileFragmentErrorStates.NameTooLongError
         }
         return errors
+    }
+    fun setOnDismissListener(onDismissListener: DialogInterface.OnDismissListener?) {
+        this.onDismissListener = onDismissListener!!
+    }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        super.onDismiss(dialog)
+        if (onDismissListener!=null)
+        {
+            onDismissListener.onDismiss(dialog)
+        }
     }
 }
