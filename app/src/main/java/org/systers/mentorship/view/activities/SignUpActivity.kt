@@ -3,6 +3,7 @@ package org.systers.mentorship.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.checkPasswordSecurity
 import org.systers.mentorship.viewmodels.SignUpViewModel
 
 /**
@@ -18,8 +20,9 @@ import org.systers.mentorship.viewmodels.SignUpViewModel
  */
 class SignUpActivity : BaseActivity() {
 
-    private lateinit var signUpViewModel: SignUpViewModel
-
+    private val signUpViewModel by lazy {
+        ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+    }
     private lateinit var name: String
     private lateinit var username: String
     private lateinit var email: String
@@ -27,11 +30,11 @@ class SignUpActivity : BaseActivity() {
     private lateinit var confirmedPassword: String
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
+    private var isAvailableForBoth: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
         signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
@@ -54,8 +57,9 @@ class SignUpActivity : BaseActivity() {
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
-            needsMentoring = cbMentee.isChecked
-            isAvailableToMentor = cbMentor.isChecked
+            needsMentoring = cbMentee.isChecked //old name but works
+            isAvailableToMentor = cbMentor.isChecked //old name but works
+            isAvailableForBoth = cbBoth.isChecked
 
             if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
@@ -103,6 +107,9 @@ class SignUpActivity : BaseActivity() {
         if (password.isBlank()) {
             tiPassword.error = getString(R.string.error_empty_password)
             isValid = false
+        } else if (!password.checkPasswordSecurity()) {
+            tiPassword.error = getString(R.string.error_password_too_weak)
+            isValid = false
         } else {
             tiPassword.error = null
         }
@@ -112,6 +119,19 @@ class SignUpActivity : BaseActivity() {
             isValid = false
         } else {
             tiConfirmPassword.error = null
+        }
+        if (!needsMentoring && !isAvailableToMentor && !isAvailableForBoth) {
+            isValid = false
+            cbMentee.requestFocus()
+            cbMentor.requestFocus()
+            cbBoth.requestFocus()
+            tvNoteSignUp.visibility = View.VISIBLE
+        } else if (isAvailableForBoth) {
+            needsMentoring = true
+            isAvailableToMentor = true
+            tvNoteSignUp.visibility = View.GONE
+        } else {
+            tvNoteSignUp.visibility = View.GONE
         }
 
         return isValid

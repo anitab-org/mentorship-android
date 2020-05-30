@@ -22,7 +22,7 @@ import java.util.concurrent.TimeoutException
  */
 class ProfileViewModel: ViewModel() {
 
-    var TAG = ProfileViewModel::class.java.simpleName
+    var tag = ProfileViewModel::class.java.simpleName!!
 
     private val userDataManager: UserDataManager = UserDataManager()
 
@@ -60,7 +60,7 @@ class ProfileViewModel: ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successfulGet.value = false
@@ -98,7 +98,7 @@ class ProfileViewModel: ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successfulUpdate.value = false
@@ -108,3 +108,4 @@ class ProfileViewModel: ViewModel() {
                 })
     }
 }
+

@@ -1,8 +1,6 @@
 package org.systers.mentorship.models
 
-import android.annotation.SuppressLint
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -18,11 +16,10 @@ import kotlinx.android.parcel.Parcelize
  * @param organization organization to which the user might belong
  * @param interests interests the user possesses
  * @param skills skills the user possesses
- * @param needsMentoring true, if user wants to be mentored, false if otherwise
- * @param isAvailableToMentor true, if user is available to mentor, false if otherwise
+ * @param needMentoring true, if user wants to be mentored, false if otherwise
+ * @param availableToMentor true, if user is available to mentor, false if otherwise
  * @param slackUsername Slack username
  */
-@SuppressLint("ParcelCreator")
 @Parcelize
 data class User(
         var id: Int? = null,
@@ -35,7 +32,7 @@ data class User(
         var organization: String? = null,
         var interests: String? = null,
         var skills: String? = null,
-        @SerializedName("need_mentoring") var needsMentoring: Boolean? = null,
-        @SerializedName("available_to_mentor") var isAvailableToMentor: Boolean? = null,
-        @SerializedName("slack_username") var slackUsername: String? = null
+        var needMentoring: Boolean? = null,
+        var availableToMentor: Boolean? = null,
+        var slackUsername: String? = null
 ) : Parcelable
