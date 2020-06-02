@@ -117,9 +117,13 @@ class SignUpActivity : BaseActivity() {
         if (password != confirmedPassword) {
             tiConfirmPassword.error = getString(R.string.error_not_matching_passwords)
             isValid = false
+        } else if (confirmedPassword.isBlank()) {
+            tiConfirmPassword.error = getString(R.string.error_empty_password_confirmation)
+            isValid = false
         } else {
             tiConfirmPassword.error = null
         }
+
         if (!needsMentoring && !isAvailableToMentor && !isAvailableForBoth) {
             isValid = false
             cbMentee.requestFocus()
