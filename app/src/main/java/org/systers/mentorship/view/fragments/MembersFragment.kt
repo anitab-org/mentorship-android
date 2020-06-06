@@ -87,7 +87,6 @@ class MembersFragment : BaseFragment() {
             }
         }
         rvMembers.apply {
-            Log.d("MembersAdapter", "onActivityCreated: rvMembers = init")
             layoutManager = LinearLayoutManager(context)
             addLoadMoreListener(this)
             adapter = MembersAdapter(userList, ::openUserProfile)
@@ -98,11 +97,17 @@ class MembersFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
         rvAdapter = MembersAdapter(arrayListOf<User>(), ::openUserProfile)
-        srlMembers.setOnRefreshListener { fetchNewest(true) }
+        srlMembers.setOnRefreshListener {
+            if(!isLoading) {
+                fetchNewest(true)
+                isLoading = true
+            }
+        }
 
         membersViewModel.successful.observe(viewLifecycleOwner, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
             srlMembers.isRefreshing = false
+            isLoading = false
             pbMembers.visibility = View.INVISIBLE
             if (successful != null) {
                 if (successful) {
@@ -133,7 +138,6 @@ class MembersFragment : BaseFragment() {
                         Snackbar.make(it, membersViewModel.message, Snackbar.LENGTH_LONG).show()
                     }
                 }
-                isLoading = false
             }
         })
         fetchNewest(true)
@@ -151,7 +155,6 @@ class MembersFragment : BaseFragment() {
         recyclerView.addOnScrollListener(object :
                 EndlessRecyclerScrollListener(recyclerView.layoutManager as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int) {
-                Log.d(MembersFragment.toString(), "onLoadMore: ")
                 if (!isLoading){
                     fetchNewest(false)
                     isLoading = true

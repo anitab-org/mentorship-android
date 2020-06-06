@@ -18,6 +18,7 @@ import org.systers.mentorship.utils.Constants.INTERESTS_KEY
 import org.systers.mentorship.utils.Constants.LOCATION_KEY
 import org.systers.mentorship.utils.Constants.SKILLS_KEY
 import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
+import org.systers.mentorship.utils.UsersDiffCallback
 import org.systers.mentorship.view.fragments.MembersFragment
 
 
@@ -74,15 +75,12 @@ class MembersAdapter (
         val newFilteredUsers = getFilteredUsers(map,newUsers)
 
         //applying changes to adapter
-        val oldSize = filteredUserList.size
-        val newSize = newUsers.size
+        val usersDiffCallback = UsersDiffCallback(filteredUserList, newFilteredUsers)
+        val diffResult = DiffUtil.calculateDiff(usersDiffCallback)
         filteredUserList.clear()
         filteredUserList.addAll(newFilteredUsers)
+        diffResult.dispatchUpdatesTo(this)
 
-        if (filterMap != map){
-            notifyDataSetChanged()
-            filterMap = map
-        } else notifyItemRangeChanged(oldSize,newSize)
     }
 
 

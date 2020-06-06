@@ -79,6 +79,11 @@ abstract class EndlessRecyclerScrollListener : RecyclerView.OnScrollListener {
             loading = false
             previousTotalItemCount = totalItemCount
         }
+        // If user started swipe refresh recyclerview reached the end then this exceptions is
+        // followed by this method and resets the loadMore functionality
+        if (loading && currentPage <=1){
+            loading = false
+        }
 
         // If it isn’t currently loading, we check to see if we have breached
         // the visibleThreshold and need to reload more data.
