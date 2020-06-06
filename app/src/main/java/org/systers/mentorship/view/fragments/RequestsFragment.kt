@@ -5,9 +5,11 @@ import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
 import org.systers.mentorship.view.activities.MainActivity
+import org.systers.mentorship.view.adapters.NewRequestPagerAdapter
 import org.systers.mentorship.view.adapters.RequestsPagerAdapter
 import org.systers.mentorship.viewmodels.RequestsViewModel
 
@@ -50,8 +52,8 @@ class RequestsFragment : BaseFragment() {
                         if (successful != null) {
                             if (successful){
                                 requestsViewModel.allRequestsList?.let { allRequestsList ->
-                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager, requestsViewModel.pendingAllRequestsList)
-                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                                    vpMentorshipRequests.adapter = NewRequestPagerAdapter(allRequestsList,this,requestsViewModel.pendingAllRequestsList)
+                                    setUpTabMediator()
                                 }
                             }
                         }
@@ -67,6 +69,24 @@ class RequestsFragment : BaseFragment() {
         })
 
         fetchNewest()
+    }
+
+    private fun setUpTabMediator() {
+        val tabLayoutMediator = TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests,
+                TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+                    when (position) {
+                        0 -> {
+                            tab.text = this.getString(R.string.pending)
+                        }
+                        1 -> {
+                            tab.text =  this.getString(R.string.past)
+                        }
+                        2 -> {
+                            tab.text = this.getString(R.string.all)
+                        }
+                    }
+                })
+        tabLayoutMediator.attach()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

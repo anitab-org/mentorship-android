@@ -51,6 +51,7 @@ dependencies {
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
     implementation Dependencies.appCompat
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
