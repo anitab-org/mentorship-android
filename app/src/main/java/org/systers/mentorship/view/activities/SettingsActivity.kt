@@ -8,12 +8,14 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
+import org.systers.mentorship.utils.PreferenceUtils
 import org.systers.mentorship.view.fragments.ChangePasswordFragment
 import org.systers.mentorship.viewmodels.SettingsViewModel
 
 class SettingsActivity : BaseActivity() {
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
+    private val preferenceUtils = PreferenceUtils
     private lateinit var settingsViewModel: SettingsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +45,7 @@ class SettingsActivity : BaseActivity() {
             builder.setMessage(R.string.confirm_logout_msg)
             builder.setPositiveButton(R.string.logout) { _, _ ->
                 preferenceManager.clear()
+                preferenceUtils.clearData()
                 startActivity(Intent(this, LoginActivity::class.java))
                 finishAffinity()
             }

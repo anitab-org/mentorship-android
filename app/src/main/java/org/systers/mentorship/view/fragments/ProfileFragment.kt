@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
+import org.systers.mentorship.models.User
+import org.systers.mentorship.utils.PreferenceUtils
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
@@ -26,6 +28,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
+    private val preferenceUtils = PreferenceUtils
     private val profileViewModel by lazy {
         ViewModelProviders.of(this).get(ProfileViewModel::class.java)
     }
@@ -44,19 +47,11 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel.successfulGet.observe(this, Observer {
-            successful ->
-            srlProfile.isRefreshing = false
-            if (successful != null) {
-                if (successful) {
-                    fragmentProfileBinding.user = profileViewModel.user
-                } else {
-                    Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
-                            Snackbar.LENGTH_LONG).show()
-                }
-            }
-        })
         fetchNewest()
+    }
+
+    private fun setPreferences(user: User) {
+        preferenceUtils.setUser(user)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -68,7 +63,7 @@ class ProfileFragment : BaseFragment() {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
                 if(fragmentProfileBinding.user != null){
-                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
+                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(preferenceUtils.getUser())
                     editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
                         fetchNewest()
                     })
@@ -86,7 +81,30 @@ class ProfileFragment : BaseFragment() {
 
     private fun fetchNewest() {
         srlProfile.isRefreshing = true
-        profileViewModel.getProfile()
+        if (preferenceUtils.username.equals("")) {
+            profileViewModel.getProfile()
+            setupObserver()
+        }
+        else {
+            srlProfile.isRefreshing = false
+            fragmentProfileBinding.user = preferenceUtils.getUser()
+        }
+    }
+
+    private fun setupObserver() {
+        profileViewModel.successfulGet.observe(this, Observer {
+            successful ->
+            srlProfile.isRefreshing = false
+            if (successful != null) {
+                if (successful) {
+                    fragmentProfileBinding.user = profileViewModel.user
+                    setPreferences(profileViewModel.user)
+                } else {
+                    Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
+                            Snackbar.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 
     override fun onDestroy() {

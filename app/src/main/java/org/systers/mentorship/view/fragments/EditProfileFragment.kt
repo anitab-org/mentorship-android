@@ -18,6 +18,7 @@ import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.EditProfileFragmentErrorStates
+import org.systers.mentorship.utils.PreferenceUtils
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
@@ -40,6 +41,7 @@ class EditProfileFragment: DialogFragment() {
     private val profileViewModel by lazy {
         ViewModelProviders.of(this).get(ProfileViewModel::class.java)
     }
+    private val preferenceUtils = PreferenceUtils
     private lateinit var editProfileBinding: FragmentEditProfileBinding
     private lateinit var onDismissListener:DialogInterface.OnDismissListener
     private lateinit var currentUser: User
@@ -106,6 +108,7 @@ class EditProfileFragment: DialogFragment() {
             }
             if (currentUser != editProfileBinding.user && errors.isEmpty()) {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
+                preferenceUtils.setUser(editProfileBinding.user!!)
             }
         }
     }
