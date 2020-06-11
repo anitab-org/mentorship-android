@@ -53,7 +53,6 @@ class LoginActivity : BaseActivity() {
         btnSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         tiPassword.editText?.setOnEditorActionListener { _, actionId, _ ->
