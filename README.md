@@ -11,17 +11,16 @@ This is the Android client for the Mentorship System.
 
 ## Features
 
-* A member gets an option to be a mentor, mentee or both.
-* Building an engaging profile -                        
- A member can customise the app profile with username, bio, skills, interests, location, occupation which can be updated anytime by a member. 
-* A member can view other members of the application or search for them in the Members Page.
-* A member can send mentorship requests to other members and accept or reject mentorship requests from other members.
-* A member can track the number of Pending Resquests, Accepted Requests, Rejected Requests, and Completed Requests and view Recent Achievements on the Home Page.  
-* A member can view  details of pending, past, all the mentorship reqests in the Requests Page.
-* A member can create, update, or delete tasks in the current mentorship relation.
-* A member can give feedback as a bug, suggestion, other response to the organisation.
-* A member can delete the account.
-* A member has the basic functionality of changing the account password anytime.
+* A member gets an option to be a Mentor, Mentee or Both.
+* A member can build/customise the app profile with username, bio, skills, interests, location, occupation, etc. anytime. 
+* A member can view a list of other members and search for a member on the Members Page
+* A member can either send mentorship requests to other members as a Mentor or Mentee according to their interests or reject mentorship requests from other members.
+* A member can track the number of **Pending Resquests**, **Accepted Requests**, **Rejected Requests**, and **Completed Requests** and view **Recent Achievements** on the Home Page.  
+* A member can view the details of pending, past, all the mentorship reqests in the Requests Page.
+* A member can create, update, or delete tasks in their current mentorship relation.
+* A member can send feedback to the Mentorship System such as reporting a bug, giving suggestions or other comments.
+* A member can delete their account.
+* A member can change their account password anytime.
 
 ## Setting up the project
 
