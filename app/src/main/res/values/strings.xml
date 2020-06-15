@@ -47,7 +47,7 @@
     <string name="fragment_title_about">About</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="send_request">Send request</string>
+    <string name="send_request">Send Request</string>
     <string name="member_profile">Member Profile</string>
     <string name="bio">Bio</string>
     <string name="slack_username">Slack username</string>
