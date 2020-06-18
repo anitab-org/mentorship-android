@@ -18,7 +18,7 @@ This is the Android client for the Mentorship System.
 * A member can track the number of **Pending Resquests**, **Accepted Requests**, **Rejected Requests**, and **Completed Requests** and view **Recent Achievements** on the Home Page.  
 * A member can view the details of pending, past, all the mentorship reqests in the Requests Page.
 * A member can create, update, or delete tasks in their current mentorship relation.
-* A member can send feedback to the Mentorship System such as reporting a bug, giving suggestions or other comments.
+* A member can send feedback about the Mentorship System such as reporting a bug, giving suggestions or other comments.
 * A member can delete their account.
 * A member can change their account password anytime.
 
