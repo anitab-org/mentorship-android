@@ -67,8 +67,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnGit"
-                    android:layout_width="@dimen/cardView_dimensions_about_act"
-                    android:layout_height="@dimen/cardView_dimensions_about_act"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -109,8 +109,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnSlack"
-                    android:layout_width="@dimen/cardView_dimensions_about_act"
-                    android:layout_height="@dimen/cardView_dimensions_about_act"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -152,8 +152,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnWebsite"
-                    android:layout_width="@dimen/cardView_dimensions_about_act"
-                    android:layout_height="@dimen/cardView_dimensions_about_act"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -194,8 +194,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnTermsCondition"
-                    android:layout_width="@dimen/cardView_dimensions_about_act"
-                    android:layout_height="@dimen/cardView_dimensions_about_act"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -237,8 +237,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnprivacypolicy"
-                    android:layout_width="@dimen/cardView_dimensions_about_act"
-                    android:layout_height="@dimen/cardView_dimensions_about_act"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -279,8 +279,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btncodeofconduct"
-                    android:layout_width="@dimen/cardView_dimensions_about_act"
-                    android:layout_height="@dimen/cardView_dimensions_about_act"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
