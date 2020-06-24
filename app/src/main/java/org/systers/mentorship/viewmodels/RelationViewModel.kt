@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -24,6 +26,8 @@ class RelationViewModel : ViewModel() {
 
     var tag = RelationViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val relationDataManager: RelationDataManager = RelationDataManager()
 
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
@@ -34,7 +38,6 @@ class RelationViewModel : ViewModel() {
     /**
      * Fetches current relation details
      */
-    @SuppressLint("CheckResult")
     fun getCurrentRelationDetails() {
         relationDataManager.getCurrentRelationship()
                 .subscribeOn(Schedulers.newThread())
@@ -69,13 +72,12 @@ class RelationViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
     }
 
     /**
      * Cancels a mentorship relation
      */
-    @SuppressLint("CheckResult")
     fun cancelMentorshipRelation(relationId: Int) {
         relationDataManager.cancelRelationship(relationId)
                 .subscribeOn(Schedulers.newThread())
@@ -110,7 +112,12 @@ class RelationViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
 

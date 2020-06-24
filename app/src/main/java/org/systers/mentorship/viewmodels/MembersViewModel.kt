@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -23,6 +25,8 @@ class MembersViewModel : ViewModel() {
 
     var tag = MembersViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val userDataManager: UserDataManager = UserDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
@@ -32,7 +36,6 @@ class MembersViewModel : ViewModel() {
     /**
      * Fetches users list from getUsers method of the UserService
      */
-    @SuppressLint("CheckResult")
     fun getUsers() {
         userDataManager.getUsers()
                 .subscribeOn(Schedulers.newThread())
@@ -67,7 +70,12 @@ class MembersViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
 

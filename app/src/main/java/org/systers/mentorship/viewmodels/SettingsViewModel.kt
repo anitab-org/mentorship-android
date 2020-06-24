@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -20,11 +22,12 @@ import java.util.concurrent.TimeoutException
  */
 class SettingsViewModel : ViewModel() {
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val userDataManager: UserDataManager = UserDataManager()
     val successfulDelete: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
-    @SuppressLint("CheckResult")
     fun deleteUser() {
         userDataManager.deleteUser()
                 .subscribeOn(Schedulers.newThread())
@@ -56,7 +59,12 @@ class SettingsViewModel : ViewModel() {
                     }
 
                     override fun onComplete() {}
-                })
+                }).addTo(compositeDisposable )
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 
 }

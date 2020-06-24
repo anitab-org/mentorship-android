@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -24,6 +26,8 @@ class ProfileViewModel: ViewModel() {
 
     var tag = ProfileViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val userDataManager: UserDataManager = UserDataManager()
 
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
@@ -34,7 +38,6 @@ class ProfileViewModel: ViewModel() {
     /**
      * Fetches the current users full profile
      */
-    @SuppressLint("CheckResult")
     fun getProfile() {
         userDataManager.getUser()
                 .subscribeOn(Schedulers.newThread())
@@ -67,13 +70,12 @@ class ProfileViewModel: ViewModel() {
                     }
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
     }
 
     /**
      * Updates the current user profile with data changed by the user
      */
-    @SuppressLint("CheckResult")
     fun updateProfile(user: User) {
         userDataManager.updateUser(user)
                 .subscribeOn(Schedulers.newThread())
@@ -105,7 +107,12 @@ class ProfileViewModel: ViewModel() {
                     }
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
 

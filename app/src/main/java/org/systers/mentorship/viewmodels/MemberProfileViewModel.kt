@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -23,6 +25,8 @@ class MemberProfileViewModel : ViewModel() {
 
     var tag = MemberProfileViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val userDataManager: UserDataManager = UserDataManager()
 
     val successful: MediatorLiveData<Boolean> = MediatorLiveData()
@@ -33,7 +37,6 @@ class MemberProfileViewModel : ViewModel() {
     /**
      * Fetches profile from a user with the value of [userId] by calling getUser method from UserService
      */
-    @SuppressLint("CheckResult")
     fun getUserProfile() {
         userDataManager.getUser(userId)
                 .subscribeOn(Schedulers.newThread())
@@ -69,7 +72,13 @@ class MemberProfileViewModel : ViewModel() {
                     override fun onComplete() {
                     }
                 })
+                .addTo(compositeDisposable)
 
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
 

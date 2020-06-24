@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -25,6 +27,8 @@ class SendRequestViewModel : ViewModel() {
 
     var tag = SendRequestViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val relationDataManager: RelationDataManager = RelationDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
@@ -34,7 +38,6 @@ class SendRequestViewModel : ViewModel() {
      * Call send a mentorship request service
      * @param relationshipRequest object containing mentorship request details
      */
-    @SuppressLint("CheckResult")
     fun sendRequest(@NonNull relationshipRequest: RelationshipRequest) {
         relationDataManager.sendRequest(relationshipRequest)
                 .subscribeOn(Schedulers.newThread())
@@ -70,7 +73,12 @@ class SendRequestViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
 

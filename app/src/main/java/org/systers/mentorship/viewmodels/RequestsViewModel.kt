@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -23,6 +25,8 @@ class RequestsViewModel : ViewModel() {
 
     var tag = RequestsViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val relationDataManager = RelationDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
@@ -35,7 +39,6 @@ class RequestsViewModel : ViewModel() {
     /**
      * Fetches list of all Mentorship relations and requests
      */
-    @SuppressLint("CheckResult")
     fun getAllMentorshipRelations() {
         relationDataManager.getAllRelationsAndRequests()
                 .subscribeOn(Schedulers.newThread())
@@ -70,13 +73,12 @@ class RequestsViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
     }
 
     /**
      * Fetches list of all pending Mentorship relations and requests
      */
-    @SuppressLint("CheckResult")
     fun getAllPendingMentorshipRelations() {
         relationDataManager.getAllPendingRelationsAndRequests()
             .subscribeOn(Schedulers.newThread())
@@ -111,7 +113,7 @@ class RequestsViewModel : ViewModel() {
 
                 override fun onComplete() {
                 }
-            })
+            }).addTo(compositeDisposable)
     }
 
 
@@ -121,7 +123,6 @@ class RequestsViewModel : ViewModel() {
        3. getPastMentorshipRelations() in RequestsViewModel.kt subscribes to the data and manages exception handling
        4. getPastMentorshipRelations() called in RequestsFragment.kt. It displays this data in fragment_requests.xml
         */
-    @SuppressLint("CheckResult")
     fun getPastMentorshipRelations() {
         relationDataManager.getPastRelationships()
             .subscribeOn(Schedulers.newThread())
@@ -156,7 +157,12 @@ class RequestsViewModel : ViewModel() {
 
                 override fun onComplete() {
                 }
-            })
+            }).addTo(compositeDisposable)
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
 

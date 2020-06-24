@@ -5,7 +5,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -25,6 +27,8 @@ class TasksViewModel: ViewModel() {
 
     var tag = TasksViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     lateinit var tasksList: List<Task>
 
     private val taskDataManager: TaskDataManager = TaskDataManager()
@@ -43,7 +47,6 @@ class TasksViewModel: ViewModel() {
     /**
      * This function lists all tasks from the mentorship relation
      */
-    @SuppressLint("CheckResult")
     fun getTasks(relationId: Int) {
         taskDataManager.getAllTasks(relationId)
                 .subscribeOn(Schedulers.newThread())
@@ -78,7 +81,7 @@ class TasksViewModel: ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
     }
 
     /**
@@ -86,7 +89,6 @@ class TasksViewModel: ViewModel() {
      * @param relationId relation for which task is to be added
      * @param createTask to serialize task description
      */
-    @SuppressLint("CheckResult")
     fun addTask(relationId: Int, createTask: CreateTask) {
         taskDataManager.addTask(relationId, createTask)
                 .subscribeOn(Schedulers.newThread())
@@ -118,7 +120,7 @@ class TasksViewModel: ViewModel() {
                     }
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
     }
 
     /**
@@ -127,7 +129,6 @@ class TasksViewModel: ViewModel() {
      * @param isChecked boolean value to specify if the task was marked or unmarked
      * @param relationId id of relation
      */
-    @SuppressLint("CheckResult")
     fun updateTask(taskId: Int, isChecked: Boolean, relationId: Int){
         if(isChecked) {
             taskDataManager.completeTask(relationId,taskId)
@@ -160,11 +161,16 @@ class TasksViewModel: ViewModel() {
                         }
                         override fun onComplete() {
                         }
-                    })
+                    }).addTo(compositeDisposable)
         }
         else {
             //completedTaskList.remove(taskList.get(taskId))
             //TODO: Update the backend
         }
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }

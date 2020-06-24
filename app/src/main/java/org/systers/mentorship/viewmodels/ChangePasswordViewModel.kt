@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -21,6 +23,7 @@ import java.util.concurrent.TimeoutException
  */
 class ChangePasswordViewModel : ViewModel() {
 
+    private val compositeDisposable by lazy {CompositeDisposable()}
     private val userDataManager: UserDataManager = UserDataManager()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
@@ -28,7 +31,6 @@ class ChangePasswordViewModel : ViewModel() {
     /**
      * Updates the password of the current user
      */
-    @SuppressLint("CheckResult")
     fun changeUserPassword(changePassword: ChangePassword) {
         userDataManager.updatePassword(changePassword)
                 .subscribeOn(Schedulers.newThread())
@@ -63,5 +65,13 @@ class ChangePasswordViewModel : ViewModel() {
                     override fun onComplete() {
                     }
                 })
+                .addTo(compositeDisposable)
+
+
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }

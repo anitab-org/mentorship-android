@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -26,6 +28,8 @@ class LoginViewModel : ViewModel() {
 
     var tag = LoginViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val authDataManager: AuthDataManager = AuthDataManager()
 
@@ -36,7 +40,6 @@ class LoginViewModel : ViewModel() {
      * Will be used to run the login method of the AuthService
      * @param login a login request object containing the credentials
      */
-    @SuppressLint("CheckResult")
     fun login(@NonNull login: Login) {
         authDataManager.login(login)
                 .subscribeOn(Schedulers.newThread())
@@ -72,6 +75,12 @@ class LoginViewModel : ViewModel() {
                     override fun onComplete() {
                     }
                 })
+                .addTo(compositeDisposable)
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
 

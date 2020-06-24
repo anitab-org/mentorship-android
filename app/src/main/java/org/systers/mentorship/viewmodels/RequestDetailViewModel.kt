@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -23,6 +25,8 @@ class RequestDetailViewModel : ViewModel() {
 
     var tag = RequestDetailViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val relationDataManager = RelationDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
@@ -32,7 +36,6 @@ class RequestDetailViewModel : ViewModel() {
      * Accepts a mentorship request
      * @param requestId id of the mentorship request
      */
-    @SuppressLint("CheckResult")
     fun acceptRequest(requestId: Int) {
         relationDataManager.acceptRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
@@ -67,14 +70,13 @@ class RequestDetailViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
     }
 
     /**
      * Rejects a mentorship request
      * @param requestId id of the mentorship request
      */
-    @SuppressLint("CheckResult")
     fun rejectRequest(requestId: Int) {
         relationDataManager.rejectRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
@@ -109,14 +111,13 @@ class RequestDetailViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable )
     }
 
     /**
      * Deletes a mentorship request
      * @param requestId id of the mentorship request
      */
-    @SuppressLint("CheckResult")
     fun deleteRequest(requestId: Int) {
         relationDataManager.deleteRelationship(requestId)
                 .subscribeOn(Schedulers.newThread())
@@ -151,7 +152,12 @@ class RequestDetailViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
 

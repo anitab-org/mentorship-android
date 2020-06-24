@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -25,6 +27,8 @@ class SignUpViewModel : ViewModel() {
 
     var tag = SignUpViewModel::class.java.simpleName!!
 
+    private val compositeDisposable by lazy { CompositeDisposable() }
+
     private val authDataManager: AuthDataManager = AuthDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
@@ -34,7 +38,6 @@ class SignUpViewModel : ViewModel() {
      * Will be used to run the register method of the AuthService
      * @param register a registration request object containing the a user's registration fields
      */
-    @SuppressLint("CheckResult")
     fun register(@NonNull register: Register) {
         authDataManager.register(register)
                 .subscribeOn(Schedulers.newThread())
@@ -69,7 +72,13 @@ class SignUpViewModel : ViewModel() {
 
                     override fun onComplete() {
                     }
-                })
+                }).addTo(compositeDisposable)
+    }
+
+    override fun onCleared() {
+        compositeDisposable.dispose()
+        super.onCleared()
     }
 }
+
 
