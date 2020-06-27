@@ -9,6 +9,9 @@
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_medium">24dp</dimen>
     <dimen name="margin_big">32dp</dimen>
+    <dimen name="padding_small">10dp</dimen>
+    <dimen name="cardView_dimen_120">120dp</dimen>
     <dimen name="test_size_title">18sp</dimen>
     <dimen name="test_size_title_big">24sp</dimen>
+    <dimen name="ico_size_50dp">50dp</dimen>
 </resources>
