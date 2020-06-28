@@ -11,4 +11,5 @@
     <dimen name="margin_big">32dp</dimen>
     <dimen name="test_size_title">18sp</dimen>
     <dimen name="test_size_title_big">24sp</dimen>
+    <dimen name="progress_bar_size_small">24dp</dimen>
 </resources>
