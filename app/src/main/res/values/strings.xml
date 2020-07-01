@@ -155,6 +155,17 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="url_terms">https://anitab.org/terms-of-use/</string>
     <string name="url_privacy">https://anitab.org/privacy-policy/</string>
     <string name="url_code_of_conduct">https://ghc.anitab.org/code-of-conduct/</string>
+    <string name="intro_prefs">intro_prefs</string>
+    <string name="intro_prefs_first_run">intro_prefs_key</string>
+    <string name="page_1_title">Welcome to Mentorship System!</string>
+    <string name="page_1_description">A new way to boost your career</string>
+    <string name="page_2_title">Your profile</string>
+    <string name="page_2_description">Add relevant information so we can match you easier.</string>
+    <string name="page_3_description">Get in touch and pursue your skills</string>
+    <string name="page_3_title">Become a mentee</string>
+    <string name="page_4_title">Become a mentor</string>
+    <string name="page_4_description">Help others and develop yourself by sharing  knowledge</string>
+    <string name="undraw_attribution">Images in the app intro slider are from <b>undraw.co</b></string>
     <string name="transition_profile_img">transition_profile_img</string>
     <string name="transition_name">transition_name</string>
     <string name="feedback_sendfeedback">Send us your feedback!</string>

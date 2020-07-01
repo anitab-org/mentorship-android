@@ -57,6 +57,15 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:paddingTop="32dp"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/undraw_attribution"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
 
             <GridLayout
                 android:layout_width="match_parent"
