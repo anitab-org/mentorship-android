@@ -11,9 +11,9 @@
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/srlHome">
+        android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/homeContainer"
@@ -35,6 +35,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
                     android:animateLayoutChanges="true"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="@{stats != null ? (@string/welcome + `, ` + stats.name + `!`) : `Welcome!` }"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textSize="30sp"
@@ -159,6 +160,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="@string/recent_achievements"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textSize="24sp"
@@ -179,19 +181,36 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvRecentAchievementsTitle" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <LinearLayout
                     android:id="@+id/tvNoAchievements"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/no_recent_achievements"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:orientation="vertical"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvRecentAchievementsTitle" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvRecentAchievementsTitle"
+                    tools:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="300dp"
+                        android:layout_height="250dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/nothing_illus" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/quattrocento"
+                        android:text="@string/no_recent_achievements"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="22sp" />
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

@@ -1,140 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvOtherUserName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical"
-            tools:text="Lola Zink"
-            android:textSize="36sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/i_will_be_a"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOtherUserName" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/end_date_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rgCurrentUserRole" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/tvRequestEndDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:hint="@string/end_date_format"
-            app:layout_constraintEnd_toStartOf="@+id/ivCalendar"
-            app:layout_constraintHorizontal_bias="0.06"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/rgCurrentUserRole" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivCalendar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rgCurrentUserRole"
-            app:srcCompat="@drawable/ic_date_range_black_24dp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textView10"
-            android:layout_width="0dp"
-            android:layout_height="19dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/notes"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRequestEndDate" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etRequestNotes"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-        <RadioGroup
-            android:id="@+id/rgCurrentUserRole"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.01"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/btnMentorRadio"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOtherUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mentor" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                tools:text="Lola Zink" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/btnMenteeRadio"
+            <ImageView
+                android:id="@+id/mentor_mentee_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/tvOtherUserName"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/mentor_mentee_illus" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mentee" />
+                android:layout_below="@+id/tvOtherUserName"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@+id/mentor_mentee_img"
+                android:fontFamily="@font/quattrocento"
+                android:text="@string/i_will_be_a"
+                android:textSize="20sp" />
 
-        </RadioGroup>
+            <RadioGroup
+                android:id="@+id/rgCurrentUserRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView7"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@+id/mentor_mentee_img"
+                android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSendRequest"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/send_request"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etRequestNotes"
-            app:layout_constraintVertical_bias="1.0" />
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/btnMentorRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mentor" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/btnMenteeRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mentee" />
 
-</ScrollView>
+            </RadioGroup>
+
+            <ImageView
+                android:id="@+id/dates_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/mentor_mentee_img"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/date_illus" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mentor_mentee_img"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_toEndOf="@+id/dates_img"
+                android:fontFamily="@font/quattrocento"
+                android:text="@string/end_date_label"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvRequestEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView8"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@+id/dates_img"
+                android:hint="@string/end_date_format" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCalendar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textView8"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_toEndOf="@+id/tvRequestEndDate"
+                app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dates_img"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@+id/notes_img"
+                android:fontFamily="@font/quattrocento"
+                android:text="@string/notes"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/notes_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/dates_img"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                app:srcCompat="@drawable/send_req_illus" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etRequestNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView10"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toEndOf="@+id/notes_img"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSendRequest"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/send_request" />
+</RelativeLayout>

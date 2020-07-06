@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,60 +10,62 @@
         android:id="@+id/tvMentorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:maxLines="1"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
-        tools:text="Mentor: Isabel Costa"
+        android:maxLines="1"
         app:layout_constraintEnd_toStartOf="@+id/tvCreationDate"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Mentor: Isabel Costa" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCreationDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        tools:text="Yesterday"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Yesterday" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMenteeName"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        android:maxLines="1"
+        android:layout_marginEnd="8dp"
         android:ellipsize="end"
-        tools:text="Mentee: Lola Zink"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMentorName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMentorName"
+        tools:text="Mentee: Lola Zink" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        tools:text="End date: 10/09/2018"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMenteeName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMenteeName"
+        tools:text="End date: 10/09/2018" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNotes"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:ellipsize="end"
         android:maxLines="2"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,8 +80,8 @@
         android:id="@+id/ivActionUserIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCreationDate"
         app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".view.activities.FilterActivity">
 
     <ScrollView
@@ -14,10 +13,18 @@
         app:layout_constraintBottom_toTopOf="@+id/layoutFilter"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingBottom="@dimen/margin_medium">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/filter_illus" />
 
             <TextView
                 android:id="@+id/tvSortByTitle"
@@ -26,100 +33,110 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_normal"
                 android:layout_marginTop="@dimen/margin_medium"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/sort_by"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardSortNameAZ"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:elevation="@dimen/margin_small"
-                android:onClick="buttonOnClickSort"
-                app:cardCornerRadius="@dimen/margin_normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSortByTitle"
-                tools:targetApi="lollipop">
 
-                <TextView
-                    android:id="@+id/tvSortNameAZ"
-                    style="@style/TextBlack"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSortNameAZ"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
-                    android:text="@string/name_a_z" />
+                    android:layout_weight="1"
+                    android:elevation="@dimen/margin_small"
+                    android:onClick="buttonOnClickSort"
+                    tools:targetApi="lollipop">
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvSortNameAZ"
+                        style="@style/TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:fontFamily="@font/quattrocento"
+                        android:text="@string/name_a_z" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardSortNameZA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:elevation="@dimen/margin_small"
-                android:onClick="buttonOnClickSort"
-                app:cardCornerRadius="@dimen/margin_normal"
-                app:layout_constraintStart_toEndOf="@+id/cardSortNameAZ"
-                app:layout_constraintTop_toBottomOf="@+id/tvSortByTitle"
-                tools:targetApi="lollipop">
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/tvSortNameZA"
-                    style="@style/TextBlack"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSortNameZA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
-                    android:text="@string/name_z_a" />
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/margin_small"
+                    android:onClick="buttonOnClickSort"
+                    tools:targetApi="lollipop">
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvSortNameZA"
+                        style="@style/TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:fontFamily="@font/quattrocento"
+                        android:text="@string/name_z_a" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardSortRegistrationDate"
-                android:layout_width="wrap_content"
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:elevation="@dimen/margin_small"
-                android:onClick="buttonOnClickSort"
-                app:cardCornerRadius="@dimen/margin_normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardSortNameAZ"
-                tools:targetApi="lollipop">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvSortRegistrationDate"
-                    style="@style/TextBlack"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSortRegistrationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
-                    android:text="@string/registration_date" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/margin_small"
+                    android:onClick="buttonOnClickSort"
+                    tools:targetApi="lollipop">
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvSortRegistrationDate"
+                        style="@style/TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:fontFamily="@font/quattrocento"
+                        android:text="@string/registration_date" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardSortAge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:elevation="@dimen/margin_small"
-                app:cardCornerRadius="@dimen/margin_normal"
-                app:layout_constraintStart_toEndOf="@+id/cardSortRegistrationDate"
-                app:layout_constraintTop_toBottomOf="@+id/cardSortNameAZ"
-                tools:targetApi="lollipop">
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/tvSortAge"
-                    style="@style/TextBlack"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSortAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
-                    android:text="@string/age" />
+                    android:layout_weight="1"
+                    android:elevation="@dimen/margin_small"
+                    tools:targetApi="lollipop">
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvSortAge"
+                        style="@style/TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:fontFamily="@font/quattrocento"
+                        android:text="@string/age" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvFilter"
@@ -128,60 +145,67 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_normal"
                 android:layout_marginTop="@dimen/margin_big"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/filter_by"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardSortRegistrationDate" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_filter_choice" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardFilterNeedMentoring"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:elevation="@dimen/margin_small"
-                app:cardCornerRadius="@dimen/margin_normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvFilter"
-                tools:targetApi="lollipop">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvFilterNeedMentoring"
-                    style="@style/TextBlack"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFilterNeedMentoring"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
-                    android:text="@string/need_mentoring" />
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/margin_small"
+                    tools:targetApi="lollipop">
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvFilterNeedMentoring"
+                        style="@style/TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:fontFamily="@font/quattrocento"
+                        android:text="@string/need_mentoring" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardFilterAvailableToMentor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_normal"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:elevation="@dimen/margin_small"
-                app:cardCornerRadius="@dimen/margin_normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardFilterNeedMentoring"
-                tools:targetApi="lollipop">
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/tvFilterAvailableToMentor"
-                    style="@style/TextBlack"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFilterAvailableToMentor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_normal"
-                    android:text="@string/available_to_mentor" />
+                    android:layout_weight="1"
+                    android:elevation="@dimen/margin_small"
+                    tools:targetApi="lollipop">
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvFilterAvailableToMentor"
+                        style="@style/TextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_normal"
+                        android:fontFamily="@font/quattrocento"
+                        android:text="@string/available_to_mentor" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutFilterInterests"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/interests"
                 app:layout_constraintTop_toBottomOf="@id/cardFilterAvailableToMentor">
 
@@ -198,9 +222,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal"
-                android:hint="@string/location"
-                app:layout_constraintTop_toBottomOf="@id/layoutFilterInterests">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/location">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFilterLocation"
@@ -215,7 +240,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/skills"
                 app:layout_constraintTop_toBottomOf="@id/layoutFilterLocation">
 
@@ -227,58 +254,43 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
     </ScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/layoutFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="@dimen/margin_middle"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <View
-            android:id="@+id/dividerFilter"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividerColor"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <Button
             android:id="@+id/btnClearAll"
-            style="@style/TextBlack"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_middle"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_outline_aubergine"
             android:text="@string/clear_all"
-            android:textColor="@color/textColorBlack"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dividerFilter" />
+            android:textColor="@color/aubergine" />
 
-        <androidx.cardview.widget.CardView
+        <Button
             android:id="@+id/btnApplyFilter"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/margin_middle"
-            android:backgroundTint="@color/colorPrimary"
-            app:cardCornerRadius="@dimen/margin_normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dividerFilter"
-            tools:targetApi="lollipop">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="@string/apply_filter"
+            android:textColor="@color/white"
+            tools:targetApi="lollipop" />
 
-            <TextView
-                style="@style/TextBlack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_middle"
-                android:text="@string/apply_filter"
-                android:textColor="@color/white" />
-
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

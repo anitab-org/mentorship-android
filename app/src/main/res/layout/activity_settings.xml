@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activities.SettingsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/curved_back_about_page" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-120dp"
+            android:layout_marginBottom="32dp"
+            android:src="@drawable/settings_illus" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAbout"
@@ -17,9 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_info_black_24dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/popup_menu_about"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@android:color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvFeedback"
@@ -29,9 +42,9 @@
             android:clickable="true"
             android:drawableStart="@drawable/ic_feedback_black_24dp"
             android:focusable="true"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/popup_menu_feedback"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
+            android:textColor="@android:color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLogout"
@@ -39,19 +52,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/popup_menu_logout"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tvFeedback" />
+            android:textColor="@android:color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvResetPassword"
             style="@style/TextViewSettings"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/change_password"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tvLogout" />
+            android:textColor="@android:color/black" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDeleteAccount"
@@ -59,10 +73,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_delete_black_24dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/popup_menu_delete_account"
-            android:textColor="@android:color/holo_red_dark"
-            app:layout_constraintTop_toBottomOf="@+id/tvResetPassword" />
+            android:textColor="@android:color/holo_red_dark" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </ScrollView>

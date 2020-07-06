@@ -81,7 +81,7 @@ class RequestPagerFragment: BaseFragment() {
                 layoutManager = LinearLayoutManager(context)
                 adapter = RequestsAdapter(filtered, openRequestDetail)
             }
-            tvEmptyList.visibility = View.GONE
+            emptyListLayout.visibility = View.GONE
         }
     }
 }

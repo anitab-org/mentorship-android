@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="user"
             type="org.systers.mentorship.models.User" />
@@ -19,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <ImageView
                 android:id="@+id/imgUserAvatar"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
@@ -27,7 +29,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+                app:srcCompat="@drawable/girl_png" />
 
 
             <TextView
@@ -48,6 +50,7 @@
                 android:layout_below="@id/tvUsername"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@={user.email}"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -66,15 +69,15 @@
                     android:id="@+id/tiName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/name">
+                    android:hint="@string/name"
+                    android:textColorHint="@color/aubergine">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
-                        android:textColor="@color/black"
-                        android:text="@={user.name}" />
+                        android:text="@={user.name}"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,8 +89,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="@string/available_to_mentor" />
+                        android:text="@string/available_to_mentor"
+                        android:textColor="@color/black" />
 
                     <Switch
                         android:id="@+id/switchAvailableToMentor"
@@ -105,8 +108,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="@string/need_mentoring" />
+                        android:text="@string/need_mentoring"
+                        android:textColor="@color/black" />
 
                     <Switch
                         android:id="@+id/switchNeedsMentoring"
@@ -120,15 +123,15 @@
                     android:id="@+id/tiBio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/bio">
+                    android:hint="@string/bio"
+                    android:textColorHint="@color/aubergine">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.bio}" />
+                        android:text="@={user.bio}"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,15 +139,15 @@
                     android:id="@+id/tiSlack"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/slack_username">
+                    android:hint="@string/slack_username"
+                    android:textColorHint="@color/aubergine">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
-                        android:textColor="@color/black"
-                        android:text="@={user.slackUsername}" />
+                        android:text="@={user.slackUsername}"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,15 +155,15 @@
                     android:id="@+id/tiLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/location">
+                    android:hint="@string/location"
+                    android:textColorHint="@color/aubergine">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPostalAddress"
-                        android:textColor="@color/black"
-                        android:text="@={user.location}" />
+                        android:text="@={user.location}"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,15 +171,15 @@
                     android:id="@+id/tiOccupation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/occupation">
+                    android:hint="@string/occupation"
+                    android:textColorHint="@color/aubergine">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.occupation}" />
+                        android:text="@={user.occupation}"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,15 +187,15 @@
                     android:id="@+id/tiOrganization"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/organization">
+                    android:hint="@string/organization"
+                    android:textColorHint="@color/aubergine">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.organization}" />
+                        android:text="@={user.organization}"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -200,16 +203,16 @@
                     android:id="@+id/tiSkills"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/skills">
+                    android:hint="@string/skills"
+                    android:textColorHint="@color/aubergine">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
                         android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.skills}" />
+                        android:text="@={user.skills}"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -217,15 +220,15 @@
                     android:id="@+id/tiInterests"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/aubergine"
-                    android:hint="@string/interests">
+                    android:hint="@string/interests"
+                    android:textColorHint="@color/aubergine">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:textColor="@color/black"
-                        android:text="@={user.interests}" />
+                        android:text="@={user.interests}"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

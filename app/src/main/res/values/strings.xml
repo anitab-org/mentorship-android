@@ -96,7 +96,7 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="updating_profile">Updating profile…</string>
     <string name="end_date_label">End Date:</string>
-    <string name="i_will_be_a">I will be a …</string>
+    <string name="i_will_be_a">I will be a</string>
     <string name="end_date_format">dd/mm/YYYY</string>
     <string name="no_current_mentorship_relation">You are not in a current mentorship relation.</string>
     <string name="notes_empty_error">Notes cannot be empty</string>
@@ -165,7 +165,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="page_3_title">Become a mentee</string>
     <string name="page_4_title">Become a mentor</string>
     <string name="page_4_description">Help others and develop yourself by sharing  knowledge</string>
-    <string name="undraw_attribution">Images in the app intro slider are from <b>undraw.co</b></string>
+    <string name="undraw_attribution">Images used in the app are from <b>undraw.co</b></string>
+    <string name="icon_finder_attribution">Profile icon used in the app is from <b>iconfinder.com</b></string>
     <string name="transition_profile_img">transition_profile_img</string>
     <string name="transition_name">transition_name</string>
     <string name="feedback_sendfeedback">Send us your feedback!</string>
@@ -211,5 +212,7 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="bug">Bug</string>
     <string name="input"> Please fill in the input fields and/or assign a rating</string>
     <string name="feedback_thank">Thank you for your feedback!</string>
+    <string name="pls_sign_in">Please SignIn to use the application</string>
+    <string name="pls_add_details">Please add details to register</string>
 </resources>
 
