@@ -45,7 +45,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvTasks" />
+                app:layout_constraintTop_toBottomOf="@id/rvTasks" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAchievements"
@@ -56,7 +56,7 @@
                 android:text="Achievements"
                 android:textSize="@dimen/test_size_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvNoTask" />
+                app:layout_constraintTop_toBottomOf="@id/tvNoTask" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAchievements"
@@ -74,11 +74,11 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginEnd="@dimen/margin_normal"
-                app:layout_constraintBottom_toBottomOf="@+id/tvTodo"
+                app:layout_constraintBottom_toBottomOf="@id/tvTodo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tvTodo"
-                app:layout_constraintTop_toTopOf="@+id/tvTodo"
+                app:layout_constraintStart_toEndOf="@id/tvTodo"
+                app:layout_constraintTop_toTopOf="@id/tvTodo"
                 app:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -87,11 +87,11 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginEnd="@dimen/margin_normal"
-                app:layout_constraintBottom_toBottomOf="@+id/tvAchievements"
+                app:layout_constraintBottom_toBottomOf="@id/tvAchievements"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tvAchievements"
-                app:layout_constraintTop_toTopOf="@+id/tvAchievements"
+                app:layout_constraintStart_toEndOf="@id/tvAchievements"
+                app:layout_constraintTop_toTopOf="@id/tvAchievements"
                 fab:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
