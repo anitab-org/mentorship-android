@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.requests.ChangePassword
+import org.systers.mentorship.remote.requests.PaginationRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.*
 
@@ -20,11 +21,21 @@ interface UserService {
     fun getUsers(): Observable<List<User>>
 
     /**
+     * This function returns all users, with email verified,
+     * of the system with requested pagination info
+     * @return an observable instance of a list of [User]s
+     */
+    @GET("users/verified")
+    fun getVerifiedUsers(@QueryMap pagination:Map<String, String>): Observable<List<User>>
+
+
+    /**
      * This function returns all users, with email verified, of the system
      * @return an observable instance of a list of [User]s
      */
     @GET("users/verified")
     fun getVerifiedUsers(): Observable<List<User>>
+
 
     /**
      * This function returns a user's public profile of the system
