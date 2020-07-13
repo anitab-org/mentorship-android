@@ -10,7 +10,6 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -18,10 +17,10 @@
                 android:id="@+id/tvTodo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
                 android:text="To do"
-                android:textSize="18sp"
+                android:textSize="@dimen/test_size_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,81 +28,84 @@
                 android:id="@+id/rvTasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                app:layout_constraintTop_toBottomOf="@id/tvTodo"
-                app:layout_constraintVertical_weight="0.5" />
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTodo" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNoTask"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
                 android:text="No tasks"
                 android:textAlignment="center"
-                app:layout_constraintTop_toBottomOf="@id/tvTodo"
-                app:layout_constraintVertical_weight="0.5" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvTasks" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvAchievements"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_big"
                 android:text="Achievements"
-                android:textSize="18sp"
+                android:textSize="@dimen/test_size_title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvTasks" />
+                app:layout_constraintTop_toBottomOf="@id/tvNoTask" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAchievements"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvAchievements"
-                app:layout_constraintVertical_weight="0.5" />
+                app:layout_constraintTop_toBottomOf="@id/tvAchievements" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_normal"
+                app:layout_constraintBottom_toBottomOf="@id/tvTodo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tvTodo"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvTodo"
+                app:layout_constraintTop_toTopOf="@id/tvTodo"
                 app:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView2"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_normal"
+                app:layout_constraintBottom_toBottomOf="@id/tvAchievements"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tvAchievements"
-                app:layout_constraintTop_toTopOf="@+id/tvAchievements"
+                app:layout_constraintStart_toEndOf="@id/tvAchievements"
+                app:layout_constraintTop_toTopOf="@id/tvAchievements"
                 fab:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNoAchievements"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginStart="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
                 android:text="No achievements"
                 android:textAlignment="center"
-                app:layout_constraintTop_toBottomOf="@id/rvAchievements"
-                app:layout_constraintVertical_weight="0.5" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvAchievements" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
