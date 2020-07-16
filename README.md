@@ -35,6 +35,17 @@ Please read our [Contributing guidelines](https://github.com/anitab-org/mentorsh
 
 Please follow our [Commit Message Style Guide](https://github.com/anitab-org/mentorship-android/wiki/Commit-Message-Style-Guide) while sending PRs.
 
+## Documentation
+
+To learn more about this app you can look at [this project's wiki](https://github.com/anitab-org/mentorship-android/wiki).
+
+Check out the design history at [User Interface Design](https://github.com/anitab-org/mentorship-android/wiki/User-Interface-Design).
+
+Our tech stack includes:
+- **Language:** [Kotlin](https://kotlinlang.org/)
+- **Architecture:** Model View ViewModel (MVVM)
+- **Libraries:** [Retrofit](http://square.github.io/retrofit/), [RxJava](https://github.com/ReactiveX/RxJava), ViewModel, LiveData, DataBinding
+
 ## Branches
 
 The repository has the following permanent branches:
