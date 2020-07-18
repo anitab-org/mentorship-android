@@ -13,5 +13,6 @@
     <dimen name="cardView_dimen_120">120dp</dimen>
     <dimen name="test_size_title">18sp</dimen>
     <dimen name="test_size_title_big">24sp</dimen>
+    <dimen name="progress_bar_size_small">24dp</dimen>
     <dimen name="ico_size_50dp">50dp</dimen>
 </resources>
