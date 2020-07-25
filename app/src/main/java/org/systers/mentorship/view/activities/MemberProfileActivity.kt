@@ -42,7 +42,7 @@ class MemberProfileActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     setCurrentUser(profileViewModel.user)
-                    if (currentUser.availableToMentor!=true && currentUser.needMentoring!=true) {
+                    if (!currentUser.availableToMentor!! && !currentUser.needMentoring!!) {
                         btnSendRequest.setBackgroundColor(Color.GRAY)
                     }
                 } else {
@@ -62,7 +62,7 @@ class MemberProfileActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     setUserProfile(memberProfileViewModel.userProfile)
-                    if (userProfile.availableToMentor!=true && userProfile.needMentoring!=true) {
+                    if (!userProfile.availableToMentor!! && !userProfile.needMentoring!!) {
                         btnSendRequest.setBackgroundColor(Color.GRAY)
                     }
                 } else {
@@ -82,9 +82,9 @@ class MemberProfileActivity : BaseActivity() {
 
             if (this::currentUser.isInitialized && this::userProfile.isInitialized) {
 
-                if (currentUser.availableToMentor == true || currentUser.needMentoring == true) {
+                if (currentUser.availableToMentor!! || currentUser.needMentoring!!) {
 
-                    if (userProfile.availableToMentor == true || userProfile.availableToMentor == true) {
+                    if (userProfile.availableToMentor!! || userProfile.availableToMentor!!) {
                         val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
                         intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
                         intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
@@ -164,8 +164,6 @@ class MemberProfileActivity : BaseActivity() {
                 tvUsername, getString(R.string.username), user.username)
         setTextViewStartingWithBoldSpan(
                 tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
-        if (!user.availableToMentor!! && !user.needMentoring!!)
-            btnSendRequest.isEnabled = false
     }
 
     override fun onDestroy() {
