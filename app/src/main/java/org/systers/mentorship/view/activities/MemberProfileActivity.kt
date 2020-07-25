@@ -1,12 +1,14 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -40,6 +42,9 @@ class MemberProfileActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     setCurrentUser(profileViewModel.user)
+                    if (currentUser.availableToMentor!=true && currentUser.needMentoring!=true) {
+                        btnSendRequest.setBackgroundColor(Color.GRAY)
+                    }
                 } else {
                     Snackbar.make(getRootView(), profileViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
@@ -57,6 +62,9 @@ class MemberProfileActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     setUserProfile(memberProfileViewModel.userProfile)
+                    if (userProfile.availableToMentor!=true && userProfile.needMentoring!=true) {
+                        btnSendRequest.setBackgroundColor(Color.GRAY)
+                    }
                 } else {
                     Snackbar.make(getRootView(), memberProfileViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
@@ -70,18 +78,29 @@ class MemberProfileActivity : BaseActivity() {
 
         fetchNewest()
 
-
         btnSendRequest.setOnClickListener {
-            if(userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false)
-                    && (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?:false))){
-                Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
-                        .show()
-            } else{
-              val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
-                intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
-                intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
-                startActivity(intent)
-            }
+
+            if (this::currentUser.isInitialized && this::userProfile.isInitialized) {
+
+                if (currentUser.availableToMentor == true || currentUser.needMentoring == true) {
+
+                    if (userProfile.availableToMentor == true || userProfile.availableToMentor == true) {
+                        val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+                        intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
+                        intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
+                        startActivity(intent)
+
+                    } else Snackbar.make(getRootView(),
+                            getString(R.string.user_not_available_to_mentor_or_mentee),
+                            Snackbar.LENGTH_LONG).show()
+
+                } else Snackbar.make(getRootView(),
+                        getString(R.string.you_not_available_to_mentor_or_mentee),
+                        Snackbar.LENGTH_LONG).show()
+
+            } else Snackbar.make(getRootView(),
+                    getString(R.string.error_something_went_wrong),
+                    Snackbar.LENGTH_LONG).show()
         }
     }
 
