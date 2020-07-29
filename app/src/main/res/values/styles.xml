@@ -59,6 +59,6 @@
     </style>
 
     <style name="ExpandedToolbarTextStyle">
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">@dimen/expanded_toolbar_text_size</item>
     </style>
 </resources>
