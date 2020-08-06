@@ -1,6 +1,9 @@
 package org.systers.mentorship.view.activities
 
 import android.app.DatePickerDialog
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -115,7 +118,8 @@ class SendRequestActivity: BaseActivity() {
                         notes = notes,
                         endDate = endDate
                 )
-                if (!isRequestDuplicate(sendRequestData)) {
+
+                 if (!isRequestDuplicate(sendRequestData)) {
                     sendRequestViewModel.sendRequest(sendRequestData)
                 }
                 else{
@@ -178,13 +182,18 @@ class SendRequestActivity: BaseActivity() {
     }
 
     private fun isRequestDuplicate(newRelationship: RelationshipRequest): Boolean{
-        pendingSentRelationships.forEach { relationship: Relationship -> Unit
-            if (newRelationship.menteeId == relationship.mentee.id && newRelationship.mentorId == relationship.mentor.id
-                    && newRelationship.endDate.toFloat() == relationship.endDate) {
-                return true
+
+
+            pendingSentRelationships.forEach { relationship: Relationship ->
+                Unit
+                if (newRelationship.menteeId == relationship.mentee.id && newRelationship.mentorId == relationship.mentor.id
+                        && newRelationship.endDate.toFloat() == relationship.endDate) {
+                    return true
+                }
             }
-        }
+
         return false
     }
+
 }
 

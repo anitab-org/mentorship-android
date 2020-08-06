@@ -1,8 +1,11 @@
 package org.systers.mentorship.view.activities
 
+import android.content.Context
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -72,15 +75,24 @@ class MemberProfileActivity : BaseActivity() {
 
 
         btnSendRequest.setOnClickListener {
-            if(userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false)
-                    && (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?:false))){
-                Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
+            if(isNetworkAvailable()) {
+                if (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring
+                                ?: false)
+                        && (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring
+                                ?: false))) {
+                    Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
+                            .show()
+                } else {
+                    val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+                    intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
+                    intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
+                    startActivity(intent)
+                }
+            }
+            else{
+                Snackbar.make(getRootView(), getString(R.string.error_please_check_internet), Snackbar.LENGTH_LONG)
                         .show()
-            } else{
-              val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
-                intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
-                intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
-                startActivity(intent)
+
             }
         }
     }
@@ -147,6 +159,13 @@ class MemberProfileActivity : BaseActivity() {
                 tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
         if (!user.availableToMentor!! && !user.needMentoring!!)
             btnSendRequest.isEnabled = false
+    }
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
+        return if (connectivityManager is ConnectivityManager) {
+            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+            networkInfo?.isConnected ?: false
+        } else false
     }
 
     override fun onDestroy() {
