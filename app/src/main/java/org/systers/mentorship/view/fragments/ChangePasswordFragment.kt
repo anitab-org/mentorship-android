@@ -12,6 +12,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
+import org.systers.mentorship.utils.checkPasswordSecurity
 import org.systers.mentorship.viewmodels.ChangePasswordViewModel
 
 /**
@@ -26,14 +27,15 @@ class ChangePasswordFragment : DialogFragment() {
         fun newInstance() = ChangePasswordFragment()
     }
 
-    private lateinit var changePasswordViewModel: ChangePasswordViewModel
+    private val changePasswordViewModel by lazy {
+        ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
+    }
     private lateinit var changePasswordView: View
     private lateinit var currentPassword: String
     private lateinit var newPassword: String
     private lateinit var confirmPassword: String
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        changePasswordViewModel = ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
         changePasswordViewModel.successfulUpdate.observe(this, Observer { successful ->
 
             if (successful != null) {
@@ -61,7 +63,7 @@ class ChangePasswordFragment : DialogFragment() {
         super.onResume()
 
         val passwordDialog = dialog as? AlertDialog
-
+        passwordDialog?.setCanceledOnTouchOutside(false)
         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
             currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
             newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
@@ -76,8 +78,11 @@ class ChangePasswordFragment : DialogFragment() {
         }
     }
 
-    private fun validatePassword() : Boolean {
-        return if (newPassword == confirmPassword && newPassword != currentPassword) {
+    private fun validatePassword(): Boolean {
+        return if (!newPassword.checkPasswordSecurity()) {
+            changePasswordView.tilNewPassword?.error = getString(R.string.error_password_too_weak)
+            false
+        } else if (newPassword == confirmPassword && newPassword != currentPassword) {
             true
         } else {
             if (currentPassword == newPassword) {

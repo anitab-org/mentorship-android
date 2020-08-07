@@ -11,7 +11,9 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
+import org.systers.mentorship.remote.requests.PaginationRequest
 import org.systers.mentorship.utils.CommonUtils
+import org.systers.mentorship.utils.Constants.ITEMS_PER_PAGE
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
@@ -21,26 +23,33 @@ import java.util.concurrent.TimeoutException
  */
 class MembersViewModel : ViewModel() {
 
-    var TAG = MembersViewModel::class.java.simpleName
+    var tag = MembersViewModel::class.java.simpleName!!
 
     private val userDataManager: UserDataManager = UserDataManager()
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
+    var currentPage = 1
     lateinit var message: String
-    lateinit var userList: List<User>
+    var userList: ArrayList<User> = arrayListOf()
+
 
     /**
      * Fetches users list from getUsers method of the UserService
      */
     @SuppressLint("CheckResult")
-    fun getUsers() {
-        userDataManager.getUsers()
+    fun getUsers(isRefresh: Boolean) {
+        if (isRefresh) {
+            userList.clear()
+            currentPage = 1
+        }
+        userDataManager.getUsers(paginationRequest = PaginationRequest(currentPage,ITEMS_PER_PAGE))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<User>>() {
                     override fun onNext(userListResponse: List<User>) {
-                        userList = userListResponse
+                        userList.addAll(userListResponse)
                         successful.value = true
+                        currentPage++
                     }
 
                     override fun onError(throwable: Throwable) {
@@ -59,7 +68,7 @@ class MembersViewModel : ViewModel() {
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
-                                Log.e(TAG, throwable.localizedMessage)
+                                Log.e(tag, throwable.localizedMessage)
                             }
                         }
                         successful.value = false
@@ -70,3 +79,4 @@ class MembersViewModel : ViewModel() {
                 })
     }
 }
+
