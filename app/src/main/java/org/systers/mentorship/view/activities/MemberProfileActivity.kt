@@ -37,12 +37,17 @@ class MemberProfileActivity : BaseActivity() {
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        btnSendRequest.isEnabled=false
+
+
+
         profileViewModel= ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         profileViewModel.successfulGet.observe(this, Observer {
             successful ->
             if (successful != null) {
                 if (successful) {
                     setCurrentUser(profileViewModel.user)
+
                 } else {
                     Snackbar.make(getRootView(), profileViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
@@ -60,6 +65,8 @@ class MemberProfileActivity : BaseActivity() {
             if (successful != null) {
                 if (successful) {
                     setUserProfile(memberProfileViewModel.userProfile)
+                    btnSendRequest.isEnabled=true
+                    
                 } else {
                     Snackbar.make(getRootView(), memberProfileViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
