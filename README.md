@@ -1,5 +1,5 @@
 
-[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://anitab-org.zulipchat.com/)
+[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)](https://anitab-org.zulipchat.com/#narrow/stream/222534-mentorship-system)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 ![Run tests](https://img.shields.io/badge/Run%20tests-passing-green)
 ![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)
