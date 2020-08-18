@@ -15,5 +15,6 @@
     <dimen name="test_size_title_big">24sp</dimen>
     <dimen name="progress_bar_size_small">24dp</dimen>
     <dimen name="ico_size_50dp">50dp</dimen>
+    <dimen name="fab_button_visible">60dp</dimen>
     <dimen name="expanded_toolbar_text_size">26sp</dimen>
 </resources>
