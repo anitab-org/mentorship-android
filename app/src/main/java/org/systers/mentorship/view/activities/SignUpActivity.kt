@@ -2,6 +2,7 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.Toast
@@ -32,9 +33,22 @@ class SignUpActivity : BaseActivity() {
     private var needsMentoring: Boolean = false
     private var isAvailableForBoth: Boolean = false
 
+    // checking if any of the fields is empty at an interval of every 1.5 seconds
+    private val handler = Handler()
+    private val checkInput = object : Runnable{
+        override fun run() {
+            getDetails()
+
+            btnSignUp.isEnabled = validateDetails(false)
+
+            handler.postDelayed(this, 1500)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
         signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
@@ -51,27 +65,26 @@ class SignUpActivity : BaseActivity() {
         tvTC.movementMethod = LinkMovementMethod.getInstance()
 
         btnSignUp.setOnClickListener {
+            getDetails()
 
-            name = tiName.editText?.text.toString()
-            username = tiUsername.editText?.text.toString()
-            email = tiEmail.editText?.text.toString()
-            password = tiPassword.editText?.text.toString()
-            confirmedPassword = tiConfirmPassword.editText?.text.toString()
-            needsMentoring = cbMentee.isChecked //old name but works
-            isAvailableToMentor = cbMentor.isChecked //old name but works
-            isAvailableForBoth = cbBoth.isChecked
-
-            if (validateDetails()) {
+            if (validateDetails(true)) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             }
         }
+
         btnLogin.setOnClickListener {
             navigateToLoginActivity()
         }
+
         cbTC.setOnCheckedChangeListener { _, b ->
-            btnSignUp.isEnabled = b
+
+            if(! b) {
+                handler.removeCallbacks(checkInput)
+                btnSignUp.isEnabled = b
+            }
+            else checkInput.run()
         }
     }
 
@@ -79,46 +92,64 @@ class SignUpActivity : BaseActivity() {
         super.onDestroy()
         signUpViewModel.successful.removeObservers(this)
         signUpViewModel.successful.value = null
+
+        handler.removeCallbacks(checkInput)
     }
 
-    private fun validateDetails(): Boolean {
+    private fun getDetails(){
+        name = tiName.editText?.text.toString()
+        username = tiUsername.editText?.text.toString()
+        email = tiEmail.editText?.text.toString()
+        password = tiPassword.editText?.text.toString()
+        confirmedPassword = tiConfirmPassword.editText?.text.toString()
+        needsMentoring = cbMentee.isChecked //old name but works
+        isAvailableToMentor = cbMentor.isChecked //old name but works
+        isAvailableForBoth = cbBoth.isChecked
+    }
+
+    // b is false => checking if there are empty fields
+    // b is true => checking validity of the entries for signup
+    private fun validateDetails(b : Boolean): Boolean {
         var isValid = true
+
+        if(b) handler.removeCallbacks(checkInput)
+
         if (name.isBlank()) {
-            tiName.error = getString(R.string.error_empty_name)
+            if(b) tiName.error = getString(R.string.error_empty_name)
             isValid = false
         } else {
             tiName.error = null
         }
 
         if (username.isBlank()) {
-            tiUsername.error = getString(R.string.error_empty_username)
+            if(b) tiUsername.error = getString(R.string.error_empty_username)
             isValid = false
         } else {
             tiUsername.error = null
         }
 
         if (email.isBlank()) {
-            tiEmail.error = getString(R.string.error_empty_email)
+            if(b) tiEmail.error = getString(R.string.error_empty_email)
             isValid = false
         } else {
             tiEmail.error = null
         }
 
         if (password.isBlank()) {
-            tiPassword.error = getString(R.string.error_empty_password)
+            if(b) tiPassword.error = getString(R.string.error_empty_password)
             isValid = false
-        } else if (!password.checkPasswordSecurity()) {
+        } else if (!password.checkPasswordSecurity() && b) {
             tiPassword.error = getString(R.string.error_password_too_weak)
             isValid = false
         } else {
             tiPassword.error = null
         }
 
-        if (password != confirmedPassword) {
+        if (password != confirmedPassword && b) {
             tiConfirmPassword.error = getString(R.string.error_not_matching_passwords)
             isValid = false
         } else if (confirmedPassword.isBlank()) {
-            tiConfirmPassword.error = getString(R.string.error_empty_password_confirmation)
+            if(b) tiConfirmPassword.error = getString(R.string.error_empty_password_confirmation)
             isValid = false
         } else {
             tiConfirmPassword.error = null
@@ -126,10 +157,12 @@ class SignUpActivity : BaseActivity() {
 
         if (!needsMentoring && !isAvailableToMentor && !isAvailableForBoth) {
             isValid = false
-            cbMentee.requestFocus()
-            cbMentor.requestFocus()
-            cbBoth.requestFocus()
-            tvNoteSignUp.visibility = View.VISIBLE
+            if(b){
+                cbMentee.requestFocus()
+                cbMentor.requestFocus()
+                cbBoth.requestFocus()
+                tvNoteSignUp.visibility = View.VISIBLE
+            }
         } else if (isAvailableForBoth) {
             needsMentoring = true
             isAvailableToMentor = true
