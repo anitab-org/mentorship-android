@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.activities
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -7,6 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
@@ -30,7 +32,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        bottomNavigation.setOnNavigationItemReselectedListener {  }
+        bottomNavigation.setOnNavigationItemReselectedListener { }
 
         if (savedInstanceState == null) {
             showHomeFragment()
@@ -102,23 +104,24 @@ class MainActivity : BaseActivity() {
         outState.putBoolean("atHome", atHome)
     }
 
-    private fun showToast() {
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - mLastPress > TOAST_DURATION) {
-            exitToast = Toast.makeText(baseContext, getString(R.string.exit_toast), Toast.LENGTH_LONG)
-            exitToast.show()
-            mLastPress = currentTime
-        } else {
-            exitToast.cancel() // Hide toast on App exit
-            super.onBackPressed()
-        }
+
+    private fun showAlertDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Are you sure!")
+        builder.setMessage("Do you want to close the app?")
+        builder.setPositiveButton("Yes", { dialogInterface: DialogInterface, i: Int ->
+            //super.onBackPressed()
+            finish()
+        })
+        builder.setNegativeButton("No", { dialogInterface: DialogInterface, i: Int -> })
+        builder.show()
     }
 
     override fun onBackPressed() {
         if (!atHome) {
             showHomeFragment()
         } else {
-            showToast()
+            showAlertDialog()
         }
     }
 }
