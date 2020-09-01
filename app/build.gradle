@@ -70,5 +70,6 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+    implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
 }

@@ -57,20 +57,27 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:paddingTop="32dp"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/undraw_attribution"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alignmentMode="alignMargins"
-
                 android:columnCount="2"
-                android:padding="14dp"
-                android:rowCount="2">
+                android:padding="14dp">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnGit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -89,17 +96,18 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
-                            android:layout_height="50dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="3"
                             app:srcCompat="@drawable/ic_github" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
+                            android:padding="@dimen/padding_small"
                             android:text="@string/our_github_link"
                             android:textColor="#fff"
                             android:textSize="14sp"
@@ -110,8 +118,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnSlack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -130,7 +138,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
+                            android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="3"
@@ -139,9 +147,10 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
+                            android:padding="@dimen/padding_small"
                             android:text="@string/systers_open_source_zulip"
                             android:textColor="#fff"
                             android:textSize="14sp"
@@ -152,8 +161,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnWebsite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -172,7 +181,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
+                            android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="3"
@@ -180,9 +189,10 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
+                            android:padding="@dimen/padding_small"
                             android:text="@string/our_website"
                             android:textColor="#fff"
                             android:textSize="14sp"
@@ -193,8 +203,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnTermsCondition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -213,17 +223,19 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
+                            android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/margin_small"
                             android:layout_weight="3"
                             app:srcCompat="@drawable/ic_terms_and_condition" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
+                            android:padding="@dimen/padding_small"
                             android:text="@string/terms_and_conditions"
                             android:textColor="#fff"
                             android:textSize="14sp"
@@ -234,8 +246,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btnprivacypolicy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -254,7 +266,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
+                            android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="3"
@@ -262,9 +274,10 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
+                            android:padding="@dimen/padding_small"
                             android:text="@string/privacy_policy"
                             android:textColor="#fff"
                             android:textSize="14sp"
@@ -275,8 +288,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btncodeofconduct"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/cardView_dimen_120"
+                    android:layout_height="@dimen/cardView_dimen_120"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill"
                     android:layout_margin="20dp"
@@ -295,7 +308,7 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="114dp"
+                            android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="3"
@@ -303,9 +316,10 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
-                            android:layout_height="38dp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
+                            android:padding="@dimen/padding_small"
                             android:text="@string/code_of_conduct"
                             android:textColor="#fff"
                             android:textSize="14sp"

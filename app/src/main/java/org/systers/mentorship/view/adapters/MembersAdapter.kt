@@ -7,10 +7,9 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_member_item.view.*
-import kotlinx.android.synthetic.main.list_member_item.view.tvInterests
-import kotlinx.android.synthetic.main.list_member_item.view.tvName
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -19,6 +18,7 @@ import org.systers.mentorship.utils.Constants.INTERESTS_KEY
 import org.systers.mentorship.utils.Constants.LOCATION_KEY
 import org.systers.mentorship.utils.Constants.SKILLS_KEY
 import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
+import org.systers.mentorship.utils.UsersDiffCallback
 import org.systers.mentorship.view.fragments.MembersFragment
 
 
@@ -28,14 +28,14 @@ import org.systers.mentorship.view.fragments.MembersFragment
  * @param openDetailFunction function to be called when an item from Members list is clicked
  */
 class MembersAdapter (
-        private var userList: List<User>,
+        private var userList: ArrayList<User> = arrayListOf<User>(),
         private val openDetailFunction: (memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) -> Unit
 
 ) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
 
     val context = MentorshipApplication.getContext()
-
     var lastPosition = -1
+    private var filterMap = hashMapOf(Constants.SORT_KEY to MembersFragment.SortValues.REGISTRATION_DATE.name)
     private var filteredUserList = mutableListOf<User>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersViewHolder =
@@ -68,30 +68,48 @@ class MembersAdapter (
 
     override fun getItemCount(): Int = filteredUserList.size
 
-    fun filter(map: HashMap<String, String>) {
+    fun updateUsersList(map: HashMap<String, String> ,newUsers: List<User>) {
+        //updating users list
+        setData(newUsers)
+        //getting updated filtered users
+        val newFilteredUsers = getFilteredUsers(map,newUsers)
+
+        //applying changes to adapter
+        val usersDiffCallback = UsersDiffCallback(filteredUserList, newFilteredUsers)
+        val diffResult = DiffUtil.calculateDiff(usersDiffCallback)
+        filteredUserList.clear()
+        filteredUserList.addAll(newFilteredUsers)
+        diffResult.dispatchUpdatesTo(this)
+
+    }
+
+
+
+    private fun getFilteredUsers(map: HashMap<String, String>,newUsers: List<User>): List<User> {
+        var newFilteredList: List<User> = arrayListOf()
         when (map[Constants.SORT_KEY]) {
             MembersFragment.SortValues.REGISTRATION_DATE.name -> {
-                filteredUserList = userList as MutableList
+                newFilteredList = newUsers
             }
             MembersFragment.SortValues.NAMEAZ.name -> {
-                filteredUserList = userList.sortedBy {
+                newFilteredList = newUsers.sortedBy {
                     it.name
                 } as MutableList
             }
             MembersFragment.SortValues.NAMEZA.name -> {
-                filteredUserList = userList.sortedByDescending {
+                newFilteredList = newUsers.sortedByDescending {
                     it.name
                 } as MutableList
             }
         }
 
         if (map[Constants.NEED_MENTORING_KEY] == "true")
-            filteredUserList = filteredUserList.filter {
+            newFilteredList = newFilteredList.filter {
                 it.needMentoring == true
             } as MutableList<User>
 
         if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == "true")
-            filteredUserList = filteredUserList.filter {
+            newFilteredList = newFilteredList.filter {
                 it.availableToMentor == true
             } as MutableList<User>
 
@@ -99,7 +117,7 @@ class MembersAdapter (
         val location = map[LOCATION_KEY]
         val skills = map[SKILLS_KEY]
 
-        filteredUserList = filteredUserList.filter {
+        newFilteredList = newFilteredList.filter {
             var valid = true
 
             if (!interests.isNullOrEmpty())
@@ -123,11 +141,13 @@ class MembersAdapter (
             valid
         } as MutableList<User>
 
-        notifyDataSetChanged()
+        return newFilteredList
     }
 
-    fun setData(users: List<User>) {
-        userList = users
+
+    private fun setData(users: List<User>) {
+        userList.clear()
+        userList.addAll(users)
     }
 
     /**

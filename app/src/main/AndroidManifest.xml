@@ -13,8 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="${usesCleartextTraffic}">
-        <activity android:name=".view.activities.FeedbackActivity"></activity>
+        <activity
+            android:name=".view.activities.IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".view.activities.AboutActivity" />
+        <activity android:name=".view.activities.FeedbackActivity"></activity>
         <activity
             android:name=".view.activities.FilterActivity"
             android:theme="@style/FilterTheme" />

@@ -48,7 +48,7 @@ if [ "$TRAVIS_BRANCH" == "develop" ]; then
     git branch -m apk
 
     # Pushing the apk branch to the anitab-org repository
-    git push https://m-murad:$GITHUB_API_KEY@github.com/anitab-org/mentorship-android apk -fq> /dev/null
+    git push https://anitab-org:$GITHUB_API_KEY@github.com/anitab-org/mentorship-android apk -fq> /dev/null
     if [ $? -eq 0 ]; then
         echo "Apk push successful."
     else
