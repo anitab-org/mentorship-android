@@ -50,6 +50,11 @@ class LoginActivity : BaseActivity() {
            login()
         }
 
+        txtForgotPass.setOnClickListener {
+            intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
+
         btnSignUp.setOnClickListener {
             intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)

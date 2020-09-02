@@ -1,6 +1,7 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
+import org.systers.mentorship.remote.requests.ForgotPassword
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.AuthToken
@@ -28,4 +29,7 @@ interface AuthService {
      */
     @POST("register")
     fun register(@Body register: Register) : Observable<CustomResponse>
+
+    @POST("forgotPassword")
+    fun forgotPassword(@Body forgotPassword : ForgotPassword) : Observable<CustomResponse>
 }

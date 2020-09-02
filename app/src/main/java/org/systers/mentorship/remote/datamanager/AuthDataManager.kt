@@ -2,6 +2,7 @@ package org.systers.mentorship.remote.datamanager
 
 import io.reactivex.Observable
 import org.systers.mentorship.remote.ApiManager
+import org.systers.mentorship.remote.requests.ForgotPassword
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.AuthToken
@@ -31,5 +32,9 @@ class AuthDataManager {
      */
     fun register(register: Register): Observable<CustomResponse> {
         return apiManager.authService.register(register)
+    }
+
+    fun forgotPassword(forgotPassword: ForgotPassword):Observable<CustomResponse>{
+        return apiManager.authService.forgotPassword(forgotPassword)
     }
 }
