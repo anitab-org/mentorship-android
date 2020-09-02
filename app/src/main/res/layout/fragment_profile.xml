@@ -18,12 +18,12 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="56dp">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="56dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tiUsername"
@@ -83,7 +83,7 @@
                     android:layout_height="19dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:checked="@{safeUnbox(user.availableToMentor)}"
+                    android:checked="@={user.availableToMentor}"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
@@ -94,7 +94,7 @@
                     android:layout_height="13dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
-                    android:checked="@{safeUnbox(user.needMentoring)}"
+                    android:checked="@={user.needMentoring}"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/switchAvailableToMentor" />

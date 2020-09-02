@@ -25,7 +25,6 @@ class ProfileViewModel: ViewModel() {
     var tag = ProfileViewModel::class.java.simpleName!!
 
     private val userDataManager: UserDataManager = UserDataManager()
-
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var user: User

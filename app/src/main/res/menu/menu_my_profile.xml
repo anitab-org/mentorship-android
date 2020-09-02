@@ -6,4 +6,16 @@
         android:title="@string/edit_profile"
         android:icon="@drawable/ic_edit_black_24dp"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_save_profile"
+        android:title="Save"
+        app:showAsAction="always"
+        android:visible="false"
+        android:icon="@drawable/ic_baseline_done_24"/>
+    <item
+        android:icon="@drawable/ic_close_black_24dp"
+        app:showAsAction="always"
+        android:visible="false"
+        android:id="@+id/menu_exit_edit"
+        android:title="Dismiss Edit"/>
 </menu>
