@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRequestNotes"
         app:layout_constraintVertical_bias="0.8"
         tools:visibility="visible"
-        android:contentDescription="Reject"/>
+        android:contentDescription="@string/reject"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDelete"
@@ -103,7 +103,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRequestNotes"
         app:layout_constraintVertical_bias="0.801"
-        android:contentDescription="Delete request"/>
+        android:contentDescription="@string/delete"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAccept"
@@ -120,7 +120,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRequestNotes"
         app:layout_constraintVertical_bias="0.8"
         tools:visibility="visible"
-        android:contentDescription="Accept"/>
+        android:contentDescription="@string/accept"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvStateMessage"

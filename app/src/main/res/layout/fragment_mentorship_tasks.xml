@@ -80,7 +80,7 @@
                 app:layout_constraintStart_toEndOf="@id/tvTodo"
                 app:layout_constraintTop_toTopOf="@id/tvTodo"
                 app:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp"
-                android:contentDescription="Miniize todo"/>
+                android:contentDescription="@string/desc_min_todo"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView2"
@@ -94,7 +94,7 @@
                 app:layout_constraintStart_toEndOf="@id/tvAchievements"
                 app:layout_constraintTop_toTopOf="@id/tvAchievements"
                 fab:srcCompat="@drawable/ic_keyboard_arrow_up_black_24dp"
-                android:contentDescription="minimize achievements"/>
+                android:contentDescription="@string/achievements"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvNoAchievements"
@@ -121,5 +121,5 @@
         android:layout_margin="10dp"
         android:gravity="bottom"
         app:srcCompat="@drawable/ic_add_black_24dp"
-        android:contentDescription="Add task"/>
+        android:contentDescription="@string/add_new_task"/>
 </RelativeLayout>

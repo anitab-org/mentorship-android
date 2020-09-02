@@ -20,7 +20,7 @@
             android:text="@string/popup_menu_about"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="About Mentorship System" />
+            android:contentDescription="@string/popup_menu_about" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvFeedback"
@@ -33,7 +33,7 @@
             android:text="@string/popup_menu_feedback"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@+id/tvAbout"
-            android:contentDescription="Feedback"  />
+            android:contentDescription="@string/popup_menu_feedback"  />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLogout"
@@ -44,7 +44,7 @@
             android:text="@string/popup_menu_logout"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@+id/tvFeedback"
-            android:contentDescription="Logout from the account"  />
+            android:contentDescription="@string/popup_menu_logout"  />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvResetPassword"
@@ -55,7 +55,7 @@
             android:text="@string/change_password"
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@+id/tvLogout"
-            android:contentDescription="Change Password of my account"  />
+            android:contentDescription="@string/change_password"  />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDeleteAccount"
@@ -66,7 +66,7 @@
             android:text="@string/popup_menu_delete_account"
             android:textColor="@android:color/holo_red_dark"
             app:layout_constraintTop_toBottomOf="@+id/tvResetPassword"
-            android:contentDescription="Delete my account"  />
+            android:contentDescription="@string/popup_menu_delete_account"  />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

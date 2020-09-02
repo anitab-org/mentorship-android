@@ -211,5 +211,30 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="bug">Bug</string>
     <string name="input"> Please fill in the input fields and/or assign a rating</string>
     <string name="feedback_thank">Thank you for your feedback!</string>
+    <string name="enter_notes">Enter notes here</string>
+    <string name="decs_registration_date">Sort by Registration date</string>
+    <string name="desc_name_z_a">Sort by Name from z to a</string>
+    <string name="desc_name_a_z">sort by Name from a to z</string>
+    <string name="desc_about">About mentorship system</string>
+    <string name="desc_github_link">Our github link</string>
+    <string name="desc_zulip_link">AnitaB.org Zulip link</string>
+    <string name="desc_website_link">Link to our website</string>
+    <string name="desc_tnc_link">Link to terms and conditions</string>
+    <string name="desc_privacy_policy_link">Link to privacy policy</string>
+    <string name="desc_code_of_conduct_link">Link to code of conduct</string>
+    <string name="desc_one_star">One star out of five</string>
+    <string name="desc_two_star">Two star out of five</string>
+    <string name="desc_three_star">Three star out of five</string>
+    <string name="desc_four_star">Four star out of five</string>
+    <string name="desc_five_star">Five star out of five</string>
+    <string name="desc_bug">Select category Bug</string>
+    <string name="desc_suggestion">Select suggestions category</string>
+    <string name="desc_other_category">Select category Others</string>
+    <string name="desc_profile_img">Profile image</string>
+    <string name="desc_calender">Calender</string>
+    <string name="desc_min_todo">Minimize todo</string>
+    <string name="desc_min_achievements">Minimize achievements</string>
+    <string name="desc_see_request">See request</string>
+
 </resources>
 

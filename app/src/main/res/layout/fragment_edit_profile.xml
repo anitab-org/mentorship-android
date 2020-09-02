@@ -28,7 +28,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@android:color/transparent"
                 app:srcCompat="@drawable/ic_account_circle_black_24dp"
-                android:contentDescription="Profile image"/>
+                android:contentDescription="@string/desc_profile_img"/>
 
 
             <TextView
@@ -95,7 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={user.availableToMentor}"
-                        android:contentDescription="available to mentor"/>
+                        android:contentDescription="@string/available_to_mentor"/>
 
                 </LinearLayout>
 
@@ -115,7 +115,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={user.needMentoring}"
-                        android:contentDescription="Need mentoring"/>
+                        android:contentDescription="@string/need_mentoring"/>
 
                 </LinearLayout>
 

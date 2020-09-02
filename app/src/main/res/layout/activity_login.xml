@@ -39,8 +39,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo"
-        android:contentDescription="Enter username or email">
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"
@@ -65,8 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tiUsername"
-        app:layout_constraintVertical_bias="0.098"
-        android:contentDescription="Enter password">
+        app:layout_constraintVertical_bias="0.098">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"
@@ -88,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tiPassword"
-        android:contentDescription="login"/>
+        android:contentDescription="@string/login"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUp"
@@ -105,7 +103,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         app:layout_constraintVertical_bias="0.0"
-        android:contentDescription="sign up"/>
+        android:contentDescription="@string/sign_up"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

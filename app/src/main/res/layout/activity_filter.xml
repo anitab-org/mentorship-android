@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/margin_medium"
-            android:contentDescription="Sort by">
+            android:contentDescription="@string/sort_by">
 
             <TextView
                 android:id="@+id/tvSortByTitle"
@@ -43,7 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSortByTitle"
                 tools:targetApi="lollipop"
-                android:contentDescription="Name from a to z">
+                android:contentDescription="@string/desc_name_a_z">
 
                 <TextView
                     android:id="@+id/tvSortNameAZ"
@@ -67,7 +67,7 @@
                 app:layout_constraintStart_toEndOf="@+id/cardSortNameAZ"
                 app:layout_constraintTop_toBottomOf="@+id/tvSortByTitle"
                 tools:targetApi="lollipop"
-                android:contentDescription="Name from z to a">
+                android:contentDescription="@string/desc_name_z_a">
 
                 <TextView
                     android:id="@+id/tvSortNameZA"
@@ -91,7 +91,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardSortNameAZ"
                 tools:targetApi="lollipop"
-                android:contentDescription="Registration date">
+                android:contentDescription="@string/decs_registration_date">
 
                 <TextView
                     android:id="@+id/tvSortRegistrationDate"
@@ -114,7 +114,7 @@
                 app:layout_constraintStart_toEndOf="@+id/cardSortRegistrationDate"
                 app:layout_constraintTop_toBottomOf="@+id/cardSortNameAZ"
                 tools:targetApi="lollipop"
-                android:contentDescription="age">
+                android:contentDescription="Sort by age">
 
                 <TextView
                     android:id="@+id/tvSortAge"
@@ -135,8 +135,7 @@
                 android:layout_marginTop="@dimen/margin_big"
                 android:text="@string/filter_by"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardSortRegistrationDate"
-                android:contentDescription="FIlter by"/>
+                app:layout_constraintTop_toBottomOf="@+id/cardSortRegistrationDate" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardFilterNeedMentoring"
@@ -148,8 +147,7 @@
                 app:cardCornerRadius="@dimen/margin_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvFilter"
-                tools:targetApi="lollipop"
-                android:contentDescription="Need mentoring">
+                tools:targetApi="lollipop" >
 
                 <TextView
                     android:id="@+id/tvFilterNeedMentoring"
@@ -171,8 +169,7 @@
                 app:cardCornerRadius="@dimen/margin_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardFilterNeedMentoring"
-                tools:targetApi="lollipop"
-                android:contentDescription="Available to mentor">
+                tools:targetApi="lollipop" >
 
                 <TextView
                     android:id="@+id/tvFilterAvailableToMentor"
@@ -191,8 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:hint="@string/interests"
-                app:layout_constraintTop_toBottomOf="@id/cardFilterAvailableToMentor"
-                android:contentDescription="Enter your interests">
+                app:layout_constraintTop_toBottomOf="@id/cardFilterAvailableToMentor" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFilterInterests"
@@ -209,8 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:hint="@string/location"
-                app:layout_constraintTop_toBottomOf="@id/layoutFilterInterests"
-                android:contentDescription="Enter you location">
+                app:layout_constraintTop_toBottomOf="@id/layoutFilterInterests" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFilterLocation"
@@ -227,8 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:hint="@string/skills"
-                app:layout_constraintTop_toBottomOf="@id/layoutFilterLocation"
-                android:contentDescription="Enter your skills">
+                app:layout_constraintTop_toBottomOf="@id/layoutFilterLocation" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFilterSkills"
@@ -267,8 +261,7 @@
             android:textColor="@color/textColorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dividerFilter"
-            android:contentDescription="clear applied options"/>
+            app:layout_constraintTop_toBottomOf="@id/dividerFilter" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnApplyFilter"
@@ -280,7 +273,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dividerFilter"
             tools:targetApi="lollipop"
-            android:contentDescription="Apply now">
+            android:contentDescription="@string/apply_filter">
 
             <TextView
                 style="@style/TextBlack"

@@ -32,8 +32,7 @@
             android:text="@string/i_will_be_a"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOtherUserName"
-            android:contentDescription="I will be a"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvOtherUserName" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView8"
@@ -43,8 +42,7 @@
             android:layout_marginTop="28dp"
             android:text="@string/end_date_label"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rgCurrentUserRole"
-            android:contentDescription="Enddate"/>
+            app:layout_constraintTop_toBottomOf="@+id/rgCurrentUserRole" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/tvRequestEndDate"
@@ -57,8 +55,7 @@
             app:layout_constraintEnd_toStartOf="@+id/ivCalendar"
             app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/rgCurrentUserRole"
-            android:contentDescription="Enter end date in dd mm yyyy" />
+            app:layout_constraintTop_toBottomOf="@+id/rgCurrentUserRole" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivCalendar"
@@ -71,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgCurrentUserRole"
             app:srcCompat="@drawable/ic_date_range_black_24dp"
-            android:contentDescription="calender"/>
+            android:contentDescription="@string/desc_calender"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView10"
@@ -85,7 +82,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvRequestEndDate"
-            android:contentDescription="notes"/>
+            android:contentDescription="@string/notes"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/etRequestNotes"
@@ -100,7 +97,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10"
-            android:contentDescription="Enter notes"/>
+            android:hint="@string/enter_notes"/>
 
         <RadioGroup
             android:id="@+id/rgCurrentUserRole"
@@ -120,14 +117,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mentor"
-                android:contentDescription="mentor"/>
+                android:contentDescription="@string/mentor"/>
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/btnMenteeRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mentee"
-                android:contentDescription="Mentee"/>
+                android:contentDescription="@string/mentee"/>
 
         </RadioGroup>
 
@@ -142,7 +139,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etRequestNotes"
             app:layout_constraintVertical_bias="1.0"
-            android:contentDescription="Send request"/>
+            android:contentDescription="@string/send_request"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

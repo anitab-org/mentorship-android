@@ -87,7 +87,7 @@
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tiEmail"
-                    android:contentDescription="Available as mentor"/>
+                    android:contentDescription="@string/available_to_mentor"/>
 
                 <Switch
                     android:id="@+id/switchNeedMentorship"
@@ -99,7 +99,7 @@
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/switchAvailableToMentor"
-                    android:contentDescription="Need mentoring"/>
+                    android:contentDescription="@string/need_mentoring"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView3"
