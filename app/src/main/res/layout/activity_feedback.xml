@@ -28,7 +28,8 @@
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/feedback_sendfeedback"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -42,7 +43,8 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:contentDescription="@string/feedback_feedbacktxt"/>
 
             <TextView
                 android:id="@+id/textView11"
@@ -57,7 +59,8 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView4"
+                android:contentDescription="@string/feedback_experience"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -78,7 +81,8 @@
                     android:background="@android:color/transparent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView11"
-                    app:srcCompat="@drawable/ic_star_border_black_24dp" />
+                    app:srcCompat="@drawable/ic_star_border_black_24dp"
+                    android:contentDescription="One star out of five"/>
 
                 <ImageButton
                     android:id="@+id/FeedbackpageS2"
@@ -88,7 +92,8 @@
                     android:background="@android:color/transparent"
                     app:layout_constraintStart_toEndOf="@+id/FeedbackpageS1"
                     app:layout_constraintTop_toBottomOf="@+id/textView11"
-                    app:srcCompat="@drawable/ic_star_border_black_24dp" />
+                    app:srcCompat="@drawable/ic_star_border_black_24dp"
+                    android:contentDescription="Two star out of five"/>
 
                 <ImageButton
                     android:id="@+id/FeedbackpageS3"
@@ -98,7 +103,8 @@
                     android:background="@android:color/transparent"
                     app:layout_constraintStart_toEndOf="@+id/FeedbackpageS2"
                     app:layout_constraintTop_toBottomOf="@+id/textView11"
-                    app:srcCompat="@drawable/ic_star_border_black_24dp" />
+                    app:srcCompat="@drawable/ic_star_border_black_24dp"
+                    android:contentDescription="Three star out of five" />
 
                 <ImageButton
                     android:id="@+id/FeedbackpageS4"
@@ -108,7 +114,8 @@
                     android:background="@android:color/transparent"
                     app:layout_constraintStart_toEndOf="@+id/FeedbackpageS3"
                     app:layout_constraintTop_toBottomOf="@+id/textView11"
-                    app:srcCompat="@drawable/ic_star_border_black_24dp" />
+                    app:srcCompat="@drawable/ic_star_border_black_24dp"
+                    android:contentDescription="Four star out of five" />
 
                 <ImageButton
                     android:id="@+id/FeedbackpageS5"
@@ -118,7 +125,8 @@
                     android:background="@android:color/transparent"
                     app:layout_constraintStart_toEndOf="@+id/FeedbackpageS4"
                     app:layout_constraintTop_toBottomOf="@+id/textView11"
-                    app:srcCompat="@drawable/ic_star_border_black_24dp" />
+                    app:srcCompat="@drawable/ic_star_border_black_24dp"
+                    android:contentDescription="Five star out of five" />
             </LinearLayout>
 
             <TextView
@@ -134,7 +142,8 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                android:contentDescription="@string/feedback_emailhint"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/FeedbackpageEmail"
@@ -147,7 +156,8 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5">
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                android:contentDescription="Enter your email id">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -174,7 +184,8 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FeedbackpageEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/FeedbackpageEmail"
+                android:contentDescription="Message"/>
 
             <com.google.android.material.textfield.TextInputLayout
 
@@ -190,7 +201,8 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6">
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                android:contentDescription="Describe your experience here">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -203,7 +215,7 @@
                     android:minLines="8"
                     android:selectAllOnFocus="false"
                     android:singleLine="false"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -221,7 +233,8 @@
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FeedbackPageMessage" />
+                app:layout_constraintTop_toBottomOf="@+id/FeedbackPageMessage"
+                android:contentDescription="Category of feedback"/>
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -242,7 +255,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_weight="1"
-                    android:text="@string/feedback_bug" />
+                    android:text="@string/feedback_bug"
+                    android:contentDescription="Select category Bug" />
 
                 <RadioButton
                     android:id="@+id/FeedbackpageRd2"
@@ -250,14 +264,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_weight="1"
-                    android:text="@string/feedback_suggestion" />
+                    android:text="@string/feedback_suggestion"
+                    android:contentDescription="Select category Suggestion"  />
 
                 <RadioButton
                     android:id="@+id/FeedbackpageRd3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/feeedback_others" />
+                    android:text="@string/feeedback_others"
+                    android:contentDescription="Select category Others"  />
 
             </RadioGroup>
 
@@ -272,7 +288,8 @@
                 android:text="@string/feedback_sendfeedbackbtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+                android:contentDescription="Send Feedback"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,8 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="Sign up"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiName"
@@ -34,12 +35,12 @@
             android:hint="@string/name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSignUp">
+            app:layout_constraintTop_toBottomOf="@+id/tvSignUp" >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -117,7 +118,8 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/tiConfirmPassword"
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/tiConfirmPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/tiConfirmPassword"
+            android:contentDescription="Available to be a"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNoteSignUp"
@@ -156,7 +158,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:focusable="true"
-                android:text="@string/mentor" />
+                android:text="@string/mentor"
+                android:contentDescription="Mentor"/>
 
             <RadioButton
                 android:id="@+id/cbMentee"
@@ -164,7 +167,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:focusable="true"
-                android:text="@string/mentee" />
+                android:text="@string/mentee"
+                android:contentDescription="Mentee"/>
 
             <RadioButton
                 android:id="@+id/cbBoth"
@@ -173,7 +177,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:focusable="true"
-                android:text="@string/both" />
+                android:text="@string/both"
+                android:contentDescription="both mentor and mentee"/>
         </RadioGroup>
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbTC"
@@ -181,7 +186,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@+id/tiConfirmPassword"
-            app:layout_constraintTop_toBottomOf="@+id/radio_group" />
+            app:layout_constraintTop_toBottomOf="@+id/radio_group"
+            android:contentDescription="Accept"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTC"
@@ -193,7 +199,8 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/tiConfirmPassword"
             app:layout_constraintStart_toEndOf="@id/cbTC"
-            app:layout_constraintTop_toBottomOf="@id/radio_group" />
+            app:layout_constraintTop_toBottomOf="@id/radio_group"
+            android:contentDescription="@string/terms_and_conditions_acceptance_statement"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignUp"
@@ -205,7 +212,8 @@
             android:text="@string/sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTC" />
+            app:layout_constraintTop_toBottomOf="@id/tvTC"
+            android:contentDescription="Sign"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
@@ -218,6 +226,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btnSignUp"
             app:layout_constraintStart_toStartOf="@+id/btnSignUp"
-            app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+            app:layout_constraintTop_toBottomOf="@id/btnSignUp"
+            android:contentDescription="Login"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

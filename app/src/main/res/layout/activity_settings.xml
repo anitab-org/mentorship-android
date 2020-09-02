@@ -19,7 +19,8 @@
             android:drawableStart="@drawable/ic_info_black_24dp"
             android:text="@string/popup_menu_about"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="About Mentorship System" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvFeedback"
@@ -31,7 +32,8 @@
             android:focusable="true"
             android:text="@string/popup_menu_feedback"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAbout"
+            android:contentDescription="Feedback"  />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvLogout"
@@ -41,7 +43,8 @@
             android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
             android:text="@string/popup_menu_logout"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tvFeedback" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFeedback"
+            android:contentDescription="Logout from the account"  />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvResetPassword"
@@ -51,7 +54,8 @@
             android:drawableStart="@drawable/ic_lock_black_24dp"
             android:text="@string/change_password"
             android:textColor="@android:color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tvLogout" />
+            app:layout_constraintTop_toBottomOf="@+id/tvLogout"
+            android:contentDescription="Change Password of my account"  />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDeleteAccount"
@@ -61,7 +65,8 @@
             android:drawableStart="@drawable/ic_delete_black_24dp"
             android:text="@string/popup_menu_delete_account"
             android:textColor="@android:color/holo_red_dark"
-            app:layout_constraintTop_toBottomOf="@+id/tvResetPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/tvResetPassword"
+            android:contentDescription="Delete my account"  />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

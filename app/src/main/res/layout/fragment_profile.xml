@@ -86,7 +86,8 @@
                     android:checked="@{safeUnbox(user.availableToMentor)}"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
+                    app:layout_constraintTop_toBottomOf="@+id/tiEmail"
+                    android:contentDescription="Available as mentor"/>
 
                 <Switch
                     android:id="@+id/switchNeedMentorship"
@@ -97,7 +98,8 @@
                     android:checked="@{safeUnbox(user.needMentoring)}"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/switchAvailableToMentor" />
+                    app:layout_constraintTop_toBottomOf="@+id/switchAvailableToMentor"
+                    android:contentDescription="Need mentoring"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textView3"

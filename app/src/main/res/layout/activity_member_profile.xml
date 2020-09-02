@@ -39,7 +39,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/circleImageView"
-                tools:text="TextView" />
+                tools:text="TextView"
+                android:contentDescription="@string/transition_name"/>
 
 
             <TextView
@@ -175,7 +176,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSkills" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSkills"
+                android:contentDescription="Send request"/>
         </LinearLayout>
     </ScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

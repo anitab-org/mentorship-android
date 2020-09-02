@@ -52,7 +52,8 @@
                     android:text="@string/pending_requests"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintStart_toStartOf="@+id/tvWelcome"
-                    app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+                    android:contentDescription="@string/pending_requests"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAcceptedRequests"
@@ -62,7 +63,8 @@
                     android:text="@string/accepted_requests"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintStart_toStartOf="@+id/tvPendingRequests"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPendingRequests" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvPendingRequests"
+                    android:contentDescription="@string/accepted_requests"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvRejectedRequests"
@@ -82,7 +84,8 @@
                     android:text="@string/completed_relations"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintStart_toStartOf="@+id/tvRejectedRequests"
-                    app:layout_constraintTop_toBottomOf="@+id/tvRejectedRequests" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvRejectedRequests"
+                    android:contentDescription="@string/completed_relations"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNumberOfPendingRequests"

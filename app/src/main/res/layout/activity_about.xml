@@ -35,7 +35,8 @@
                 android:layout_width="252dp"
                 android:layout_height="176dp"
                 android:layout_gravity="center"
-                android:background="@drawable/mentorship_system_logo" />
+                android:background="@drawable/mentorship_system_logo"
+                android:contentDescription="About Mentorship System"  />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -46,7 +47,8 @@
                 android:text="@string/about_systers"
                 android:textAlignment="center"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:contentDescription= "@string/about_systers" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="343dp"
@@ -55,7 +57,8 @@
                 android:text="@string/about_app"
                 android:textAlignment="center"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:contentDescription= "@string/about_app" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:paddingTop="32dp"
@@ -87,7 +90,8 @@
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+                    tools:targetApi="p"
+                    android:contentDescription="Our github link" >
 
 
                     <LinearLayout
@@ -129,7 +133,8 @@
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+                    tools:targetApi="p"
+                    android:contentDescription="Link to AnitaB.org Zulip" >
 
 
                     <LinearLayout
@@ -172,7 +177,8 @@
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+                    tools:targetApi="p"
+                    android:contentDescription="Link to our website" >
 
 
                     <LinearLayout
@@ -214,7 +220,8 @@
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+                    tools:targetApi="p"
+                    android:contentDescription="Link to terms and conditions" >
 
 
                     <LinearLayout
@@ -257,7 +264,8 @@
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+                    tools:targetApi="p"
+                    android:contentDescription="Link to privacy policy" >
 
 
                     <LinearLayout
@@ -299,7 +307,8 @@
                     android:outlineSpotShadowColor="#55111109"
                     app:cardBackgroundColor="@color/aubergine"
                     app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+                    tools:targetApi="p"
+                    android:contentDescription="Link to code of conduct" >
 
 
                     <LinearLayout

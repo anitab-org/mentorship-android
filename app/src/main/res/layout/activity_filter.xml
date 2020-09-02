@@ -17,7 +17,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/margin_medium">
+            android:paddingBottom="@dimen/margin_medium"
+            android:contentDescription="Sort by">
 
             <TextView
                 android:id="@+id/tvSortByTitle"
@@ -41,7 +42,8 @@
                 app:cardCornerRadius="@dimen/margin_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSortByTitle"
-                tools:targetApi="lollipop">
+                tools:targetApi="lollipop"
+                android:contentDescription="Name from a to z">
 
                 <TextView
                     android:id="@+id/tvSortNameAZ"
@@ -64,7 +66,8 @@
                 app:cardCornerRadius="@dimen/margin_normal"
                 app:layout_constraintStart_toEndOf="@+id/cardSortNameAZ"
                 app:layout_constraintTop_toBottomOf="@+id/tvSortByTitle"
-                tools:targetApi="lollipop">
+                tools:targetApi="lollipop"
+                android:contentDescription="Name from z to a">
 
                 <TextView
                     android:id="@+id/tvSortNameZA"
@@ -87,7 +90,8 @@
                 app:cardCornerRadius="@dimen/margin_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardSortNameAZ"
-                tools:targetApi="lollipop">
+                tools:targetApi="lollipop"
+                android:contentDescription="Registration date">
 
                 <TextView
                     android:id="@+id/tvSortRegistrationDate"
@@ -109,7 +113,8 @@
                 app:cardCornerRadius="@dimen/margin_normal"
                 app:layout_constraintStart_toEndOf="@+id/cardSortRegistrationDate"
                 app:layout_constraintTop_toBottomOf="@+id/cardSortNameAZ"
-                tools:targetApi="lollipop">
+                tools:targetApi="lollipop"
+                android:contentDescription="age">
 
                 <TextView
                     android:id="@+id/tvSortAge"
@@ -130,7 +135,8 @@
                 android:layout_marginTop="@dimen/margin_big"
                 android:text="@string/filter_by"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardSortRegistrationDate" />
+                app:layout_constraintTop_toBottomOf="@+id/cardSortRegistrationDate"
+                android:contentDescription="FIlter by"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardFilterNeedMentoring"
@@ -142,7 +148,8 @@
                 app:cardCornerRadius="@dimen/margin_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvFilter"
-                tools:targetApi="lollipop">
+                tools:targetApi="lollipop"
+                android:contentDescription="Need mentoring">
 
                 <TextView
                     android:id="@+id/tvFilterNeedMentoring"
@@ -164,7 +171,8 @@
                 app:cardCornerRadius="@dimen/margin_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardFilterNeedMentoring"
-                tools:targetApi="lollipop">
+                tools:targetApi="lollipop"
+                android:contentDescription="Available to mentor">
 
                 <TextView
                     android:id="@+id/tvFilterAvailableToMentor"
@@ -183,7 +191,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:hint="@string/interests"
-                app:layout_constraintTop_toBottomOf="@id/cardFilterAvailableToMentor">
+                app:layout_constraintTop_toBottomOf="@id/cardFilterAvailableToMentor"
+                android:contentDescription="Enter your interests">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFilterInterests"
@@ -200,7 +209,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:hint="@string/location"
-                app:layout_constraintTop_toBottomOf="@id/layoutFilterInterests">
+                app:layout_constraintTop_toBottomOf="@id/layoutFilterInterests"
+                android:contentDescription="Enter you location">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFilterLocation"
@@ -217,7 +227,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:hint="@string/skills"
-                app:layout_constraintTop_toBottomOf="@id/layoutFilterLocation">
+                app:layout_constraintTop_toBottomOf="@id/layoutFilterLocation"
+                android:contentDescription="Enter your skills">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFilterSkills"
@@ -256,7 +267,8 @@
             android:textColor="@color/textColorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dividerFilter" />
+            app:layout_constraintTop_toBottomOf="@id/dividerFilter"
+            android:contentDescription="clear applied options"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btnApplyFilter"
@@ -267,7 +279,8 @@
             app:cardCornerRadius="@dimen/margin_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dividerFilter"
-            tools:targetApi="lollipop">
+            tools:targetApi="lollipop"
+            android:contentDescription="Apply now">
 
             <TextView
                 style="@style/TextBlack"
