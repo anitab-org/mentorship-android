@@ -84,5 +84,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCreationDate"
         app:srcCompat="@drawable/ic_arrow_forward_black_24dp"
-        android:contentDescription="See request"/>
+        android:contentDescription="@string/desc_see_request"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,12 +4,14 @@
     <item
         android:id="@+id/menu_refresh"
         app:showAsAction="never"
-        android:title="@string/refresh"/>
+        android:title="@string/refresh"
+        android:contentDescription="@string/refresh"/>
 
     <item
         android:id="@+id/menu_settings"
         android:title="@string/popup_menu_settings"
         app:showAsAction="always"
         android:menuCategory="container"
-        android:icon="@drawable/ic_settings_black_24dp"/>
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:contentDescription="@string/popup_menu_settings"/>
 </menu>
