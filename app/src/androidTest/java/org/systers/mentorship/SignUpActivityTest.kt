@@ -14,6 +14,7 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
@@ -29,7 +30,7 @@ import org.systers.mentorship.view.activities.SignUpActivity
 /**
  * This class specifies the UI test for SignUpActivity
  */
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 class SignUpActivityTest {
 
     private val EMPTY_USERNAME_ERROR: String = "Username cannot be empty"

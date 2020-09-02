@@ -52,6 +52,7 @@ dependencies {
     implementation Dependencies.constraint_layout
     implementation Dependencies.appCompat
     kapt Dependencies.databinding
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
     androidTestImplementation Dependencies.test_rules
