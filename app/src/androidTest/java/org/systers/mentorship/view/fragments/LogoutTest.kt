@@ -37,7 +37,7 @@ class LogoutTest {
     * Test to check if the Logout Dialog is opening on click
     * */
     @Test
-    fun check_of_logout_dialog_is_opening() {
+    fun check_if_logout_dialog_is_opening() {
         onView(withId(R.id.tvLogout)).run {
             check(matches(withText(R.string.popup_menu_logout)))
             perform(click())
