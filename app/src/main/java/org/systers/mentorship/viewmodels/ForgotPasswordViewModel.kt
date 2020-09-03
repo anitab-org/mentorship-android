@@ -2,6 +2,7 @@ package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -16,22 +17,32 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
-class ForgotPasswordViewModel {
+/**
+ * This class represents the [ViewModel] component used for the Forgot Password Activity
+ */
+
+class ForgotPasswordViewModel: ViewModel() {
 
     private val authDataManager: AuthDataManager = AuthDataManager()
-    val success: MutableLiveData<Boolean> = MutableLiveData()
+    val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
 
+    /**
+     * Will be used to run the forgotPassword method of the AuthService
+     * @param requestOTP a forgotPassword request object containing the a user's registered E-mail
+     */
+
+
     @SuppressLint("CheckResult")
-    fun forgotPassword(forgotPassword: ForgotPassword) {
-        authDataManager.forgotPassword(forgotPassword)
+    fun forgotPassword(requestOTP: ForgotPassword) {
+        authDataManager.forgotPassword(requestOTP)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(customResponse: CustomResponse) {
                         message = customResponse.message
-                        success.value = true
+                        successful.value = true
                     }
 
                     override fun onError(e: Throwable) {
@@ -52,7 +63,7 @@ class ForgotPasswordViewModel {
                                         .getString(R.string.error_something_went_wrong)
                             }
                         }
-                        success.value = false
+                        successful.value = false
                     }
 
                     override fun onComplete() {

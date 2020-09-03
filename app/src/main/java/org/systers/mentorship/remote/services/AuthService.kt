@@ -30,6 +30,11 @@ interface AuthService {
     @POST("register")
     fun register(@Body register: Register) : Observable<CustomResponse>
 
+    /**
+     * This function allows a user to generate OTP for resetting password
+     * @param requestOTP data containing user's registered E-mail
+     * @return an observable instance of the [CustomResponse]
+     */
     @POST("forgotPassword")
-    fun forgotPassword(@Body forgotPassword : ForgotPassword) : Observable<CustomResponse>
+    fun forgotPassword(@Body requestOTP : ForgotPassword) : Observable<CustomResponse>
 }

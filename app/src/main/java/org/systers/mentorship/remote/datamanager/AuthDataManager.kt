@@ -34,7 +34,13 @@ class AuthDataManager {
         return apiManager.authService.register(register)
     }
 
-    fun forgotPassword(forgotPassword: ForgotPassword):Observable<CustomResponse>{
-        return apiManager.authService.forgotPassword(forgotPassword)
+    /**
+     * This will call the forgotPassword method of AuthService interface
+     * @param requestOTP The request body containing
+     *                        the user's registered E-mail
+     * @return an Observable CustomResponse
+     */
+    fun forgotPassword(requestOTP: ForgotPassword):Observable<CustomResponse>{
+        return apiManager.authService.forgotPassword(requestOTP)
     }
 }
