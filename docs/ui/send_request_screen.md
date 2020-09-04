@@ -1,1 +1,2 @@
-![alt text](https://github.com/blackcrabb/mentorship-android/blob/develop/docs/ui/requestscreen.png "Send request")
+Figma URL
+https://www.figma.com/file/RMjNygreEAglDLq6L7qbbN/requestscreen?node-id=2%3A9
