@@ -5,13 +5,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/textViewTask"
+        android:id="@+id/TaskTitle"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/task_detail_title"
         />
+
+    <TextView
+        android:id="@+id/TaskDescription"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/TaskTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/CommentsTitle"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/TaskDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/comments_title"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/CommentsTitle"
+        android:layout_marginTop="10dp"
+        android:id="@+id/rvTaskComments"
+        />
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Enter Your Comment Here"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/enter_comment_edit_text"
+            />
+
+        <ImageButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_appintro_done_white"
+            android:layout_alignParentRight="true"
+            android:id="@+id/sendComment"
+            />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

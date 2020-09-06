@@ -21,10 +21,13 @@ class TaskDetailActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_detail)
 
+        supportActionBar?.title = getString(R.string.task_detail_title)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         task = intent.getParcelableExtra(TASK) as Task
         mentorshipRelationship = intent.getParcelableExtra(MENTORSHIP_RELATION) as Relationship
 
-        textViewTask.text = task.id.toString() + " " + mentorshipRelationship.id.toString()
+        TaskDescription.text = task.description
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
