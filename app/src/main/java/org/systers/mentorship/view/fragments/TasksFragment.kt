@@ -76,7 +76,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                     } else {
                         rvTasks.apply {
                             layoutManager = LinearLayoutManager(context)
-                            adapter = TasksAdapter(context!!,taskViewModel.incompleteTasksList(), ::markTask, false)
+                            adapter = TasksAdapter(context!!,taskViewModel.incompleteTasksList(), ::markTask, false, mentorshipRelation)
                         }
                         tvNoTask.visibility = View.GONE
 
@@ -84,7 +84,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                         if (completeTasksList.isNotEmpty()){
                             rvAchievements.apply {
                                 layoutManager = LinearLayoutManager(context)
-                                adapter = TasksAdapter(context!!,completeTasksList, ::markTask, true)
+                                adapter = TasksAdapter(context!!,completeTasksList, ::markTask, true, mentorshipRelation)
                             }
                             tvNoAchievements.visibility = View.GONE
                         }

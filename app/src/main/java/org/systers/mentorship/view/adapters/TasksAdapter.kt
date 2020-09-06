@@ -1,15 +1,19 @@
 package org.systers.mentorship.view.adapters
 
-import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import kotlinx.android.synthetic.main.task_list_item.view.*
-import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.models.Task
+import org.systers.mentorship.view.activities.TaskDetailActivity
+import org.systers.mentorship.view.activities.TaskDetailActivity.Companion.MENTORSHIP_RELATION
+import org.systers.mentorship.view.activities.TaskDetailActivity.Companion.TASK
 
 /**
  * This class represents the adapter that fills in each view of the Tasks recyclerView
@@ -21,7 +25,8 @@ class TasksAdapter(
         private val context: Context,
         private val tasksList: List<Task>,
         private val markTask: (taskId: Int) -> Unit,
-        private val complete: Boolean
+        private val complete: Boolean,
+        private val mentorshipRelationship: Relationship
 ) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder =
@@ -52,18 +57,22 @@ class TasksAdapter(
         }
         else{
             itemView.cbTask.setOnClickListener {
-                val builder = AlertDialog.Builder(context)
-                builder.setTitle(context.getString(R.string.mark_task_title))
-                builder.setMessage(context.getString(R.string.mark_task_message))
-                builder.setPositiveButton(context.getString(R.string.yes)){dialog, which ->
-                    itemView.cbTask.isChecked=true
-                    markTask(item.id)
-                }
-                builder.setNegativeButton(context.getString(R.string.no)){dialog,which ->
-                    itemView.cbTask.isChecked=false
-                }
-                val dialog: AlertDialog = builder.create()
-                dialog.show()
+//                val builder = AlertDialog.Builder(context)
+//                builder.setTitle(context.getString(R.string.mark_task_title))
+//                builder.setMessage(context.getString(R.string.mark_task_message))
+//                builder.setPositiveButton(context.getString(R.string.yes)){dialog, which ->
+//                    itemView.cbTask.isChecked=true
+//                    markTask(item.id)
+//                }
+//                builder.setNegativeButton(context.getString(R.string.no)){dialog,which ->
+//                    itemView.cbTask.isChecked=false
+//                }
+//                val dialog: AlertDialog = builder.create()
+//                dialog.show()
+                val intent = Intent(context, TaskDetailActivity::class.java)
+                intent.putExtra(TASK, item)
+                intent.putExtra(MENTORSHIP_RELATION, mentorshipRelationship)
+                context.startActivity(intent)
             }
         }
     }
