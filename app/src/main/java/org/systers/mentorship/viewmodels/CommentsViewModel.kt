@@ -13,6 +13,9 @@ import org.systers.mentorship.models.Comments
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.datamanager.CommentDataManager
 import org.systers.mentorship.remote.datamanager.TaskDataManager
+import org.systers.mentorship.remote.requests.CreateComment
+import org.systers.mentorship.remote.requests.CreateTask
+import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -26,6 +29,7 @@ class CommentsViewModel: ViewModel() {
 
     private val commentsDataManager: CommentDataManager = CommentDataManager()
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
+    val successfulAdd: MutableLiveData<Boolean> = MutableLiveData()
 
     lateinit var message: String
 
@@ -62,6 +66,41 @@ class CommentsViewModel: ViewModel() {
                         successfulGet.value = false
                     }
 
+                    override fun onComplete() {
+                    }
+                })
+    }
+
+    @SuppressLint("CheckResult")
+    fun addComment(relationId: Int, taskId: Int, createComment: CreateComment) {
+        commentsDataManager.addComment(relationId, taskId, createComment)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                    override fun onNext(commentListResponse: CustomResponse) {
+                        successfulAdd.value = true
+                    }
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet)
+                            }
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = "HTTP EXCEPTION"
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong)
+                                Log.e(tag, throwable.localizedMessage)
+                            }
+                        }
+                        successfulAdd.value = false
+                    }
                     override fun onComplete() {
                     }
                 })

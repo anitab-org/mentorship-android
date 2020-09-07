@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.models.Task
+import org.systers.mentorship.remote.requests.CreateComment
+import org.systers.mentorship.view.adapters.CommentsAdapter
 import org.systers.mentorship.view.adapters.TasksAdapter
 import org.systers.mentorship.viewmodels.CommentsViewModel
 import org.systers.mentorship.viewmodels.SendRequestViewModel
@@ -53,13 +55,45 @@ class TaskDetailActivity: BaseActivity() {
                         rvTaskComments.visibility = GONE
                         tvNoComments.visibility = VISIBLE
                     } else {
-                        // comments list is not empty
+                        rvTaskComments.apply {
+                            layoutManager = LinearLayoutManager(context)
+                            adapter = CommentsAdapter(context, commentsViewModel.commentsList)
+                        }
+                        tvNoComments.visibility = GONE
                     }
                 } else {
                     Snackbar.make(this.getRootView(), commentsViewModel.message, Snackbar.LENGTH_LONG).show()
                 }
             }
         })
+
+        //add comment
+        commentsViewModel.successfulAdd.observe(this, Observer {
+            successful ->
+            if (successful != null) {
+                if (successful) {
+                    Snackbar.make(getRootView(), getString(R.string.comment_create_success), Snackbar.LENGTH_LONG).show()
+                    //get comments again to refresh list
+                    commentsViewModel.getComments(mentorshipRelationship.id, task.id)
+                } else {
+                    Snackbar.make(getRootView(), commentsViewModel.message, Snackbar.LENGTH_LONG).show()
+                }
+            }
+        })
+
+        commentsViewModel.getComments(mentorshipRelationship.id, task.id)
+
+        initViews()
+    }
+
+    private fun initViews() {
+        sendComment.setOnClickListener {
+            if (enter_comment_edit_text.text.isNotEmpty()) {
+                commentsViewModel.addComment(mentorshipRelationship.id, task.id, CreateComment(enter_comment_edit_text.text.toString()))
+            } else {
+                Snackbar.make(getRootView(),"Please enter something to comment", Snackbar.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {

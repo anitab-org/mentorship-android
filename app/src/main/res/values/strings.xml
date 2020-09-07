@@ -213,5 +213,6 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="feedback_thank">Thank you for your feedback!</string>
     <string name="task_detail_title">Task Detail</string>
     <string name="comments_title">Comments</string>
+    <string name="comment_create_success">Comment Created</string>
 </resources>
 
