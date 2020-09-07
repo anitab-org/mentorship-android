@@ -90,11 +90,12 @@ class TaskDetailActivity: BaseActivity() {
 
     private fun initViews() {
         sendComment.setOnClickListener {
-            if (enter_comment_edit_text.text.isNotEmpty()) {
-                commentsViewModel.addComment(mentorshipRelationship.id, task.id, CreateComment(enter_comment_edit_text.text.toString()))
+            if (edit_text_comment.text.isNotEmpty()) {
+                commentsViewModel.addComment(mentorshipRelationship.id, task.id, CreateComment(edit_text_comment.text.toString()))
             } else {
                 Snackbar.make(getRootView(),"Please enter something to comment", Snackbar.LENGTH_LONG).show()
             }
+            edit_text_comment.setText("")
         }
     }
 
