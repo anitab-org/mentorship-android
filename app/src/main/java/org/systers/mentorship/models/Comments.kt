@@ -6,10 +6,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Comments(
      val id: Int,
-     val userID: Int,
-     val taskID: Int,
-     val relationID: Int,
-     val creationDate: Float,
-     val modificationDate: Float,
+     val user_id: Int,
+     val task_id: Int,
+     val relation_id: Int,
+     val creation_date: Float,
+     val modification_date: Float,
      val comment: String
 ) : Parcelable

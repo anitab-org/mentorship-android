@@ -7,10 +7,17 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/commentContent"
+        android:id="@+id/commentAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/commentContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/commentAuthor" />
 </androidx.constraintlayout.widget.ConstraintLayout>

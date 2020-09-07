@@ -50,14 +50,16 @@ class TaskDetailActivity: BaseActivity() {
 
             successful ->
             if (successful != null) {
+                commentProgressBar.visibility = VISIBLE
                 if (successful) {
                     if (commentsViewModel.commentsList.isEmpty()) {
                         rvTaskComments.visibility = GONE
                         tvNoComments.visibility = VISIBLE
+                        commentProgressBar.visibility = GONE
                     } else {
                         rvTaskComments.apply {
                             layoutManager = LinearLayoutManager(context)
-                            adapter = CommentsAdapter(context, commentsViewModel.commentsList)
+                            adapter = CommentsAdapter(context, commentsViewModel.commentsList, commentProgressBar)
                         }
                         tvNoComments.visibility = GONE
                     }

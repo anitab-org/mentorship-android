@@ -37,6 +37,7 @@
         app:layout_constraintTop_toBottomOf="@id/CommentsTitle"
         android:layout_marginTop="10dp"
         android:id="@+id/rvTaskComments"
+        app:layout_constraintBottom_toTopOf="@id/commentRelativeLayout"
         />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -52,12 +53,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rvTaskComments" />
 
+    <ProgressBar
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/commentProgressBar"
+        android:visibility="gone"
+        />
+
     <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/commentRelativeLayout"
         >
 
         <EditText
@@ -68,7 +81,7 @@
             android:id="@+id/enter_comment_edit_text"
             />
 
-        <ImageButton
+        <ImageView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:src="@drawable/ic_appintro_done_white"

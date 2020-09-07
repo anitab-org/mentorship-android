@@ -11,6 +11,7 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Comments
 import org.systers.mentorship.models.Task
+import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.CommentDataManager
 import org.systers.mentorship.remote.datamanager.TaskDataManager
 import org.systers.mentorship.remote.requests.CreateComment
@@ -30,8 +31,13 @@ class CommentsViewModel: ViewModel() {
     private val commentsDataManager: CommentDataManager = CommentDataManager()
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulAdd: MutableLiveData<Boolean> = MutableLiveData()
+    val commentAuthorName: MutableLiveData<String> = MutableLiveData()
 
     lateinit var message: String
+
+    fun getCommentAuthorName(authorId: Int, userId: Int) {
+        if (authorId == userId) commentAuthorName.value = "You"
+    }
 
     @SuppressLint("CheckResult")
     fun getComments(relationId: Int, taskId: Int) {
