@@ -17,7 +17,8 @@
             android:name=".view.activities.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".view.activities.AboutActivity" />
-        <activity android:name=".view.activities.FeedbackActivity"></activity>
+        <activity android:name=".view.activities.FeedbackActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"/>
         <activity
             android:name=".view.activities.FilterActivity"
             android:theme="@style/FilterTheme" />

@@ -1,20 +1,22 @@
 package org.systers.mentorship.view.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import org.systers.mentorship.R
-import android.util.Patterns
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.ImageButton
+import androidx.lifecycle.Observer
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_feedback.*
+import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivityFeedbackBinding
+import org.systers.mentorship.viewmodels.ProfileViewModel
 
 class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
@@ -24,50 +26,38 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
     private var ratingBtnList : ArrayList<ImageButton>? = null
     private var feedbackMsgErr : Boolean = true
     private var feedbackCategory : String = ""
+    private lateinit var feedbackBinding: ActivityFeedbackBinding
+    private val profileViewModel by lazy {
+        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feedback)
+        feedbackBinding = DataBindingUtil.setContentView(this, R.layout.activity_feedback)
 
         supportActionBar?.title = getString(R.string.feedback)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-        //init email ID input field
-        FeedbackpageEmail.isErrorEnabled = true
-        FeedbackpageEmail.error = getString(R.string.email_error)
-        FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!))
-                {
-                    FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = getString(R.string.valid_error)
-                    feedbackEmailErr = true
-                }
-                else
-                {   if (s.toString().isEmpty())
-                {
-                    FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = getString(R.string.email_error)
-                    feedbackEmailErr = true
-                }
-                else
-                {
-                    FeedbackpageEmail.isErrorEnabled = false
+        //init email ID  field
+        srlProfile1.setOnRefreshListener { fetchNewest() }
+        profileViewModel.successfulGet.observe(this, Observer { successful ->
+            srlProfile1.isRefreshing = false
+            if (successful != null) {
+                if (successful) {
+                    feedbackBinding.user = profileViewModel.user
+                    Log.i("Here is the mail", feedbackBinding.user?.email?.trim())
                     feedbackEmailErr = false
-                }
+                    FeedbackpageSendbtn.isEnabled = true
+                } else {
+                    Snackbar.make(findViewById(android.R.id.content), profileViewModel.message,
+                            Snackbar.LENGTH_LONG).show()
                 }
             }
-
         })
+        fetchNewest()
+
+
 
         //init message input field
         FeedbackPageMessage.isErrorEnabled = true
@@ -206,6 +196,11 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             }
             feedbackRating = starIndex
         }
+    }
+
+    private fun fetchNewest() {
+        srlProfile1.isRefreshing = true
+        profileViewModel.getProfile()
     }
 
 }
