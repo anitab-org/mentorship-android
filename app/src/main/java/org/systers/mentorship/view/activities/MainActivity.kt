@@ -114,35 +114,11 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun showExitDialogue()
-    {
-        val builder = AlertDialog.Builder(this)
-        //set title for alert dialog
-        builder.setTitle(R.string.dialogTitle)
-        //set message for alert dialog
-        builder.setMessage("Do you want to exit?")
-
-        //performing positive action
-        builder.setPositiveButton("Yes"){dialogInterface, which ->
-            super.onBackPressed()
-        }
-        //performing negative action
-        builder.setNegativeButton("Cancel"){dialogInterface, which ->
-
-        }
-        // Create the AlertDialog
-        val alertDialog: AlertDialog = builder.create()
-        // Set other dialog properties
-        alertDialog.setCancelable(false)
-        alertDialog.show()
-    }
-
     override fun onBackPressed() {
         if (!atHome) {
             showHomeFragment()
         } else {
-            //showToast()
-            showExitDialogue()
+            showToast()
         }
     }
 }
