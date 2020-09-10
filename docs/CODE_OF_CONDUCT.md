@@ -1,4 +1,4 @@
-# Code of Conduct [![Coc](https://img.shields.io/badge/</>-CodeofConduct-<COLOR>.svg)](https://shields.io/)
+# Code of Conduct
 
 ## 1. `Purpose`
 
