@@ -20,6 +20,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.SearchView
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
@@ -133,6 +134,8 @@ class MembersFragment : BaseFragment() {
                                 adapter = rvAdapter
                                 isRecyclerView = true
                             }
+                        } else {
+                            Toast.makeText(activity, "Oops! Not found", Toast.LENGTH_SHORT).show()
                         }
                         memberListInitialized = true
                         tvEmptyList.visibility = View.GONE
