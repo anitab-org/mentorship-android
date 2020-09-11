@@ -43,6 +43,18 @@ Please follow our [Commit Message Style Guide](https://github.com/anitab-org/men
 
 ## Documentation
 
+### Running Unit Tests
+To run the existing unit tests to ensure the working of the code:
+
+- **Set Up Your Android Device:** Open the code on Android Studio. If you have a working Android device, to configure your device to be able to run the app you may follow the instructions given [here](https://developer.android.com/studio/run/device). If not, Android Studio provides the functionality of a virtual Android device for which you may choose the specifications and API as required. To run and test on an emulator, follow the procedure given [here](https://developer.android.com/studio/run/emulator).
+
+- **Enter the command in Terminal:** With the device/emulator running, open the terminal within the IDE and enter the command:-  `./gradlew clean build connectedAndroidTest --stacktrace`.
+
+- **Wait for the tests to complete:** You should be able to see the tests being executed in the terminal, wait till they are all complete.
+
+- **Check the test reports:** On completion of all tests, enter the directory path:- `../mentorship-android/app/build/reports/androidTests/connected`, where you should be able to see the various html test reports generated.  Under `index.html` you will find details of which testsuites passed and those which failed. Further, to see details on which tests have passed or failed under a particular testsuite, check that particular testsuite's html file. For instance, `org.systers.mentorship.SignUpActivityTest.html`	 will contain the results of the tests under that particular testsuite.
+
+
 To learn more about this app you can look at [this project's wiki](https://github.com/anitab-org/mentorship-android/wiki).
 
 Check out the design history at [User Interface Design](https://github.com/anitab-org/mentorship-android/wiki/User-Interface-Design).
@@ -78,3 +90,4 @@ We use [#mentorship-system](https://anitab-org.zulipchat.com/#narrow/stream/2225
 ## License
 
 Mentorship System is licensed under the GNU General Public License v3.0. Learn more about it in the [LICENSE](LICENSE) file.
+
