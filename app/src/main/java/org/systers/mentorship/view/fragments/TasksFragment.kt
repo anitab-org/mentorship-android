@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
@@ -147,7 +148,14 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
 
         builder.setPositiveButton(appContext.getString(R.string.save)) { _, _ ->
             val editTextAddTask = dialogLayout.findViewById<EditText>(R.id.etAddTask)
-            taskViewModel.addTask(mentorshipRelation.id, CreateTask(editTextAddTask.text.toString()))
+
+            // validation
+            if (editTextAddTask.text.isNotEmpty() && editTextAddTask.text.length > 2) {
+                taskViewModel.addTask(mentorshipRelation.id, CreateTask(editTextAddTask.text.toString()))
+            } else {
+                Toast.makeText(context, getString(R.string.task_valid_description), Toast.LENGTH_SHORT).show()
+            }
+
         }
         builder.setNegativeButton(appContext.getString(R.string.cancel)) { dialogInterface, i ->
             dialogInterface.dismiss()
