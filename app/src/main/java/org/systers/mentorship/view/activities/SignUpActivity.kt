@@ -1,9 +1,11 @@
 package org.systers.mentorship.view.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -49,7 +51,14 @@ class SignUpActivity : BaseActivity() {
         })
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
+        fun View.hideKeyboard(){
+            val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
+        }
 
+        contentView.setOnClickListener {
+            it.hideKeyboard()
+        }
         btnSignUp.setOnClickListener {
 
             name = tiName.editText?.text.toString()
@@ -146,4 +155,6 @@ class SignUpActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }
