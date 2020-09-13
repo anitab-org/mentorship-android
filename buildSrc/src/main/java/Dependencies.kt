@@ -9,7 +9,7 @@ object Versions {
     const val versionName = "1"
     const val gradleBuildTool = "3.3.1"
     const val dataBinding = "3.2.0-alpha11"
-    const val kotlinVersion = "1.3.21"
+    const val kotlinVersion = "1.3.50"
     const val supportLib = "1.0.0"
     const val designSupportLib = "1.0.0"
     const val constraintLayout = "1.1.3"

@@ -48,6 +48,13 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <provider
+            android:name="br.com.mauker.materialsearchview.db.HistoryProvider"
+            android:authorities="br.com.mauker.materialsearchview.searchhistorydatabase1"
+            android:exported="false"
+            android:protectionLevel="signature"
+            android:syncable="true" />
     </application>
 
 </manifest>

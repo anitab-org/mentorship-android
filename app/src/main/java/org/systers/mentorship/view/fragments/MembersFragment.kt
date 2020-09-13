@@ -20,7 +20,10 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.SearchView
+import br.com.mauker.materialsearchview.MaterialSearchView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -59,16 +62,28 @@ class MembersFragment : BaseFragment() {
     private var isLoading = false
     private var isRecyclerView = false
     private var filterMap = hashMapOf(SORT_KEY to SortValues.REGISTRATION_DATE.name)
-
+    private lateinit var searchView: MaterialSearchView
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
+
+        searchView = view!!.findViewById(R.id.search_view)
         inflater.inflate(R.menu.menu_members, menu)
         menu.findItem(R.id.search_item)?.let { searchItem ->
-            var searchView=searchItem.actionView as SearchView
-            searchView.queryHint="Search members"
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+          //  var searchView=searchItem.actionView as SearchView
+          //  searchView.queryHint="Search members"
+
+            searchItem.setOnMenuItemClickListener {
+                searchView.openSearch()
+
+                //   bottomNavigation.visibility=View.INVISIBLE
+
+                true}
+
+
+
+            searchView.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
                     if(memberListInitialized)
                         searchUsers(newText)
@@ -187,6 +202,10 @@ class MembersFragment : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+//           R.id.search_item->{
+//               searchView.openSearch()
+//            true
+//           }
             R.id.action_filter -> {
                 val intent = Intent(context, FilterActivity::class.java)
                 intent.putExtra(FILTER_MAP, filterMap)

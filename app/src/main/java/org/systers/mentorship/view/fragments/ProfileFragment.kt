@@ -72,7 +72,7 @@ class ProfileFragment : BaseFragment() {
                     editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
                         fetchNewest()
                     })
-                    editProfileFragment.show(fragmentManager, getString(R.string.fragment_title_edit_profile))
+                    editProfileFragment.show(fragmentManager!!, getString(R.string.fragment_title_edit_profile))
                 }
                 true
             }
