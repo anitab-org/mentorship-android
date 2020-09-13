@@ -1,7 +1,7 @@
 # How to test App:
 - Using Physical device and apk
 - Using Emulator and Apk
-- Directly Running in Android Studio ( Reccomended )
+- Directly Running in Android Studio ( Recommended )
 
 
 ## For option one or two:
@@ -46,7 +46,7 @@ Now click the apk to install !
 3. Press the Run 'app' button now as shown 
 ![Run app](https://user-images.githubusercontent.com/16835617/93021832-b5e0d680-f602-11ea-8345-63aab5961895.png)
 4. Wait till the emulator loads up. Rest the IDE would handle ;)  
-5. Now your app is ready to test the any changes you made (*ps make sure you press run 'app' button to reinstall the app in emulator*)
+5. Now your app is ready to test the any changes you made (*ps: make sure to press run 'app' button to reinstall the app in emulator*)
 6. ![Sucess](https://user-images.githubusercontent.com/16835617/93021921-5e8f3600-f603-11ea-9f0c-c0825c32b26b.png)
 
 - Now Test the app as required. :)
