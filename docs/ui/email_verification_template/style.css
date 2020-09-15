@@ -1,0 +1,104 @@
+  body, html {
+    /* Full height */
+    height: 100%;
+  }
+  
+  .bg-image {
+    /* The image used */
+    background-image: url("https://builtin.com/sites/default/files/styles/ckeditor_optimize/public/inline-images/women-in-tech-pillar-page-conferences-events-for-women_0.png");
+  
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  
+    /* Full height */
+    height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Transparent curved container */
+  .bg-text {
+    border-radius: 20px;
+    padding: 20px;
+    height: 475px;
+    background: rgba(216, 199, 199, 0.56);
+    color: black;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 50%;
+    padding: 20px;    
+  }
+
+  /*Adjusting the image container */
+  .image-container{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+  }
+#image1{
+    height: 280px;
+    width: 397px;;
+}
+
+/* Adding a blurred horizontal rule */
+.blur-rule {
+    height: 1px;
+    padding-left: 70%;
+    width: 30%;
+    background-color: #0201011a;
+    margin: 20px 0;
+    display: flex;
+    -webkit-box-shadow: 0 0 30px 0 black;
+    box-shadow: 0 0 9px 0 rgba(197, 189, 189, 0.158); 
+  }
+
+/* Making the page responsive */
+@media only screen and (max-width: 900px) {
+    body,html,.bg-image {
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .blur-rule{
+        width: 40%;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        display:flex;
+        flex-direction: column;
+
+    }
+    .bg-text{
+        margin-top: 20px;
+        top: 50%;
+        left: 50%;
+        height: 300px;
+        width: 60%;
+    }
+    #image1{
+        height: 170px;
+        width: 240px;
+    }
+    .image-container{
+        font-size: 7.2px;
+    }
+  }
+  
