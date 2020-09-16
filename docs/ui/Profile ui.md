@@ -4,4 +4,5 @@
 CHANGES: 
 > - edit , save and cancel buttons moved
 > - changed the whole information display interface and edit interface
-> - tick boxes included rather than slider
+> - If bio is more than 2 lines then read more and read less links is provided,if read more is pressed then bio block will expand and the lower block will shift
+    down if read less is pressed it will take it's original form as shown in the link
