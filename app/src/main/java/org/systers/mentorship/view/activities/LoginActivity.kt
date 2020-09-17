@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
+import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.viewmodels.LoginViewModel
 import java.lang.Exception
 
@@ -43,6 +44,7 @@ class LoginActivity : BaseActivity() {
                     Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
                 }
+                CountingIdlingResourceSingleton.decrement()
             }
         })
 
@@ -87,11 +89,14 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun login() {
+        CountingIdlingResourceSingleton.increment()
         username = tiUsername.editText?.text.toString().trim()
         password = tiPassword.editText?.text.toString().trim()
         if (validateCredentials()) {
             loginViewModel.login(Login(username, password))
             showProgressDialog(getString(R.string.logging_in))
+        } else {
+            CountingIdlingResourceSingleton.decrement()
         }
     }
 
