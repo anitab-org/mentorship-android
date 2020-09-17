@@ -30,6 +30,7 @@ class RequestPagerFragment: BaseFragment() {
             frag.arguments = args
 
             return frag
+
         }
 
         val deletedRequests = mutableSetOf<Int>()
