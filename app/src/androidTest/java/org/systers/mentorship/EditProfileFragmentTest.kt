@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.fragments
+package org.systers.mentorship
 
 import android.widget.EditText
 import androidx.annotation.IdRes
@@ -9,18 +9,17 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import org.hamcrest.CoreMatchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.systers.mentorship.R
 import org.systers.mentorship.view.activities.MainActivity
 
 
-@RunWith(AndroidJUnit4ClassRunner::class)
+@RunWith(AndroidJUnit4::class)
 class EditProfileFragmentTest{
 
     // launches the main Activity
