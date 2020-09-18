@@ -1,4 +1,4 @@
-Figma link : https://www.figma.com/file/HyGPLdCcKqsHcIZNYKmwEw/editprofile?node-id=0%3A1
+ Here's the Figma link : https://www.figma.com/file/HyGPLdCcKqsHcIZNYKmwEw/editprofile?node-id=0%3A1
 
 Profile screen : <br>
 Note : details like username and email id cannot be updated so kept above the edit profile button here
