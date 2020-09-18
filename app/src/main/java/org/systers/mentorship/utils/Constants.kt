@@ -20,4 +20,5 @@ object Constants {
     const val LOCATION_KEY = "location"
     const val SKILLS_KEY = "skills"
     const val TOKEN_EXPIRED_EXTRA = "JsonAuthTokenExpired"
+    const val ROOM_DB_VERSION = 1
 }

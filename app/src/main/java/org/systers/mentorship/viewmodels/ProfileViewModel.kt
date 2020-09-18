@@ -1,17 +1,22 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.repository.DbRepository
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -20,7 +25,7 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel(val app: Application, val repo: DbRepository) : AndroidViewModel(app) {
 
     var tag = ProfileViewModel::class.java.simpleName!!
 
@@ -71,6 +76,18 @@ class ProfileViewModel: ViewModel() {
     }
 
     /**
+     * Saves the user's profile details
+     */
+    fun saveProfile(user: User) = viewModelScope.launch {
+        repo.insertUser(user)
+    }
+
+    /**
+     * Fetches the user's profile details
+     */
+    fun getProfileDetails() = repo.getProfileDetails()
+
+    /**
      * Updates the current user profile with data changed by the user
      */
     @SuppressLint("CheckResult")
@@ -81,6 +98,7 @@ class ProfileViewModel: ViewModel() {
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(response: CustomResponse) {
                         successfulUpdate.value = true
+                        saveProfile(user)
                     }
                     override fun onError(throwable: Throwable) {
                         when (throwable) {

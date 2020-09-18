@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
+import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
@@ -26,11 +27,14 @@ class ProfileFragment : BaseFragment() {
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
-    private val profileViewModel by lazy {
-        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-    }
+    private lateinit var profileViewModel: ProfileViewModel
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        profileViewModel = (activity as MainActivity).profileViewModel
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentProfileBinding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
@@ -51,6 +55,12 @@ class ProfileFragment : BaseFragment() {
                 if (successful) {
                     fragmentProfileBinding.user = profileViewModel.user
                 } else {
+                    profileViewModel.getProfileDetails().observe(viewLifecycleOwner, Observer {
+                        if(it != null && it.isNotEmpty()){
+                            fragmentProfileBinding.user = it[0]
+                        }
+                    })
+
                     Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
                             Snackbar.LENGTH_LONG).show()
                 }

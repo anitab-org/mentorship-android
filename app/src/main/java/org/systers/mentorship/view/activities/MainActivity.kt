@@ -7,10 +7,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
+import org.systers.mentorship.db.AppDatabase
+import org.systers.mentorship.repository.DbRepository
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.*
+import org.systers.mentorship.viewmodels.*
+import org.systers.mentorship.viewmodels.providers.*
 
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
@@ -25,9 +30,26 @@ class MainActivity : BaseActivity() {
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
+    lateinit var homeViewModel: HomeViewModel
+    lateinit var profileViewModel: ProfileViewModel
+    lateinit var settingsViewModel: SettingsViewModel
+    lateinit var tasksViewModel: TasksViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val repo = DbRepository(AppDatabase(this))
+        val homeViewModelProvider = HomeViewModelProvider(application, repo)
+        val profileViewModelProvider = ProfileViewModelProvider(application, repo)
+        val settingsViewModelProvider = SettingsViewModelProvider(application, repo)
+        val taskViewModelProvider = TaskViewModelProvider(application, repo)
+
+        homeViewModel = ViewModelProvider(this, homeViewModelProvider).get(HomeViewModel::class.java)
+        profileViewModel = ViewModelProvider(this, profileViewModelProvider).get(ProfileViewModel::class.java)
+        settingsViewModel = ViewModelProvider(this, settingsViewModelProvider).get(SettingsViewModel::class.java)
+        tasksViewModel = ViewModelProvider(this, taskViewModelProvider).get(TasksViewModel::class.java)
+
         setSupportActionBar(toolbar)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         bottomNavigation.setOnNavigationItemReselectedListener {  }

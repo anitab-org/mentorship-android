@@ -14,6 +14,7 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.CreateTask
+import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.adapters.TasksAdapter
 import org.systers.mentorship.viewmodels.TasksViewModel
 
@@ -33,8 +34,11 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     }
 
     val appContext = MentorshipApplication.getContext()
-    private val taskViewModel by lazy {
-        ViewModelProviders.of(this).get(TasksViewModel::class.java)
+    private lateinit var taskViewModel: TasksViewModel
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        taskViewModel = (activity as MainActivity).tasksViewModel
     }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_mentorship_tasks

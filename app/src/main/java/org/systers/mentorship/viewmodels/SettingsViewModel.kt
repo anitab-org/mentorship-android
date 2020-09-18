@@ -1,15 +1,21 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.repository.DbRepository
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
@@ -18,7 +24,7 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for SettingsActivity
  */
-class SettingsViewModel : ViewModel() {
+class SettingsViewModel(val app: Application, val repo: DbRepository) : AndroidViewModel(app) {
 
     private val userDataManager: UserDataManager = UserDataManager()
     val successfulDelete: MutableLiveData<Boolean> = MutableLiveData()
@@ -57,6 +63,13 @@ class SettingsViewModel : ViewModel() {
 
                     override fun onComplete() {}
                 })
+    }
+
+    /**
+     * Deletes the user's profile details
+     */
+    fun deleteProfile(user: User) = viewModelScope.launch {
+        repo.deleteUser(user)
     }
 
 }

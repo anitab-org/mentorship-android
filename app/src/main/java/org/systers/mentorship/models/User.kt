@@ -1,6 +1,8 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -21,7 +23,9 @@ import kotlinx.android.parcel.Parcelize
  * @param slackUsername Slack username
  */
 @Parcelize
+@Entity(tableName = "UserProfile")
 data class User(
+        @PrimaryKey(autoGenerate = false)
         var id: Int? = null,
         var username: String? = null,
         var name: String? = null,

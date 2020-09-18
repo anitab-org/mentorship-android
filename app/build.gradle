@@ -51,7 +51,7 @@ dependencies {
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
     implementation Dependencies.appCompat
-    kapt Dependencies.databinding
+//    kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
     androidTestImplementation Dependencies.test_rules
@@ -63,6 +63,13 @@ dependencies {
     implementation Dependencies.rx_android
     implementation Dependencies.rx_kotlin
 
+    implementation Dependencies.room_runtime
+    kapt Dependencies.room_compiler
+    implementation Dependencies.room
+
+    implementation Dependencies.coroutine_core
+    implementation Dependencies.coroutine
+
     implementation Dependencies.retrofit
     implementation Dependencies.retrofit_gson_converter
     implementation Dependencies.retrofit_rxjava2_adapter
@@ -70,6 +77,9 @@ dependencies {
 
     implementation Dependencies.lifecycle_extensions
     implementation Dependencies.lifecycle_viewmodel
+    implementation Dependencies.lifecycle_live_data
+    kapt Dependencies.lifecycle_compiler
+
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
 }

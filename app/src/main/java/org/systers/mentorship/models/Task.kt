@@ -1,6 +1,8 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -15,7 +17,9 @@ import kotlinx.android.parcel.Parcelize
  */
 
 @Parcelize
+@Entity(tableName = "Tasks")
 data class Task(
+        @PrimaryKey(autoGenerate = false)
         val id: Int,
         val description: String,
         val isDone: Boolean,

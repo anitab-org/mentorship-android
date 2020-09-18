@@ -7,9 +7,9 @@ object Versions {
     const val targetSdkVersion = 28
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "3.3.1"
+    const val gradleBuildTool = "4.0.1"
     const val dataBinding = "3.2.0-alpha11"
-    const val kotlinVersion = "1.3.21"
+    const val kotlinVersion = "1.4.10"
     const val supportLib = "1.0.0"
     const val designSupportLib = "1.0.0"
     const val constraintLayout = "1.1.3"
@@ -23,11 +23,14 @@ object Versions {
     const val retrofitVersion = "2.3.0"
     const val okHttp3Version = "3.10.0"
     const val archComponents = "2.0.0"
+    const val lifecycle_version = "2.2.0"
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appIntro = "5.1.0"
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
+    const val room = "2.2.5"
+    const val coroutine = "1.3.9"
 }
 
 /**
@@ -55,8 +58,15 @@ object Dependencies {
     const val retrofit_rxjava2_adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
     const val okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3Version}"
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
-    const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
+    const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}"
+    const val lifecycle_live_data = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_version}"
+    const val lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle_version}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
     const val app_intro = "com.github.AppIntro:AppIntro:${Versions.appIntro}"
     const val circule_image_view = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
+    const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
+    const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
+    const val room = "androidx.room:room-ktx:${Versions.room}"
+    const val coroutine_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
+    const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 }

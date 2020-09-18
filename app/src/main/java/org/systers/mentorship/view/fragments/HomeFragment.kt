@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentHomeBinding
+import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.adapters.AchievementsAdapter
 import org.systers.mentorship.viewmodels.HomeViewModel
 
@@ -23,9 +24,7 @@ import org.systers.mentorship.viewmodels.HomeViewModel
  */
 class HomeFragment : BaseFragment() {
 
-    private val homeViewModel by lazy {
-        ViewModelProviders.of(this).get(HomeViewModel::class.java)
-    }
+    private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
     private lateinit var achievementsAdapter: AchievementsAdapter
 
@@ -45,6 +44,8 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        homeViewModel = (activity as MainActivity).homeViewModel
 
         achievementsAdapter = AchievementsAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
@@ -100,6 +101,7 @@ class HomeFragment : BaseFragment() {
     private fun fetchNewest()  {
         srlHome.isRefreshing = true
         homeViewModel.getHomeStats()
+        homeViewModel.getProfile()
     }
 }
 
