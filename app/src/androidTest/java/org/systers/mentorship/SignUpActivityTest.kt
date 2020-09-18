@@ -2,7 +2,6 @@ package org.systers.mentorship
 
 import android.content.ComponentName
 import androidx.annotation.IdRes
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
@@ -12,24 +11,19 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.base.IdlingResourceRegistry
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
-import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -41,7 +35,7 @@ import org.systers.mentorship.view.activities.SignUpActivity
 /**
  * This class specifies the UI test for SignUpActivity
  */
-@RunWith(AndroidJUnit4ClassRunner::class)
+@RunWith(AndroidJUnit4::class)
 class SignUpActivityTest {
 
     private val EMPTY_USERNAME_ERROR: String = "Username/Email cannot be empty"
