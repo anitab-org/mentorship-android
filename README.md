@@ -19,7 +19,9 @@ This is the Android client for the Mentorship System.
 * After installation, user views an onboarding screen that intorduces the app and describes what it does.
 * A member gets an option to be a Mentor, Mentee or Both.
 * A member can build/customise the app profile with username, bio, skills, interests, location, occupation, etc. anytime. 
-* A member can view a list of other members, search for a member and filter members on the Members Page
+* A member can view a list of other members and search for a member on the Members Page.
+* A member can sort other members in the list by Name(A-Z) or (Z-A), Registration Date and Age. 
+* A member can filter other members in list by **need mentoring** and **available to mentor** tags, interests, location and skills.
 * A member can read the details of a particular member. 
 * A member can either send mentorship requests to other members as a Mentor or Mentee according to their interests or reject mentorship requests from other members.
 * A member can track the number of **Pending Resquests**, **Accepted Requests**, **Rejected Requests**, and **Completed Requests** and view **Recent Achievements** on the Home Page.  
