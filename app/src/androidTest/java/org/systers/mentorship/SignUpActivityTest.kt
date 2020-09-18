@@ -32,10 +32,14 @@ import org.systers.mentorship.view.activities.SignUpActivity
 @RunWith(AndroidJUnit4::class)
 class SignUpActivityTest {
 
-    private val EMPTY_USERNAME_ERROR: String = "Username cannot be empty"
+    private val EMPTY_USERNAME_ERROR: String = "Username/Email cannot be empty"
     private val EMPTY_PASSWORD_ERROR: String = "Password cannot be empty"
     private val EMPTY_EMAIL_ERROR: String = "Email cannot be empty"
     private val EMPTY_NAME_ERROR: String = "Name cannot be empty"
+    private val EMPTY_CONFIRM_PASSWORD_ERROR: String = "Password confirmation cannot be empty"
+
+    private val PASSWORD_DIDNT_MATCH_ERROR: String = "Passwords didn't match!"
+    private val TOO_WEAK_PASSWORD_ERROR: String = "Your password is too weak! Use at least one small and capital letter, one number and one special sign!"
 
     /**
      * This basically setups the SignUpActivity before test
@@ -119,6 +123,8 @@ class SignUpActivityTest {
         onView(withId(R.id.tiUsername)).check(matches(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR)))
         onView(withId(R.id.tiEmail)).check(matches(hasTextInputLayoutErrorText(EMPTY_EMAIL_ERROR)))
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
+        onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_CONFIRM_PASSWORD_ERROR)))
+        onView(withId(R.id.tvNoteSignUp)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
 
     }
 
@@ -136,9 +142,9 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertz123!45"), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
 
-        onView(withId(R.id.btnSignUp)).perform(click())
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
-        onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText("Passwords didn't match!")))
+        onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText(PASSWORD_DIDNT_MATCH_ERROR)))
     }
 
     /**
@@ -155,10 +161,9 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
 
-        onView(withId(R.id.btnSignUp)).perform(click())
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
-        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(
-                "Your password is too weak! Use at least one small and capital letter, one number and one special sign!")))
+        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(TOO_WEAK_PASSWORD_ERROR)))
     }
 
     /**
@@ -175,10 +180,9 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("Qwertz123"), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
 
-        onView(withId(R.id.btnSignUp)).perform(click())
+        onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
-        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(
-                "Your password is too weak! Use at least one small and capital letter, one number and one special sign!")))
+        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(TOO_WEAK_PASSWORD_ERROR)))
     }
 
 }
