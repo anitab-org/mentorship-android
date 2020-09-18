@@ -1,30 +1,37 @@
-package org.systers.mentorship.view.fragments
+package org.systers.mentorship
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import org.hamcrest.core.IsNot.not
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.systers.mentorship.R
-import org.systers.mentorship.utils.DataBindingIdlingResourceRule
+import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.view.activities.MainActivity
 
-@RunWith(AndroidJUnit4ClassRunner::class)
+@RunWith(AndroidJUnit4::class)
 class ProfileFragmentTest {
 
     // launch main activity
     @get:Rule
     val activityTestRule = ActivityTestRule(MainActivity::class.java)
 
-    // Rule to make the test wait until the refresh is finished and data binding file is generated
-    @Rule
-    @JvmField
-    val dataBindingIdlingResourceRule = DataBindingIdlingResourceRule(activityTestRule)
+    @Before
+    fun registerIdlingResource() {
+        IdlingRegistry.getInstance().register(CountingIdlingResourceSingleton.countingIdlingResource)
+    }
+
+    @After
+    fun unregisterIdlingResource() {
+        IdlingRegistry.getInstance().unregister(CountingIdlingResourceSingleton.countingIdlingResource)
+    }
 
     /*
     * Test to check that all the edit Text fields are present, enabled and not focusable

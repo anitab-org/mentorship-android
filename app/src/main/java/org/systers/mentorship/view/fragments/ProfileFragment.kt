@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
+import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
@@ -54,6 +55,7 @@ class ProfileFragment : BaseFragment() {
                     Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
                             Snackbar.LENGTH_LONG).show()
                 }
+                CountingIdlingResourceSingleton.decrement()
             }
         })
         fetchNewest()
@@ -85,6 +87,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun fetchNewest() {
+        CountingIdlingResourceSingleton.increment()
         srlProfile.isRefreshing = true
         profileViewModel.getProfile()
     }
