@@ -6,6 +6,7 @@ import android.os.PersistableBundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,6 +35,7 @@ class MainActivity : BaseActivity() {
     lateinit var profileViewModel: ProfileViewModel
     lateinit var settingsViewModel: SettingsViewModel
     lateinit var tasksViewModel: TasksViewModel
+    lateinit var requestsViewModel: RequestsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

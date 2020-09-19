@@ -44,7 +44,7 @@ class MemberProfileActivity : BaseActivity() {
             successful ->
             if (successful != null) {
                 if (successful) {
-                    setCurrentUser(profileViewModel.user)
+                    profileViewModel.user?.let { setCurrentUser(it) }
                 } else {
                     Snackbar.make(getRootView(), profileViewModel.message, Snackbar.LENGTH_LONG)
                             .show()

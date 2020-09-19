@@ -77,8 +77,8 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                if(fragmentProfileBinding.user != null){
-                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
+                if(fragmentProfileBinding.user != null && profileViewModel.user != null){
+                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user!!)
                     editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
                         fetchNewest()
                     })

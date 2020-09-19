@@ -33,7 +33,7 @@ class ProfileViewModel(val app: Application, val repo: DbRepository) : AndroidVi
 
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
-    lateinit var user: User
+    var user: User? = null
     lateinit var message: String
 
     /**
