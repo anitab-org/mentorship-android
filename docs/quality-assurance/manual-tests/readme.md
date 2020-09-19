@@ -25,26 +25,28 @@
 
 
 <img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582928.jpg?raw=true" width="315" height="600">
-<b>Expected Result:</b> Displaying the email confirmation<br>
-  
+<b>Expected Result:</b> Displaying the email confirmation
 <b>Actual Result:</b> Email confirmation is not in proper format
 <br><br>
 
 ### Step 3 - Login in app
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582924.jpg?raw=true" width="315" height="600"><b>Expected Result:</b> Entering the login details and logging in <br>
-  
-<b>Actual Result:</b> Works perfect user can log into
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582924.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Entering the login details and logging in 
+<b>Actual Result:</b> Works perfectly user can log into
 <br><br>
 
 
 ### Step 4 - Navigating to members section
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582919.jpg?raw=true" width="315" height="600"><br><br>
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582919.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Navigating to every section by clicking on it 
+<b>Actual Result:</b> Navigation works perfectly user can navigate to any section
+<br><br>
 
 ### Step 5 - Sending request to mentor/mentee
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582890.jpg?raw=true" width="315" height="600"><br><br>
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582890.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Sending personalised request to mentor/mentee
+<b>Actual Result:</b> Works perfectly user can send request to mentor/mentee
+<br><br>
 
 ### Step 6 - Viewing request
 
