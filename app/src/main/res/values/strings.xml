@@ -28,6 +28,11 @@
     <string name="error_empty_username">Username/Email cannot be empty</string>
     <string name="error_empty_email">Email cannot be empty</string>
     <string name="error_empty_name">Name cannot be empty</string>
+    <string name="error_empty_DoB">Date of birth cannot be empty</string>
+    <string name="error_invalid_DoB">Date of birth format is invalid</string>
+    <string name="error_underage_DoB">You must be at least 13 years of age to participate</string>
+    <string name="DoB_format">Date of Birth (DD/MM/YYYY)</string>
+    <string name="DoB_button_description">Button to open DatePicker to select Date of Birth</string>
     <string name="navigation_title_home">Home</string>
     <string name="navigation_title_profile">Profile</string>
     <string name="navigation_title_relation">Relation</string>
@@ -49,6 +54,7 @@
     <string name="cancel">Cancel</string>
     <string name="send_request">Send Request</string>
     <string name="member_profile">Member Profile</string>
+    <string name="DoB">Date of birth</string>
     <string name="bio">Bio</string>
     <string name="slack_username">Slack username</string>
     <string name="interests">Interests</string>

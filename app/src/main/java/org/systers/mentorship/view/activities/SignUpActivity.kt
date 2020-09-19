@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.activities
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
@@ -13,6 +14,9 @@ import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.utils.checkPasswordSecurity
 import org.systers.mentorship.viewmodels.SignUpViewModel
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * This activity will let the user to sign up into the system using name, username,
@@ -28,9 +32,12 @@ class SignUpActivity : BaseActivity() {
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var confirmedPassword: String
+    private lateinit var dateOfBirth: String
+    private lateinit var calendarMinAge: Calendar
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
     private var isAvailableForBoth: Boolean = false
+    private val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +64,7 @@ class SignUpActivity : BaseActivity() {
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
+            dateOfBirth = tiDoB.editText?.text.toString()
             needsMentoring = cbMentee.isChecked //old name but works
             isAvailableToMentor = cbMentor.isChecked //old name but works
             isAvailableForBoth = cbBoth.isChecked
@@ -73,6 +81,28 @@ class SignUpActivity : BaseActivity() {
         cbTC.setOnCheckedChangeListener { _, b ->
             btnSignUp.isEnabled = b
         }
+        calendarButton.setOnClickListener {
+            // max date: 13 years earlier from now
+            // user must be minimum 13 years old
+            calendarMinAge = Calendar.getInstance()
+            calendarMinAge.add(Calendar.YEAR, -13)
+            val calendarDoB = Calendar.getInstance()
+
+            val datePickerDialog = DatePickerDialog(this,
+                    DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                        calendarDoB.set(year, month, day)
+
+                        val formattedDate = dateFormatter.format(calendarDoB.time)
+                        tiDoB.editText?.setText(formattedDate)
+                    }, //set default datePicker date to max possible date
+                    calendarMinAge.get(Calendar.YEAR),
+                    calendarMinAge.get(Calendar.MONTH),
+                    calendarMinAge.get(Calendar.DATE)
+            )
+            //lock max date
+            datePickerDialog.datePicker.maxDate = calendarMinAge.timeInMillis
+            datePickerDialog.show()
+        }
     }
 
     override fun onDestroy() {
@@ -81,7 +111,39 @@ class SignUpActivity : BaseActivity() {
         signUpViewModel.successful.value = null
     }
 
-    private fun validateDetails(): Boolean {
+    private fun validateDate(): Boolean {
+         var isValid: Boolean
+         if (dateOfBirth.isBlank()) {
+             tiDoB.error = getString(R.string.error_empty_DoB)
+             isValid = false
+         }
+         else
+         {
+             val calendarDoB = Calendar.getInstance()
+             try {
+                 calendarDoB.time = dateFormatter.parse(dateOfBirth)
+                 calendarMinAge = Calendar.getInstance()
+                 calendarMinAge.add(Calendar.YEAR, -13)
+                 //time difference must be greater than or equal to 13 years
+                 if (calendarDoB.time > calendarMinAge.time){
+                     //less than 13, error
+                     tiDoB.error = getString(R.string.error_underage_DoB)
+                     isValid = false
+                 }
+                 else {
+                     tiDoB.error = null
+                     isValid = true
+                 }
+             }
+             catch (exception: Exception){
+                 tiDoB.error = getString(R.string.error_invalid_DoB)
+                 isValid = false
+             }
+         }
+         return isValid
+     }
+
+     private fun validateDetails(): Boolean {
         var isValid = true
         if (name.isBlank()) {
             tiName.error = getString(R.string.error_empty_name)
@@ -122,6 +184,10 @@ class SignUpActivity : BaseActivity() {
             isValid = false
         } else {
             tiConfirmPassword.error = null
+        }
+
+        if (!validateDate()) {
+            isValid = false
         }
 
         if (!needsMentoring && !isAvailableToMentor && !isAvailableForBoth) {
