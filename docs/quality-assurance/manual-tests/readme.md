@@ -24,12 +24,18 @@
 ### Step 2 - Email Confirmation
 
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582928.jpg?raw=true" width="315" height="600"><br><br>
-
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582928.jpg?raw=true" width="315" height="600">
+<b>Expected Result:</b> Displaying the email confirmation<br>
+  
+<b>Actual Result:</b> Email confirmation is not in proper format
+<br><br>
 
 ### Step 3 - Login in app
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582924.jpg?raw=true" width="315" height="600"><br><br>
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582924.jpg?raw=true" width="315" height="600"><b>Expected Result:</b> Entering the login details and logging in <br>
+  
+<b>Actual Result:</b> Works perfect user can log into
+<br><br>
 
 
 ### Step 4 - Navigating to members section
