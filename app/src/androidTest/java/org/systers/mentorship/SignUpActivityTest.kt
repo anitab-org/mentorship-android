@@ -1,6 +1,5 @@
 package org.systers.mentorship
 
-import android.content.ComponentName
 import androidx.annotation.IdRes
 import com.google.android.material.textfield.TextInputLayout
 import androidx.test.espresso.Espresso
@@ -14,22 +13,13 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
-import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.intent.Intents.intended
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
-import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.platform.app.InstrumentationRegistry
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
 import org.hamcrest.TypeSafeMatcher
-import org.junit.After
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.systers.mentorship.utils.CountingIdlingResourceSingleton
-import org.systers.mentorship.view.activities.LoginActivity
 import org.systers.mentorship.view.activities.SignUpActivity
 
 /**
@@ -47,28 +37,11 @@ class SignUpActivityTest {
     private val PASSWORD_DIDNT_MATCH_ERROR: String = "Passwords didn't match!"
     private val TOO_WEAK_PASSWORD_ERROR: String = "Your password is too weak! Use at least one small and capital letter, one number and one special sign!"
 
-    private val EMAIL_ALERADY_REGISTERED: String = "A user with that email already exists."
-    private val USERNAME_ALERADY_REGISTERED: String = "A user with that username already exists."
-
     /**
      * This basically setups the SignUpActivity before test
       */
     @get:Rule
     var mActivityRule: ActivityTestRule<SignUpActivity> = ActivityTestRule(SignUpActivity::class.java)
-
-    @Rule
-    @JvmField
-    var intentsRule = IntentsTestRule(LoginActivity::class.java)
-
-    @Before
-    fun registerIdlingResource() {
-        IdlingRegistry.getInstance().register(CountingIdlingResourceSingleton.countingIdlingResource)
-    }
-
-    @After
-    fun unregisterIdlingResource() {
-        IdlingRegistry.getInstance().unregister(CountingIdlingResourceSingleton.countingIdlingResource)
-    }
 
     /**
      * This method is used to find the EditText within the TextInputLayout. Useful for typing into the TextInputLayout
@@ -207,54 +180,4 @@ class SignUpActivityTest {
 
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(TOO_WEAK_PASSWORD_ERROR)))
     }
-
-    /*
-    * This test checks that login button is opening the login activity
-    * */
-    @Test
-    fun loginButtonIsWorkingCorrectly() {
-        onView(withId(R.id.btnLogin)).perform(scrollTo(), click())
-        intended(hasComponent(
-                ComponentName(InstrumentationRegistry.getInstrumentation().context, LoginActivity::class.java)
-        ))
-    }
-
-    /*
-    * This test checks that correct error message is shown when Username is already registered
-    * */
-    @Test
-    fun whenUsernameIsAlreadyResgitered() {
-        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("Divyansh"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("justdvnsh2208@gmail.com"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("Divyansh@2001"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("Divyansh@2001"), closeSoftKeyboard())
-        onView(withId(R.id.cbBoth)).perform(click())
-        onView(withId(R.id.cbTC)).perform(click())
-
-        onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
-
-        onView(withId(com.google.android.material.R.id.snackbar_text))
-                .check(matches(withText(USERNAME_ALERADY_REGISTERED)))
-    }
-
-    /*
-    * This test checks that correct error message is shown when Email is already registered
-    * */
-    @Test
-    fun whenEmailIsAlreadyResgitered() {
-        findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("Divyansh22087812"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("justdvnsh2208@gmail.com"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("Divyansh@2001"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("Divyansh@2001"), closeSoftKeyboard())
-        onView(withId(R.id.cbBoth)).perform(click())
-        onView(withId(R.id.cbTC)).perform(click())
-
-        onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
-
-        onView(withId(com.google.android.material.R.id.snackbar_text))
-                .check(matches(withText(EMAIL_ALERADY_REGISTERED)))
-    }
-
 }
