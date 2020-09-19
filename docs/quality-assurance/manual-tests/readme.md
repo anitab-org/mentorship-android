@@ -25,32 +25,34 @@
 
 
 <img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582928.jpg?raw=true" width="315" height="600">
-<b>Expected Result:</b> Displaying the email confirmation
+<b>Expected Result:</b> Displaying the email confirmation<br>
 <b>Actual Result:</b> Email confirmation is not in proper format
 <br><br>
 
 ### Step 3 - Login in app
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582924.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Entering the login details and logging in 
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582924.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Entering the login details and logging in <br>
 <b>Actual Result:</b> Works perfectly user can log into
 <br><br>
 
 
 ### Step 4 - Navigating to members section
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582919.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Navigating to every section by clicking on it 
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582919.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Navigating to every section by clicking on it <br>
 <b>Actual Result:</b> Navigation works perfectly user can navigate to any section
 <br><br>
 
 ### Step 5 - Sending request to mentor/mentee
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582890.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Sending personalised request to mentor/mentee
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582890.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Sending personalised request to mentor/mentee<br>
 <b>Actual Result:</b> Works perfectly user can send request to mentor/mentee
 <br><br>
 
 ### Step 6 - Viewing request
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582881.jpg?raw=true" width="315" height="600"><br><br>
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582881.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Viewing pending requests to mentor and mentee<br>
+<b>Actual Result:</b> User can view pending request to mentor/mentee 
+<br><br>
 
 ### Step 7 - Accepting/Rejecting request
 
