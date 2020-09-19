@@ -45,29 +45,36 @@
 ### Step 5 - Sending request to mentor/mentee
 
 <img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582890.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Sending personalised request to mentor/mentee<br>
-<b>Actual Result:</b> Works perfectly user can send request to mentor/mentee
+<b>Actual Result:</b> Works perfectly user can send request to mentor/mentee but the name of mentor/mentee is not aligned properly
 <br><br>
 
 ### Step 6 - Viewing request
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582881.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Viewing pending requests to mentor and mentee<br>
-<b>Actual Result:</b> User can view pending request to mentor/mentee 
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582881.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Viewing pending requests to mentor and mentee and also viewing multiple requests<br>
+<b>Actual Result:</b> Works perfectly user can view pending request to mentor/mentee 
 <br><br>
 
 ### Step 7 - Accepting/Rejecting request
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582855.jpg?raw=true" width="315" height="600"><br><br>
-
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582855.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Accepting/Rejecting requests of mentor/mentee and also viewing multiple requests<br>
+<b>Actual Result:</b> Works perfectly user can view, accept, reject request of mentor/mentee 
+<br><br>
 
 ### Step 8 - Creating task
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582871.jpg?raw=true" width="315" height="600"><br><br>
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582871.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Creating tasks for mentee/mentor <br>
+<b>Actual Result:</b> Works perfectly user can view created tasks from mentee/mentor
+<br><br>
 
 ### Step 9 - Task completion
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582867.jpg?raw=true" width="315" height="600"><br><br>
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582867.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Completing the created tasks from mentee/mentor <br>
+<b>Actual Result:</b> Works perfectly user can mark tasks which are given to him/her as completed 
+<br><br>
 
 
 ### Step 10 - Deletion of relation
 
-<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582863.jpg?raw=true" width="315" height="600"><br><br>
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582863.jpg?raw=true" width="315" height="600"><br><b>Expected Result:</b> Deleting/Cancelling the relation with mentee/mentor <br>
+<b>Actual Result:</b> Works perfectly user can delete/cancel the relation with mentor/mentee 
+<br><br>
