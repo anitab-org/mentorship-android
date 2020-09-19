@@ -1,1 +1,60 @@
+# Workflow: Delete mentorship relation
 
+### Steps:
+
+1. Registration/SignUp in app
+2. Email Confirmation
+3. Login in app
+4. Navigating to members section
+5. Sending request to mentor/mentee
+6. Viewing request
+7. Accepting/Rejecting request
+8. Creating task
+9. Task completion
+10. Deletion of relation
+
+### Step 1 - Registration/SignUp in app
+
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582930.jpg?raw=true" width="315" height="600"><br><br>
+
+### Step 2 - Email Confirmation
+
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582928.jpg?raw=true" width="315" height="600"><br><br>
+
+
+### Step 3 - Login in app
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582924.jpg?raw=true" width="315" height="600"><br><br>
+
+
+### Step 4 - Navigating to members section
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582919.jpg?raw=true" width="315" height="600"><br><br>
+
+### Step 5 - Sending request to mentor/mentee
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582890.jpg?raw=true" width="315" height="600"><br><br>
+
+### Step 6 - Viewing request
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582881.jpg?raw=true" width="315" height="600"><br><br>
+
+### Step 7 - Accepting/Rejecting request
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582855.jpg?raw=true" width="315" height="600"><br><br>
+
+
+### Step 8 - Creating task
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582871.jpg?raw=true" width="315" height="600"><br><br>
+
+### Step 9 - Task completion
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582867.jpg?raw=true" width="315" height="600"><br><br>
+
+
+### Step 10 - Deletion of relation
+
+<img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582863.jpg?raw=true" width="315" height="600"><br><br>
