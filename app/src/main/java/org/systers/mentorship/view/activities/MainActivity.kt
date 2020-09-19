@@ -34,8 +34,6 @@ class MainActivity : BaseActivity() {
     lateinit var homeViewModel: HomeViewModel
     lateinit var profileViewModel: ProfileViewModel
     lateinit var settingsViewModel: SettingsViewModel
-    lateinit var tasksViewModel: TasksViewModel
-    lateinit var requestsViewModel: RequestsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +43,10 @@ class MainActivity : BaseActivity() {
         val homeViewModelProvider = HomeViewModelProvider(application, repo)
         val profileViewModelProvider = ProfileViewModelProvider(application, repo)
         val settingsViewModelProvider = SettingsViewModelProvider(application, repo)
-        val taskViewModelProvider = TaskViewModelProvider(application, repo)
 
         homeViewModel = ViewModelProvider(this, homeViewModelProvider).get(HomeViewModel::class.java)
         profileViewModel = ViewModelProvider(this, profileViewModelProvider).get(ProfileViewModel::class.java)
         settingsViewModel = ViewModelProvider(this, settingsViewModelProvider).get(SettingsViewModel::class.java)
-        tasksViewModel = ViewModelProvider(this, taskViewModelProvider).get(TasksViewModel::class.java)
 
         setSupportActionBar(toolbar)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
