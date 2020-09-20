@@ -28,6 +28,7 @@ object Versions {
     const val appIntro = "5.1.0"
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
+    const val credentials = "18.1.0"
 }
 
 /**
@@ -59,4 +60,5 @@ object Dependencies {
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
     const val app_intro = "com.github.AppIntro:AppIntro:${Versions.appIntro}"
     const val circule_image_view = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
+    const val credentials = "com.google.android.gms:play-services-auth:${Versions.credentials}"
 }
