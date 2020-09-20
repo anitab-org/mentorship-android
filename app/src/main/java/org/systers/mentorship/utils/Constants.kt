@@ -21,5 +21,4 @@ object Constants {
     const val SKILLS_KEY = "skills"
     const val TOKEN_EXPIRED_EXTRA = "JsonAuthTokenExpired"
     const val RC_SAVE = 2020
-    const val RC_OK = 2021
 }
