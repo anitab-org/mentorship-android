@@ -1,18 +1,29 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
+import android.content.IntentSender.SendIntentException
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.text.Editable
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.auth.api.credentials.Credential
+import com.google.android.gms.auth.api.credentials.CredentialRequest
+import com.google.android.gms.auth.api.credentials.Credentials
+import com.google.android.gms.auth.api.credentials.CredentialsClient
+import com.google.android.gms.common.api.ResolvableApiException
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
+import org.systers.mentorship.utils.Constants.RC_OK
+import org.systers.mentorship.utils.Constants.RC_SAVE
 import org.systers.mentorship.viewmodels.LoginViewModel
-import java.lang.Exception
+
 
 /**
  * This activity will let the user to login using username/email and password.
@@ -24,10 +35,13 @@ class LoginActivity : BaseActivity() {
     }
     private lateinit var username: String
     private lateinit var password: String
+    private lateinit var mCredentialsClient: CredentialsClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        setupCredentialsManager()
 
         loginViewModel.successful.observe(this, Observer {
             successful ->
@@ -89,9 +103,70 @@ class LoginActivity : BaseActivity() {
     private fun login() {
         username = tiUsername.editText?.text.toString().trim()
         password = tiPassword.editText?.text.toString().trim()
+        saveCredentials(username, password)
+    }
+
+    private fun setupCredentialsManager() {
+        mCredentialsClient = Credentials.getClient(this)
+        var mCredentialsRequest = CredentialRequest.Builder().setPasswordLoginSupported(true).build()
+        mCredentialsClient.request(mCredentialsRequest).addOnCompleteListener {
+            if (it.isSuccessful) {
+                onCredentialsRetrieved(it.result?.credential!!)
+            } else {
+                Toast.makeText(this, it.exception?.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun onCredentialsRetrieved(credential: Credential) {
+        username = credential.id
+        password = credential.password.toString()
+
         if (validateCredentials()) {
             loginViewModel.login(Login(username, password))
             showProgressDialog(getString(R.string.logging_in))
+        }
+    }
+
+    private fun saveCredentials(username: String, password: String) {
+        var credential = Credential.Builder(username).setPassword(password).build()
+        mCredentialsClient.save(credential).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(this@LoginActivity, "Credentials Saved", Toast.LENGTH_SHORT).show()
+            }
+            val e  = it.exception
+            if (e is ResolvableApiException) {
+                // Try to resolve the save request. This will prompt the user if
+                // the credential is new.
+                try {
+                    e.startResolutionForResult(this, RC_SAVE)
+                } catch (exception: SendIntentException) {
+                    // Could not resolve the request
+                    Log.i("Save", e.message.toString())
+                    Toast.makeText(this@LoginActivity, "Save failed", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Log.i("Save", e?.message.toString())
+                // Request has no resolution
+                Toast.makeText(this@LoginActivity, "Save failed", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SAVE) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this@LoginActivity, "Credentials Saved", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@LoginActivity, "Save Canceled by User", Toast.LENGTH_SHORT).show()
+            }
+
+            if (validateCredentials()) {
+                loginViewModel.login(Login(username, password))
+                showProgressDialog(getString(R.string.logging_in))
+            }
         }
     }
 
