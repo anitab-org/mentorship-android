@@ -18,7 +18,7 @@
 
 In order to access the app features user needs to register with the email ID <br> <br>
 <img src = "https://github.com/sharur7/mentorship-android/blob/new_testing/docs/quality-assurance/manual-tests/screenshots/1600499582930.jpg?raw=true" width="315" height="620">
-<br><b>Expected Result:</b> Register/SignUp in the app(if not already registered), in order to access the features of the app<br>
+<br><b>Expected Result:</b> Register/SignUp in the app(if not already registered), in order to access the features of the app
   
 <b>Actual Result:</b> Which are same as expected result we can Register/SignUp in the app in order to access the features of the app.
 <br><br>
