@@ -6,11 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.systers.mentorship.R
 import org.systers.mentorship.db.AppDatabase
-import org.systers.mentorship.models.User
 import org.systers.mentorship.repository.DbRepository
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.ChangePasswordFragment

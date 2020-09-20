@@ -2,7 +2,6 @@ package org.systers.mentorship.view.fragments
 
 import android.content.DialogInterface
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.*

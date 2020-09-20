@@ -13,7 +13,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
