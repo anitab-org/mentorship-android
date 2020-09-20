@@ -1,0 +1,70 @@
+body, html {
+    height: 100%;
+    margin-right: 0px;
+    height: 100%;
+    margin-left: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  .bg-pic{
+     background: url(/images/Untitled-12.jpg);
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+  }
+
+  .image-container{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+#image{
+    height: 300px;
+    width: 500px;;
+}
+
+@media only screen and (max-width: 900px) {
+    body,html,.bg-pic {
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .blur-rule{
+        width: 4%;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        display:flex;
+        flex-direction: column;
+
+    }
+    .main-container{
+        margin-top: 20px;
+        top: 50%;
+        left: 50%;
+        height: 300px;
+        width: 60%;
+    }
+    #image{
+        height: 220px;
+        width: 400px;
+    }
+    .image-container{
+        font-size: 8px;
+    }
+  }
