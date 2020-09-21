@@ -1,6 +1,6 @@
 # Facebook Log In Process
 **Register**
-- Login using your Facebook account to: [Facebook For Developers](]https://developers.facebook.com/apps/).
+- Login using your Facebook account to: [Facebook For Developers](https://developers.facebook.com/apps/).
 
 ![](https://cdn.journaldev.com/wp-content/uploads/2018/03/android-login-with-fb-homepage.png)
 - Now create a new app. And set the app name and the email id as shown in the below pic.
