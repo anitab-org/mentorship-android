@@ -51,7 +51,7 @@ The actual result meets expected result. User is able set mentorship period and 
 ## Reject Request
 <img src="https://github.com/blackcrabb/mentorship-android/blob/testing/docs/quality%20assurance/manual%20tests/reject/9.jpeg" height="500" width="250"><img src="https://github.com/blackcrabb/mentorship-android/blob/testing/docs/quality%20assurance/manual%20tests/reject/10.jpeg" height="500" width="250">
 <br>
-<img src="https://github.com/blackcrabb/mentorship-android/blob/testing/docs/quality%20assurance/manual%20tests/reject/confirm.png" height="300" width="600">
+<img src="https://github.com/blackcrabb/mentorship-android/blob/testing/docs/quality%20assurance/manual%20tests/reject/req.png" height="300" width="600">
 <br>
 <img src="https://github.com/blackcrabb/mentorship-android/blob/testing/docs/quality%20assurance/manual%20tests/reject/11.jpeg" height="500" width="250"> <img src="https://github.com/blackcrabb/mentorship-android/blob/testing/docs/quality%20assurance/manual%20tests/reject/12.jpeg" height="500" width="250">
 <img src="https://github.com/blackcrabb/mentorship-android/blob/testing/docs/quality%20assurance/manual%20tests/reject/13.jpeg" height="500" width="250">
