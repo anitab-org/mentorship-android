@@ -228,8 +228,8 @@ accepting request to be a mentor or mentee by another user
 <img src="https://user-images.githubusercontent.com/53532851/93901808-8b82cd80-fd14-11ea-991f-5566b8fddbe2.gif" alt ="registration" width="200"/>
 
 ##### EXPECTED RESULT: 
-"mentorship relation was accepted successfully"
+"you are currently involved in a mentorship relation"
 
 
 ##### ACTUAL RESULT: 
-`"you are currently involved in a mentorship relation"`
+"you are currently involved in a mentorship relation"
