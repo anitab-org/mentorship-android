@@ -16,13 +16,19 @@
 This is the Android client for the Mentorship System.
 
 ## Features
-
+* Once the App is installed user can view an onboarding screen which introduces the app and give user an idea of how it works.
 * A member gets an option to be a Mentor, Mentee or Both.
 * A member can build/customise the app profile with username, bio, skills, interests, location, occupation, etc. anytime. 
-* A member can view a list of other members and search for a member on the Members Page
+* A member can read and know more about Mentorship System including the terms and conditions, privacy and policy and code of conduct.
+* A member can directly access the AnitaB-org Github repo, Zulip chat and website from this App.
+* A member can refresh the every page.
+* A member can view a list of other members and search for a member on the Members Page.
+* A member can search for particular members there in Mentorship System.
+* A member can sort other members on the basis of their name either (A-Z) OR (Z-A), registration date, age.
+* A member can filter other members by the label **need mentoring** or **available to mentor**, interest, location and skills that given while creating profile.
 * A member can either send mentorship requests to other members as a Mentor or Mentee according to their interests or reject mentorship requests from other members.
 * A member can track the number of **Pending Resquests**, **Accepted Requests**, **Rejected Requests**, and **Completed Requests** and view **Recent Achievements** on the Home Page.  
-* A member can view the details of pending, past, all the mentorship reqests in the Requests Page.
+* A member can view the details of pending, past, all the mentorship requests in the Requests Page.
 * A member can create, update, or delete tasks in their current mentorship relation.
 * A member can send feedback about the Mentorship System such as reporting a bug, giving suggestions or other comments.
 * A member can delete their account.
@@ -69,6 +75,7 @@ The repository has the following permanent branches:
 |![Relations Page](Screenshots/Relations%20Page.png)|![Tasks Page](Screenshots/Tasks%20Page.png)|![Members Page](Screenshots/Members%20Page.png)
 |![Member Profile](Screenshots/Member%20Profile%20Page.png)|![Send Request Page](Screenshots/Send%20Request%20Page.png)|![Requests Page](Screenshots/Requests%20Page.png)|
 ![Settings Screen](Screenshots/Settings%20Screen.png)|![About Page](Screenshots/About%20Page.png)|![Change Password Page](Screenshots/Change%20Password%20Page.png)|
+|![Access](https://user-images.githubusercontent.com/50888936/94063751-345d2580-fe06-11ea-94a8-ec2765f2690a.png "Access")|![Filter Members](https://user-images.githubusercontent.com/50888936/94063763-37f0ac80-fe06-11ea-9948-c6d0c0b62000.png "Filter Members")|![Search members](https://user-images.githubusercontent.com/50888936/94063766-38894300-fe06-11ea-9031-eaafda34d471.png "Search members")|
 ## Contact
 
 You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
