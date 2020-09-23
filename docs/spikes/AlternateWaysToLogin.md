@@ -19,6 +19,7 @@
      - <a href="#authorizing-oauth-apps">Authorizing OAuth Apps</a>
      - <a href="#use-the-access-token-to-access-the-api">Use the access token to access the API</a>
 - <a href="#other-ways-to-login">Other ways to Sign-In</a>
+- <a href="#references">References</a>
 
 ## What is OAuth 2.0 ?
 
@@ -90,7 +91,7 @@ Google provides various ways to Sign In using their **Google Identity Platform**
      - Most of the documentation is still in Java The Programming Language. So, it'll be a bit tougher to apply this using Kotlin.
      
 - Steps to integrate Google Sign-In: 
-     - Refer <a href="">this link</a> to configure a Google API Console project for android devices by providing SHA-1 hash and the package name and to generate backend server's OAuth 2.0 client ID 
+     - Refer <a href="https://console.developers.google.com/apis/dashboard">this link</a> to configure a Google API Console project for android devices by providing SHA-1 hash and the package name and to generate backend server's OAuth 2.0 client ID 
      - Follow <a href="https://developers.google.com/identity/sign-in/android/sign-in?authuser=0">this</a> to Configure Google Sign-in and the GoogleSignInClient object and to add a sign in button in the app. 
      - Button : 
      <br><p align="center"><img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png?authuser=0"/></p>
@@ -184,7 +185,7 @@ First, we need to create the **Client ID and Client Secret** on the GitHub websi
      2. Users are redirected back to the app by GitHub
      3. App accesses the API with the user's access token
 
-- All the APIs related to OAuth can only be called through the backend. None of that can be done on the Android app as it is a web application flow. 
+- All the API endpoints mentioned below can be called using the generated Client ID and Client Secret.
 
 - <b>Request a user's GitHub identity : </b> When your GitHub App specifies a login parameter, it prompts users with a specific account they can use for signing in and authorizing your app.
 
@@ -219,7 +220,8 @@ The access token allows you to make requests to the API on a behalf of a user. S
 ```
 
 You'll get the required user's info.
-Now, the received info can be used to Sign-In or Sign-Up the user. 
+Now, the received info can be used to Sign-In or Sign-Up the user.
+
 <br>
 
 
@@ -229,3 +231,12 @@ Now, the received info can be used to Sign-In or Sign-Up the user.
 
 - <b>Slack</b> [<a href="https://api.slack.com/docs/sign-in-with-slack">Link</a>]
 <br>
+
+## References
+
+- <a href="https://developers.google.com/identity/choose-auth?authuser=0">Google Identity Platform</a>
+- <a href="https://developers.google.com/identity/protocols/oauth2/native-app?authuser=0">Plain OAuth 2.0</a>
+- <a href="https://developers.google.com/identity/sign-in/android/sign-in?authuser=0">Google Sign In for Android</a>
+- <a href="https://developers.google.com/identity/one-tap/android/overview">One Tap Sign-In/Sign-Up</a>
+- <a href="https://docs.github.com/en/developers/apps/creating-an-oauth-app">Building GitHub OAuth Apps</a>
+- Signing In with <a href="https://developers.facebook.com/docs/facebook-login/android">Facebook</a> and <a href="https://api.slack.com/docs/sign-in-with-slack">Slack</a>
