@@ -21,6 +21,7 @@ class TokenAuthenticator: Authenticator{
             val intent = Intent(MentorshipApplication.getContext(), LoginActivity::class.java)
             intent.putExtra(Constants.TOKEN_EXPIRED_EXTRA, 0)
             ContextCompat.startActivity(MentorshipApplication.getContext(), intent, null)
+            return null
         }
         return response.request().newBuilder().build()
     }
