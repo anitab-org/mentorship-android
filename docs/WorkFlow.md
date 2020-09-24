@@ -62,11 +62,13 @@ Settings page contains About, Feedback, Logout, Change Password and Delete Accou
 About Page contains the short information about the mentorship system. <br><br>
 <img src = "about.jpg" width="315" height="620">
 
+### Change Password
+Change Password facility is available for user to change password. <br><br>
+<img src = "change_pass.jpg" width="315" height="620">
+
 ### Feedback Page
 User can give positive or negative Feedback or any suggestions in the feedback page. <br><br>
 <img src = "feedback.jpg" width="315" height="620">
 
-### Change Password
-Change Password facility is available for user to change password. <br><br>
-<img src = "change_pass.jpg" width="315" height="620">
+
 
