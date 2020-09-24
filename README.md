@@ -75,7 +75,6 @@ The repository has the following permanent branches:
 |![Relations Page](Screenshots/Relations%20Page.png)|![Tasks Page](Screenshots/Tasks%20Page.png)|![Members Page](Screenshots/Members%20Page.png)
 |![Member Profile](Screenshots/Member%20Profile%20Page.png)|![Send Request Page](Screenshots/Send%20Request%20Page.png)|![Requests Page](Screenshots/Requests%20Page.png)|
 ![Settings Screen](Screenshots/Settings%20Screen.png)|![About Page](Screenshots/About%20Page.png)|![Change Password Page](Screenshots/Change%20Password%20Page.png)|
-|![Access](https://user-images.githubusercontent.com/50888936/94063751-345d2580-fe06-11ea-94a8-ec2765f2690a.png "Access")|![Filter Members](https://user-images.githubusercontent.com/50888936/94063763-37f0ac80-fe06-11ea-9948-c6d0c0b62000.png "Filter Members")|![Search members](https://user-images.githubusercontent.com/50888936/94063766-38894300-fe06-11ea-9031-eaafda34d471.png "Search members")|
 ## Contact
 
 You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
