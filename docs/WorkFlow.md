@@ -4,15 +4,15 @@ Mentorship System is an application that allows women in tech to mentor each oth
 
 ### Sign Up Page
 Firstly, the user will encounter the Sign Up page where he need to fill the details like his Name, User Name, Email, Password, etc.
-Here, user is also allowed to select wheather he wants to be mentee, mentor or both. User must read the Code of conduct, terms, privacy policy and mark it check in the check-box.<br>
+Here, user is also allowed to select wheather he wants to be mentee, mentor or both. User must read the Code of conduct, terms, privacy policy and mark it check in the check-box. <br>
 <img src = "sign_up.jpg" width="315" height="620">
 
 ### Email Confiramation
-After getting registered the confirmation mail is sent to the registered email ID of user to confirm and then the link will redirect to the confirmation page in a browser<br>
+After getting registered the confirmation mail is sent to the registered email ID of user to confirm and then the link will redirect to the confirmation page in a browser.<br>
 <img src = "confirm_pg.jpg" width="315" height="620">
 
 ### Login Page
-After getting confirmed the details are to be entered in order to login and access the featuers of the app <br>
+After getting confirmed the details are to be entered in order to login and access the featuers of the app. <br>
 <img src = "login.jpg" width="315" height="620">
 
 ### Home Screen
@@ -64,7 +64,7 @@ About Page contains the short information about the mentorship system. <br>
 
 ### Feedback Page
 User can give positive or negative feedback or any suggestions in the feedback page. <br>
-<img src = "members_section.jpg" width="315" height="620">
+<img src = "feedback.jpg" width="315" height="620">
 
 ### Change Password
 Change Password facility is available for user to change password. <br>
