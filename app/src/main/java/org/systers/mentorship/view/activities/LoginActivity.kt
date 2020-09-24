@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
-import org.systers.mentorship.utils.Constants.RC_OK
 import org.systers.mentorship.utils.Constants.RC_SAVE
 import org.systers.mentorship.viewmodels.LoginViewModel
 
@@ -108,7 +107,7 @@ class LoginActivity : BaseActivity() {
 
     private fun setupCredentialsManager() {
         mCredentialsClient = Credentials.getClient(this)
-        var mCredentialsRequest = CredentialRequest.Builder().setPasswordLoginSupported(true).build()
+        val mCredentialsRequest = CredentialRequest.Builder().setPasswordLoginSupported(true).build()
         mCredentialsClient.request(mCredentialsRequest).addOnCompleteListener {
             if (it.isSuccessful) {
                 onCredentialsRetrieved(it.result?.credential!!)
@@ -121,19 +120,13 @@ class LoginActivity : BaseActivity() {
     private fun onCredentialsRetrieved(credential: Credential) {
         username = credential.id
         password = credential.password.toString()
-
-        if (validateCredentials()) {
-            loginViewModel.login(Login(username, password))
-            showProgressDialog(getString(R.string.logging_in))
-        }
+        tiUsername.editText?.setText(username)
+        tiPassword.editText?.setText(password)
     }
 
     private fun saveCredentials(username: String, password: String) {
-        var credential = Credential.Builder(username).setPassword(password).build()
+        val credential = Credential.Builder(username).setPassword(password).build()
         mCredentialsClient.save(credential).addOnCompleteListener {
-            if (it.isSuccessful) {
-                Toast.makeText(this@LoginActivity, "Credentials Saved", Toast.LENGTH_SHORT).show()
-            }
             val e  = it.exception
             if (e is ResolvableApiException) {
                 // Try to resolve the save request. This will prompt the user if
@@ -143,12 +136,13 @@ class LoginActivity : BaseActivity() {
                 } catch (exception: SendIntentException) {
                     // Could not resolve the request
                     Log.i("Save", e.message.toString())
-                    Toast.makeText(this@LoginActivity, "Save failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@LoginActivity, "Save failed ${e.message.toString()}", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Log.i("Save", e?.message.toString())
                 // Request has no resolution
-                Toast.makeText(this@LoginActivity, "Save failed", Toast.LENGTH_SHORT).show()
+                // simply login the user
+                loginUser()
             }
 
         }
@@ -158,15 +152,18 @@ class LoginActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SAVE) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this@LoginActivity, "Credentials Saved", Toast.LENGTH_SHORT).show()
+                Snackbar.make(this@LoginActivity.getRootView(), getString(R.string.credentials_saved), Snackbar.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this@LoginActivity, "Save Canceled by User", Toast.LENGTH_SHORT).show()
+                Snackbar.make(this@LoginActivity.getRootView(), getString(R.string.save_canceled_by_user), Snackbar.LENGTH_SHORT).show()
             }
+            loginUser()
+        }
+    }
 
-            if (validateCredentials()) {
-                loginViewModel.login(Login(username, password))
-                showProgressDialog(getString(R.string.logging_in))
-            }
+    private fun loginUser() {
+        if (validateCredentials()) {
+            loginViewModel.login(Login(username, password))
+            showProgressDialog(getString(R.string.logging_in))
         }
     }
 
