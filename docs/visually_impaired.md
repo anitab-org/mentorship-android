@@ -7,7 +7,7 @@ Pros:
 Cons:
     1. There should be talkback option.
     2. The "Login" button colour should be bright.
-![Login Page](C:\Users\Deepak\Desktop\OSH\Login.jpg)    
+![Login Page](Login.jpg)    
 -------------------------------------------------------------
 Home Page
 
@@ -17,7 +17,7 @@ Pros:
 Cons: 
     1. The portion of the screen above "Home" should be of a single colour, as the settings button is not properly visible.
     2. The screen should be zoomable. 
-![Home Page](C:\Users\Deepak\Desktop\OSH\Home.jpg)
+![Home Page](Home.jpg)
 --------------------------------------------------------------
 Profile page
 
@@ -29,7 +29,7 @@ Cons:
     2. The screen should be zoomable.
     3. The font colour of the filled items should be black rather than grey, as black is a suitable colour for the visually impaired people.
     4. There should be talkback option.
-![Profile Page](C:\Users\Deepak\Desktop\OSH\Profile.jpg)    
+![Profile Page](Profile.jpg)    
 ---------------------------------------------------------------
 
 Current Relation Page
@@ -44,7 +44,7 @@ Cons:
     4. The "Find members" button colour should be bright.
     5. Voice Access.
   
-![Current Relation Page](C:\Users\Deepak\Desktop\OSH\Current_Relation.jpg)
+![Current Relation Page](Current_Relation.jpg)
 ----------------------------------------------------------------
 
 Members Page
@@ -58,7 +58,7 @@ Cons:
     4. The font colour of the details should be black.
     5. Voice Access.
     
-![Members Page](C:\Users\Deepak\Desktop\OSH\Members.jpg)    
+![Members Page](Members.jpg)    
 -----------------------------------------------------------------
 
 Mentorship Requests Page
@@ -71,5 +71,5 @@ Cons:
     2. The screen should be zoomable.
     3. There should be talkback option. 
     4. Voice Access.
-![Mentorhip Requests Page](C:\Users\Deepak\Desktop\OSH\Mentorship_Requests.jpg)
+![Mentorhip Requests Page](Mentorship_Requests.jpg)
 ------------------------------------------------------------------
