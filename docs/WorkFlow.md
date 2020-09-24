@@ -2,9 +2,15 @@
 
 Mentorship System is an application that allows women in tech to mentor each other, on career development topics, through 1:1 relations for a certain period.
 
+### Splash Screen
+Splash screen of AnitaB.Org Mentorship system will launch for few seconds as part of introduction to app.
+
+### Onboarding Screen
+Once the App is installed user can view an onboarding screen which introduces the app and give user an idea of how it works.
+
 ### Sign Up Page
 Firstly, the user will encounter the Sign Up page where he need to fill the details like his Name, User Name, Email, Password, etc.
-Here, user is also allowed to select wheather he wants to be mentee, mentor or both. User must read the Code of conduct, terms, privacy policy and mark it check in the check-box. <br><br>
+Here, user is also allowed to select whether he wants to be mentee, mentor or both. User must read the Code of conduct, terms, privacy policy and mark it check in the check-box. <br><br>
 <img src = "sign_up.jpg" width="315" height="620">
 
 ### Email Confiramation
@@ -24,7 +30,7 @@ User can view and edit the name, bio, zulip username, location and occupation in
 <img src = "profile.jpg" width="315" height="620">
 
 ### Member Section
-User can check the members in the members section which he wants to connect with. <br><br>
+User can check the members in the members section which he wants to connect with. The user can filter members by the label **need mentoring** or **available to mentor**, interest, location and skills. A user can search for particular members there in Mentorship System. Also, can sort other members on the basis of their name either (A-Z) OR (Z-A), registration date, age.  <br><br>
 <img src = "members_section.jpg" width="315" height="620">
 
 ### Member Profile
@@ -50,12 +56,12 @@ User check the current relation in the relation section. <br><br>
 <img src = "current_rel.jpg" width="315" height="620">
 
 ### Tasks  
-The user or member can give tasks to each other according to what they have choase to be and mark them as complete after completing.<br><br>
+The user or member can give tasks to each other according to what they have choose to be and mark them as complete after completing.<br><br>
 <img src = "task.jpg" width="315" height="620"><br>
 <img src = "completed.jpg" width="315" height="620">
 
 ### Settings Page
-Settings page contains About, Feedback, Logout, Change Password and Delete Account options. <br><br>
+Settings page contains About, Feedback, Logout, Change Password and Delete Account options. Here, Logout button will allow user to log out of the account and will bring back to the login page. Delete button will delete the user's account permenantly from the mentorship system. <br><br>
 <img src = "settings.jpg" width="315" height="620">
 
 ### About Page
