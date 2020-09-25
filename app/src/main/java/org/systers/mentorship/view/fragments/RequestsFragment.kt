@@ -1,15 +1,25 @@
 package org.systers.mentorship.view.fragments
 
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.MenuItem
+import android.view.View
+import android.widget.AbsListView
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.adapters.RequestsPagerAdapter
 import org.systers.mentorship.viewmodels.RequestsViewModel
+
 
 /**
  * The fragment is responsible for showing the all mentorship requests
@@ -33,15 +43,19 @@ class RequestsFragment : BaseFragment() {
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_requests
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         setHasOptionsMenu(true)
-        srlRequests.setOnRefreshListener { fetchNewest() }
+//        srlRequests.isEnabled = false;
+//        srlRequests.setOnRefreshListener { fetchNewest() }
+
+        
 
         requestsViewModel.successful.observe(this, Observer {
             successful ->
-            srlRequests.isRefreshing = false
+//            srlRequests.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     requestsViewModel.pendingSuccessful.observe(this, Observer {
@@ -66,8 +80,10 @@ class RequestsFragment : BaseFragment() {
             }
         })
 
+
         fetchNewest()
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -79,21 +95,11 @@ class RequestsFragment : BaseFragment() {
         }
     }
 
-
-
-
-
-
-
     private fun fetchNewest()  {
-        srlRequests.isRefreshing = true
+//        srlRequests.isRefreshing = true
         requestsViewModel.getAllMentorshipRelations()
         requestsViewModel.getAllPendingMentorshipRelations()
         requestsViewModel.getPastMentorshipRelations()
     }
 }
-
-
-
-
 

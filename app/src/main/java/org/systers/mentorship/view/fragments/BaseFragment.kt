@@ -3,6 +3,7 @@ package org.systers.mentorship.view.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import org.systers.mentorship.view.activities.BaseActivity
@@ -23,6 +24,7 @@ abstract class BaseFragment: Fragment() {
      * @return layout resource id of the fragment child view
      */
     protected abstract fun getLayoutResourceId() : Int
+
 
     /**
      * Instance of parent activity as [BaseActivity]
