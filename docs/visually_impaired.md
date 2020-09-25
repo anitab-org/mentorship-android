@@ -14,7 +14,7 @@ Cons:
     
     2. The "Login" button colour should be bright.
     
-![Login Page](https://drive.google.com/file/d/1Xf64GWpRsG-PxKAixK9zj8EoMPZROWnh/view?usp=sharing)    
+![Login Page](Login.jpg)    
 
 -------------------------------------------------------------
 
