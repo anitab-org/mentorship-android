@@ -1,6 +1,7 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -20,6 +21,7 @@ import kotlinx.android.parcel.Parcelize
  * @param state state of the relation (@link to RelationState)
  * @param notes notes related to the mentorship relation
  */
+@Entity(tableName = "RELATIONSHIP")
 @Parcelize
 data class Relationship(
         val id: Int,

@@ -1,6 +1,7 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -14,6 +15,7 @@ import kotlinx.android.parcel.Parcelize
  * @param completedAt Unix timestamp of when this task was completed
  */
 
+@Entity(tableName = "TASKS")
 @Parcelize
 data class Task(
         val id: Int,
