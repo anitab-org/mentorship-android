@@ -32,7 +32,7 @@ Cons:
     
     2. The screen should be zoomable. 
     
-![Home Page](Home.jpg)
+![Home Page](https://drive.google.com/uc?export=view&id=1pyvnY7VBfaZ61www7JHQRJdLmHRRIaHB)
 
 --------------------------------------------------------------
 
@@ -54,7 +54,7 @@ Cons:
     
     4. There should be talkback option.
     
-![Profile Page](Profile.jpg)    
+![Profile Page](https://drive.google.com/uc?export=view&id=1qwiiTzpbkUov0_WylSs1BCVZYkfuYS4o)    
 
 ---------------------------------------------------------------
 
@@ -78,7 +78,7 @@ Cons:
     
     5. Voice Access.
   
-![Current Relation Page](Current_Relation.jpg)
+![Current Relation Page](https://drive.google.com/uc?export=view&id=1yz7p-Xug11j9SILyxx1fvYzo9-HLEos5)
 
 ----------------------------------------------------------------
 
@@ -100,7 +100,7 @@ Cons:
     
     5. Voice Access.
     
-![Members Page](Members.jpg)    
+![Members Page](https://drive.google.com/uc?export=view&id=1tWTK-K3-qwDBRcEMyo7zzRh3xh4bbU1G)    
 
 -----------------------------------------------------------------
 
@@ -122,6 +122,6 @@ Cons:
     
     4. Voice Access.
     
-![Mentorhip Requests Page](Mentorship_Requests.jpg)
+![Mentorhip Requests Page](https://drive.google.com/uc?export=view&id=1VE4ehhs2fYYN5Ht0xH9oK2jenbNNQOLe)
 
 ------------------------------------------------------------------
