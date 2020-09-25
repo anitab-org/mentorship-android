@@ -128,7 +128,7 @@ Must show an error- please verify the email before login
  please verify the email.</b> 
 
 
-**Test 3.2:-** Enter worng username/email
+**Test 3.2:-** Enter wrong username/email
 
 <img src="https://user-images.githubusercontent.com/42871956/93996347-c2f28800-fdaf-11ea-9e4f-2c5b6f864b6b.jpg" width="300" height="620"/>
 
@@ -136,9 +136,9 @@ Must show an error- please verify the email before login
 User doesn't exists.
 
 ##### **ACTUAL RESULT:**
-Something went worng
+Something went wrong
 
-**Test 3.3:-** Enter worng Password
+**Test 3.3:-** Enter wrong Password
 
 <img src="https://user-images.githubusercontent.com/42871956/93995797-157f7480-fdaf-11ea-9842-28e5bb36fa85.jpg" width="300" height="620"/>
 
@@ -146,7 +146,7 @@ Something went worng
 Worng Password.
 
 ##### **ACTUAL RESULT:**
-Something went worng
+Something went wrong
 
 ### *Postive Test Scenarios**
 
