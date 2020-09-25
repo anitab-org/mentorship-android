@@ -61,7 +61,7 @@ The user or member can give tasks to each other according to what they have choo
 <img src = "https://user-images.githubusercontent.com/57194200/94240965-a67e5900-ff31-11ea-9761-efd0a0cf42d5.jpg" width="315" height="620">
 
 ### Settings Page
-Settings page contains About, Feedback, Logout, Change Password and Delete Account options. Here, Logout button will allow user to log out of the account and will bring back to the login page. Delete button will delete the user's account permenantly from the mentorship system. <br><br>
+Settings page contains About, Feedback, Logout, Change Password and Delete Account options. Here, Logout button will allow user to log out of the account and will bring back to the login page. Delete button will delete the user's account permanently from the mentorship system. <br><br>
 <img src = "https://user-images.githubusercontent.com/57194200/94241032-ba29bf80-ff31-11ea-8e3a-eeaa18586ed3.jpg" width="315" height="620">
 
 ### About Page
