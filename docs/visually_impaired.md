@@ -14,7 +14,7 @@ Cons:
     
     2. The "Login" button colour should be bright.
     
-![Login Page](https://drive.google.com/uc?export=view&id=1Xf64GWpRsG-PxKAixK9zj8EoMPZROWnh)    
+![Login Page](https://user-images.githubusercontent.com/46787232/94344205-54c1f580-003b-11eb-96e9-22da301cd425.jpg)    
 
 -------------------------------------------------------------
 
@@ -32,7 +32,7 @@ Cons:
     
     2. The screen should be zoomable. 
     
-![Home Page](https://drive.google.com/uc?export=view&id=1pyvnY7VBfaZ61www7JHQRJdLmHRRIaHB)
+![Home Page](https://user-images.githubusercontent.com/46787232/94344211-5c819a00-003b-11eb-9ae2-55287e4f9ff8.jpg)
 
 --------------------------------------------------------------
 
@@ -54,7 +54,7 @@ Cons:
     
     4. There should be talkback option.
     
-![Profile Page](https://drive.google.com/uc?export=view&id=1qwiiTzpbkUov0_WylSs1BCVZYkfuYS4o)    
+![Profile Page](https://user-images.githubusercontent.com/46787232/94344213-60152100-003b-11eb-9a4b-d549535d2b12.jpg)    
 
 ---------------------------------------------------------------
 
@@ -78,7 +78,7 @@ Cons:
     
     5. Voice Access.
   
-![Current Relation Page](https://drive.google.com/uc?export=view&id=1yz7p-Xug11j9SILyxx1fvYzo9-HLEos5)
+![Current Relation Page](https://user-images.githubusercontent.com/46787232/94344214-61464e00-003b-11eb-9591-488bb725320f.jpg)
 
 ----------------------------------------------------------------
 
@@ -100,7 +100,7 @@ Cons:
     
     5. Voice Access.
     
-![Members Page](https://drive.google.com/uc?export=view&id=1tWTK-K3-qwDBRcEMyo7zzRh3xh4bbU1G)    
+![Members Page](https://user-images.githubusercontent.com/46787232/94344221-660b0200-003b-11eb-9c30-48128148e848.jpg)    
 
 -----------------------------------------------------------------
 
@@ -122,6 +122,6 @@ Cons:
     
     4. Voice Access.
     
-![Mentorhip Requests Page](https://drive.google.com/uc?export=view&id=1VE4ehhs2fYYN5Ht0xH9oK2jenbNNQOLe)
+![Mentorhip Requests Page](https://user-images.githubusercontent.com/46787232/94344222-67d4c580-003b-11eb-862e-92bdddeb55d9.jpg)
 
 ------------------------------------------------------------------
