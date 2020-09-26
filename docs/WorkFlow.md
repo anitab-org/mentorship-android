@@ -36,7 +36,7 @@ User can view and edit the name, bio, zulip username, location and occupation in
 
 ### Member Section
 User can check the members in the members section which he wants to connect with. The user can filter members by the label **need mentoring** or **available to mentor**, interest, location and skills. A user can search for particular members there in Mentorship System. Also, can sort other members on the basis of their name either (A-Z) OR (Z-A), registration date, age.  <br><br>
-<img src = "https://user-images.githubusercontent.com/57194200/94241002-b26a1b00-ff31-11ea-8351-fe91f14f5315.jpg" width="315" height="620"><br>
+<img src = "https://user-images.githubusercontent.com/57194200/94241002-b26a1b00-ff31-11ea-8351-fe91f14f5315.jpg" width="315" height="620">
 <img src = "https://user-images.githubusercontent.com/57194200/94273893-a34f9100-ff62-11ea-9b5b-a71b9cefa3fe.jpg" width="315" height="620">
 
 ### Member Profile
@@ -45,12 +45,12 @@ User check the member profile and send them requests. <br><br>
 
 ### Send Request
 Request can be sent to members to mentor or mentee with note.<br><br>
-<img src = "https://user-images.githubusercontent.com/57194200/94241028-b85ffc00-ff31-11ea-824a-2642da2c2a7c.jpg" width="315" height="620"><br>
+<img src = "https://user-images.githubusercontent.com/57194200/94241028-b85ffc00-ff31-11ea-824a-2642da2c2a7c.jpg" width="315" height="620">
 <img src = "https://user-images.githubusercontent.com/57194200/94241031-b9912900-ff31-11ea-808b-7a89a213b11e.jpg" width="315" height="620">
 
 ### Requests Section
 User can check the pending, past and all the requests here. <br><br>
-<img src = "https://user-images.githubusercontent.com/57194200/94241023-b7c76580-ff31-11ea-8e82-119fcea524ee.jpg" width="315" height="620"><br>
+<img src = "https://user-images.githubusercontent.com/57194200/94241023-b7c76580-ff31-11ea-8e82-119fcea524ee.jpg" width="315" height="620">
 <img src = "https://user-images.githubusercontent.com/57194200/94241043-be55dd00-ff31-11ea-855e-6e65d334f5cb.jpg" width="315" height="620">
 
 ### Accepting/Rejecting Requests 
@@ -63,7 +63,7 @@ User check the current relation in the relation section. <br><br>
 
 ### Tasks  
 The user or member can give tasks to each other according to what they have choose to be and mark them as complete after completing.<br><br>
-<img src = "https://user-images.githubusercontent.com/57194200/94241040-bd24b000-ff31-11ea-8d97-75936a8d8aad.jpg" width="315" height="620"><br>
+<img src = "https://user-images.githubusercontent.com/57194200/94241040-bd24b000-ff31-11ea-8d97-75936a8d8aad.jpg" width="315" height="620">
 <img src = "https://user-images.githubusercontent.com/57194200/94240965-a67e5900-ff31-11ea-9761-efd0a0cf42d5.jpg" width="315" height="620">
 
 ### Settings Page
