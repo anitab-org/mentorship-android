@@ -4,7 +4,7 @@ Mentorship System is an application that allows women in tech to mentor each oth
 
 ### Splash Screen
 Splash screen of AnitaB.Org Mentorship System will launch for few seconds as part of introduction to app.<br><br>
-<img src = "https://user-images.githubusercontent.com/57194200/94275687-e1e64b00-ff64-11ea-836c-69dbc411b55f.png" width="315" height="620">
+<img src = "https://user-images.githubusercontent.com/57194200/94342503-06a6f500-002f-11eb-884f-7dee160bad66.jpg" width="315" height="620">
 
 ### Onboarding Screen
 Once the App is installed user can view an onboarding screen which introduces the app and give user an idea of how it works.<br><br>
