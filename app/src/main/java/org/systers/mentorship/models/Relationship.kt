@@ -2,6 +2,7 @@ package org.systers.mentorship.models
 
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -24,6 +25,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "RELATIONSHIP")
 @Parcelize
 data class Relationship(
+        @PrimaryKey(autoGenerate = false)
         val id: Int,
         val actionUserId: Int,
         val sentByMe: Boolean,

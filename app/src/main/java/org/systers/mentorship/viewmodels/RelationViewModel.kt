@@ -1,14 +1,18 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.database.TaskDatabase
+import org.systers.mentorship.database.dao.RelationshipDao
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
@@ -35,12 +39,13 @@ class RelationViewModel : ViewModel() {
      * Fetches current relation details
      */
     @SuppressLint("CheckResult")
-    fun getCurrentRelationDetails() {
+    fun getCurrentRelationDetails(context: Context) {
         relationDataManager.getCurrentRelationship()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<Relationship>() {
                     override fun onNext(relationship: Relationship) {
+                        val relationshipDao = TaskDatabase.getInstance(context).relationshipDao
                         mentorshipRelation = relationship
                         successfulGet.value = true
                     }
@@ -112,5 +117,14 @@ class RelationViewModel : ViewModel() {
                     }
                 })
     }
+
+    /*
+    * Get Current Relationship details from Database
+    * */
+//    fun getCurrentRelationDetailsFromDatabase(context: Context) {
+//        val relationshipDao = TaskDatabase.getInstance(context).relationshipDao
+//        if (relationshipDao.queryCurrentRelation().isNullOrEmpty()) successfulGet.value = false
+//        else mentorshipRelation = relationshipDao.queryCurrentRelation()[0]
+//    }
 }
 

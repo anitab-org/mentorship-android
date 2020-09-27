@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
+import org.systers.mentorship.utils.NetworkChecker.Companion.isNetworkAvailable
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.adapters.RelationPagerAdapter
 import org.systers.mentorship.viewmodels.RelationViewModel
@@ -72,7 +73,11 @@ class RelationPagerFragment : BaseFragment() {
 
     private fun fetchNewest() {
         srlRelation.isRefreshing = true
-        relationViewModel.getCurrentRelationDetails()
+        if (isNetworkAvailable(context!!)) relationViewModel.getCurrentRelationDetails(context!!)
+        else {
+            Toast.makeText(context!!, "Network not avaiable", Toast.LENGTH_SHORT).show()
+            relationViewModel.getCurrentRelationDetailsFromDatabase(context!!)
+        }
     }
 
     private fun updateView(mentorshipRelation: Relationship) {

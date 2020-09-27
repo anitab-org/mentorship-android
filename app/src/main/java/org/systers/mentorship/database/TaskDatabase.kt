@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import org.systers.mentorship.database.dao.RelationshipDao
 import org.systers.mentorship.database.dao.TaskDao
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.models.Task
 
-@Database(entities = arrayOf(Relationship::class, Task::class), version = 1)
+@Database(entities = arrayOf(Relationship::class, Task::class), version = 2)
+@TypeConverters(Converters::class)
 abstract class TaskDatabase : RoomDatabase() {
 
     abstract val relationshipDao: RelationshipDao

@@ -14,5 +14,5 @@ interface TaskDao {
     fun update_or_insert(task: Task): Long
 
     @Query("SELECT * FROM TASKS")
-    fun getAllTasks(): Observable<List<Task>>
+    fun getAllTasks(): List<Task>
 }

@@ -1,5 +1,6 @@
 package org.systers.mentorship.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,8 +12,8 @@ import org.systers.mentorship.models.Relationship
 interface RelationshipDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun update_or_insert(relationship: Relationship): Long
+    suspend fun update_or_insert(relationship: Relationship): Long
 
-    @Query("SELECT * FROM RELATIONSHIP where id=id")
-    fun queryRelationDao(id: Int): Observable<Relationship>
+    @Query("SELECT * FROM RELATIONSHIP LIMIT 1")
+    suspend fun queryCurrentRelation(): List<Relationship>
 }
