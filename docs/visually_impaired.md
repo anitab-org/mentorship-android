@@ -17,6 +17,8 @@ Cons:
 ![](https://user-images.githubusercontent.com/46787232/94376817-ab622900-013a-11eb-9882-57820a29652d.jpg)
 ![](https://user-images.githubusercontent.com/46787232/94376821-ad2bec80-013a-11eb-8a0c-f00c1db19398.jpg)
 
+---------------------------------------------------------------------------------
+
 Sign up page
 
 Pros:
@@ -36,6 +38,8 @@ Cons:
     4. There should be voice access option.
     
 ![signup](https://user-images.githubusercontent.com/46787232/94376833-b74deb00-013a-11eb-938c-6d634c6e431b.jpg)
+
+------------------------------------------------------------------------------------------
 
 Login Page
 
@@ -161,6 +165,8 @@ Cons:
     
 ![filter](https://user-images.githubusercontent.com/46787232/94376988-ad78b780-013b-11eb-849d-189134de3fae.jpg)
 
+-----------------------------------------------------------------------
+
 Mentorship Requests Page
 
 Pros:
@@ -181,7 +187,7 @@ Cons:
     
 ![Mentorhip Requests Page](https://user-images.githubusercontent.com/46787232/94376765-4e667300-013a-11eb-8dc5-5c0f52e34689.jpg)
 
-------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 
 Settings Page
 
@@ -199,6 +205,8 @@ Cons:
     
 ![settings](https://user-images.githubusercontent.com/46787232/94376992-b23d6b80-013b-11eb-8ad2-9e7c1a3acdb5.jpg)
 
+------------------------------------------------------------------------------------------
+
 About 
 
 Pros:
@@ -214,6 +222,8 @@ Cons:
     2. There should be appropriate spacing between the lines.
     
 ![about](https://user-images.githubusercontent.com/46787232/94376856-d9476d80-013a-11eb-899e-eae24f7e27b5.jpg)
+
+-----------------------------------------------------------------------------------------------
 
 Feedback 
 
@@ -233,6 +243,8 @@ Cons:
     
 ![feedback](https://user-images.githubusercontent.com/46787232/94376862-e19fa880-013a-11eb-8425-1c85ad947afd.jpg)
 
+------------------------------------------------------------------------------------------------
+
 Logout 
 
 Pros:
@@ -246,6 +258,8 @@ Cons:
     1. There should be talkback option.
     
 ![logout](https://user-images.githubusercontent.com/46787232/94376881-fd0ab380-013a-11eb-999e-95f4690776b1.jpg)
+
+---------------------------------------------------------------------------------------------------
 
 Change Password 
 
@@ -262,6 +276,8 @@ Cons:
     2. There should be voice access.
     
 ![password](https://user-images.githubusercontent.com/46787232/94376886-0267fe00-013b-11eb-9bea-61afb392ef19.jpg)
+
+-----------------------------------------------------------------------------------------------------
 
 Delete Account
 
