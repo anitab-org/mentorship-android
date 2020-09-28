@@ -18,6 +18,14 @@ class TokenAuthenticator: Authenticator{
     override fun authenticate(route: Route, response: Response): Request? {
         if (response.code() == 401) {
             preferenceManager.clear()
+
+            if(response.request().url().encodedPath() == "/login" || response.request().url().encodedPath() == "/register")
+                return null
+
+            val intent = Intent(MentorshipApplication.getContext(), LoginActivity::class.java)
+            intent.putExtra(Constants.TOKEN_EXPIRED_EXTRA, 0)
+            ContextCompat.startActivity(MentorshipApplication.getContext(), intent, null)
+
             return null
         }
         return response.request().newBuilder().build()
