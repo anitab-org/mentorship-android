@@ -13,6 +13,6 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun update_or_insert(task: List<Task>)
 
-    @Query("SELECT * FROM TASKS")
-    fun getAllTasks(): List<Task>
+    @Query("SELECT * FROM TASKS WHERE relationId=:id")
+    fun getAllTasksForCurrentRelation(id: Int): List<Task>
 }

@@ -24,5 +24,6 @@ data class Task(
         val description: String,
         val isDone: Boolean,
         val createdAt: Float,
-        val completedAt: Float
+        val completedAt: Float,
+        var relationId: Int? = null
 ): Parcelable

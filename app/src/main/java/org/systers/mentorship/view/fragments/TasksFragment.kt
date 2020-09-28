@@ -136,7 +136,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
             }
         })
         if (isNetworkAvailable(context!!)) taskViewModel.getTasks(context!!, mentorshipRelation.id)
-        else taskViewModel.getTaskFromDatabase(context!!)
+        else taskViewModel.getTaskFromDatabase(context!!, mentorshipRelation.id)
     }
 
     /**

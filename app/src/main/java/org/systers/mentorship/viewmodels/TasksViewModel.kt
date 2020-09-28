@@ -53,6 +53,7 @@ class TasksViewModel: ViewModel() {
                 .subscribeWith(object : DisposableObserver<List<Task>>() {
                     override fun onNext(taskListResponse: List<Task>) {
                         val taskDao = TaskDatabase.getInstance(context).taskDao
+                        taskListResponse.forEach { it.relationId = relationId }
                         taskDao.update_or_insert(taskListResponse)
                         tasksList = taskListResponse
                         successfulGet.value = true
@@ -172,8 +173,8 @@ class TasksViewModel: ViewModel() {
         }
     }
 
-    fun getTaskFromDatabase(context: Context) {
-        val tasks = TaskDatabase.getInstance(context).taskDao.getAllTasks()
+    fun getTaskFromDatabase(context: Context, relationId: Int) {
+        val tasks = TaskDatabase.getInstance(context).taskDao.getAllTasksForCurrentRelation(relationId)
         successfulGet.value = true
         tasksList = tasks
     }
