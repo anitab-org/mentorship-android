@@ -1,6 +1,7 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.database.TaskDatabase
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.datamanager.TaskDataManager
 import org.systers.mentorship.remote.requests.CreateTask
@@ -44,12 +46,14 @@ class TasksViewModel: ViewModel() {
      * This function lists all tasks from the mentorship relation
      */
     @SuppressLint("CheckResult")
-    fun getTasks(relationId: Int) {
+    fun getTasks(context: Context, relationId: Int) {
         taskDataManager.getAllTasks(relationId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<Task>>() {
                     override fun onNext(taskListResponse: List<Task>) {
+                        val taskDao = TaskDatabase.getInstance(context).taskDao
+                        taskDao.update_or_insert(taskListResponse)
                         tasksList = taskListResponse
                         successfulGet.value = true
                     }
@@ -166,5 +170,11 @@ class TasksViewModel: ViewModel() {
             //completedTaskList.remove(taskList.get(taskId))
             //TODO: Update the backend
         }
+    }
+
+    fun getTaskFromDatabase(context: Context) {
+        val tasks = TaskDatabase.getInstance(context).taskDao.getAllTasks()
+        successfulGet.value = true
+        tasksList = tasks
     }
 }

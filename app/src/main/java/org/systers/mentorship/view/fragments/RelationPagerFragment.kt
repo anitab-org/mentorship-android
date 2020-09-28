@@ -52,7 +52,7 @@ class RelationPagerFragment : BaseFragment() {
                     updateView(relationViewModel.mentorshipRelation)
                 } else {
                     view?.let {
-                        Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(it, "Something Happened", Snackbar.LENGTH_LONG).show()
                     }
                 }
             }

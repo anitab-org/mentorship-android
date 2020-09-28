@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
@@ -14,6 +15,7 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.CreateTask
+import org.systers.mentorship.utils.NetworkChecker.Companion.isNetworkAvailable
 import org.systers.mentorship.view.adapters.TasksAdapter
 import org.systers.mentorship.viewmodels.TasksViewModel
 
@@ -42,7 +44,8 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         fabAddItem.setOnClickListener {
-            showCompleteDialog()
+            if (isNetworkAvailable(context!!)) showCompleteDialog()
+            else Toast.makeText(context!!, "Cannot add task without internet", Toast.LENGTH_SHORT).show()
         }
         imageView.setOnClickListener{
             if(rvTasks.visibility == View.GONE){
@@ -106,7 +109,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                         Snackbar.make(it, context!!.getString(R.string.mark_task_success), Snackbar.LENGTH_LONG).show()
                     }
                     //get tasks again to refresh list
-                    taskViewModel.getTasks(mentorshipRelation.id)
+                    taskViewModel.getTasks(context!!, mentorshipRelation.id)
                 } else {
                     view?.let {
                         Snackbar.make(it, taskViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -124,7 +127,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                         Snackbar.make(it, context!!.getString(R.string.create_task_success), Snackbar.LENGTH_LONG).show()
                     }
                     //get tasks again to refresh list
-                    taskViewModel.getTasks(mentorshipRelation.id)
+                    taskViewModel.getTasks(context!!, mentorshipRelation.id)
                 } else {
                     view?.let {
                         Snackbar.make(it, taskViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -132,7 +135,8 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                 }
             }
         })
-        taskViewModel.getTasks(mentorshipRelation.id)
+        if (isNetworkAvailable(context!!)) taskViewModel.getTasks(context!!, mentorshipRelation.id)
+        else taskViewModel.getTaskFromDatabase(context!!)
     }
 
     /**
@@ -156,6 +160,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     }
 
     private fun markTask(taskId: Int){
-        taskViewModel.updateTask(taskId, true, mentorshipRelation.id)
+        if (isNetworkAvailable(context!!)) taskViewModel.updateTask(taskId, true, mentorshipRelation.id)
+        else Toast.makeText(context!!, "Cannot update task without internet", Toast.LENGTH_SHORT).show()
     }
 }

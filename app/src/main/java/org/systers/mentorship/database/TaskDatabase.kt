@@ -10,8 +10,8 @@ import org.systers.mentorship.database.dao.TaskDao
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.models.Task
 
-@Database(entities = arrayOf(Relationship::class, Task::class), version = 2)
-@TypeConverters(Converters::class)
+@Database(entities = arrayOf(Relationship::class, Task::class), version = 4)
+@TypeConverters(Converters::class, TaskConverters::class)
 abstract class TaskDatabase : RoomDatabase() {
 
     abstract val relationshipDao: RelationshipDao
@@ -33,6 +33,7 @@ abstract class TaskDatabase : RoomDatabase() {
                             "task_database"
                     )
                             .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
                             .build()
                     INSTANCE = instance
                 }

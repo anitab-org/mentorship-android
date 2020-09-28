@@ -46,6 +46,7 @@ class RelationViewModel : ViewModel() {
                 .subscribeWith(object : DisposableObserver<Relationship>() {
                     override fun onNext(relationship: Relationship) {
                         val relationshipDao = TaskDatabase.getInstance(context).relationshipDao
+                        relationshipDao.update_or_insert(relationship)
                         mentorshipRelation = relationship
                         successfulGet.value = true
                     }
@@ -121,10 +122,13 @@ class RelationViewModel : ViewModel() {
     /*
     * Get Current Relationship details from Database
     * */
-//    fun getCurrentRelationDetailsFromDatabase(context: Context) {
-//        val relationshipDao = TaskDatabase.getInstance(context).relationshipDao
-//        if (relationshipDao.queryCurrentRelation().isNullOrEmpty()) successfulGet.value = false
-//        else mentorshipRelation = relationshipDao.queryCurrentRelation()[0]
-//    }
+    fun getCurrentRelationDetailsFromDatabase(context: Context) {
+        val relationshipDao = TaskDatabase.getInstance(context).relationshipDao
+        if (relationshipDao.queryCurrentRelation().isNullOrEmpty()) successfulGet.value = false
+        else {
+            successfulGet.value = true
+            mentorshipRelation = relationshipDao.queryCurrentRelation()[0]
+        }
+    }
 }
 

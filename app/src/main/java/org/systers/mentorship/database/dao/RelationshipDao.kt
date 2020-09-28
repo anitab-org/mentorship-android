@@ -12,8 +12,8 @@ import org.systers.mentorship.models.Relationship
 interface RelationshipDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun update_or_insert(relationship: Relationship): Long
+    fun update_or_insert(relationship: Relationship): Long
 
     @Query("SELECT * FROM RELATIONSHIP LIMIT 1")
-    suspend fun queryCurrentRelation(): List<Relationship>
+    fun queryCurrentRelation(): List<Relationship>
 }
