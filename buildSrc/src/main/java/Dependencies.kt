@@ -18,7 +18,7 @@ object Versions {
     const val testRunner = "1.1.0"
     const val espresso = "3.1.0"
     const val rxJava = "2.1.10"
-    const val rxAndroid = "2.0.1"
+    const val rxAndroid = "2.0.2"
     const val rxKotlin = "2.2.0"
     const val retrofitVersion = "2.3.0"
     const val okHttp3Version = "3.10.0"
