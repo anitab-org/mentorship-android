@@ -48,6 +48,8 @@ class SendRequestTest {
     fun testErrorMsgWhenOnlyNotesAreFilled()
     {
         onView(withId(R.id.etRequestNotes)).perform(typeText("notes"), closeSoftKeyboard())
+         
+        onView(withId(R.id.btnSendRequest)).perform(click())
 
         onView(withId(com.google.android.material.R.id.snackbar_text)).check(matches(
                 withText("Please select your role for mentorship relation")))
