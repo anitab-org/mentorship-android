@@ -72,13 +72,13 @@ class LoginActivity : BaseActivity() {
     private fun validateCredentials() : Boolean {
         var validCredentials = true
         if (username.isBlank()) {
-            tiUsername.error = getString(R.string.error_empty_username)
+            tiUsername.error = getString(R.string.error_empty_field,getString(R.string.username))
             validCredentials = false
         } else {
             tiUsername.error = null
         }
         if (password.isBlank()) {
-            tiPassword.error = getString(R.string.error_empty_password)
+            tiPassword.error = getString(R.string.error_empty_field,getString(R.string.password))
             validCredentials = false
         } else {
             tiPassword.error = null

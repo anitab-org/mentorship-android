@@ -20,4 +20,12 @@ object Constants {
     const val LOCATION_KEY = "location"
     const val SKILLS_KEY = "skills"
     const val TOKEN_EXPIRED_EXTRA = "JsonAuthTokenExpired"
+    const val NAME_MIN_LENGTH = 2
+    const val NAME_MAX_LENGTH = 30
+    const val USERNAME_MIN_LENGTH = 5
+    const val USERNAME_MAX_LENGTH = 25
+    const val EMAIL_MIN_LENGTH = 6
+    const val EMAIL_MAX_LENGTH = 40
+    const val PASSWORD_MIN_LENGTH = 8
+    const val PASSWORD_MAX_LENGTH = 64
 }

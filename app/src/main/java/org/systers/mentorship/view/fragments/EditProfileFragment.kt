@@ -93,7 +93,7 @@ class EditProfileFragment : DialogFragment() {
             with(editProfileBinding.tiName) {
                 this.error = when (errors.firstOrNull()) {
                     is EditProfileFragmentErrorStates.EmptyNameError ->
-                        context.getString(R.string.error_empty_name)
+                        context.getString(R.string.error_empty_field,getString(R.string.name))
                     is EditProfileFragmentErrorStates.NameTooShortError -> {
                         val minLength = resources.getInteger(R.integer.min_name_length)
                         context.getString(R.string.error_name_too_short, minLength)
