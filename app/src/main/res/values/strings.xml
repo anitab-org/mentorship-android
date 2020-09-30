@@ -28,6 +28,7 @@
     <string name="error_empty_username">Username/Email cannot be empty</string>
     <string name="error_empty_email">Email cannot be empty</string>
     <string name="error_empty_name">Name cannot be empty</string>
+    <string name="error_empty_field">%1$s cannot be empty</string>
     <string name="navigation_title_home">Home</string>
     <string name="navigation_title_profile">Profile</string>
     <string name="navigation_title_relation">Relation</string>
@@ -104,6 +105,11 @@
     <string name="settings">Settings</string>
     <string name="error_name_too_short">Name should have a minimum of %1$d characters</string>
     <string name="error_name_too_long">Name should have a maximum of %1$d characters</string>
+    <string name="error_invalid_length">The %1$s field has to be longer than %2$d characters and shorter than %3$d characters</string>
+    <string name="error_invalid_name">Your name is invalid!\nOnly letters, whitespaces and \'-\' allowed</string>
+    <string name="error_invalid_username">Your username is invalid!\nOnly letters, numbers and \'_\' allowed</string>
+    <string name="error_invalid_email">Your email is invalid!\nPlease enter a valid email</string>
+    <string name="error_invalid_password">Your password is invalid!\nAtleast one lowercase and uppercase character, one digit and one special character required</string>
     <string name="model_task_1">Add Projects section to CV</string>
     <string name="model_task_2">Prepare questions for Job Interview X</string>
     <string name="model_task_3">Share a Professional update on Twitter</string>
@@ -211,5 +217,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="bug">Bug</string>
     <string name="input"> Please fill in the input fields and/or assign a rating</string>
     <string name="feedback_thank">Thank you for your feedback!</string>
+    <string name="regex_name">^[a-zA-Zs-]+$</string>
+    <string name="regex_username">^[a-zA-Z0-9_]+$</string>
+    <string name="regex_email">^[a-zA-Z0-9_.+–]+@[a-zA-Z0-9–]+\\.[a-zA-Z0-9-.]+$</string>
+    <string name="regex_password">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[-@%\\[\\}+\'!/#$^?:;,\\(\"\\)~\`.&amp;*=\\{>\\]_]).{8,64}$</string>
 </resources>
-
