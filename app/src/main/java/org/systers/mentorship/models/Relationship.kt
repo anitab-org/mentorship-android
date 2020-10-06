@@ -45,6 +45,6 @@ data class Relationship(
     @Parcelize
     data class RelationUserResponse (val id: Int,
                                      //Username for Dashboard Response
-                                     val userName: String,
+                                     val userName: String?,
                                      val name: String): Parcelable
 }

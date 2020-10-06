@@ -32,8 +32,7 @@ class HomeFragment : BaseFragment() {
     }
     private lateinit var binding: FragmentHomeBinding
     private lateinit var achievementsAdapter: AchievementsAdapter
-    // private lateinit var expandableListView: View
-    private lateinit var expandaleListAdapter: CustomExpandaleListAdapter
+    private lateinit var expandableListAdapter: CustomExpandaleListAdapter
 
     companion object {
         /**
@@ -54,13 +53,7 @@ class HomeFragment : BaseFragment() {
 
         achievementsAdapter = AchievementsAdapter()
         val linearLayoutManager = LinearLayoutManager(context)
-        val divider = DividerItemDecoration(context, linearLayoutManager.orientation)
-
-        rvAchievements.apply {
-            adapter = achievementsAdapter
-            layoutManager = linearLayoutManager
-            addItemDecoration(divider)
-        }
+        DividerItemDecoration(context, linearLayoutManager.orientation)
 
         srlHome.setOnRefreshListener { fetchNewest() }
     }
@@ -75,14 +68,7 @@ class HomeFragment : BaseFragment() {
             userStats.observe(viewLifecycleOwner, Observer { stats ->
                 srlHome.isRefreshing = false
                 binding.stats = stats
-                if (stats?.achievements?.isEmpty() != false) {
-                    tvNoAchievements.visibility = View.VISIBLE
-                    rvAchievements.visibility = View.GONE
-                } else {
-                    tvNoAchievements.visibility = View.GONE
-                    rvAchievements.visibility = View.VISIBLE
-                    achievementsAdapter.submitList(stats.achievements)
-                }
+
             })
 
             message.observe(viewLifecycleOwner, Observer { message ->
@@ -91,7 +77,7 @@ class HomeFragment : BaseFragment() {
 
             dashboardStats.observe(viewLifecycleOwner, Observer { dashboardstats ->
                 //srlHome.isRefreshing = false
-                expandaleListAdapter = CustomExpandaleListAdapter(dashboardstats, context)
+                expandableListAdapter = CustomExpandaleListAdapter(dashboardstats, context)
                 expandablelvrequests.apply {
                     setAdapter(CustomExpandaleListAdapter(dashboardstats, context))
                 }
