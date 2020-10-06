@@ -1,6 +1,7 @@
 package org.systers.mentorship.remote.datamanager
 
 import io.reactivex.Observable
+import org.systers.mentorship.models.DashBoardResponse
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.ApiManager
@@ -71,6 +72,9 @@ class UserDataManager {
      */
     fun getHomeStats(): Observable<HomeStatistics> {
         return apiManager.userService.getHomeStats()
+    }
+    fun getDashBoardResponse(): Observable<DashBoardResponse>{
+        return apiManager.userService.getDashboardStats()
     }
 
     /**

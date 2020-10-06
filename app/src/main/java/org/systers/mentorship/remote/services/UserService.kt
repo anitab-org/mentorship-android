@@ -1,6 +1,7 @@
 package org.systers.mentorship.remote.services
 
 import io.reactivex.Observable
+import org.systers.mentorship.models.DashBoardResponse
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.requests.ChangePassword
@@ -78,4 +79,7 @@ interface UserService {
      */
     @DELETE("user")
     fun deleteUser(): Observable<CustomResponse>
+
+    @GET("dashboard")
+    fun getDashboardStats(): Observable<DashBoardResponse>
 }

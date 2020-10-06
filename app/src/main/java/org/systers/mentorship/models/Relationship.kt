@@ -1,6 +1,7 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -43,5 +44,7 @@ data class Relationship(
      */
     @Parcelize
     data class RelationUserResponse (val id: Int,
+                                     //Username for Dashboard Response
+                                     val userName: String,
                                      val name: String): Parcelable
 }

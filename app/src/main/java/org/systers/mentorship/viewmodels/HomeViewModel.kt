@@ -12,6 +12,7 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.models.DashBoardResponse
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.utils.CommonUtils
@@ -32,9 +33,11 @@ class HomeViewModel : ViewModel() {
 
     private val _userStats = MutableLiveData<HomeStatistics>()
     private val _message = SingleLiveEvent<String>()
-
+    private val _dashboardStats = MutableLiveData<DashBoardResponse>()
     val userStats: LiveData<HomeStatistics>
         get() = _userStats
+    val dashboardStats : LiveData<DashBoardResponse>
+        get() = _dashboardStats
 
     val message: LiveData<String>
         get() = _message
@@ -79,8 +82,45 @@ class HomeViewModel : ViewModel() {
 
                 })
                 .addTo(compositeDisposable)
-    }
 
+        }
+
+    fun getDashboardResponse(){
+        userDataManager.getDashBoardResponse()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object: DisposableObserver<DashBoardResponse>(){
+                    override fun onNext(dashboardresponse: DashBoardResponse) {
+                        _dashboardStats.value = dashboardresponse
+                    }
+
+                    override fun onError(error: Throwable) {
+                        when (error) {
+                            is IOException -> {
+                                _message.postValue(MentorshipApplication.getContext()
+                                        .getString(R.string.error_please_check_internet))
+                            }
+                            is TimeoutException -> {
+                                _message.postValue(MentorshipApplication.getContext()
+                                        .getString(R.string.error_request_timed_out))
+                            }
+                            is HttpException -> {
+                                _message.postValue(CommonUtils.getErrorResponse(error).message)
+                            }
+                            else -> {
+                                _message.postValue(MentorshipApplication.getContext()
+                                        .getString(R.string.error_something_went_wrong))
+                                        .also { Log.d(tag, error.localizedMessage) }
+                            }
+                        }
+                    }
+
+                    override fun onComplete() {
+                        //Do Nothing
+                    }
+
+                }).addTo(compositeDisposable)
+        }
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
