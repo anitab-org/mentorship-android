@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="generic_28sp">28sp</dimen>
-    <dimen name="profile_photo_medium">48dp</dimen>
-    <dimen name="profile_photo_large">96dp</dimen>
+
+    <!--PADDING & MARGIN-->
     <dimen name="margin_tiny">4dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_middle">12dp</dimen>
@@ -10,11 +10,41 @@
     <dimen name="margin_medium">24dp</dimen>
     <dimen name="margin_big">32dp</dimen>
     <dimen name="padding_small">10dp</dimen>
-    <dimen name="cardView_dimen_120">120dp</dimen>
-    <dimen name="test_size_title">18sp</dimen>
-    <dimen name="test_size_title_big">24sp</dimen>
-    <dimen name="progress_bar_size_small">24dp</dimen>
+
+    <!--   TEXT -->
+    <dimen name="big_title_text_30sp">30sp</dimen>
+    <dimen name="test_size_title_18sp">18sp</dimen>
+    <dimen name="test_size_title_big_24sp">24sp</dimen>
+    <dimen name="medium_text_16sp">16sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+
+    <!--   Icons & Photos-->
+    <dimen name="profile_photo_medium">48dp</dimen>
+    <dimen name="profile_photo_large">96dp</dimen>
     <dimen name="ico_size_50dp">50dp</dimen>
+    <dimen name="size_24dp">24dp</dimen>
+
+    <!--    VIEWS-->
     <dimen name="fab_button_visible">60dp</dimen>
     <dimen name="expanded_toolbar_text_size">26sp</dimen>
+    <dimen name="progress_bar_size_small">24dp</dimen>
+    <dimen name="cardView_dimen_120">120dp</dimen>
+
+
+    <!-- View sizes-->
+    <dimen name="size_0">0dp</dimen>
+    <dimen name="size_1">1dp</dimen>
+    <dimen name="size_2">2dp</dimen>
+    <dimen name="size_3">3dp</dimen>
+    <dimen name="size_4">4dp</dimen>
+    <dimen name="size_5">5dp</dimen>
+    <dimen name="size_7">7dp</dimen>
+    <dimen name="size_8">8dp</dimen>
+    <dimen name="size_10">10dp</dimen>
+    <dimen name="size_16">16dp</dimen>
+    <dimen name="size_24">24dp</dimen>
+    <dimen name="size_35">35dp</dimen>
+    <dimen name="size_40">40dp</dimen>
+
+
 </resources>

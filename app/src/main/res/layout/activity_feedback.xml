@@ -21,47 +21,47 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="@dimen/margin_normal">
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:text="@string/feedback_sendfeedback"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textSize="30sp"
+                    android:textSize="@dimen/big_title_text_30sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:text="@string/feedback_feedbacktxt"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/medium_text_16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                 <TextView
                     android:id="@+id/textView11"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:text="@string/feedback_experience"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -70,9 +70,9 @@
                     android:id="@+id/linearLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -80,8 +80,8 @@
 
                     <ImageButton
                         android:id="@+id/FeedbackpageS1"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="@dimen/size_24dp"
+                        android:layout_height="@dimen/size_24dp"
                         android:background="@android:color/transparent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView11"
@@ -89,9 +89,9 @@
 
                     <ImageButton
                         android:id="@+id/FeedbackpageS2"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_width="@dimen/size_24dp"
+                        android:layout_height="@dimen/size_24dp"
+                        android:layout_marginStart="@dimen/margin_small"
                         android:background="@android:color/transparent"
                         app:layout_constraintStart_toEndOf="@+id/FeedbackpageS1"
                         app:layout_constraintTop_toBottomOf="@+id/textView11"
@@ -99,9 +99,9 @@
 
                     <ImageButton
                         android:id="@+id/FeedbackpageS3"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_width="@dimen/size_24dp"
+                        android:layout_height="@dimen/size_24dp"
+                        android:layout_marginStart="@dimen/margin_small"
                         android:background="@android:color/transparent"
                         app:layout_constraintStart_toEndOf="@+id/FeedbackpageS2"
                         app:layout_constraintTop_toBottomOf="@+id/textView11"
@@ -109,9 +109,9 @@
 
                     <ImageButton
                         android:id="@+id/FeedbackpageS4"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_width="@dimen/size_24dp"
+                        android:layout_height="@dimen/size_24dp"
+                        android:layout_marginStart="@dimen/margin_small"
                         android:background="@android:color/transparent"
                         app:layout_constraintStart_toEndOf="@+id/FeedbackpageS3"
                         app:layout_constraintTop_toBottomOf="@+id/textView11"
@@ -119,9 +119,9 @@
 
                     <ImageButton
                         android:id="@+id/FeedbackpageS5"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_width="@dimen/size_24dp"
+                        android:layout_height="@dimen/size_24dp"
+                        android:layout_marginStart="@dimen/margin_small"
                         android:background="@android:color/transparent"
                         app:layout_constraintStart_toEndOf="@+id/FeedbackpageS4"
                         app:layout_constraintTop_toBottomOf="@+id/textView11"
@@ -130,15 +130,15 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:text="@string/feedback_emailhint"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -148,13 +148,14 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     app:hintEnabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -165,15 +166,15 @@
 
                 <TextView
                     android:id="@+id/textView6"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:text="@string/feedback_message"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/FeedbackpageEmail" />
@@ -184,9 +185,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     app:counterEnabled="true"
                     app:counterMaxLength="500"
                     app:hintEnabled="false"
@@ -205,33 +206,33 @@
                         android:minLines="8"
                         android:selectAllOnFocus="false"
                         android:singleLine="false"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/test_size_title_18sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <TextView
                     android:id="@+id/textView9"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:text="@string/feedback_category"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/FeedbackPageMessage" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:checkedButton="@id/FeedbackpageRd1"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -242,7 +243,7 @@
                         android:id="@+id/FeedbackpageRd1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginRight="@dimen/margin_normal"
                         android:layout_weight="1"
                         android:text="@string/feedback_bug" />
 
@@ -250,7 +251,7 @@
                         android:id="@+id/FeedbackpageRd2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginRight="@dimen/margin_normal"
                         android:layout_weight="1"
                         android:text="@string/feedback_suggestion" />
 
@@ -266,18 +267,16 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/FeedbackpageSendbtn"
                     style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/size_0"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/feedback_sendfeedbackbtn"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_normal"
                     android:enabled="false"
+                    android:text="@string/feedback_sendfeedbackbtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
