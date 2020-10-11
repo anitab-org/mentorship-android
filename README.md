@@ -63,13 +63,13 @@ The repository has the following permanent branches:
  * **apk** This branch contains the apks for the code in the develop branch. The apks are automatically updated when a commit is pushed to `develop` branch.
 
 ## Screenshots
-|![Splashscreen](Screenshots/Splashscreen.png)|![Introduction Slider](Screenshots/Inroduction%20Slider.jpeg)|![SignUp Screen](Screenshots/SignUp%20Screen.jpeg)|![Login Page](Screenshots/Login%20Page.jpeg)| 
-|---|---|---|
-|![Home Page](Screenshots/Home%20Page.jpeg)|![Profile Page](Screenshots/Profile%20Page.jpeg)|![Edit Profile Page](Screenshots/Edit%20Profile%20Page.jpeg) 
-|![Relations Page](Screenshots/Relations%20Page.jpeg)|![Tasks Page](Screenshots/Tasks%20Page.jpeg)|![Members Page](Screenshots/Members%20Page.jpeg)
-|![Filter Mumbers Screen](Screenshots/Filter%20Members%20Page.jpeg)|![Member Profile](Screenshots/Member%20Profile%20Page.jpeg)|![Send Request Page](Screenshots/Send%20Request%20Page.jpeg)
-|![Requests Page](Screenshots/Requests%20Page.jpeg)|![Settings Screen](Screenshots/Settings%20Page.jpeg)|![About Page](Screenshots/About%20Page.jpeg)
-|![Change Password Page](Screenshots/Change%20Password%20Page.jpeg)|
+|![Splashscreen](Screenshots/Splashscreen.png)|![Introduction Slider](Screenshots/Introduction%20Slider.jpeg)|![SignUp Screen](Screenshots/SignUp%20Screen.jpeg)| 
+|:---:|:---:|:---:|
+|![Login Page](Screenshots/Login%20Page.jpeg)|![Home Page](Screenshots/Home%20Page.jpeg)|![Profile Page](Screenshots/Profile%20Page.jpeg)|
+|![Edit Profile Page](Screenshots/Edit%20Profile%20Page.jpeg)|![Relations Page](Screenshots/Relations%20Page.jpeg)|![Tasks Page](Screenshots/Tasks%20Page.jpeg)|
+|![Members Page](Screenshots/Members%20Page.jpeg)|![Filter Mumbers Screen](Screenshots/Filter%20Members%20Page.jpeg)|![Member Profile](Screenshots/Member%20Profile%20Page.jpeg)|
+|![Send Request Page](Screenshots/Send%20Request%20Page.jpeg)|![Requests Page](Screenshots/Requests%20Page.jpeg)|![Settings Screen](Screenshots/Settings%20Page.jpeg)|
+|![About Page](Screenshots/About%20Page.jpeg)|![Change Password Page](Screenshots/Change%20Password%20Page.jpeg)|
 ## Contact
 
 You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
