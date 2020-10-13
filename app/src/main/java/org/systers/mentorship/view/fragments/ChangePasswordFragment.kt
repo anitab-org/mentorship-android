@@ -12,6 +12,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
+import org.systers.mentorship.utils.checkPasswordSecurity
 import org.systers.mentorship.viewmodels.ChangePasswordViewModel
 
 /**
@@ -77,8 +78,11 @@ class ChangePasswordFragment : DialogFragment() {
         }
     }
 
-    private fun validatePassword() : Boolean {
-        return if (newPassword == confirmPassword && newPassword != currentPassword) {
+    private fun validatePassword(): Boolean {
+        return if (!newPassword.checkPasswordSecurity()) {
+            changePasswordView.tilNewPassword?.error = getString(R.string.error_password_too_weak)
+            false
+        } else if (newPassword == confirmPassword && newPassword != currentPassword) {
             true
         } else {
             if (currentPassword == newPassword) {

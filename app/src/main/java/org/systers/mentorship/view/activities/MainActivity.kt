@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        bottomNavigation.setOnNavigationItemReselectedListener {  }
 
         if (savedInstanceState == null) {
             showHomeFragment()

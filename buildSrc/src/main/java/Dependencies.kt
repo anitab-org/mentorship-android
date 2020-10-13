@@ -25,6 +25,7 @@ object Versions {
     const val archComponents = "2.0.0"
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
+    const val appIntro = "5.1.0"
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
 }
@@ -56,5 +57,6 @@ object Dependencies {
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
+    const val app_intro = "com.github.AppIntro:AppIntro:${Versions.appIntro}"
     const val circule_image_view = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
 }

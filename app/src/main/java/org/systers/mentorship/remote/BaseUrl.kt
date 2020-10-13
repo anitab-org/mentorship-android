@@ -21,7 +21,9 @@ object BaseUrl {
 
     val apiBaseUrl: String
         get() = if (BuildConfig.BUILD_TYPE == "debug"){
-            "$PROTOCOL_HTTPS$DEVELOPMENT_URL$EB_REGION"
+            // "$PROTOCOL_HTTPS$DEVELOPMENT_URL$EB_REGION"
+            // TODO: once backend is fixed remove this temporary URL
+            "https://mentorship-backend-temp.herokuapp.com/"
         } else if (BuildConfig.BUILD_TYPE == "debug_localhost"){
             "$PROTOCOL_HTTPS$LOCALHOST_URL$LOCALHOST_PORT"
         } else {

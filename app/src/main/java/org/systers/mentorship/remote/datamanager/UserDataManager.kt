@@ -5,6 +5,7 @@ import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.ChangePassword
+import org.systers.mentorship.remote.requests.PaginationRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 
 /**
@@ -21,6 +22,16 @@ class UserDataManager {
     fun getUsers(): Observable<List<User>> {
         return apiManager.userService.getVerifiedUsers()
     }
+
+
+    /**
+     * This will call the getVerifiedUsers(pagination) method of UserService interface
+     * @return an Observable of a list of [User]
+     */
+    fun getUsers(paginationRequest: PaginationRequest): Observable<List<User>> {
+        return apiManager.userService.getVerifiedUsers(paginationRequest.pagination)
+    }
+
 
     /**
      * This will call the getUser method of UserService interface
