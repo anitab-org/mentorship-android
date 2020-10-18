@@ -135,7 +135,8 @@ class MembersFragment : BaseFragment() {
                                 isRecyclerView = true
                             }
                         } else {
-                            Toast.makeText(activity, "Oops! Not found", Toast.LENGTH_SHORT).show()
+                            if (filterMap.containsKey("skills") && filterMap["skills"] == "")
+                                Toast.makeText(activity, "Oops! Not found", Toast.LENGTH_SHORT).show()
                         }
                         memberListInitialized = true
                         tvEmptyList.visibility = View.GONE
