@@ -37,6 +37,7 @@ android {
     androidExtensions {
         experimental = true
     }
+    kotlinOptions { jvmTarget = "1.8" }
 }
 
 configurations.all {
@@ -56,6 +57,9 @@ dependencies {
     androidTestImplementation Dependencies.test_runner
     androidTestImplementation Dependencies.test_rules
     androidTestImplementation Dependencies.espresso
+    androidTestImplementation Dependencies.espresso_contrib
+    androidTestImplementation Dependencies.espresso_accessibility
+    androidTestImplementation Dependencies.espresso_web
     androidTestImplementation Dependencies.espresso_intents
     androidTestImplementation Dependencies.ext_junit
 
@@ -72,4 +76,6 @@ dependencies {
     implementation Dependencies.lifecycle_viewmodel
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
+
+    implementation Dependencies.fragmentTesting
 }
