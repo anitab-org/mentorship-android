@@ -59,7 +59,7 @@ class EditProfileFragment : DialogFragment() {
                 }
             }
         })
-        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog?.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
@@ -71,7 +71,7 @@ class EditProfileFragment : DialogFragment() {
         editProfileBinding.user = tempUser.copy()
         currentUser = tempUser.copy()
 
-        val dialogBuilder = AlertDialog.Builder(context!!)
+        val dialogBuilder = AlertDialog.Builder(requireContext())
         dialogBuilder.setView(editProfileBinding.root)
         dialogBuilder.setTitle(R.string.fragment_title_edit_profile)
         dialogBuilder.setPositiveButton(getString(R.string.save), null)
@@ -121,7 +121,7 @@ class EditProfileFragment : DialogFragment() {
     override fun onDestroy() {
         super.onDestroy()
 
-        profileViewModel.successfulUpdate.removeObservers(activity!!)
+        profileViewModel.successfulUpdate.removeObservers(requireActivity())
         profileViewModel.successfulUpdate.value = null
     }
 
@@ -145,7 +145,7 @@ class EditProfileFragment : DialogFragment() {
         this.onDismissListener = onDismissListener!!
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         if (onDismissListener != null) {
             onDismissListener.onDismiss(dialog)
