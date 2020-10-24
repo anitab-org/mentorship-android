@@ -123,19 +123,19 @@ class MembersAdapter (
             if (!interests.isNullOrEmpty())
                 if (it.interests.isNullOrEmpty())
                     valid = false
-                else if (it.interests?.contains(interests) == false)
+                else if (it.interests?.contains(interests, ignoreCase = true) == false)
                     valid = false
 
             if (!location.isNullOrEmpty())
                 if (it.location.isNullOrEmpty())
                     valid = false
-                else if (it.location?.contains(location) == false)
+                else if (it.location?.contains(location, ignoreCase = true) == false)
                     valid = false
 
             if (!skills.isNullOrEmpty())
                 if (it.skills.isNullOrEmpty())
                     valid = false
-                else if (it.skills?.contains(skills) == false)
+                else if (it.skills?.contains(skills, ignoreCase = true) == false)
                     valid = false
 
             valid
