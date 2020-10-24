@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.activities
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -149,6 +150,28 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onBackPressed() {
+
+        val builder = AlertDialog.Builder(this)
+        //set title for alert dialog
+        builder.setTitle("Alert")
+        //set message for alert dialog
+        builder.setMessage("Are you sure you want to Discard?")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+        //performing positive action
+        builder.setPositiveButton("Yes"){dialogInterface, which ->
+            super.onBackPressed()
+        }
+        //performing cancel action
+        builder.setNeutralButton("Cancel"){dialogInterface , which ->
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
 
     override fun onClick(v: View?) {
