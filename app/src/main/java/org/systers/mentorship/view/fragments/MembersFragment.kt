@@ -135,7 +135,7 @@ class MembersFragment : BaseFragment() {
                                 isRecyclerView = true
                             }
                         } else {
-                            if (filterMap.containsKey("skills") && filterMap["skills"] == "")
+                            if (filterMap.containsKey("skills") && filterMap["skills"] != "")
                                 Toast.makeText(activity, "Oops! Not found", Toast.LENGTH_SHORT).show()
                         }
                         memberListInitialized = true
