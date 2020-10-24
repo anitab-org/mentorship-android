@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.utils.checkPasswordSecurity
 import org.systers.mentorship.viewmodels.SignUpViewModel
 
@@ -47,6 +48,7 @@ class SignUpActivity : BaseActivity() {
                     Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
                 }
+                CountingIdlingResourceSingleton.decrement()
             }
         })
 
@@ -70,11 +72,12 @@ class SignUpActivity : BaseActivity() {
             isAvailableToMentor = cbMentor.isChecked //old name but works
             isAvailableForBoth = cbBoth.isChecked
 
+            CountingIdlingResourceSingleton.increment()
             if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
-            }
+            } else CountingIdlingResourceSingleton.decrement()
         }
         btnLogin.setOnClickListener {
             navigateToLoginActivity()
