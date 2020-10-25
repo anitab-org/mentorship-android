@@ -51,7 +51,7 @@ jobs:
             app/build/outputs/apk/release/app-release-unsigned.apk
       - name: Push APKs to apk branch
         run: |
-          git config --global user.name "m-murad"
+          git config --global user.name "anitab-org"
           git config --global user.email "opensource@anitab.org"
           mkdir ~/apk
           cp app/build/outputs/apk/debug/app-debug.apk ~/apk
