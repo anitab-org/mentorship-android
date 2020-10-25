@@ -11,7 +11,7 @@ Every time a new commit is merged into the develop branch an apk is released i
 ![Branch chnage](https://user-images.githubusercontent.com/16835617/92631953-8a52a900-f2ef-11ea-9e61-60692555283b.png)
 
 
-If you want to do manual testing on the application without setting up the development environment, you can download this app-debug.apk and install it on your Android device.
+If you want to do manual testing on the application without setting up the development environment, you can download this [app-debug.apk](https://github.com/anitab-org/mentorship-android/blob/apk/app-debug.apk) and install it on your Android device.
 
 ![apk-branch](https://user-images.githubusercontent.com/16835617/92632334-a5251d80-f2ef-11ea-8d7d-007374cd882e.png)
 
