@@ -53,4 +53,7 @@ Now click the apk to install !
 
 If you want ideas of test cases to use when testing the mobile application business logic, you can check this set of Quality Assurance test cases page from [anitab-org/mentorship-backend](https://github.com/anitab-org/mentorship-backend) repository.
 
-Resources: - [Apk branch](https://github.com/anitab-org/mentorship-android/tree/apk) - [app-debug.apk](https://github.com/anitab-org/mentorship-android/blob/apk/app-debug.apk) - [Quality Assurance test cases](https://github.com/anitab-org/mentorship-backend/blob/develop/docs/quality-assurance-test-cases.md)
+Resources:
+- [Apk branch](https://github.com/anitab-org/mentorship-android/tree/apk)
+- [app-debug.apk](https://github.com/anitab-org/mentorship-android/blob/apk/app-debug.apk)
+- [Quality Assurance test cases](https://github.com/anitab-org/mentorship-backend/blob/develop/docs/quality-assurance-test-cases.md)
