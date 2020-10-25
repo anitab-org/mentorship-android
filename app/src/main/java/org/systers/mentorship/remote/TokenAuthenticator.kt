@@ -15,7 +15,7 @@ class TokenAuthenticator: Authenticator{
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
-    override fun authenticate(route: Route, response: Response): Request? {
+    override fun authenticate(route: Route?, response: Response): Request? {
         if (response.code() == 401) {
             preferenceManager.clear()
             val intent = Intent(MentorshipApplication.getContext(), LoginActivity::class.java)
