@@ -23,10 +23,11 @@ class CustomInterceptor : Interceptor {
     override fun intercept(@NonNull chain: Interceptor.Chain): Response? {
 
         val chainRequest = chain.request()
-        val urlPath = chain.request().url().encodedPath()
+        val urlPath = chainRequest.url().encodedPath()
         val builder = chainRequest.newBuilder()
         val accessToken = preferenceManager.authToken
 
+        //To check end point of the Request
         if (urlPath == "/login" || urlPath == "/register" || urlPath == "/refresh") {
             val request = builder.build()
             return chain.proceed(request)
@@ -34,6 +35,7 @@ class CustomInterceptor : Interceptor {
 
         val accessTokenExpTime = getAuthTokenPayload().exp
         val refreshToken = preferenceManager.refToken
+
         //To Check is RefreshToken is Empty
         if (TextUtils.isEmpty(refreshToken)) {
             //If refresh token is empty -> Navigate to login screen
@@ -44,28 +46,28 @@ class CustomInterceptor : Interceptor {
             return null
         }
 
-        //To Check if the AuthToken has Expired and request is not refresh or login
-        if (accessTokenExpTime < System.currentTimeMillis() / 1000 && chainRequest.url().encodedPath() != "/refresh") {
+        //To Check if the AuthToken has Expired
+        if (accessTokenExpTime < System.currentTimeMillis() / 1000) {
             val responseToken = AuthDataManager().refresh(refreshToken).execute()
 
             return when {
                 (responseToken == null || responseToken.code() != 200) -> {
                     // Navigate Back to Login if request is null or response is not 200
-                    preferenceManager.clearAuthToken()
+                    preferenceManager.clear()
                     val intent = Intent(MentorshipApplication.getContext(), LoginActivity::class.java)
                     intent.putExtra(Constants.TOKEN_EXPIRED_EXTRA, 0)
                     ContextCompat.startActivity(MentorshipApplication.getContext(), intent, null)
                     null
                 }
                 else -> {
-                    //Put new authToken is prefs
+                    // Put new authToken is prefs
                     responseToken.body()?.accessToken.let {
                         if (it != null) {
                             preferenceManager.putAuthToken(it)
                         }
                     }
                     //Make request with new Auth token
-                    val newRequest = chainRequest.newBuilder().addHeader("Authorization", preferenceManager.authToken).build()
+                    val newRequest = builder.addHeader("Authorization", preferenceManager.authToken).build()
                     chain.proceed(newRequest)
                 }
             }
@@ -73,7 +75,7 @@ class CustomInterceptor : Interceptor {
         }
         //Token valid make request
         else {
-            if (!TextUtils.isEmpty(accessToken) ) {
+            if (!TextUtils.isEmpty(accessToken)) {
                 builder.header("Authorization", preferenceManager.authToken)
             }
 
