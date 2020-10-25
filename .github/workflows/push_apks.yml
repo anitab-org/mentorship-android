@@ -1,4 +1,4 @@
-# In this workflow, generated APKs are pushed to the anitab-orgs's mentorship-android repository's apk branch
+# In this workflow, generated APKs are pushed to the anitab-org's mentorship-android repository's apk branch
 # This workflow is triggered when some changes are pushed to the anitab-org's mentorship android repository's develop branch
 
 name: Push APKs to apk branch
