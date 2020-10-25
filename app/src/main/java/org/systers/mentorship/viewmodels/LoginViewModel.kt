@@ -43,8 +43,9 @@ class LoginViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<AuthToken>() {
                     override fun onNext(authToken: AuthToken) {
-                        successful.value = true
                         preferenceManager.putAuthToken(authToken.accessToken)
+                        preferenceManager.putRefreshToken(authToken.refreshToken)
+                        successful.value = true
                     }
 
                     override fun onError(throwable: Throwable) {
