@@ -6,7 +6,7 @@
 
 ## For option one or two:
 
-Every time a new commit is merged into the develop branch an apk is released in the apk branch.To Navigate to apk Branch see here: 
+Every time a new commit is merged into the `develop` branch an _apk_ is released in the `apk` branch. To Navigate to `apk` Branch see here: 
 
 ![Branch chnage](https://user-images.githubusercontent.com/16835617/92631953-8a52a900-f2ef-11ea-9e61-60692555283b.png)
 
