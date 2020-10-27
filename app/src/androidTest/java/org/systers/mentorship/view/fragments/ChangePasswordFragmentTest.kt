@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.fragments
 
+import android.content.res.Resources
 import android.view.View
 import android.widget.EditText
 import androidx.annotation.IdRes
@@ -10,6 +11,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.google.android.material.textfield.TextInputLayout
 import org.hamcrest.CoreMatchers
@@ -25,8 +27,9 @@ import org.systers.mentorship.view.activities.SettingsActivity
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ChangePasswordFragmentTest {
 
-    private val PASSWORD_TOO_WEAK = "Your password is too weak! Use at least one small and capital letter, one number and one special sign!"
-    private val PASSWORDS_DO_NOT_MATCH = "Passwords do not match"
+    private val res = InstrumentationRegistry.getInstrumentation().targetContext.resources
+    private val PASSWORD_TOO_WEAK = res.getString(R.string.error_password_too_weak)
+    private val PASSWORDS_DO_NOT_MATCH = res.getString(R.string.password_not_match)
 
     // Start the SettingsActivity
     @get:Rule
