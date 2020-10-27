@@ -62,6 +62,7 @@ dependencies {
     androidTestImplementation Dependencies.espresso_web
     androidTestImplementation Dependencies.espresso_intents
     androidTestImplementation Dependencies.ext_junit
+    implementation Dependencies.espresso_idling_resources
 
     implementation Dependencies.rx_java
     implementation Dependencies.rx_android

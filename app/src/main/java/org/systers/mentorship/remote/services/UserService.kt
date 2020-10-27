@@ -4,7 +4,6 @@ import io.reactivex.Observable
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.requests.ChangePassword
-import org.systers.mentorship.remote.requests.PaginationRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.*
 
@@ -71,11 +70,4 @@ interface UserService {
      */
     @GET("home")
     fun getHomeStats(): Observable<HomeStatistics>
-
-    /**
-     * This function deletes current user
-     * @return an observable instance of a [CustomResponse]
-     */
-    @DELETE("user")
-    fun deleteUser(): Observable<CustomResponse>
 }
