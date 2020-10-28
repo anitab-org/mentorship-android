@@ -1,28 +1,29 @@
 package org.systers.mentorship.view.activities
 
-import android.content.Intent
-import android.content.IntentSender.SendIntentException
-import android.os.Bundle
-import android.text.Editable
-import android.util.Log
-import android.view.inputmethod.EditorInfo
-import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
+import android.content.IntentSender
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import com.google.android.material.snackbar.Snackbar
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import com.google.android.gms.auth.api.credentials.Credential
 import com.google.android.gms.auth.api.credentials.CredentialRequest
 import com.google.android.gms.auth.api.credentials.Credentials
 import com.google.android.gms.auth.api.credentials.CredentialsClient
 import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.Constants.RC_SAVE
+import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.viewmodels.LoginViewModel
-
+import java.lang.Exception
 
 /**
  * This activity will let the user to login using username/email and password.
@@ -42,6 +43,9 @@ class LoginActivity : BaseActivity() {
 
         setupCredentialsManager()
 
+        etUsername.addTextChangedListener(textWatcher)
+        etPassword.addTextChangedListener(textWatcher)
+
         loginViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()
@@ -56,11 +60,12 @@ class LoginActivity : BaseActivity() {
                     Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
                 }
+                CountingIdlingResourceSingleton.decrement()
             }
         })
 
         btnLogin.setOnClickListener {
-           login()
+            login()
         }
 
         btnSignUp.setOnClickListener {
@@ -80,6 +85,31 @@ class LoginActivity : BaseActivity() {
             if (tokenExpiredVal == 0)
                 Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
         }catch (exception: Exception){}
+
+        checkFieldsForEmptyValues()
+    }
+
+    private fun checkFieldsForEmptyValues(){
+        val editText1: String? = etUsername.text.toString()
+        val editText2: String? = etPassword.text.toString()
+
+        /**
+         * Disables the button if one of the EditText field is empty
+         */
+        btnLogin.isEnabled = !(editText1.equals("") || editText2.equals(""))
+    }
+
+    private val textWatcher = object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+            checkFieldsForEmptyValues()
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
     }
 
     private fun validateCredentials() : Boolean {
@@ -100,6 +130,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun login() {
+        CountingIdlingResourceSingleton.increment()
         username = tiUsername.editText?.text.toString().trim()
         password = tiPassword.editText?.text.toString().trim()
         saveCredentials(username, password)
@@ -133,7 +164,7 @@ class LoginActivity : BaseActivity() {
                 // the credential is new.
                 try {
                     e.startResolutionForResult(this, RC_SAVE)
-                } catch (exception: SendIntentException) {
+                } catch (exception: IntentSender.SendIntentException) {
                     // Could not resolve the request
                     Log.i("Save", e.message.toString())
                     Toast.makeText(this@LoginActivity, "Save failed ${e.message.toString()}", Toast.LENGTH_SHORT).show()
@@ -164,6 +195,8 @@ class LoginActivity : BaseActivity() {
         if (validateCredentials()) {
             loginViewModel.login(Login(username, password))
             showProgressDialog(getString(R.string.logging_in))
+        } else {
+            CountingIdlingResourceSingleton.decrement()
         }
     }
 
