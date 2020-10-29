@@ -13,10 +13,10 @@ Every time a new commit is merged into the `develop` branch an _apk_ is releas
 
 If you want to do manual testing on the application without setting up the development environment, you can download this [app-debug.apk](https://github.com/anitab-org/mentorship-android/blob/apk/app-debug.apk) and install it on your Android device.
 
-![apk-branch](https://user-images.githubusercontent.com/16835617/92632334-a5251d80-f2ef-11ea-8d7d-007374cd882e.png)
+![apk-branch](https://user-images.githubusercontent.com/16835617/97575784-42105700-1a13-11eb-8a73-4669b8ebb343.png)
 
 
-![apkInstall](https://user-images.githubusercontent.com/16835617/92632771-c4bc4600-f2ef-11ea-8d30-6618d990166d.png)
+![apkInstall](https://user-images.githubusercontent.com/16835617/97575669-1db47a80-1a13-11eb-8074-bcac49ee59db.png)
 
 
 For manually testing in physical device tick the option here :
