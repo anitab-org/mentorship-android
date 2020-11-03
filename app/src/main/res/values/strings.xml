@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Systers Mentorship</string>
+    <string name="alert">Alert</string>
     <string name="logo">Logo</string>
     <string name="login">Login</string>
     <string name="update_profile">Update</string>
@@ -120,6 +121,7 @@
     <string name="recent_achievements">Recent Achievements</string>
     <string name="confirm_logout">Confirm logout</string>
     <string name="confirm_logout_msg">Are you sure you want to logout?</string>
+    <string name="confirm_discard_msg">Are you sure you want to Discard?</string>
     <string name="logout">Logout</string>
     <string name="confirm_cancel_relation">Yes</string>
     <string name="cancel_relation_text">Are you sure you want to cancel the relation?</string>
@@ -208,5 +210,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="bug">Bug</string>
     <string name="input"> Please fill in the input fields and/or assign a rating</string>
     <string name="feedback_thank">Thank you for your feedback!</string>
+    <string name="delete_request">Are you sure you want to delete request?</string>
+    <string name="reject_request">Are you sure you want to reject request?</string>
+    <string name="accept_request">Are you sure you want to accept request?</string>
 </resources>
 
