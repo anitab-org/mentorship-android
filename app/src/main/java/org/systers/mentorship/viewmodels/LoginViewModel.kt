@@ -11,6 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
+import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.responses.AuthToken
 import org.systers.mentorship.utils.CommonUtils
@@ -29,7 +30,9 @@ class LoginViewModel : ViewModel() {
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val authDataManager: AuthDataManager = AuthDataManager()
 
+    private val userDataManager: UserDataManager = UserDataManager()
     val successful: MutableLiveData<Boolean> = MutableLiveData()
+    var verified: Boolean  = true
     lateinit var message: String
 
     /**
@@ -44,6 +47,7 @@ class LoginViewModel : ViewModel() {
                 .subscribeWith(object : DisposableObserver<AuthToken>() {
                     override fun onNext(authToken: AuthToken) {
                         successful.value = true
+                        verified = true
                         preferenceManager.putAuthToken(authToken.accessToken)
                     }
 
@@ -52,26 +56,32 @@ class LoginViewModel : ViewModel() {
                             is IOException -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_please_check_internet)
-                            }
+                                                            }
                             is TimeoutException -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_request_timed_out)
+
                             }
                             is HttpException -> {
                                 message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                verified = false
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_something_went_wrong)
                                 Log.e(tag, throwable.localizedMessage)
+                                verified  = false
                             }
                         }
                         successful.value = false
+                        verified = true
                     }
 
                     override fun onComplete() {
                     }
                 })
     }
+
+
 }
 

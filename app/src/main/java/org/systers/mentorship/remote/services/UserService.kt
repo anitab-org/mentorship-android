@@ -1,9 +1,11 @@
 package org.systers.mentorship.remote.services
 
+import android.provider.ContactsContract
 import io.reactivex.Observable
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.requests.ChangePassword
+import org.systers.mentorship.remote.requests.Email
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.http.*
 
@@ -70,4 +72,12 @@ interface UserService {
      */
     @GET("home")
     fun getHomeStats(): Observable<HomeStatistics>
+
+    /**
+     * This function re-sends an email to the current user
+     * @return an observable instance of the [CustomResponse]
+     */
+
+    @POST("user/resend_email")
+    fun resendEmail(@Body email: Email): Observable<CustomResponse>
 }

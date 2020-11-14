@@ -1,21 +1,31 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.google.android.material.snackbar.Snackbar
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
+import org.systers.mentorship.remote.datamanager.UserDataManager
+import org.systers.mentorship.remote.requests.Email
 import org.systers.mentorship.remote.requests.Login
+import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.utils.CommonUtils
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.viewmodels.LoginViewModel
-import java.lang.Exception
+import retrofit2.HttpException
+import java.io.IOException
+
 
 /**
  * This activity will let the user to login using username/email and password.
@@ -27,6 +37,9 @@ class LoginActivity : BaseActivity() {
     }
     private lateinit var username: String
     private lateinit var password: String
+    private lateinit var message: String
+    private val userDataManager by lazy { UserDataManager() }
+    var tag = LoginActivity::class.java.simpleName!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +59,46 @@ class LoginActivity : BaseActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
+                    if(loginViewModel.verified)
+                        Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
+                    else
+                        Snackbar.make(getRootView(), R.string.not_verified, Snackbar.LENGTH_INDEFINITE)
+                                .setAction(R.string.resend_email) {
+                                    val data = Email(username)
+                                            userDataManager.resendEmail(data)
+                                            .subscribeOn(Schedulers.newThread())
+                                            .observeOn(AndroidSchedulers.mainThread())
+                                            .subscribe(object: DisposableObserver<CustomResponse>() {
+                                                override fun onNext(customResponse: CustomResponse) {
+                                                    message = customResponse.message
+                                                    Snackbar.make(getRootView(), message, Snackbar.LENGTH_SHORT).show()
+                                                }
+
+                                                override fun onError(throwable: Throwable) {
+                                                    when (throwable) {
+                                                        is IOException -> {
+                                                            message = R.string.error_please_check_internet.toString();
+                                                            Log.e(tag, throwable.localizedMessage)
+                                                        }
+                                                        is HttpException -> {
+                                                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                                        }
+                                                        else -> {
+                                                            message = R.string.error_something_went_wrong.toString();
+                                                            Log.e(tag, throwable.localizedMessage)
+                                                        }
+                                                    }
+                                                    Log.d(tag, message, throwable)
+                                                    Snackbar.make(getRootView(), message, Snackbar.LENGTH_LONG).show()
+                                                }
+
+                                                override fun onComplete() {
+                                                    Snackbar.make(getRootView(),  R.string.sent_email, Snackbar.LENGTH_LONG).show()
+                                                }
+                                            })
+                                }
+                                .show()
                 }
                 CountingIdlingResourceSingleton.decrement()
             }
@@ -136,4 +187,5 @@ class LoginActivity : BaseActivity() {
         loginViewModel.successful.value = null
     }
 }
+
 

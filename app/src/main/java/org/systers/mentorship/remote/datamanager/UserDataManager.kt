@@ -5,6 +5,7 @@ import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.ChangePassword
+import org.systers.mentorship.remote.requests.Email
 import org.systers.mentorship.remote.requests.PaginationRequest
 import org.systers.mentorship.remote.responses.CustomResponse
 
@@ -73,4 +74,11 @@ class UserDataManager {
         return apiManager.userService.getHomeStats()
     }
 
+    /**
+     * This will call the resend method of UserService interface
+     * @return an Observable of [CustomResponse]
+     */
+    fun resendEmail(email: Email): Observable<CustomResponse> {
+        return apiManager.userService.resendEmail(email)
+    }
 }
