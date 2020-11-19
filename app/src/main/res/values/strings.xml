@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Systers Mentorship</string>
+    <string name="app_name">Mentorship System</string>
     <string name="logo">Logo</string>
     <string name="login">Login</string>
     <string name="update_profile">Update</string>
