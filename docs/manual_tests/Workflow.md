@@ -3,13 +3,13 @@
 Steps
 
 1. Registration/SignUp in app
-1. LogIn in app
-1. Navigating to members section
-1. Sending request to mentor/mentee
-1. Viewing request
-1. Accepting/Rejecting request
-1. Creating task
-1. Task completion
+2. LogIn in app
+3. Navigating to members section
+4. Sending request to mentor/mentee
+5. Viewing request
+6. Accepting/Rejecting request
+7. Creating task
+8. Task completion
 
 ## Step 1 - Registration/SignUp in app
 
