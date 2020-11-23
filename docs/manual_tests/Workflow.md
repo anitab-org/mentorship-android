@@ -1,6 +1,4 @@
-# Workflow of App
-
-## Create tasks for a relation and complete the task
+# Create tasks in a mentorship relation and complete the task workflow
 
 Steps
 
