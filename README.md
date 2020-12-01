@@ -1,9 +1,15 @@
+
+[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg?logo=zulip)](https://anitab-org.zulipchat.com/#narrow/stream/222534-mentorship-system)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg?logo=GNU)](http://www.gnu.org/licenses/gpl-3.0)
+[![GitHub forks](https://img.shields.io/github/forks/anitab-org/mentorship-android?style=social)](https://github.com/anitab-org/mentorship-android/network)
+[![GitHub stars](https://img.shields.io/github/stars/anitab-org/mentorship-android?style=social)](https://github.com/anitab-org/mentorship-android/stargazers)
+
 # Mentorship System (Android)
 
 | Branch | [Travis](https://travis-ci.org/) | [Codacy](https://www.codacy.com/) |
 | :---: | :---: | :---: |
-| [master](https://github.com/anitab-org/mentorship-android/tree/master) | [![Build Status](https://travis-ci.org/anitab-org/mentorship-android.svg?branch=master)](https://travis-ci.org/anitab-org/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=master)](https://www.codacy.com/app/m-murad/mentorship-android) |
-| [develop](https://github.com/anitab-org/mentorship-android/tree/develop) | [![Build Status](https://travis-ci.org/anitab-org/mentorship-android.svg?branch=develop)](https://travis-ci.org/anitab-org/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=develop)](https://www.codacy.com/app/m-murad/mentorship-android) |
+| [master](https://github.com/anitab-org/mentorship-android/tree/master) | [![Build Status](https://img.shields.io/travis/com/anitab-org/mentorship-android/master?logo=travis)](https://travis-ci.org/anitab-org/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=master)](https://www.codacy.com/app/m-murad/mentorship-android) |
+| [develop](https://github.com/anitab-org/mentorship-android/tree/develop) | [![Build Status](https://img.shields.io/travis/com/anitab-org/mentorship-android/develop?logo=travis)](https://travis-ci.org/anitab-org/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=develop)](https://www.codacy.com/app/m-murad/mentorship-android) |
 
 [Mentorship System](https://github.com/anitab-org/mentorship-backend) is an application that allows women in tech to mentor each other, on career development topics, through 1:1 relations for a certain period.
 
@@ -34,6 +40,20 @@ To setup the project locally read these wiki pages and follow the instructions:
 Please read our [Contributing guidelines](https://github.com/anitab-org/mentorship-android/blob/develop/.github/CONTRIBUTING.md), [Code of Conduct](http://systers.io/code-of-conduct) and [Reporting Guidelines](http://systers.io/reporting-guidelines)
 
 Please follow our [Commit Message Style Guide](https://github.com/anitab-org/mentorship-android/wiki/Commit-Message-Style-Guide) while sending PRs.
+
+## Running the unit tests
+
+To run the existing unit tests follow the steps given below:
+* Connect your Android device or open the emulator.
+* On the terminal type: `./gradlew clean build connectedAndroidTest --stacktrace`
+* If the above command is not working try using the command: `gradlew clean build connectedAndroidTest --stacktrace`
+* Wait until all the tests are completed.
+* You will get a report generated with a test summary.
+* See the complete report `./mentorship-android/app/build/reports/androidTests/connected/index.html`
+* The report `./mentorship-android/app/build/reports/androidTests/connected/index.html` will show all the testsuites that have passed as well as failed.
+* To get a more detailed explanation about the tests of a particular testsuite visit respective html file of the testsuite .
+For e.g.: `org.systers.mentorship.LoginActivityTest.html` will contain the results of all the tests run under that particular testsuite.
+* You can find the respective html files of the different testsuites under the heading classes in `index.html` report .
 
 ## Documentation
 

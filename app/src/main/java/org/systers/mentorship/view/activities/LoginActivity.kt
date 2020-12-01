@@ -4,6 +4,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -11,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
+import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.viewmodels.LoginViewModel
 import java.lang.Exception
 
@@ -29,6 +32,9 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        etUsername.addTextChangedListener(textWatcher)
+        etPassword.addTextChangedListener(textWatcher)
+
         loginViewModel.successful.observe(this, Observer {
             successful ->
             hideProgressDialog()
@@ -43,6 +49,7 @@ class LoginActivity : BaseActivity() {
                     Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
                 }
+                CountingIdlingResourceSingleton.decrement()
             }
         })
 
@@ -67,6 +74,31 @@ class LoginActivity : BaseActivity() {
             if (tokenExpiredVal == 0)
                 Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
         }catch (exception: Exception){}
+
+        checkFieldsForEmptyValues()
+    }
+
+    private fun checkFieldsForEmptyValues(){
+        val editText1: String? = etUsername.text.toString()
+        val editText2: String? = etPassword.text.toString()
+
+        /**
+         * Disables the button if one of the EditText field is empty
+         */
+        btnLogin.isEnabled = !(editText1.equals("") || editText2.equals(""))
+    }
+
+    private val textWatcher = object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+            checkFieldsForEmptyValues()
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
     }
 
     private fun validateCredentials() : Boolean {
@@ -87,11 +119,14 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun login() {
+        CountingIdlingResourceSingleton.increment()
         username = tiUsername.editText?.text.toString().trim()
         password = tiPassword.editText?.text.toString().trim()
         if (validateCredentials()) {
             loginViewModel.login(Login(username, password))
             showProgressDialog(getString(R.string.logging_in))
+        } else {
+            CountingIdlingResourceSingleton.decrement()
         }
     }
 
