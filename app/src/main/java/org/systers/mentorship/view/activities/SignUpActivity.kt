@@ -107,49 +107,49 @@ class SignUpActivity : BaseActivity() {
         isAvailableForBoth = cbBoth.isChecked
     }
 
-    // b is false => checking if there are empty fields
-    // b is true => checking validity of the entries for signup
-    private fun validateDetails(b : Boolean): Boolean {
+    // validateEntries is false => checking if there are empty fields
+    // validateEntries is true => checking validity of the entries for signup
+    private fun validateDetails(validateEntries : Boolean): Boolean {
         var isValid = true
 
-        if(b) handler.removeCallbacks(checkInput)
+        if(validateEntries) handler.removeCallbacks(checkInput)
 
         if (name.isBlank()) {
-            if(b) tiName.error = getString(R.string.error_empty_name)
+            if(validateEntries) tiName.error = getString(R.string.error_empty_name)
             isValid = false
         } else {
             tiName.error = null
         }
 
         if (username.isBlank()) {
-            if(b) tiUsername.error = getString(R.string.error_empty_username)
+            if(validateEntries) tiUsername.error = getString(R.string.error_empty_username)
             isValid = false
         } else {
             tiUsername.error = null
         }
 
         if (email.isBlank()) {
-            if(b) tiEmail.error = getString(R.string.error_empty_email)
+            if(validateEntries) tiEmail.error = getString(R.string.error_empty_email)
             isValid = false
         } else {
             tiEmail.error = null
         }
 
         if (password.isBlank()) {
-            if(b) tiPassword.error = getString(R.string.error_empty_password)
+            if(validateEntries) tiPassword.error = getString(R.string.error_empty_password)
             isValid = false
-        } else if (!password.checkPasswordSecurity() && b) {
+        } else if (!password.checkPasswordSecurity() && validateEntries) {
             tiPassword.error = getString(R.string.error_password_too_weak)
             isValid = false
         } else {
             tiPassword.error = null
         }
 
-        if (password != confirmedPassword && b) {
+        if (password != confirmedPassword && validateEntries) {
             tiConfirmPassword.error = getString(R.string.error_not_matching_passwords)
             isValid = false
         } else if (confirmedPassword.isBlank()) {
-            if(b) tiConfirmPassword.error = getString(R.string.error_empty_password_confirmation)
+            if(validateEntries) tiConfirmPassword.error = getString(R.string.error_empty_password_confirmation)
             isValid = false
         } else {
             tiConfirmPassword.error = null
@@ -157,7 +157,7 @@ class SignUpActivity : BaseActivity() {
 
         if (!needsMentoring && !isAvailableToMentor && !isAvailableForBoth) {
             isValid = false
-            if(b){
+            if(validateEntries){
                 cbMentee.requestFocus()
                 cbMentor.requestFocus()
                 cbBoth.requestFocus()
