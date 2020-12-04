@@ -41,9 +41,9 @@ Please read our [Contributing guidelines](https://github.com/anitab-org/mentorsh
 
 Please follow our [Commit Message Style Guide](https://github.com/anitab-org/mentorship-android/wiki/Commit-Message-Style-Guide) while sending PRs.
 
-## Running the unit tests
+## Running the Ui tests
 
-To run the existing unit tests follow the steps given below:
+To run the existing Ui tests follow the steps given below:
 * Connect your Android device or open the emulator.
 * On the terminal type: `./gradlew clean build connectedAndroidTest --stacktrace`
 * If the above command is not working try using the command: `gradlew clean build connectedAndroidTest --stacktrace`
