@@ -51,7 +51,7 @@ To run the existing UI tests follow the steps given below:
 * You will get a report generated with a test summary.
 * See the complete report `./mentorship-android/app/build/reports/androidTests/connected/index.html`
 * The report `./mentorship-android/app/build/reports/androidTests/connected/index.html` will show all the testsuites that have passed as well as failed.
-* To get a more detailed explanation about the tests of a particular testsuite visit respective html file of the testsuite .
+* To get a more detailed explanation about the tests of a particular testsuite visit respective html file of the testsuite.
   For e.g.: `org.systers.mentorship.LoginActivityTest.html` will contain the results of all the tests run under that particular testsuite.
 * You can find the respective html files of the different testsuites under the heading classes in `index.html` report.
 
