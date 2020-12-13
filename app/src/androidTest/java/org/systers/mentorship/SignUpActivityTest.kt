@@ -47,8 +47,8 @@ class SignUpActivityTest {
     private val PASSWORD_DIDNT_MATCH_ERROR: String = "Passwords didn't match!"
     private val TOO_WEAK_PASSWORD_ERROR: String = "Your password is too weak! Use at least one small and capital letter, one number and one special sign!"
 
-    private val EMAIL_ALERADY_REGISTERED: String = "A user with that email already exists."
-    private val USERNAME_ALERADY_REGISTERED: String = "A user with that username already exists."
+    private val EMAIL_ALREADY_REGISTERED: String = "A user with that email already exists."
+    private val USERNAME_ALREADY_REGISTERED: String = "A user with that username already exists."
 
     /**
      * This basically setups the SignUpActivity before test
@@ -223,7 +223,7 @@ class SignUpActivityTest {
     * This test checks that correct error message is shown when Username is already registered
     * */
     @Test
-    fun whenUsernameIsAlreadyResgitered() {
+    fun whenUsernameIsAlreadyRegistered() {
         findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("Divyansh"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("justdvnsh2208@gmail.com"), closeSoftKeyboard())
@@ -235,14 +235,14 @@ class SignUpActivityTest {
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
         onView(withId(com.google.android.material.R.id.snackbar_text))
-                .check(matches(withText(USERNAME_ALERADY_REGISTERED)))
+                .check(matches(withText(USERNAME_ALREADY_REGISTERED)))
     }
 
     /*
     * This test checks that correct error message is shown when Email is already registered
     * */
     @Test
-    fun whenEmailIsAlreadyResgitered() {
+    fun whenEmailIsAlreadyRegistered() {
         findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("Divyansh22087812"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("justdvnsh2208@gmail.com"), closeSoftKeyboard())
@@ -254,6 +254,6 @@ class SignUpActivityTest {
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
         onView(withId(com.google.android.material.R.id.snackbar_text))
-                .check(matches(withText(EMAIL_ALERADY_REGISTERED)))
+                .check(matches(withText(EMAIL_ALREADY_REGISTERED)))
     }
 }
