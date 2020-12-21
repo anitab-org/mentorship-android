@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/aubergine</color>
+    <color name="colorPrimaryDark">@color/navy</color>
+    <color name="colorAccent">@color/caribbean</color>
+    <color name="rich_black">#EF4135</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="aubergine">#8D2165</color>
+    <color name="navy">#005c88</color>
+    <color name="caribbean">#54BCEB</color>
+    <color name="scarlet">#EF4135</color>
+    <color name="textColorBlack">#252525</color>
+    <color name="dividerColor">#33000000</color>
+</resources>
