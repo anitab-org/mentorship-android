@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_home.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentHomeBinding
 import org.systers.mentorship.view.adapters.AchievementsAdapter
@@ -50,13 +49,15 @@ class HomeFragment : BaseFragment() {
         val linearLayoutManager = LinearLayoutManager(context)
         val divider = DividerItemDecoration(context, linearLayoutManager.orientation)
 
-        rvAchievements.apply {
-            adapter = achievementsAdapter
-            layoutManager = linearLayoutManager
-            addItemDecoration(divider)
-        }
+        binding.apply {
+            rvAchievements.apply {
+                adapter = achievementsAdapter
+                layoutManager = linearLayoutManager
+                addItemDecoration(divider)
+            }
 
-        srlHome.setOnRefreshListener { fetchNewest() }
+            srlHome.setOnRefreshListener { fetchNewest() }
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -67,20 +68,20 @@ class HomeFragment : BaseFragment() {
 
         with(homeViewModel) {
             userStats.observe(viewLifecycleOwner, Observer { stats ->
-                srlHome.isRefreshing = false
+                binding.srlHome.isRefreshing = false
                 binding.stats = stats
                 if (stats?.achievements?.isEmpty() != false) {
-                    tvNoAchievements.visibility = View.VISIBLE
-                    rvAchievements.visibility = View.GONE
+                    binding.tvNoAchievements.visibility = View.VISIBLE
+                    binding.rvAchievements.visibility = View.GONE
                 } else {
-                    tvNoAchievements.visibility = View.GONE
-                    rvAchievements.visibility = View.VISIBLE
+                    binding.tvNoAchievements.visibility = View.GONE
+                    binding.rvAchievements.visibility = View.VISIBLE
                     achievementsAdapter.submitList(stats.achievements)
                 }
             })
 
             message.observe(viewLifecycleOwner, Observer { message ->
-                Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
             })
         }
 
@@ -98,7 +99,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun fetchNewest()  {
-        srlHome.isRefreshing = true
+        binding.srlHome.isRefreshing = true
         homeViewModel.getHomeStats()
     }
 }

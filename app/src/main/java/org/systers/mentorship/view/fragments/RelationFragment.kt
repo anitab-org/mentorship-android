@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.fragment_relation_pager.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.FragmentRelationPagerBinding
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.EXTENDED_DATE_FORMAT
 import org.systers.mentorship.utils.convertUnixTimestampIntoStr
@@ -29,6 +31,14 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
          */
         fun newInstance(mentorshipRelation: Relationship) = RelationFragment(mentorshipRelation)
         val TAG = RelationFragment::class.java.simpleName
+    }
+
+    private var _relationPagerBinding: FragmentRelationPagerBinding? = null
+    private val relationPagerBinding get() = _relationPagerBinding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _relationPagerBinding = FragmentRelationPagerBinding.inflate(inflater, container, false)
+        return relationPagerBinding.root
     }
 
     private val relationViewModel by lazy {
@@ -53,15 +63,17 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
             if (successful != null) {
                 if (successful) {
                     baseActivity.replaceFragment(R.id.contentFragment, RelationPagerFragment.newInstance(), R.string.fragment_title_relation)
-                    tvMenteeLabel.visibility = View.GONE
-                    tvMentorLabel.visibility = View.GONE
-                    tvEndDateLabel.visibility = View.GONE
-                    tvNotesLabel.visibility = View.GONE
-                    btnCancelRelation.visibility = View.GONE
-                    tvMentorName.visibility = View.GONE
-                    tvMenteeName.visibility = View.GONE
-                    tvEndDate.visibility = View.GONE
-                    tvRelationNotes.visibility = View.GONE
+                    relationPagerBinding.apply {
+                        tvMenteeLabel.visibility = View.GONE
+                        tvMentorLabel.visibility = View.GONE
+                        tvEndDateLabel.visibility = View.GONE
+                        tvNotesLabel.visibility = View.GONE
+                        btnCancelRelation.visibility = View.GONE
+                        tvMentorName.visibility = View.GONE
+                        tvMenteeName.visibility = View.GONE
+                        tvEndDate.visibility = View.GONE
+                        tvRelationNotes.visibility = View.GONE
+                    }
                 } else {
                     view?.let {
                         Snackbar.make(it, relationViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -69,12 +81,13 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
                 }
             }
         })
-        tvRelationNotes.movementMethod = ScrollingMovementMethod()
+        relationPagerBinding.tvRelationNotes.movementMethod = ScrollingMovementMethod()
     }
 
     private fun populateView(relationResponse: Relationship) {
 
         activityCast.hideProgressDialog()
+        relationPagerBinding.apply {
             tvMentorName.text = relationResponse.mentor.name
             tvMenteeName.text = relationResponse.mentee.name
             tvEndDate.text = convertUnixTimestampIntoStr(
@@ -95,5 +108,11 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
                     }
                 }?.create()?.show()
             }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _relationPagerBinding = null
     }
 }

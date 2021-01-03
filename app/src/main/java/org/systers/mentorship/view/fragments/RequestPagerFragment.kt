@@ -2,10 +2,12 @@ package org.systers.mentorship.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
-import kotlinx.android.synthetic.main.fragment_request_pager.*
+import android.view.ViewGroup
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.FragmentRequestPagerBinding
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.view.activities.RequestDetailActivity
@@ -15,6 +17,9 @@ import org.systers.mentorship.view.adapters.RequestsAdapter
  * This fragment is instantiated per each tab from the RequestsFragment ViewPager
  */
 class RequestPagerFragment: BaseFragment() {
+
+    private var _requestPagerBinding: FragmentRequestPagerBinding? = null
+    private val requestPagerBinding get() = _requestPagerBinding!!
 
     companion object {
         /**
@@ -33,6 +38,11 @@ class RequestPagerFragment: BaseFragment() {
         }
 
         val deletedRequests = mutableSetOf<Int>()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _requestPagerBinding = FragmentRequestPagerBinding.inflate(inflater,container,false)
+        return requestPagerBinding.root
     }
 
     private lateinit var requestsList: MutableList<Relationship>
@@ -73,15 +83,22 @@ class RequestPagerFragment: BaseFragment() {
             !deletedRequests.contains(id)
         }
 
-        if (filtered.isEmpty()) {
-            tvEmptyList.text = emptyListText
-            rvRequestsList.visibility = View.GONE
-        } else {
-            rvRequestsList.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = RequestsAdapter(filtered, openRequestDetail)
+        requestPagerBinding.apply {
+            if (filtered.isEmpty()) {
+                tvEmptyList.text = emptyListText
+                rvRequestsList.visibility = View.GONE
+            } else {
+                rvRequestsList.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    adapter = RequestsAdapter(filtered, openRequestDetail)
+                }
+                tvEmptyList.visibility = View.GONE
             }
-            tvEmptyList.visibility = View.GONE
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _requestPagerBinding = null
     }
 }

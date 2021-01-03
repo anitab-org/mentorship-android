@@ -4,14 +4,16 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.FragmentMentorshipTasksBinding
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.CreateTask
 import org.systers.mentorship.view.adapters.TasksAdapter
@@ -24,12 +26,20 @@ import org.systers.mentorship.viewmodels.TasksViewModel
  */
 class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment() {
 
+    private var _mentorshipTasksBinding: FragmentMentorshipTasksBinding? = null
+    private val mentorshipTasksBinding get() = _mentorshipTasksBinding!!
+
     companion object {
         /**
          * Creates an instance of [TasksFragment]
          */
         fun newInstance(mentorshipRelation: Relationship) = TasksFragment(mentorshipRelation)
         val TAG = TasksFragment::class.java.simpleName
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _mentorshipTasksBinding = FragmentMentorshipTasksBinding.inflate(inflater,container,false)
+        return mentorshipTasksBinding.root
     }
 
     val appContext = MentorshipApplication.getContext()
@@ -41,52 +51,59 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        fabAddItem.setOnClickListener {
-            showCompleteDialog()
+        mentorshipTasksBinding.apply {
+
+            fabAddItem.setOnClickListener {
+                showCompleteDialog()
+            }
+            imageView.setOnClickListener{
+                if(rvTasks.visibility == View.GONE){
+                    rvTasks.visibility = View.VISIBLE
+                    imageView.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp)
+                }
+                else{
+                    rvTasks.visibility = View.GONE
+                    imageView.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp)
+                }
+            }
+            imageView2.setOnClickListener{
+                if(rvAchievements.visibility == View.GONE){
+                    rvAchievements.visibility = View.VISIBLE
+                    imageView2.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp)
+                }
+                else{
+                    rvAchievements.visibility = View.GONE
+                    imageView2.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp)
+                }
+            }
+
         }
-        imageView.setOnClickListener{
-            if(rvTasks.visibility == View.GONE){
-                rvTasks.visibility = View.VISIBLE
-                imageView.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp)
-            }
-            else{
-                rvTasks.visibility = View.GONE
-                imageView.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp)
-            }
-        }
-        imageView2.setOnClickListener{
-            if(rvAchievements.visibility == View.GONE){
-                rvAchievements.visibility = View.VISIBLE
-                imageView2.setImageResource(R.drawable.ic_keyboard_arrow_up_black_24dp)
-            }
-            else{
-                rvAchievements.visibility = View.GONE
-                imageView2.setImageResource(R.drawable.ic_keyboard_arrow_down_black_24dp)
-            }
-        }
+
         //get tasks
         taskViewModel.successfulGet.observe(this, Observer {
 
             successful ->
             if (successful != null) {
                 if (successful) {
-                    if (taskViewModel.tasksList.isEmpty()) {
-                        tvNoTask.visibility = View.VISIBLE
-                        rvTasks.visibility = View.GONE
-                    } else {
-                        rvTasks.apply {
-                            layoutManager = LinearLayoutManager(context)
-                            adapter = TasksAdapter(context!!,taskViewModel.incompleteTasksList(), ::markTask, false)
-                        }
-                        tvNoTask.visibility = View.GONE
-
-                        val completeTasksList = taskViewModel.completeTasksList()
-                        if (completeTasksList.isNotEmpty()){
-                            rvAchievements.apply {
+                    mentorshipTasksBinding.apply {
+                        if (taskViewModel.tasksList.isEmpty()) {
+                            tvNoTask.visibility = View.VISIBLE
+                            rvTasks.visibility = View.GONE
+                        } else {
+                            rvTasks.apply {
                                 layoutManager = LinearLayoutManager(context)
-                                adapter = TasksAdapter(context!!,completeTasksList, ::markTask, true)
+                                adapter = TasksAdapter(context!!, taskViewModel.incompleteTasksList(), ::markTask, false)
                             }
-                            tvNoAchievements.visibility = View.GONE
+                            tvNoTask.visibility = View.GONE
+
+                            val completeTasksList = taskViewModel.completeTasksList()
+                            if (completeTasksList.isNotEmpty()) {
+                                rvAchievements.apply {
+                                    layoutManager = LinearLayoutManager(context)
+                                    adapter = TasksAdapter(context!!, completeTasksList, ::markTask, true)
+                                }
+                                tvNoAchievements.visibility = View.GONE
+                            }
                         }
                     }
                 } else {

@@ -1,12 +1,15 @@
 package org.systers.mentorship.view.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.FragmentRequestsBinding
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.adapters.RequestsPagerAdapter
 import org.systers.mentorship.viewmodels.RequestsViewModel
@@ -17,6 +20,9 @@ import org.systers.mentorship.viewmodels.RequestsViewModel
  */
 class RequestsFragment : BaseFragment() {
 
+    private var _requestsBinding: FragmentRequestsBinding? = null
+    private val requestsBinding get() = _requestsBinding!!
+
     companion object {
         /**
          * Creates an instance of [RequestsFragment]
@@ -24,6 +30,11 @@ class RequestsFragment : BaseFragment() {
         fun newInstance() = RequestsFragment()
 
         val TAG = RelationFragment::class.java.simpleName
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _requestsBinding = FragmentRequestsBinding.inflate(inflater,container,false)
+        return requestsBinding.root
     }
 
     private val requestsViewModel by lazy {
@@ -37,11 +48,11 @@ class RequestsFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         setHasOptionsMenu(true)
-        srlRequests.setOnRefreshListener { fetchNewest() }
+        requestsBinding.srlRequests.setOnRefreshListener { fetchNewest() }
 
         requestsViewModel.successful.observe(this, Observer {
             successful ->
-            srlRequests.isRefreshing = false
+            requestsBinding.srlRequests.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     requestsViewModel.pendingSuccessful.observe(this, Observer {
@@ -50,8 +61,8 @@ class RequestsFragment : BaseFragment() {
                         if (successful != null) {
                             if (successful){
                                 requestsViewModel.allRequestsList?.let { allRequestsList ->
-                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager, requestsViewModel.pendingAllRequestsList)
-                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                                    requestsBinding.vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager, requestsViewModel.pendingAllRequestsList)
+                                    requestsBinding.tlMentorshipRequests.setupWithViewPager(requestsBinding.vpMentorshipRequests)
                                 }
                             }
                         }
@@ -80,7 +91,7 @@ class RequestsFragment : BaseFragment() {
     }
 
     private fun fetchNewest()  {
-        srlRequests.isRefreshing = true
+        requestsBinding.srlRequests.isRefreshing = true
         requestsViewModel.getAllMentorshipRelations()
         requestsViewModel.getAllPendingMentorshipRelations()
         requestsViewModel.getPastMentorshipRelations()

@@ -7,7 +7,6 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.*
 import androidx.databinding.DataBindingUtil
-import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
 import org.systers.mentorship.viewmodels.ProfileViewModel
@@ -42,11 +41,11 @@ class ProfileFragment : BaseFragment() {
 
         setHasOptionsMenu(true)
 
-        srlProfile.setOnRefreshListener { fetchNewest() }
+        fragmentProfileBinding.srlProfile.setOnRefreshListener { fetchNewest() }
 
         profileViewModel.successfulGet.observe(this, Observer {
             successful ->
-            srlProfile.isRefreshing = false
+            fragmentProfileBinding.srlProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     fragmentProfileBinding.user = profileViewModel.user
@@ -85,7 +84,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun fetchNewest() {
-        srlProfile.isRefreshing = true
+        fragmentProfileBinding.srlProfile.isRefreshing = true
         profileViewModel.getProfile()
     }
 

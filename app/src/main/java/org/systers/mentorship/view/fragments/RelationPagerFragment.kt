@@ -3,14 +3,15 @@ package org.systers.mentorship.view.fragments
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
-import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_relation.*
+import android.view.ViewGroup
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivityMainBinding
+import org.systers.mentorship.databinding.FragmentRelationBinding
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.view.activities.MainActivity
 import org.systers.mentorship.view.adapters.RelationPagerAdapter
@@ -21,11 +22,19 @@ import org.systers.mentorship.viewmodels.RelationViewModel
  */
 class RelationPagerFragment : BaseFragment() {
 
+    private var _relationBinding: FragmentRelationBinding? = null
+    private val relationBinding get() = _relationBinding!!
+
     companion object {
         /**
          * Creates an instance of [RelationPagerFragment]
          */
         fun newInstance() = RelationPagerFragment()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _relationBinding = FragmentRelationBinding.inflate(inflater,container,false)
+        return relationBinding.root
     }
 
     private val relationViewModel by lazy {
@@ -39,13 +48,12 @@ class RelationPagerFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
         setHasOptionsMenu(true)
-        srlRelation.setOnRefreshListener { fetchNewest() }
+        relationBinding.srlRelation.setOnRefreshListener { fetchNewest() }
 
         relationViewModel.successfulGet.observe(this, Observer {
             successfull ->
-            srlRelation.isRefreshing = false
+            relationBinding.srlRelation.isRefreshing = false
             if (successfull != null) {
                 if (successfull) {
                     updateView(relationViewModel.mentorshipRelation)
@@ -71,28 +79,37 @@ class RelationPagerFragment : BaseFragment() {
     }
 
     private fun fetchNewest() {
-        srlRelation.isRefreshing = true
+        relationBinding.srlRelation.isRefreshing = true
         relationViewModel.getCurrentRelationDetails()
     }
 
     private fun updateView(mentorshipRelation: Relationship) {
-        if (mentorshipRelation.mentor == null) {
-            tvNoCurrentRelation.visibility = View.VISIBLE
-            tvFindPeopleBtn.visibility = View.VISIBLE
-            tlMentorshipRelation.visibility = View.GONE
-            vpMentorshipRelation.visibility = View.GONE
-            baseActivity.tlMentorshipRelation.removeAllTabs()
-            tvFindPeopleBtn.setOnClickListener{
-                baseActivity.bottomNavigation.selectedItemId = R.id.navigation_members
-                baseActivity.replaceFragment(R.id.contentFrame, MembersFragment.newInstance(), R.string.navigation_title_members)
+        relationBinding.apply {
+            if (mentorshipRelation.mentor == null) {
+
+                tvNoCurrentRelation.visibility = View.VISIBLE
+                tvFindPeopleBtn.visibility = View.VISIBLE
+                tlMentorshipRelation.visibility = View.GONE
+                vpMentorshipRelation.visibility = View.GONE
+                tlMentorshipRelation.removeAllTabs()
+                tvFindPeopleBtn.setOnClickListener {
+                    baseActivity.findViewById<BottomNavigationView>(R.id.bottomNavigation).selectedItemId = R.id.navigation_members
+                    baseActivity.replaceFragment(R.id.contentFrame, MembersFragment.newInstance(), R.string.navigation_title_members)
+                }
+
+            } else {
+                tvNoCurrentRelation.visibility = View.GONE
+                tvFindPeopleBtn.visibility = View.GONE
+                tlMentorshipRelation.visibility = View.VISIBLE
+                vpMentorshipRelation.visibility = View.VISIBLE
+                vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
+                tlMentorshipRelation.setupWithViewPager(vpMentorshipRelation)
             }
-        } else {
-            tvNoCurrentRelation.visibility = View.GONE
-            tvFindPeopleBtn.visibility = View.GONE
-            tlMentorshipRelation.visibility = View.VISIBLE
-            vpMentorshipRelation.visibility = View.VISIBLE
-            vpMentorshipRelation.adapter = RelationPagerAdapter(childFragmentManager, mentorshipRelation)
-            tlMentorshipRelation.setupWithViewPager(vpMentorshipRelation)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _relationBinding = null
     }
 }

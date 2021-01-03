@@ -2,7 +2,6 @@ package org.systers.mentorship.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,20 +14,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.app.Activity.RESULT_OK
-import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.view.*
 import android.widget.SearchView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.FragmentMembersBinding
 import org.systers.mentorship.models.User
-import org.systers.mentorship.remote.requests.PaginationRequest
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.Constants.FILTER_MAP
 import org.systers.mentorship.utils.Constants.FILTER_REQUEST_CODE
-import org.systers.mentorship.utils.Constants.ITEMS_PER_PAGE
 import org.systers.mentorship.utils.Constants.SORT_KEY
 import org.systers.mentorship.utils.EndlessRecyclerScrollListener
 import org.systers.mentorship.view.activities.FilterActivity
@@ -43,11 +37,19 @@ import org.systers.mentorship.viewmodels.MembersViewModel
  */
 class MembersFragment : BaseFragment() {
 
+    private var _membersBinding: FragmentMembersBinding? = null
+    private val membersBinding get() = _membersBinding!!
+
     companion object {
         /**
          * Creates an instance of [MembersFragment]
          */
         fun newInstance() = MembersFragment()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _membersBinding = FragmentMembersBinding.inflate(inflater,container,false)
+        return membersBinding.root
     }
 
     private var memberListInitialized = false
@@ -89,18 +91,18 @@ class MembersFragment : BaseFragment() {
                 userList.add(user)
             }
         }
-        rvMembers.apply {
+        membersBinding.rvMembers.apply {
             layoutManager = LinearLayoutManager(context)
             addLoadMoreListener(this)
             adapter = MembersAdapter(userList, ::openUserProfile)
         }
-        tvEmptyList.visibility = View.GONE
+        membersBinding.tvEmptyList.visibility = View.GONE
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
         rvAdapter = MembersAdapter(arrayListOf<User>(), ::openUserProfile)
-        srlMembers.setOnRefreshListener {
+        membersBinding.srlMembers.setOnRefreshListener {
             if(!isLoading) {
                 fetchNewest(true)
                 isLoading = true
@@ -109,19 +111,19 @@ class MembersFragment : BaseFragment() {
 
         membersViewModel.successful.observe(viewLifecycleOwner, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
-            srlMembers.isRefreshing = false
+            membersBinding.srlMembers.isRefreshing = false
             isLoading = false
-            pbMembers.visibility = View.INVISIBLE
+            membersBinding.pbMembers.visibility = View.INVISIBLE
             if (successful != null) {
                 if (successful) {
 
                     rvAdapter.updateUsersList(filterMap,membersViewModel.userList)
                     if (membersViewModel.userList.isEmpty()) {
-                        tvEmptyList.text = getString(R.string.empty_members_list)
-                        rvMembers.visibility = View.GONE
+                        membersBinding.tvEmptyList.text = getString(R.string.empty_members_list)
+                        membersBinding.rvMembers.visibility = View.GONE
                     } else {
                         if (!isRecyclerView){
-                            rvMembers.apply {
+                            membersBinding.rvMembers.apply {
                                 layoutManager = LinearLayoutManager(context)
                                 adapter = MembersAdapter(membersViewModel.userList, ::openUserProfile)
                                 addLoadMoreListener(this)
@@ -135,7 +137,7 @@ class MembersFragment : BaseFragment() {
                             }
                         }
                         memberListInitialized = true
-                        tvEmptyList.visibility = View.GONE
+                        membersBinding.tvEmptyList.visibility = View.GONE
                     }
                 } else {
                     view?.let {
@@ -162,7 +164,7 @@ class MembersFragment : BaseFragment() {
                 if (!isLoading){
                     fetchNewest(false)
                     isLoading = true
-                    pbMembers.visibility = View.VISIBLE
+                    membersBinding.pbMembers.visibility = View.VISIBLE
                 }
             }
         })
@@ -220,8 +222,12 @@ class MembersFragment : BaseFragment() {
     }
 
     private fun fetchNewest(isRefresh: Boolean)  {
-        srlMembers.isRefreshing = isRefresh
+        membersBinding.srlMembers.isRefreshing = isRefresh
         membersViewModel.getUsers(isRefresh)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _membersBinding = null
+    }
 }

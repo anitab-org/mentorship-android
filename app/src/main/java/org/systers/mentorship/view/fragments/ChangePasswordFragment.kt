@@ -1,7 +1,6 @@
 package org.systers.mentorship.view.fragments
 
 import android.app.Dialog
-import android.content.DialogInterface
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -10,11 +9,9 @@ import android.text.TextWatcher
 import androidx.fragment.app.DialogFragment
 import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.FragmentChangePasswordBinding
 import org.systers.mentorship.remote.requests.ChangePassword
 import org.systers.mentorship.utils.checkPasswordSecurity
 import org.systers.mentorship.viewmodels.ChangePasswordViewModel
@@ -34,7 +31,9 @@ class ChangePasswordFragment : DialogFragment() {
     private val changePasswordViewModel by lazy {
         ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
     }
-    private lateinit var changePasswordView: View
+
+    private var _changePasswordBinding:FragmentChangePasswordBinding? = null
+    private val changePasswordBinding get() = _changePasswordBinding!!
     private lateinit var currentPassword: String
     private lateinit var newPassword: String
     private lateinit var confirmPassword: String
@@ -52,10 +51,10 @@ class ChangePasswordFragment : DialogFragment() {
 
         })
 
-        changePasswordView = LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
+        _changePasswordBinding = FragmentChangePasswordBinding.inflate(LayoutInflater.from(context))
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(getString(R.string.change_password))
-        builder.setView(changePasswordView)
+        builder.setView(changePasswordBinding.root)
         builder.setPositiveButton(getString(R.string.ok)) { _, _ -> }
         builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
             dialog.cancel()
@@ -63,7 +62,7 @@ class ChangePasswordFragment : DialogFragment() {
         val passwordDialog = builder.create()
         passwordDialog.setOnShowListener { passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false }
 
-        changePasswordView.tilConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
+        changePasswordBinding.tilConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -81,12 +80,14 @@ class ChangePasswordFragment : DialogFragment() {
         val passwordDialog = dialog as? AlertDialog
         passwordDialog?.setCanceledOnTouchOutside(false)
         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
-            currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
-            newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
-            confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
+            changePasswordBinding.apply {
+                currentPassword = tilCurrentPassword?.editText?.text.toString()
+                newPassword = tilNewPassword?.editText?.text.toString()
+                confirmPassword = tilConfirmPassword?.editText?.text.toString()
 
-            changePasswordView.tilConfirmPassword?.error = null
-            changePasswordView.tilNewPassword?.error = null
+                tilConfirmPassword?.error = null
+                tilNewPassword?.error = null
+            }
 
             if (validatePassword()) {
                 changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword, newPassword))
@@ -96,16 +97,16 @@ class ChangePasswordFragment : DialogFragment() {
 
     private fun validatePassword(): Boolean {
         return if (!newPassword.checkPasswordSecurity()) {
-            changePasswordView.tilNewPassword?.error = getString(R.string.error_password_too_weak)
+            changePasswordBinding.tilNewPassword?.error = getString(R.string.error_password_too_weak)
             false
         } else if (newPassword == confirmPassword && newPassword != currentPassword) {
             true
         } else {
             if (currentPassword == newPassword) {
-                changePasswordView.tilNewPassword?.error = getString(R.string.current_new_password_should_not_same)
+                changePasswordBinding.tilNewPassword?.error = getString(R.string.current_new_password_should_not_same)
             }
             if (newPassword != confirmPassword) {
-                changePasswordView.tilConfirmPassword?.error = getString(R.string.password_not_match)
+                changePasswordBinding.tilConfirmPassword?.error = getString(R.string.password_not_match)
             }
             false
         }
@@ -115,5 +116,6 @@ class ChangePasswordFragment : DialogFragment() {
         super.onDestroy()
         changePasswordViewModel.successfulUpdate.removeObservers(this)
         changePasswordViewModel.successfulUpdate.value = null
+        _changePasswordBinding = null
     }
 }
