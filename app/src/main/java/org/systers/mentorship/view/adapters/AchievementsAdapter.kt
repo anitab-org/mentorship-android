@@ -1,13 +1,11 @@
 package org.systers.mentorship.view.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.achievement_list_item.view.*
-import org.systers.mentorship.R
+import org.systers.mentorship.databinding.AchievementListItemBinding
 import org.systers.mentorship.models.Task
 
 /**
@@ -18,7 +16,7 @@ import org.systers.mentorship.models.Task
 class AchievementsAdapter : ListAdapter<Task, AchievementsAdapter.ViewHolder>(AchievementsItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchievementsAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.achievement_list_item, parent, false)
+        val view = AchievementListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
@@ -30,14 +28,14 @@ class AchievementsAdapter : ListAdapter<Task, AchievementsAdapter.ViewHolder>(Ac
      * This class holds a view for each item of the Achievements list
      * @param itemView represents each view of achievements list
      */
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(private val itemBinding: AchievementListItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         /**
          * This function binds the description of the achievement to the textview
          * @param task The Achievement whose description is to be bound
          */
         fun bind(task: Task) {
-            itemView.tvDescription.text = task.description
+            itemBinding.tvDescription.text = task.description
         }
     }
 

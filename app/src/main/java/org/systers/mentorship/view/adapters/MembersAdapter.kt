@@ -1,7 +1,6 @@
 package org.systers.mentorship.view.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -9,9 +8,9 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_member_item.view.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ListMemberItemBinding
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.Constants.INTERESTS_KEY
@@ -38,27 +37,26 @@ class MembersAdapter (
     private var filterMap = hashMapOf(Constants.SORT_KEY to MembersFragment.SortValues.REGISTRATION_DATE.name)
     private var filteredUserList = mutableListOf<User>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersViewHolder =
-            MembersViewHolder(
-                    LayoutInflater.from(parent.context)
-                            .inflate(R.layout.list_member_item, parent, false)
-            )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersViewHolder {
+        val viewBinding = ListMemberItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return MembersViewHolder(viewBinding)
+    }
 
     override fun onBindViewHolder(@NonNull holder: MembersViewHolder, position: Int) {
         val item = filteredUserList[position]
-        val itemView = holder.itemView
+        val viewBinding = holder.viewBinding
 
-        itemView.tvName.text = item.name
-        itemView.tvUsername.text = item.username
-        itemView.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.availableToMentor, item.needMentoring)
+        viewBinding.tvName.text = item.name
+        viewBinding.tvUsername.text = item.username
+        viewBinding.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.availableToMentor, item.needMentoring)
 
         val userInterests = item.interests
         val validText = if (userInterests.isNullOrBlank()) NON_VALID_VALUE_REPLACEMENT else userInterests
         val keyText = context.getString(R.string.interests)
         val keyValueText = "$keyText: $validText"
-        itemView.tvInterests.text = keyValueText
+        viewBinding.tvInterests.text = keyValueText
 
-        itemView.setOnClickListener { openDetailFunction(item.id!!, itemView.circleImageView, itemView.tvName) }
+        holder.itemView.setOnClickListener { openDetailFunction(item.id!!, viewBinding.circleImageView, viewBinding.tvName) }
 
         val animation = AnimationUtils.loadAnimation(context,
                 if (position > lastPosition) R.anim.bottom_to_top else R.anim.top_to_bottom)
@@ -154,7 +152,7 @@ class MembersAdapter (
      * This class holds a view for each item of the Members list
      * @param itemView represents each view of Members list
      */
-    class MembersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class MembersViewHolder(val viewBinding: ListMemberItemBinding) : RecyclerView.ViewHolder(viewBinding.root)
 
     private fun getMentorshipAvailabilityText(availableToMentor: Boolean?, needMentoring: Boolean?): String {
 

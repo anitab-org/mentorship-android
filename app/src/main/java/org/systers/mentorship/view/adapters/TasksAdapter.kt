@@ -4,11 +4,9 @@ import android.app.AlertDialog
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.task_list_item.view.*
-import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.TaskListItemBinding
 import org.systers.mentorship.models.Task
 
 /**
@@ -24,14 +22,14 @@ class TasksAdapter(
         private val complete: Boolean
 ) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder =
-            TaskViewHolder(
-                    LayoutInflater.from(parent.context)
-                            .inflate(R.layout.task_list_item, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+        val itemBinding = TaskListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return TaskViewHolder(itemBinding)
+    }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val item = tasksList[position]
-        val itemView = holder.itemView
+        val itemView = holder.itemBinding
         /** Working: Functionality to add new tasks and achievements
         1. TaskService.kt makes PUT, POST and GET requests for tasks and get <CustomResponse>.
         requests/CreateTask.kt used for serializing "description" field to create task.
@@ -74,5 +72,5 @@ class TasksAdapter(
      * This class holds a view for each item of the Tasks list
      * @param itemView represents each view of Tasks list
      */
-    class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class TaskViewHolder(val itemBinding: TaskListItemBinding) : RecyclerView.ViewHolder(itemBinding.root)
 }
