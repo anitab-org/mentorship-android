@@ -8,10 +8,9 @@ import com.google.android.material.snackbar.Snackbar
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
 import android.view.MenuItem
-import android.widget.DatePicker
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_send_request.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivitySendRequestBinding
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.RelationshipRequest
@@ -29,6 +28,8 @@ import java.util.*
  */
 class SendRequestActivity: BaseActivity() {
 
+    private lateinit var sendRequestBinding: ActivitySendRequestBinding
+
     private lateinit var myCalendar : Calendar
     companion object {
         const val OTHER_USER_ID_INTENT_EXTRA = "OTHER_USER_ID_INTENT_EXTRA"
@@ -44,9 +45,10 @@ class SendRequestActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_send_request)
+        sendRequestBinding = ActivitySendRequestBinding.inflate(layoutInflater)
+        setContentView(sendRequestBinding.root)
 
-        tvRequestEndDate.isEnabled = false
+        sendRequestBinding.tvRequestEndDate.isEnabled = false
         supportActionBar?.title = getString(R.string.send_request)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val otherUserName = intent.getStringExtra(OTHER_USER_NAME_INTENT_EXTRA)
@@ -66,7 +68,7 @@ class SendRequestActivity: BaseActivity() {
             myCalendar.set(Calendar.DAY_OF_MONTH  , dayOfMonth)
             updateEndDateEditText()
         }
-        ivCalendar.setOnClickListener {
+        sendRequestBinding.ivCalendar.setOnClickListener {
             val datePickerDialog = DatePickerDialog(this, date,
                     myCalendar.get(Calendar.YEAR),
                     myCalendar.get(Calendar.MONTH),
@@ -78,53 +80,55 @@ class SendRequestActivity: BaseActivity() {
     private fun updateEndDateEditText() {
         var sdf = SimpleDateFormat(SEND_REQUEST_END_DATE_FORMAT , Locale.US)
         var editable = SpannableStringBuilder(sdf.format(myCalendar.time))
-        tvRequestEndDate.text =  editable
+        sendRequestBinding.tvRequestEndDate.text =  editable
     }
 
     private fun populateView(userName: String, otherUserId: Int, currentUserId: Int) {
-        tvOtherUserName.text = userName
-        btnSendRequest.setOnClickListener {
-            val mentorId: Int
-            val menteeId: Int
-            val notes = etRequestNotes.text.toString()
-            val endDate = convertDateIntoUnixTimestamp(
-                    tvRequestEndDate.text.toString(), SEND_REQUEST_END_DATE_FORMAT)
+        sendRequestBinding.apply {
+            tvOtherUserName.text = userName
+            btnSendRequest.setOnClickListener {
+                val mentorId: Int
+                val menteeId: Int
+                val notes = etRequestNotes.text.toString()
+                val endDate = convertDateIntoUnixTimestamp(
+                        tvRequestEndDate.text.toString(), SEND_REQUEST_END_DATE_FORMAT)
 
-            when {
-                rgCurrentUserRole.checkedRadioButtonId == btnMentorRadio.id -> {
-                    mentorId = currentUserId
-                    menteeId = otherUserId
-                }
-                rgCurrentUserRole.checkedRadioButtonId == btnMenteeRadio.id -> {
-                    menteeId = currentUserId
-                    mentorId = otherUserId
-                }
-                else -> {
+                when {
+                    rgCurrentUserRole.checkedRadioButtonId == btnMentorRadio.id -> {
+                        mentorId = currentUserId
+                        menteeId = otherUserId
+                    }
+                    rgCurrentUserRole.checkedRadioButtonId == btnMenteeRadio.id -> {
+                        menteeId = currentUserId
+                        mentorId = otherUserId
+                    }
+                    else -> {
 
-                    Snackbar.make(getRootView(), "Please select your role for the mentorship relation", Snackbar.LENGTH_LONG)
-                            .show()
-                    return@setOnClickListener
+                        Snackbar.make(getRootView(), "Please select your role for the mentorship relation", Snackbar.LENGTH_LONG)
+                                .show()
+                        return@setOnClickListener
+                    }
                 }
-            }
 
-            if(!TextUtils.isEmpty(notes.trim())) {
+                if(!TextUtils.isEmpty(notes.trim())) {
 
-                val sendRequestData = RelationshipRequest(
-                        menteeId = menteeId,
-                        mentorId = mentorId,
-                        notes = notes,
-                        endDate = endDate
-                )
-                if (!isRequestDuplicate(sendRequestData)) {
-                    sendRequestViewModel.sendRequest(sendRequestData)
+                    val sendRequestData = RelationshipRequest(
+                            menteeId = menteeId,
+                            mentorId = mentorId,
+                            notes = notes,
+                            endDate = endDate
+                    )
+                    if (!isRequestDuplicate(sendRequestData)) {
+                        sendRequestViewModel.sendRequest(sendRequestData)
+                    }
+                    else{
+                        Snackbar.make(getRootView(), getString(R.string.same_request_already_sent) + tvOtherUserName.text, Snackbar.LENGTH_LONG)
+                                .show()
+                    }
+                } else {
+
+                    etRequestNotes.error = getString(R.string.notes_empty_error)
                 }
-                else{
-                    Snackbar.make(getRootView(), getString(R.string.same_request_already_sent) + tvOtherUserName.text, Snackbar.LENGTH_LONG)
-                            .show()
-                }
-            } else {
-
-                etRequestNotes.error = getString(R.string.notes_empty_error)
             }
         }
     }

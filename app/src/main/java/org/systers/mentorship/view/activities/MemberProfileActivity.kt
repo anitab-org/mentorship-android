@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivityMemberProfileBinding
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
@@ -23,13 +23,15 @@ class MemberProfileActivity : BaseActivity() {
     private val memberProfileViewModel by lazy {
         ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
     }
+    private lateinit var memberProfileBinding: ActivityMemberProfileBinding
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var userProfile: User
     private lateinit var currentUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_member_profile)
+        memberProfileBinding = ActivityMemberProfileBinding.inflate(layoutInflater)
+        setContentView(memberProfileBinding.root)
 
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -49,11 +51,11 @@ class MemberProfileActivity : BaseActivity() {
         profileViewModel.getProfile()
 
 
-        srlMemberProfile.setOnRefreshListener { fetchNewest() }
+        memberProfileBinding.srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
         memberProfileViewModel.successful.observe(this, Observer {
             successful ->
-            srlMemberProfile.isRefreshing = false
+            memberProfileBinding.srlMemberProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     setUserProfile(memberProfileViewModel.userProfile)
@@ -71,7 +73,7 @@ class MemberProfileActivity : BaseActivity() {
         fetchNewest()
 
 
-        btnSendRequest.setOnClickListener {
+        memberProfileBinding.btnSendRequest.setOnClickListener {
             if(userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false)
                     && (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?:false))){
                 Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
@@ -105,7 +107,7 @@ class MemberProfileActivity : BaseActivity() {
     }
 
     private fun fetchNewest() {
-        srlMemberProfile.isRefreshing = true
+        memberProfileBinding.srlMemberProfile.isRefreshing = true
         memberProfileViewModel.getUserProfile()
     }
 
@@ -114,39 +116,42 @@ class MemberProfileActivity : BaseActivity() {
     }
     private fun setUserProfile(user: User) {
         userProfile = user
-        tvName.text = user.name
+        memberProfileBinding.tvName.text = user.name
 
         if (user.availableToMentor != null) {
             setTextViewStartingWithBoldSpan(
-                    tvAvailableToMentor,
+                    memberProfileBinding.tvAvailableToMentor,
                     getString(R.string.available_to_mentor),
                     if (user.availableToMentor!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
         if (user.needMentoring != null) {
             setTextViewStartingWithBoldSpan(
-                    tvNeedMentoring,
+                    memberProfileBinding.tvNeedMentoring,
                     getString(R.string.need_mentoring),
                     if (user.needMentoring!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
-        setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
-        setTextViewStartingWithBoldSpan(
-                tvLocation, getString(R.string.location), user.location)
-        setTextViewStartingWithBoldSpan(
-                tvOrganization, getString(R.string.organization), user.organization)
-        setTextViewStartingWithBoldSpan(
-                tvOccupation, getString(R.string.occupation), user.occupation)
-        setTextViewStartingWithBoldSpan(
-                tvInterests, getString(R.string.interests), user.interests)
-        setTextViewStartingWithBoldSpan(
-                tvSkills, getString(R.string.skills), user.skills)
-        setTextViewStartingWithBoldSpan(
-                tvUsername, getString(R.string.username), user.username)
-        setTextViewStartingWithBoldSpan(
-                tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
-        if (!user.availableToMentor!! && !user.needMentoring!!)
-            btnSendRequest.isEnabled = false
+        memberProfileBinding.apply {
+            setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
+            setTextViewStartingWithBoldSpan(
+                    tvLocation, getString(R.string.location), user.location)
+            setTextViewStartingWithBoldSpan(
+                    tvOrganization, getString(R.string.organization), user.organization)
+            setTextViewStartingWithBoldSpan(
+                    tvOccupation, getString(R.string.occupation), user.occupation)
+            setTextViewStartingWithBoldSpan(
+                    tvInterests, getString(R.string.interests), user.interests)
+            setTextViewStartingWithBoldSpan(
+                    tvSkills, getString(R.string.skills), user.skills)
+            setTextViewStartingWithBoldSpan(
+                    tvUsername, getString(R.string.username), user.username)
+            setTextViewStartingWithBoldSpan(
+                    tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
+            if (!user.availableToMentor!! && !user.needMentoring!!)
+                btnSendRequest.isEnabled = false
+        }
+
     }
 
     override fun onDestroy() {

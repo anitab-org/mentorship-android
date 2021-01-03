@@ -7,8 +7,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivityMainBinding
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.*
 
@@ -22,15 +22,20 @@ class MainActivity : BaseActivity() {
     private val TOAST_DURATION = 4000
     private var mLastPress: Long = 0
     private lateinit var exitToast: Toast
+    private lateinit var mainBinding: ActivityMainBinding
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        bottomNavigation.setOnNavigationItemReselectedListener {  }
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mainBinding.root)
+
+        mainBinding.apply {
+            setSupportActionBar(toolbar)
+            bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+            bottomNavigation.setOnNavigationItemReselectedListener {  }
+        }
 
         if (savedInstanceState == null) {
             showHomeFragment()
@@ -92,7 +97,7 @@ class MainActivity : BaseActivity() {
 
     private fun showHomeFragment() {
         atHome = true
-        bottomNavigation.selectedItemId = R.id.navigation_home
+        mainBinding.bottomNavigation.selectedItemId = R.id.navigation_home
         replaceFragment(R.id.contentFrame, HomeFragment.newInstance(), R.string.fragment_title_home)
     }
 

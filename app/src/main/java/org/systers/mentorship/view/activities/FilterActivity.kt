@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -10,8 +9,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_filter.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivityFilterBinding
 import org.systers.mentorship.utils.Constants.AVAILABLE_TO_MENTOR_KEY
 import org.systers.mentorship.utils.Constants.FILTER_MAP
 import org.systers.mentorship.utils.Constants.INTERESTS_KEY
@@ -23,6 +22,8 @@ import org.systers.mentorship.view.fragments.MembersFragment
 
 class FilterActivity : BaseActivity() {
 
+    private lateinit var filterBinding: ActivityFilterBinding
+
     // a backup variable for the view that was selected in sort by fragment
     private var previousSelectionSort: View? = null
 
@@ -33,7 +34,8 @@ class FilterActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_filter)
+        filterBinding = ActivityFilterBinding.inflate(layoutInflater)
+        setContentView(filterBinding.root)
 
         setTitle(R.string.filter)
 
@@ -48,123 +50,140 @@ class FilterActivity : BaseActivity() {
     private fun initializeViews() {
         when (map?.get(SORT_KEY)) {
             MembersFragment.SortValues.REGISTRATION_DATE.name -> {
-                cardSortRegistrationDate.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvSortRegistrationDate.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
-                previousSelectionSort = cardSortRegistrationDate
+                filterBinding.apply {
+                    cardSortRegistrationDate.setBackgroundResource(R.drawable.background_rounded_primary)
+                    tvSortRegistrationDate.setTextColor(ResourcesCompat.getColor(
+                            resources, R.color.white, null))
+                    previousSelectionSort = cardSortRegistrationDate
+                }
             }
             MembersFragment.SortValues.NAMEAZ.name -> {
-                cardSortNameAZ.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvSortNameAZ.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
-                previousSelectionSort = cardSortNameAZ
+                filterBinding.apply {
+                    cardSortNameAZ.setBackgroundResource(R.drawable.background_rounded_primary)
+                    tvSortNameAZ.setTextColor(ResourcesCompat.getColor(
+                            resources, R.color.white, null))
+                    previousSelectionSort = cardSortNameAZ
+                }
             }
             MembersFragment.SortValues.NAMEZA.name -> {
-                cardSortNameZA.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvSortNameZA.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
-                previousSelectionSort = cardSortNameZA
+                filterBinding.apply {
+                    cardSortNameZA.setBackgroundResource(R.drawable.background_rounded_primary)
+                    tvSortNameZA.setTextColor(ResourcesCompat.getColor(
+                            resources, R.color.white, null))
+                    previousSelectionSort = cardSortNameZA
+
+                }
             }
         }
 
         if (map?.get(NEED_MENTORING_KEY) == "true") {
-            cardFilterNeedMentoring.setBackgroundResource(R.drawable.background_rounded_primary)
-            tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.white, null))
+            filterBinding.apply {
+                cardFilterNeedMentoring.setBackgroundResource(R.drawable.background_rounded_primary)
+                tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
+                        resources, R.color.white, null))
+            }
             needMentoring = true
         }
         if (map?.get(AVAILABLE_TO_MENTOR_KEY) == "true") {
-            cardFilterAvailableToMentor.setBackgroundResource(R.drawable.background_rounded_primary)
-            tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.white, null))
+            filterBinding.apply {
+                cardFilterAvailableToMentor.setBackgroundResource(R.drawable.background_rounded_primary)
+                tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
+                        resources, R.color.white, null))
+            }
             availableToMentor = true
         }
 
-        etFilterInterests.setText(map?.get(INTERESTS_KEY) ?: "")
-        etFilterLocation.setText(map?.get(LOCATION_KEY) ?: "")
-        etFilterSkills.setText(map?.get(SKILLS_KEY) ?: "")
+        filterBinding.apply {
+            etFilterInterests.setText(map?.get(INTERESTS_KEY) ?: "")
+            etFilterLocation.setText(map?.get(LOCATION_KEY) ?: "")
+            etFilterSkills.setText(map?.get(SKILLS_KEY) ?: "")
+        }
     }
 
     private fun initializeClickListeners() {
-        cardSortAge.setOnClickListener {
-            Snackbar.make(scrollViewFilter, getString(R.string.not_implemented), Snackbar.LENGTH_SHORT).show()
-            // TODO: Add DateOfBirth field to the user model
-        }
+        filterBinding.apply {
 
-        cardFilterNeedMentoring.setOnClickListener {
-            if (needMentoring) {
-                it.setBackgroundResource(R.drawable.background_rounded_white)
+            cardSortAge.setOnClickListener {
+                Snackbar.make(scrollViewFilter, getString(R.string.not_implemented), Snackbar.LENGTH_SHORT).show()
+                // TODO: Add DateOfBirth field to the user model
+            }
+
+            cardFilterNeedMentoring.setOnClickListener {
+                if (needMentoring) {
+                    it.setBackgroundResource(R.drawable.background_rounded_white)
+                    tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
+                            resources, R.color.textColorBlack, null))
+                } else {
+                    it.setBackgroundResource(R.drawable.background_rounded_primary)
+                    tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
+                            resources, R.color.white, null))
+                }
+                needMentoring = !needMentoring
+                map?.put(NEED_MENTORING_KEY, needMentoring.toString())
+            }
+            cardFilterAvailableToMentor.setOnClickListener {
+                if (availableToMentor) {
+                    it.setBackgroundResource(R.drawable.background_rounded_white)
+                    tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
+                            resources, R.color.textColorBlack, null))
+                } else {
+                    it.setBackgroundResource(R.drawable.background_rounded_primary)
+                    tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
+                            resources, R.color.white, null))
+                }
+                availableToMentor = !availableToMentor
+                map?.put(AVAILABLE_TO_MENTOR_KEY, availableToMentor.toString())
+            }
+
+            btnClearAll.setOnClickListener {
+                // sort by fragment
+                with(previousSelectionSort) {
+                    this?.setBackgroundResource(R.drawable.background_rounded_white)
+                    ((this as CardView?)?.getChildAt(0) as TextView?)
+                            ?.setTextColor(ResourcesCompat.getColor(
+                                    resources, R.color.textColorBlack, null))
+                }
+                cardSortRegistrationDate.setBackgroundResource(R.drawable.background_rounded_primary)
+                tvSortRegistrationDate.setTextColor(ResourcesCompat.getColor(
+                        resources, R.color.white, null))
+                previousSelectionSort = cardSortRegistrationDate
+
+                // filter by fragment
+                // buttons
+                cardFilterNeedMentoring.setBackgroundResource(R.drawable.background_rounded_white)
                 tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
                         resources, R.color.textColorBlack, null))
-            } else {
-                it.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
-            }
-            needMentoring = !needMentoring
-            map?.put(NEED_MENTORING_KEY, needMentoring.toString())
-        }
-        cardFilterAvailableToMentor.setOnClickListener {
-            if (availableToMentor) {
-                it.setBackgroundResource(R.drawable.background_rounded_white)
+                cardFilterAvailableToMentor.setBackgroundResource(R.drawable.background_rounded_white)
                 tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
                         resources, R.color.textColorBlack, null))
-            } else {
-                it.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
+
+                // EditTexts
+                etFilterInterests.setText("")
+                etFilterLocation.setText("")
+                etFilterSkills.setText("")
+
+                map = hashMapOf(SORT_KEY to MembersFragment.SortValues.REGISTRATION_DATE.name)
             }
-            availableToMentor = !availableToMentor
-            map?.put(AVAILABLE_TO_MENTOR_KEY, availableToMentor.toString())
-        }
 
-        btnClearAll.setOnClickListener {
-            // sort by fragment
-            with(previousSelectionSort) {
-                this?.setBackgroundResource(R.drawable.background_rounded_white)
-                ((this as CardView?)?.getChildAt(0) as TextView?)
-                        ?.setTextColor(ResourcesCompat.getColor(
-                                resources, R.color.textColorBlack, null))
+            btnApplyFilter.setOnClickListener {
+                map?.put(SORT_KEY, when (previousSelectionSort?.id) {
+                    R.id.cardSortNameAZ ->
+                        MembersFragment.SortValues.NAMEAZ.name
+                    R.id.cardSortNameZA ->
+                        MembersFragment.SortValues.NAMEZA.name
+                    R.id.cardSortRegistrationDate ->
+                        MembersFragment.SortValues.REGISTRATION_DATE.name
+                    else ->
+                        MembersFragment.SortValues.REGISTRATION_DATE.name
+                })
+
+                map?.put(INTERESTS_KEY, etFilterInterests.text.toString())
+                map?.put(LOCATION_KEY, etFilterLocation.text.toString())
+                map?.put(SKILLS_KEY, etFilterSkills.text.toString())
+
+                finishActivity()
             }
-            cardSortRegistrationDate.setBackgroundResource(R.drawable.background_rounded_primary)
-            tvSortRegistrationDate.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.white, null))
-            previousSelectionSort = cardSortRegistrationDate
 
-            // filter by fragment
-            // buttons
-            cardFilterNeedMentoring.setBackgroundResource(R.drawable.background_rounded_white)
-            tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.textColorBlack, null))
-            cardFilterAvailableToMentor.setBackgroundResource(R.drawable.background_rounded_white)
-            tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.textColorBlack, null))
-
-            // EditTexts
-            etFilterInterests.setText("")
-            etFilterLocation.setText("")
-            etFilterSkills.setText("")
-
-            map = hashMapOf(SORT_KEY to MembersFragment.SortValues.REGISTRATION_DATE.name)
-        }
-
-        btnApplyFilter.setOnClickListener {
-            map?.put(SORT_KEY, when (previousSelectionSort?.id) {
-                R.id.cardSortNameAZ ->
-                    MembersFragment.SortValues.NAMEAZ.name
-                R.id.cardSortNameZA ->
-                    MembersFragment.SortValues.NAMEZA.name
-                R.id.cardSortRegistrationDate ->
-                    MembersFragment.SortValues.REGISTRATION_DATE.name
-                else ->
-                    MembersFragment.SortValues.REGISTRATION_DATE.name
-            })
-
-            map?.put(INTERESTS_KEY, etFilterInterests.text.toString())
-            map?.put(LOCATION_KEY, etFilterLocation.text.toString())
-            map?.put(SKILLS_KEY, etFilterSkills.text.toString())
-
-            finishActivity()
         }
     }
 

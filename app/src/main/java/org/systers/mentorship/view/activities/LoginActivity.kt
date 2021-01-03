@@ -9,8 +9,8 @@ import android.text.TextWatcher
 import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivityLoginBinding
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.CountingIdlingResourceSingleton
@@ -25,15 +25,19 @@ class LoginActivity : BaseActivity() {
     private val loginViewModel by lazy {
         ViewModelProviders.of(this).get(LoginViewModel::class.java)
     }
+    private lateinit var loginBinding: ActivityLoginBinding
     private lateinit var username: String
     private lateinit var password: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        loginBinding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(loginBinding.root)
 
-        etUsername.addTextChangedListener(textWatcher)
-        etPassword.addTextChangedListener(textWatcher)
+        loginBinding.apply {
+            etUsername.addTextChangedListener(textWatcher)
+            etPassword.addTextChangedListener(textWatcher)
+        }
 
         loginViewModel.successful.observe(this, Observer {
             successful ->
@@ -53,20 +57,22 @@ class LoginActivity : BaseActivity() {
             }
         })
 
-        btnLogin.setOnClickListener {
-           login()
-        }
-
-        btnSignUp.setOnClickListener {
-            intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
-
-        tiPassword.editText?.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+        loginBinding.apply {
+            btnLogin.setOnClickListener {
                 login()
             }
-            false
+
+            btnSignUp.setOnClickListener {
+                intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+                startActivity(intent)
+            }
+
+            tiPassword.editText?.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    login()
+                }
+                false
+            }
         }
 
         try {
@@ -79,13 +85,15 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun checkFieldsForEmptyValues(){
-        val editText1: String? = etUsername.text.toString()
-        val editText2: String? = etPassword.text.toString()
+        loginBinding.apply {
+            val editText1: String? = etUsername.text.toString()
+            val editText2: String? = etPassword.text.toString()
 
-        /**
-         * Disables the button if one of the EditText field is empty
-         */
-        btnLogin.isEnabled = !(editText1.equals("") || editText2.equals(""))
+            /**
+             * Disables the button if one of the EditText field is empty
+             */
+            btnLogin.isEnabled = !(editText1.equals("") || editText2.equals(""))
+        }
     }
 
     private val textWatcher = object : TextWatcher {
@@ -103,25 +111,27 @@ class LoginActivity : BaseActivity() {
 
     private fun validateCredentials() : Boolean {
         var validCredentials = true
-        if (username.isBlank()) {
-            tiUsername.error = getString(R.string.error_empty_username)
-            validCredentials = false
-        } else {
-            tiUsername.error = null
-        }
-        if (password.isBlank()) {
-            tiPassword.error = getString(R.string.error_empty_password)
-            validCredentials = false
-        } else {
-            tiPassword.error = null
+        loginBinding.apply {
+            if (username.isBlank()) {
+                tiUsername.error = getString(R.string.error_empty_username)
+                validCredentials = false
+            } else {
+                tiUsername.error = null
+            }
+            if (password.isBlank()) {
+                tiPassword.error = getString(R.string.error_empty_password)
+                validCredentials = false
+            } else {
+                tiPassword.error = null
+            }
         }
         return validCredentials
     }
 
     private fun login() {
         CountingIdlingResourceSingleton.increment()
-        username = tiUsername.editText?.text.toString().trim()
-        password = tiPassword.editText?.text.toString().trim()
+        username = loginBinding.tiUsername.editText?.text.toString().trim()
+        password = loginBinding.tiPassword.editText?.text.toString().trim()
         if (validateCredentials()) {
             loginViewModel.login(Login(username, password))
             showProgressDialog(getString(R.string.logging_in))

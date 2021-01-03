@@ -10,13 +10,13 @@ import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.*
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 import android.content.Intent
+import org.systers.mentorship.databinding.ActivityRequestDetailBinding
 import org.systers.mentorship.view.fragments.RequestPagerFragment
 
 /**
@@ -24,6 +24,8 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
  */
 class RequestDetailActivity: BaseActivity() {
 
+    private lateinit var requestDetailBinding: ActivityRequestDetailBinding
+    
     private val requestDetailViewModel by lazy {
         ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
     }
@@ -33,7 +35,8 @@ class RequestDetailActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_request_detail)
+        requestDetailBinding = ActivityRequestDetailBinding.inflate(layoutInflater)
+        setContentView(requestDetailBinding.root)
         supportActionBar?.title = getString(R.string.request_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -43,7 +46,7 @@ class RequestDetailActivity: BaseActivity() {
     }
 
     private fun populateView(relationResponse: Relationship) {
-        tvRequestNotes.text = relationResponse.notes
+        requestDetailBinding.tvRequestNotes.text = relationResponse.notes
         val isFromMentee: Boolean = relationResponse.actionUserId == relationResponse.mentee.id
 
         val requestDirection = getString(if (relationResponse.sentByMe) R.string.to else R.string.from)
@@ -61,7 +64,7 @@ class RequestDetailActivity: BaseActivity() {
                 relationResponse.mentor.name
             }
         }
-        tvOtherUserName.text = getString(R.string.request_direction_formatted, requestDirection, otherUserName)
+        requestDetailBinding.tvOtherUserName.text = getString(R.string.request_direction_formatted, requestDirection, otherUserName)
 
         val summaryStrId = if (relationResponse.sentByMe) {
             R.string.request_sent_by_current_user_message
@@ -74,7 +77,7 @@ class RequestDetailActivity: BaseActivity() {
 
         val requestSummaryMessage = getString(summaryStrId,
                 otherUserName, actionUserRole, requestEndDate)
-        tvRequestSummary.text = requestSummaryMessage
+        requestDetailBinding.tvRequestSummary.text = requestSummaryMessage
 
         if (relationResponse.state == RelationState.PENDING.value) {
             setActionButtons(relationResponse)
@@ -83,25 +86,27 @@ class RequestDetailActivity: BaseActivity() {
         }
 
         // TODD: Needed to enable scrolling on text view
-        tvRequestNotes.movementMethod = ScrollingMovementMethod()
+        requestDetailBinding.tvRequestNotes.movementMethod = ScrollingMovementMethod()
     }
 
     private fun setActionButtons(relationResponse: Relationship) {
         val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.endDate) < System.currentTimeMillis()
-        if (!hasEndTimePassed) {
-            if (relationResponse.sentByMe) {
-                btnDelete.visibility = View.VISIBLE
-                btnAccept.visibility = View.GONE
-                btnReject.visibility = View.GONE
+        requestDetailBinding.apply {
+            if (!hasEndTimePassed) {
+                if (relationResponse.sentByMe) {
+                    btnDelete.visibility = View.VISIBLE
+                    btnAccept.visibility = View.GONE
+                    btnReject.visibility = View.GONE
+                } else {
+                    btnDelete.visibility = View.GONE
+                    btnAccept.visibility = View.VISIBLE
+                    btnReject.visibility = View.VISIBLE
+                }
+                tvStateMessage.visibility = View.GONE
             } else {
-                btnDelete.visibility = View.GONE
-                btnAccept.visibility = View.VISIBLE
-                btnReject.visibility = View.VISIBLE
+                tvStateMessage.visibility = View.VISIBLE
+                tvStateMessage.text = getString(R.string.relation_end_date_has_passed)
             }
-            tvStateMessage.visibility = View.GONE
-        } else {
-            tvStateMessage.visibility = View.VISIBLE
-            tvStateMessage.text = getString(R.string.relation_end_date_has_passed)
         }
     }
 
@@ -117,16 +122,16 @@ class RequestDetailActivity: BaseActivity() {
         }
 
         stateStrId?.let {
-            tvStateMessage.visibility = View.VISIBLE
+            requestDetailBinding.tvStateMessage.visibility = View.VISIBLE
             val stateStr = getString(stateStrId)
             val relationStateMessage = getString(R.string.relation_state_message, stateStr)
-            tvStateMessage.text = getTextWithBoldWord(relationStateMessage, stateStr)
+            requestDetailBinding.tvStateMessage.text = getTextWithBoldWord(relationStateMessage, stateStr)
         }
     }
 
     private fun setOnClickListeners(relationResponse: Relationship) {
 
-        btnDelete.setOnClickListener {
+        requestDetailBinding.btnDelete.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
             builder.setTitle("Alert")
@@ -148,7 +153,7 @@ class RequestDetailActivity: BaseActivity() {
 
         }
 
-        btnReject.setOnClickListener {
+        requestDetailBinding.btnReject.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
             builder.setTitle("Alert")
@@ -170,7 +175,7 @@ class RequestDetailActivity: BaseActivity() {
 
         }
 
-        btnAccept.setOnClickListener {
+        requestDetailBinding.btnAccept.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             //set title for alert dialog
             builder.setTitle("Alert")

@@ -6,21 +6,24 @@ import android.view.KeyEvent
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import kotlinx.android.synthetic.main.activity_about.*
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivityAboutBinding
 
 
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
     private var clearHistory = false
 
+    private lateinit var aboutBinding: ActivityAboutBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about)
+        aboutBinding = ActivityAboutBinding.inflate(layoutInflater)
+        setContentView(aboutBinding.root)
         setTitle(R.string.fragment_title_about)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        webView.webViewClient = object: WebViewClient() {
+        aboutBinding.webView.webViewClient = object: WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 if (clearHistory) {
                     clearHistory = false
@@ -34,12 +37,14 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
         hideWebView()
 
-        btnGit.setOnClickListener(this)
-        btnSlack.setOnClickListener(this)
-        btnWebsite.setOnClickListener(this)
-        btnTermsCondition.setOnClickListener(this)
-        btncodeofconduct.setOnClickListener(this)
-        btnprivacypolicy.setOnClickListener(this)
+        aboutBinding.apply {
+            btnGit.setOnClickListener(this@AboutActivity)
+            btnSlack.setOnClickListener(this@AboutActivity)
+            btnWebsite.setOnClickListener(this@AboutActivity)
+            btnTermsCondition.setOnClickListener(this@AboutActivity)
+            btncodeofconduct.setOnClickListener(this@AboutActivity)
+            btnprivacypolicy.setOnClickListener(this@AboutActivity)
+        }
     }
 
     override fun onClick(v: View?) {
@@ -57,7 +62,7 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         showProgress()
-        webView.loadUrl(url)
+        aboutBinding.webView.loadUrl(url)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -67,10 +72,10 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         // Check if the key event was the Back button and if there's history
-        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
-            webView.goBack()
+        if (keyCode == KeyEvent.KEYCODE_BACK && aboutBinding.webView.canGoBack()) {
+            aboutBinding.webView.goBack()
             return true
-        } else if(webView.visibility == View.VISIBLE) {
+        } else if(aboutBinding.webView.visibility == View.VISIBLE) {
             hideWebView()
             return true
         }
@@ -80,25 +85,31 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showWebView() {
-        scrollView.visibility = View.GONE
-        webView.visibility = View.VISIBLE
+        aboutBinding.apply {
+            scrollView.visibility = View.GONE
+            webView.visibility = View.VISIBLE
+        }
         hideProgress()
     }
 
     private fun hideWebView() {
         clearHistory = true
-        scrollView.visibility = View.VISIBLE
-        webView.visibility = View.GONE
+        aboutBinding.apply {
+            scrollView.visibility = View.VISIBLE
+            webView.visibility = View.GONE
+        }
         hideProgress()
     }
 
     private fun showProgress() {
-        progressBar.visibility = View.VISIBLE
-        webView.visibility = View.GONE
-        scrollView.visibility = View.GONE
+        aboutBinding.apply {
+            progressBar.visibility = View.VISIBLE
+            webView.visibility = View.GONE
+            scrollView.visibility = View.GONE
+        }
     }
 
     private fun hideProgress() {
-        progressBar.visibility = View.GONE
+        aboutBinding.progressBar.visibility = View.GONE
     }
 }

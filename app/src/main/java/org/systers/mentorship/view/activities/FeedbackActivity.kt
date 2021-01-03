@@ -1,24 +1,20 @@
 package org.systers.mentorship.view.activities
 
 import android.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import org.systers.mentorship.R
 import android.util.Patterns
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_feedback.*
+import org.systers.mentorship.databinding.ActivityFeedbackBinding
 
 class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
+    private lateinit var feedbackBinding: ActivityFeedbackBinding
 
     private var feedbackRating : Int = 0
     private var feedbackEmailErr : Boolean = true
@@ -28,25 +24,26 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feedback)
+        feedbackBinding = ActivityFeedbackBinding.inflate(layoutInflater)
+        setContentView(feedbackBinding.root)
 
         supportActionBar?.title = getString(R.string.feedback)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
         //init email ID input field
-        FeedbackpageEmail.isErrorEnabled = true
+        feedbackBinding.FeedbackpageEmail.isErrorEnabled = true
 
         //init message input field
-        FeedbackPageMessage.isErrorEnabled = true
+        feedbackBinding.FeedbackPageMessage.isErrorEnabled = true
 
         //init ratingBtnList, an arraylist of ImageButtons, it is going to be used to add rating and change image resource, see fun assignRating()
         ratingBtnList = ArrayList()
-        ratingBtnList?.add(FeedbackpageS1)
-        ratingBtnList?.add(FeedbackpageS2)
-        ratingBtnList?.add(FeedbackpageS3)
-        ratingBtnList?.add(FeedbackpageS4)
-        ratingBtnList?.add(FeedbackpageS5)
+        ratingBtnList?.add(feedbackBinding.FeedbackpageS1)
+        ratingBtnList?.add(feedbackBinding.FeedbackpageS2)
+        ratingBtnList?.add(feedbackBinding.FeedbackpageS3)
+        ratingBtnList?.add(feedbackBinding.FeedbackpageS4)
+        ratingBtnList?.add(feedbackBinding.FeedbackpageS5)
         //set the onclick listener for each of the star buttons
         for(i in ratingBtnList!!)
         {
@@ -54,14 +51,16 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
         }
 
         //set click listeners for category radio buttons
-        FeedbackpageRd1.setOnClickListener(this)
-        FeedbackpageRd2.setOnClickListener(this)
-        FeedbackpageRd3.setOnClickListener(this)
+        feedbackBinding.apply {
+            FeedbackpageRd1.setOnClickListener(this@FeedbackActivity)
+            FeedbackpageRd2.setOnClickListener(this@FeedbackActivity)
+            FeedbackpageRd3.setOnClickListener(this@FeedbackActivity)
+        }
         //init category = "bug"
         feedbackCategory = getString(R.string.bug)
 
         //Final submit button
-        FeedbackpageSendbtn.setOnClickListener {
+        feedbackBinding.FeedbackpageSendbtn.setOnClickListener {
             validateInput()
 
             if (!feedbackEmailErr && !feedbackMsgErr && feedbackRating != 0) {
@@ -84,14 +83,14 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun validateInput(){
-        if(FeedbackpageEmail.editText?.text.isNullOrEmpty()) FeedbackpageEmail.error = getString(R.string.email_error)
-        else if(! isValidEmail(FeedbackpageEmail.editText?.text!!)) FeedbackpageEmail.error = getString(R.string.valid_error)
+        if(feedbackBinding.FeedbackpageEmail.editText?.text.isNullOrEmpty()) feedbackBinding.FeedbackpageEmail.error = getString(R.string.email_error)
+        else if(! isValidEmail(feedbackBinding.FeedbackpageEmail.editText?.text!!)) feedbackBinding.FeedbackpageEmail.error = getString(R.string.valid_error)
         else {
-            FeedbackpageEmail.isErrorEnabled = false
+            feedbackBinding.FeedbackpageEmail.isErrorEnabled = false
             feedbackEmailErr = false
         }
 
-        FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
+        feedbackBinding.FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -99,35 +98,35 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!)) {
-                    FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = getString(R.string.valid_error)
+                if (!feedbackBinding.FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!)) {
+                    feedbackBinding.FeedbackpageEmail.isErrorEnabled = true
+                    feedbackBinding.FeedbackpageEmail.error = getString(R.string.valid_error)
                     feedbackEmailErr = true
                 }
                 else {
                     if (s.toString().isEmpty()) {
-                        FeedbackpageEmail.isErrorEnabled = true
-                        FeedbackpageEmail.error = getString(R.string.email_error)
+                        feedbackBinding.FeedbackpageEmail.isErrorEnabled = true
+                        feedbackBinding.FeedbackpageEmail.error = getString(R.string.email_error)
                         feedbackEmailErr = true
                     }
                     else {
-                        FeedbackpageEmail.isErrorEnabled = false
+                        feedbackBinding.FeedbackpageEmail.isErrorEnabled = false
                         feedbackEmailErr = false
                     }
                 }
             }
         })
 
-        if(FeedbackPageMessage.editText?.text.isNullOrEmpty()) FeedbackPageMessage.error = getString(R.string.msg_error)
-        else if (FeedbackPageMessage.editText?.text.toString().length > FeedbackPageMessage.counterMaxLength) {
-            FeedbackPageMessage.error = getString(R.string.char_error)
+        if(feedbackBinding.FeedbackPageMessage.editText?.text.isNullOrEmpty()) feedbackBinding.FeedbackPageMessage.error = getString(R.string.msg_error)
+        else if (feedbackBinding.FeedbackPageMessage.editText?.text.toString().length >feedbackBinding. FeedbackPageMessage.counterMaxLength) {
+            feedbackBinding.FeedbackPageMessage.error = getString(R.string.char_error)
         }
         else {
-            FeedbackPageMessage.isErrorEnabled = false
+            feedbackBinding.FeedbackPageMessage.isErrorEnabled = false
             feedbackMsgErr = false
         }
 
-        FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher{
+        feedbackBinding.FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -136,19 +135,19 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().length > FeedbackPageMessage.counterMaxLength) {
-                    FeedbackPageMessage.isErrorEnabled = true
-                    FeedbackPageMessage.error = getString(R.string.char_error)
+                if (s.toString().length > feedbackBinding.FeedbackPageMessage.counterMaxLength) {
+                    feedbackBinding.FeedbackPageMessage.isErrorEnabled = true
+                    feedbackBinding.FeedbackPageMessage.error = getString(R.string.char_error)
                     feedbackMsgErr = true
                 }
                 else {
                     if (s.toString().isEmpty()) {
-                        FeedbackPageMessage.isErrorEnabled = true
-                        FeedbackPageMessage.error = getString(R.string.msg_error)
+                        feedbackBinding.FeedbackPageMessage.isErrorEnabled = true
+                        feedbackBinding.FeedbackPageMessage.error = getString(R.string.msg_error)
                         feedbackMsgErr = true
                     }
                     else {
-                        FeedbackPageMessage.isErrorEnabled = false
+                        feedbackBinding.FeedbackPageMessage.isErrorEnabled = false
                         feedbackMsgErr = false
                     }
                 }
@@ -203,22 +202,22 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
                 assignRating(5)
             }
             R.id.FeedbackpageRd1 -> {
-                if (FeedbackpageRd1.isChecked)
+                if (feedbackBinding.FeedbackpageRd1.isChecked)
                 {
-                    feedbackCategory = FeedbackpageRd1.text.toString()
+                    feedbackCategory = feedbackBinding.FeedbackpageRd1.text.toString()
                 }
 
             }
             R.id.FeedbackpageRd2 -> {
-                if (FeedbackpageRd2.isChecked)
+                if (feedbackBinding.FeedbackpageRd2.isChecked)
                 {
-                    feedbackCategory = FeedbackpageRd2.text.toString()
+                    feedbackCategory = feedbackBinding.FeedbackpageRd2.text.toString()
                 }
             }
             R.id.FeedbackpageRd3 -> {
-                if (FeedbackpageRd3.isChecked)
+                if (feedbackBinding.FeedbackpageRd3.isChecked)
                 {
-                    feedbackCategory = FeedbackpageRd3.text.toString()
+                    feedbackCategory = feedbackBinding.FeedbackpageRd3.text.toString()
                 }
             }
         }
