@@ -5,7 +5,7 @@ package org.systers.mentorship.remote.requests
  * @param currentPassword the current password of the user
  * @param newPassword new password which will replace the current password.
  */
-data class ChangePassword (
-        val currentPassword: String,
-        val newPassword: String
+data class ChangePassword(
+    val currentPassword: String,
+    val newPassword: String
 )

@@ -1,9 +1,9 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
@@ -39,39 +39,38 @@ class LoginViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun login(@NonNull login: Login) {
         authDataManager.login(login)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<AuthToken>() {
-                    override fun onNext(authToken: AuthToken) {
-                        successful.value = true
-                        preferenceManager.putAuthToken(authToken.accessToken)
-                    }
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<AuthToken>() {
+                override fun onNext(authToken: AuthToken) {
+                    successful.value = true
+                    preferenceManager.putAuthToken(authToken.accessToken)
+                }
 
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
+                override fun onError(throwable: Throwable) {
+                    when (throwable) {
+                        is IOException -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_please_check_internet)
                         }
-                        successful.value = false
+                        is TimeoutException -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_request_timed_out)
+                        }
+                        is HttpException -> {
+                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                        }
+                        else -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_something_went_wrong)
+                            Log.e(tag, throwable.localizedMessage)
+                        }
                     }
+                    successful.value = false
+                }
 
-                    override fun onComplete() {
-                    }
-                })
+                override fun onComplete() {
+                }
+            })
     }
 }
-

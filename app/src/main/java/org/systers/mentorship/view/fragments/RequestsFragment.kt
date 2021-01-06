@@ -39,32 +39,38 @@ class RequestsFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRequests.setOnRefreshListener { fetchNewest() }
 
-        requestsViewModel.successful.observe(this, Observer {
-            successful ->
-            srlRequests.isRefreshing = false
-            if (successful != null) {
-                if (successful) {
-                    requestsViewModel.pendingSuccessful.observe(this, Observer {
-                        successful ->
-                        activityCast.hideProgressDialog()
-                        if (successful != null) {
-                            if (successful){
-                                requestsViewModel.allRequestsList?.let { allRequestsList ->
-                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager, requestsViewModel.pendingAllRequestsList)
-                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+        requestsViewModel.successful.observe(
+            this,
+            Observer {
+                successful ->
+                srlRequests.isRefreshing = false
+                if (successful != null) {
+                    if (successful) {
+                        requestsViewModel.pendingSuccessful.observe(
+                            this,
+                            Observer {
+                                successful ->
+                                activityCast.hideProgressDialog()
+                                if (successful != null) {
+                                    if (successful) {
+                                        requestsViewModel.allRequestsList?.let { allRequestsList ->
+                                            vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager, requestsViewModel.pendingAllRequestsList)
+                                            tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                                        }
+                                    }
                                 }
                             }
-                        }
-                    })
-                } else {
-                    view?.let {
-                        requestsViewModel.message?.let { message ->
-                            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
+                        )
+                    } else {
+                        view?.let {
+                            requestsViewModel.message?.let { message ->
+                                Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
+                            }
                         }
                     }
                 }
             }
-        })
+        )
 
         fetchNewest()
     }
@@ -79,7 +85,7 @@ class RequestsFragment : BaseFragment() {
         }
     }
 
-    private fun fetchNewest()  {
+    private fun fetchNewest() {
         srlRequests.isRefreshing = true
         requestsViewModel.getAllMentorshipRelations()
         requestsViewModel.getAllPendingMentorshipRelations()

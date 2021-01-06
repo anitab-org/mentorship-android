@@ -24,8 +24,10 @@ class ProgressBar(context: Context) {
         progressBar = ProgressBar(context, null, R.attr.progressBarStyleLargeInverse)
         progressBar.isIndeterminate = true
 
-        val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT)
+        val params = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.MATCH_PARENT
+        )
 
         val rl = RelativeLayout(context)
 

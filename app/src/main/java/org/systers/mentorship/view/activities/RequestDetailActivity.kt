@@ -1,28 +1,27 @@
 package org.systers.mentorship.view.activities
 
 import android.app.AlertDialog
-import android.content.DialogInterface
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
-import org.systers.mentorship.utils.*
-import org.systers.mentorship.viewmodels.RequestDetailViewModel
-import android.content.Intent
+import org.systers.mentorship.utils.* // ktlint-disable no-wildcard-imports
 import org.systers.mentorship.view.fragments.RequestPagerFragment
+import org.systers.mentorship.viewmodels.RequestDetailViewModel
 
 /**
  * This activity will show a Mentorship request detail from the Requests List
  */
-class RequestDetailActivity: BaseActivity() {
+class RequestDetailActivity : BaseActivity() {
 
     private val requestDetailViewModel by lazy {
         ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
@@ -70,10 +69,13 @@ class RequestDetailActivity: BaseActivity() {
         }
         val actionUserRole = getString(if (isFromMentee) R.string.mentee else R.string.mentor)
         val requestEndDate = convertUnixTimestampIntoStr(
-                relationResponse.endDate, EXTENDED_DATE_FORMAT)
+            relationResponse.endDate, EXTENDED_DATE_FORMAT
+        )
 
-        val requestSummaryMessage = getString(summaryStrId,
-                otherUserName, actionUserRole, requestEndDate)
+        val requestSummaryMessage = getString(
+            summaryStrId,
+            otherUserName, actionUserRole, requestEndDate
+        )
         tvRequestSummary.text = requestSummaryMessage
 
         if (relationResponse.state == RelationState.PENDING.value) {
@@ -128,88 +130,88 @@ class RequestDetailActivity: BaseActivity() {
 
         btnDelete.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            //set title for alert dialog
+            // set title for alert dialog
             builder.setTitle("Alert")
-            //set message for alert dialog
+            // set message for alert dialog
             builder.setMessage("Are you sure you want to delete request?")
             builder.setIcon(android.R.drawable.ic_dialog_alert)
-            //performing positive action
-            builder.setPositiveButton("Yes"){dialogInterface, which ->
+            // performing positive action
+            builder.setPositiveButton("Yes") { dialogInterface, which ->
                 requestDetailViewModel.deleteRequest(relationResponse.id)
             }
-            //performing cancel action
-            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+            // performing cancel action
+            builder.setNeutralButton("Cancel") { dialogInterface, which ->
             }
             // Create the AlertDialog
             val alertDialog: AlertDialog = builder.create()
             // Set other dialog properties
             alertDialog.setCancelable(false)
             alertDialog.show()
-
         }
 
         btnReject.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            //set title for alert dialog
+            // set title for alert dialog
             builder.setTitle("Alert")
-            //set message for alert dialog
+            // set message for alert dialog
             builder.setMessage("Are you sure you want to reject request?")
             builder.setIcon(android.R.drawable.ic_dialog_alert)
-            //performing positive action
-            builder.setPositiveButton("Yes"){dialogInterface, which ->
+            // performing positive action
+            builder.setPositiveButton("Yes") { dialogInterface, which ->
                 requestDetailViewModel.rejectRequest(relationResponse.id)
             }
-            //performing cancel action
-            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+            // performing cancel action
+            builder.setNeutralButton("Cancel") { dialogInterface, which ->
             }
             // Create the AlertDialog
             val alertDialog: AlertDialog = builder.create()
             // Set other dialog properties
             alertDialog.setCancelable(false)
             alertDialog.show()
-
         }
 
         btnAccept.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            //set title for alert dialog
+            // set title for alert dialog
             builder.setTitle("Alert")
-            //set message for alert dialog
+            // set message for alert dialog
             builder.setMessage("Are you sure you want to accept request?")
             builder.setIcon(android.R.drawable.ic_dialog_alert)
-            //performing positive action
-            builder.setPositiveButton("Yes"){dialogInterface, which ->
+            // performing positive action
+            builder.setPositiveButton("Yes") { dialogInterface, which ->
                 requestDetailViewModel.acceptRequest(relationResponse.id)
             }
-            //performing cancel action
-            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+            // performing cancel action
+            builder.setNeutralButton("Cancel") { dialogInterface, which ->
             }
             // Create the AlertDialog
             val alertDialog: AlertDialog = builder.create()
             // Set other dialog properties
             alertDialog.setCancelable(false)
             alertDialog.show()
-
         }
     }
 
     private fun setObservables(relationResponse: Relationship) {
-        requestDetailViewModel.successful.observe(this, Observer {
-            successful ->
-            hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(this, requestDetailViewModel.message, Toast.LENGTH_LONG).show()
-                    val previousScreen = Intent(applicationContext, RequestPagerFragment::class.java)
-                    previousScreen.putExtra(Constants.REQUEST_ID, relationResponse.id.toString())
-                    setResult(Constants.DELETE_REQUEST_RESULT_ID, previousScreen)
-                    finish()
-                } else {
-                    Snackbar.make(getRootView(), requestDetailViewModel.message, Snackbar.LENGTH_LONG)
+        requestDetailViewModel.successful.observe(
+            this,
+            Observer {
+                successful ->
+                hideProgressDialog()
+                if (successful != null) {
+                    if (successful) {
+                        Toast.makeText(this, requestDetailViewModel.message, Toast.LENGTH_LONG).show()
+                        val previousScreen = Intent(applicationContext, RequestPagerFragment::class.java)
+                        previousScreen.putExtra(Constants.REQUEST_ID, relationResponse.id.toString())
+                        setResult(Constants.DELETE_REQUEST_RESULT_ID, previousScreen)
+                        finish()
+                    } else {
+                        Snackbar.make(getRootView(), requestDetailViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
+                    }
                 }
             }
-        })
+        )
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {

@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for Tasks Screen
  */
-class TasksViewModel: ViewModel() {
+class TasksViewModel : ViewModel() {
 
     var tag = TasksViewModel::class.java.simpleName!!
 
@@ -33,11 +33,13 @@ class TasksViewModel: ViewModel() {
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
-    var completeTasksList ={
-        -> tasksList.filter { it.isDone }
+    var completeTasksList = {
+        ->
+        tasksList.filter { it.isDone }
     }
-    var incompleteTasksList ={
-        -> tasksList.filter { !it.isDone }
+    var incompleteTasksList = {
+        ->
+        tasksList.filter { !it.isDone }
     }
 
     /**
@@ -46,39 +48,39 @@ class TasksViewModel: ViewModel() {
     @SuppressLint("CheckResult")
     fun getTasks(relationId: Int) {
         taskDataManager.getAllTasks(relationId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<Task>>() {
-                    override fun onNext(taskListResponse: List<Task>) {
-                        tasksList = taskListResponse
-                        successfulGet.value = true
-                    }
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<List<Task>>() {
+                override fun onNext(taskListResponse: List<Task>) {
+                    tasksList = taskListResponse
+                    successfulGet.value = true
+                }
 
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
+                override fun onError(throwable: Throwable) {
+                    when (throwable) {
+                        is IOException -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_please_check_internet)
                         }
-                        successfulGet.value = false
+                        is TimeoutException -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_request_timed_out)
+                        }
+                        is HttpException -> {
+                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                        }
+                        else -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_something_went_wrong)
+                            Log.e(tag, throwable.localizedMessage)
+                        }
                     }
+                    successfulGet.value = false
+                }
 
-                    override fun onComplete() {
-                    }
-                })
+                override fun onComplete() {
+                }
+            })
     }
 
     /**
@@ -89,36 +91,36 @@ class TasksViewModel: ViewModel() {
     @SuppressLint("CheckResult")
     fun addTask(relationId: Int, createTask: CreateTask) {
         taskDataManager.addTask(relationId, createTask)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<CustomResponse>() {
-                    override fun onNext(taskListResponse: CustomResponse) {
-                        successfulAdd.value = true
-                    }
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                override fun onNext(taskListResponse: CustomResponse) {
+                    successfulAdd.value = true
+                }
+                override fun onError(throwable: Throwable) {
+                    when (throwable) {
+                        is IOException -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_please_check_internet)
                         }
-                        successfulAdd.value = false
+                        is TimeoutException -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_request_timed_out)
+                        }
+                        is HttpException -> {
+                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                        }
+                        else -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_something_went_wrong)
+                            Log.e(tag, throwable.localizedMessage)
+                        }
                     }
-                    override fun onComplete() {
-                    }
-                })
+                    successfulAdd.value = false
+                }
+                override fun onComplete() {
+                }
+            })
     }
 
     /**
@@ -128,43 +130,42 @@ class TasksViewModel: ViewModel() {
      * @param relationId id of relation
      */
     @SuppressLint("CheckResult")
-    fun updateTask(taskId: Int, isChecked: Boolean, relationId: Int){
-        if(isChecked) {
-            taskDataManager.completeTask(relationId,taskId)
-                    .subscribeOn(Schedulers.newThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(object : DisposableObserver<CustomResponse>() {
-                        override fun onNext(taskListResponse: CustomResponse) {
-                            successfulUpdate.value = true
-                        }
-                        override fun onError(throwable: Throwable) {
-                            when (throwable) {
-                                is IOException -> {
-                                    message = MentorshipApplication.getContext()
-                                            .getString(R.string.error_please_check_internet)
-                                }
-                                is TimeoutException -> {
-                                    message = MentorshipApplication.getContext()
-                                            .getString(R.string.error_request_timed_out)
-                                }
-                                is HttpException -> {
-                                    message = CommonUtils.getErrorResponse(throwable).message.toString()
-                                }
-                                else -> {
-                                    message = MentorshipApplication.getContext()
-                                            .getString(R.string.error_something_went_wrong)
-                                    Log.e(tag, throwable.localizedMessage)
-                                }
+    fun updateTask(taskId: Int, isChecked: Boolean, relationId: Int) {
+        if (isChecked) {
+            taskDataManager.completeTask(relationId, taskId)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                    override fun onNext(taskListResponse: CustomResponse) {
+                        successfulUpdate.value = true
+                    }
+                    override fun onError(throwable: Throwable) {
+                        when (throwable) {
+                            is IOException -> {
+                                message = MentorshipApplication.getContext()
+                                    .getString(R.string.error_please_check_internet)
                             }
-                            successfulUpdate.value = false
+                            is TimeoutException -> {
+                                message = MentorshipApplication.getContext()
+                                    .getString(R.string.error_request_timed_out)
+                            }
+                            is HttpException -> {
+                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            }
+                            else -> {
+                                message = MentorshipApplication.getContext()
+                                    .getString(R.string.error_something_went_wrong)
+                                Log.e(tag, throwable.localizedMessage)
+                            }
                         }
-                        override fun onComplete() {
-                        }
-                    })
-        }
-        else {
-            //completedTaskList.remove(taskList.get(taskId))
-            //TODO: Update the backend
+                        successfulUpdate.value = false
+                    }
+                    override fun onComplete() {
+                    }
+                })
+        } else {
+            // completedTaskList.remove(taskList.get(taskId))
+            // TODO: Update the backend
         }
     }
 }

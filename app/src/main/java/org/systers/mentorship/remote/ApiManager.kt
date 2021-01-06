@@ -1,7 +1,6 @@
 package org.systers.mentorship.remote
 
 import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,20 +39,20 @@ class ApiManager {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val okHttpClient = OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .addInterceptor(CustomInterceptor())
-                .authenticator(TokenAuthenticator())
-                .build()
+            .addInterceptor(interceptor)
+            .addInterceptor(CustomInterceptor())
+            .authenticator(TokenAuthenticator())
+            .build()
         val gson = GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create()
+            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .create()
 
         val retrofit = Retrofit.Builder()
-                .baseUrl(BaseUrl.apiBaseUrl)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(okHttpClient)
-                .build()
+            .baseUrl(BaseUrl.apiBaseUrl)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClient)
+            .build()
 
         authService = retrofit.create(AuthService::class.java)
         relationService = retrofit.create(RelationService::class.java)

@@ -31,37 +31,37 @@ class ChangePasswordViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun changeUserPassword(changePassword: ChangePassword) {
         userDataManager.updatePassword(changePassword)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<CustomResponse>() {
-                    override fun onNext(customResponse: CustomResponse) {
-                        message = customResponse.message
-                        successfulUpdate.value = true
-                    }
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<CustomResponse>() {
+                override fun onNext(customResponse: CustomResponse) {
+                    message = customResponse.message
+                    successfulUpdate.value = true
+                }
 
-                    override fun onError(e: Throwable) {
-                        when (e) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(e).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                            }
+                override fun onError(e: Throwable) {
+                    when (e) {
+                        is IOException -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_please_check_internet)
                         }
-                        successfulUpdate.value = false
+                        is TimeoutException -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_request_timed_out)
+                        }
+                        is HttpException -> {
+                            message = CommonUtils.getErrorResponse(e).message
+                        }
+                        else -> {
+                            message = MentorshipApplication.getContext()
+                                .getString(R.string.error_something_went_wrong)
+                        }
                     }
+                    successfulUpdate.value = false
+                }
 
-                    override fun onComplete() {
-                    }
-                })
+                override fun onComplete() {
+                }
+            })
     }
 }

@@ -16,9 +16,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Task(
-        val id: Int,
-        val description: String,
-        val isDone: Boolean,
-        val createdAt: Float,
-        val completedAt: Float
-): Parcelable
+    val id: Int,
+    val description: String,
+    val isDone: Boolean,
+    val createdAt: Float,
+    val completedAt: Float
+) : Parcelable

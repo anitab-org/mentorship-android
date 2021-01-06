@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -49,34 +48,49 @@ class FilterActivity : BaseActivity() {
         when (map?.get(SORT_KEY)) {
             MembersFragment.SortValues.REGISTRATION_DATE.name -> {
                 cardSortRegistrationDate.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvSortRegistrationDate.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
+                tvSortRegistrationDate.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources, R.color.white, null
+                    )
+                )
                 previousSelectionSort = cardSortRegistrationDate
             }
             MembersFragment.SortValues.NAMEAZ.name -> {
                 cardSortNameAZ.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvSortNameAZ.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
+                tvSortNameAZ.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources, R.color.white, null
+                    )
+                )
                 previousSelectionSort = cardSortNameAZ
             }
             MembersFragment.SortValues.NAMEZA.name -> {
                 cardSortNameZA.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvSortNameZA.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
+                tvSortNameZA.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources, R.color.white, null
+                    )
+                )
                 previousSelectionSort = cardSortNameZA
             }
         }
 
         if (map?.get(NEED_MENTORING_KEY) == "true") {
             cardFilterNeedMentoring.setBackgroundResource(R.drawable.background_rounded_primary)
-            tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.white, null))
+            tvFilterNeedMentoring.setTextColor(
+                ResourcesCompat.getColor(
+                    resources, R.color.white, null
+                )
+            )
             needMentoring = true
         }
         if (map?.get(AVAILABLE_TO_MENTOR_KEY) == "true") {
             cardFilterAvailableToMentor.setBackgroundResource(R.drawable.background_rounded_primary)
-            tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.white, null))
+            tvFilterAvailableToMentor.setTextColor(
+                ResourcesCompat.getColor(
+                    resources, R.color.white, null
+                )
+            )
             availableToMentor = true
         }
 
@@ -94,12 +108,18 @@ class FilterActivity : BaseActivity() {
         cardFilterNeedMentoring.setOnClickListener {
             if (needMentoring) {
                 it.setBackgroundResource(R.drawable.background_rounded_white)
-                tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.textColorBlack, null))
+                tvFilterNeedMentoring.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources, R.color.textColorBlack, null
+                    )
+                )
             } else {
                 it.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
+                tvFilterNeedMentoring.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources, R.color.white, null
+                    )
+                )
             }
             needMentoring = !needMentoring
             map?.put(NEED_MENTORING_KEY, needMentoring.toString())
@@ -107,12 +127,18 @@ class FilterActivity : BaseActivity() {
         cardFilterAvailableToMentor.setOnClickListener {
             if (availableToMentor) {
                 it.setBackgroundResource(R.drawable.background_rounded_white)
-                tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.textColorBlack, null))
+                tvFilterAvailableToMentor.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources, R.color.textColorBlack, null
+                    )
+                )
             } else {
                 it.setBackgroundResource(R.drawable.background_rounded_primary)
-                tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
+                tvFilterAvailableToMentor.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources, R.color.white, null
+                    )
+                )
             }
             availableToMentor = !availableToMentor
             map?.put(AVAILABLE_TO_MENTOR_KEY, availableToMentor.toString())
@@ -123,22 +149,34 @@ class FilterActivity : BaseActivity() {
             with(previousSelectionSort) {
                 this?.setBackgroundResource(R.drawable.background_rounded_white)
                 ((this as CardView?)?.getChildAt(0) as TextView?)
-                        ?.setTextColor(ResourcesCompat.getColor(
-                                resources, R.color.textColorBlack, null))
+                    ?.setTextColor(
+                        ResourcesCompat.getColor(
+                            resources, R.color.textColorBlack, null
+                        )
+                    )
             }
             cardSortRegistrationDate.setBackgroundResource(R.drawable.background_rounded_primary)
-            tvSortRegistrationDate.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.white, null))
+            tvSortRegistrationDate.setTextColor(
+                ResourcesCompat.getColor(
+                    resources, R.color.white, null
+                )
+            )
             previousSelectionSort = cardSortRegistrationDate
 
             // filter by fragment
             // buttons
             cardFilterNeedMentoring.setBackgroundResource(R.drawable.background_rounded_white)
-            tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.textColorBlack, null))
+            tvFilterNeedMentoring.setTextColor(
+                ResourcesCompat.getColor(
+                    resources, R.color.textColorBlack, null
+                )
+            )
             cardFilterAvailableToMentor.setBackgroundResource(R.drawable.background_rounded_white)
-            tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
-                    resources, R.color.textColorBlack, null))
+            tvFilterAvailableToMentor.setTextColor(
+                ResourcesCompat.getColor(
+                    resources, R.color.textColorBlack, null
+                )
+            )
 
             // EditTexts
             etFilterInterests.setText("")
@@ -149,16 +187,19 @@ class FilterActivity : BaseActivity() {
         }
 
         btnApplyFilter.setOnClickListener {
-            map?.put(SORT_KEY, when (previousSelectionSort?.id) {
-                R.id.cardSortNameAZ ->
-                    MembersFragment.SortValues.NAMEAZ.name
-                R.id.cardSortNameZA ->
-                    MembersFragment.SortValues.NAMEZA.name
-                R.id.cardSortRegistrationDate ->
-                    MembersFragment.SortValues.REGISTRATION_DATE.name
-                else ->
-                    MembersFragment.SortValues.REGISTRATION_DATE.name
-            })
+            map?.put(
+                SORT_KEY,
+                when (previousSelectionSort?.id) {
+                    R.id.cardSortNameAZ ->
+                        MembersFragment.SortValues.NAMEAZ.name
+                    R.id.cardSortNameZA ->
+                        MembersFragment.SortValues.NAMEZA.name
+                    R.id.cardSortRegistrationDate ->
+                        MembersFragment.SortValues.REGISTRATION_DATE.name
+                    else ->
+                        MembersFragment.SortValues.REGISTRATION_DATE.name
+                }
+            )
 
             map?.put(INTERESTS_KEY, etFilterInterests.text.toString())
             map?.put(LOCATION_KEY, etFilterLocation.text.toString())
@@ -179,14 +220,20 @@ class FilterActivity : BaseActivity() {
         with(previousSelectionSort) {
             this?.setBackgroundResource(R.drawable.background_rounded_white)
             ((this as CardView?)?.getChildAt(0) as TextView?)
-                    ?.setTextColor(ResourcesCompat.getColor(
-                            resources, R.color.textColorBlack, null))
+                ?.setTextColor(
+                    ResourcesCompat.getColor(
+                        resources, R.color.textColorBlack, null
+                    )
+                )
         }
 
         view.setBackgroundResource(R.drawable.background_rounded_primary)
         ((view as CardView).getChildAt(0) as TextView)
-                .setTextColor(ResourcesCompat.getColor(
-                        resources, R.color.white, null))
+            .setTextColor(
+                ResourcesCompat.getColor(
+                    resources, R.color.white, null
+                )
+            )
 
         previousSelectionSort = view
     }
@@ -201,5 +248,4 @@ class FilterActivity : BaseActivity() {
         super.onBackPressed()
         overridePendingTransition(R.anim.anim_stay, R.anim.anim_slide_to_bottom)
     }
-
 }

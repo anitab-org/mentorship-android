@@ -38,22 +38,25 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        signUpViewModel.successful.observe(this, Observer { successful ->
-            hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
-                    navigateToLoginActivity()
-                } else {
-                    Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
+        signUpViewModel.successful.observe(
+            this,
+            Observer { successful ->
+                hideProgressDialog()
+                if (successful != null) {
+                    if (successful) {
+                        Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
+                        navigateToLoginActivity()
+                    } else {
+                        Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
+                    }
+                    CountingIdlingResourceSingleton.decrement()
                 }
-                CountingIdlingResourceSingleton.decrement()
             }
-        })
+        )
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
-        fun View.hideKeyboard(){
+        fun View.hideKeyboard() {
             val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
         }
@@ -68,8 +71,8 @@ class SignUpActivity : BaseActivity() {
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
-            needsMentoring = cbMentee.isChecked //old name but works
-            isAvailableToMentor = cbMentor.isChecked //old name but works
+            needsMentoring = cbMentee.isChecked // old name but works
+            isAvailableToMentor = cbMentor.isChecked // old name but works
             isAvailableForBoth = cbBoth.isChecked
 
             CountingIdlingResourceSingleton.increment()
@@ -158,6 +161,4 @@ class SignUpActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
-
-
 }

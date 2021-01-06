@@ -1,18 +1,16 @@
 package org.systers.mentorship.view.fragments
 
 import android.app.Dialog
-import android.content.DialogInterface
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.DialogFragment
-import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
@@ -40,17 +38,19 @@ class ChangePasswordFragment : DialogFragment() {
     private lateinit var confirmPassword: String
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        changePasswordViewModel.successfulUpdate.observe(this, Observer { successful ->
+        changePasswordViewModel.successfulUpdate.observe(
+            this,
+            Observer { successful ->
 
-            if (successful != null) {
-                when {
-                    successful -> Toast.makeText(activity, getString(R.string.password_updated), Toast.LENGTH_SHORT).show()
-                    else -> Toast.makeText(activity, changePasswordViewModel.message, Toast.LENGTH_SHORT).show()
+                if (successful != null) {
+                    when {
+                        successful -> Toast.makeText(activity, getString(R.string.password_updated), Toast.LENGTH_SHORT).show()
+                        else -> Toast.makeText(activity, changePasswordViewModel.message, Toast.LENGTH_SHORT).show()
+                    }
                 }
+                dismiss()
             }
-            dismiss()
-
-        })
+        )
 
         changePasswordView = LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
         val builder = AlertDialog.Builder(requireContext())
@@ -71,7 +71,6 @@ class ChangePasswordFragment : DialogFragment() {
             override fun afterTextChanged(confirmPasswordEditable: Editable?) {
                 passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = confirmPasswordEditable!!.isNotEmpty()
             }
-
         })
         return passwordDialog
     }

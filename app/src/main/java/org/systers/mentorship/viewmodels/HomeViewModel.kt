@@ -1,6 +1,5 @@
 package org.systers.mentorship.viewmodels
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,7 +18,6 @@ import org.systers.mentorship.utils.SingleLiveEvent
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
-
 
 /**
  * This class represents the ViewModel for the HomeFragment
@@ -44,41 +42,46 @@ class HomeViewModel : ViewModel() {
      */
     fun getHomeStats() {
         userDataManager.getHomeStats()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<HomeStatistics>() {
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<HomeStatistics>() {
 
-                    override fun onComplete() {
-                        // Do nothing
-                    }
+                override fun onComplete() {
+                    // Do nothing
+                }
 
-                    override fun onNext(statistics: HomeStatistics) {
-                        _userStats.value = statistics
-                    }
+                override fun onNext(statistics: HomeStatistics) {
+                    _userStats.value = statistics
+                }
 
-                    override fun onError(error: Throwable) {
-                        when (error) {
-                            is IOException -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet))
-                            }
-                            is TimeoutException -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out))
-                            }
-                            is HttpException -> {
-                                _message.postValue(CommonUtils.getErrorResponse(error).message)
-                            }
-                            else -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong))
-                                        .also { Log.d(tag, error.localizedMessage) }
-                            }
+                override fun onError(error: Throwable) {
+                    when (error) {
+                        is IOException -> {
+                            _message.postValue(
+                                MentorshipApplication.getContext()
+                                    .getString(R.string.error_please_check_internet)
+                            )
+                        }
+                        is TimeoutException -> {
+                            _message.postValue(
+                                MentorshipApplication.getContext()
+                                    .getString(R.string.error_request_timed_out)
+                            )
+                        }
+                        is HttpException -> {
+                            _message.postValue(CommonUtils.getErrorResponse(error).message)
+                        }
+                        else -> {
+                            _message.postValue(
+                                MentorshipApplication.getContext()
+                                    .getString(R.string.error_something_went_wrong)
+                            )
+                                .also { Log.d(tag, error.localizedMessage) }
                         }
                     }
-
-                })
-                .addTo(compositeDisposable)
+                }
+            })
+            .addTo(compositeDisposable)
     }
 
     override fun onCleared() {
@@ -86,5 +89,3 @@ class HomeViewModel : ViewModel() {
         compositeDisposable.dispose()
     }
 }
-
-

@@ -1,14 +1,14 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
@@ -35,26 +35,29 @@ class LoginActivity : BaseActivity() {
         etUsername.addTextChangedListener(textWatcher)
         etPassword.addTextChangedListener(textWatcher)
 
-        loginViewModel.successful.observe(this, Observer {
-            successful ->
-            hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(this, R.string.logging_successful, Toast.LENGTH_LONG)
+        loginViewModel.successful.observe(
+            this,
+            Observer {
+                successful ->
+                hideProgressDialog()
+                if (successful != null) {
+                    if (successful) {
+                        Toast.makeText(this, R.string.logging_successful, Toast.LENGTH_LONG)
                             .show()
-                    intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
+                        intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
+                    }
+                    CountingIdlingResourceSingleton.decrement()
                 }
-                CountingIdlingResourceSingleton.decrement()
             }
-        })
+        )
 
         btnLogin.setOnClickListener {
-           login()
+            login()
         }
 
         btnSignUp.setOnClickListener {
@@ -73,12 +76,12 @@ class LoginActivity : BaseActivity() {
             val tokenExpiredVal = intent.extras!!.getInt(Constants.TOKEN_EXPIRED_EXTRA)
             if (tokenExpiredVal == 0)
                 Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
-        }catch (exception: Exception){}
+        } catch (exception: Exception) {}
 
         checkFieldsForEmptyValues()
     }
 
-    private fun checkFieldsForEmptyValues(){
+    private fun checkFieldsForEmptyValues() {
         val editText1: String? = etUsername.text.toString()
         val editText2: String? = etPassword.text.toString()
 
@@ -98,10 +101,9 @@ class LoginActivity : BaseActivity() {
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
         }
-
     }
 
-    private fun validateCredentials() : Boolean {
+    private fun validateCredentials(): Boolean {
         var validCredentials = true
         if (username.isBlank()) {
             tiUsername.error = getString(R.string.error_empty_username)
@@ -136,4 +138,3 @@ class LoginActivity : BaseActivity() {
         loginViewModel.successful.value = null
     }
 }
-

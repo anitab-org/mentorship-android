@@ -64,24 +64,29 @@ class HomeFragment : BaseFragment() {
 
         setHasOptionsMenu(true)
 
-
         with(homeViewModel) {
-            userStats.observe(viewLifecycleOwner, Observer { stats ->
-                srlHome.isRefreshing = false
-                binding.stats = stats
-                if (stats?.achievements?.isEmpty() != false) {
-                    tvNoAchievements.visibility = View.VISIBLE
-                    rvAchievements.visibility = View.GONE
-                } else {
-                    tvNoAchievements.visibility = View.GONE
-                    rvAchievements.visibility = View.VISIBLE
-                    achievementsAdapter.submitList(stats.achievements)
+            userStats.observe(
+                viewLifecycleOwner,
+                Observer { stats ->
+                    srlHome.isRefreshing = false
+                    binding.stats = stats
+                    if (stats?.achievements?.isEmpty() != false) {
+                        tvNoAchievements.visibility = View.VISIBLE
+                        rvAchievements.visibility = View.GONE
+                    } else {
+                        tvNoAchievements.visibility = View.GONE
+                        rvAchievements.visibility = View.VISIBLE
+                        achievementsAdapter.submitList(stats.achievements)
+                    }
                 }
-            })
+            )
 
-            message.observe(viewLifecycleOwner, Observer { message ->
-                Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
-            })
+            message.observe(
+                viewLifecycleOwner,
+                Observer { message ->
+                    Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
+                }
+            )
         }
 
         fetchNewest()
@@ -97,9 +102,8 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun fetchNewest()  {
+    private fun fetchNewest() {
         srlHome.isRefreshing = true
         homeViewModel.getHomeStats()
     }
 }
-

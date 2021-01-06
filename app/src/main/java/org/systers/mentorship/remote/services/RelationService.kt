@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.remote.responses.CustomResponse
-import retrofit2.http.*
+import retrofit2.http.* // ktlint-disable no-wildcard-imports
 
 /**
  * This interface describes the methods related to Mentorship Relation REST API

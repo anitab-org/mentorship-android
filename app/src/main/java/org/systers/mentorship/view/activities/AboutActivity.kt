@@ -1,14 +1,13 @@
 package org.systers.mentorship.view.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_about.*
 import org.systers.mentorship.R
-
 
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -20,7 +19,7 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
         setTitle(R.string.fragment_title_about)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        webView.webViewClient = object: WebViewClient() {
+        webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 if (clearHistory) {
                     clearHistory = false
@@ -43,7 +42,7 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        val url = when(v?.id) {
+        val url = when (v?.id) {
             R.id.btnGit -> getString(R.string.url_github)
             R.id.btnSlack -> getString(R.string.url_zulip)
             R.id.btnWebsite -> getString(R.string.url_website)
@@ -70,7 +69,7 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
         if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
             webView.goBack()
             return true
-        } else if(webView.visibility == View.VISIBLE) {
+        } else if (webView.visibility == View.VISIBLE) {
             hideWebView()
             return true
         }
