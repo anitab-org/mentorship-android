@@ -1,6 +1,5 @@
 package org.systers.mentorship.remote.requests
 
-import com.google.gson.annotations.SerializedName
 import com.squareup.moshi.JsonClass
 
 /**

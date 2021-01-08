@@ -55,7 +55,6 @@ object Dependencies {
     const val moshi_converter_factory = "com.squareup.retrofit2:converter-moshi:${Versions.retrofitVersion}"
     const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
     const val moshi_codegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
-    const val retrofit_gson_converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
     const val retrofit_rxjava2_adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
     const val okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3Version}"
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"

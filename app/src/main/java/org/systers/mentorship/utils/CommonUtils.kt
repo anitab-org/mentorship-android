@@ -1,17 +1,20 @@
 package org.systers.mentorship.utils
 
-import com.google.gson.Gson
+import com.squareup.moshi.Moshi
 import io.reactivex.annotations.NonNull
 import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.remote.responses.JwtPayload
 import retrofit2.HttpException
 
 
 /**
- * Object to store utilities such as a [Gson] instance
+ * Object to store utilities such as a [moshi] instance
  */
 object CommonUtils {
 
-    val gson = Gson()
+    val moshi = Moshi.Builder().build()
+    val errorAdapter = moshi.adapter(CustomResponse::class.java)
+    val jwtadapter = moshi.adapter(JwtPayload::class.java)
 
     /**
      * Extracts a CustomResponse object from a throwable
@@ -21,6 +24,6 @@ object CommonUtils {
     fun getErrorResponse(@NonNull throwable: Throwable): CustomResponse {
         val httpException = throwable as HttpException
         val response = httpException.response().errorBody()?.string()
-        return gson.fromJson(response.toString(), CustomResponse::class.java)
+        return errorAdapter.fromJson(response!!)!!
     }
 }

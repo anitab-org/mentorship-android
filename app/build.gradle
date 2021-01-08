@@ -30,8 +30,8 @@ android {
             initWith debug
         }
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 
     androidExtensions {
@@ -67,7 +67,6 @@ dependencies {
     implementation Dependencies.moshi
     implementation Dependencies.moshi_converter_factory
     kapt Dependencies.moshi_codegen
-    implementation Dependencies.retrofit_gson_converter
     implementation Dependencies.retrofit_rxjava2_adapter
     implementation Dependencies.okhttp3_logging_interceptor
 
