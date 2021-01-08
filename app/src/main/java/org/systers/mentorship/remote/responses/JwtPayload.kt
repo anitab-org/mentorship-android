@@ -1,8 +1,11 @@
 package org.systers.mentorship.remote.responses
 
+import com.squareup.moshi.JsonClass
+
 /**
  * Response encoded in JSON Web Token, holding the token information and the current's user identity
  */
+@JsonClass(generateAdapter = true)
 data class JwtPayload(
         val identity: Int,
         val iat: Long,

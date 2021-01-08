@@ -1,6 +1,7 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -9,28 +10,29 @@ import kotlinx.android.parcel.Parcelize
  * related to MentorshipRelation
  *
  * @param id identifier of the mentorship relation
- * @param actionUserId id of the user that sent the request for this mentorship relation
- * @param sentByMe indication if the current user was the action user
+ * @param action_user_id id of the user that sent the request for this mentorship relation
+ * @param sent_by_me indication if the current user was the action user
  * @param mentor user with mentor role in the relation
  * @param mentee user with mentee role in the relation
- * @param creationDate date of creation unix timestamp
- * @param acceptDate date of acceptance unix timestamp
- * @param startDate start date unix timestamp
- * @param endDate end date unix timestamp
+ * @param creation_date date of creation unix timestamp
+ * @param accept_date date of acceptance unix timestamp
+ * @param start_date start date unix timestamp
+ * @param end_date end date unix timestamp
  * @param state state of the relation (@link to RelationState)
  * @param notes notes related to the mentorship relation
  */
 @Parcelize
+@JsonClass(generateAdapter = true)
 data class Relationship(
         val id: Int,
-        val actionUserId: Int,
-        val sentByMe: Boolean,
+        val action_user_id: Int,
+        val sent_by_me: Boolean,
         val mentor: RelationUserResponse,
         val mentee: RelationUserResponse,
-        val creationDate: Float,
-        val acceptDate: Float,
-        val startDate: Float,
-        val endDate: Float,
+        val creation_date: Float,
+        val accept_date: Float,
+        val start_date: Float,
+        val end_date: Float,
         val state: Int,
         val notes: String): Parcelable {
     /**

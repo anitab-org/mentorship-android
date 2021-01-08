@@ -1,6 +1,7 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -9,16 +10,17 @@ import kotlinx.android.parcel.Parcelize
  *
  * @param id The id of this task
  * @param description The description of this task
- * @param isDone Represents whether this task has been completed
- * @param createdAt Unix timestamp of when this task was created
- * @param completedAt Unix timestamp of when this task was completed
+ * @param is_done Represents whether this task has been completed
+ * @param created_at Unix timestamp of when this task was created
+ * @param completed_at Unix timestamp of when this task was completed
  */
 
 @Parcelize
+@JsonClass(generateAdapter = true)
 data class Task(
         val id: Int,
         val description: String,
-        val isDone: Boolean,
-        val createdAt: Float,
-        val completedAt: Float
+        val is_done: Boolean,
+        val created_at: Float,
+        val completed_at: Float
 ): Parcelable

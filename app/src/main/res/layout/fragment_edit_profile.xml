@@ -93,7 +93,7 @@
                         android:id="@+id/switchAvailableToMentor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@={user.availableToMentor}" />
+                        android:checked="@={user.available_to_mentor}" />
 
                 </LinearLayout>
 
@@ -112,7 +112,7 @@
                         android:id="@+id/switchNeedsMentoring"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@={user.needMentoring}" />
+                        android:checked="@={user.need_mentoring}" />
 
                 </LinearLayout>
 
@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:textColor="@color/black"
-                        android:text="@={user.slackUsername}" />
+                        android:text="@={user.slack_username}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

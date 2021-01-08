@@ -50,7 +50,7 @@ class MembersAdapter (
 
         itemView.tvName.text = item.name
         itemView.tvUsername.text = item.username
-        itemView.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.availableToMentor, item.needMentoring)
+        itemView.tvMentorshipAvailability.text = getMentorshipAvailabilityText(item.available_to_mentor, item.need_mentoring)
 
         val userInterests = item.interests
         val validText = if (userInterests.isNullOrBlank()) NON_VALID_VALUE_REPLACEMENT else userInterests
@@ -105,12 +105,12 @@ class MembersAdapter (
 
         if (map[Constants.NEED_MENTORING_KEY] == "true")
             newFilteredList = newFilteredList.filter {
-                it.needMentoring == true
+                it.need_mentoring == true
             } as MutableList<User>
 
         if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == "true")
             newFilteredList = newFilteredList.filter {
-                it.availableToMentor == true
+                it.available_to_mentor == true
             } as MutableList<User>
 
         val interests = map[INTERESTS_KEY]

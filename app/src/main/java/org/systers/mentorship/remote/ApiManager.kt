@@ -12,6 +12,7 @@ import org.systers.mentorship.remote.services.UserService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
  * A class that represents API Manager. It encapsulates three services: authentication, relation and user.
@@ -44,13 +45,13 @@ class ApiManager {
                 .addInterceptor(CustomInterceptor())
                 .authenticator(TokenAuthenticator())
                 .build()
-        val gson = GsonBuilder()
+      /*  val gson = GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create()
-
+                .create()*/
+        val moshiConverterFactory = MoshiConverterFactory.create()
         val retrofit = Retrofit.Builder()
                 .baseUrl(BaseUrl.apiBaseUrl)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(moshiConverterFactory)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build()

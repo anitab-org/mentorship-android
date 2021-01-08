@@ -1,6 +1,7 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -16,11 +17,12 @@ import kotlinx.android.parcel.Parcelize
  * @param organization organization to which the user might belong
  * @param interests interests the user possesses
  * @param skills skills the user possesses
- * @param needMentoring true, if user wants to be mentored, false if otherwise
- * @param availableToMentor true, if user is available to mentor, false if otherwise
- * @param slackUsername Slack username
+ * @param need_mentoring true, if user wants to be mentored, false if otherwise
+ * @param available_to_mentor true, if user is available to mentor, false if otherwise
+ * @param slack_username Slack username
  */
 @Parcelize
+@JsonClass(generateAdapter = true)
 data class User(
         var id: Int? = null,
         var username: String? = null,
@@ -32,7 +34,7 @@ data class User(
         var organization: String? = null,
         var interests: String? = null,
         var skills: String? = null,
-        var needMentoring: Boolean? = null,
-        var availableToMentor: Boolean? = null,
-        var slackUsername: String? = null
+        var need_mentoring: Boolean? = null,
+        var available_to_mentor: Boolean? = null,
+        var slack_username: String? = null
 ) : Parcelable
