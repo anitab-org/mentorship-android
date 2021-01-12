@@ -1,28 +1,19 @@
 package org.systers.mentorship.viewmodels
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.schedulers.Schedulers
-import org.systers.mentorship.MentorshipApplication
-import org.systers.mentorship.R
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.datamanager.RelationDataManager
-import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
-import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * This class represents the [ViewModel] component used for the Sign Up Activity
  */
 class RelationViewModel : ViewModel() {
 
-    var tag = RelationViewModel::class.java.simpleName!!
+    var tag = RelationViewModel::class.java.simpleName
 
     private val relationDataManager: RelationDataManager = RelationDataManager()
 
@@ -34,7 +25,7 @@ class RelationViewModel : ViewModel() {
     /**
      * Fetches current relation details
      */
-    @SuppressLint("CheckResult")
+    /*@SuppressLint("CheckResult")
     fun getCurrentRelationDetails() {
         relationDataManager.getCurrentRelationship()
                 .subscribeOn(Schedulers.newThread())
@@ -70,12 +61,12 @@ class RelationViewModel : ViewModel() {
                     override fun onComplete() {
                     }
                 })
-    }
+    }*/
 
     /**
      * Cancels a mentorship relation
      */
-    @SuppressLint("CheckResult")
+  /*  @SuppressLint("CheckResult")
     fun cancelMentorshipRelation(relationId: Int) {
         relationDataManager.cancelRelationship(relationId)
                 .subscribeOn(Schedulers.newThread())
@@ -111,6 +102,32 @@ class RelationViewModel : ViewModel() {
                     override fun onComplete() {
                     }
                 })
+    }*/
+
+    fun getCurrentRelationDetails() {
+        viewModelScope.launch {
+            try {
+                mentorshipRelation = relationDataManager.getCurrentRelationship()
+                successfulGet.postValue(true)
+            } catch (throwable: Throwable) {
+                message = CommonUtils.getErrorMessage(throwable, tag)
+                successfulGet.postValue(false)
+            }
+        }
+    }
+
+    fun cancelMentorshipRelation(relationId: Int) {
+        viewModelScope.launch {
+            try {
+
+                message = relationDataManager.cancelRelationship(relationId).message
+                successfulCancel.postValue(true)
+            } catch (throwable: Throwable) {
+                message = CommonUtils.getErrorMessage(throwable, tag)
+                successfulCancel.postValue(false)
+            }
+        }
+
     }
 }
 

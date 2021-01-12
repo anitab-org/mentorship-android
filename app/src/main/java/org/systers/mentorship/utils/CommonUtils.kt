@@ -1,9 +1,14 @@
 package org.systers.mentorship.utils
 
+import android.util.Log
+import androidx.annotation.NonNull
 import com.google.gson.Gson
-import io.reactivex.annotations.NonNull
+import org.systers.mentorship.MentorshipApplication
+import org.systers.mentorship.R
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.HttpException
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 
 
 /**
@@ -23,4 +28,26 @@ object CommonUtils {
         val response = httpException.response().errorBody()?.string()
         return gson.fromJson(response.toString(), CustomResponse::class.java)
     }
+
+    fun getErrorMessage(@NonNull throwable: Throwable, tag: String): String {
+        return when (throwable) {
+            is IOException -> {
+                MentorshipApplication.getContext()
+                        .getString(R.string.error_please_check_internet)
+            }
+            is TimeoutException -> {
+                MentorshipApplication.getContext()
+                        .getString(R.string.error_request_timed_out)
+            }
+            is HttpException -> {
+                getErrorResponse(throwable).message
+            }
+            else -> {
+                Log.e(tag, throwable.localizedMessage)
+                MentorshipApplication.getContext()
+                        .getString(R.string.error_something_went_wrong)
+            }
+        }
+    }
+
 }
