@@ -26,30 +26,8 @@ class HomeViewModel : ViewModel() {
     private val _userStats = MutableLiveData<HomeStatistics>()
     private val _message = SingleLiveEvent<String>()
 
-    val userStats: LiveData<HomeStatistics> = liveData {
-        try {
-            emit(userDataManager.getHomeStats())
-        } catch (throwable: Throwable) {
-            when (throwable) {
-                is IOException -> {
-                    _message.postValue(MentorshipApplication.getContext()
-                            .getString(R.string.error_please_check_internet))
-                }
-                is TimeoutException -> {
-                    _message.postValue(MentorshipApplication.getContext()
-                            .getString(R.string.error_request_timed_out))
-                }
-                is HttpException -> {
-                    _message.postValue(CommonUtils.getErrorResponse(throwable).message)
-                }
-                else -> {
-                    _message.postValue(MentorshipApplication.getContext()
-                            .getString(R.string.error_something_went_wrong))
-                    Log.e(tag, throwable.localizedMessage)
-                }
-            }
-        }
-    }
+    val userStats: LiveData<HomeStatistics>
+        get() = _userStats
 
 
     val message: LiveData<String>
@@ -58,50 +36,34 @@ class HomeViewModel : ViewModel() {
     /**
      * Fetches home stats from getHomeStats method of the UserService
      */
-    /*fun getHomeStats() {
-        userDataManager.getHomeStats()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<HomeStatistics>() {
-
-                    override fun onComplete() {
-                        // Do nothing
-                    }
-
-                    override fun onNext(statistics: HomeStatistics) {
-                        _userStats.value = statistics
-                    }
-
-                    override fun onError(error: Throwable) {
-                        when (error) {
-                            is IOException -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet))
-                            }
-                            is TimeoutException -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out))
-                            }
-                            is HttpException -> {
-                                _message.postValue(CommonUtils.getErrorResponse(error).message)
-                            }
-                            else -> {
-                                _message.postValue(MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong))
-                                        .also { Log.d(tag, error.localizedMessage) }
-                            }
-                        }
-                    }
-
-                })
-                .addTo(compositeDisposable)
-    }*/
 
     fun getHomeStats() {
-        viewModelScope.launch(Dispatchers.IO) {
-            userDataManager.getHomeStats()
+        viewModelScope.launch {
+            try {
+                _userStats.postValue(userDataManager.getHomeStats())
+            } catch (throwable: Throwable) {
+                when (throwable) {
+                    is IOException -> {
+                        _message.postValue(MentorshipApplication.getContext()
+                                .getString(R.string.error_please_check_internet))
+                    }
+                    is TimeoutException -> {
+                        _message.postValue(MentorshipApplication.getContext()
+                                .getString(R.string.error_request_timed_out))
+                    }
+                    is HttpException -> {
+                        _message.postValue(CommonUtils.getErrorResponse(throwable).message)
+                    }
+                    else -> {
+                        _message.postValue(MentorshipApplication.getContext()
+                                .getString(R.string.error_something_went_wrong))
+                        Log.e(tag, throwable.localizedMessage)
+                    }
+                }
+            }
         }
     }
 }
+
 
 

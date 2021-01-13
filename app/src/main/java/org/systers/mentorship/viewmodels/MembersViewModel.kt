@@ -28,63 +28,21 @@ class MembersViewModel : ViewModel() {
     /**
      * Fetches users list from getUsers method of the UserService
      */
-   /* @SuppressLint("CheckResult")
     fun getUsers(isRefresh: Boolean) {
-        if (isRefresh) {
-            userList.clear()
-            currentPage = 1
-        }
-        userDataManager.getUsers(paginationRequest = PaginationRequest(currentPage,ITEMS_PER_PAGE))
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<List<User>>() {
-                    override fun onNext(userListResponse: List<User>) {
-                        userList.addAll(userListResponse)
-                        successful.value = true
-                        currentPage++
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
-                        }
-                        successful.value = false
-                    }
-
-                    override fun onComplete() {
-                    }
-                })
-    }*/
-fun getUsers(isRefresh : Boolean){
-    viewModelScope.launch {
-        if (isRefresh) {
-            userList.clear()
-            currentPage = 1
-        }
-        try {
-            userList.addAll(userDataManager.getUsers(PaginationRequest(currentPage, ITEMS_PER_PAGE)))
-            currentPage++
-            successful.postValue(true)
-        } catch (throwable:Throwable){
-            message = CommonUtils.getErrorMessage(throwable,tag)
-            successful.postValue(false)
+        viewModelScope.launch {
+            if (isRefresh) {
+                userList.clear()
+                currentPage = 1
+            }
+            try {
+                userList.addAll(userDataManager.getUsers(PaginationRequest(currentPage, ITEMS_PER_PAGE)))
+                currentPage++
+                successful.postValue(true)
+            } catch (throwable: Throwable) {
+                message = CommonUtils.getErrorMessage(throwable, tag)
+                successful.postValue(false)
+            }
         }
     }
-}
 }
 

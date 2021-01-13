@@ -7,7 +7,7 @@ object Versions {
     const val targetSdkVersion = 28
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "3.3.1"
+    const val gradleBuildTool = "4.1.1"
     const val dataBinding = "3.2.0-alpha11"
     const val kotlinVersion = "1.4.21"
     const val kotlinCoroutineVersion = "1.3.9"
