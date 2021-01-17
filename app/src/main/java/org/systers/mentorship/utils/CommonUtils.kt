@@ -25,7 +25,7 @@ object CommonUtils {
      */
     fun getErrorResponse(@NonNull throwable: Throwable): CustomResponse {
         val httpException = throwable as HttpException
-        val response = httpException.response().errorBody()?.string()
+        val response = httpException.response()?.errorBody()?.string()
         return gson.fromJson(response.toString(), CustomResponse::class.java)
     }
 
