@@ -5,14 +5,14 @@ buildscript {
         google()
         jcenter()
         maven {
-            url 'https://maven.google.com/'
-            name 'Google'
+            url = uri("https://maven.google.com/")
+            name = "Google"
         }
     }
 
     dependencies {
-        classpath Dependencies.gradle_build_tool
-        classpath Dependencies.kotlin_gradle_plugin
+        classpath (Dependencies.gradle_build_tool)
+        classpath (Dependencies.kotlin_gradle_plugin)
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -24,16 +24,16 @@ allprojects {
         google()
         jcenter()
         maven {
-            url 'https://maven.google.com/'
-            name 'Google'
+            url  = uri("https://maven.google.com/")
+            name  = "Google"
         }
         maven {
-            url 'https://jitpack.io'
-            name 'Jitpack'
+            url  = uri("https://jitpack.io")
+            name  = "Jitpack"
         }
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register("clean",Delete::class){
+    delete(rootProject.buildDir)
 }
