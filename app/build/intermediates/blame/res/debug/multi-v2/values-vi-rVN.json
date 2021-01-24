@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-vi-rVN/values-vi-rVN.xml",
+            "map": [
+                {
+                    "source": "/home/runner/.gradle/caches/transforms-1/files-1.1/AppIntro-5.1.0.aar/82c37f0f2412417a279eca6bee0d710c/res/values-vi-rVN/values-vi-rVN.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,116",
+                        "endColumns": "60,56",
+                        "endOffsets": "111,168"
+                    }
+                }
+            ]
+        }
+    ]
+}

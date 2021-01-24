@@ -1,0 +1,290 @@
+-- Merging decision tree log ---
+application
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:7:5-51:19
+MERGED from [com.github.AppIntro:AppIntro:5.1.0] /home/runner/.gradle/caches/transforms-1/files-1.1/AppIntro-5.1.0.aar/82c37f0f2412417a279eca6bee0d710c/AndroidManifest.xml:11:5-20
+MERGED from [com.github.AppIntro:AppIntro:5.1.0] /home/runner/.gradle/caches/transforms-1/files-1.1/AppIntro-5.1.0.aar/82c37f0f2412417a279eca6bee0d710c/AndroidManifest.xml:11:5-20
+MERGED from [com.google.android.material:material:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/59b248a228f23ec73eeb560aa74aa446/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/59b248a228f23ec73eeb560aa74aa446/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/runner/.gradle/caches/transforms-1/files-1.1/constraintlayout-1.1.3.aar/58e0bcfdcbc005f9ab9a648f3aa37390/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/runner/.gradle/caches/transforms-1/files-1.1/constraintlayout-1.1.3.aar/58e0bcfdcbc005f9ab9a648f3aa37390/AndroidManifest.xml:9:5-20
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/266a3c3422f7e2f3a8c89a59ec72fb0d/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/266a3c3422f7e2f3a8c89a59ec72fb0d/AndroidManifest.xml:22:5-23:19
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/circleimageview-3.0.1.aar/0c5cf3213ff452db059a9cbe2105ffd8/AndroidManifest.xml:9:5-20
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/circleimageview-3.0.1.aar/0c5cf3213ff452db059a9cbe2105ffd8/AndroidManifest.xml:9:5-20
+MERGED from [androidx.core:core:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/e93026bd0e8e1e328839a5841b811100/AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/e93026bd0e8e1e328839a5841b811100/AndroidManifest.xml:22:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:22:5-28:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:22:5-28:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/da87dd78a564191e8bf8cfefcd138363/AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/da87dd78a564191e8bf8cfefcd138363/AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/e93026bd0e8e1e328839a5841b811100/AndroidManifest.xml:22:18-86
+	android:supportsRtl
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:13:9-35
+	android:label
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:11:9-41
+	android:roundIcon
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:12:9-54
+	android:icon
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:10:9-43
+	android:allowBackup
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:14:9-40
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:8:9-46
+	android:usesCleartextTraffic
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:15:9-63
+manifest
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+MERGED from [androidx.databinding:databinding-adapters:3.3.1] /home/runner/.gradle/caches/transforms-1/files-1.1/databinding-adapters-3.3.1.aar/77f189fc7b78cb9ffe420b68a9bf3603/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.databinding:databinding-runtime:3.3.1] /home/runner/.gradle/caches/transforms-1/files-1.1/databinding-runtime-3.3.1.aar/c75271335273d0d21097519c65ac4557/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.AppIntro:AppIntro:5.1.0] /home/runner/.gradle/caches/transforms-1/files-1.1/AppIntro-5.1.0.aar/82c37f0f2412417a279eca6bee0d710c/AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.android.material:material:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/59b248a228f23ec73eeb560aa74aa446/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/runner/.gradle/caches/transforms-1/files-1.1/constraintlayout-1.1.3.aar/58e0bcfdcbc005f9ab9a648f3aa37390/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.0.2] /home/runner/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/d166a161a623e434991cdca761fd1934/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.test.espresso:espresso-idling-resource:3.1.1] /home/runner/.gradle/caches/transforms-1/files-1.1/espresso-idling-resource-3.1.1.aar/7eaed8a7c0a458231f2f511174674088/AndroidManifest.xml:17:1-24:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] /home/runner/.gradle/caches/transforms-1/files-1.1/rxandroid-2.0.2.aar/58430ef0e324dd76767d384d06cd43e3/AndroidManifest.xml:15:1-21:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/266a3c3422f7e2f3a8c89a59ec72fb0d/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.fragment:fragment:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/b04194359c5c5194906132a40bb6526c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0.aar/545cf1037915c69713446a266cf7d74a/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/0041b0ae76bc161d213803fea6991905/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/6093414160ce92c85c23ca1dd27fd7ca/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/cc103f8e402d502a19d3151691cc5fa0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/c4419a0e34b9e223e671e29624f6fdea/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/6f060582181922be22e4af2f5c2386f5/AndroidManifest.xml:17:1-22:12
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/circleimageview-3.0.1.aar/0c5cf3213ff452db059a9cbe2105ffd8/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.transition:transition:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/transition-1.0.0.aar/b75a999aef12c981a0d25df697d8e3f2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/26388a32d18bdcce38af26016220c1b1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/a4f1ecb5c711e30c11c7b42f995cc204/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/f286718ec12fed0be9e52c8e7daf1e8b/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/cfc6f21a49d882c498ed9795322ec2cc/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/ff56d1796a5944531fbc7169003779f7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/cf418c4c2186e2607f28dde245545e89/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/5f2e0bbc622ce5e8c681ccef3e12caa3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/6fc32a61a776c5b764c0778bf8f2e334/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/e93026bd0e8e1e328839a5841b811100/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/a1872ebac5558ddef29cb96cf67a86ca/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/76c44e701587e90dacc630039fbae20e/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/da87dd78a564191e8bf8cfefcd138363/AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/a13a8328bbb1431a55c5a58d9b4a1c60/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/87b74403c8ec3c382886d4b0ab030e60/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/690a2d0c6be47a0a84f112231ef7e059/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/dbef1be635c18313fd93ca0b17b19558/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/2c8b891bd21d467ba19b77e3aed79a70/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/dac05f0ce209def3edef76aa3c7b3120/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/de239c659d652687d10562d5e0b6b10c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/e39fbc3045291d26a164cebb5c7b75a0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/d046d3ee7aa38b9f9c07bbe0591a254e/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+	package
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:3:5-37
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:1-53:12
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:5:22-64
+uses-sdk
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+MERGED from [androidx.databinding:databinding-adapters:3.3.1] /home/runner/.gradle/caches/transforms-1/files-1.1/databinding-adapters-3.3.1.aar/77f189fc7b78cb9ffe420b68a9bf3603/AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-adapters:3.3.1] /home/runner/.gradle/caches/transforms-1/files-1.1/databinding-adapters-3.3.1.aar/77f189fc7b78cb9ffe420b68a9bf3603/AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-runtime:3.3.1] /home/runner/.gradle/caches/transforms-1/files-1.1/databinding-runtime-3.3.1.aar/c75271335273d0d21097519c65ac4557/AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-runtime:3.3.1] /home/runner/.gradle/caches/transforms-1/files-1.1/databinding-runtime-3.3.1.aar/c75271335273d0d21097519c65ac4557/AndroidManifest.xml:22:5-44
+MERGED from [com.github.AppIntro:AppIntro:5.1.0] /home/runner/.gradle/caches/transforms-1/files-1.1/AppIntro-5.1.0.aar/82c37f0f2412417a279eca6bee0d710c/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.AppIntro:AppIntro:5.1.0] /home/runner/.gradle/caches/transforms-1/files-1.1/AppIntro-5.1.0.aar/82c37f0f2412417a279eca6bee0d710c/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.material:material:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/59b248a228f23ec73eeb560aa74aa446/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/59b248a228f23ec73eeb560aa74aa446/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/runner/.gradle/caches/transforms-1/files-1.1/constraintlayout-1.1.3.aar/58e0bcfdcbc005f9ab9a648f3aa37390/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /home/runner/.gradle/caches/transforms-1/files-1.1/constraintlayout-1.1.3.aar/58e0bcfdcbc005f9ab9a648f3aa37390/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.0.2] /home/runner/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/d166a161a623e434991cdca761fd1934/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.0.2] /home/runner/.gradle/caches/transforms-1/files-1.1/appcompat-1.0.2.aar/d166a161a623e434991cdca761fd1934/AndroidManifest.xml:20:5-44
+MERGED from [androidx.test.espresso:espresso-idling-resource:3.1.1] /home/runner/.gradle/caches/transforms-1/files-1.1/espresso-idling-resource-3.1.1.aar/7eaed8a7c0a458231f2f511174674088/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.test.espresso:espresso-idling-resource:3.1.1] /home/runner/.gradle/caches/transforms-1/files-1.1/espresso-idling-resource-3.1.1.aar/7eaed8a7c0a458231f2f511174674088/AndroidManifest.xml:20:5-22:41
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] /home/runner/.gradle/caches/transforms-1/files-1.1/rxandroid-2.0.2.aar/58430ef0e324dd76767d384d06cd43e3/AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.2] /home/runner/.gradle/caches/transforms-1/files-1.1/rxandroid-2.0.2.aar/58430ef0e324dd76767d384d06cd43e3/AndroidManifest.xml:19:5-43
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/266a3c3422f7e2f3a8c89a59ec72fb0d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-extensions-2.0.0.aar/266a3c3422f7e2f3a8c89a59ec72fb0d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/b04194359c5c5194906132a40bb6526c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/fragment-1.0.0.aar/b04194359c5c5194906132a40bb6526c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0.aar/545cf1037915c69713446a266cf7d74a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/recyclerview-1.0.0.aar/545cf1037915c69713446a266cf7d74a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/0041b0ae76bc161d213803fea6991905/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/vectordrawable-animated-1.0.0.aar/0041b0ae76bc161d213803fea6991905/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/6093414160ce92c85c23ca1dd27fd7ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/legacy-support-core-ui-1.0.0.aar/6093414160ce92c85c23ca1dd27fd7ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/cc103f8e402d502a19d3151691cc5fa0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/legacy-support-core-utils-1.0.0.aar/cc103f8e402d502a19d3151691cc5fa0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/c4419a0e34b9e223e671e29624f6fdea/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/loader-1.0.0.aar/c4419a0e34b9e223e671e29624f6fdea/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/6f060582181922be22e4af2f5c2386f5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-viewmodel-2.0.0.aar/6f060582181922be22e4af2f5c2386f5/AndroidManifest.xml:20:5-44
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/circleimageview-3.0.1.aar/0c5cf3213ff452db059a9cbe2105ffd8/AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:3.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/circleimageview-3.0.1.aar/0c5cf3213ff452db059a9cbe2105ffd8/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.transition:transition:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/transition-1.0.0.aar/b75a999aef12c981a0d25df697d8e3f2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/transition-1.0.0.aar/b75a999aef12c981a0d25df697d8e3f2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/26388a32d18bdcce38af26016220c1b1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/vectordrawable-1.0.1.aar/26388a32d18bdcce38af26016220c1b1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/a4f1ecb5c711e30c11c7b42f995cc204/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/viewpager-1.0.0.aar/a4f1ecb5c711e30c11c7b42f995cc204/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/f286718ec12fed0be9e52c8e7daf1e8b/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-1.0.0.aar/f286718ec12fed0be9e52c8e7daf1e8b/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/cfc6f21a49d882c498ed9795322ec2cc/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/drawerlayout-1.0.0.aar/cfc6f21a49d882c498ed9795322ec2cc/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/ff56d1796a5944531fbc7169003779f7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-1.0.0.aar/ff56d1796a5944531fbc7169003779f7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/cf418c4c2186e2607f28dde245545e89/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/customview-1.0.0.aar/cf418c4c2186e2607f28dde245545e89/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/5f2e0bbc622ce5e8c681ccef3e12caa3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-1.0.0.aar/5f2e0bbc622ce5e8c681ccef3e12caa3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/6fc32a61a776c5b764c0778bf8f2e334/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-1.0.0.aar/6fc32a61a776c5b764c0778bf8f2e334/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/e93026bd0e8e1e328839a5841b811100/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.1] /home/runner/.gradle/caches/transforms-1/files-1.1/core-1.0.1.aar/e93026bd0e8e1e328839a5841b811100/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/a1872ebac5558ddef29cb96cf67a86ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-service-2.0.0.aar/a1872ebac5558ddef29cb96cf67a86ca/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/76c44e701587e90dacc630039fbae20e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-runtime-2.0.0.aar/76c44e701587e90dacc630039fbae20e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/da87dd78a564191e8bf8cfefcd138363/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/versionedparcelable-1.0.0.aar/da87dd78a564191e8bf8cfefcd138363/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/a13a8328bbb1431a55c5a58d9b4a1c60/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/cardview-1.0.0.aar/a13a8328bbb1431a55c5a58d9b4a1c60/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/87b74403c8ec3c382886d4b0ab030e60/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/cursoradapter-1.0.0.aar/87b74403c8ec3c382886d4b0ab030e60/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/690a2d0c6be47a0a84f112231ef7e059/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-2.0.0.aar/690a2d0c6be47a0a84f112231ef7e059/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/dbef1be635c18313fd93ca0b17b19558/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-livedata-core-2.0.0.aar/dbef1be635c18313fd93ca0b17b19558/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/2c8b891bd21d467ba19b77e3aed79a70/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/core-runtime-2.0.0.aar/2c8b891bd21d467ba19b77e3aed79a70/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/dac05f0ce209def3edef76aa3c7b3120/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/interpolator-1.0.0.aar/dac05f0ce209def3edef76aa3c7b3120/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/de239c659d652687d10562d5e0b6b10c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/documentfile-1.0.0.aar/de239c659d652687d10562d5e0b6b10c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/e39fbc3045291d26a164cebb5c7b75a0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-1.0.0.aar/e39fbc3045291d26a164cebb5c7b75a0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/d046d3ee7aa38b9f9c07bbe0591a254e/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/print-1.0.0.aar/d046d3ee7aa38b9f9c07bbe0591a254e/AndroidManifest.xml:20:5-44
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+activity#org.systers.mentorship.view.activities.IntroActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:16:9-18:58
+	android:theme
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:18:13-56
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:17:13-58
+activity#org.systers.mentorship.view.activities.AboutActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:19:9-67
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:19:19-64
+activity#org.systers.mentorship.view.activities.FeedbackActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:20:9-79
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:20:19-67
+activity#org.systers.mentorship.view.activities.FilterActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:21:9-23:50
+	android:theme
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:23:13-47
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:22:13-59
+activity#org.systers.mentorship.view.activities.SplashScreenActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:24:9-32:20
+	android:theme
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:26:13-56
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:25:13-65
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:27:13-31:29
+action#android.intent.action.MAIN
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:28:17-69
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:28:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:30:17-77
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:30:27-74
+activity#org.systers.mentorship.view.activities.LoginActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:33:9-35:59
+	android:theme
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:35:13-56
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:34:13-58
+activity#org.systers.mentorship.view.activities.SignUpActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:36:9-39:59
+	android:configChanges
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:38:13-87
+	android:theme
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:39:13-56
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:37:13-59
+activity#org.systers.mentorship.view.activities.MainActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:40:9-42:89
+	android:configChanges
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:42:13-87
+	android:theme
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:41:13-56
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:40:19-63
+activity#org.systers.mentorship.view.activities.RequestDetailActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:43:9-75
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:43:19-72
+activity#org.systers.mentorship.view.activities.MemberProfileActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:44:9-75
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:44:19-72
+activity#org.systers.mentorship.view.activities.SendRequestActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:45:9-73
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:45:19-70
+activity#org.systers.mentorship.view.activities.SettingsActivity
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:46:9-47:89
+	android:configChanges
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:47:13-87
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:46:19-67
+meta-data#preloaded_fonts
+ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:48:9-50:57
+	android:resource
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:50:13-54
+	android:name
+		ADDED from /home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:49:13-43
+provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:23:9-27:43
+	android:authorities
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:25:13-69
+	android:multiprocess
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:27:13-40
+	android:exported
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-1/files-1.1/lifecycle-process-2.0.0.aar/908f8bd2d39132db2d8b8452c86232d1/AndroidManifest.xml:24:13-79

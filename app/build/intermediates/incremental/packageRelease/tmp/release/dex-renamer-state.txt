@@ -1,0 +1,4 @@
+#Sun Jan 24 03:22:14 UTC 2021
+base.0=/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/dex/release/mergeDexRelease/out
+path.0=classes.dex
+renamed.0=classes.dex

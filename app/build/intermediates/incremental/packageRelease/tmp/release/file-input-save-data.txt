@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Sun Jan 24 03:22:14 UTC 2021
+0.baseType=DIRECTORY
+0.base=/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/dex/release/mergeDexRelease/out
+0.path=classes.dex
+0.set=DEX
+count=1

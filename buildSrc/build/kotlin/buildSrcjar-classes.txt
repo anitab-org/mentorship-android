@@ -1,0 +1,1 @@
+/home/runner/work/mentorship-android/mentorship-android/buildSrc/build/classes/kotlin/main/Dependencies.class:/home/runner/work/mentorship-android/mentorship-android/buildSrc/build/classes/kotlin/main/Versions.class

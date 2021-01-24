@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.systers.mentorship"
+    android:versionCode="1"
+    android:versionName="1" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="28" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name="org.systers.mentorship.MentorshipApplication"
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name="org.systers.mentorship.view.activities.IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="org.systers.mentorship.view.activities.AboutActivity" />
+        <activity android:name="org.systers.mentorship.view.activities.FeedbackActivity" />
+        <activity
+            android:name="org.systers.mentorship.view.activities.FilterActivity"
+            android:theme="@style/FilterTheme" />
+        <activity
+            android:name="org.systers.mentorship.view.activities.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.systers.mentorship.view.activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="org.systers.mentorship.view.activities.SignUpActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="org.systers.mentorship.view.activities.MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="org.systers.mentorship.view.activities.RequestDetailActivity" />
+        <activity android:name="org.systers.mentorship.view.activities.MemberProfileActivity" />
+        <activity android:name="org.systers.mentorship.view.activities.SendRequestActivity" />
+        <activity
+            android:name="org.systers.mentorship.view.activities.SettingsActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <provider
+            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+            android:authorities="org.systers.mentorship.lifecycle-process"
+            android:exported="false"
+            android:multiprocess="true" />
+    </application>
+
+</manifest>
