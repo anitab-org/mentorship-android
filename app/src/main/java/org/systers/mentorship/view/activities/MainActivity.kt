@@ -35,7 +35,7 @@ class MainActivity : BaseActivity() {
         if (savedInstanceState == null) {
             showHomeFragment()
         } else {
-            atHome = savedInstanceState.getBoolean("atHome")
+            atHome = savedInstanceState.getBoolean(getString(R.string.at_home))
         }
     }
 
@@ -99,7 +99,7 @@ class MainActivity : BaseActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putBoolean("atHome", atHome)
+        outState.putBoolean(getString(R.string.at_home), atHome)
     }
 
     private fun showToast() {

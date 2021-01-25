@@ -72,7 +72,7 @@ class LoginActivity : BaseActivity() {
         try {
             val tokenExpiredVal = intent.extras!!.getInt(Constants.TOKEN_EXPIRED_EXTRA)
             if (tokenExpiredVal == 0)
-                Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(getRootView(), getString(R.string.session_expired), Snackbar.LENGTH_LONG).show()
         }catch (exception: Exception){}
 
         checkFieldsForEmptyValues()

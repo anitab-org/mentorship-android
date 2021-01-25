@@ -103,12 +103,12 @@ class MembersAdapter (
             }
         }
 
-        if (map[Constants.NEED_MENTORING_KEY] == "true")
+        if (map[Constants.NEED_MENTORING_KEY] == context.getString(R.string.True))
             newFilteredList = newFilteredList.filter {
                 it.needMentoring == true
             } as MutableList<User>
 
-        if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == "true")
+        if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == context.getString(R.string.True))
             newFilteredList = newFilteredList.filter {
                 it.availableToMentor == true
             } as MutableList<User>

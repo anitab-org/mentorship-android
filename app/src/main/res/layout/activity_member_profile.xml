@@ -39,7 +39,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/circleImageView"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
 
             <TextView
@@ -52,7 +52,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvName"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
             <TextView
                 android:id="@+id/tvSlackUsername"
@@ -64,7 +64,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvUsername"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
             <TextView
                 android:id="@+id/tvAvailableToMentor"
@@ -100,7 +100,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNeedMentoring"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
             <TextView
                 android:id="@+id/tvBio"
@@ -112,7 +112,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvInterests"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
             <TextView
                 android:id="@+id/tvLocation"
@@ -124,7 +124,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvBio"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
             <TextView
                 android:id="@+id/tvOccupation"
@@ -136,7 +136,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLocation"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
             <TextView
                 android:id="@+id/tvOrganization"
@@ -148,7 +148,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvOccupation"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
             <TextView
                 android:id="@+id/tvSkills"
@@ -160,7 +160,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvOrganization"
-                tools:text="TextView" />
+                tools:text="@string/text_view" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSendRequest"

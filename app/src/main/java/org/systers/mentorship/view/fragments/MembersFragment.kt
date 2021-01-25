@@ -67,7 +67,7 @@ class MembersFragment : BaseFragment() {
         inflater.inflate(R.menu.menu_members, menu)
         menu.findItem(R.id.search_item)?.let { searchItem ->
             var searchView=searchItem.actionView as SearchView
-            searchView.queryHint="Search members"
+            searchView.queryHint=getString(R.string.search_members)
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextChange(newText: String): Boolean {
                     if(memberListInitialized)

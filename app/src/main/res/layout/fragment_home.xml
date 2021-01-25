@@ -42,7 +42,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Welcome, John" />
+                    tools:text="@string/welcome_john" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvPendingRequests"
@@ -99,7 +99,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/tvPendingRequests"
                     app:layout_constraintTop_toTopOf="@+id/tvPendingRequests"
-                    tools:text="2" />
+                    tools:text="@string/two" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNumberOfAcceptedRequests"
@@ -116,7 +116,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/tvAcceptedRequests"
                     app:layout_constraintTop_toTopOf="@+id/tvAcceptedRequests"
-                    tools:text="1" />
+                    tools:text="@string/one" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNumberOfRejectedRequests"
@@ -133,7 +133,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/tvRejectedRequests"
                     app:layout_constraintTop_toTopOf="@+id/tvRejectedRequests"
-                    tools:text="0" />
+                    tools:text="@string/zero" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvNumberOfCompletedRelations"
@@ -150,7 +150,7 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/tvCompletedRelations"
                     app:layout_constraintTop_toTopOf="@+id/tvCompletedRelations"
-                    tools:text="1" />
+                    tools:text="@string/one" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvRecentAchievementsTitle"
@@ -197,4 +197,3 @@
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>
-
