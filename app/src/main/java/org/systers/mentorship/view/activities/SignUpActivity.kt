@@ -1,9 +1,11 @@
 package org.systers.mentorship.view.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -11,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Register
+import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.utils.checkPasswordSecurity
 import org.systers.mentorship.viewmodels.SignUpViewModel
 
@@ -45,11 +48,19 @@ class SignUpActivity : BaseActivity() {
                     Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
                 }
+                CountingIdlingResourceSingleton.decrement()
             }
         })
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
+        fun View.hideKeyboard(){
+            val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
+        }
 
+        contentView.setOnClickListener {
+            it.hideKeyboard()
+        }
         btnSignUp.setOnClickListener {
 
             name = tiName.editText?.text.toString()
@@ -61,11 +72,12 @@ class SignUpActivity : BaseActivity() {
             isAvailableToMentor = cbMentor.isChecked //old name but works
             isAvailableForBoth = cbBoth.isChecked
 
+            CountingIdlingResourceSingleton.increment()
             if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
-            }
+            } else CountingIdlingResourceSingleton.decrement()
         }
         btnLogin.setOnClickListener {
             navigateToLoginActivity()
@@ -146,4 +158,6 @@ class SignUpActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }
