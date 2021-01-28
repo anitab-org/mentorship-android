@@ -19,7 +19,7 @@ If you want to do manual testing on the application without setting up the devel
 ![apkInstall](https://user-images.githubusercontent.com/16835617/97575669-1db47a80-1a13-11eb-8074-bcac49ee59db.png)
 
 
-For manually testing in physical device tick the option here :
+For Testing on a physical device tick the option here :
 ![Screenshot of Unknown install option ](https://static.apkpure.com/www/static/imgs/unknown_sources.jpg)
 
 Now click the apk to install !
@@ -42,11 +42,11 @@ Now click the apk to install !
 
 ## For running through Android Studio
 1. [Clone the repository](https://github.com/anitab-org/mentorship-android/wiki/Fork,-Clone-&-Remote) follow the instructions here.
-2. Repeat to the step 5 of **Testing on Emulator with APk** 
+2. Repeat step 1-5 of **Testing on Emulator with APk** 
 3. Press the Run 'app' button now as shown 
 ![Run app](https://user-images.githubusercontent.com/16835617/93021832-b5e0d680-f602-11ea-8345-63aab5961895.png)
-4. Wait till the emulator loads up. Rest the IDE would handle ;)  
-5. Now your app is ready to test the any changes you made (*ps: make sure to press run 'app' button to reinstall the app in emulator*)
+4. Wait for the emulator to load up. Rest the IDE would handle. ;)  
+5. Now your app is ready to test any changes made (*ps: make sure to press run 'app' button to reinstall the app in emulator*)
 6. ![Sucess](https://user-images.githubusercontent.com/16835617/93021921-5e8f3600-f603-11ea-9f0c-c0825c32b26b.png)
 
 - Now Test the app as required. :)
