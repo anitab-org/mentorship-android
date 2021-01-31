@@ -24,7 +24,6 @@ Fixes # [ISSUE]
 
 
 ### Checklist:
-
 <!--- **Delete irrelevant options.** --->
 
 - [ ] My PR follows the style guidelines of this project
