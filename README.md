@@ -90,8 +90,8 @@ The repository has the following permanent branches:
 |![Home Page](Screenshots/Home%20Page.png)|![Profile Page](Screenshots/Profile%20Page.png)|![Edit Profile Page](Screenshots/Edit%20Profile%20Page.png)| 
 |![Relations Page](Screenshots/Relations%20Page.png)|![Tasks Page](Screenshots/Tasks%20Page.png)|![Members Page](Screenshots/Members%20Page.png)
 |![Member Profile](Screenshots/Member%20Profile%20Page.png)|![Send Request Page](Screenshots/Send%20Request%20Page.png)|![Requests Page](Screenshots/Requests%20Page.png)|
-|[About Page](Screenshots/About%20Page.png)|![Change Password Page](Screenshots/Change%20Password%20Page.png)|
-![Settings Screen](Screenshots/Logout%20Screen(updated).png)|
+![Change Password Page](Screenshots/Change%20Password%20Page.png)|![Settings Screen](Screenshots/Logout%20Screen(updated).png)|![About_Page](Screenshots/About%20Page.png)|
+
 ## Contact
 
 You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
