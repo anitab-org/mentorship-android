@@ -1,10 +1,10 @@
 ### Description
-Include a summary of the change and relevant motivation/context. List any dependencies that are required for this change.
+<!--- Include a summary of the change and relevant motivation/context. List any dependencies that are required for this change. --->
 
 Fixes # [ISSUE]
 
 ### Type of Change:
-**Delete irrelevant options.**
+<!--- **Delete irrelevant options.** --->
 
 - Code
 - Quality Assurance
@@ -20,11 +20,11 @@ Fixes # [ISSUE]
 
 
 ### How Has This Been Tested?
-Describe the tests you ran to verify your changes. Provide instructions or GIFs so we can reproduce. List any relevant details for your test.
+<!-- Describe the tests you ran to verify your changes. Provide instructions or GIFs so we can reproduce. List any relevant details for your test. -->
 
 
 ### Checklist:
-**Delete irrelevant options.**
+<!--- **Delete irrelevant options.** --->
 
 - [ ] My PR follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code or materials
