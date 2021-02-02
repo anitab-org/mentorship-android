@@ -13,6 +13,7 @@ import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
+import org.systers.mentorship.utils.PreferenceManager
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
@@ -31,43 +32,57 @@ class ProfileViewModel: ViewModel() {
     lateinit var user: User
     lateinit var message: String
 
+    private val sharedPreference : PreferenceManager = PreferenceManager()
+
     /**
      * Fetches the current users full profile
      */
     @SuppressLint("CheckResult")
     fun getProfile() {
-        userDataManager.getUser()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<User>() {
-                    override fun onNext(userprofile: User) {
-                        user = userprofile
-                        successfulGet.value = true
-                    }
-                    override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
+        //fetching the value from shared preferences
+        val userProfile = sharedPreference.getProfileDetails()
+        if (userProfile !== null) {
+            user = userProfile
+            successfulGet.value = true
+        } else {
+            //fetching users full profile via API call
+            userDataManager.getUser()
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(object : DisposableObserver<User>() {
+                        override fun onNext(userprofile: User) {
+                            //putting the value in shared preferences
+                            sharedPreference.putProfileDetails(userprofile)
+                            user = userprofile
+                            successfulGet.value = true
                         }
-                        successfulGet.value = false
-                    }
-                    override fun onComplete() {
-                    }
-                })
+
+                        override fun onError(throwable: Throwable) {
+                            when (throwable) {
+                                is IOException -> {
+                                    message = MentorshipApplication.getContext()
+                                            .getString(R.string.error_please_check_internet)
+                                }
+                                is TimeoutException -> {
+                                    message = MentorshipApplication.getContext()
+                                            .getString(R.string.error_request_timed_out)
+                                }
+                                is HttpException -> {
+                                    message = CommonUtils.getErrorResponse(throwable).message
+                                }
+                                else -> {
+                                    message = MentorshipApplication.getContext()
+                                            .getString(R.string.error_something_went_wrong)
+                                    Log.e(tag, throwable.localizedMessage)
+                                }
+                            }
+                            successfulGet.value = false
+                        }
+
+                        override fun onComplete() {
+                        }
+                    })
+        }
     }
 
     /**
@@ -75,11 +90,15 @@ class ProfileViewModel: ViewModel() {
      */
     @SuppressLint("CheckResult")
     fun updateProfile(user: User) {
+
+        //updating user's data via API call
         userDataManager.updateUser(user)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<CustomResponse>() {
                     override fun onNext(response: CustomResponse) {
+                        //updating data in sharedPreference
+                        sharedPreference.putProfileDetails(user)
                         successfulUpdate.value = true
                     }
                     override fun onError(throwable: Throwable) {

@@ -73,4 +73,6 @@ dependencies {
     implementation Dependencies.lifecycle_viewmodel
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
+
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
