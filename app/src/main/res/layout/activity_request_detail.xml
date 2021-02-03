@@ -24,7 +24,7 @@
         app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/lola_zink" />
+        tools:text="Lola Zink" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNotesLabel"
@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOtherUserName"
-        tools:text="@string/text_view" />
+        tools:text="TextView" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnReject"
@@ -137,7 +137,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRequestNotes"
         app:layout_constraintVertical_bias="0.092"
-        tools:text="@string/text_view" />
+        tools:text="TextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
