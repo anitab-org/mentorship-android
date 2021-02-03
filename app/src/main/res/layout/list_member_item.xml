@@ -32,7 +32,7 @@
             android:transitionName="@string/transition_name"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/larissa" />
+            tools:text="Larissa" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMentorshipAvailability"
@@ -42,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/tvName"
-            tools:text="@string/available_to_mentor_mentee" />
+            tools:text="Available to mentor and be a mentee" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvInterests"
@@ -57,7 +57,7 @@
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/tvMentorshipAvailability"
             app:layout_constraintVertical_bias="1.0"
-            tools:text="@string/interests_webdev_linkedin" />
+            tools:text="Interests: Web Dev, LinkedIn Optimization" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
