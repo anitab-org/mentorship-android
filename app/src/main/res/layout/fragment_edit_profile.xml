@@ -51,7 +51,7 @@
                 android:text="@={user.email}"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                tools:text="@string/email" />
+                tools:text="Email" />
 
             <LinearLayout
                 android:layout_width="match_parent"
