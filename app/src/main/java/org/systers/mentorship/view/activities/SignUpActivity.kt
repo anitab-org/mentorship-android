@@ -102,7 +102,7 @@ class SignUpActivity : BaseActivity() {
         tiEmail.editText?.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 if(!s.toString().matches(emailPattern.toRegex())){
-                    tiEmail.editText?.error="Please Enter a valid email"
+                    tiEmail.editText?.error=getString(R.string.valid_error)
                 }
             }
 
@@ -116,7 +116,7 @@ class SignUpActivity : BaseActivity() {
         tiConfirmPassword.editText?.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 if(!tiPassword.editText?.text.toString().contentEquals(s.toString())){
-                    tiConfirmPassword.editText?.error = "Passwords do not match"
+                    tiConfirmPassword.editText?.error = getString(R.string.password_not_match)
                 }
             }
 
