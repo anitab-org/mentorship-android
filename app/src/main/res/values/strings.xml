@@ -222,21 +222,6 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="mentor_">Mentor:</string>
     <string name="end_date_">End date:</string>
     <string name="notes_">Notes:</string>
-    <string name="mentor_Isabel_Costa">Mentor: Isabel Costa</string>
-    <string name="yesterday">Yesterday</string>
-    <string name="mentee_lolo_zink">Mentee: Lola Zink</string>
-    <string name="end_date_10_09_2018">End date: 10/09/2018</string>
-    <string name="notes_improve_linkedin">Notes: Improve LinkedIn Profile and engagement with recruiters</string>
     <string name="checkbox">CheckBox</string>
-    <string name="larissa">Larissa</string>
-    <string name="available_to_mentor_mentee">Available to mentor and be a mentee</string>
-    <string name="interests_webdev_linkedin">Interests: Web Dev, LinkedIn Optimization</string>
-    <string name="welcome_john">Welcome, John</string>
-    <string name="lola_zink">Lola Zink</string>
-    <string name="sample_achievement">Sample Achievement</string>
-    <string name="text_view">TextView</string>
-    <string name="two">2</string>
-    <string name="one">1</string>
-    <string name="zero">0</string>
 </resources>
 
