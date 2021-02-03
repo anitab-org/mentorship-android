@@ -1,0 +1,65 @@
+# In this workflow, generated APKs are pushed to the anitab-org's mentorship-android repository's apk branch
+# This workflow is triggered when some changes are pushed to the anitab-org's mentorship android repository's develop branch
+
+name: Push APKs to apk branch
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+    name: Generate and push apk to apk branch
+    if: github.repository == 'anitab-org/mentorship-android'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      # Set up JDK
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+         java-version: 1.8
+
+      # Cache gradle
+      - name: Cache Gradle and wrapper
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: cache-${{ runner.os }}-${{ matrix.jdk }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      
+      # Grant Permission to Execute gradle
+      - name: Grant Permissions to Execute
+        run: chmod +x gradlew
+      
+      # Generate Debug and Release APKs
+      - name: Generate APKs
+        run: |
+          ./gradlew :app:assembleDebug --stacktrace
+          ./gradlew :app:assembleRelease --stacktrace
+        
+      - name: Upload APKs as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: APKs
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/release/app-release-unsigned.apk
+      - name: Push APKs to apk branch
+        run: |
+          git config --global user.name "anitab-org"
+          git config --global user.email "opensource@anitab.org"
+          mkdir ~/apk
+          cp app/build/outputs/apk/debug/app-debug.apk ~/apk
+          cp app/build/outputs/apk/release/app-release-unsigned.apk ~/apk
+          git fetch origin
+          git checkout apk
+          mv ~/apk/app-debug.apk $GITHUB_WORKSPACE
+          mv ~/apk/app-release-unsigned.apk $GITHUB_WORKSPACE
+          git add .
+          git commit -m "APK update: GitHub Actions Build $GITHUB_RUN_ID by $GITHUB_ACTOR"
+          git push origin apk
