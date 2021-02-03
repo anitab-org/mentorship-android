@@ -4,18 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!--    <TextView-->
-<!--        android:id="@+id/TaskTitle"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        android:text="@string/task_detail_title"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textSize="20sp"-->
-<!--        />-->
-
     <TextView
         android:id="@+id/TaskDescription"
         android:layout_height="wrap_content"
