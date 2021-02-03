@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:maxLines="1"
         android:ellipsize="end"
-        tools:text="@string/mentor_Isabel_Costa"
+        tools:text="Mentor: Isabel Costa"
         app:layout_constraintEnd_toStartOf="@+id/tvCreationDate"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        tools:text="@string/yesterday"
+        tools:text="Yesterday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
         android:layout_marginStart="16dp"
         android:maxLines="1"
         android:ellipsize="end"
-        tools:text="@string/mentee_lolo_zink"
+        tools:text="Mentee: Lola Zink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
-        tools:text="@string/end_date_10_09_2018"
+        tools:text="End date: 10/09/2018"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEndDate"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="@string/notes_improve_linkedin" />
+        tools:text="Notes: Improve LinkedIn Profile and engagement with recruiters" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivActionUserIndicator"
