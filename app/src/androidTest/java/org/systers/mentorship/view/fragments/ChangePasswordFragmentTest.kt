@@ -1,5 +1,6 @@
 package org.systers.mentorship.view.fragments
 
+import android.content.res.Resources
 import android.view.View
 import android.widget.EditText
 import androidx.annotation.IdRes
@@ -10,6 +11,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.google.android.material.textfield.TextInputLayout
 import org.hamcrest.CoreMatchers
@@ -25,7 +27,9 @@ import org.systers.mentorship.view.activities.SettingsActivity
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ChangePasswordFragmentTest {
 
-    private val PASSWORD_TOO_WEAK = "Your password is too weak! Use at least one small and capital letter, one number and one special sign!"
+    private val res = InstrumentationRegistry.getInstrumentation().targetContext.resources
+    private val PASSWORD_TOO_WEAK = res.getString(R.string.error_password_too_weak)
+    private val PASSWORDS_DO_NOT_MATCH = res.getString(R.string.password_not_match)
 
     // Start the SettingsActivity
     @get:Rule
@@ -58,6 +62,25 @@ class ChangePasswordFragmentTest {
 
         // Checks if the errors are showing with the correct text
         onView(withId(R.id.tilNewPassword)).check(matches(hasTextInputLayoutErrorText(PASSWORD_TOO_WEAK)))
+    }
+
+    /*
+    * This test checks that errors are being displayed correctly when the password do not match
+    * */
+    @Test
+    fun check_if_errors_are_shown_when_passwords_do_not_match() {
+        // launch the Fragment
+        ChangePasswordFragment.newInstance().show(activityTestRule.activity.supportFragmentManager, null)
+
+        enter_credentials(R.id.tilNewPassword,"AnitaB.org@2020")
+        enter_credentials(R.id.tilConfirmPassword, "AnitaB.org")
+
+        // clicks the OK button in the Dialog Fragment
+        onView(withText(R.string.ok)).inRoot(isDialog())
+                .check(matches(isDisplayed())).perform(click())
+
+        // Checks if the errors are showing with the correct text
+        onView(withId(R.id.tilConfirmPassword)).check(matches(hasTextInputLayoutErrorText(PASSWORDS_DO_NOT_MATCH)))
     }
 
     // --- Helper Methods --- //
