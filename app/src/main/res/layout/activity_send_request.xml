@@ -17,7 +17,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:gravity="center_vertical"
-            tools:text="@string/lola_zink"
+            tools:text="Lola Zink"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
