@@ -47,6 +47,8 @@ Please read our [Contributing guidelines](https://github.com/anitab-org/mentorsh
 
 Please follow our [Commit Message Style Guide](https://github.com/anitab-org/mentorship-android/wiki/Commit-Message-Style-Guide) while sending PRs.
 
+Please follow Kotlin official docs for [Coding Conventions](https://kotlinlang.org/docs/reference/coding-conventions.html)to maintain a consistent code style in the repository.
+
 ## Running the UI tests
 
 To run the existing UI tests follow the steps given below:
