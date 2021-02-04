@@ -61,7 +61,7 @@ Additionally, community admins are available to help community members engage wi
 
 ## 7. `Addressing Grievances` 🧾
 
-Only permanent resolutions (such as bans) may be appealed. To appeal a decision of the working group, contact the Systers' Open Source Board at os-board@anitab.org with your appeal and the board will review the case.
+Only permanent resolutions (such as bans) may be appealed. To appeal a decision of the working group, contact AnitaB.org staff at opensource@anitab.org with your appeal and we will review the case.
 
 
 ## 8. `Scope` 💫
