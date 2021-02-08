@@ -50,7 +50,7 @@ Unacceptable behavior from any community member, including sponsors and those wi
 
 Anyone asked to stop unacceptable behavior is expected to comply immediately.
 
-If a community member engages in unacceptable behavior, the community organizers may take any action they deem appropriate, up to and including a temporary ban or permanent expulsion from the community without warning (and without refund in the case of a paid event).
+If a community member engages in unacceptable behavior, the community admins may take any action they deem appropriate, up to and including a temporary ban or permanent expulsion from the community without warning (and without refund in the case of a paid event).
 
 ## 6. `Reporting Guidelines` 🧾
 If you are subject to or witness unacceptable behavior, or have any other concerns, please notify a community admin as soon as possible by emailing opensource@anitab.org. Please read [Reporting Guidelines](REPORTING_GUIDELINES.md) for details.
