@@ -50,18 +50,18 @@ Unacceptable behavior from any community member, including sponsors and those wi
 
 Anyone asked to stop unacceptable behavior is expected to comply immediately.
 
-If a community member engages in unacceptable behavior, the community organizers may take any action they deem appropriate, up to and including a temporary ban or permanent expulsion from the community without warning (and without refund in the case of a paid event).
+If a community member engages in unacceptable behavior, the community admins may take any action they deem appropriate, up to and including a temporary ban or permanent expulsion from the community without warning (and without refund in the case of a paid event).
 
 ## 6. `Reporting Guidelines` 🧾
-If you are subject to or witness unacceptable behavior, or have any other concerns, please notify a community organizer as soon as possible by emailing opensource@anitab.org. Please read [Reporting Guidelines](REPORTING_GUIDELINES.md) for details.
+If you are subject to or witness unacceptable behavior, or have any other concerns, please notify a community admin as soon as possible by emailing opensource@anitab.org. Please read [Reporting Guidelines](REPORTING_GUIDELINES.md) for details.
 
 
 
-Additionally, community admins are available to help community members engage with local law enforcement or to otherwise help those experiencing unacceptable behavior feel safe. In the context of in-person events, organizers will also provide escorts as desired by the person experiencing distress.
+Additionally, community admins are available to help community members engage with local law enforcement or to otherwise help those experiencing unacceptable behavior feel safe. In the context of in-person events, community admins (or event managers) will also provide escorts as desired by the person experiencing distress.
 
 ## 7. `Addressing Grievances` 🧾
 
-Only permanent resolutions (such as bans) may be appealed. To appeal a decision of the working group, contact the Systers' Open Source Board at os-board@anitab.org with your appeal and the board will review the case.
+Only permanent resolutions (such as bans) may be appealed. To appeal a decision of the working group, contact AnitaB.org staff at opensource@anitab.org with your appeal and we will review the case.
 
 
 ## 8. `Scope` 💫
