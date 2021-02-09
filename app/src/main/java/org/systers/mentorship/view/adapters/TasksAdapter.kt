@@ -57,18 +57,6 @@ class TasksAdapter(
         }
         else{
             itemView.cbTask.setOnClickListener {
-//                val builder = AlertDialog.Builder(context)
-//                builder.setTitle(context.getString(R.string.mark_task_title))
-//                builder.setMessage(context.getString(R.string.mark_task_message))
-//                builder.setPositiveButton(context.getString(R.string.yes)){dialog, which ->
-//                    itemView.cbTask.isChecked=true
-//                    markTask(item.id)
-//                }
-//                builder.setNegativeButton(context.getString(R.string.no)){dialog,which ->
-//                    itemView.cbTask.isChecked=false
-//                }
-//                val dialog: AlertDialog = builder.create()
-//                dialog.show()
                 val intent = Intent(context, TaskDetailActivity::class.java)
                 intent.putExtra(TASK, item)
                 intent.putExtra(MENTORSHIP_RELATION, mentorshipRelationship)
