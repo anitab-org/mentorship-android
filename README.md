@@ -63,13 +63,13 @@ The repository has the following permanent branches:
  * **apk** This branch contains the apks for the code in the develop branch. The apks are automatically updated when a commit is pushed to `develop` branch.
 
 ## Screenshots
-|![Introduction Slider](Screenshots/Introduction%20Slider.jpeg)|![SignUp Screen](Screenshots/SignUp%20Screen.jpeg)|![Login Page](Screenshots/Login%20Page.jpeg)| 
+|![Introduction Slider](https://user-images.githubusercontent.com/63957920/107955208-86743280-6fc3-11eb-9d5f-0e1031beb992.jpeg)|![SignUp Screen](https://user-images.githubusercontent.com/63957920/107955263-968c1200-6fc3-11eb-952d-def226ef1174.jpeg)|![Login Page](https://user-images.githubusercontent.com/63957920/107955213-883df600-6fc3-11eb-9d43-768a25f11aff.jpeg)| 
 |:---:|:---:|:---:|
-|![Home Page](Screenshots/Home%20Page.jpeg)|![Profile Page](Screenshots/Profile%20Page.jpeg)|![Edit Profile Page](Screenshots/Edit%20Profile%20Page.jpeg)|
-|![Relations Page](Screenshots/Relations%20Page.jpeg)|![Tasks Page](Screenshots/Tasks%20Page.jpeg)|![Members Page](Screenshots/Members%20Page.jpeg)|
-|![Filter Mumbers Screen](Screenshots/Filter%20Members%20Page.jpeg)|![Member Profile](Screenshots/Member%20Profile%20Page.jpeg)|![Send Request Page](Screenshots/Send%20Request%20Page.jpeg)|
-|![Requests Page](Screenshots/Requests%20Page.jpeg)|![Settings Screen](Screenshots/Settings%20Page.jpeg)|![About Page](Screenshots/About%20Page.jpeg)|
-|![Change Password Page](Screenshots/Change%20Password%20Page.jpeg)|
+|![Home Page](https://user-images.githubusercontent.com/63957920/107955205-84aa6f00-6fc3-11eb-95c7-4db92f18f6df.jpeg)|![Profile Page](https://user-images.githubusercontent.com/63957920/107955253-94c24e80-6fc3-11eb-9463-39aa50cb382c.jpeg)|![Edit Profile Page](https://user-images.githubusercontent.com/63957920/107955188-7f4d2480-6fc3-11eb-8698-66f41d6ae835.jpeg)|
+|![Relations Page](https://user-images.githubusercontent.com/63957920/107955255-955ae500-6fc3-11eb-8d00-2664a2dce0cc.jpeg)|![Tasks Page](https://user-images.githubusercontent.com/63957920/107955267-9724a880-6fc3-11eb-9b20-c11ee5013014.jpeg)|![Members Page](https://user-images.githubusercontent.com/63957920/107955249-9429b800-6fc3-11eb-9a67-9a9cdafcb8ba.jpeg)|
+|![Filter Mumbers Screen](https://user-images.githubusercontent.com/63957920/107955194-81af7e80-6fc3-11eb-8ce7-c08d7e39b22a.jpeg)|![Member Profile](https://user-images.githubusercontent.com/63957920/107955215-8a07b980-6fc3-11eb-90b8-cde542c517bd.jpeg)|![Send Request Page](https://user-images.githubusercontent.com/63957920/107955259-95f37b80-6fc3-11eb-9e4f-5a284d82195a.jpeg)|
+|![Requests Page](https://user-images.githubusercontent.com/63957920/107955257-955ae500-6fc3-11eb-8aec-488ed1cd8e0a.jpeg)|![Settings Screen](https://user-images.githubusercontent.com/63957920/107955260-95f37b80-6fc3-11eb-8862-4e0668c6d6e1.jpeg)|![About Page](https://user-images.githubusercontent.com/63957920/107955159-76f4e980-6fc3-11eb-87f8-464d6e9b9db4.jpeg)|
+|![Change Password Page](https://user-images.githubusercontent.com/63957920/107955177-7bb99d80-6fc3-11eb-8a61-729001a3c330.jpeg)|
 ## Contact
 
 You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
