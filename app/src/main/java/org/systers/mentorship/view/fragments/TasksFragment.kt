@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
+import kotlinx.android.synthetic.main.dialog_add_task.view.*
 import kotlinx.android.synthetic.main.fragment_mentorship_tasks.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -145,22 +147,28 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         builder.setTitle(appContext.getString(R.string.add_new_task))
         val dialogLayout = inflater.inflate(R.layout.dialog_add_task, null)
         builder.setView(dialogLayout)
+        builder.setCancelable(false)
 
         builder.setPositiveButton(appContext.getString(R.string.save)) { _, _ ->
-            val editTextAddTask = dialogLayout.findViewById<EditText>(R.id.etAddTask)
-
-            // validation
-            if (editTextAddTask.text.isNotEmpty() && editTextAddTask.text.length > 2) {
-                taskViewModel.addTask(mentorshipRelation.id, CreateTask(editTextAddTask.text.toString()))
-            } else {
-                Toast.makeText(context, getString(R.string.task_valid_description), Toast.LENGTH_SHORT).show()
-            }
 
         }
         builder.setNegativeButton(appContext.getString(R.string.cancel)) { dialogInterface, i ->
             dialogInterface.dismiss()
         }
-        builder.show()
+
+        val dialog = builder.create()
+        dialog.show()
+        dialog.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            val addTask = dialogLayout.tilEtAddTask
+
+            // validation
+            if (addTask.editText?.text?.isNotEmpty()!! && addTask.editText?.text?.length!! > 2) {
+                taskViewModel.addTask(mentorshipRelation.id, CreateTask(addTask.editText?.text.toString()))
+                dialog.dismiss()
+            } else {
+                dialogLayout.tilEtAddTask.error = getString(R.string.task_valid_description)
+            }
+        }
     }
 
     private fun markTask(taskId: Int){
