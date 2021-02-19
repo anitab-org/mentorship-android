@@ -8,6 +8,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -24,7 +26,8 @@ import org.systers.mentorship.viewmodels.SignUpViewModel
 class SignUpActivity : BaseActivity() {
 
     private val signUpViewModel by lazy {
-        ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+        ViewModelProvider(this).get(SignUpViewModel::class.java)
+
     }
     private lateinit var name: String
     private lateinit var username: String
@@ -34,6 +37,7 @@ class SignUpActivity : BaseActivity() {
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
     private var isAvailableForBoth: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +55,7 @@ class SignUpActivity : BaseActivity() {
                 CountingIdlingResourceSingleton.decrement()
             }
         })
+
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
         fun View.hideKeyboard(){

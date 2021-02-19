@@ -23,7 +23,7 @@ object Versions {
     const val rxKotlin = "2.2.0"
     const val retrofitVersion = "2.3.0"
     const val okHttp3Version = "3.10.0"
-    const val archComponents = "2.0.0"
+    const val archComponents = "2.2.0"
     const val testRule = "1.1.0"
     const val supportAnnotation = "1.0.0"
     const val appIntro = "5.1.0"

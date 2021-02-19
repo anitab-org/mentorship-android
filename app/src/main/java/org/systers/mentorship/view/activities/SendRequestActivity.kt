@@ -2,7 +2,7 @@ package org.systers.mentorship.view.activities
 
 import android.app.DatePickerDialog
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.text.SpannableStringBuilder
@@ -39,7 +39,7 @@ class SendRequestActivity: BaseActivity() {
     private lateinit var pendingSentRelationships: List<Relationship>
     private lateinit var requestsViewModel: RequestsViewModel
     private val sendRequestViewModel by lazy {
-        ViewModelProviders.of(this).get(SendRequestViewModel::class.java)
+        ViewModelProvider(this).get(SendRequestViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -143,7 +143,7 @@ class SendRequestActivity: BaseActivity() {
                 }
             }
         })
-        requestsViewModel = ViewModelProviders.of(this).get(RequestsViewModel::class.java)
+        requestsViewModel = ViewModelProvider(this).get(RequestsViewModel::class.java)
         requestsViewModel.successful.observe(this, Observer {
             successful ->
             if (successful != null) {

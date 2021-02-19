@@ -3,7 +3,7 @@ package org.systers.mentorship.view.fragments
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
@@ -32,7 +32,7 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
     }
 
     private val relationViewModel by lazy {
-        ViewModelProviders.of(this).get(RelationViewModel::class.java)
+        ViewModelProvider(this).get(RelationViewModel::class.java)
     }
     private val activityCast by lazy { activity as MainActivity }
 

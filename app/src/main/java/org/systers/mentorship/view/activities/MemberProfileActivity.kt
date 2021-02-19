@@ -1,7 +1,7 @@
 package org.systers.mentorship.view.activities
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -21,7 +21,7 @@ import org.systers.mentorship.viewmodels.ProfileViewModel
 class MemberProfileActivity : BaseActivity() {
 
     private val memberProfileViewModel by lazy {
-        ViewModelProviders.of(this).get(MemberProfileViewModel::class.java)
+        ViewModelProvider(this).get(MemberProfileViewModel::class.java)
     }
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var userProfile: User
@@ -34,7 +34,7 @@ class MemberProfileActivity : BaseActivity() {
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        profileViewModel= ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        profileViewModel= ViewModelProvider(this).get(ProfileViewModel::class.java)
         profileViewModel.successfulGet.observe(this, Observer {
             successful ->
             if (successful != null) {

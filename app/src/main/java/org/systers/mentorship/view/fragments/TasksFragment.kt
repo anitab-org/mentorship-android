@@ -2,7 +2,7 @@ package org.systers.mentorship.view.fragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,7 +34,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
 
     val appContext = MentorshipApplication.getContext()
     private val taskViewModel by lazy {
-        ViewModelProviders.of(this).get(TasksViewModel::class.java)
+        ViewModelProvider(this).get(TasksViewModel::class.java)
     }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_mentorship_tasks
@@ -65,7 +65,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
             }
         }
         //get tasks
-        taskViewModel.successfulGet.observe(this, Observer {
+        taskViewModel.successfulGet.observe(viewLifecycleOwner, Observer {
 
             successful ->
             if (successful != null) {
@@ -98,7 +98,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         })
 
         //mark tasks as done
-        taskViewModel.successfulUpdate.observe(this, Observer {
+        taskViewModel.successfulUpdate.observe(viewLifecycleOwner, Observer {
             successful ->
             if (successful != null) {
                 if (successful) {
@@ -116,7 +116,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         })
 
         //add task
-        taskViewModel.successfulAdd.observe(this, Observer {
+        taskViewModel.successfulAdd.observe(viewLifecycleOwner, Observer {
             successful ->
             if (successful != null) {
                 if (successful) {

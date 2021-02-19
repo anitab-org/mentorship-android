@@ -1,7 +1,7 @@
 package org.systers.mentorship.view.activities
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -23,7 +23,7 @@ import java.lang.Exception
 class LoginActivity : BaseActivity() {
 
     private val loginViewModel by lazy {
-        ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        ViewModelProvider(this).get(LoginViewModel::class.java)
     }
     private lateinit var username: String
     private lateinit var password: String

@@ -13,7 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
@@ -39,7 +39,7 @@ class EditProfileFragment : DialogFragment() {
     }
 
     private val profileViewModel by lazy {
-        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        ViewModelProvider(this).get(ProfileViewModel::class.java)
     }
     private lateinit var editProfileBinding: FragmentEditProfileBinding
     private lateinit var onDismissListener: DialogInterface.OnDismissListener
@@ -47,7 +47,7 @@ class EditProfileFragment : DialogFragment() {
     lateinit var builder: AlertDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        profileViewModel.successfulUpdate.observe(this, Observer { successful ->
+        profileViewModel.successfulUpdate.observe(viewLifecycleOwner, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -59,7 +59,7 @@ class EditProfileFragment : DialogFragment() {
                 }
             }
         })
-        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog?.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
@@ -145,7 +145,7 @@ class EditProfileFragment : DialogFragment() {
         this.onDismissListener = onDismissListener!!
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         if (onDismissListener != null) {
             onDismissListener.onDismiss(dialog)

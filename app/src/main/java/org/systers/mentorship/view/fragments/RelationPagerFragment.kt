@@ -1,7 +1,7 @@
 package org.systers.mentorship.view.fragments
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
@@ -29,7 +29,7 @@ class RelationPagerFragment : BaseFragment() {
     }
 
     private val relationViewModel by lazy {
-        ViewModelProviders.of(this).get(RelationViewModel::class.java)
+        ViewModelProvider(this).get(RelationViewModel::class.java)
     }
     private val activityCast by lazy { activity as MainActivity }
 
