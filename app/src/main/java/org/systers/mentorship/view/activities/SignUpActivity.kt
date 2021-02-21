@@ -101,11 +101,11 @@ class SignUpActivity : BaseActivity() {
         signUpViewModel.successful.value = null
     }
 
-    private fun validateDetailsOnRuntime(){
-        tiEmail.editText?.addTextChangedListener(object : TextWatcher{
+    private fun validateDetailsOnRuntime() {
+        tiEmail.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(!s.toString().matches(emailPattern.toRegex())){
-                    tiEmail.editText?.error=getString(R.string.valid_error)
+                if (!s.toString().matches(emailPattern.toRegex())) {
+                    tiEmail.editText?.error = getString(R.string.valid_error)
                 }
             }
 
@@ -114,11 +114,10 @@ class SignUpActivity : BaseActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
-
         })
-        tiConfirmPassword.editText?.addTextChangedListener(object: TextWatcher{
+        tiConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(!tiPassword.editText?.text.toString().contentEquals(s.toString())){
+                if (!tiPassword.editText?.text.toString().contentEquals(s.toString())) {
                     tiConfirmPassword.editText?.error = getString(R.string.password_not_match)
                 }
             }
