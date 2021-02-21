@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import org.systers.mentorship.R
+import org.systers.mentorship.databinding.ActivitySignUpBinding
+import org.systers.mentorship.databinding.ActivitySplashScreenBinding
 import org.systers.mentorship.utils.PreferenceManager
 
 /**
@@ -17,10 +19,12 @@ class SplashScreenActivity : AppCompatActivity() {
     private lateinit var runnable: Runnable
     private var SPLASH_DISPLAY_LENGTH: Long = 1000
     private val preferenceManager: PreferenceManager = PreferenceManager()
+    private lateinit var splashScreenBinding: ActivitySplashScreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        splashScreenBinding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(splashScreenBinding.root)
 
         val preferences =
             getSharedPreferences(getString(R.string.intro_prefs), Context.MODE_PRIVATE)

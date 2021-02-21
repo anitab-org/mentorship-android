@@ -42,7 +42,7 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         signUpBinding = ActivitySignUpBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_sign_up)
+        setContentView(signUpBinding.root)
         signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
@@ -105,33 +105,37 @@ class SignUpActivity : BaseActivity() {
     }
 
     private fun validateDetailsOnRuntime(){
-        tiEmail.editText?.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
-                if(!s.toString().matches(emailPattern.toRegex())){
-                    tiEmail.editText?.error=getString(R.string.valid_error)
+        signUpBinding.apply {
+            tiEmail.editText?.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    if (!s.toString().matches(emailPattern.toRegex())) {
+                        tiEmail.editText?.error = getString(R.string.valid_error)
+                    }
                 }
-            }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-
-        })
-        tiConfirmPassword.editText?.addTextChangedListener(object: TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
-                if(!tiPassword.editText?.text.toString().contentEquals(s.toString())){
-                    tiConfirmPassword.editText?.error = getString(R.string.password_not_match)
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 }
-            }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-        })
+            })
+        }
+        signUpBinding.apply {
+            tiConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    if (!tiPassword.editText?.text.toString().contentEquals(s.toString())) {
+                        tiConfirmPassword.editText?.error = getString(R.string.password_not_match)
+                    }
+                }
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                }
+            })
+        }
     }
 
     private fun validateDetails(): Boolean {
