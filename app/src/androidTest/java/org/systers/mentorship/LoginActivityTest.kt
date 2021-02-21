@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.EditText
 import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -21,9 +22,12 @@ import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.view.activities.LoginActivity
 import org.systers.mentorship.view.activities.MainActivity
 
@@ -33,15 +37,15 @@ import org.systers.mentorship.view.activities.MainActivity
  */
 @RunWith(AndroidJUnit4::class)
 class LoginActivityTest {
-    private val EMPTY_USERNAME_ERROR = "Username cannot be empty"
+    private val EMPTY_USERNAME_ERROR = "Username/Email cannot be empty"
     private val EMPTY_PASSWORD_ERROR = "Password cannot be empty"
-    private val INCORRECT_CREDENTIALS_ERROR = "Username or password is incorrect."
+    private val INCORRECT_CREDENTIALS_ERROR = "Something went wrong"
 
     private val INCORRECT_TEST_USERNAME = "blah"
     private val INCORRECT_TEST_PASSWORD = "blah"
 
-    private val CORRECT_TEST_USERNAME = "testusername"
-    private val CORRECT_TEST_PASSWORD = "test_pass"
+    private val CORRECT_TEST_USERNAME = "gamikira"
+    private val CORRECT_TEST_PASSWORD = "Divyansh@2001"
 
     @get:Rule
     var activityRule = ActivityTestRule(LoginActivity::class.java)
@@ -49,6 +53,16 @@ class LoginActivityTest {
     @Rule
     @JvmField
     var intentsRule = IntentsTestRule(MainActivity::class.java)
+
+    @Before
+    fun registerIdlingResource() {
+        IdlingRegistry.getInstance().register(CountingIdlingResourceSingleton.countingIdlingResource)
+    }
+
+    @After
+    fun unregisterIdlingResource() {
+        IdlingRegistry.getInstance().unregister(CountingIdlingResourceSingleton.countingIdlingResource)
+    }
 
     private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
 
@@ -155,7 +169,7 @@ class LoginActivityTest {
 
         // Verify that a Snackbar with a proper message is shown
         onView(withId(com.google.android.material.R.id.snackbar_text))
-            .check(matches(withText("Username or password is wrong.")))
+            .check(matches(withText(INCORRECT_CREDENTIALS_ERROR)))
     }
 
     /**
@@ -186,7 +200,7 @@ class LoginActivityTest {
 
         // Verify that a Snackbar with a proper message is shown
         onView(withId(com.google.android.material.R.id.snackbar_text))
-            .check(matches(withText("Username or password is wrong.")))
+            .check(matches(withText(INCORRECT_CREDENTIALS_ERROR)))
     }
 
     /**

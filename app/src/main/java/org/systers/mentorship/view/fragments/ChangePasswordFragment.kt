@@ -1,14 +1,18 @@
 package org.systers.mentorship.view.fragments
 
 import android.app.Dialog
+import android.content.DialogInterface
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.DialogFragment
 import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
@@ -56,12 +60,24 @@ class ChangePasswordFragment : DialogFragment() {
         builder.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
             dialog.cancel()
         }
-        return builder.create()
+        val passwordDialog = builder.create()
+        passwordDialog.setOnShowListener { passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false }
+
+        changePasswordView.tilConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(confirmPasswordEditable: Editable?) {
+                passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = confirmPasswordEditable!!.isNotEmpty()
+            }
+
+        })
+        return passwordDialog
     }
 
     override fun onResume() {
         super.onResume()
-
         val passwordDialog = dialog as? AlertDialog
         passwordDialog?.setCanceledOnTouchOutside(false)
         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
