@@ -8,7 +8,7 @@ plugins {
 android {
     compileSdkVersion(Versions.compileSdkVersion)
     defaultConfig {
-        applicationId = "org.systers.mentorship"
+        applicationId = "org.anitab.mentorship"
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
         versionCode =  Versions.versionCode
