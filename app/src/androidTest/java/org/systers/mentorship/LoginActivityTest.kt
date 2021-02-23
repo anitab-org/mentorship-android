@@ -39,7 +39,7 @@ import org.systers.mentorship.view.activities.MainActivity
 class LoginActivityTest {
     private val EMPTY_USERNAME_ERROR = "Username/Email cannot be empty"
     private val EMPTY_PASSWORD_ERROR = "Password cannot be empty"
-    private val INCORRECT_CREDENTIALS_ERROR = "Username or password is wrong."
+    private val INCORRECT_CREDENTIALS_ERROR = "Something went wrong"
 
     private val INCORRECT_TEST_USERNAME = "blah"
     private val INCORRECT_TEST_PASSWORD = "blah"
@@ -116,7 +116,6 @@ class LoginActivityTest {
      * with:
      * username: EMPTY
      * password: EMPTY
-     * expected: Empty username and password error
      */
     @Test
     fun testLoginButtonClickedWhenUsernameAndPasswordAreEmpty() {
@@ -133,7 +132,6 @@ class LoginActivityTest {
      * with:
      * username: EMPTY
      * password: PRESENT
-     * expected : Empty username error
      */
     @Test
     fun testLoginButtonClickedWhenUsernameIsEmptyAndPasswordIsFilled() {
@@ -149,7 +147,6 @@ class LoginActivityTest {
      * with:
      * username: PRESENT, correct
      * password: EMPTY
-     * expected: empty password error
      */
     @Test
     fun testLoginButtonClickedWhenUsernameIsFilledAndPasswordIsEmpty() {
@@ -165,7 +162,6 @@ class LoginActivityTest {
      * with:
      * username: PRESENT, incorrect
      * password: PRESENT, incorrect
-     * expected: Incorrect credentials error 
      */
     @Test
     fun testLoginButtonClickedWhenDataIsIncorrect() {
@@ -181,7 +177,6 @@ class LoginActivityTest {
      * by the user are correct.
      * username: PRESENT
      * password: PRESENT
-     * expected: Intent to main activity
      */
     @Test
     fun testLoginButtonClickedWhenDataIsCorrect() {
@@ -198,7 +193,6 @@ class LoginActivityTest {
      * button is clicked with:
      * username: PRESENT, incorrect
      * password: PRESENT, correct
-     * expected: Incorrect credentials error
      */
     @Test
     fun testLoginButtonWhenOnlyUsernameIsIncorrect() {
@@ -214,7 +208,6 @@ class LoginActivityTest {
      * button is clicked with:
      * username: PRESENT, correct
      * password: PRESENT, incorrect
-     * expected: Incorrect credentials error
      */
     @Test
     fun testLoginButtonWhenOnlyPasswordIsIncorrect() {
