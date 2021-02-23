@@ -41,7 +41,7 @@ class RelationPagerFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRelation.setOnRefreshListener { fetchNewest() }
 
-        relationViewModel.successfulGet.observe(this, Observer {
+        relationViewModel.successfulGet.observe(viewLifecycleOwner, Observer {
             successfull ->
             srlRelation.isRefreshing = false
             if (successfull != null) {
