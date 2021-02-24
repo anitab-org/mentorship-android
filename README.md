@@ -16,13 +16,19 @@
 This is the Android client for the Mentorship System.
 
 ## Features
-
+* Once the App is installed user can view an onboarding screen which introduces the app and give user an idea of how it works.
 * A member gets an option to be a Mentor, Mentee or Both.
 * A member can build/customise the app profile with username, bio, skills, interests, location, occupation, etc. anytime. 
-* A member can view a list of other members and search for a member on the Members Page
+* A member can read and know more about Mentorship System including the terms and conditions, privacy and policy and code of conduct.
+* A member can directly access the AnitaB-org Github repo, Zulip chat and website from this App.
+* A member can refresh the every page.
+* A member can view a list of other members and search for a member on the Members Page.
+* A member can search for particular members there in Mentorship System.
+* A member can sort other members on the basis of their name either (A-Z) OR (Z-A), registration date, age.
+* A member can filter other members by the label **need mentoring** or **available to mentor**, interest, location and skills that given while creating profile.
 * A member can either send mentorship requests to other members as a Mentor or Mentee according to their interests or reject mentorship requests from other members.
 * A member can track the number of **Pending Resquests**, **Accepted Requests**, **Rejected Requests**, and **Completed Requests** and view **Recent Achievements** on the Home Page.  
-* A member can view the details of pending, past, all the mentorship reqests in the Requests Page.
+* A member can view the details of pending, past, all the mentorship requests in the Requests Page.
 * A member can create, update, or delete tasks in their current mentorship relation.
 * A member can send feedback about the Mentorship System such as reporting a bug, giving suggestions or other comments.
 * A member can delete their account.
@@ -41,9 +47,11 @@ Please read our [Contributing guidelines](https://github.com/anitab-org/mentorsh
 
 Please follow our [Commit Message Style Guide](https://github.com/anitab-org/mentorship-android/wiki/Commit-Message-Style-Guide) while sending PRs.
 
-## Running the unit tests
+Please follow Kotlin official docs for [Coding Conventions](https://kotlinlang.org/docs/reference/coding-conventions.html)to maintain a consistent code style in the repository.
 
-To run the existing unit tests follow the steps given below:
+## Running the UI tests
+
+To run the existing UI tests follow the steps given below:
 * Connect your Android device or open the emulator.
 * On the terminal type: `./gradlew clean build connectedAndroidTest --stacktrace`
 * If the above command is not working try using the command: `gradlew clean build connectedAndroidTest --stacktrace`
@@ -51,9 +59,9 @@ To run the existing unit tests follow the steps given below:
 * You will get a report generated with a test summary.
 * See the complete report `./mentorship-android/app/build/reports/androidTests/connected/index.html`
 * The report `./mentorship-android/app/build/reports/androidTests/connected/index.html` will show all the testsuites that have passed as well as failed.
-* To get a more detailed explanation about the tests of a particular testsuite visit respective html file of the testsuite .
-For e.g.: `org.systers.mentorship.LoginActivityTest.html` will contain the results of all the tests run under that particular testsuite.
-* You can find the respective html files of the different testsuites under the heading classes in `index.html` report .
+* To get a more detailed explanation about the tests of a particular testsuite visit respective html file of the testsuite.
+  For e.g.: `org.systers.mentorship.LoginActivityTest.html` will contain the results of all the tests run under that particular testsuite.
+* You can find the respective html files of the different testsuites under the heading classes in `index.html` report.
 
 ## Documentation
 

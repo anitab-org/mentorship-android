@@ -3,7 +3,8 @@ package org.systers.mentorship.view.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -35,23 +36,12 @@ class SignUpActivity : BaseActivity() {
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
     private var isAvailableForBoth: Boolean = false
-
-    // checking if any of the fields is empty at an interval of every 1.5 seconds
-    private val handler = Handler()
-    private val checkInput = object : Runnable{
-        override fun run() {
-            getDetails()
-
-            btnSignUp.isEnabled = validateDetails(false)
-
-            handler.postDelayed(this, 1500)
-        }
-    }
+    private var hasEmptyFields: Boolean = false
+    private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-
         signUpViewModel.successful.observe(this, Observer { successful ->
             hideProgressDialog()
             if (successful != null) {
@@ -75,94 +65,210 @@ class SignUpActivity : BaseActivity() {
         contentView.setOnClickListener {
             it.hideKeyboard()
         }
-
         btnSignUp.setOnClickListener {
-            getDetails()
+
+            name = tiName.editText?.text.toString()
+            username = tiUsername.editText?.text.toString()
+            email = tiEmail.editText?.text.toString()
+            password = tiPassword.editText?.text.toString()
+            confirmedPassword = tiConfirmPassword.editText?.text.toString()
+            needsMentoring = cbMentee.isChecked //old name but works
+            isAvailableToMentor = cbMentor.isChecked //old name but works
+            isAvailableForBoth = cbBoth.isChecked
 
             CountingIdlingResourceSingleton.increment()
-            if (validateDetails(true)) {
+            if (validateDetails()) {
                 val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             } else CountingIdlingResourceSingleton.decrement()
         }
-
         btnLogin.setOnClickListener {
             navigateToLoginActivity()
         }
-
         cbTC.setOnCheckedChangeListener { _, b ->
-
-            if(! b) {
-                handler.removeCallbacks(checkInput)
-                btnSignUp.isEnabled = b
-            }
-            else checkInput.run()
+            btnSignUp.isEnabled = b && !hasEmptyFields
         }
+        cbMentee.setOnCheckedChangeListener { _, b ->
+            needsMentoring = b
+            btnSignUp.isEnabled = b && !hasEmptyFields && cbTC.isChecked
+        }
+        cbMentor.setOnCheckedChangeListener { _, b ->
+            isAvailableToMentor = b
+            btnSignUp.isEnabled = b && !hasEmptyFields && cbTC.isChecked
+        }
+        cbBoth.setOnCheckedChangeListener { _, b ->
+            isAvailableForBoth = b
+            btnSignUp.isEnabled = b && !hasEmptyFields && cbTC.isChecked
+        }
+
+        validateDetailsOnRuntime()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         signUpViewModel.successful.removeObservers(this)
         signUpViewModel.successful.value = null
-
-        handler.removeCallbacks(checkInput)
     }
 
-    private fun getDetails(){
-        name = tiName.editText?.text.toString()
-        username = tiUsername.editText?.text.toString()
-        email = tiEmail.editText?.text.toString()
-        password = tiPassword.editText?.text.toString()
-        confirmedPassword = tiConfirmPassword.editText?.text.toString()
-        needsMentoring = cbMentee.isChecked //old name but works
-        isAvailableToMentor = cbMentor.isChecked //old name but works
-        isAvailableForBoth = cbBoth.isChecked
+    private fun validateDetailsOnRuntime(){
+        var isNameEmpty = false
+        var isUserNameEmpty = false
+        var isEmailEmpty = false
+        var isPasswordEmpty = false
+        var isConfirmPasswordEmpty = false
+        tiName.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isNameEmpty = true
+                }
+                else {
+                    isNameEmpty = false
+                    if(!isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                        btnSignUp.isEnabled = true
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+        tiUsername.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isUserNameEmpty = true
+                }
+                else {
+                    isUserNameEmpty = false
+                    if(!isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                        btnSignUp.isEnabled = true
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+        tiEmail.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(!s.toString().matches(emailPattern.toRegex())){
+                    tiEmail.editText?.error=getString(R.string.valid_error)
+                }
+
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isEmailEmpty = true
+                }
+                else {
+                    isEmailEmpty = false
+                    if(!isNameEmpty && !isUserNameEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                        btnSignUp.isEnabled = true
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+        tiPassword.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isPasswordEmpty = true
+                }
+                else {
+                    isPasswordEmpty = false
+                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isConfirmPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                        btnSignUp.isEnabled = true
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+        tiConfirmPassword.editText?.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(!tiPassword.editText?.text.toString().contentEquals(s.toString())){
+                    tiConfirmPassword.editText?.error = getString(R.string.password_not_match)
+                }
+
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isConfirmPasswordEmpty = true
+                }
+                else {
+                    isConfirmPasswordEmpty = false
+                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                        btnSignUp.isEnabled = true
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
     }
 
-    // validateEntries is false => checking if there are empty fields
-    // validateEntries is true => checking validity of the entries for signup
-    private fun validateDetails(validateEntries : Boolean): Boolean {
+    private fun validateDetails(): Boolean {
         var isValid = true
-
-        if(validateEntries) handler.removeCallbacks(checkInput)
-
         if (name.isBlank()) {
-            if(validateEntries) tiName.error = getString(R.string.error_empty_name)
+            tiName.error = getString(R.string.error_empty_name)
             isValid = false
         } else {
             tiName.error = null
         }
 
         if (username.isBlank()) {
-            if(validateEntries) tiUsername.error = getString(R.string.error_empty_username)
+            tiUsername.error = getString(R.string.error_empty_username)
             isValid = false
         } else {
             tiUsername.error = null
         }
 
         if (email.isBlank()) {
-            if(validateEntries) tiEmail.error = getString(R.string.error_empty_email)
+            tiEmail.error = getString(R.string.error_empty_email)
             isValid = false
         } else {
             tiEmail.error = null
         }
 
         if (password.isBlank()) {
-            if(validateEntries) tiPassword.error = getString(R.string.error_empty_password)
+            tiPassword.error = getString(R.string.error_empty_password)
             isValid = false
-        } else if (!password.checkPasswordSecurity() && validateEntries) {
+        } else if (!password.checkPasswordSecurity()) {
             tiPassword.error = getString(R.string.error_password_too_weak)
             isValid = false
         } else {
             tiPassword.error = null
         }
 
-        if (password != confirmedPassword && validateEntries) {
+        if (password != confirmedPassword) {
             tiConfirmPassword.error = getString(R.string.error_not_matching_passwords)
             isValid = false
         } else if (confirmedPassword.isBlank()) {
-            if(validateEntries) tiConfirmPassword.error = getString(R.string.error_empty_password_confirmation)
+            tiConfirmPassword.error = getString(R.string.error_empty_password_confirmation)
             isValid = false
         } else {
             tiConfirmPassword.error = null
@@ -170,12 +276,10 @@ class SignUpActivity : BaseActivity() {
 
         if (!needsMentoring && !isAvailableToMentor && !isAvailableForBoth) {
             isValid = false
-            if(validateEntries){
-                cbMentee.requestFocus()
-                cbMentor.requestFocus()
-                cbBoth.requestFocus()
-                tvNoteSignUp.visibility = View.VISIBLE
-            }
+            cbMentee.requestFocus()
+            cbMentor.requestFocus()
+            cbBoth.requestFocus()
+            tvNoteSignUp.visibility = View.VISIBLE
         } else if (isAvailableForBoth) {
             needsMentoring = true
             isAvailableToMentor = true
