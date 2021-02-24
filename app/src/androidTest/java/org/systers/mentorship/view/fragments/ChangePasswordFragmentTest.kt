@@ -55,6 +55,7 @@ class ChangePasswordFragmentTest {
         ChangePasswordFragment.newInstance().show(activityTestRule.activity.supportFragmentManager, null)
 
         enter_credentials(R.id.tilNewPassword, "ab")
+        enter_credentials(R.id.tilConfirmPassword, "ab")
 
         // clicks the OK button in the Dialog Fragment
         onView(withText(R.string.ok)).inRoot(isDialog())
@@ -92,6 +93,7 @@ class ChangePasswordFragmentTest {
         check(matches(isDisplayed()))
         perform(click())
         perform(typeText(password))
+        perform(closeSoftKeyboard())
     }
 
     // helper method to find Edit Text
