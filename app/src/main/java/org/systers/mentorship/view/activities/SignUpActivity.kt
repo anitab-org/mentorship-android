@@ -36,7 +36,7 @@ class SignUpActivity : BaseActivity() {
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
     private var isAvailableForBoth: Boolean = false
-    private var hasEmptyFields: Boolean = false
+    private var hasEmptyFields: Boolean = true
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,15 +91,15 @@ class SignUpActivity : BaseActivity() {
         }
         cbMentee.setOnCheckedChangeListener { _, b ->
             needsMentoring = b
-            btnSignUp.isEnabled = b && !hasEmptyFields && cbTC.isChecked
+            btnSignUp.isEnabled = (b || isAvailableToMentor || isAvailableForBoth) && !hasEmptyFields && cbTC.isChecked
         }
         cbMentor.setOnCheckedChangeListener { _, b ->
             isAvailableToMentor = b
-            btnSignUp.isEnabled = b && !hasEmptyFields && cbTC.isChecked
+            btnSignUp.isEnabled = (b || needsMentoring || isAvailableForBoth) && !hasEmptyFields && cbTC.isChecked
         }
         cbBoth.setOnCheckedChangeListener { _, b ->
             isAvailableForBoth = b
-            btnSignUp.isEnabled = b && !hasEmptyFields && cbTC.isChecked
+            btnSignUp.isEnabled = (b || isAvailableToMentor || needsMentoring) && !hasEmptyFields && cbTC.isChecked
         }
 
         validateDetailsOnRuntime()
@@ -126,8 +126,11 @@ class SignUpActivity : BaseActivity() {
                 }
                 else {
                     isNameEmpty = false
-                    if(!isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
-                        btnSignUp.isEnabled = true
+                    if(!isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
+                    }
                 }
             }
 
@@ -147,8 +150,11 @@ class SignUpActivity : BaseActivity() {
                 }
                 else {
                     isUserNameEmpty = false
-                    if(!isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
-                        btnSignUp.isEnabled = true
+                    if(!isNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
+                    }
                 }
             }
 
@@ -172,8 +178,11 @@ class SignUpActivity : BaseActivity() {
                 }
                 else {
                     isEmailEmpty = false
-                    if(!isNameEmpty && !isUserNameEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
-                        btnSignUp.isEnabled = true
+                    if(!isNameEmpty && !isUserNameEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
+                    }
                 }
             }
 
@@ -193,8 +202,11 @@ class SignUpActivity : BaseActivity() {
                 }
                 else {
                     isPasswordEmpty = false
-                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isConfirmPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
-                        btnSignUp.isEnabled = true
+                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isConfirmPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
+                    }
                 }
             }
 
@@ -218,8 +230,11 @@ class SignUpActivity : BaseActivity() {
                 }
                 else {
                     isConfirmPasswordEmpty = false
-                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty && cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
-                        btnSignUp.isEnabled = true
+                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
+                    }
                 }
             }
 
