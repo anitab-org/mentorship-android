@@ -7,12 +7,14 @@ object Versions {
     const val targetSdkVersion = 28
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "3.3.1"
+    const val gradleBuildTool = "4.0.1"
     const val dataBinding = "3.2.0-alpha11"
-    const val kotlinVersion = "1.3.21"
+    const val kotlinVersion = "1.4.10"
     const val supportLib = "1.0.0"
-    const val designSupportLib = "1.0.0"
+    const val designSupportLib = "1.1.0-beta01"
+    const val swipeRefreshLayout = "1.1.0"
     const val constraintLayout = "1.1.3"
+    const val viewPager2 = "1.0.0"
     const val junit = "4.12"
     const val extJunit = "1.1.1"
     const val testRunner = "1.1.0"
@@ -61,4 +63,6 @@ object Dependencies {
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
     const val app_intro = "com.github.AppIntro:AppIntro:${Versions.appIntro}"
     const val circule_image_view = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
+    const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
+    const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
 }
