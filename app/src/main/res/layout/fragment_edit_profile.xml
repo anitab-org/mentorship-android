@@ -73,6 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
+                        android:background="@android:color/white"
                         android:textColor="@color/black"
                         android:text="@={user.name}" />
 
@@ -126,6 +127,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.bio}" />
@@ -142,6 +144,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:inputType="textPersonName"
                         android:textColor="@color/black"
                         android:text="@={user.slackUsername}" />
@@ -158,6 +161,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:inputType="textPostalAddress"
                         android:textColor="@color/black"
                         android:text="@={user.location}" />
@@ -174,6 +178,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.occupation}" />
@@ -190,6 +195,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.organization}" />
@@ -206,7 +212,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
+                        android:background="@android:color/white"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.skills}" />
@@ -223,6 +229,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.interests}" />
