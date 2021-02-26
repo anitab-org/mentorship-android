@@ -41,7 +41,8 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:id="@+id/etUsername"
             android:maxLines="1"
             android:inputType="text"/>
@@ -66,7 +67,8 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:id="@+id/etPassword"
             android:maxLines="1"
             android:inputType="textPassword" />
