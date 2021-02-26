@@ -12,6 +12,7 @@ import org.systers.mentorship.R
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.utils.CommonUtils
+import org.systers.mentorship.utils.NetworkStateReceiver
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
@@ -49,6 +50,9 @@ class MemberProfileViewModel : ViewModel() {
                             is IOException -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_please_check_internet)
+                                NetworkStateReceiver.isOnline.observeForever {
+                                    if (it) getUserProfile()
+                                }
                             }
                             is TimeoutException -> {
                                 message = MentorshipApplication.getContext()
