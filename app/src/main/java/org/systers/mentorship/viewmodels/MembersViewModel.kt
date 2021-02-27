@@ -59,7 +59,7 @@ class MembersViewModel : ViewModel() {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_please_check_internet)
                                 NetworkStateReceiver.isOnline.observeForever {
-                                    if (it) getUsers(true)
+                                    if (it) getUsers(isRefresh)
                                 }
                             }
                             is TimeoutException -> {
