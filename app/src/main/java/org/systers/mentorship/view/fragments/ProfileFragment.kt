@@ -9,6 +9,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
+import org.systers.mentorship.applicationClass
 import org.systers.mentorship.databinding.FragmentProfileBinding
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
@@ -29,7 +30,6 @@ class ProfileFragment : BaseFragment() {
     private val profileViewModel by lazy {
         ViewModelProviders.of(this).get(ProfileViewModel::class.java)
     }
-
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -44,19 +44,26 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel.successfulGet.observe(this, Observer {
-            successful ->
-            srlProfile.isRefreshing = false
-            if (successful != null) {
-                if (successful) {
-                    fragmentProfileBinding.user = profileViewModel.user
-                } else {
-                    Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
-                            Snackbar.LENGTH_LONG).show()
+        if(applicationClass.user!=null) {
+            fragmentProfileBinding.user = applicationClass.user
+        }
+        else{
+            fetchNewest()
+            profileViewModel.successfulGet.observe(this, Observer {
+                successful ->
+                srlProfile.isRefreshing = false
+                if (successful != null) {
+                    if (successful) {
+                        fragmentProfileBinding.user = profileViewModel.user
+                    } else {
+                        Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
+                                Snackbar.LENGTH_LONG).show()
+                    }
                 }
-            }
-        })
-        fetchNewest()
+            })
+
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -68,7 +75,7 @@ class ProfileFragment : BaseFragment() {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
                 if(fragmentProfileBinding.user != null){
-                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
+                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(applicationClass.user!!)
                     editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
                         fetchNewest()
                     })
@@ -85,13 +92,16 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun fetchNewest() {
-        srlProfile.isRefreshing = true
-        profileViewModel.getProfile()
+        if(applicationClass.user!=null){
+            srlProfile.isRefreshing = false
+        }else{
+            srlProfile.isRefreshing = true
+            profileViewModel.getProfile()
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
         profileViewModel.successfulGet.removeObservers(activity!!)
         profileViewModel.successfulGet.value = null
     }

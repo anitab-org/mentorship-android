@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import org.systers.mentorship.R
+import org.systers.mentorship.applicationClass
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
 import org.systers.mentorship.utils.EditProfileFragmentErrorStates
@@ -110,6 +111,7 @@ class EditProfileFragment : DialogFragment() {
             }
             if (currentUser != editProfileBinding.user && errors.isEmpty()) {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
+                applicationClass.user = null
             } else if (currentUser == editProfileBinding.user && errors.isEmpty()) {
                 builder.dismiss()
             }
