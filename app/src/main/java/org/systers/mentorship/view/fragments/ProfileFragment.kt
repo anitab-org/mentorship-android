@@ -44,7 +44,7 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel.successfulGet.observe(this, Observer {
+        profileViewModel.successfulGet.observe(viewLifecycleOwner, Observer {
             successful ->
             srlProfile.isRefreshing = false
             if (successful != null) {
@@ -72,7 +72,7 @@ class ProfileFragment : BaseFragment() {
                     editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
                         fetchNewest()
                     })
-                    editProfileFragment.show(fragmentManager, getString(R.string.fragment_title_edit_profile))
+                    editProfileFragment.show(childFragmentManager, getString(R.string.fragment_title_edit_profile))
                 }
                 true
             }
@@ -92,7 +92,7 @@ class ProfileFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
 
-        profileViewModel.successfulGet.removeObservers(activity!!)
+        profileViewModel.successfulGet.removeObservers(requireActivity())
         profileViewModel.successfulGet.value = null
     }
 }

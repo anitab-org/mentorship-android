@@ -7,8 +7,7 @@ object Versions {
     const val targetSdkVersion = 28
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "3.3.1"
-    const val dataBinding = "3.2.0-alpha11"
+    const val gradleBuildTool = "4.1.2"
     const val kotlinVersion = "1.3.21"
     const val supportLib = "1.0.0"
     const val designSupportLib = "1.0.0"
@@ -36,7 +35,6 @@ object Versions {
  */
 object Dependencies {
     const val gradle_build_tool = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
-    const val databinding = "androidx.databinding:compiler:${Versions.dataBinding}"
     const val appCompat= "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"

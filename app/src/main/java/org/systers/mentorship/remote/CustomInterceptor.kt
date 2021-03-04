@@ -5,11 +5,12 @@ import android.text.TextUtils
 import okhttp3.Interceptor
 import okhttp3.Response
 import org.systers.mentorship.utils.PreferenceManager
+import javax.inject.Inject
 
 /**
  * Represents a custom HTTP requests interceptor
  */
-class CustomInterceptor: Interceptor {
+class CustomInterceptor @Inject constructor(): Interceptor {
 
     var preferenceManager: PreferenceManager = PreferenceManager()
 

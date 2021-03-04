@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'dagger.hilt.android.plugin'
+
 android {
     compileSdkVersion Versions.compileSdkVersion
     defaultConfig {
@@ -30,8 +32,8 @@ android {
             initWith debug
         }
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding true
     }
 
     androidExtensions {
@@ -41,7 +43,6 @@ android {
 
 configurations.all {
     resolutionStrategy {
-        forcedModules = [Dependencies.support_annotation]
     }
 }
 
@@ -51,7 +52,6 @@ dependencies {
     implementation Dependencies.design
     implementation Dependencies.constraint_layout
     implementation Dependencies.appCompat
-    kapt Dependencies.databinding
     testImplementation Dependencies.junit
     androidTestImplementation Dependencies.test_runner
     androidTestImplementation Dependencies.test_rules
@@ -73,4 +73,19 @@ dependencies {
     implementation Dependencies.lifecycle_viewmodel
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
+
+    implementation 'com.google.dagger:hilt-android:2.33-beta'
+    kapt 'com.google.dagger:hilt-compiler:2.33-beta'
+
+    // For instrumentation tests
+    androidTestImplementation  'com.google.dagger:hilt-android-testing:2.33-beta'
+    kaptAndroidTest 'com.google.dagger:hilt-compiler:2.33-beta'
+
+    // For local unit tests
+    testImplementation 'com.google.dagger:hilt-android-testing:2.33-beta'
+    kaptTest 'com.google.dagger:hilt-compiler:2.33-beta'
+}
+
+kapt {
+    correctErrorTypes true
 }

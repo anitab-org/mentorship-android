@@ -10,12 +10,12 @@ import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.activities.LoginActivity
-
-class TokenAuthenticator: Authenticator{
+import javax.inject.Inject
+class TokenAuthenticator @Inject constructor() : Authenticator{
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val LOGIN_PATH = "/login"
-    override fun authenticate(route: Route?, response: Response): Request? {
+    override fun authenticate(route: Route, response: Response): Request? {
         if (response.code() == 401) {
 
             if (LOGIN_PATH == response.request().url().encodedPath()) {
