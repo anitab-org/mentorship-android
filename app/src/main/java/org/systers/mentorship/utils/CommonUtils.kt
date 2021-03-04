@@ -9,6 +9,8 @@ import retrofit2.HttpException
 /**
  * Object to store utilities such as a [Gson] instance
  */
+
+//TODO use di here
 object CommonUtils {
 
     val gson = Gson()
