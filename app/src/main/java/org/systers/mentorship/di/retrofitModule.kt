@@ -12,6 +12,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.systers.mentorship.remote.BaseUrl
 import org.systers.mentorship.remote.CustomInterceptor
 import org.systers.mentorship.remote.TokenAuthenticator
+import org.systers.mentorship.remote.services.AuthService
+import org.systers.mentorship.remote.services.RelationService
+import org.systers.mentorship.remote.services.TaskService
+import org.systers.mentorship.remote.services.UserService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -49,6 +53,23 @@ class retrofitModule {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
             .build()
+    }
+
+    @Provides
+    fun provideAuthService(retrofit : Retrofit): AuthService {
+        return retrofit.create(AuthService::class.java)
+    }
+    @Provides
+    fun provideUserService(retrofit : Retrofit): UserService? {
+        return retrofit.create(UserService::class.java)
+    }
+    @Provides
+    fun provideTaskService(retrofit : Retrofit): TaskService? {
+        return retrofit.create(TaskService::class.java)
+    }
+    @Provides
+    fun provideRelationService(retrofit: Retrofit): RelationService? {
+        return retrofit.create(RelationService::class.java)
     }
 
 
