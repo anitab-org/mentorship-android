@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
@@ -18,17 +19,15 @@ import org.systers.mentorship.utils.PreferenceManager
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import javax.inject.Inject
 
 /**
  * This class represents the [ViewModel] component used for the Login Activity
  */
-class LoginViewModel : ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(val authDataManager: AuthDataManager , val preferenceManager: PreferenceManager): ViewModel() {
 
-    var tag = LoginViewModel::class.java.simpleName!!
-
-    private val preferenceManager: PreferenceManager = PreferenceManager()
-    private val authDataManager: AuthDataManager = AuthDataManager()
-
+    var tag = LoginViewModel::class.java.simpleName
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
@@ -58,7 +57,7 @@ class LoginViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()

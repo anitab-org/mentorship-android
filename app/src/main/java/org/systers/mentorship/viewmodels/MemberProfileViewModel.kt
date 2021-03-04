@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -15,15 +16,15 @@ import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import javax.inject.Inject
 
 /**
  * This class represents the [ViewModel] component used for the MemberProfileActivity
  */
-class MemberProfileViewModel : ViewModel() {
+@HiltViewModel
+class MemberProfileViewModel  @Inject constructor(val userDataManager: UserDataManager): ViewModel() {
 
-    var tag = MemberProfileViewModel::class.java.simpleName!!
-
-    private val userDataManager: UserDataManager = UserDataManager()
+    var tag = MemberProfileViewModel::class.java.simpleName
 
     val successful: MediatorLiveData<Boolean> = MediatorLiveData()
     lateinit var message: String

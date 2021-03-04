@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -16,15 +17,15 @@ import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import javax.inject.Inject
 
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
-class ProfileViewModel: ViewModel() {
+@HiltViewModel
+class ProfileViewModel  @Inject constructor(val userDataManager: UserDataManager): ViewModel() {
 
-    var tag = ProfileViewModel::class.java.simpleName!!
-
-    private val userDataManager: UserDataManager = UserDataManager()
+    var tag = ProfileViewModel::class.java.simpleName
 
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()

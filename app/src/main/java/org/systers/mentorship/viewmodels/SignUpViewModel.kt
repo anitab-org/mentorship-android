@@ -11,21 +11,21 @@ import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
+import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import javax.inject.Inject
 
 /**
  * This class represents the [ViewModel] component used for the Sign Up Activity
  */
-class SignUpViewModel : ViewModel() {
+class SignUpViewModel @Inject constructor(val authDataManager: AuthDataManager): ViewModel() {
 
-    var tag = SignUpViewModel::class.java.simpleName!!
-
-    private val authDataManager: AuthDataManager = AuthDataManager()
+    var tag = SignUpViewModel::class.java.simpleName
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String

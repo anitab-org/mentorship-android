@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -15,15 +16,15 @@ import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import javax.inject.Inject
 
 /**
  * This class represents the [ViewModel] used for Request Detail Screen
  */
-class RequestDetailViewModel : ViewModel() {
+@HiltViewModel
+class RequestDetailViewModel @Inject constructor(val relationDataManager: RelationDataManager): ViewModel() {
 
-    var tag = RequestDetailViewModel::class.java.simpleName!!
-
-    private val relationDataManager = RelationDataManager()
+    var tag = RequestDetailViewModel::class.java.simpleName
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String

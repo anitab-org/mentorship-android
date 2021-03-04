@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
@@ -19,17 +20,17 @@ import org.systers.mentorship.utils.SingleLiveEvent
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import javax.inject.Inject
 
 
 /**
  * This class represents the ViewModel for the HomeFragment
  */
-class HomeViewModel : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(val userDataManager: UserDataManager) : ViewModel() {
 
-    private val tag = this::class.java.simpleName!!
-    private val userDataManager by lazy { UserDataManager() }
+    private val tag = this::class.java.simpleName
     private val compositeDisposable by lazy { CompositeDisposable() }
-
     private val _userStats = MutableLiveData<HomeStatistics>()
     private val _message = SingleLiveEvent<String>()
 

@@ -10,6 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Task
+import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.remote.datamanager.TaskDataManager
 import org.systers.mentorship.remote.requests.CreateTask
 import org.systers.mentorship.remote.responses.CustomResponse
@@ -17,17 +18,16 @@ import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import javax.inject.Inject
 
 /**
  * This class represents the [ViewModel] used for Tasks Screen
  */
-class TasksViewModel: ViewModel() {
+class TasksViewModel@Inject constructor(val taskDataManager: TaskDataManager): ViewModel() {
 
-    var tag = TasksViewModel::class.java.simpleName!!
+    var tag = TasksViewModel::class.java.simpleName
 
     lateinit var tasksList: List<Task>
-
-    private val taskDataManager: TaskDataManager = TaskDataManager()
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulAdd: MutableLiveData<Boolean> = MutableLiveData()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
@@ -65,7 +65,7 @@ class TasksViewModel: ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -106,7 +106,7 @@ class TasksViewModel: ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -148,7 +148,7 @@ class TasksViewModel: ViewModel() {
                                             .getString(R.string.error_request_timed_out)
                                 }
                                 is HttpException -> {
-                                    message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                    message = CommonUtils.getErrorResponse(throwable).message
                                 }
                                 else -> {
                                     message = MentorshipApplication.getContext()

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -15,15 +16,15 @@ import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import javax.inject.Inject
 
 /**
  * This class represents the [ViewModel] used for Requests Screen
  */
-class RequestsViewModel : ViewModel() {
+@HiltViewModel
+class RequestsViewModel @Inject constructor(val relationDataManager: RelationDataManager) : ViewModel() {
 
-    var tag = RequestsViewModel::class.java.simpleName!!
-
-    private val relationDataManager = RelationDataManager()
+    var tag = RequestsViewModel::class.java.simpleName
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     val pendingSuccessful: MutableLiveData<Boolean> = MutableLiveData()
@@ -57,7 +58,7 @@ class RequestsViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -98,7 +99,7 @@ class RequestsViewModel : ViewModel() {
                                 .getString(R.string.error_request_timed_out)
                         }
                         is HttpException -> {
-                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            message = CommonUtils.getErrorResponse(throwable).message
                         }
                         else -> {
                             message = MentorshipApplication.getContext()
@@ -143,7 +144,7 @@ class RequestsViewModel : ViewModel() {
                                 .getString(R.string.error_request_timed_out)
                         }
                         is HttpException -> {
-                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            message = CommonUtils.getErrorResponse(throwable).message
                         }
                         else -> {
                             message = MentorshipApplication.getContext()
