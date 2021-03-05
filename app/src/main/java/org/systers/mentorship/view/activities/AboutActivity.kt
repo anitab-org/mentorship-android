@@ -9,7 +9,6 @@ import android.webkit.WebViewClient
 import kotlinx.android.synthetic.main.activity_about.*
 import org.systers.mentorship.R
 
-
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
     private var clearHistory = false
