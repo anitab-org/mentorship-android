@@ -39,12 +39,12 @@ class JWTModule {
 
     @Authtoken
     @Provides
-    fun ProvideAuthToken(preferenceManager: PreferenceManager): String {
+    fun provideAuthToken(preferenceManager: PreferenceManager): String {
         return preferenceManager.authToken
     }
 
     @Provides
-    fun getAuthTokenPayload(@Authtoken authToken: String ,gson: Gson): JwtPayload {
+    fun provideAuthTokenPayload(@Authtoken authToken: String ,gson: Gson): JwtPayload {
         val decodedJwtBody = decodeJwtPayload(authToken)
         return gson.fromJson(decodedJwtBody, JwtPayload::class.java)
     }
