@@ -37,12 +37,20 @@ class JWTModule {
         return body
     }
 
+    /**
+    * Provides the auth token from the shared preferences.
+     * This method is for hilt and should not be called.
+    * */
     @Authtoken
     @Provides
     fun provideAuthToken(preferenceManager: PreferenceManager): String {
         return preferenceManager.authToken
     }
 
+    /**
+     * Provides the auth token payload.
+     * This method is for hilt and should not be called.
+     * */
     @Provides
     fun provideAuthTokenPayload(@Authtoken authToken: String ,gson: Gson): JwtPayload {
         val decodedJwtBody = decodeJwtPayload(authToken)

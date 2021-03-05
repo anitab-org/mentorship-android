@@ -24,6 +24,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class retrofitModule {
+
+    /**
+     * Provides the HttpLoggingInterceptor
+     * This method is for hilt and should not be called.
+     * */
     @Provides
     @Singleton
     fun providesInterceptor(): HttpLoggingInterceptor {
@@ -31,6 +36,11 @@ class retrofitModule {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
     }
+
+    /**
+     * Provides the okHttpClient
+     * This method is for hilt and should not be called.
+     * */
     @Singleton
     @Provides
     fun providesOkHttpClient(interceptor : HttpLoggingInterceptor ,
@@ -42,6 +52,11 @@ class retrofitModule {
             .authenticator(authenticator)
             .build()
     }
+
+    /**
+     * Provides Gson Instance
+     * This method is for hilt and should not be called.
+     * */
     @Provides
     @Singleton
     fun providesGSON(): Gson {
@@ -49,6 +64,11 @@ class retrofitModule {
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .create()
     }
+
+    /**
+     * Provides Retrofit Instance
+     * This method is for hilt and should not be called.
+     * */
     @Provides
     @Singleton
     fun provideRetrofit(gson : Gson , okHttpClient: OkHttpClient): Retrofit {
@@ -60,21 +80,40 @@ class retrofitModule {
             .build()
     }
 
+    /**
+     * Provides AuthService Instance
+     * This method is for hilt and should not be called.
+     * */
     @Provides
     @Singleton
     fun provideAuthService(retrofit : Retrofit): AuthService {
         return retrofit.create(AuthService::class.java)
     }
+
+    /**
+     * Provides UserService Instance
+     * This method is for hilt and should not be called.
+     * */
     @Provides
     @Singleton
     fun provideUserService(retrofit : Retrofit): UserService {
         return retrofit.create(UserService::class.java)
     }
+
+    /**
+     * Provides TaskService Instance
+     * This method is for hilt and should not be called.
+     * */
     @Provides
     @Singleton
     fun provideTaskService(retrofit : Retrofit): TaskService {
         return retrofit.create(TaskService::class.java)
     }
+
+    /**
+     * Provides RelationService Instance
+     * This method is for hilt and should not be called.
+     * */
     @Provides
     @Singleton
     fun provideRelationService(retrofit: Retrofit): RelationService {
