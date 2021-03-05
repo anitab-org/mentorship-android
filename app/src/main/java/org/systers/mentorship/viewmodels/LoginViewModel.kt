@@ -4,23 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import org.systers.mentorship.MentorshipApplication
-import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.AuthDataManager
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.responses.AuthToken
 import org.systers.mentorship.utils.CommonUtils
 import org.systers.mentorship.utils.PreferenceManager
-import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 
 /**

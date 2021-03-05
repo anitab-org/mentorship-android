@@ -16,7 +16,7 @@ import java.lang.annotation.Inherited
 import javax.inject.Inject
 class TokenAuthenticator @Inject constructor(@ApplicationContext val context : Context) : Authenticator{
     @Inject
-    private lateinit var preferenceManager: PreferenceManager
+    lateinit var preferenceManager: PreferenceManager
     private val LOGIN_PATH = "/login"
     override fun authenticate(route: Route, response: Response): Request? {
         if (response.code() == 401) {
