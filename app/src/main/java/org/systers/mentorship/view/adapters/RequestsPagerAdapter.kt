@@ -1,9 +1,9 @@
 package org.systers.mentorship.view.adapters
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
@@ -19,6 +19,7 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
  * @param fm fragment manager
  */
 class RequestsPagerAdapter(
+        private val context: Context ,
         private val requestsList: List<Relationship>,
         fm: FragmentManager,
         private val pendingRequestsList: List<Relationship>
@@ -32,8 +33,6 @@ class RequestsPagerAdapter(
         PAST(1),
         ALL(2)
     }
-
-    val context = MentorshipApplication.getContext()
 
     private val pastList: List<Relationship> by lazy {
         requestsList.filter {
