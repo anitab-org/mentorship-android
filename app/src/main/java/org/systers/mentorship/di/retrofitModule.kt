@@ -19,16 +19,19 @@ import org.systers.mentorship.remote.services.UserService
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class retrofitModule {
     @Provides
+    @Singleton
     fun providesInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
     }
+    @Singleton
     @Provides
     fun providesOkHttpClient(interceptor : HttpLoggingInterceptor ,
                              customInterceptor: CustomInterceptor ,
@@ -40,12 +43,14 @@ class retrofitModule {
             .build()
     }
     @Provides
+    @Singleton
     fun providesGSON(): Gson {
     return GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .create()
     }
     @Provides
+    @Singleton
     fun provideRetrofit(gson : Gson , okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
             .baseUrl(BaseUrl.apiBaseUrl)
@@ -56,19 +61,23 @@ class retrofitModule {
     }
 
     @Provides
+    @Singleton
     fun provideAuthService(retrofit : Retrofit): AuthService {
         return retrofit.create(AuthService::class.java)
     }
     @Provides
-    fun provideUserService(retrofit : Retrofit): UserService? {
+    @Singleton
+    fun provideUserService(retrofit : Retrofit): UserService {
         return retrofit.create(UserService::class.java)
     }
     @Provides
-    fun provideTaskService(retrofit : Retrofit): TaskService? {
+    @Singleton
+    fun provideTaskService(retrofit : Retrofit): TaskService {
         return retrofit.create(TaskService::class.java)
     }
     @Provides
-    fun provideRelationService(retrofit: Retrofit): RelationService? {
+    @Singleton
+    fun provideRelationService(retrofit: Retrofit): RelationService {
         return retrofit.create(RelationService::class.java)
     }
 

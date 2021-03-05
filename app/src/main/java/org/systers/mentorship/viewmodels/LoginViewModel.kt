@@ -1,10 +1,12 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.observers.DisposableObserver
@@ -25,7 +27,7 @@ import javax.inject.Inject
  * This class represents the [ViewModel] component used for the Login Activity
  */
 @HiltViewModel
-class LoginViewModel @Inject constructor(val authDataManager: AuthDataManager , val preferenceManager: PreferenceManager): ViewModel() {
+class LoginViewModel @Inject constructor(@ApplicationContext val context : Context, val authDataManager: AuthDataManager, val preferenceManager: PreferenceManager): ViewModel() {
 
     var tag = LoginViewModel::class.java.simpleName
     val successful: MutableLiveData<Boolean> = MutableLiveData()
@@ -47,24 +49,7 @@ class LoginViewModel @Inject constructor(val authDataManager: AuthDataManager , 
                     }
 
                     override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
-                        }
+                       message = CommonUtils.getErrorMessage(context,throwable,tag)
                         successful.value = false
                     }
 

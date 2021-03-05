@@ -1,10 +1,12 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Log
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -22,7 +24,7 @@ import javax.inject.Inject
  * This class represents the [ViewModel] used for Request Detail Screen
  */
 @HiltViewModel
-class RequestDetailViewModel @Inject constructor(val relationDataManager: RelationDataManager): ViewModel() {
+class RequestDetailViewModel @Inject constructor(@ApplicationContext val context: Context, val relationDataManager: RelationDataManager): ViewModel() {
 
     var tag = RequestDetailViewModel::class.java.simpleName
 
@@ -45,24 +47,7 @@ class RequestDetailViewModel @Inject constructor(val relationDataManager: Relati
                     }
 
                     override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
-                        }
+                        message = CommonUtils.getErrorMessage(context , throwable , tag)
                         successful.value = false
                     }
 
@@ -87,24 +72,7 @@ class RequestDetailViewModel @Inject constructor(val relationDataManager: Relati
                     }
 
                     override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
-                        }
+                        message = CommonUtils.getErrorMessage(context , throwable , tag)
                         successful.value = false
                     }
 
@@ -129,24 +97,7 @@ class RequestDetailViewModel @Inject constructor(val relationDataManager: Relati
                     }
 
                     override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
-                        }
+                        message = CommonUtils.getErrorMessage(context , throwable , tag)
                         successful.value = false
                     }
 

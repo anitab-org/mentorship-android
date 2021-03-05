@@ -12,7 +12,8 @@ import javax.inject.Inject
  */
 class CustomInterceptor @Inject constructor(): Interceptor {
 
-    var preferenceManager: PreferenceManager = PreferenceManager()
+    @Inject
+    lateinit var preferenceManager: PreferenceManager
 
     override fun intercept(@NonNull chain: Interceptor.Chain): Response {
 

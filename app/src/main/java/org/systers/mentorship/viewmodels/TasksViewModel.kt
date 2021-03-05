@@ -1,9 +1,11 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -23,7 +25,7 @@ import javax.inject.Inject
 /**
  * This class represents the [ViewModel] used for Tasks Screen
  */
-class TasksViewModel@Inject constructor(val taskDataManager: TaskDataManager): ViewModel() {
+class TasksViewModel@Inject constructor(@ApplicationContext val context: Context, val taskDataManager: TaskDataManager): ViewModel() {
 
     var tag = TasksViewModel::class.java.simpleName
 
@@ -55,24 +57,7 @@ class TasksViewModel@Inject constructor(val taskDataManager: TaskDataManager): V
                     }
 
                     override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
-                        }
+                        message = CommonUtils.getErrorMessage(context , throwable , tag)
                         successfulGet.value = false
                     }
 
@@ -96,24 +81,7 @@ class TasksViewModel@Inject constructor(val taskDataManager: TaskDataManager): V
                         successfulAdd.value = true
                     }
                     override fun onError(throwable: Throwable) {
-                        when (throwable) {
-                            is IOException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_please_check_internet)
-                            }
-                            is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_request_timed_out)
-                            }
-                            is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message
-                            }
-                            else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
-                                Log.e(tag, throwable.localizedMessage)
-                            }
-                        }
+                        message = CommonUtils.getErrorMessage(context , throwable , tag)
                         successfulAdd.value = false
                     }
                     override fun onComplete() {
@@ -138,24 +106,7 @@ class TasksViewModel@Inject constructor(val taskDataManager: TaskDataManager): V
                             successfulUpdate.value = true
                         }
                         override fun onError(throwable: Throwable) {
-                            when (throwable) {
-                                is IOException -> {
-                                    message = MentorshipApplication.getContext()
-                                            .getString(R.string.error_please_check_internet)
-                                }
-                                is TimeoutException -> {
-                                    message = MentorshipApplication.getContext()
-                                            .getString(R.string.error_request_timed_out)
-                                }
-                                is HttpException -> {
-                                    message = CommonUtils.getErrorResponse(throwable).message
-                                }
-                                else -> {
-                                    message = MentorshipApplication.getContext()
-                                            .getString(R.string.error_something_went_wrong)
-                                    Log.e(tag, throwable.localizedMessage)
-                                }
-                            }
+                            message = CommonUtils.getErrorMessage(context , throwable , tag)
                             successfulUpdate.value = false
                         }
                         override fun onComplete() {

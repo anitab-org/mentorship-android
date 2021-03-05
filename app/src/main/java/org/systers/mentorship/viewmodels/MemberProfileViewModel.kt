@@ -1,10 +1,12 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -22,7 +24,7 @@ import javax.inject.Inject
  * This class represents the [ViewModel] component used for the MemberProfileActivity
  */
 @HiltViewModel
-class MemberProfileViewModel  @Inject constructor(val userDataManager: UserDataManager): ViewModel() {
+class MemberProfileViewModel  @Inject constructor(@ApplicationContext val context : Context , val userDataManager: UserDataManager): ViewModel() {
 
     var tag = MemberProfileViewModel::class.java.simpleName
 
@@ -48,19 +50,18 @@ class MemberProfileViewModel  @Inject constructor(val userDataManager: UserDataM
                     override fun onError(throwable: Throwable) {
                         when (throwable) {
                             is IOException -> {
-                                message = MentorshipApplication.getContext()
+                                message = context
                                         .getString(R.string.error_please_check_internet)
                             }
                             is TimeoutException -> {
-                                message = MentorshipApplication.getContext()
+                                message = context
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
                                 message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
-                                message = MentorshipApplication.getContext()
-                                        .getString(R.string.error_something_went_wrong)
+                                message = context.getString(R.string.error_something_went_wrong)
                                 Log.e(tag, throwable.localizedMessage)
                             }
                         }
