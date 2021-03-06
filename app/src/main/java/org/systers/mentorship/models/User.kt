@@ -1,6 +1,8 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -20,8 +22,10 @@ import kotlinx.android.parcel.Parcelize
  * @param availableToMentor true, if user is available to mentor, false if otherwise
  * @param slackUsername Slack username
  */
+@Entity(tableName="userProfileTable")
 @Parcelize
 data class User(
+        @PrimaryKey(autoGenerate = false)
         var id: Int? = null,
         var username: String? = null,
         var name: String? = null,

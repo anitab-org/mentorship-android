@@ -110,6 +110,7 @@ class EditProfileFragment : DialogFragment() {
             }
             if (currentUser != editProfileBinding.user && errors.isEmpty()) {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
+                profileViewModel.deleteUserProfile()
             } else if (currentUser == editProfileBinding.user && errors.isEmpty()) {
                 builder.dismiss()
             }

@@ -29,6 +29,8 @@ object Versions {
     const val appIntro = "5.1.0"
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
+    const val roomVer = "2.2.6"
+
 }
 
 /**
@@ -61,4 +63,11 @@ object Dependencies {
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
     const val app_intro = "com.github.AppIntro:AppIntro:${Versions.appIntro}"
     const val circule_image_view = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
+    const val room_run = "androidx.room:room-runtime:${Versions.roomVer}"
+    const val room_com = "androidx.room:room-compiler:${Versions.roomVer}"
+    const val room_support = "androidx.room:room-ktx:${Versions.roomVer}"
+    const val room_test = "androidx.room:room-testing:${Versions.roomVer}"
+    const val lifecycle_common = "androidx.lifecycle:lifecycle-common-java8:${Versions.rxKotlin}"
+    const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.rxKotlin}"
+
 }
