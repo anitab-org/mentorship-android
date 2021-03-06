@@ -14,7 +14,6 @@ import org.systers.mentorship.view.activities.LoginActivity
 class TokenAuthenticator: Authenticator{
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
-
     private val LOGIN_PATH = "/login"
     override fun authenticate(route: Route?, response: Response): Request? {
         if (response.code() == 401) {
