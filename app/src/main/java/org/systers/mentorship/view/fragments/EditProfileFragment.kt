@@ -47,6 +47,7 @@ class EditProfileFragment : DialogFragment() {
     private lateinit var currentUser: User
     lateinit var builder: AlertDialog
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         profileViewModel.successfulUpdate.observe(this, Observer { successful ->
             (activity as MainActivity).hideProgressDialog()
@@ -112,10 +113,10 @@ class EditProfileFragment : DialogFragment() {
             if (currentUser != editProfileBinding.user && errors.isEmpty()) {
                 profileViewModel.updateProfile(editProfileBinding.user!!)
                 applicationClass.user = null
+                profileViewModel.deleteUserProfile()
             } else if (currentUser == editProfileBinding.user && errors.isEmpty()) {
                 builder.dismiss()
             }
-
         }
     }
 
@@ -153,4 +154,5 @@ class EditProfileFragment : DialogFragment() {
             onDismissListener.onDismiss(dialog)
         }
     }
+
 }

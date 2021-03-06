@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.applicationClass
 import org.systers.mentorship.databinding.FragmentProfileBinding
+import org.systers.mentorship.models.User
 import org.systers.mentorship.viewmodels.ProfileViewModel
 
 /**
@@ -27,6 +28,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
+    private lateinit var userProfile: User
     private val profileViewModel by lazy {
         ViewModelProviders.of(this).get(ProfileViewModel::class.java)
     }
@@ -43,7 +45,6 @@ class ProfileFragment : BaseFragment() {
         setHasOptionsMenu(true)
 
         srlProfile.setOnRefreshListener { fetchNewest() }
-
         if(applicationClass.user!=null) {
             fragmentProfileBinding.user = applicationClass.user
         }
@@ -64,6 +65,30 @@ class ProfileFragment : BaseFragment() {
 
         }
 
+
+        profileViewModel.getUserProfileFromDatabase.observe(this, Observer { user->
+            if(user!=null){
+                srlProfile.isRefreshing = false
+                fragmentProfileBinding.user = user
+                userProfile = user
+            }else{
+                fetchNewest()
+                profileViewModel.successfulGet.observe(this, Observer {
+                    successful ->
+                    srlProfile.isRefreshing = false
+                    if (successful != null) {
+                        if (successful) {
+                            fragmentProfileBinding.user = profileViewModel.user
+                            insertDataToDatabase(profileViewModel.user)
+                        } else {
+                            Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
+                                    Snackbar.LENGTH_LONG).show()
+                        }
+                    }
+                })
+            }
+        })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -76,6 +101,7 @@ class ProfileFragment : BaseFragment() {
             R.id.menu_edit_profile -> {
                 if(fragmentProfileBinding.user != null){
                     var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(applicationClass.user!!)
+                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(userProfile)
                     editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
                         fetchNewest()
                     })
@@ -104,5 +130,12 @@ class ProfileFragment : BaseFragment() {
         super.onDestroy()
         profileViewModel.successfulGet.removeObservers(activity!!)
         profileViewModel.successfulGet.value = null
+    }
+
+    private fun insertDataToDatabase(userprofile: User){
+        profileViewModel.storeUserProfile(userprofile)
+    }
+    private fun updateUserProfile(userProfile: User){
+        profileViewModel.updateProfile(userProfile)
     }
 }

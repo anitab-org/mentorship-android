@@ -1,15 +1,19 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.applicationClass
+import org.systers.mentorship.data.userProfileDatabase
+import org.systers.mentorship.data.userProfileRepo
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
@@ -21,7 +25,7 @@ import java.util.concurrent.TimeoutException
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel(application: Application): AndroidViewModel(application) {
 
     var tag = ProfileViewModel::class.java.simpleName!!
 
@@ -31,6 +35,23 @@ class ProfileViewModel: ViewModel() {
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var user: User
     lateinit var message: String
+    val getUserProfileFromDatabase: LiveData<User>
+    private val repo: userProfileRepo
+    init {
+        val UserDao = userProfileDatabase.getDatabase(application).userProfileDao()
+        repo = userProfileRepo(UserDao)
+        getUserProfileFromDatabase = repo.getUserProfile
+    }
+    fun storeUserProfile(userprofile: User){
+        viewModelScope.launch(Dispatchers.IO){
+            repo.storeUserProfile(userprofile)
+        }
+    }
+    fun deleteUserProfile(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.deleteUserProfile()
+        }
+    }
 
     /**
      * Fetches the current users full profile

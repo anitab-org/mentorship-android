@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -73,4 +77,11 @@ dependencies {
     implementation Dependencies.lifecycle_viewmodel
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
+    //Room database
+    implementation Dependencies.room_run
+    kapt Dependencies.room_com
+    implementation Dependencies.room_support
+    testImplementation Dependencies.room_test
+    implementation Dependencies.lifecycle_common
+    implementation Dependencies.lifecycle_viewmodel_ktx
 }
