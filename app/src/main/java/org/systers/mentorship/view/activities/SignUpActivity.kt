@@ -87,7 +87,7 @@ class SignUpActivity : BaseActivity() {
             navigateToLoginActivity()
         }
         cbTC.setOnCheckedChangeListener { _, b ->
-            btnSignUp.isEnabled = b && !hasEmptyFields
+            btnSignUp.isEnabled = b && !hasEmptyFields && (isAvailableToMentor || needsMentoring || isAvailableForBoth)
         }
         cbMentee.setOnCheckedChangeListener { _, b ->
             needsMentoring = b
@@ -112,11 +112,11 @@ class SignUpActivity : BaseActivity() {
     }
 
     private fun validateDetailsOnRuntime(){
-        var isNameEmpty = false
-        var isUserNameEmpty = false
-        var isEmailEmpty = false
-        var isPasswordEmpty = false
-        var isConfirmPasswordEmpty = false
+        var isNameEmpty = true
+        var isUserNameEmpty = true
+        var isEmailEmpty = true
+        var isPasswordEmpty = true
+        var isConfirmPasswordEmpty = true
         tiName.editText?.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 if(s.toString().isEmpty()) {
