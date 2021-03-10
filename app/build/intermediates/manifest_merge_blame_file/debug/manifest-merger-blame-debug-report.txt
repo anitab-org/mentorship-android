@@ -1,0 +1,131 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="org.anitab.mentorship"
+4    android:versionCode="1"
+5    android:versionName="1" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:5:5-67
+11-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:5:22-64
+12
+13    <application
+14        android:name="org.systers.mentorship.MentorshipApplication"
+14-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:8:9-46
+15        android:allowBackup="true"
+15-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:9:9-35
+16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+16-->[androidx.core:core:1.1.0] /home/runner/.gradle/caches/transforms-2/files-2.1/e5b9f7eaab321e08a0a51f9ef574ee7a/core-1.1.0/AndroidManifest.xml:24:18-86
+17        android:debuggable="true"
+18        android:icon="@mipmap/ic_launcher"
+18-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:10:9-43
+19        android:label="@string/app_name"
+19-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:11:9-41
+20        android:roundIcon="@mipmap/ic_launcher_round"
+20-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:12:9-54
+21        android:supportsRtl="true"
+21-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:13:9-35
+22        android:theme="@style/AppTheme"
+22-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:14:9-40
+23        android:usesCleartextTraffic="true" >
+23-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:15:9-63
+24        <activity
+24-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:16:9-18:58
+25            android:name="org.systers.mentorship.view.activities.IntroActivity"
+25-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:17:13-58
+26            android:theme="@style/AppTheme.NoActionBar" />
+26-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:18:13-56
+27        <activity android:name="org.systers.mentorship.view.activities.AboutActivity" />
+27-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:19:9-67
+27-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:19:19-64
+28        <activity android:name="org.systers.mentorship.view.activities.FeedbackActivity" />
+28-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:20:9-79
+28-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:20:19-67
+29        <activity
+29-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:21:9-23:50
+30            android:name="org.systers.mentorship.view.activities.FilterActivity"
+30-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:22:13-59
+31            android:theme="@style/FilterTheme" />
+31-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:23:13-47
+32        <activity
+32-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:24:9-32:20
+33            android:name="org.systers.mentorship.view.activities.SplashScreenActivity"
+33-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:25:13-65
+34            android:theme="@style/AppTheme.NoActionBar" >
+34-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:26:13-56
+35            <intent-filter>
+35-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:27:13-31:29
+36                <action android:name="android.intent.action.MAIN" />
+36-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:28:17-69
+36-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:28:25-66
+37
+38                <category android:name="android.intent.category.LAUNCHER" />
+38-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:30:17-77
+38-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:30:27-74
+39            </intent-filter>
+40        </activity>
+41        <activity
+41-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:33:9-36:59
+42            android:name="org.systers.mentorship.view.activities.LoginActivity"
+42-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:34:13-58
+43            android:launchMode="singleTask"
+43-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:35:13-44
+44            android:theme="@style/AppTheme.NoActionBar" />
+44-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:36:13-56
+45        <activity
+45-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:37:9-40:59
+46            android:name="org.systers.mentorship.view.activities.SignUpActivity"
+46-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:38:13-59
+47            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+47-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:39:13-87
+48            android:theme="@style/AppTheme.NoActionBar" />
+48-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:40:13-56
+49        <activity
+49-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:41:9-43:89
+50            android:name="org.systers.mentorship.view.activities.MainActivity"
+50-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:41:19-63
+51            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+51-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:43:13-87
+52            android:theme="@style/AppTheme.NoActionBar" />
+52-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:42:13-56
+53        <activity android:name="org.systers.mentorship.view.activities.RequestDetailActivity" />
+53-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:44:9-75
+53-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:44:19-72
+54        <activity android:name="org.systers.mentorship.view.activities.MemberProfileActivity" />
+54-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:45:9-75
+54-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:45:19-72
+55        <activity android:name="org.systers.mentorship.view.activities.SendRequestActivity" />
+55-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:46:9-73
+55-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:46:19-70
+56        <activity
+56-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:47:9-48:89
+57            android:name="org.systers.mentorship.view.activities.SettingsActivity"
+57-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:47:19-67
+58            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
+58-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:48:13-87
+59
+60        <meta-data
+60-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:49:9-51:57
+61            android:name="preloaded_fonts"
+61-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:50:13-43
+62            android:resource="@array/preloaded_fonts" />
+62-->/home/runner/work/mentorship-android/mentorship-android/app/src/main/AndroidManifest.xml:51:13-54
+63
+64        <provider
+64-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-2/files-2.1/aa6a4f300c89fa2784aa07e59e4a2f36/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:23:9-27:43
+65            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+65-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-2/files-2.1/aa6a4f300c89fa2784aa07e59e4a2f36/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:24:13-79
+66            android:authorities="org.anitab.mentorship.lifecycle-process"
+66-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-2/files-2.1/aa6a4f300c89fa2784aa07e59e4a2f36/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:25:13-69
+67            android:exported="false"
+67-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-2/files-2.1/aa6a4f300c89fa2784aa07e59e4a2f36/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:26:13-37
+68            android:multiprocess="true" />
+68-->[androidx.lifecycle:lifecycle-process:2.0.0] /home/runner/.gradle/caches/transforms-2/files-2.1/aa6a4f300c89fa2784aa07e59e4a2f36/jetified-lifecycle-process-2.0.0/AndroidManifest.xml:27:13-40
+69    </application>
+70
+71</manifest>

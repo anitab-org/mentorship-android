@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "org.anitab.mentorship",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "PROCESSED_RES"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 1,
+        "versionName": "1",
+        "outputFile": "app-debug.apk",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "resources-debug.ap_",
+      "properties": {
+        "packageId": "org.anitab.mentorship",
+        "split": "",
+        "minSdkVersion": "19"
+      }
+    }
+  ]
+}
