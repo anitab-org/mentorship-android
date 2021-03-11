@@ -208,5 +208,6 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="bug">Bug</string>
     <string name="input"> Please fill in the input fields and/or assign a rating</string>
     <string name="feedback_thank">Thank you for your feedback!</string>
+    <string name="activity_not_found_exception_error">Cannot Find an app that can open the Requested Link.</string>
 </resources>
 

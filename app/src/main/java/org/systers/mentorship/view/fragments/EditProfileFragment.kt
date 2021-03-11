@@ -59,7 +59,7 @@ class EditProfileFragment : DialogFragment() {
                 }
             }
         })
-        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog?.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
@@ -146,10 +146,4 @@ class EditProfileFragment : DialogFragment() {
         this.onDismissListener = onDismissListener!!
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
-        super.onDismiss(dialog)
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog)
-        }
-    }
 }
