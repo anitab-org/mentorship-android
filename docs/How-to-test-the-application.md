@@ -11,7 +11,7 @@ Every time a new commit is merged into the `develop` branch an _apk_ is releas
 ![Branch chnage](https://user-images.githubusercontent.com/16835617/92631953-8a52a900-f2ef-11ea-9e61-60692555283b.png)
 
 
-If you want to do manual testing on the application without setting up the development environment, you can download this [app-debug.apk](https://github.com/anitab-org/mentorship-android/blob/apk/app-debug.apk) and install it on your Android device.
+If you want to do manual testing of the application without setting up the development environment, you can download this [app-debug.apk](https://github.com/anitab-org/mentorship-android/blob/apk/app-debug.apk) and install it on your Android device.
 
 ![apk-branch](https://user-images.githubusercontent.com/16835617/97575784-42105700-1a13-11eb-8a73-4669b8ebb343.png)
 
@@ -28,7 +28,7 @@ Now click the apk to install !
 
 1. Now Open the project in Android Studio
 2. Wait untill all background process are finished 
-3. click the AVD button or click from already created devices in Android studio click 
+3. click on the AVD button or select from already created devices in Android studio  
 ![advPress](https://user-images.githubusercontent.com/16835617/92633082-de5d8d80-f2ef-11ea-9593-ffb3646e8b55.png)
 4. For information on how to create an Emulator and Run it visit [Creating an AVD](https://developer.android.com/studio/run/managing-avds#createavd)
 5. Now Run the Emulator you have created 
