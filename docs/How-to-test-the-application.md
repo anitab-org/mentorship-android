@@ -28,7 +28,7 @@ Now click the apk to install !
 
 1. Now Open the project in Android Studio
 2. Wait untill all background process are finished 
-3. click on the AVD button or select from already created devices in Android studio  
+3. Click on the AVD button or select from already created devices in Android studio  
 ![advPress](https://user-images.githubusercontent.com/16835617/92633082-de5d8d80-f2ef-11ea-9593-ffb3646e8b55.png)
 4. For information on how to create an Emulator and Run it visit [Creating an AVD](https://developer.android.com/studio/run/managing-avds#createavd)
 5. Now Run the Emulator you have created 
