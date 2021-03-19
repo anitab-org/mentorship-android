@@ -1,6 +1,5 @@
 package org.systers.mentorship.view.fragments
 
-
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -47,26 +46,31 @@ class EditProfileFragment : DialogFragment() {
     lateinit var builder: AlertDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        profileViewModel.successfulUpdate.observe(this, Observer { successful ->
-            (activity as MainActivity).hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG).show()
-                    profileViewModel.getProfile()
-                    dismiss()
-                } else {
-                    Toast.makeText(activity, profileViewModel.message, Toast.LENGTH_SHORT).show()
+        profileViewModel.successfulUpdate.observe(
+            this,
+            Observer { successful ->
+                (activity as MainActivity).hideProgressDialog()
+                if (successful != null) {
+                    if (successful) {
+                        Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG).show()
+                        profileViewModel.getProfile()
+                        dismiss()
+                    } else {
+                        Toast.makeText(activity, profileViewModel.message, Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
-        })
+        )
         dialog?.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
-                R.layout.fragment_edit_profile, null, false)
+        editProfileBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(context),
+            R.layout.fragment_edit_profile, null, false
+        )
 
         editProfileBinding.user = tempUser.copy()
         currentUser = tempUser.copy()
@@ -80,7 +84,6 @@ class EditProfileFragment : DialogFragment() {
 
         return builder
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -113,10 +116,8 @@ class EditProfileFragment : DialogFragment() {
             } else if (currentUser == editProfileBinding.user && errors.isEmpty()) {
                 builder.dismiss()
             }
-
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -144,5 +145,4 @@ class EditProfileFragment : DialogFragment() {
     fun setOnDismissListener(onDismissListener: DialogInterface.OnDismissListener?) {
         this.onDismissListener = onDismissListener!!
     }
-
 }

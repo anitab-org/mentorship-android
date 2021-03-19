@@ -40,45 +40,51 @@ class RequestsFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRequests.setOnRefreshListener { fetchNewest() }
 
-        requestsViewModel.successful.observe(this, Observer {
-            successful ->
-            srlRequests.isRefreshing = false
-            if (successful != null) {
-                if (successful) {
-                    requestsViewModel.pendingSuccessful.observe(this, Observer {
-                        successful ->
-                        activityCast.hideProgressDialog()
-                        if (successful != null) {
-                            if (successful){
-                                requestsViewModel.allRequestsList?.let { allRequestsList ->
-                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, requestsViewModel.pendingAllRequestsList, requireActivity())
+        requestsViewModel.successful.observe(
+            this,
+            Observer {
+                successful ->
+                srlRequests.isRefreshing = false
+                if (successful != null) {
+                    if (successful) {
+                        requestsViewModel.pendingSuccessful.observe(
+                            this,
+                            Observer {
+                                successful ->
+                                activityCast.hideProgressDialog()
+                                if (successful != null) {
+                                    if (successful) {
+                                        requestsViewModel.allRequestsList?.let { allRequestsList ->
+                                            vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, requestsViewModel.pendingAllRequestsList, requireActivity())
 //                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
-                                    TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests) {tab, position ->
-                                        when(position){
-                                            0 -> {
-                                                tab.text = context?.getString(R.string.pending)
-                                            }
-                                            1  -> {
-                                                tab.text = context?.getString(R.string.past)
-                                            }
-                                            2  -> {
-                                                tab.text = context?.getString(R.string.all)
-                                            }
+                                            TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests) { tab, position ->
+                                                when (position) {
+                                                    0 -> {
+                                                        tab.text = context?.getString(R.string.pending)
+                                                    }
+                                                    1 -> {
+                                                        tab.text = context?.getString(R.string.past)
+                                                    }
+                                                    2 -> {
+                                                        tab.text = context?.getString(R.string.all)
+                                                    }
+                                                }
+                                            }.attach()
                                         }
-                                    }.attach()
+                                    }
                                 }
                             }
-                        }
-                    })
-                } else {
-                    view?.let {
-                        requestsViewModel.message?.let { message ->
-                            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
+                        )
+                    } else {
+                        view?.let {
+                            requestsViewModel.message?.let { message ->
+                                Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
+                            }
                         }
                     }
                 }
             }
-        })
+        )
 
         fetchNewest()
     }
@@ -93,7 +99,7 @@ class RequestsFragment : BaseFragment() {
         }
     }
 
-    private fun fetchNewest()  {
+    private fun fetchNewest() {
         srlRequests.isRefreshing = true
         requestsViewModel.getAllMentorshipRelations()
         requestsViewModel.getAllPendingMentorshipRelations()

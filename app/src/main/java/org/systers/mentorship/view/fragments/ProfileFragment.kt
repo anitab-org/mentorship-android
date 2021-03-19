@@ -1,17 +1,21 @@
 package org.systers.mentorship.view.fragments
 
 import android.content.DialogInterface
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
-import android.view.*
-import androidx.databinding.DataBindingUtil
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
 import org.systers.mentorship.viewmodels.ProfileViewModel
-
 /**
  * The fragment is responsible for showing the User's profile
  */
@@ -44,18 +48,23 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel.successfulGet.observe(this, Observer {
-            successful ->
-            srlProfile.isRefreshing = false
-            if (successful != null) {
-                if (successful) {
-                    fragmentProfileBinding.user = profileViewModel.user
-                } else {
-                    Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
-                            Snackbar.LENGTH_LONG).show()
+        profileViewModel.successfulGet.observe(
+            this,
+            Observer {
+                successful ->
+                srlProfile.isRefreshing = false
+                if (successful != null) {
+                    if (successful) {
+                        fragmentProfileBinding.user = profileViewModel.user
+                    } else {
+                        Snackbar.make(
+                            fragmentProfileBinding.root, profileViewModel.message,
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
-        })
+        )
         fetchNewest()
     }
 
@@ -67,11 +76,13 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                if(fragmentProfileBinding.user != null){
-                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
-                    editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
-                        fetchNewest()
-                    })
+                if (fragmentProfileBinding.user != null) {
+                    var editProfileFragment: EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
+                    editProfileFragment.setOnDismissListener(
+                        DialogInterface.OnDismissListener {
+                            fetchNewest()
+                        }
+                    )
                     fragmentManager?.let { editProfileFragment.show(it, getString(R.string.fragment_title_edit_profile)) }
                 }
                 true
