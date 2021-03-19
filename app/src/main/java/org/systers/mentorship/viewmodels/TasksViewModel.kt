@@ -34,10 +34,10 @@ class TasksViewModel: ViewModel() {
     lateinit var message: String
 
     var completeTasksList ={
-        -> tasksList.filter { it.is_done }
+        -> tasksList.filter { it.isDone }
     }
     var incompleteTasksList ={
-        -> tasksList.filter { !it.is_done }
+        -> tasksList.filter { !it.isDone }
     }
 
     /**
