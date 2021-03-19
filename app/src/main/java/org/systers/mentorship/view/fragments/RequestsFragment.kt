@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_requests.*
 import org.systers.mentorship.R
 import org.systers.mentorship.view.activities.MainActivity
@@ -39,38 +40,45 @@ class RequestsFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRequests.setOnRefreshListener { fetchNewest() }
 
-        requestsViewModel.successful.observe(
-            this,
-            Observer {
-                successful ->
-                srlRequests.isRefreshing = false
-                if (successful != null) {
-                    if (successful) {
-                        requestsViewModel.pendingSuccessful.observe(
-                            this,
-                            Observer {
-                                successful ->
-                                activityCast.hideProgressDialog()
-                                if (successful != null) {
-                                    if (successful) {
-                                        requestsViewModel.allRequestsList?.let { allRequestsList ->
-                                            vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, childFragmentManager, requestsViewModel.pendingAllRequestsList)
-                                            tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+        requestsViewModel.successful.observe(this, Observer {
+            successful ->
+            srlRequests.isRefreshing = false
+            if (successful != null) {
+                if (successful) {
+                    requestsViewModel.pendingSuccessful.observe(this, Observer {
+                        successful ->
+                        activityCast.hideProgressDialog()
+                        if (successful != null) {
+                            if (successful){
+                                requestsViewModel.allRequestsList?.let { allRequestsList ->
+                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, requestsViewModel.pendingAllRequestsList, requireActivity())
+//                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
+                                    TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests) {tab, position ->
+                                        when(position){
+                                            0 -> {
+                                                tab.text = context?.getString(R.string.pending)
+                                            }
+                                            1  -> {
+                                                tab.text = context?.getString(R.string.past)
+                                            }
+                                            2  -> {
+                                                tab.text = context?.getString(R.string.all)
+                                            }
                                         }
-                                    }
+                                    }.attach()
                                 }
                             }
-                        )
-                    } else {
-                        view?.let {
-                            requestsViewModel.message?.let { message ->
-                                Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
-                            }
+                        }
+                    })
+                } else {
+                    view?.let {
+                        requestsViewModel.message?.let { message ->
+                            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
                         }
                     }
                 }
             }
-        )
+        })
 
         fetchNewest()
     }
@@ -85,7 +93,7 @@ class RequestsFragment : BaseFragment() {
         }
     }
 
-    private fun fetchNewest() {
+    private fun fetchNewest()  {
         srlRequests.isRefreshing = true
         requestsViewModel.getAllMentorshipRelations()
         requestsViewModel.getAllPendingMentorshipRelations()
