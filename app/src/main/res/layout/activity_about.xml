@@ -4,22 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".view.activities.AboutActivity"
-    android:gravity="center">
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:visibility="gone"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_gravity="center" />
-
-    <WebView
-        android:id="@+id/webView"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context=".view.activities.AboutActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -190,8 +177,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/btnWebsite"
                 android:layout_width="0dp"
-                android:layout_gravity="fill"
                 android:layout_height="wrap_content"
+                android:layout_gravity="fill"
                 android:layout_margin="20dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -241,8 +228,8 @@
                 android:id="@+id/btnTermsCondition"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
                 android:layout_gravity="fill"
+                android:layout_margin="20dp"
                 android:layout_marginEnd="8dp"
                 android:clickable="true"
                 android:focusable="true"

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_change_password.*
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
@@ -80,35 +81,77 @@ class ChangePasswordFragment : DialogFragment() {
         super.onResume()
         val passwordDialog = dialog as? AlertDialog
         passwordDialog?.setCanceledOnTouchOutside(false)
+
+        // Runtime check New Password & ConfirmPassword
+        passwordDialog?.tilNewPassword?.editText?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                validatePassword();
+            }
+
+        })
+        passwordDialog?.tilConfirmPassword?.editText?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                validateConfirmedPassword();
+            }
+
+        })
+
         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
             currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
             newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
             confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
 
-            changePasswordView.tilConfirmPassword?.error = null
-            changePasswordView.tilNewPassword?.error = null
-
-            if (validatePassword()) {
+            if (validatePassword() && validateConfirmedPassword()) {
                 changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword, newPassword))
             }
         }
     }
 
     private fun validatePassword(): Boolean {
-        return if (!newPassword.checkPasswordSecurity()) {
-            changePasswordView.tilNewPassword?.error = getString(R.string.error_password_too_weak)
-            false
-        } else if (newPassword == confirmPassword && newPassword != currentPassword) {
-            true
+        currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
+        newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
+        var isValid = true
+
+        if (currentPassword == newPassword) {
+            changePasswordView.tilNewPassword?.error = getString(R.string.current_new_password_should_not_same)
+            isValid = false
         } else {
-            if (currentPassword == newPassword) {
-                changePasswordView.tilNewPassword?.error = getString(R.string.current_new_password_should_not_same)
+            if (!newPassword.checkPasswordSecurity()) {
+                changePasswordView.tilNewPassword?.error = getString(R.string.error_password_too_weak)
+                isValid = false
+            } else {
+                changePasswordView.tilNewPassword?.error = null
             }
-            if (newPassword != confirmPassword) {
-                changePasswordView.tilConfirmPassword?.error = getString(R.string.password_not_match)
-            }
-            false
+
         }
+        return isValid
+    }
+
+    private fun validateConfirmedPassword(): Boolean {
+        confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
+        var isValid = true
+        if (newPassword != confirmPassword) {
+            changePasswordView.tilConfirmPassword?.error = getString(R.string.password_not_match)
+        } else {
+            changePasswordView.tilConfirmPassword?.error = null
+        }
+        return isValid
     }
 
     override fun onDestroy() {
