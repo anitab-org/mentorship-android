@@ -14,13 +14,19 @@ import org.systers.mentorship.view.activities.LoginActivity
 class TokenAuthenticator: Authenticator{
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
-
-    override fun authenticate(route: Route, response: Response): Request? {
+    private val LOGIN_PATH = "/login"
+    override fun authenticate(route: Route?, response: Response): Request? {
         if (response.code() == 401) {
+
+            if (LOGIN_PATH == response.request().url().encodedPath()) {
+                return null
+            }
+
             preferenceManager.clear()
             val intent = Intent(MentorshipApplication.getContext(), LoginActivity::class.java)
             intent.putExtra(Constants.TOKEN_EXPIRED_EXTRA, 0)
             ContextCompat.startActivity(MentorshipApplication.getContext(), intent, null)
+            return null
         }
         return response.request().newBuilder().build()
     }
