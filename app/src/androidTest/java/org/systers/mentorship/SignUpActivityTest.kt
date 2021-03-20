@@ -155,6 +155,7 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@test.com"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertz123!45"), closeSoftKeyboard())
+        onView(withId(R.id.cbMentor)).perform(click())
         onView(withId(R.id.cbTC)).perform(click())
 
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
@@ -175,7 +176,7 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
-
+        onView(withId(R.id.cbMentor)).perform(click())
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(TOO_WEAK_PASSWORD_ERROR)))
@@ -193,6 +194,7 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@test.com"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("Qwertz123"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("Qwertz123"), closeSoftKeyboard())
+        onView(withId(R.id.cbMentor)).perform(click())
         onView(withId(R.id.cbTC)).perform(click())
 
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
