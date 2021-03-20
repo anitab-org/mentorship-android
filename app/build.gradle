@@ -73,4 +73,7 @@ dependencies {
     implementation Dependencies.lifecycle_viewmodel
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
+
+    implementation Dependencies.viewPager2
+    implementation Dependencies.swipe_refresh_layout
 }
