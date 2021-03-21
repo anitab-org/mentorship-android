@@ -42,22 +42,25 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        signUpViewModel.successful.observe(this, Observer { successful ->
-            hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
-                    navigateToLoginActivity()
-                } else {
-                    Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
+        signUpViewModel.successful.observe(
+            this,
+            Observer { successful ->
+                hideProgressDialog()
+                if (successful != null) {
+                    if (successful) {
+                        Toast.makeText(this, signUpViewModel.message, Toast.LENGTH_LONG).show()
+                        navigateToLoginActivity()
+                    } else {
+                        Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
+                    }
+                    CountingIdlingResourceSingleton.decrement()
                 }
-                CountingIdlingResourceSingleton.decrement()
             }
-        })
+        )
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
-        fun View.hideKeyboard(){
+        fun View.hideKeyboard() {
             val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
         }
@@ -72,8 +75,8 @@ class SignUpActivity : BaseActivity() {
             email = tiEmail.editText?.text.toString()
             password = tiPassword.editText?.text.toString()
             confirmedPassword = tiConfirmPassword.editText?.text.toString()
-            needsMentoring = cbMentee.isChecked //old name but works
-            isAvailableToMentor = cbMentor.isChecked //old name but works
+            needsMentoring = cbMentee.isChecked // old name but works
+            isAvailableToMentor = cbMentor.isChecked // old name but works
             isAvailableForBoth = cbBoth.isChecked
 
             CountingIdlingResourceSingleton.increment()
@@ -111,23 +114,22 @@ class SignUpActivity : BaseActivity() {
         signUpViewModel.successful.value = null
     }
 
-    private fun validateDetailsOnRuntime(){
+    private fun validateDetailsOnRuntime() {
         var isNameEmpty = true
         var isUserNameEmpty = true
         var isEmailEmpty = true
         var isPasswordEmpty = true
         var isConfirmPasswordEmpty = true
-        tiName.editText?.addTextChangedListener(object : TextWatcher{
+        tiName.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(s.toString().isEmpty()) {
+                if (s.toString().isEmpty()) {
                     btnSignUp.isEnabled = false
                     hasEmptyFields = true
                     isNameEmpty = true
-                }
-                else {
+                } else {
                     isNameEmpty = false
-                    if(!isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
-                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                    if (!isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if (cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
                             btnSignUp.isEnabled = true
                         hasEmptyFields = false
                     }
@@ -139,19 +141,17 @@ class SignUpActivity : BaseActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
-
         })
-        tiUsername.editText?.addTextChangedListener(object : TextWatcher{
+        tiUsername.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(s.toString().isEmpty()) {
+                if (s.toString().isEmpty()) {
                     btnSignUp.isEnabled = false
                     hasEmptyFields = true
                     isUserNameEmpty = true
-                }
-                else {
+                } else {
                     isUserNameEmpty = false
-                    if(!isNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
-                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                    if (!isNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if (cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
                             btnSignUp.isEnabled = true
                         hasEmptyFields = false
                     }
@@ -163,23 +163,21 @@ class SignUpActivity : BaseActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
-
         })
-        tiEmail.editText?.addTextChangedListener(object : TextWatcher{
+        tiEmail.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(!s.toString().matches(emailPattern.toRegex())){
-                    tiEmail.editText?.error=getString(R.string.valid_error)
+                if (!s.toString().matches(emailPattern.toRegex())) {
+                    tiEmail.editText?.error = getString(R.string.valid_error)
                 }
 
-                if(s.toString().isEmpty()) {
+                if (s.toString().isEmpty()) {
                     btnSignUp.isEnabled = false
                     hasEmptyFields = true
                     isEmailEmpty = true
-                }
-                else {
+                } else {
                     isEmailEmpty = false
-                    if(!isNameEmpty && !isUserNameEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
-                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                    if (!isNameEmpty && !isUserNameEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if (cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
                             btnSignUp.isEnabled = true
                         hasEmptyFields = false
                     }
@@ -191,19 +189,17 @@ class SignUpActivity : BaseActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
-
         })
-        tiPassword.editText?.addTextChangedListener(object : TextWatcher{
+        tiPassword.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(s.toString().isEmpty()) {
+                if (s.toString().isEmpty()) {
                     btnSignUp.isEnabled = false
                     hasEmptyFields = true
                     isPasswordEmpty = true
-                }
-                else {
+                } else {
                     isPasswordEmpty = false
-                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isConfirmPasswordEmpty) {
-                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                    if (!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isConfirmPasswordEmpty) {
+                        if (cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
                             btnSignUp.isEnabled = true
                         hasEmptyFields = false
                     }
@@ -215,23 +211,21 @@ class SignUpActivity : BaseActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
-
         })
-        tiConfirmPassword.editText?.addTextChangedListener(object: TextWatcher{
+        tiConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if(!tiPassword.editText?.text.toString().contentEquals(s.toString())){
+                if (!tiPassword.editText?.text.toString().contentEquals(s.toString())) {
                     tiConfirmPassword.editText?.error = getString(R.string.password_not_match)
                 }
 
-                if(s.toString().isEmpty()) {
+                if (s.toString().isEmpty()) {
                     btnSignUp.isEnabled = false
                     hasEmptyFields = true
                     isConfirmPasswordEmpty = true
-                }
-                else {
+                } else {
                     isConfirmPasswordEmpty = false
-                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty) {
-                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                    if (!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty) {
+                        if (cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
                             btnSignUp.isEnabled = true
                         hasEmptyFields = false
                     }
@@ -311,6 +305,4 @@ class SignUpActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
-
-
 }
