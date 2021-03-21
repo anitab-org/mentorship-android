@@ -80,7 +80,7 @@ dependencies {
     implementation Dependencies.lifecycle_viewmodel
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
-
+    
     implementation Dependencies.hilt
     kapt Dependencies.hiltKapt
     androidTestImplementation  Dependencies.hiltInstrumentationTesting
@@ -89,6 +89,8 @@ dependencies {
     kaptTest Dependencies.hiltUnitTestingkapt
 
     implementation Dependencies.fragmentktx
+    implementation Dependencies.viewPager2
+    implementation Dependencies.swipe_refresh_layout
 }
 
 kapt {
