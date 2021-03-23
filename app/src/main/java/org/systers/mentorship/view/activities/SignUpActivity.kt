@@ -37,6 +37,7 @@ class SignUpActivity : BaseActivity() {
     private var isAvailableToMentor: Boolean = false
     private var needsMentoring: Boolean = false
     private var isAvailableForBoth: Boolean = false
+    private var hasEmptyFields: Boolean = true
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +95,24 @@ class SignUpActivity : BaseActivity() {
             }
 
         }
+        btnLogin.setOnClickListener {
+            navigateToLoginActivity()
+        }
+        cbTC.setOnCheckedChangeListener { _, b ->
+            btnSignUp.isEnabled = b && !hasEmptyFields && (isAvailableToMentor || needsMentoring || isAvailableForBoth)
+        }
+        cbMentee.setOnCheckedChangeListener { _, b ->
+            needsMentoring = b
+            btnSignUp.isEnabled = (b || isAvailableToMentor || isAvailableForBoth) && !hasEmptyFields && cbTC.isChecked
+        }
+        cbMentor.setOnCheckedChangeListener { _, b ->
+            isAvailableToMentor = b
+            btnSignUp.isEnabled = (b || needsMentoring || isAvailableForBoth) && !hasEmptyFields && cbTC.isChecked
+        }
+        cbBoth.setOnCheckedChangeListener { _, b ->
+            isAvailableForBoth = b
+            btnSignUp.isEnabled = (b || isAvailableToMentor || needsMentoring) && !hasEmptyFields && cbTC.isChecked
+        }
 
         validateDetailsOnRuntime()
     }
@@ -105,13 +124,79 @@ class SignUpActivity : BaseActivity() {
     }
 
     private fun validateDetailsOnRuntime(){
-        signUpBinding.apply {
-            tiEmail.editText?.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) {
-                    if (!s.toString().matches(emailPattern.toRegex())) {
-                        tiEmail.editText?.error = getString(R.string.valid_error)
+        var isNameEmpty = true
+        var isUserNameEmpty = true
+        var isEmailEmpty = true
+        var isPasswordEmpty = true
+        var isConfirmPasswordEmpty = true
+        tiName.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isNameEmpty = true
+                }
+                else {
+                    isNameEmpty = false
+                    if(!isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
                     }
                 }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+        tiUsername.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isUserNameEmpty = true
+                }
+                else {
+                    isUserNameEmpty = false
+                    if(!isNameEmpty && !isEmailEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+        tiEmail.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(!s.toString().matches(emailPattern.toRegex())){
+                    tiEmail.editText?.error=getString(R.string.valid_error)
+                }
+
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isEmailEmpty = true
+                }
+                else {
+                    isEmailEmpty = false
+                    if(!isNameEmpty && !isUserNameEmpty && !isPasswordEmpty && !isConfirmPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
+                    }
+                }
+            }
 
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 }
@@ -119,15 +204,51 @@ class SignUpActivity : BaseActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 }
 
-            })
-        }
-        signUpBinding.apply {
-            tiConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) {
-                    if (!tiPassword.editText?.text.toString().contentEquals(s.toString())) {
-                        tiConfirmPassword.editText?.error = getString(R.string.password_not_match)
+        })
+        tiPassword.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isPasswordEmpty = true
+                }
+                else {
+                    isPasswordEmpty = false
+                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isConfirmPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
                     }
                 }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+        tiConfirmPassword.editText?.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if(!tiPassword.editText?.text.toString().contentEquals(s.toString())){
+                    tiConfirmPassword.editText?.error = getString(R.string.password_not_match)
+                }
+
+                if(s.toString().isEmpty()) {
+                    btnSignUp.isEnabled = false
+                    hasEmptyFields = true
+                    isConfirmPasswordEmpty = true
+                }
+                else {
+                    isConfirmPasswordEmpty = false
+                    if(!isNameEmpty && !isUserNameEmpty && !isEmailEmpty && !isPasswordEmpty) {
+                        if(cbTC.isChecked && (isAvailableToMentor || isAvailableForBoth || needsMentoring))
+                            btnSignUp.isEnabled = true
+                        hasEmptyFields = false
+                    }
+                }
+            }
 
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 }
