@@ -7,12 +7,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_about.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.ActivityAboutBinding
 
 
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var aboutBinding: ActivityAboutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +23,12 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        btnGit.setOnClickListener(this)
-        btnSlack.setOnClickListener(this)
-        btnWebsite.setOnClickListener(this)
-        btnTermsCondition.setOnClickListener(this)
-        btncodeofconduct.setOnClickListener(this)
-        btnprivacypolicy.setOnClickListener(this)
+        aboutBinding.btnGit.setOnClickListener(this)
+        aboutBinding.btnSlack.setOnClickListener(this)
+        aboutBinding.btnWebsite.setOnClickListener(this)
+        aboutBinding.btnTermsCondition.setOnClickListener(this)
+        aboutBinding.btncodeofconduct.setOnClickListener(this)
+        aboutBinding.btnprivacypolicy.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
