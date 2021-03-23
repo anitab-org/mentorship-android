@@ -35,7 +35,7 @@ class ChangePasswordFragment : DialogFragment() {
         ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
     }
 
-    private var _changePasswordBinding:FragmentChangePasswordBinding? = null
+    private var _changePasswordBinding: FragmentChangePasswordBinding? = null
     private val changePasswordBinding get() = _changePasswordBinding!!
     private lateinit var currentPassword: String
     private lateinit var newPassword: String
@@ -119,26 +119,27 @@ class ChangePasswordFragment : DialogFragment() {
                 newPassword = tilNewPassword?.editText?.text.toString()
                 confirmPassword = tilConfirmPassword?.editText?.text.toString()
 
-            if (validatePassword() && validateConfirmedPassword()) {
-                changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword, newPassword))
+                if (validatePassword() && validateConfirmedPassword()) {
+                    changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword, newPassword))
+                }
             }
         }
     }
 
     private fun validatePassword(): Boolean {
-        currentPassword = changePasswordView.tilCurrentPassword?.editText?.text.toString()
-        newPassword = changePasswordView.tilNewPassword?.editText?.text.toString()
+        currentPassword = changePasswordBinding.tilCurrentPassword.editText?.text.toString()
+        newPassword = changePasswordBinding.tilNewPassword.editText?.text.toString()
         var isValid = true
 
         if (currentPassword == newPassword) {
-            changePasswordView.tilNewPassword?.error = getString(R.string.current_new_password_should_not_same)
+            changePasswordBinding.tilNewPassword.error = getString(R.string.current_new_password_should_not_same)
             isValid = false
         } else {
             if (!newPassword.checkPasswordSecurity()) {
-                changePasswordView.tilNewPassword?.error = getString(R.string.error_password_too_weak)
+                changePasswordBinding.tilNewPassword.error = getString(R.string.error_password_too_weak)
                 isValid = false
             } else {
-                changePasswordView.tilNewPassword?.error = null
+                changePasswordBinding.tilNewPassword.error = null
             }
 
         }
@@ -146,12 +147,12 @@ class ChangePasswordFragment : DialogFragment() {
     }
 
     private fun validateConfirmedPassword(): Boolean {
-        confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
+        confirmPassword = changePasswordBinding.tilConfirmPassword.editText?.text.toString()
         var isValid = true
         if (newPassword != confirmPassword) {
-            changePasswordView.tilConfirmPassword?.error = getString(R.string.password_not_match)
+            changePasswordBinding.tilConfirmPassword.error = getString(R.string.password_not_match)
         } else {
-            changePasswordView.tilConfirmPassword?.error = null
+            changePasswordBinding.tilConfirmPassword.error = null
         }
         return isValid
     }
