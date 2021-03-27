@@ -30,6 +30,18 @@
         "maintenance",
         "design"
       ]
+    },
+    {
+      "login": "devkapilbansal",
+      "name": "Kapil Bansal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42766576?v=4",
+      "profile": "https://github.com/devkapilbansal",
+      "contributions": [
+        "maintenance",
+        "test",
+        "review",
+        "userTesting"
+      ]
     }
   ],
   "projectName": "mentorship-android",
