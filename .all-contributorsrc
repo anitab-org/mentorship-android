@@ -7,7 +7,21 @@
   "contributorsSortAlphabetically": false,
   "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#contributors)",
   "skipCi": true,
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "isabelcosta",
+      "name": "Isabel Costa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11148726?v=4",
+      "profile": "https://isabelcosta.github.io/",
+      "contributions": [
+        "code",
+        "maintenance",
+        "test",
+        "doc",
+        "design"
+      ]
+    }
+  ],
   "projectName": "mentorship-android",
   "projectOwner": "anitab-org",
   "repoType": "github",
