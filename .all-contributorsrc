@@ -1,0 +1,15 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "contributorsPerLine": 7,
+  "contributorsSortAlphabetically": false,
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square)](#contributors)",
+  "skipCi": true,
+  "contributors": [],
+  "projectName": "mentorship-android",
+  "projectOwner": "anitab-org",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}

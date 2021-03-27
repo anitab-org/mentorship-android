@@ -49,6 +49,16 @@ Please follow our [Commit Message Style Guide](https://github.com/anitab-org/men
 
 Please follow Kotlin official docs for [Coding Conventions](https://kotlinlang.org/docs/reference/coding-conventions.html)to maintain a consistent code style in the repository.
 
+### Contributors
+
+Thanks goes to these people ([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.
+Contributions of any kind welcome!
+
 ## Running the UI tests
 
 To run the existing UI tests follow the steps given below:
