@@ -38,7 +38,6 @@ class SplashScreenActivity : AppCompatActivity() {
             finish()
         }
 
-
         runnable = Runnable {
             startActivity(intent)
             finish()

@@ -1,12 +1,15 @@
 package org.systers.mentorship.view.fragments
 
-import android.content.DialogInterface
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
@@ -30,7 +33,7 @@ class ProfileFragment : BaseFragment() {
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentProfileBinding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
         return fragmentProfileBinding.root
     }
@@ -42,7 +45,7 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel.successfulGet.observe(viewLifecycleOwner, Observer {
+        profileViewModel.successfulGet.observe(viewLifecycleOwner, {
             successful ->
             srlProfile.isRefreshing = false
             if (successful != null) {
@@ -65,11 +68,11 @@ class ProfileFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
-                if(fragmentProfileBinding.user != null){
-                    var editProfileFragment:EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
-                    editProfileFragment.setOnDismissListener(DialogInterface.OnDismissListener {
+                if (fragmentProfileBinding.user != null) {
+                    val editProfileFragment: EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
+                    editProfileFragment.setOnDismissListener {
                         fetchNewest()
-                    })
+                    }
                     fragmentManager?.let { editProfileFragment.show(it, getString(R.string.fragment_title_edit_profile)) }
                 }
                 true

@@ -5,5 +5,7 @@ package org.systers.mentorship.remote.responses
  * @param accessToken represents an authentication token
  * @param accessExpiry represents the expiry timestamp
  */
-data class AuthToken(var accessToken: String,
-                     var accessExpiry: Float)
+data class AuthToken(
+    var accessToken: String,
+    var accessExpiry: Float
+)

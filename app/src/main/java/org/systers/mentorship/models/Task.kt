@@ -16,10 +16,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Task(
-        val id: Int,
-        val description: String,
-        val createdAt: Float,
-        val completedAt: Float?
-): Parcelable {
+    val id: Int,
+    val description: String,
+    val createdAt: Float,
+    val completedAt: Float?
+) : Parcelable {
     val isDone: Boolean = completedAt != null
 }

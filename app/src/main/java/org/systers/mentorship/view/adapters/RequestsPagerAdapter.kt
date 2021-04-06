@@ -1,9 +1,7 @@
 package org.systers.mentorship.view.adapters
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.systers.mentorship.MentorshipApplication
@@ -22,9 +20,9 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
  * @param fm fragment manager
  */
 class RequestsPagerAdapter(
-        private val requestsList: List<Relationship>,
-        private val pendingRequestsList: List<Relationship>,
-        fragmentActivity: FragmentActivity
+    private val requestsList: List<Relationship>,
+    private val pendingRequestsList: List<Relationship>,
+    fragmentActivity: FragmentActivity
 ) : FragmentStateAdapter(fragmentActivity) {
 
     /**
@@ -57,16 +55,16 @@ class RequestsPagerAdapter(
     override fun getItemCount(): Int = Constants.TOTAL_REQUEST_TABS
 
     override fun createFragment(position: Int): Fragment {
-        when(position){
+        when (position) {
             TabsIndex.PENDING.value -> {
                 return RequestPagerFragment.newInstance(
                         pendingRequestsList, context.getString(R.string.empty_pending_requests))
             }
-            TabsIndex.PAST.value  -> {
+            TabsIndex.PAST.value -> {
                 return RequestPagerFragment.newInstance(
                         pastList, context.getString(R.string.empty_past_requests))
             }
-            TabsIndex.ALL.value  -> {
+            TabsIndex.ALL.value -> {
                 return RequestPagerFragment.newInstance(
                         allList, context.getString(R.string.empty_requests))
             }

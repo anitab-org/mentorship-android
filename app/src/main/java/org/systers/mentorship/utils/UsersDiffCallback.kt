@@ -20,5 +20,4 @@ class UsersDiffCallback(private val mOldUsersList: List<User>, private val mNewU
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return mOldUsersList[oldItemPosition] == mNewUsersList[newItemPosition]
     }
-
 }
