@@ -32,6 +32,7 @@ object Versions {
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
     const val fragmentKtx = "1.2.5"
+    const val spotless = "5.11.1"
 }
 
 /**
@@ -69,5 +70,5 @@ object Dependencies {
 
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
-
+    const val spotless_plugin_gradle = "com.diffplug.spotless:spotless-plugin-gradle:${Versions.spotless}"
 }
