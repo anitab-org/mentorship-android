@@ -226,10 +226,10 @@ class LoginActivityTest {
      */
     private fun enterCredentials(username: String, password: String) {
         // Type in a username
-        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText(username), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(replaceText(username), closeSoftKeyboard())
 
         // Type in a password
-        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText(password), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(replaceText(password), closeSoftKeyboard())
 
         // Perform a click on the Login Button
         onView(withId(R.id.btnLogin)).perform(click())
