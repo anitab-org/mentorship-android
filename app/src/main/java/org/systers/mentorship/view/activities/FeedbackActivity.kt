@@ -3,6 +3,7 @@ package org.systers.mentorship.view.activities
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import org.systers.mentorship.R
 import android.util.Patterns
@@ -15,6 +16,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_feedback.*
 
 class FeedbackActivity : BaseActivity(), View.OnClickListener {
@@ -65,7 +67,17 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             validateInput()
 
             if (!feedbackEmailErr && !feedbackMsgErr && feedbackRating != 0) {
-                Toast.makeText(this, getString(R.string.feedback_thank), Toast.LENGTH_SHORT).show()
+                // dialog to give user visual confirmation of feedback submission success
+                val dialog = MaterialAlertDialogBuilder(this).setView(R.layout.dialog_feedback_success).setCancelable(false).create()
+                dialog.show()
+                dialog.setOnDismissListener {
+                    this.finish()
+                }
+                Handler().postDelayed({
+                    if (dialog.isShowing) {
+                        dialog.dismiss()
+                    }
+                }, 3000)
                 //add backend code for adding rating, category, message, email ID
             }
             else
