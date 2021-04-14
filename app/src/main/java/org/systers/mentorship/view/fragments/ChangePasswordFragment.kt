@@ -3,7 +3,6 @@ package org.systers.mentorship.view.fragments
 import android.app.Dialog
 import android.content.DialogInterface
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,7 +11,11 @@ import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+
+import androidx.fragment.app.viewModels
+
 import kotlinx.android.synthetic.main.fragment_change_password.*
+
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
@@ -32,9 +35,7 @@ class ChangePasswordFragment : DialogFragment() {
         fun newInstance() = ChangePasswordFragment()
     }
 
-    private val changePasswordViewModel by lazy {
-        ViewModelProviders.of(this).get(ChangePasswordViewModel::class.java)
-    }
+    private val changePasswordViewModel: ChangePasswordViewModel by viewModels()
     private lateinit var changePasswordView: View
     private lateinit var currentPassword: String
     private lateinit var newPassword: String

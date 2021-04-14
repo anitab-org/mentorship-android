@@ -2,11 +2,11 @@ package org.systers.mentorship.view.fragments
 
 import android.content.DialogInterface
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentProfileBinding
@@ -26,9 +26,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
-    private val profileViewModel by lazy {
-        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-    }
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
@@ -44,7 +42,7 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel.successfulGet.observe(this, Observer {
+        profileViewModel.successfulGet.observe(viewLifecycleOwner, Observer {
             successful ->
             srlProfile.isRefreshing = false
             if (successful != null) {
@@ -92,7 +90,7 @@ class ProfileFragment : BaseFragment() {
     override fun onDestroy() {
         super.onDestroy()
 
-        profileViewModel.successfulGet.removeObservers(activity!!)
+        profileViewModel.successfulGet.removeObservers(requireActivity())
         profileViewModel.successfulGet.value = null
     }
 }

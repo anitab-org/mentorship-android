@@ -9,8 +9,8 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.systers.mentorship.R
@@ -25,9 +25,7 @@ import org.systers.mentorship.viewmodels.SignUpViewModel
  */
 class SignUpActivity : BaseActivity() {
 
-    private val signUpViewModel by lazy {
-        ViewModelProviders.of(this).get(SignUpViewModel::class.java)
-    }
+    private val signUpViewModel: SignUpViewModel by viewModels()
     private lateinit var name: String
     private lateinit var username: String
     private lateinit var email: String
