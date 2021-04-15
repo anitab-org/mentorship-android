@@ -66,8 +66,8 @@ class MemberProfileActivity : BaseActivity() {
 
 
         btnSendRequest.setOnClickListener {
-            if(userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false)
-                    && (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?:false))){
+            if(userProfile?.available_to_mentor ?: false && !(userProfile?.need_mentoring ?:false)
+                    && (currentUser?.available_to_mentor ?: false && !(currentUser?.need_mentoring ?:false))){
                 Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
                         .show()
             } else{
@@ -110,18 +110,18 @@ class MemberProfileActivity : BaseActivity() {
         userProfile = user
         tvName.text = user.name
 
-        if (user.availableToMentor != null) {
+        if (user.available_to_mentor != null) {
             setTextViewStartingWithBoldSpan(
                     tvAvailableToMentor,
                     getString(R.string.available_to_mentor),
-                    if (user.availableToMentor!!)
+                    if (user.available_to_mentor!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
-        if (user.needMentoring != null) {
+        if (user.need_mentoring != null) {
             setTextViewStartingWithBoldSpan(
                     tvNeedMentoring,
                     getString(R.string.need_mentoring),
-                    if (user.needMentoring!!)
+                    if (user.need_mentoring!!)
                         getString(R.string.yes) else getString(R.string.no))
         }
         setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
@@ -138,8 +138,8 @@ class MemberProfileActivity : BaseActivity() {
         setTextViewStartingWithBoldSpan(
                 tvUsername, getString(R.string.username), user.username)
         setTextViewStartingWithBoldSpan(
-                tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
-        if (!user.availableToMentor!! && !user.needMentoring!!)
+                tvSlackUsername, getString(R.string.slack_username), user.slack_username)
+        if (!user.available_to_mentor!! && !user.need_mentoring!!)
             btnSendRequest.isEnabled = false
     }
 

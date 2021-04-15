@@ -40,7 +40,7 @@ class RequestsPagerAdapter(
 
     private val pastList: List<Relationship> by lazy {
         requestsList.filter {
-            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endDate) < System.currentTimeMillis()
+            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.end_date) < System.currentTimeMillis()
             val isAcceptedState = RelationState.ACCEPTED.value == it.state
 
             !isAcceptedState && hasEndTimePassed

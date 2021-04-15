@@ -1,7 +1,6 @@
 package org.systers.mentorship.view.activities
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -44,11 +43,11 @@ class RequestDetailActivity: BaseActivity() {
 
     private fun populateView(relationResponse: Relationship) {
         tvRequestNotes.text = relationResponse.notes
-        val isFromMentee: Boolean = relationResponse.actionUserId == relationResponse.mentee.id
+        val isFromMentee: Boolean = relationResponse.action_user_id == relationResponse.mentee.id
 
-        val requestDirection = getString(if (relationResponse.sentByMe) R.string.to else R.string.from)
+        val requestDirection = getString(if (relationResponse.sent_by_me) R.string.to else R.string.from)
 
-        val otherUserName = if (relationResponse.sentByMe) {
+        val otherUserName = if (relationResponse.sent_by_me) {
             if (isFromMentee) {
                 relationResponse.mentor.name
             } else {
@@ -63,14 +62,14 @@ class RequestDetailActivity: BaseActivity() {
         }
         tvOtherUserName.text = getString(R.string.request_direction_formatted, requestDirection, otherUserName)
 
-        val summaryStrId = if (relationResponse.sentByMe) {
+        val summaryStrId = if (relationResponse.sent_by_me) {
             R.string.request_sent_by_current_user_message
         } else {
             R.string.request_sent_by_other_user_message
         }
         val actionUserRole = getString(if (isFromMentee) R.string.mentee else R.string.mentor)
         val requestEndDate = convertUnixTimestampIntoStr(
-                relationResponse.endDate, EXTENDED_DATE_FORMAT)
+                relationResponse.end_date, EXTENDED_DATE_FORMAT)
 
         val requestSummaryMessage = getString(summaryStrId,
                 otherUserName, actionUserRole, requestEndDate)
@@ -87,9 +86,9 @@ class RequestDetailActivity: BaseActivity() {
     }
 
     private fun setActionButtons(relationResponse: Relationship) {
-        val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.endDate) < System.currentTimeMillis()
+        val hasEndTimePassed = getUnixTimestampInMilliseconds(relationResponse.end_date) < System.currentTimeMillis()
         if (!hasEndTimePassed) {
-            if (relationResponse.sentByMe) {
+            if (relationResponse.sent_by_me) {
                 btnDelete.visibility = View.VISIBLE
                 btnAccept.visibility = View.GONE
                 btnReject.visibility = View.GONE

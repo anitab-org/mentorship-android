@@ -76,7 +76,7 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
             tvMentorName.text = relationResponse.mentor.name
             tvMenteeName.text = relationResponse.mentee.name
             tvEndDate.text = convertUnixTimestampIntoStr(
-                    relationResponse.endDate, EXTENDED_DATE_FORMAT)
+                    relationResponse.end_date, EXTENDED_DATE_FORMAT)
             tvRelationNotes.text = relationResponse.notes
             btnCancelRelation.visibility = View.VISIBLE
             btnCancelRelation.setOnClickListener {

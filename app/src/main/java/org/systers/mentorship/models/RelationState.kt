@@ -1,5 +1,7 @@
 package org.systers.mentorship.models
 
+import com.squareup.moshi.JsonClass
+
 /**
  * This [Enum] represents all the states of a Mentorship Relation.
  * These values are the same used in the backend.
@@ -11,6 +13,7 @@ package org.systers.mentorship.models
  * COMPLETED - when a current relation passes the end date it becomes completed,
  *             this happens automatically, does not require action from any user
  */
+
 enum class RelationState(val value: Int) {
     PENDING(1),
     ACCEPTED(2),

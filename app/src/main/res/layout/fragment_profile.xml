@@ -84,7 +84,7 @@
                     android:layout_height="19dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:checked="@{safeUnbox(user.availableToMentor)}"
+                    android:checked="@{safeUnbox(user.available_to_mentor)}"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tiEmail" />
@@ -95,7 +95,7 @@
                     android:layout_height="13dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
-                    android:checked="@{safeUnbox(user.needMentoring)}"
+                    android:checked="@{safeUnbox(user.need_mentoring)}"
                     android:enabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/switchAvailableToMentor" />
@@ -166,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
                         android:enabled="false"
-                        android:text="@={user.slackUsername}" />
+                        android:text="@={user.slack_username}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

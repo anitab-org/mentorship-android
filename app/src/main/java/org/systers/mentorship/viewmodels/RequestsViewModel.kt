@@ -42,7 +42,7 @@ class RequestsViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<Relationship>>() {
                     override fun onNext(relationsList: List<Relationship>) {
-                        allRequestsList = relationsList.sortedByDescending{ it.creationDate }
+                        allRequestsList = relationsList.sortedByDescending{ it.creation_date }
                         successful.value = true
                     }
 
@@ -83,7 +83,7 @@ class RequestsViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<List<Relationship>>() {
                 override fun onNext(relationsList: List<Relationship>) {
-                    pendingAllRequestsList = relationsList.sortedByDescending{ it.creationDate }
+                    pendingAllRequestsList = relationsList.sortedByDescending{ it.creation_date }
                     pendingSuccessful.value = true
                 }
 
@@ -128,7 +128,7 @@ class RequestsViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<List<Relationship>>() {
                 override fun onNext(relationsList: List<Relationship>) {
-                    pastRequestsList = relationsList.sortedByDescending{ it.creationDate }
+                    pastRequestsList = relationsList.sortedByDescending{ it.creation_date }
                     successful.value = true
                 }
 

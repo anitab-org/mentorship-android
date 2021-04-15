@@ -1,11 +1,14 @@
 package org.systers.mentorship.remote.requests
 
+import com.squareup.moshi.JsonClass
+
 /**
  * This data class represents all data necessary to changing user password
- * @param currentPassword the current password of the user
- * @param newPassword new password which will replace the current password.
+ * @param current_password the current password of the user
+ * @param new_password new password which will replace the current password.
  */
+@JsonClass(generateAdapter = true)
 data class ChangePassword (
-        val currentPassword: String,
-        val newPassword: String
+        val current_password: String,
+        val new_password: String
 )

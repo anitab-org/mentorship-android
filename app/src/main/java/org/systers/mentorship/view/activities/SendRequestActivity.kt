@@ -7,7 +7,6 @@ import com.google.android.material.snackbar.Snackbar
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
 import android.view.MenuItem
-import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.viewModels
 import kotlinx.android.synthetic.main.activity_send_request.*
@@ -107,10 +106,10 @@ class SendRequestActivity: BaseActivity() {
             if(!TextUtils.isEmpty(notes.trim())) {
 
                 val sendRequestData = RelationshipRequest(
-                        menteeId = menteeId,
-                        mentorId = mentorId,
+                        mentee_id = menteeId,
+                        mentor_id = mentorId,
                         notes = notes,
-                        endDate = endDate
+                        end_date = endDate
                 )
                 if (!isRequestDuplicate(sendRequestData)) {
                     sendRequestViewModel.sendRequest(sendRequestData)
@@ -148,7 +147,7 @@ class SendRequestActivity: BaseActivity() {
                     requestsViewModel.allRequestsList?.let {
                         pendingSentRelationships = it.filter {
                             val isPendingState = RelationState.PENDING.value == it.state
-                            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.endDate) < System.currentTimeMillis()
+                            val hasEndTimePassed = getUnixTimestampInMilliseconds(it.end_date) < System.currentTimeMillis()
 
                             isPendingState && !hasEndTimePassed
                         }
@@ -176,8 +175,8 @@ class SendRequestActivity: BaseActivity() {
 
     private fun isRequestDuplicate(newRelationship: RelationshipRequest): Boolean{
         pendingSentRelationships.forEach { relationship: Relationship -> Unit
-            if (newRelationship.menteeId == relationship.mentee.id && newRelationship.mentorId == relationship.mentor.id
-                    && newRelationship.endDate.toFloat() == relationship.endDate) {
+            if (newRelationship.mentee_id == relationship.mentee.id && newRelationship.mentor_id == relationship.mentor.id
+                    && newRelationship.end_date.toFloat() == relationship.end_date) {
                 return true
             }
         }

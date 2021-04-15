@@ -27,7 +27,7 @@ fun decodeJwtPayload(jwt: String) : String {
  * @return [JwtPayload] holding the token decoded
  */
 fun convertJwtPayloadToObject(str: String) : JwtPayload {
-    return CommonUtils.gson.fromJson(str, JwtPayload::class.java)
+    return CommonUtils.jwtadapter.fromJson(str)!!
 }
 
 /**

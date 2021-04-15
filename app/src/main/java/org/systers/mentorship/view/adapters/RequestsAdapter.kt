@@ -37,12 +37,12 @@ class RequestsAdapter (
 
         setTextViewStartingWithBoldSpan(itemView.tvMentorName, context.getString(R.string.mentor), item.mentor.name)
         setTextViewStartingWithBoldSpan(itemView.tvMenteeName, context.getString(R.string.mentee), item.mentee.name)
-        setTextViewStartingWithBoldSpan(itemView.tvEndDate, context.getString(R.string.end_date), convertUnixTimestampIntoStr(item.endDate, DATE_FORMAT))
+        setTextViewStartingWithBoldSpan(itemView.tvEndDate, context.getString(R.string.end_date), convertUnixTimestampIntoStr(item.end_date, DATE_FORMAT))
         setTextViewStartingWithBoldSpan(itemView.tvNotes, context.getString(R.string.notes), item.notes)
-        itemView.tvCreationDate.text = convertUnixTimestampIntoStr(item.creationDate, DATE_FORMAT)
+        itemView.tvCreationDate.text = convertUnixTimestampIntoStr(item.creation_date, DATE_FORMAT)
 
         // switch arrow direction according to the user that sent a mentorship request
-        if (!item.sentByMe) {
+        if (!item.sent_by_me) {
             itemView.ivActionUserIndicator.rotation = 180f
         }
 

@@ -44,7 +44,7 @@ class LoginViewModel : ViewModel() {
                 .subscribeWith(object : DisposableObserver<AuthToken>() {
                     override fun onNext(authToken: AuthToken) {
                         successful.value = true
-                        preferenceManager.putAuthToken(authToken.accessToken)
+                        preferenceManager.putAuthToken(authToken.access_token)
                     }
 
                     override fun onError(throwable: Throwable) {
