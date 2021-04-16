@@ -71,10 +71,10 @@ class RelationPagerFragment : BaseFragment() {
 
     private fun fetchNewest() {
         srlRelation.isRefreshing = true
-        if (isNetworkAvailable(context!!)) relationViewModel.getCurrentRelationDetails(context!!)
+        if (isNetworkAvailable(requireContext())) relationViewModel.getCurrentRelationDetails(requireContext())
         else {
-            Toast.makeText(context!!, "Network not avaiable", Toast.LENGTH_SHORT).show()
-            relationViewModel.getCurrentRelationDetailsFromDatabase(context!!)
+            Toast.makeText(requireContext(), "Network not avaiable", Toast.LENGTH_SHORT).show()
+            relationViewModel.getCurrentRelationDetailsFromDatabase(requireContext())
         }
     }
 
