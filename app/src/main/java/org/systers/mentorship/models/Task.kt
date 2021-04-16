@@ -22,8 +22,11 @@ data class Task(
         @PrimaryKey(autoGenerate = false)
         val id: Int,
         val description: String,
-        val isDone: Boolean,
         val createdAt: Float,
         val completedAt: Float,
         var relationId: Int? = null
 ): Parcelable
+        val completedAt: Float?
+): Parcelable {
+    val isDone: Boolean = completedAt != null
+}

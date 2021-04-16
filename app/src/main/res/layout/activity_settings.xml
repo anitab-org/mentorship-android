@@ -53,15 +53,6 @@
             android:textColor="@android:color/black"
             app:layout_constraintTop_toBottomOf="@+id/tvLogout" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvDeleteAccount"
-            style="@style/TextViewSettings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_delete_black_24dp"
-            android:text="@string/popup_menu_delete_account"
-            android:textColor="@android:color/holo_red_dark"
-            app:layout_constraintTop_toBottomOf="@+id/tvResetPassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

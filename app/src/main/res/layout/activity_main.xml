@@ -10,14 +10,15 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         android:fitsSystemWindows="true">
 
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="144dp"
+            android:layout_height="120dp"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -52,7 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:layout_marginBottom="@dimen/fab_button_visible"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <FrameLayout

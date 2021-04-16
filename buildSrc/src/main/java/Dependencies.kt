@@ -7,16 +7,19 @@ object Versions {
     const val targetSdkVersion = 28
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "3.3.1"
+    const val gradleBuildTool = "4.0.1"
     const val dataBinding = "3.2.0-alpha11"
-    const val kotlinVersion = "1.3.21"
+    const val kotlinVersion = "1.4.10"
     const val supportLib = "1.0.0"
-    const val designSupportLib = "1.0.0"
+    const val designSupportLib = "1.1.0-beta01"
+    const val swipeRefreshLayout = "1.1.0"
     const val constraintLayout = "1.1.3"
+    const val viewPager2 = "1.0.0"
     const val junit = "4.12"
     const val extJunit = "1.1.1"
     const val testRunner = "1.1.0"
     const val espresso = "3.1.0"
+    const val espressoIdling = "3.1.1"
     const val rxJava = "2.1.10"
     const val rxAndroid = "2.0.2"
     const val rxKotlin = "2.2.0"
@@ -29,6 +32,7 @@ object Versions {
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
     const val room = "2.2.5"
+    const val fragmentKtx = "1.2.5"
 }
 
 /**
@@ -47,6 +51,7 @@ object Dependencies {
     const val test_runner = "androidx.test:runner:${Versions.testRunner}"
     const val test_rules = "androidx.test:rules:${Versions.testRule}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val espresso_idling_resources = "androidx.test.espresso:espresso-idling-resource:${Versions.espressoIdling}"
     const val espresso_intents = "androidx.test.espresso:espresso-intents:${Versions.espresso}"
     const val rx_java = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
     const val rx_android = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
@@ -62,4 +67,9 @@ object Dependencies {
     const val circule_image_view = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
     const val room = "androidx.room:room-runtime:${Versions.room}"
     const val room_kapt = "androidx.room:room-compiler:${Versions.room}"
+
+    const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+
+    const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
+    const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
 }
