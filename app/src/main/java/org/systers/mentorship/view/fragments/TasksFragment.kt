@@ -42,8 +42,8 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         fabAddItem.setOnClickListener {
-            if (isNetworkAvailable(context!!)) showCompleteDialog()
-            else Toast.makeText(context!!, "Cannot add task without internet", Toast.LENGTH_SHORT).show()
+            if (isNetworkAvailable(requireContext())) showCompleteDialog()
+            else Toast.makeText(requireContext(), "Cannot add task without internet", Toast.LENGTH_SHORT).show()
         }
         imageView.setOnClickListener{
             if(rvTasks.visibility == View.GONE){
@@ -107,7 +107,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                         Snackbar.make(it, requireContext().getString(R.string.mark_task_success), Snackbar.LENGTH_LONG).show()
                     }
                     //get tasks again to refresh list
-                    taskViewModel.getTasks(context!!, mentorshipRelation.id)
+                    taskViewModel.getTasks(requireContext(), mentorshipRelation.id)
                 } else {
                     view?.let {
                         Snackbar.make(it, taskViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -125,7 +125,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                         Snackbar.make(it, requireContext().getString(R.string.create_task_success), Snackbar.LENGTH_LONG).show()
                     }
                     //get tasks again to refresh list
-                    taskViewModel.getTasks(context!!, mentorshipRelation.id)
+                    taskViewModel.getTasks(requireContext(), mentorshipRelation.id)
                 } else {
                     view?.let {
                         Snackbar.make(it, taskViewModel.message, Snackbar.LENGTH_LONG).show()
@@ -133,8 +133,8 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                 }
             }
         })
-        if (isNetworkAvailable(context!!)) taskViewModel.getTasks(context!!, mentorshipRelation.id)
-        else taskViewModel.getTaskFromDatabase(context!!, mentorshipRelation.id)
+        if (isNetworkAvailable(requireContext())) taskViewModel.getTasks(requireContext(), mentorshipRelation.id)
+        else taskViewModel.getTaskFromDatabase(requireContext(), mentorshipRelation.id)
     }
 
     /**
@@ -158,7 +158,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     }
 
     private fun markTask(taskId: Int){
-        if (isNetworkAvailable(context!!)) taskViewModel.updateTask(taskId, true, mentorshipRelation.id)
-        else Toast.makeText(context!!, "Cannot update task without internet", Toast.LENGTH_SHORT).show()
+        if (isNetworkAvailable(requireContext())) taskViewModel.updateTask(taskId, true, mentorshipRelation.id)
+        else Toast.makeText(requireContext(), "Cannot update task without internet", Toast.LENGTH_SHORT).show()
     }
 }
