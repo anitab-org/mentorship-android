@@ -10,7 +10,6 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +19,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.SearchView
+import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_members.*
 import org.systers.mentorship.R
@@ -52,9 +52,7 @@ class MembersFragment : BaseFragment() {
 
     private var memberListInitialized = false
 
-    private val membersViewModel by lazy {
-        ViewModelProviders.of(this).get(MembersViewModel::class.java)
-    }
+    private val membersViewModel: MembersViewModel by viewModels()
     private lateinit var rvAdapter: MembersAdapter
     private var isLoading = false
     private var isRecyclerView = false

@@ -37,6 +37,14 @@ android {
     androidExtensions {
         experimental = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 configurations.all {
@@ -74,4 +82,9 @@ dependencies {
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
     implementation Dependencies.credentials
+
+    implementation Dependencies.fragment_ktx
+
+    implementation Dependencies.viewPager2
+    implementation Dependencies.swipe_refresh_layout
 }

@@ -12,8 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
@@ -38,9 +38,7 @@ class EditProfileFragment : DialogFragment() {
         }
     }
 
-    private val profileViewModel by lazy {
-        ViewModelProviders.of(this).get(ProfileViewModel::class.java)
-    }
+    private val profileViewModel: ProfileViewModel by viewModels()
     private lateinit var editProfileBinding: FragmentEditProfileBinding
     private lateinit var onDismissListener: DialogInterface.OnDismissListener
     private lateinit var currentUser: User
@@ -59,7 +57,7 @@ class EditProfileFragment : DialogFragment() {
                 }
             }
         })
-        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        dialog?.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         isCancelable = false
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
@@ -71,7 +69,7 @@ class EditProfileFragment : DialogFragment() {
         editProfileBinding.user = tempUser.copy()
         currentUser = tempUser.copy()
 
-        val dialogBuilder = AlertDialog.Builder(context!!)
+        val dialogBuilder = AlertDialog.Builder(requireContext())
         dialogBuilder.setView(editProfileBinding.root)
         dialogBuilder.setTitle(R.string.fragment_title_edit_profile)
         dialogBuilder.setPositiveButton(getString(R.string.save), null)
@@ -121,7 +119,7 @@ class EditProfileFragment : DialogFragment() {
     override fun onDestroy() {
         super.onDestroy()
 
-        profileViewModel.successfulUpdate.removeObservers(activity!!)
+        profileViewModel.successfulUpdate.removeObservers(requireActivity())
         profileViewModel.successfulUpdate.value = null
     }
 
@@ -145,7 +143,8 @@ class EditProfileFragment : DialogFragment() {
         this.onDismissListener = onDismissListener!!
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         if (onDismissListener != null) {
             onDismissListener.onDismiss(dialog)

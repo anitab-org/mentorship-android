@@ -1,7 +1,6 @@
 package org.systers.mentorship.view.activities
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
@@ -16,6 +15,7 @@ import com.google.android.gms.auth.api.credentials.CredentialRequest
 import com.google.android.gms.auth.api.credentials.Credentials
 import com.google.android.gms.auth.api.credentials.CredentialsClient
 import com.google.android.gms.common.api.ResolvableApiException
+import androidx.activity.viewModels
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
@@ -29,10 +29,7 @@ import java.lang.Exception
  * This activity will let the user to login using username/email and password.
  */
 class LoginActivity : BaseActivity() {
-
-    private val loginViewModel by lazy {
-        ViewModelProviders.of(this).get(LoginViewModel::class.java)
-    }
+    private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var username: String
     private lateinit var password: String
     private lateinit var mCredentialsClient: CredentialsClient
