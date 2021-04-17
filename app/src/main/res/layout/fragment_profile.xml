@@ -18,8 +18,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="56dp">
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -41,6 +40,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.username}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -61,6 +61,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -126,6 +127,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.bio}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -162,6 +164,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.slackUsername}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -181,6 +184,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.location}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -200,6 +204,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.organization}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -219,6 +224,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.occupation}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -238,6 +244,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.skills}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -257,6 +264,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@android:color/white"
                         android:enabled="false"
                         android:text="@={user.interests}" />
                 </com.google.android.material.textfield.TextInputLayout>

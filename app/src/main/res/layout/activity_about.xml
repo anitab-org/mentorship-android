@@ -4,333 +4,374 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".view.activities.AboutActivity"
-    android:gravity="center">
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:visibility="gone"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_gravity="center" />
-
-    <WebView
-        android:id="@+id/webView"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context=".view.activities.AboutActivity">
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView"
                 android:layout_width="252dp"
                 android:layout_height="176dp"
                 android:layout_gravity="center"
-                android:background="@drawable/mentorship_system_logo" />
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/mentorship_system_logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="343dp"
-                android:layout_height="199dp"
+                android:id="@+id/appCompatTextView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/generic_28sp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:text="@string/about_systers"
                 android:textAlignment="center"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="343dp"
-                android:layout_height="76dp"
+                android:id="@+id/appCompatTextView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
                 android:text="@string/about_app"
                 android:textAlignment="center"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:paddingTop="32dp"
-                android:layout_width="343dp"
+                android:id="@+id/attribution"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
                 android:text="@string/undraw_attribution"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2" />
 
-
-            <GridLayout
-                android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnGit"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:alignmentMode="alignMargins"
-                android:columnCount="2"
-                android:padding="14dp">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btnGit"
-                    android:layout_width="@dimen/cardView_dimen_120"
-                    android:layout_height="@dimen/cardView_dimen_120"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:outlineAmbientShadowColor="#55111109"
-                    android:outlineSpotShadowColor="#55111109"
-                    app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+                android:layout_gravity="fill"
+                android:layout_margin="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:outlineAmbientShadowColor="#55111109"
+                android:outlineSpotShadowColor="#55111109"
+                app:cardBackgroundColor="@color/aubergine"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnSlack"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/attribution"
+                tools:targetApi="p">
 
 
-                    <LinearLayout
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="114dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="3"
+                        app:srcCompat="@drawable/ic_github" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/our_github_link"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnSlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:layout_margin="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:outlineAmbientShadowColor="#55111109"
+                android:outlineSpotShadowColor="#55111109"
+                app:cardBackgroundColor="@color/aubergine"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnGit"
+                app:layout_constraintTop_toBottomOf="@id/attribution"
+                tools:targetApi="p">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="114dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:padding="8dp"
+                        app:srcCompat="@drawable/ic_zulip" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/systers_open_source_zulip"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnWebsite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:layout_margin="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:outlineAmbientShadowColor="#55111109"
+                android:outlineSpotShadowColor="#55111109"
+                app:cardBackgroundColor="@color/aubergine"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnTermsCondition"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnGit"
+                tools:targetApi="p">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="114dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        app:srcCompat="@drawable/ic_web" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/our_website"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="3"
-                            app:srcCompat="@drawable/ic_github" />
+            </androidx.cardview.widget.CardView>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_small"
-                            android:text="@string/our_github_link"
-                            android:textColor="#fff"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btnSlack"
-                    android:layout_width="@dimen/cardView_dimen_120"
-                    android:layout_height="@dimen/cardView_dimen_120"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:outlineAmbientShadowColor="#55111109"
-                    android:outlineSpotShadowColor="#55111109"
-                    app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnTermsCondition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:layout_margin="20dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:outlineAmbientShadowColor="#55111109"
+                android:outlineSpotShadowColor="#55111109"
+                app:cardBackgroundColor="@color/aubergine"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnWebsite"
+                app:layout_constraintTop_toBottomOf="@id/btnSlack"
+                tools:targetApi="p">
 
 
-                    <LinearLayout
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="114dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        app:srcCompat="@drawable/ic_terms_and_condition" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/terms_and_conditions"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnprivacypolicy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:layout_margin="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="32dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:outlineAmbientShadowColor="#55111109"
+                android:outlineSpotShadowColor="#55111109"
+                app:cardBackgroundColor="@color/aubergine"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btncodeofconduct"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnWebsite"
+                tools:targetApi="p">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="114dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        app:srcCompat="@drawable/ic_privacy" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/privacy_policy"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="3"
-                            android:padding="8dp"
-                            app:srcCompat="@drawable/ic_zulip" />
+            </androidx.cardview.widget.CardView>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_small"
-                            android:text="@string/systers_open_source_zulip"
-                            android:textColor="#fff"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btnWebsite"
-                    android:layout_width="@dimen/cardView_dimen_120"
-                    android:layout_height="@dimen/cardView_dimen_120"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:outlineAmbientShadowColor="#55111109"
-                    android:outlineSpotShadowColor="#55111109"
-                    app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btncodeofconduct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:layout_margin="20dp"
+                android:layout_marginBottom="32dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:outlineAmbientShadowColor="#55111109"
+                android:outlineSpotShadowColor="#55111109"
+                app:cardBackgroundColor="@color/aubergine"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnprivacypolicy"
+                app:layout_constraintTop_toBottomOf="@id/btnTermsCondition"
+                tools:targetApi="p">
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="3"
-                            app:srcCompat="@drawable/ic_web" />
+                    <ImageView
+                        android:layout_width="114dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        app:srcCompat="@drawable/ic_code_of_conduct" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_small"
-                            android:text="@string/our_website"
-                            android:textColor="#fff"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/code_of_conduct"
+                        android:textColor="#fff"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btnTermsCondition"
-                    android:layout_width="@dimen/cardView_dimen_120"
-                    android:layout_height="@dimen/cardView_dimen_120"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:outlineAmbientShadowColor="#55111109"
-                    android:outlineSpotShadowColor="#55111109"
-                    app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:layout_weight="3"
-                            app:srcCompat="@drawable/ic_terms_and_condition" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_small"
-                            android:text="@string/terms_and_conditions"
-                            android:textColor="#fff"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btnprivacypolicy"
-                    android:layout_width="@dimen/cardView_dimen_120"
-                    android:layout_height="@dimen/cardView_dimen_120"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:outlineAmbientShadowColor="#55111109"
-                    android:outlineSpotShadowColor="#55111109"
-                    app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="3"
-                            app:srcCompat="@drawable/ic_privacy" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_small"
-                            android:text="@string/privacy_policy"
-                            android:textColor="#fff"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btncodeofconduct"
-                    android:layout_width="@dimen/cardView_dimen_120"
-                    android:layout_height="@dimen/cardView_dimen_120"
-                    android:layout_columnWeight="1"
-                    android:layout_gravity="fill"
-                    android:layout_margin="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:outlineAmbientShadowColor="#55111109"
-                    android:outlineSpotShadowColor="#55111109"
-                    app:cardBackgroundColor="@color/aubergine"
-                    app:cardCornerRadius="20dp"
-                    tools:targetApi="p">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="3"
-                            app:srcCompat="@drawable/ic_code_of_conduct" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:padding="@dimen/padding_small"
-                            android:text="@string/code_of_conduct"
-                            android:textColor="#fff"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-
-            </GridLayout>
-
-        </LinearLayout>
     </ScrollView>
 </FrameLayout>

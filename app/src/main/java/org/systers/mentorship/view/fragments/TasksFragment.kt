@@ -2,12 +2,12 @@ package org.systers.mentorship.view.fragments
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
@@ -36,9 +36,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
     }
 
     val appContext = MentorshipApplication.getContext()
-    private val taskViewModel by lazy {
-        ViewModelProviders.of(this).get(TasksViewModel::class.java)
-    }
+    private val taskViewModel: TasksViewModel by viewModels()
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_mentorship_tasks
 
@@ -68,7 +66,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
             }
         }
         //get tasks
-        taskViewModel.successfulGet.observe(this, Observer {
+        taskViewModel.successfulGet.observe(viewLifecycleOwner, Observer {
 
             successful ->
             if (successful != null) {
@@ -79,7 +77,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                     } else {
                         rvTasks.apply {
                             layoutManager = LinearLayoutManager(context)
-                            adapter = TasksAdapter(context!!,taskViewModel.incompleteTasksList(), ::markTask, false)
+                            adapter = TasksAdapter(requireContext(),taskViewModel.incompleteTasksList(), ::markTask, false)
                         }
                         tvNoTask.visibility = View.GONE
 
@@ -87,7 +85,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                         if (completeTasksList.isNotEmpty()){
                             rvAchievements.apply {
                                 layoutManager = LinearLayoutManager(context)
-                                adapter = TasksAdapter(context!!,completeTasksList, ::markTask, true)
+                                adapter = TasksAdapter(requireContext(),completeTasksList, ::markTask, true)
                             }
                             tvNoAchievements.visibility = View.GONE
                         }
@@ -101,12 +99,12 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         })
 
         //mark tasks as done
-        taskViewModel.successfulUpdate.observe(this, Observer {
+        taskViewModel.successfulUpdate.observe(viewLifecycleOwner, Observer {
             successful ->
             if (successful != null) {
                 if (successful) {
                     view?.let {
-                        Snackbar.make(it, context!!.getString(R.string.mark_task_success), Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(it, requireContext().getString(R.string.mark_task_success), Snackbar.LENGTH_LONG).show()
                     }
                     //get tasks again to refresh list
                     taskViewModel.getTasks(mentorshipRelation.id)
@@ -119,12 +117,12 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
         })
 
         //add task
-        taskViewModel.successfulAdd.observe(this, Observer {
+        taskViewModel.successfulAdd.observe(viewLifecycleOwner, Observer {
             successful ->
             if (successful != null) {
                 if (successful) {
                     view?.let {
-                        Snackbar.make(it, context!!.getString(R.string.create_task_success), Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(it, requireContext().getString(R.string.create_task_success), Snackbar.LENGTH_LONG).show()
                     }
                     //get tasks again to refresh list
                     taskViewModel.getTasks(mentorshipRelation.id)

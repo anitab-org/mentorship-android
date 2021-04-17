@@ -1,7 +1,9 @@
 package org.systers.mentorship.view.activities
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import org.systers.mentorship.R
 import android.util.Patterns
@@ -14,6 +16,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_feedback.*
 
 class FeedbackActivity : BaseActivity(), View.OnClickListener {
@@ -35,75 +38,9 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
         //init email ID input field
         FeedbackpageEmail.isErrorEnabled = true
-        FeedbackpageEmail.error = getString(R.string.email_error)
-        FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!))
-                {
-                    FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = getString(R.string.valid_error)
-                    feedbackEmailErr = true
-                }
-                else
-                {   if (s.toString().isEmpty())
-                {
-                    FeedbackpageEmail.isErrorEnabled = true
-                    FeedbackpageEmail.error = getString(R.string.email_error)
-                    feedbackEmailErr = true
-                }
-                else
-                {
-                    FeedbackpageEmail.isErrorEnabled = false
-                    feedbackEmailErr = false
-                }
-                }
-            }
-
-        })
 
         //init message input field
         FeedbackPageMessage.isErrorEnabled = true
-        FeedbackPageMessage.error = getString(R.string.msg_error)
-        FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher{
-            override fun afterTextChanged(s: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString().length > FeedbackPageMessage.counterMaxLength)
-                {
-                    FeedbackPageMessage.isErrorEnabled = true
-                    FeedbackPageMessage.error = getString(R.string.char_error)
-                    feedbackMsgErr = true
-                }
-                else
-                {
-                    if (s.toString().isEmpty())
-                    {
-                        FeedbackPageMessage.isErrorEnabled = true
-                        FeedbackPageMessage.error = getString(R.string.msg_error)
-                        feedbackMsgErr = true
-                    }
-                    else
-                    {
-                        FeedbackPageMessage.isErrorEnabled = false
-                        feedbackMsgErr = false
-                    }
-                }
-            }
-        })
 
         //init ratingBtnList, an arraylist of ImageButtons, it is going to be used to add rating and change image resource, see fun assignRating()
         ratingBtnList = ArrayList()
@@ -127,8 +64,20 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
         //Final submit button
         FeedbackpageSendbtn.setOnClickListener {
+            validateInput()
+
             if (!feedbackEmailErr && !feedbackMsgErr && feedbackRating != 0) {
-                Toast.makeText(this, getString(R.string.feedback_thank), Toast.LENGTH_SHORT).show()
+                // dialog to give user visual confirmation of feedback submission success
+                val dialog = MaterialAlertDialogBuilder(this).setView(R.layout.dialog_feedback_success).setCancelable(false).create()
+                dialog.show()
+                dialog.setOnDismissListener {
+                    this.finish()
+                }
+                Handler().postDelayed({
+                    if (dialog.isShowing) {
+                        dialog.dismiss()
+                    }
+                }, 3000)
                 //add backend code for adding rating, category, message, email ID
             }
             else
@@ -146,9 +95,104 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
         return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches()
     }
 
+    private fun validateInput(){
+        if(FeedbackpageEmail.editText?.text.isNullOrEmpty()) FeedbackpageEmail.error = getString(R.string.email_error)
+        else if(! isValidEmail(FeedbackpageEmail.editText?.text!!)) FeedbackpageEmail.error = getString(R.string.valid_error)
+        else {
+            FeedbackpageEmail.isErrorEnabled = false
+            feedbackEmailErr = false
+        }
+
+        FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (!FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!)) {
+                    FeedbackpageEmail.isErrorEnabled = true
+                    FeedbackpageEmail.error = getString(R.string.valid_error)
+                    feedbackEmailErr = true
+                }
+                else {
+                    if (s.toString().isEmpty()) {
+                        FeedbackpageEmail.isErrorEnabled = true
+                        FeedbackpageEmail.error = getString(R.string.email_error)
+                        feedbackEmailErr = true
+                    }
+                    else {
+                        FeedbackpageEmail.isErrorEnabled = false
+                        feedbackEmailErr = false
+                    }
+                }
+            }
+        })
+
+        if(FeedbackPageMessage.editText?.text.isNullOrEmpty()) FeedbackPageMessage.error = getString(R.string.msg_error)
+        else if (FeedbackPageMessage.editText?.text.toString().length > FeedbackPageMessage.counterMaxLength) {
+            FeedbackPageMessage.error = getString(R.string.char_error)
+        }
+        else {
+            FeedbackPageMessage.isErrorEnabled = false
+            feedbackMsgErr = false
+        }
+
+        FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.toString().length > FeedbackPageMessage.counterMaxLength) {
+                    FeedbackPageMessage.isErrorEnabled = true
+                    FeedbackPageMessage.error = getString(R.string.char_error)
+                    feedbackMsgErr = true
+                }
+                else {
+                    if (s.toString().isEmpty()) {
+                        FeedbackPageMessage.isErrorEnabled = true
+                        FeedbackPageMessage.error = getString(R.string.msg_error)
+                        feedbackMsgErr = true
+                    }
+                    else {
+                        FeedbackPageMessage.isErrorEnabled = false
+                        feedbackMsgErr = false
+                    }
+                }
+            }
+        })
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onBackPressed() {
+
+        val builder = AlertDialog.Builder(this)
+        //set title for alert dialog
+        builder.setTitle("Alert")
+        //set message for alert dialog
+        builder.setMessage("Are you sure you want to Discard?")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+        //performing positive action
+        builder.setPositiveButton("Yes"){dialogInterface, which ->
+            super.onBackPressed()
+        }
+        //performing cancel action
+        builder.setNeutralButton("Cancel"){dialogInterface , which ->
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
 
     override fun onClick(v: View?) {
