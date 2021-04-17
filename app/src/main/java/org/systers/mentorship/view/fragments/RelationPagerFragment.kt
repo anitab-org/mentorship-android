@@ -1,13 +1,13 @@
 package org.systers.mentorship.view.fragments
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_relation.*
 import org.systers.mentorship.R
@@ -28,9 +28,7 @@ class RelationPagerFragment : BaseFragment() {
         fun newInstance() = RelationPagerFragment()
     }
 
-    private val relationViewModel by lazy {
-        ViewModelProviders.of(this).get(RelationViewModel::class.java)
-    }
+    private val relationViewModel: RelationViewModel by viewModels()
     private val activityCast by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int {
@@ -43,7 +41,7 @@ class RelationPagerFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRelation.setOnRefreshListener { fetchNewest() }
 
-        relationViewModel.successfulGet.observe(this, Observer {
+        relationViewModel.successfulGet.observe(viewLifecycleOwner, Observer {
             successfull ->
             srlRelation.isRefreshing = false
             if (successfull != null) {

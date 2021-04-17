@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion Versions.compileSdkVersion
     defaultConfig {
-        applicationId "org.systers.mentorship"
+        applicationId "org.anitab.mentorship"
         minSdkVersion Versions.minSdkVersion
         targetSdkVersion Versions.targetSdkVersion
         versionCode Versions.versionCode
@@ -37,6 +37,14 @@ android {
     androidExtensions {
         experimental = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 configurations.all {
@@ -58,6 +66,7 @@ dependencies {
     androidTestImplementation Dependencies.espresso
     androidTestImplementation Dependencies.espresso_intents
     androidTestImplementation Dependencies.ext_junit
+    implementation Dependencies.espresso_idling_resources
 
     implementation Dependencies.rx_java
     implementation Dependencies.rx_android
@@ -72,4 +81,9 @@ dependencies {
     implementation Dependencies.lifecycle_viewmodel
     implementation Dependencies.app_intro
     implementation Dependencies.circule_image_view
+
+    implementation Dependencies.fragment_ktx
+
+    implementation Dependencies.viewPager2
+    implementation Dependencies.swipe_refresh_layout
 }
