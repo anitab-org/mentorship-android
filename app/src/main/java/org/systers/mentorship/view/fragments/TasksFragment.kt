@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
@@ -22,7 +23,7 @@ import org.systers.mentorship.viewmodels.TasksViewModel
  * The fragment is responsible for showing the all mentorship tasks
  * and achievements. It also allows to add new tasks and mark them as complete.
  */
-class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment() {
+class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment(), TasksAdapter.OnTaskClicked {
 
     companion object {
         /**
@@ -74,7 +75,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                     } else {
                         rvTasks.apply {
                             layoutManager = LinearLayoutManager(context)
-                            adapter = TasksAdapter(requireContext(),taskViewModel.incompleteTasksList(), ::markTask, false)
+                            adapter = TasksAdapter(requireContext(),taskViewModel.incompleteTasksList(), ::markTask, false, this@TasksFragment)
                         }
                         tvNoTask.visibility = View.GONE
 
@@ -82,7 +83,7 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
                         if (completeTasksList.isNotEmpty()){
                             rvAchievements.apply {
                                 layoutManager = LinearLayoutManager(context)
-                                adapter = TasksAdapter(requireContext(),completeTasksList, ::markTask, true)
+                                adapter = TasksAdapter(requireContext(),completeTasksList, ::markTask, true, this@TasksFragment)
                             }
                             tvNoAchievements.visibility = View.GONE
                         }
@@ -155,5 +156,15 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
 
     private fun markTask(taskId: Int){
         taskViewModel.updateTask(taskId, true, mentorshipRelation.id)
+    }
+
+    override fun onTaskClick(taskId: Int) {
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.contentFrame, CommentFragment.newInstance(
+                    mentorshipRelation, taskId
+            ))
+            addToBackStack(TAG)
+            commit()
+        }
     }
 }

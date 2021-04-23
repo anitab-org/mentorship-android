@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            type="org.systers.mentorship.models.CommentDisplayModel"
+            name="comment"
+            />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+            android:id="@+id/comment_name_tv"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Kira Gami"
+            android:text="@{comment.user.name}"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:padding="10dp"
+            />
+
+        <TextView
+            android:id="@+id/comment_time_tv"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="12/03/2021"
+            android:text="@{String.valueOf(comment.comment.creationDate)}"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:padding="10dp"
+            />
+
+        <TextView
+            android:id="@+id/comment_description_tv"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/comment_name_tv"
+            tools:text="Hello, I am working on this issue, and this is awesome."
+            android:text="@{comment.comment.comment}"
+            android:textSize="16sp"
+            android:padding="10dp"
+            />
+
+        <View
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/comment_description_tv"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

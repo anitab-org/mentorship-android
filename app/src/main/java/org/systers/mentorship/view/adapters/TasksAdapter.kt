@@ -21,7 +21,8 @@ class TasksAdapter(
         private val context: Context,
         private val tasksList: List<Task>,
         private val markTask: (taskId: Int) -> Unit,
-        private val complete: Boolean
+        private val complete: Boolean,
+        private val listener: OnTaskClicked
 ) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder =
@@ -52,18 +53,19 @@ class TasksAdapter(
         }
         else{
             itemView.cbTask.setOnClickListener {
-                val builder = AlertDialog.Builder(context)
-                builder.setTitle(context.getString(R.string.mark_task_title))
-                builder.setMessage(context.getString(R.string.mark_task_message))
-                builder.setPositiveButton(context.getString(R.string.yes)){dialog, which ->
-                    itemView.cbTask.isChecked=true
-                    markTask(item.id)
-                }
-                builder.setNegativeButton(context.getString(R.string.no)){dialog,which ->
-                    itemView.cbTask.isChecked=false
-                }
-                val dialog: AlertDialog = builder.create()
-                dialog.show()
+//                val builder = AlertDialog.Builder(context)
+//                builder.setTitle(context.getString(R.string.mark_task_title))
+//                builder.setMessage(context.getString(R.string.mark_task_message))
+//                builder.setPositiveButton(context.getString(R.string.yes)){dialog, which ->
+//                    itemView.cbTask.isChecked=true
+//                    markTask(item.id)
+//                }
+//                builder.setNegativeButton(context.getString(R.string.no)){dialog,which ->
+//                    itemView.cbTask.isChecked=false
+//                }
+//                val dialog: AlertDialog = builder.create()
+//                dialog.show()
+                onClick.onTaskClick(taskId = item.id)
             }
         }
     }
@@ -75,4 +77,13 @@ class TasksAdapter(
      * @param itemView represents each view of Tasks list
      */
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    /*
+    * On Click interface to navigate to comment fragment
+    * */
+    private val onClick: OnTaskClicked = listener
+
+    interface OnTaskClicked {
+        fun onTaskClick(taskId: Int)
+    }
 }

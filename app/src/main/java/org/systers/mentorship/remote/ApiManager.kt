@@ -5,10 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.systers.mentorship.remote.services.AuthService
-import org.systers.mentorship.remote.services.RelationService
-import org.systers.mentorship.remote.services.TaskService
-import org.systers.mentorship.remote.services.UserService
+import org.systers.mentorship.remote.services.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,6 +19,7 @@ class ApiManager {
     val relationService: RelationService
     val userService: UserService
     val taskService: TaskService
+    val commentsService: CommentsService
 
     companion object {
         private var apiManager: ApiManager? = null
@@ -59,5 +57,6 @@ class ApiManager {
         relationService = retrofit.create(RelationService::class.java)
         userService = retrofit.create(UserService::class.java)
         taskService = retrofit.create(TaskService::class.java)
+        commentsService = retrofit.create(CommentsService::class.java)
     }
 }
