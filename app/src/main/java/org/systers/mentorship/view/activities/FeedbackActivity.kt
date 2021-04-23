@@ -91,7 +91,6 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             }
         }
 
-        // Getting Email id from ProfileViewModel
         profileViewModel.getProfile()
         profileViewModel.successfulGet.observe({ lifecycle }) {
             if (it != null) {
@@ -106,16 +105,13 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    //fun used to set Email ID
-    fun setEmailId(emailId:String){
+    private fun setEmailId(emailId:String){
         FeedbackpageEmail.editText?.setText(emailId)
     }
-    //fun used to make editText editable
-    fun setEmailIdEditable(){
+    private fun setEmailIdEditable(){
         FeedbackpageEmail.editText?.isEnabled = true
     }
-    //fun used to make editText non editable
-    fun setEmailIdNonEditable(){
+    private fun setEmailIdNonEditable(){
         FeedbackpageEmail.editText?.isEnabled = false
     }
 
