@@ -93,17 +93,12 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
         // Getting Email id from ProfileViewModel
         profileViewModel.getProfile()
-        // Adding into Email EditText Input Field
         profileViewModel.successfulGet.observe({ lifecycle }) {
             if (it != null) {
                 if (it) {
-                    // if get data from profileViewModel
-                    //Make editText non Editable
                     profileViewModel.user.email?.trim()?.let { setEmailId(it) }
                     setEmailIdNonEditable()
                 } else {
-                    // if didn't get data from profileViewModel
-                    //Make editText non Editable
                     setEmailIdEditable()
                 }
             }
