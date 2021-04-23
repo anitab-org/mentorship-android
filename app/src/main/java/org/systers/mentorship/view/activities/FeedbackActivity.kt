@@ -16,8 +16,10 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_feedback.*
+import org.systers.mentorship.viewmodels.ProfileViewModel
 
 class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
@@ -27,6 +29,7 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
     private var ratingBtnList : ArrayList<ImageButton>? = null
     private var feedbackMsgErr : Boolean = true
     private var feedbackCategory : String = ""
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +91,37 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             }
         }
 
+        // Getting Email id from ProfileViewModel
+        profileViewModel.getProfile()
+        // Adding into Email EditText Input Field
+        profileViewModel.successfulGet.observe({ lifecycle }) {
+            if (it != null) {
+                if (it) {
+                    // if get data from profileViewModel
+                    //Make editText non Editable
+                    profileViewModel.user.email?.trim()?.let { setEmailId(it) }
+                    setEmailIdNonEditable()
+                } else {
+                    // if didn't get data from profileViewModel
+                    //Make editText non Editable
+                    setEmailIdEditable()
+                }
+            }
+        }
+
+    }
+
+    //fun used to set Email ID
+    fun setEmailId(emailId:String){
+        FeedbackpageEmail.editText?.setText(emailId)
+    }
+    //fun used to make editText editable
+    fun setEmailIdEditable(){
+        FeedbackpageEmail.editText?.isEnabled = true
+    }
+    //fun used to make editText non editable
+    fun setEmailIdNonEditable(){
+        FeedbackpageEmail.editText?.isEnabled = false
     }
 
     //fun used to validate email ID
