@@ -116,15 +116,14 @@ class LoginActivityTest {
      * with:
      * username: EMPTY
      * password: EMPTY
-     * expected: Empty username and password error
+     * expected: Login button disabled
      */
     @Test
     fun testLoginButtonClickedWhenUsernameAndPasswordAreEmpty() {
         enterCredentials("", "")
 
-        // Checks that the error message in both the editTexts appears after button click
-        onView(withId(R.id.tiUsername)).check(matches(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR)))
-        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
+        // Checks that the login button is disabled
+        onView(withId(R.id.btnLogin)).check(matches(not(isEnabled())))
 
     }
 
@@ -133,15 +132,14 @@ class LoginActivityTest {
      * with:
      * username: EMPTY
      * password: PRESENT
-     * expected : Empty username error
+     * expected : Login button disabled
      */
     @Test
     fun testLoginButtonClickedWhenUsernameIsEmptyAndPasswordIsFilled() {
         enterCredentials("", CORRECT_TEST_PASSWORD)
 
         // Check for error message on username and not on password
-        onView(withId(R.id.tiUsername)).check(matches(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR)))
-        onView(withId(R.id.tiPassword)).check(matches(not(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR))))
+        onView(withId(R.id.btnLogin)).check(matches(not(isEnabled())))
     }
 
     /**
@@ -149,15 +147,13 @@ class LoginActivityTest {
      * with:
      * username: PRESENT, correct
      * password: EMPTY
-     * expected: empty password error
+     * expected: login button disabled
      */
     @Test
     fun testLoginButtonClickedWhenUsernameIsFilledAndPasswordIsEmpty() {
         enterCredentials(CORRECT_TEST_USERNAME, "")
 
-        // Check for no error message on username with an error message on password
-        onView(withId(R.id.tiUsername)).check(matches(not(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR))))
-        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
+        onView(withId(R.id.btnLogin)).check(matches(not(isEnabled())))
     }
 
     /**
@@ -230,10 +226,10 @@ class LoginActivityTest {
      */
     private fun enterCredentials(username: String, password: String) {
         // Type in a username
-        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText(username), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(replaceText(username), closeSoftKeyboard())
 
         // Type in a password
-        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText(password), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(replaceText(password), closeSoftKeyboard())
 
         // Perform a click on the Login Button
         onView(withId(R.id.btnLogin)).perform(click())

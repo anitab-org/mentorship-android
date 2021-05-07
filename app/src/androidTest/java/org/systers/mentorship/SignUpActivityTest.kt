@@ -19,10 +19,7 @@ import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.platform.app.InstrumentationRegistry
-import org.hamcrest.Description
-import org.hamcrest.Matcher
-import org.hamcrest.Matchers
-import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.*
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -75,7 +72,7 @@ class SignUpActivityTest {
      */
     fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
-        return Espresso.onView(Matchers.allOf(ViewMatchers.isDescendantOfA(ViewMatchers.withId(textInputLayoutId)),ViewMatchers.isAssignableFrom(EditText::class.java)))
+        return onView(Matchers.allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }
 
 
@@ -127,8 +124,8 @@ class SignUpActivityTest {
     }
 
     /**
-     * This test method is defined to test that when all the fields are empty and the user
-     * clicks the signUp button then the errors in all the fields are displayed or not
+     * Input : All fields are empty
+     * Expected : Button is disabled
      */
     @Test
     fun testSignUpClickedWhenAllFieldsAreEmpty() {
@@ -142,12 +139,7 @@ class SignUpActivityTest {
 
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
-        onView(withId(R.id.tiName)).check(matches(hasTextInputLayoutErrorText(EMPTY_NAME_ERROR)))
-        onView(withId(R.id.tiUsername)).check(matches(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR)))
-        onView(withId(R.id.tiEmail)).check(matches(hasTextInputLayoutErrorText(EMPTY_EMAIL_ERROR)))
-        onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
-        onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_CONFIRM_PASSWORD_ERROR)))
-        onView(withId(R.id.tvNoteSignUp)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        onView(withId(R.id.btnSignUp)).check(matches(CoreMatchers.not(isEnabled())))
 
     }
 
@@ -163,6 +155,7 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@test.com"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertz123!45"), closeSoftKeyboard())
+        onView(withId(R.id.cbMentor)).perform(click())
         onView(withId(R.id.cbTC)).perform(click())
 
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
@@ -183,7 +176,7 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("qwertz123!"), closeSoftKeyboard())
         onView(withId(R.id.cbTC)).perform(click())
-
+        onView(withId(R.id.cbMentor)).perform(click())
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
 
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(TOO_WEAK_PASSWORD_ERROR)))
@@ -201,6 +194,7 @@ class SignUpActivityTest {
         findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("email@test.com"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("Qwertz123"), closeSoftKeyboard())
         findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("Qwertz123"), closeSoftKeyboard())
+        onView(withId(R.id.cbMentor)).perform(click())
         onView(withId(R.id.cbTC)).perform(click())
 
         onView(withId(R.id.btnSignUp)).perform(scrollTo(), click())
@@ -225,10 +219,10 @@ class SignUpActivityTest {
     @Test
     fun whenUsernameIsAlreadyRegistered() {
         findEditTextInTextInputLayout(R.id.tiName).perform(typeText("name"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("Divyansh"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("justdvnsh2208@gmail.com"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("Divyansh@2001"), closeSoftKeyboard())
-        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("Divyansh@2001"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiUsername).perform(typeText("isabel"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiEmail).perform(typeText("random_emailid@gmail.com"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiPassword).perform(typeText("Password@2001"), closeSoftKeyboard())
+        findEditTextInTextInputLayout(R.id.tiConfirmPassword).perform(typeText("Password@2001"), closeSoftKeyboard())
         onView(withId(R.id.cbBoth)).perform(click())
         onView(withId(R.id.cbTC)).perform(click())
 

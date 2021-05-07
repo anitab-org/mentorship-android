@@ -42,7 +42,7 @@ class ChangePasswordFragment : DialogFragment() {
     private lateinit var confirmPassword: String
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        changePasswordViewModel.successfulUpdate.observe(this, Observer { successful ->
+        changePasswordViewModel.successfulUpdate.observe(this, { successful ->
 
             if (successful != null) {
                 when {
@@ -85,16 +85,16 @@ class ChangePasswordFragment : DialogFragment() {
 
         // Runtime check New Password & ConfirmPassword
         passwordDialog?.tilNewPassword?.editText?.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 validatePassword();
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
             }
 
         })
