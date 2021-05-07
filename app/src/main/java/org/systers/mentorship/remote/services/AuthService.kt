@@ -5,7 +5,10 @@ import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.AuthToken
 import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.remote.responses.RefreshAuth
+import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 /**
@@ -27,5 +30,13 @@ interface AuthService {
      * @return an observable instance of the [CustomResponse]
      */
     @POST("register")
-    fun register(@Body register: Register) : Observable<CustomResponse>
+    fun register(@Body register: Register): Observable<CustomResponse>
+
+    /**
+     * This function refresh authToken of the user
+     * @param refreshToken data required to register a user
+     * @return a Call object of type [RefreshAuth]
+     */
+    @POST("refresh")
+    fun refresh(@Header("Authorization") refreshToken: String): Call<RefreshAuth>
 }

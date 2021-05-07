@@ -13,6 +13,7 @@ class PreferenceManager {
     companion object {
         const val APPLICATION_PREFERENCE = "app-preferences"
         const val AUTH_TOKEN = "auth-token"
+        const val REF_TOKEN = "refresh-token"
     }
 
     private val context: Context = MentorshipApplication.getContext()
@@ -28,14 +29,36 @@ class PreferenceManager {
     fun putAuthToken(authToken: String) {
         sharedPreferences.edit().putString(AUTH_TOKEN, "Bearer $authToken").commit()
     }
+    /**
+     * Saves the refresh token to SharedPreferences file.
+     * @param refToken String which is the refresh token
+     */
+    @SuppressLint("ApplySharedPref")
+    //Cannot use .apply(), it will take time to save the token. We need token ASAP
+    fun putRefreshToken(refToken: String) {
+        sharedPreferences.edit().putString(REF_TOKEN, "Bearer $refToken").commit()
+    }
 
     val authToken: String
         get() = sharedPreferences.getString(AUTH_TOKEN, "")
 
+    val refToken: String
+        get() = sharedPreferences.getString(REF_TOKEN, "")
+
     /**
      * Clears all the data that has been saved in the preferences file.
      */
-    fun clear() {
+    @SuppressLint("ApplySharedPref")
+    fun clearAuthToken() {
+        sharedPreferences.edit().remove(AUTH_TOKEN).commit()
+    }
+
+    @SuppressLint("ApplySharedPref")
+    fun clearRefreshToken(){
+       sharedPreferences.edit().remove(REF_TOKEN).commit()
+    }
+
+    fun clear(){
         sharedPreferences.edit().clear().apply()
     }
 }

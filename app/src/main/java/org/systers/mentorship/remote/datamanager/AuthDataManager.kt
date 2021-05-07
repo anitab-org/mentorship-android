@@ -6,6 +6,8 @@ import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
 import org.systers.mentorship.remote.responses.AuthToken
 import org.systers.mentorship.remote.responses.CustomResponse
+import org.systers.mentorship.remote.responses.RefreshAuth
+import retrofit2.Call
 
 /**
  * This class represents the data manager related to Authentication API
@@ -31,5 +33,14 @@ class AuthDataManager {
      */
     fun register(register: Register): Observable<CustomResponse> {
         return apiManager.authService.register(register)
+    }
+
+    /**
+     * This will call the refresh method of AuthService interface
+     * @param refreshToken The refresh token
+     * @return a Call object
+     */
+    fun refresh(refreshToken: String): Call<RefreshAuth> {
+        return apiManager.authService.refresh(refreshToken)
     }
 }
