@@ -1,24 +1,30 @@
 package org.systers.mentorship
 
 import android.content.ComponentName
-import androidx.annotation.IdRes
-import com.google.android.material.textfield.TextInputLayout
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.rule.ActivityTestRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.view.View
 import android.widget.EditText
+import androidx.annotation.IdRes
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule
+import androidx.test.espresso.matcher.ViewMatchers.Visibility
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
+import com.google.android.material.textfield.TextInputLayout
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
@@ -75,9 +81,8 @@ class SignUpActivityTest {
      */
     fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
-        return Espresso.onView(Matchers.allOf(ViewMatchers.isDescendantOfA(ViewMatchers.withId(textInputLayoutId)),ViewMatchers.isAssignableFrom(EditText::class.java)))
+        return onView(Matchers.allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }
-
 
     companion object {
 
@@ -86,7 +91,7 @@ class SignUpActivityTest {
          */
         fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
-            return object: TypeSafeMatcher<View>() {
+            return object : TypeSafeMatcher<View>() {
                 /**
                  * Generates a description of the object.  The description may be part of a
                  * a description of a larger object of which this is just a component, so it
@@ -96,7 +101,7 @@ class SignUpActivityTest {
                  * The description to be built or appended to.
                  */
                 override fun describeTo(description: Description?) {
-                    //("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    // ("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 /**
@@ -109,21 +114,16 @@ class SignUpActivityTest {
                         return false
                     }
 
-
                     val error: CharSequence? = item.error
                     if (error == null) {
                         return false
                     }
 
-                    var errorMsg: String = error.toString()
+                    val errorMsg: String = error.toString()
                     return expectedErrorText.equals(errorMsg)
-
                 }
-
             }
-
         }
-
     }
 
     /**
@@ -148,7 +148,6 @@ class SignUpActivityTest {
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
         onView(withId(R.id.tiConfirmPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_CONFIRM_PASSWORD_ERROR)))
         onView(withId(R.id.tvNoteSignUp)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
-
     }
 
     /**

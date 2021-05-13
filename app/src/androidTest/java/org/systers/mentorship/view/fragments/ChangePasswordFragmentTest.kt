@@ -1,15 +1,19 @@
 package org.systers.mentorship.view.fragments
 
-import android.content.res.Resources
 import android.view.View
 import android.widget.EditText
 import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
@@ -72,7 +76,7 @@ class ChangePasswordFragmentTest {
         // launch the Fragment
         ChangePasswordFragment.newInstance().show(activityTestRule.activity.supportFragmentManager, null)
 
-        enter_credentials(R.id.tilNewPassword,"AnitaB.org@2020")
+        enter_credentials(R.id.tilNewPassword, "AnitaB.org@2020")
         enter_credentials(R.id.tilConfirmPassword, "AnitaB.org")
 
         // clicks the OK button in the Dialog Fragment
@@ -95,7 +99,7 @@ class ChangePasswordFragmentTest {
     }
 
     // helper method to find Edit Text
-    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
+    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
         return onView(CoreMatchers.allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }
@@ -104,7 +108,7 @@ class ChangePasswordFragmentTest {
      * Helper method
      * This simply implements the null check, checks the type and then casts.
      */
-    fun hasTextInputLayoutErrorText(expectedErrorText : String) : Matcher<View> {
+    fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
         return object : TypeSafeMatcher<View>() {
             /**
@@ -116,7 +120,7 @@ class ChangePasswordFragmentTest {
              * The description to be built or appended to.
              */
             override fun describeTo(description: Description?) {
-                //("not implemented") //To change body of created functions use File | Settings | File Templates.
+                // ("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             /**
@@ -139,5 +143,4 @@ class ChangePasswordFragmentTest {
             }
         }
     }
-
-} 
+}

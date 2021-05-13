@@ -1,10 +1,10 @@
 package org.systers.mentorship.view.adapters
 
-import androidx.annotation.NonNull
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.NonNull
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_requests_item.view.*
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
@@ -18,9 +18,9 @@ import org.systers.mentorship.utils.setTextViewStartingWithBoldSpan
  * @param requestsList list of request and relation to show
  * @param openDetailFunction function to be called when an item from Requests list is clicked
  */
-class RequestsAdapter (
-        private val requestsList: List<Relationship>,
-        private val openDetailFunction: (requestDetail: Relationship) -> Unit
+class RequestsAdapter(
+    private val requestsList: List<Relationship>,
+    private val openDetailFunction: (requestDetail: Relationship) -> Unit
 ) : RecyclerView.Adapter<RequestsAdapter.RequestsViewHolder>() {
 
     val context = MentorshipApplication.getContext()

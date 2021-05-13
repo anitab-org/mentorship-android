@@ -2,7 +2,6 @@ package org.systers.mentorship.view.activities
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -201,5 +200,4 @@ class FilterActivity : BaseActivity() {
         super.onBackPressed()
         overridePendingTransition(R.anim.anim_stay, R.anim.anim_slide_to_bottom)
     }
-
 }

@@ -1,21 +1,19 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.viewmodels.LoginViewModel
-import java.lang.Exception
 
 /**
  * This activity will let the user to login using username/email and password.
@@ -32,7 +30,7 @@ class LoginActivity : BaseActivity() {
         etUsername.addTextChangedListener(textWatcher)
         etPassword.addTextChangedListener(textWatcher)
 
-        loginViewModel.successful.observe(this, Observer {
+        loginViewModel.successful.observe(this, {
             successful ->
             hideProgressDialog()
             if (successful != null) {
@@ -51,7 +49,7 @@ class LoginActivity : BaseActivity() {
         })
 
         btnLogin.setOnClickListener {
-           login()
+            login()
         }
 
         btnSignUp.setOnClickListener {
@@ -70,19 +68,19 @@ class LoginActivity : BaseActivity() {
             val tokenExpiredVal = intent.extras!!.getInt(Constants.TOKEN_EXPIRED_EXTRA)
             if (tokenExpiredVal == 0)
                 Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
-        }catch (exception: Exception){}
+        } catch (exception: Exception) {}
 
         checkFieldsForEmptyValues()
     }
 
-    private fun checkFieldsForEmptyValues(){
-        val editText1: String? = etUsername.text.toString()
-        val editText2: String? = etPassword.text.toString()
+    private fun checkFieldsForEmptyValues() {
+        val editText1: String = etUsername.text.toString()
+        val editText2: String = etPassword.text.toString()
 
         /**
          * Disables the button if one of the EditText field is empty
          */
-        btnLogin.isEnabled = !(editText1.equals("") || editText2.equals(""))
+        btnLogin.isEnabled = !(editText1 == "" || editText2 == "")
     }
 
     private val textWatcher = object : TextWatcher {
@@ -95,10 +93,9 @@ class LoginActivity : BaseActivity() {
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
         }
-
     }
 
-    private fun validateCredentials() : Boolean {
+    private fun validateCredentials(): Boolean {
         var validCredentials = true
         if (username.isBlank()) {
             tiUsername.error = getString(R.string.error_empty_username)
@@ -133,4 +130,3 @@ class LoginActivity : BaseActivity() {
         loginViewModel.successful.value = null
     }
 }
-

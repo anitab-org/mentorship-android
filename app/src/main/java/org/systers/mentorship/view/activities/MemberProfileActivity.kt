@@ -1,12 +1,11 @@
 package org.systers.mentorship.view.activities
 
-import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import android.view.MenuItem
 import androidx.activity.viewModels
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_member_profile.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -29,7 +28,7 @@ class MemberProfileActivity : BaseActivity() {
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val profileViewModel: ProfileViewModel by viewModels()
-        profileViewModel.successfulGet.observe(this, Observer {
+        profileViewModel.successfulGet.observe(this, {
             successful ->
             if (successful != null) {
                 if (successful) {
@@ -42,10 +41,9 @@ class MemberProfileActivity : BaseActivity() {
         })
         profileViewModel.getProfile()
 
-
         srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
-        memberProfileViewModel.successful.observe(this, Observer {
+        memberProfileViewModel.successful.observe(this, {
             successful ->
             srlMemberProfile.isRefreshing = false
             if (successful != null) {
@@ -64,14 +62,13 @@ class MemberProfileActivity : BaseActivity() {
 
         fetchNewest()
 
-
         btnSendRequest.setOnClickListener {
-            if(userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false)
-                    && (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?:false))){
+            if (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false) &&
+                    (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?:false))) {
                 Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
                         .show()
-            } else{
-              val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
+            } else {
+                val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
                 intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
                 intent.putExtra(SendRequestActivity.OTHER_USER_NAME_INTENT_EXTRA, userProfile.name)
                 startActivity(intent)

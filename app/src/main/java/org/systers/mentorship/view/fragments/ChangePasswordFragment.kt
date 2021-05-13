@@ -1,22 +1,16 @@
 package org.systers.mentorship.view.fragments
 
 import android.app.Dialog
-import android.content.DialogInterface
-import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.DialogFragment
-import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-
 import kotlinx.android.synthetic.main.fragment_change_password.*
-
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.ChangePassword
@@ -42,7 +36,7 @@ class ChangePasswordFragment : DialogFragment() {
     private lateinit var confirmPassword: String
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        changePasswordViewModel.successfulUpdate.observe(this, Observer { successful ->
+        changePasswordViewModel.successfulUpdate.observe(this, { successful ->
 
             if (successful != null) {
                 when {
@@ -51,7 +45,6 @@ class ChangePasswordFragment : DialogFragment() {
                 }
             }
             dismiss()
-
         })
 
         changePasswordView = LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
@@ -73,7 +66,6 @@ class ChangePasswordFragment : DialogFragment() {
             override fun afterTextChanged(confirmPasswordEditable: Editable?) {
                 passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = confirmPasswordEditable!!.isNotEmpty()
             }
-
         })
         return passwordDialog
     }
@@ -86,31 +78,25 @@ class ChangePasswordFragment : DialogFragment() {
         // Runtime check New Password & ConfirmPassword
         passwordDialog?.tilNewPassword?.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                validatePassword();
+                validatePassword()
             }
-
         })
         passwordDialog?.tilConfirmPassword?.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                validateConfirmedPassword();
+                validateConfirmedPassword()
             }
-
         })
 
         passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
@@ -139,14 +125,13 @@ class ChangePasswordFragment : DialogFragment() {
             } else {
                 changePasswordView.tilNewPassword?.error = null
             }
-
         }
         return isValid
     }
 
     private fun validateConfirmedPassword(): Boolean {
         confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
-        var isValid = true
+        val isValid = true
         if (newPassword != confirmPassword) {
             changePasswordView.tilConfirmPassword?.error = getString(R.string.password_not_match)
         } else {

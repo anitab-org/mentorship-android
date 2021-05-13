@@ -1,6 +1,5 @@
 package org.systers.mentorship.viewmodels
 
-import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +9,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.HomeStatistics
@@ -17,9 +18,6 @@ import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.utils.CommonUtils
 import org.systers.mentorship.utils.SingleLiveEvent
 import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
-
 
 /**
  * This class represents the ViewModel for the HomeFragment
@@ -46,7 +44,7 @@ class HomeViewModel : ViewModel() {
         userDataManager.getHomeStats()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<HomeStatistics>() {
+                .subscribeWith(object : DisposableObserver<HomeStatistics>() {
 
                     override fun onComplete() {
                         // Do nothing
@@ -76,7 +74,6 @@ class HomeViewModel : ViewModel() {
                             }
                         }
                     }
-
                 })
                 .addTo(compositeDisposable)
     }
@@ -86,5 +83,3 @@ class HomeViewModel : ViewModel() {
         compositeDisposable.dispose()
     }
 }
-
-

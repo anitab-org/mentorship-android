@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Task
@@ -15,13 +17,11 @@ import org.systers.mentorship.remote.requests.CreateTask
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * This class represents the [ViewModel] used for Tasks Screen
  */
-class TasksViewModel: ViewModel() {
+class TasksViewModel : ViewModel() {
 
     var tag = TasksViewModel::class.java.simpleName!!
 
@@ -33,10 +33,10 @@ class TasksViewModel: ViewModel() {
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 
-    var completeTasksList ={
+    var completeTasksList = {
         -> tasksList.filter { it.isDone }
     }
-    var incompleteTasksList ={
+    var incompleteTasksList = {
         -> tasksList.filter { !it.isDone }
     }
 
@@ -65,7 +65,7 @@ class TasksViewModel: ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -106,7 +106,7 @@ class TasksViewModel: ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -128,9 +128,9 @@ class TasksViewModel: ViewModel() {
      * @param relationId id of relation
      */
     @SuppressLint("CheckResult")
-    fun updateTask(taskId: Int, isChecked: Boolean, relationId: Int){
-        if(isChecked) {
-            taskDataManager.completeTask(relationId,taskId)
+    fun updateTask(taskId: Int, isChecked: Boolean, relationId: Int) {
+        if (isChecked) {
+            taskDataManager.completeTask(relationId, taskId)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(object : DisposableObserver<CustomResponse>() {
@@ -148,7 +148,7 @@ class TasksViewModel: ViewModel() {
                                             .getString(R.string.error_request_timed_out)
                                 }
                                 is HttpException -> {
-                                    message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                    message = CommonUtils.getErrorResponse(throwable).message
                                 }
                                 else -> {
                                     message = MentorshipApplication.getContext()
@@ -161,10 +161,9 @@ class TasksViewModel: ViewModel() {
                         override fun onComplete() {
                         }
                     })
-        }
-        else {
-            //completedTaskList.remove(taskList.get(taskId))
-            //TODO: Update the backend
+        } else {
+            // completedTaskList.remove(taskList.get(taskId))
+            // TODO: Update the backend
         }
     }
 }

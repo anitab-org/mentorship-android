@@ -21,15 +21,14 @@ import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
 import org.systers.mentorship.utils.UsersDiffCallback
 import org.systers.mentorship.view.fragments.MembersFragment
 
-
 /**
  * This class represents the adapter that fills in each view of the Members recyclerView
  * @param userList list of users to show
  * @param openDetailFunction function to be called when an item from Members list is clicked
  */
-class MembersAdapter (
-        private var userList: ArrayList<User> = arrayListOf<User>(),
-        private val openDetailFunction: (memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) -> Unit
+class MembersAdapter(
+    private var userList: ArrayList<User> = arrayListOf<User>(),
+    private val openDetailFunction: (memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) -> Unit
 
 ) : RecyclerView.Adapter<MembersAdapter.MembersViewHolder>() {
 
@@ -68,24 +67,21 @@ class MembersAdapter (
 
     override fun getItemCount(): Int = filteredUserList.size
 
-    fun updateUsersList(map: HashMap<String, String> ,newUsers: List<User>) {
-        //updating users list
+    fun updateUsersList(map: HashMap<String, String>, newUsers: List<User>) {
+        // updating users list
         setData(newUsers)
-        //getting updated filtered users
-        val newFilteredUsers = getFilteredUsers(map,newUsers)
+        // getting updated filtered users
+        val newFilteredUsers = getFilteredUsers(map, newUsers)
 
-        //applying changes to adapter
+        // applying changes to adapter
         val usersDiffCallback = UsersDiffCallback(filteredUserList, newFilteredUsers)
         val diffResult = DiffUtil.calculateDiff(usersDiffCallback)
         filteredUserList.clear()
         filteredUserList.addAll(newFilteredUsers)
         diffResult.dispatchUpdatesTo(this)
-
     }
 
-
-
-    private fun getFilteredUsers(map: HashMap<String, String>,newUsers: List<User>): List<User> {
+    private fun getFilteredUsers(map: HashMap<String, String>, newUsers: List<User>): List<User> {
         var newFilteredList: List<User> = arrayListOf()
         when (map[Constants.SORT_KEY]) {
             MembersFragment.SortValues.REGISTRATION_DATE.name -> {
@@ -143,7 +139,6 @@ class MembersAdapter (
 
         return newFilteredList
     }
-
 
     private fun setData(users: List<User>) {
         userList.clear()

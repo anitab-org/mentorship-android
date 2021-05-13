@@ -1,32 +1,26 @@
 package org.systers.mentorship.view.activities
 
 import android.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
-import org.systers.mentorship.R
-import android.util.Patterns
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_feedback.*
+import org.systers.mentorship.R
 
 class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
-
-    private var feedbackRating : Int = 0
-    private var feedbackEmailErr : Boolean = true
-    private var ratingBtnList : ArrayList<ImageButton>? = null
-    private var feedbackMsgErr : Boolean = true
-    private var feedbackCategory : String = ""
+    private var feedbackRating: Int = 0
+    private var feedbackEmailErr: Boolean = true
+    private var ratingBtnList: ArrayList<ImageButton>? = null
+    private var feedbackMsgErr: Boolean = true
+    private var feedbackCategory: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,33 +30,32 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-        //init email ID input field
+        // init email ID input field
         FeedbackpageEmail.isErrorEnabled = true
 
-        //init message input field
+        // init message input field
         FeedbackPageMessage.isErrorEnabled = true
 
-        //init ratingBtnList, an arraylist of ImageButtons, it is going to be used to add rating and change image resource, see fun assignRating()
+        // init ratingBtnList, an arraylist of ImageButtons, it is going to be used to add rating and change image resource, see fun assignRating()
         ratingBtnList = ArrayList()
         ratingBtnList?.add(FeedbackpageS1)
         ratingBtnList?.add(FeedbackpageS2)
         ratingBtnList?.add(FeedbackpageS3)
         ratingBtnList?.add(FeedbackpageS4)
         ratingBtnList?.add(FeedbackpageS5)
-        //set the onclick listener for each of the star buttons
-        for(i in ratingBtnList!!)
-        {
+        // set the onclick listener for each of the star buttons
+        for (i in ratingBtnList!!) {
             i.setOnClickListener(this)
         }
 
-        //set click listeners for category radio buttons
+        // set click listeners for category radio buttons
         FeedbackpageRd1.setOnClickListener(this)
         FeedbackpageRd2.setOnClickListener(this)
         FeedbackpageRd3.setOnClickListener(this)
-        //init category = "bug"
+        // init category = "bug"
         feedbackCategory = getString(R.string.bug)
 
-        //Final submit button
+        // Final submit button
         FeedbackpageSendbtn.setOnClickListener {
             validateInput()
 
@@ -78,32 +71,29 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
                         dialog.dismiss()
                     }
                 }, 3000)
-                //add backend code for adding rating, category, message, email ID
-            }
-            else
-            {
+                // add backend code for adding rating, category, message, email ID
+            } else {
                 if (feedbackMsgErr || feedbackEmailErr || feedbackRating == 0) {
                     Toast.makeText(this, getString(R.string.input), Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
     }
 
-    //fun used to validate email ID
+    // fun used to validate email ID
     fun isValidEmail(target: CharSequence): Boolean {
         return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches()
     }
 
-    private fun validateInput(){
-        if(FeedbackpageEmail.editText?.text.isNullOrEmpty()) FeedbackpageEmail.error = getString(R.string.email_error)
-        else if(! isValidEmail(FeedbackpageEmail.editText?.text!!)) FeedbackpageEmail.error = getString(R.string.valid_error)
+    private fun validateInput() {
+        if (FeedbackpageEmail.editText?.text.isNullOrEmpty()) FeedbackpageEmail.error = getString(R.string.email_error)
+        else if (! isValidEmail(FeedbackpageEmail.editText?.text!!)) FeedbackpageEmail.error = getString(R.string.valid_error)
         else {
             FeedbackpageEmail.isErrorEnabled = false
             feedbackEmailErr = false
         }
 
-        FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher{
+        FeedbackpageEmail.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -111,18 +101,16 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!FeedbackpageEmail.editText?.text.isNullOrEmpty()&&!isValidEmail(s!!)) {
+                if (!FeedbackpageEmail.editText?.text.isNullOrEmpty() && !isValidEmail(s!!)) {
                     FeedbackpageEmail.isErrorEnabled = true
                     FeedbackpageEmail.error = getString(R.string.valid_error)
                     feedbackEmailErr = true
-                }
-                else {
+                } else {
                     if (s.toString().isEmpty()) {
                         FeedbackpageEmail.isErrorEnabled = true
                         FeedbackpageEmail.error = getString(R.string.email_error)
                         feedbackEmailErr = true
-                    }
-                    else {
+                    } else {
                         FeedbackpageEmail.isErrorEnabled = false
                         feedbackEmailErr = false
                     }
@@ -130,21 +118,19 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             }
         })
 
-        if(FeedbackPageMessage.editText?.text.isNullOrEmpty()) FeedbackPageMessage.error = getString(R.string.msg_error)
+        if (FeedbackPageMessage.editText?.text.isNullOrEmpty()) FeedbackPageMessage.error = getString(R.string.msg_error)
         else if (FeedbackPageMessage.editText?.text.toString().length > FeedbackPageMessage.counterMaxLength) {
             FeedbackPageMessage.error = getString(R.string.char_error)
-        }
-        else {
+        } else {
             FeedbackPageMessage.isErrorEnabled = false
             feedbackMsgErr = false
         }
 
-        FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher{
+        FeedbackPageMessage.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -152,14 +138,12 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
                     FeedbackPageMessage.isErrorEnabled = true
                     FeedbackPageMessage.error = getString(R.string.char_error)
                     feedbackMsgErr = true
-                }
-                else {
+                } else {
                     if (s.toString().isEmpty()) {
                         FeedbackPageMessage.isErrorEnabled = true
                         FeedbackPageMessage.error = getString(R.string.msg_error)
                         feedbackMsgErr = true
-                    }
-                    else {
+                    } else {
                         FeedbackPageMessage.isErrorEnabled = false
                         feedbackMsgErr = false
                     }
@@ -176,17 +160,17 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
     override fun onBackPressed() {
 
         val builder = AlertDialog.Builder(this)
-        //set title for alert dialog
+        // set title for alert dialog
         builder.setTitle("Alert")
-        //set message for alert dialog
+        // set message for alert dialog
         builder.setMessage("Are you sure you want to Discard?")
         builder.setIcon(android.R.drawable.ic_dialog_alert)
-        //performing positive action
-        builder.setPositiveButton("Yes"){dialogInterface, which ->
+        // performing positive action
+        builder.setPositiveButton("Yes") { dialogInterface, which ->
             super.onBackPressed()
         }
-        //performing cancel action
-        builder.setNeutralButton("Cancel"){dialogInterface , which ->
+        // performing cancel action
+        builder.setNeutralButton("Cancel") { dialogInterface, which ->
         }
         // Create the AlertDialog
         val alertDialog: AlertDialog = builder.create()
@@ -196,8 +180,7 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id)
-        {
+        when (v?.id) {
             R.id.FeedbackpageS1 -> {
                 assignRating(1)
             }
@@ -215,34 +198,28 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
                 assignRating(5)
             }
             R.id.FeedbackpageRd1 -> {
-                if (FeedbackpageRd1.isChecked)
-                {
+                if (FeedbackpageRd1.isChecked) {
                     feedbackCategory = FeedbackpageRd1.text.toString()
                 }
-
             }
             R.id.FeedbackpageRd2 -> {
-                if (FeedbackpageRd2.isChecked)
-                {
+                if (FeedbackpageRd2.isChecked) {
                     feedbackCategory = FeedbackpageRd2.text.toString()
                 }
             }
             R.id.FeedbackpageRd3 -> {
-                if (FeedbackpageRd3.isChecked)
-                {
+                if (FeedbackpageRd3.isChecked) {
                     feedbackCategory = FeedbackpageRd3.text.toString()
                 }
             }
         }
-
     }
 
-    //fun used to assign rating and change image resource of star image buttons
-    fun assignRating(starIndex : Int) {
+    // fun used to assign rating and change image resource of star image buttons
+    fun assignRating(starIndex: Int) {
         if (feedbackRating != starIndex) {
 
-            for (i in 0 until feedbackRating)
-            {
+            for (i in 0 until feedbackRating) {
                 ratingBtnList?.get(i)?.setImageResource(R.drawable.ic_star_border_black_24dp)
             }
             for (i in 0 until starIndex) {
@@ -251,5 +228,4 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
             feedbackRating = starIndex
         }
     }
-
 }

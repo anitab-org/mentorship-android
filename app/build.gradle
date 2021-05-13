@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply from: "$project.rootDir/spotless.gradle"
+
 android {
     compileSdkVersion Versions.compileSdkVersion
     defaultConfig {

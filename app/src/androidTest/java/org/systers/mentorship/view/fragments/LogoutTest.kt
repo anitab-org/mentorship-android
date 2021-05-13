@@ -61,4 +61,4 @@ class LogoutTest {
                 ComponentName(InstrumentationRegistry.getInstrumentation().context, LoginActivity::class.java))
         )
     }
-} 
+}

@@ -32,6 +32,7 @@ object Versions {
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
     const val fragmentKtx = "1.2.5"
+    const val spotless = "5.11.1"
 }
 
 /**
@@ -64,10 +65,8 @@ object Dependencies {
     const val support_annotation = "androidx.annotation:annotation:${Versions.supportAnnotation}"
     const val app_intro = "com.github.AppIntro:AppIntro:${Versions.appIntro}"
     const val circule_image_view = "de.hdodenhof:circleimageview:${Versions.circleImageView}"
-
     const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
-
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
-
+    const val spotless_plugin_gradle = "com.diffplug.spotless:spotless-plugin-gradle:${Versions.spotless}"
 }

@@ -1,0 +1,26 @@
+apply plugin: "com.diffplug.spotless"
+
+spotless {
+    // optional: limit format enforcement to just the files changed by this feature branch
+    ratchetFrom 'origin/develop'
+
+    format 'misc', {
+        // define the files to apply `misc` to
+        target '**/*.gradle', '**/*.md', '**/.gitignore'
+
+        // define the steps to apply to those files
+        indentWithSpaces()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+
+    format 'xml', {
+        target '**/*.xml'
+        eclipseWtp('xml').configFile("$project.rootDir/config/spotless.xml.prefs")
+    }
+
+    kotlin {
+        target '**/*.kt'
+        ktlint()
+    }
+}

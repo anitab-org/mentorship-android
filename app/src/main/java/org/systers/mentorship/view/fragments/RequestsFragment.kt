@@ -3,7 +3,6 @@ package org.systers.mentorship.view.fragments
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_requests.*
@@ -38,28 +37,28 @@ class RequestsFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRequests.setOnRefreshListener { fetchNewest() }
 
-        requestsViewModel.successful.observe(viewLifecycleOwner, Observer {
+        requestsViewModel.successful.observe(viewLifecycleOwner, {
             successful ->
             srlRequests.isRefreshing = false
             if (successful != null) {
                 if (successful) {
-                    requestsViewModel.pendingSuccessful.observe(viewLifecycleOwner, Observer {
+                    requestsViewModel.pendingSuccessful.observe(viewLifecycleOwner, {
                         successful ->
                         activityCast.hideProgressDialog()
                         if (successful != null) {
-                            if (successful){
+                            if (successful) {
                                 requestsViewModel.allRequestsList?.let { allRequestsList ->
                                     vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, requestsViewModel.pendingAllRequestsList, requireActivity())
 //                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
-                                    TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests) {tab, position ->
-                                        when(position){
+                                    TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests) { tab, position ->
+                                        when (position) {
                                             0 -> {
                                                 tab.text = context?.getString(R.string.pending)
                                             }
-                                            1  -> {
+                                            1 -> {
                                                 tab.text = context?.getString(R.string.past)
                                             }
-                                            2  -> {
+                                            2 -> {
                                                 tab.text = context?.getString(R.string.all)
                                             }
                                         }
@@ -91,7 +90,7 @@ class RequestsFragment : BaseFragment() {
         }
     }
 
-    private fun fetchNewest()  {
+    private fun fetchNewest() {
         srlRequests.isRefreshing = true
         requestsViewModel.getAllMentorshipRelations()
         requestsViewModel.getAllPendingMentorshipRelations()
