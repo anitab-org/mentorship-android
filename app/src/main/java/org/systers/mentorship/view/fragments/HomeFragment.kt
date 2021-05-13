@@ -6,8 +6,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -23,9 +23,7 @@ import org.systers.mentorship.viewmodels.HomeViewModel
  */
 class HomeFragment : BaseFragment() {
 
-    private val homeViewModel by lazy {
-        ViewModelProviders.of(this).get(HomeViewModel::class.java)
-    }
+    private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var achievementsAdapter: AchievementsAdapter
 

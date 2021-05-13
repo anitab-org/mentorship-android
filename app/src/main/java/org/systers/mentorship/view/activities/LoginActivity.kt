@@ -1,7 +1,6 @@
 package org.systers.mentorship.view.activities
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -9,6 +8,7 @@ import android.text.TextWatcher
 import com.google.android.material.snackbar.Snackbar
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.activity.viewModels
 import kotlinx.android.synthetic.main.activity_login.*
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.requests.Login
@@ -21,10 +21,7 @@ import java.lang.Exception
  * This activity will let the user to login using username/email and password.
  */
 class LoginActivity : BaseActivity() {
-
-    private val loginViewModel by lazy {
-        ViewModelProviders.of(this).get(LoginViewModel::class.java)
-    }
+    private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var username: String
     private lateinit var password: String
 
