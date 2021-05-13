@@ -72,6 +72,8 @@ dependencies {
     implementation (Dependencies.app_intro)
     implementation (Dependencies.circule_image_view)
 
+    implementation (Dependencies.fragment_ktx)
+
     implementation (Dependencies.viewPager2)
     implementation (Dependencies.swipe_refresh_layout)
 }
