@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
         <variable
             name="user"
             type="org.systers.mentorship.models.User" />
@@ -129,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
-                         android:imeOptions="actionDone"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.bio}" />
@@ -165,7 +166,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
-                        android:imeOptions="actionDone"                                                     
+                        android:imeOptions="actionDone"
                         android:inputType="textPostalAddress"
                         android:textColor="@color/black"
                         android:text="@={user.location}" />
@@ -183,7 +184,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
-                        android:imeOptions="actionDone"                                                     
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.occupation}" />
@@ -200,7 +201,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:imeOptions="actionDone"                                                     
+                        android:imeOptions="actionDone"
                         android:background="@android:color/white"
                         android:inputType="text"
                         android:textColor="@color/black"
@@ -219,7 +220,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
-                        android:imeOptions="actionDone"                                                     
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.skills}" />
@@ -237,7 +238,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/white"
-                        android:imeOptions="actionDone"                                                     
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:text="@={user.interests}" />

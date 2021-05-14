@@ -24,7 +24,7 @@ class PreferenceManager {
      * @param authToken String which is the authorization token
      */
     @SuppressLint("ApplySharedPref")
-    //Cannot use .apply(), it will take time to save the token. We need token ASAP
+    // Cannot use .apply(), it will take time to save the token. We need token ASAP
     fun putAuthToken(authToken: String) {
         sharedPreferences.edit().putString(AUTH_TOKEN, "Bearer $authToken").commit()
     }

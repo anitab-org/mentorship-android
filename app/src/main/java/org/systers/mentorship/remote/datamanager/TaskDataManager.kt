@@ -28,7 +28,7 @@ class TaskDataManager {
      * @return an Observable of [CustomResponse]
      */
     fun completeTask(relationId: Int, taskId: Int): Observable<CustomResponse> {
-        return apiManager.taskService.completeTaskFromMentorshipRelation(relationId,taskId)
+        return apiManager.taskService.completeTaskFromMentorshipRelation(relationId, taskId)
     }
 
     /**
@@ -38,7 +38,6 @@ class TaskDataManager {
      * @return an Observable of [CustomResponse]
      */
     fun addTask(relationId: Int, createTask: CreateTask): Observable<CustomResponse> {
-        return apiManager.taskService.addTaskToMentorshipRelation(relationId,createTask)
+        return apiManager.taskService.addTaskToMentorshipRelation(relationId, createTask)
     }
-
 }

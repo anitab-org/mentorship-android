@@ -1,14 +1,12 @@
 package org.systers.mentorship.view.fragments
 
-
 import android.annotation.SuppressLint
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_relation_pager.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
@@ -46,7 +44,7 @@ class RelationFragment(private var mentorshipRelation: Relationship) : BaseFragm
         activityCast.showProgressDialog(getString(R.string.fetching_users))
         populateView(mentorshipRelation)
 
-        relationViewModel.successfulCancel.observe(viewLifecycleOwner, Observer { successful ->
+        relationViewModel.successfulCancel.observe(viewLifecycleOwner, { successful ->
             activityCast.hideProgressDialog()
             if (successful != null) {
                 if (successful) {

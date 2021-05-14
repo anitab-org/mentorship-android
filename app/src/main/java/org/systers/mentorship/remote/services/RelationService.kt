@@ -4,7 +4,12 @@ import io.reactivex.Observable
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.requests.RelationshipRequest
 import org.systers.mentorship.remote.responses.CustomResponse
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 /**
  * This interface describes the methods related to Mentorship Relation REST API

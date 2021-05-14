@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.datamanager.UserDataManager
@@ -13,8 +15,6 @@ import org.systers.mentorship.remote.requests.ChangePassword
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * This class represents the [ViewModel] used for ChangePasswordFragment

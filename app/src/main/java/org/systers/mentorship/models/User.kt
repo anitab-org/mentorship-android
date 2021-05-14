@@ -22,17 +22,17 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class User(
-        var id: Int? = null,
-        var username: String? = null,
-        var name: String? = null,
-        var email: String? = null,
-        var bio: String? = null,
-        var location: String? = null,
-        var occupation: String? = null,
-        var organization: String? = null,
-        var interests: String? = null,
-        var skills: String? = null,
-        var needMentoring: Boolean? = null,
-        var availableToMentor: Boolean? = null,
-        var slackUsername: String? = null
+    var id: Int? = null,
+    var username: String? = null,
+    var name: String? = null,
+    var email: String? = null,
+    var bio: String? = null,
+    var location: String? = null,
+    var occupation: String? = null,
+    var organization: String? = null,
+    var interests: String? = null,
+    var skills: String? = null,
+    var needMentoring: Boolean? = null,
+    var availableToMentor: Boolean? = null,
+    var slackUsername: String? = null
 ) : Parcelable

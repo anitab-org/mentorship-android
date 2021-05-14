@@ -1,6 +1,5 @@
 package org.systers.mentorship.view.fragments
 
-
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import org.systers.mentorship.R
 import org.systers.mentorship.databinding.FragmentEditProfileBinding
 import org.systers.mentorship.models.User
@@ -45,7 +43,7 @@ class EditProfileFragment : DialogFragment() {
     lateinit var builder: AlertDialog
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        profileViewModel.successfulUpdate.observe(this, Observer { successful ->
+        profileViewModel.successfulUpdate.observe(this, { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
@@ -79,7 +77,6 @@ class EditProfileFragment : DialogFragment() {
         return builder
     }
 
-
     override fun onResume() {
         super.onResume()
 
@@ -111,10 +108,8 @@ class EditProfileFragment : DialogFragment() {
             } else if (currentUser == editProfileBinding.user && errors.isEmpty()) {
                 builder.dismiss()
             }
-
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -142,7 +137,6 @@ class EditProfileFragment : DialogFragment() {
     fun setOnDismissListener(onDismissListener: DialogInterface.OnDismissListener?) {
         this.onDismissListener = onDismissListener!!
     }
-
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)

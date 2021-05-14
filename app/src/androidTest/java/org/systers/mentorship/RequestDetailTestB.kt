@@ -47,4 +47,3 @@ class RequestDetailActivityTestB {
         onView(withId(R.id.btnReject)).check(matches(isDisplayed()))
     }
 }
-
