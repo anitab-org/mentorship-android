@@ -6,12 +6,11 @@ import org.gradle.kotlin.dsl.configure
 fun Project.configureSpotless() {
     apply(plugin = "com.diffplug.spotless")
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+
         ratchetFrom("origin/develop")
 
         format("misc") {
             target("**/*.gradle", "**/*.md", "**/.gitignore")
-
-            // define the steps to apply to those files
             indentWithSpaces()
             trimTrailingWhitespace()
             endWithNewline()
