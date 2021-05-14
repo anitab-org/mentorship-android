@@ -4,8 +4,18 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 
 fun Project.configureSpotless() {
-    apply(plugin = Plugins.BuildPlugins.spotlessPlugin)
+    apply(plugin = "com.diffplug.spotless")
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+        ratchetFrom("origin/develop")
+
+        format("misc"){
+            target ("**/*.gradle", "**/*.md", "**/.gitignore")
+
+            // define the steps to apply to those files
+            indentWithSpaces()
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
         kotlin {
             target("**/*.kt")
             targetExclude("**/build/")
@@ -17,7 +27,6 @@ fun Project.configureSpotless() {
         }
         format("xml") {
             target("**/*.xml")
-            targetExclude("**/build/", ".idea/")
             eclipseWtp(EclipseWtpFormatterStep.XML).configFile("$rootDir/config/spotless.xml.prefs")
         }
     }

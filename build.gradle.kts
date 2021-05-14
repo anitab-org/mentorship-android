@@ -32,8 +32,5 @@ allprojects {
             name  = "Jitpack"
         }
     }
-}
-
-tasks.register("clean",Delete::class){
-    delete(rootProject.buildDir)
+    configureSpotless()
 }
