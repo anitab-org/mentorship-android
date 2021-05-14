@@ -11,19 +11,19 @@ android {
         applicationId = "org.anitab.mentorship"
         minSdkVersion(Versions.minSdkVersion)
         targetSdkVersion(Versions.targetSdkVersion)
-        versionCode =  Versions.versionCode
+        versionCode = Versions.versionCode
         versionName = Versions.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
-        getByName("release"){
+        getByName("release") {
             isMinifyEnabled = false
-            proguardFiles (getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            setManifestPlaceholders( mutableMapOf("usesCleartextTraffic" to false))
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            setManifestPlaceholders(mutableMapOf("usesCleartextTraffic" to false))
         }
-        getByName("debug"){
-            setManifestPlaceholders (mutableMapOf("usesCleartextTraffic" to true))
+        getByName("debug") {
+            setManifestPlaceholders(mutableMapOf("usesCleartextTraffic" to true))
         }
         create("debug_localhost") {
             initWith(getByName("debug"))
@@ -39,10 +39,9 @@ android {
     buildFeatures {
         dataBinding = true
     }
-    androidExtensions{
+    androidExtensions {
         isExperimental = true
     }
-
 }
 
 configurations.all {
@@ -57,31 +56,31 @@ dependencies {
     implementation(Dependencies.design)
     implementation(Dependencies.constraint_layout)
     implementation(Dependencies.appCompat)
-    kapt (Dependencies.databinding)
-    testImplementation (Dependencies.junit)
-    androidTestImplementation (Dependencies.test_runner)
-    androidTestImplementation (Dependencies.test_rules)
-    androidTestImplementation (Dependencies.espresso)
-    androidTestImplementation (Dependencies.espresso_intents)
-    androidTestImplementation (Dependencies.ext_junit)
-    implementation (Dependencies.espresso_idling_resources)
+    kapt(Dependencies.databinding)
+    testImplementation(Dependencies.junit)
+    androidTestImplementation(Dependencies.test_runner)
+    androidTestImplementation(Dependencies.test_rules)
+    androidTestImplementation(Dependencies.espresso)
+    androidTestImplementation(Dependencies.espresso_intents)
+    androidTestImplementation(Dependencies.ext_junit)
+    implementation(Dependencies.espresso_idling_resources)
 
-    implementation (Dependencies.rx_java)
-    implementation (Dependencies.rx_android)
-    implementation (Dependencies.rx_kotlin)
+    implementation(Dependencies.rx_java)
+    implementation(Dependencies.rx_android)
+    implementation(Dependencies.rx_kotlin)
 
-    implementation (Dependencies.retrofit)
-    implementation (Dependencies.retrofit_gson_converter)
-    implementation (Dependencies.retrofit_rxjava2_adapter)
-    implementation (Dependencies.okhttp3_logging_interceptor)
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.retrofit_gson_converter)
+    implementation(Dependencies.retrofit_rxjava2_adapter)
+    implementation(Dependencies.okhttp3_logging_interceptor)
 
-    implementation (Dependencies.lifecycle_extensions)
-    implementation (Dependencies.lifecycle_viewmodel)
-    implementation (Dependencies.app_intro)
-    implementation (Dependencies.circule_image_view)
+    implementation(Dependencies.lifecycle_extensions)
+    implementation(Dependencies.lifecycle_viewmodel)
+    implementation(Dependencies.app_intro)
+    implementation(Dependencies.circule_image_view)
 
-    implementation (Dependencies.fragment_ktx)
+    implementation(Dependencies.fragment_ktx)
 
-    implementation (Dependencies.viewPager2)
-    implementation (Dependencies.swipe_refresh_layout)
+    implementation(Dependencies.viewPager2)
+    implementation(Dependencies.swipe_refresh_layout)
 }

@@ -8,8 +8,8 @@ fun Project.configureSpotless() {
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         ratchetFrom("origin/develop")
 
-        format("misc"){
-            target ("**/*.gradle", "**/*.md", "**/.gitignore")
+        format("misc") {
+            target("**/*.gradle", "**/*.md", "**/.gitignore")
 
             // define the steps to apply to those files
             indentWithSpaces()
