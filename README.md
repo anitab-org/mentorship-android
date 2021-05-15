@@ -18,7 +18,7 @@ This is the Android client for the Mentorship System.
 ## Features
 * Once the App is installed user can view an onboarding screen which introduces the app and give user an idea of how it works.
 * A member gets an option to be a Mentor, Mentee or Both.
-* A member can build/customise the app profile with username, bio, skills, interests, location, occupation, etc. anytime. 
+* A member can build/customise the app profile with username, bio, skills, interests, location, occupation, etc. anytime.
 * A member can read and know more about Mentorship System including the terms and conditions, privacy and policy and code of conduct.
 * A member can directly access the AnitaB-org Github repo, Zulip chat and website from this App.
 * A member can refresh the every page.
@@ -27,7 +27,7 @@ This is the Android client for the Mentorship System.
 * A member can sort other members on the basis of their name either (A-Z) OR (Z-A), registration date, age.
 * A member can filter other members by the label **need mentoring** or **available to mentor**, interest, location and skills that given while creating profile.
 * A member can either send mentorship requests to other members as a Mentor or Mentee according to their interests or reject mentorship requests from other members.
-* A member can track the number of **Pending Resquests**, **Accepted Requests**, **Rejected Requests**, and **Completed Requests** and view **Recent Achievements** on the Home Page.  
+* A member can track the number of **Pending Resquests**, **Accepted Requests**, **Rejected Requests**, and **Completed Requests** and view **Recent Achievements** on the Home Page.
 * A member can view the details of pending, past, all the mentorship requests in the Requests Page.
 * A member can create, update, or delete tasks in their current mentorship relation.
 * A member can send feedback about the Mentorship System such as reporting a bug, giving suggestions or other comments.
@@ -41,7 +41,7 @@ To setup the project locally read these wiki pages and follow the instructions:
  - [Fork, Clone and Remote](https://github.com/anitab-org/mentorship-android/wiki/Fork%2C-Clone-%26-Remote)
  - [Open project in Android Studio](https://github.com/anitab-org/mentorship-android/wiki/Open-the-project-in-Android-Studio)
 
-## Contributing 
+## Contributing
 
 Please read our [Contributing guidelines](https://github.com/anitab-org/mentorship-android/blob/develop/.github/CONTRIBUTING.md), [Code of Conduct](http://systers.io/code-of-conduct) and [Reporting Guidelines](http://systers.io/reporting-guidelines)
 
@@ -110,7 +110,7 @@ The repository has the following permanent branches:
  * **apk** This branch contains the apks for the code in the develop branch. The apks are automatically updated when a commit is pushed to `develop` branch.
 
 ## Screenshots
-|![Introduction Slider](https://user-images.githubusercontent.com/63957920/107955208-86743280-6fc3-11eb-9d5f-0e1031beb992.jpeg)|![SignUp Screen](https://user-images.githubusercontent.com/63957920/107955263-968c1200-6fc3-11eb-952d-def226ef1174.jpeg)|![Login Page](https://user-images.githubusercontent.com/63957920/107955213-883df600-6fc3-11eb-9d43-768a25f11aff.jpeg)| 
+|![Introduction Slider](https://user-images.githubusercontent.com/63957920/107955208-86743280-6fc3-11eb-9d5f-0e1031beb992.jpeg)|![SignUp Screen](https://user-images.githubusercontent.com/63957920/107955263-968c1200-6fc3-11eb-952d-def226ef1174.jpeg)|![Login Page](https://user-images.githubusercontent.com/63957920/107955213-883df600-6fc3-11eb-9d43-768a25f11aff.jpeg)|
 |:---:|:---:|:---:|
 |![Home Page](https://user-images.githubusercontent.com/63957920/107955205-84aa6f00-6fc3-11eb-95c7-4db92f18f6df.jpeg)|![Profile Page](https://user-images.githubusercontent.com/63957920/107955253-94c24e80-6fc3-11eb-9463-39aa50cb382c.jpeg)|![Edit Profile Page](https://user-images.githubusercontent.com/63957920/107955188-7f4d2480-6fc3-11eb-8698-66f41d6ae835.jpeg)|
 |![Relations Page](https://user-images.githubusercontent.com/63957920/107955255-955ae500-6fc3-11eb-8d00-2664a2dce0cc.jpeg)|![Tasks Page](https://user-images.githubusercontent.com/63957920/107955267-9724a880-6fc3-11eb-9b20-c11ee5013014.jpeg)|![Members Page](https://user-images.githubusercontent.com/63957920/107955249-9429b800-6fc3-11eb-9a67-9a9cdafcb8ba.jpeg)|

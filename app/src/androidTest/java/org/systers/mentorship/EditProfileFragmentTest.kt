@@ -8,7 +8,11 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.RootMatchers.isDialog
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import org.hamcrest.CoreMatchers
@@ -18,9 +22,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.systers.mentorship.view.activities.MainActivity
 
-
 @RunWith(AndroidJUnit4::class)
-class EditProfileFragmentTest{
+class EditProfileFragmentTest {
 
     // launches the main Activity
     @get:Rule
@@ -32,7 +35,7 @@ class EditProfileFragmentTest{
     fun setup() {
         onView(withId(R.id.navigation_profile)).perform(click())
         var timeout = 0L
-        while(timeout < 5000) {
+        while (timeout < 5000) {
             try {
                 onView(withId(R.id.imgUserAvatar)).check(matches(isDisplayed()))
                 break
@@ -89,7 +92,7 @@ class EditProfileFragmentTest{
     // helper methods
 
     // check if the provided id is an edit text
-    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
+    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
         return onView(CoreMatchers.allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }

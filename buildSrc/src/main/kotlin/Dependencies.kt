@@ -7,9 +7,9 @@ object Versions {
     const val targetSdkVersion = 28
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "4.0.1"
+    const val gradleBuildTool = "4.1.2"
     const val dataBinding = "3.2.0-alpha11"
-    const val kotlinVersion = "1.4.10"
+    const val kotlinVersion = "1.4.21"
     const val supportLib = "1.0.0"
     const val designSupportLib = "1.1.0-beta01"
     const val swipeRefreshLayout = "1.1.0"
@@ -32,7 +32,6 @@ object Versions {
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
     const val fragmentKtx = "1.2.5"
-    const val spotless = "5.11.1"
 }
 
 /**
@@ -41,7 +40,7 @@ object Versions {
 object Dependencies {
     const val gradle_build_tool = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
     const val databinding = "androidx.databinding:compiler:${Versions.dataBinding}"
-    const val appCompat= "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
     const val design = "com.google.android.material:material:${Versions.designSupportLib}"
@@ -68,5 +67,4 @@ object Dependencies {
     const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
-    const val spotless_plugin_gradle = "com.diffplug.spotless:spotless-plugin-gradle:${Versions.spotless}"
 }
