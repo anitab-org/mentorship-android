@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.SettingsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAbout"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_info_black_24dp"
+            android:text="@string/popup_menu_about"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFeedback"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:drawableStart="@drawable/ic_feedback_black_24dp"
+            android:focusable="true"
+            android:text="@string/popup_menu_feedback"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLogout"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+            android:text="@string/popup_menu_logout"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tvFeedback" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvResetPassword"
+            style="@style/TextViewSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lock_black_24dp"
+            android:text="@string/change_password"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tvLogout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
