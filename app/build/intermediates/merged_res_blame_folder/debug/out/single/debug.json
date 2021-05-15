@@ -1,0 +1,426 @@
+[
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_slide_out_left.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/slide_out_left.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_settings_white_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_settings_white_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_layout_fall_down.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/layout_fall_down.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_add_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_add_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_home_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_home_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_privacy.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_privacy.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_filter.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_filter.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_requests_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_requests_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_baseline_check_circle_24.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/baseline_check_circle_24.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_prominent_nav_bar.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-xxhdpi/prominent_nav_bar.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_feedback_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_feedback_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_close_white_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_close_white_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_current_relation_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_current_relation_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_keyboard_arrow_down_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_keyboard_arrow_down_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_anim_slide_to_bottom.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/anim_slide_to_bottom.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_filter_white_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_filter_white_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_exit_to_app_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_terms_and_condition.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_terms_and_condition.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_background_rounded_primary.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/background_rounded_primary.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_dialog_feedback_success.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/dialog_feedback_success.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_anim_slide_from_bottom.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/anim_slide_from_bottom.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_star_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_star_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_prominent_nav_bar.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-xxxhdpi/prominent_nav_bar.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_members_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_members_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/menu_main_menu.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/menu/main_menu.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_feedback.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_feedback.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-xhdpi_prominent_nav_bar.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-xhdpi/prominent_nav_bar.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_top_to_bottom.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/top_to_bottom.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_splash_screen.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_splash_screen.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_profile.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/font_open_sans_regular.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/font/open_sans_regular.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_background_rounded_white.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/background_rounded_white.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_request_detail.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_request_detail.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_zulip.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_zulip.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_edit_white_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_edit_white_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_task_list_item.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/task_list_item.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_undraw_shared_workspace.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_undraw_shared_workspace.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_slide_in_left.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/slide_in_left.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/menu_bottom_navigation.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/menu/bottom_navigation.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_request_pager.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_request_pager.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-ldpi_prominent_nav_bar.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-ldpi/prominent_nav_bar.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_dialog_add_task.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/dialog_add_task.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_list_requests_item.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/list_requests_item.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_star_border_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_star_border_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_slide_in_right.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/slide_in_right.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_sign_up.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_sign_up.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_requests.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_requests.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_undraw_proud_self.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_undraw_proud_self.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-v24_mentorship_system_logo.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-v24/mentorship_system_logo.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/menu_menu_my_profile.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/menu/menu_my_profile.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-mdpi_prominent_nav_bar.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-mdpi/prominent_nav_bar.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_relation_pager.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_relation_pager.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_slide_out_right.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/slide_out_right.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-nodpi_ic_person_placeholder.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-nodpi/ic_person_placeholder.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_mentorship_tasks.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_mentorship_tasks.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_info_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_info_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_close_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_close_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_member_profile.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_member_profile.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_code_of_conduct.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_code_of_conduct.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_edit_profile.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_edit_profile.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_slack.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_slack.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_anim_stay.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/anim_stay.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_list_member_item.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/list_member_item.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_achievement_list_item.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/achievement_list_item.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_bottom_to_top.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/bottom_to_top.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_home.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_settings.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_settings.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-hdpi_prominent_nav_bar.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-hdpi/prominent_nav_bar.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_account_circle_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_account_circle_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_undraw_a_day_off.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_undraw_a_day_off.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/menu_menu_members.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/menu/menu_members.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_settings_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_settings_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_change_password.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_change_password.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_profile_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_profile_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_relation.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_relation.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_date_range_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_date_range_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_fragment_members.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_members.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_about.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_about.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_github.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_github.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_delete_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_delete_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_web.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_web.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_edit_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_edit_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_keyboard_arrow_up_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_keyboard_arrow_up_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/anim_item_fall_down.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/anim/item_fall_down.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_arrow_back_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_arrow_back_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_search_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_search_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_undraw_people.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_undraw_people.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_lock_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_lock_black_24dp.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_login.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/layout_activity_send_request.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/activity_send_request.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/res/merged/debug/drawable_ic_arrow_forward_black_24dp.xml.flat",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/drawable/ic_arrow_forward_black_24dp.xml"
+    }
+]

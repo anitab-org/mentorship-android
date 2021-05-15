@@ -1,0 +1,58 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-v23/values-v23.xml",
+            "map": [
+                {
+                    "source": "/home/runner/.gradle/caches/transforms-3/c3dc2fd4f7a25b75f3371d2eb0299750/transformed/material-1.1.0-beta01/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2,6,9,12,16,19",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,330,502,662,945,1121",
+                        "endLines": "5,8,11,15,18,21",
+                        "endColumns": "10,10,10,10,10,10",
+                        "endOffsets": "325,497,657,940,1116,1285"
+                    },
+                    "to": {
+                        "startLines": "51,55,58,61,65,68",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "3557,3832,4004,4164,4447,4623",
+                        "endLines": "54,57,60,64,67,70",
+                        "endColumns": "10,10,10,10,10,10",
+                        "endOffsets": "3827,3999,4159,4442,4618,4787"
+                    }
+                },
+                {
+                    "source": "/home/runner/.gradle/caches/transforms-3/5e58f1bf90896eec9532bfd2d390c6e9/transformed/appcompat-1.1.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,20,34,35,36,37,41,42,43,44",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,487,1371,2267,2386,2513,2618,2842,2957,3064,3177",
+                        "endLines": "2,3,4,5,19,33,34,35,36,40,41,42,43,47",
+                        "endColumns": "134,134,74,86,12,12,118,126,104,12,114,106,112,12",
+                        "endOffsets": "185,320,395,482,1366,2262,2381,2508,2613,2837,2952,3059,3172,3402"
+                    }
+                },
+                {
+                    "source": "/home/runner/.gradle/caches/transforms-3/68eb0599b65476a54d4ec855b95b9899/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "200"
+                    },
+                    "to": {
+                        "startLines": "48",
+                        "startColumns": "4",
+                        "startOffsets": "3407",
+                        "endLines": "50",
+                        "endColumns": "12",
+                        "endOffsets": "3552"
+                    }
+                }
+            ]
+        }
+    ]
+}

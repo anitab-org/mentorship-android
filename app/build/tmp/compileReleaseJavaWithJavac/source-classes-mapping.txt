@@ -1,0 +1,50 @@
+org/systers/mentorship/BR.java
+ org.systers.mentorship.BR
+org/systers/mentorship/databinding/FragmentEditProfileBindingImpl.java
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$1
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$10
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$11
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$12
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$2
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$3
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$4
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$5
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$6
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$7
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$8
+ org.systers.mentorship.databinding.FragmentEditProfileBindingImpl$9
+org/systers/mentorship/databinding/FragmentProfileBindingImpl.java
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$1
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$10
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$2
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$3
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$4
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$5
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$6
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$7
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$8
+ org.systers.mentorship.databinding.FragmentProfileBindingImpl$9
+androidx/databinding/DataBinderMapperImpl.java
+ androidx.databinding.DataBinderMapperImpl
+androidx/databinding/library/baseAdapters/BR.java
+ androidx.databinding.library.baseAdapters.BR
+org/systers/mentorship/databinding/FragmentHomeBindingImpl.java
+ org.systers.mentorship.databinding.FragmentHomeBindingImpl
+org/systers/mentorship/databinding/FragmentHomeBinding.java
+ org.systers.mentorship.databinding.FragmentHomeBinding
+org/systers/mentorship/databinding/FragmentEditProfileBinding.java
+ org.systers.mentorship.databinding.FragmentEditProfileBinding
+org/systers/mentorship/DataBinderMapperImpl.java
+ org.systers.mentorship.DataBinderMapperImpl
+ org.systers.mentorship.DataBinderMapperImpl$InnerBrLookup
+ org.systers.mentorship.DataBinderMapperImpl$InnerLayoutIdLookup
+org/systers/mentorship/BuildConfig.java
+ org.systers.mentorship.BuildConfig
+org/systers/mentorship/DataBindingTriggerClass.java
+ org.systers.mentorship.DataBindingTriggerClass
+org/systers/mentorship/databinding/FragmentProfileBinding.java
+ org.systers.mentorship.databinding.FragmentProfileBinding
+androidx/databinding/DataBindingComponent.java
+ androidx.databinding.DataBindingComponent

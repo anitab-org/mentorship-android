@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_home.xml",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_profile.xml",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "/home/runner/work/mentorship-android/mentorship-android/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_edit_profile.xml",
+        "source": "/home/runner/work/mentorship-android/mentorship-android/app/src/main/res/layout/fragment_edit_profile.xml"
+    }
+]
