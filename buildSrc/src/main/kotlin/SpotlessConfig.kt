@@ -10,7 +10,7 @@ fun Project.configureSpotless() {
         ratchetFrom("origin/develop")
 
         format("misc") {
-            target("**/*.gradle", "**/*.md", "**/.gitignore")
+            target("**/*.md", "**/.gitignore, **/CODEOWNERS")
             indentWithSpaces()
             trimTrailingWhitespace()
             endWithNewline()
@@ -21,7 +21,7 @@ fun Project.configureSpotless() {
             ktlint()
         }
         kotlinGradle {
-            target("*.gradle.kts")
+            target("**.gradle.kts")
             ktlint()
         }
         format("xml") {
