@@ -21,7 +21,7 @@ fun Project.configureSpotless() {
             ktlint()
         }
         kotlinGradle {
-            target("**.gradle.kts")
+            target("*.gradle.kts")
             ktlint()
         }
         format("xml") {
