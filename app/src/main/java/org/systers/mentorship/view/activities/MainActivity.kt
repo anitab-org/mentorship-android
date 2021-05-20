@@ -2,15 +2,18 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
-import org.systers.mentorship.view.fragments.*
+import org.systers.mentorship.view.fragments.HomeFragment
+import org.systers.mentorship.view.fragments.MembersFragment
+import org.systers.mentorship.view.fragments.ProfileFragment
+import org.systers.mentorship.view.fragments.RelationPagerFragment
+import org.systers.mentorship.view.fragments.RequestsFragment
 
 /**
  * This activity has the bottom navigation which allows the user to switch between fragments
@@ -30,7 +33,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        bottomNavigation.setOnNavigationItemReselectedListener {  }
+        bottomNavigation.setOnNavigationItemReselectedListener { }
 
         if (savedInstanceState == null) {
             showHomeFragment()

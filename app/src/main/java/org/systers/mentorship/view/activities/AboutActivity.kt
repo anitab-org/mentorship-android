@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_about.*
 import org.systers.mentorship.R
 
-
 class AboutActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,15 +45,12 @@ class AboutActivity : AppCompatActivity(), View.OnClickListener {
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
-            Toast.makeText(this,R.string.activity_not_found_exception_error, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.activity_not_found_exception_error, Toast.LENGTH_LONG).show()
         }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
-
-
 }

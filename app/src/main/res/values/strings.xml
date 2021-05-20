@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="about">About</string>
-    <string name="about_app">Mentorship System is an application that matches women in tech to mentor each other, on career development, through 1:1 relations during a certain period of time.</string>
-    <string name="about_systers">AnitaB.org is an international community for all women involved in the technical aspects of computing. We welcome the participation of women technologists of all ages and at any stage of their studies or careers.
-We engage our community by contributing to open source, collaborating with the global community, and learning/enhancing our coding skills. We are committed to providing a safe, positive online community for our many volunteers that offer their skills, time, and commitment to our projects. </string>
+    <string name="about_app">Mentorship System is an application that matches women in tech to mentor
+        each other, on career development, through 1:1 relations during a certain period of time.</string>
+    <string name="about_systers">AnitaB.org is an international community for all women involved in the
+        technical aspects of computing. We welcome the participation of women technologists of all
+        ages and at any stage of their studies or careers.
+        We engage our community by contributing to
+        open source, collaborating with the global community, and
+        learning/enhancing our coding
+        skills. We are committed to providing a safe, positive online
+        community for our many
+        volunteers that offer their skills, time, and commitment to our
+        projects.
+    </string>
     <string name="accept">Accept</string>
     <string name="accepted">Accepted</string>
     <string name="accepted_requests">Accepted Requests</string>
@@ -19,7 +29,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="available_to_mentor_and_mentee">Available to mentor and be a mentee</string>
     <string name="bio">Bio</string>
     <string name="both">Both</string>
-    <string name="both_users_only_available_to_mentor">This request is not possible because both users are only ‘available to mentor\'</string>
+    <string name="both_users_only_available_to_mentor">This request is not possible because both users are only ‘available to
+        mentor\'</string>
     <string name="bug">Bug</string>
     <string name="cancel">Cancel</string>
     <string name="cancel_relation_denied">No</string>
@@ -51,7 +62,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="end_date">End date</string>
     <string name="end_date_format">dd/mm/YYYY</string>
     <string name="end_date_label">End Date:</string>
-    <string name="error_checkbox">Please choose at least one of the following options.\n You may change it later</string>
+    <string name="error_checkbox">Please choose at least one of the following options.\n You may change it
+        later</string>
     <string name="error_empty_email">Email cannot be empty</string>
     <string name="error_empty_name">Name cannot be empty</string>
     <string name="error_empty_password">Password cannot be empty</string>
@@ -60,7 +72,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="error_name_too_long">Name should have a maximum of %1$d characters</string>
     <string name="error_name_too_short">Name should have a minimum of %1$d characters</string>
     <string name="error_not_matching_passwords">Passwords didn\'t match!</string>
-    <string name="error_password_too_weak">Your password is too weak! Use at least one small and capital letter, one number and one special sign!</string>
+    <string name="error_password_too_weak">Your password is too weak! Use at least one small and capital letter, one
+        number and one special sign!</string>
     <string name="error_please_check_internet">Please check your internet connection</string>
     <string name="error_request_timed_out">Request timed out</string>
     <string name="error_something_went_wrong">Something went wrong</string>
@@ -72,7 +85,8 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="feedback_emailhint">Your email ID</string>
     <string name="feedback_experience">How was your experience?</string>
     <string name="feedback_feedbackmessagehint">Describe your experience here</string>
-    <string name="feedback_feedbacktxt">Do you have a suggestion or want to report a bug?\nLet us know in the field below.</string>
+    <string name="feedback_feedbacktxt">Do you have a suggestion or want to report a bug?\nLet us know in the field
+        below.</string>
     <string name="feedback_message">Message</string>
     <string name="feedback_sendfeedback">Send us your feedback!</string>
     <string name="feedback_sendfeedbackbtn">Send Feedback</string>
@@ -105,7 +119,12 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="login">Login</string>
     <string name="logo">Logo</string>
     <string name="logout">Logout</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+        laborum.</string>
     <string name="mark_task_message">Mark task as complete?</string>
     <string name="mark_task_success">Task marked as complete</string>
     <string name="mark_task_title">Mark task</string>
@@ -148,7 +167,7 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="page_2_title">Your profile</string>
     <string name="page_3_description">Get in touch and pursue your skills</string>
     <string name="page_3_title">Become a mentee</string>
-    <string name="page_4_description">Help others and develop yourself by sharing  knowledge</string>
+    <string name="page_4_description">Help others and develop yourself by sharing knowledge</string>
     <string name="page_4_title">Become a mentor</string>
     <string name="password">Password</string>
     <string name="password_not_match">Passwords do not match</string>
@@ -189,12 +208,22 @@ We engage our community by contributing to open source, collaborating with the g
     <string name="systers_open_source_zulip">AnitaB.org Zulip</string>
     <string name="tasks">Tasks</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
-    <string name="terms_and_conditions_acceptance_statement">By checking this box, I affirm that I have read and accept to be bound by the AnitaB.org <a href="https://ghc.anitab.org/code-of-conduct/">Code of Conduct</a>, <a href="https://anitab.org/terms-of-use/">Terms</a>, and <a href="https://anitab.org/privacy-policy/">Privacy Policy</a>. Further, I consent to the use of my information for the stated purpose.</string>
+    <string name="terms_and_conditions_acceptance_statement">
+        By checking this box, I affirm that I have read and accept to be bound by the AnitaB.org
+        <a href="https://ghc.anitab.org/code-of-conduct/">Code of Conduct</a>
+        ,
+        <a href="https://anitab.org/terms-of-use/">Terms</a>
+        , and
+        <a href="https://anitab.org/privacy-policy/">Privacy Policy</a>
+        . Further, I consent to the use of my information for the stated purpose.
+    </string>
     <string name="to">To</string>
     <string name="to_do">To do</string>
     <string name="transition_name">transition_name</string>
     <string name="transition_profile_img">transition_profile_img</string>
-    <string name="undraw_attribution">Images in the app intro slider are from <b>undraw.co</b>
+    <string name="undraw_attribution">
+        Images in the app intro slider are from
+        <b>undraw.co</b>
     </string>
     <string name="update_profile">Update</string>
     <string name="update_successful">Update profile was successful!</string>

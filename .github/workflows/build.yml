@@ -17,6 +17,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          # A complete fetch needed for spotless to ratchet from origin/develop
+          fetch-depth: 0
 
       # Set up JDK
       - name: Set up JDK 1.8

@@ -56,7 +56,7 @@ Sending requests to be mentor/mentee <br> <br>
 
 Viewing requests of pending and past relation <br> <br>
 <img src = "https://user-images.githubusercontent.com/57194200/93991636-24aff380-fdaa-11ea-826e-4e16d8a4d653.jpg" width="315" height="620"><br><b>Expected Result:</b> Viewing pending requests to mentor and mentee and also viewing multiple requests<br>
-<b>Actual Result:</b> Works perfectly user can view pending request to mentor/mentee 
+<b>Actual Result:</b> Works perfectly user can view pending request to mentor/mentee
 <br><br>
 
 ### Step 7 - Accepting/Rejecting request
@@ -77,7 +77,7 @@ Creating tasks for user <br> <br>
 
 Marking the taks as completed <br> <br>
 <img src = "https://user-images.githubusercontent.com/57194200/93991647-27124d80-fdaa-11ea-9a54-67a4f4c8c083.jpg" width="315" height="620"><br><b>Expected Result:</b> Completing the created tasks from mentee/mentor by checking the box <br>
-<b>Actual Result:</b> Works perfectly user can mark tasks which are given to him/her as completed 
+<b>Actual Result:</b> Works perfectly user can mark tasks which are given to him/her as completed
 <br><br>
 
 
@@ -85,7 +85,7 @@ Marking the taks as completed <br> <br>
 
 Deleting/Cancelling the relation if no longer want to be connected with mentor/mentee <br> <br>
 <img src = "https://user-images.githubusercontent.com/57194200/93991653-28437a80-fdaa-11ea-95fb-5c105cfa66eb.jpg" width="315" height="620"><br><b>Expected Result:</b> Deleting/Cancelling the relation with mentee/mentor <br>
-<b>Actual Result:</b> Works perfectly user can delete/cancel the relation with mentor/mentee 
+<b>Actual Result:</b> Works perfectly user can delete/cancel the relation with mentor/mentee
 <br><br>
 
 
@@ -95,4 +95,3 @@ The relation after delation <br> <br>
 <img src = "https://user-images.githubusercontent.com/57194200/93991660-2974a780-fdaa-11ea-8fbf-8e97958472f1.jpg" width="315" height="620"><br><b>Expected Result:</b> Deleting/Cancelling the relation with mentee/mentor the relation should no longer be visible in relation section<br>
 <b>Actual Result:</b> Works perfectly user can no longer see the deleted/cancelled relation with mentor/mentee
 <br><br>
-

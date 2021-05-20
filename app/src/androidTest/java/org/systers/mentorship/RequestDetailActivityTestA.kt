@@ -44,4 +44,3 @@ class RequestDetailActivityTestA {
         onView(withId(R.id.btnDelete)).check(matches(isDisplayed()))
     }
 }
-

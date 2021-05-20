@@ -1,20 +1,20 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * This class represents the [ViewModel] used for Requests Screen
@@ -42,7 +42,7 @@ class RequestsViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<List<Relationship>>() {
                     override fun onNext(relationsList: List<Relationship>) {
-                        allRequestsList = relationsList.sortedByDescending{ it.creationDate }
+                        allRequestsList = relationsList.sortedByDescending { it.creationDate }
                         successful.value = true
                     }
 
@@ -57,7 +57,7 @@ class RequestsViewModel : ViewModel() {
                                         .getString(R.string.error_request_timed_out)
                             }
                             is HttpException -> {
-                                message = CommonUtils.getErrorResponse(throwable).message.toString()
+                                message = CommonUtils.getErrorResponse(throwable).message
                             }
                             else -> {
                                 message = MentorshipApplication.getContext()
@@ -83,7 +83,7 @@ class RequestsViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<List<Relationship>>() {
                 override fun onNext(relationsList: List<Relationship>) {
-                    pendingAllRequestsList = relationsList.sortedByDescending{ it.creationDate }
+                    pendingAllRequestsList = relationsList.sortedByDescending { it.creationDate }
                     pendingSuccessful.value = true
                 }
 
@@ -98,7 +98,7 @@ class RequestsViewModel : ViewModel() {
                                 .getString(R.string.error_request_timed_out)
                         }
                         is HttpException -> {
-                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            message = CommonUtils.getErrorResponse(throwable).message
                         }
                         else -> {
                             message = MentorshipApplication.getContext()
@@ -114,7 +114,6 @@ class RequestsViewModel : ViewModel() {
             })
     }
 
-
     /* past mentorship relations working:
        1. RelationshipService.kt makes API call to mentorship_relations/past
        2. getPastRelationships() in RelationDataManager.kt reads this as Observable<List<Relationship>>
@@ -128,7 +127,7 @@ class RequestsViewModel : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<List<Relationship>>() {
                 override fun onNext(relationsList: List<Relationship>) {
-                    pastRequestsList = relationsList.sortedByDescending{ it.creationDate }
+                    pastRequestsList = relationsList.sortedByDescending { it.creationDate }
                     successful.value = true
                 }
 
@@ -143,7 +142,7 @@ class RequestsViewModel : ViewModel() {
                                 .getString(R.string.error_request_timed_out)
                         }
                         is HttpException -> {
-                            message = CommonUtils.getErrorResponse(throwable).message.toString()
+                            message = CommonUtils.getErrorResponse(throwable).message
                         }
                         else -> {
                             message = MentorshipApplication.getContext()
@@ -159,6 +158,3 @@ class RequestsViewModel : ViewModel() {
             })
     }
 }
-
-
-

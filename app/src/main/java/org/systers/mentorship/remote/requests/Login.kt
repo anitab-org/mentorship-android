@@ -5,5 +5,7 @@ package org.systers.mentorship.remote.requests
  * @param username represents username
  * @param password represents user password
  */
-data class Login(var username: String,
-                 var password: String)
+data class Login(
+    var username: String,
+    var password: String
+)

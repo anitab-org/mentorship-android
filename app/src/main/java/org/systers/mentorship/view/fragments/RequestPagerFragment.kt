@@ -2,8 +2,8 @@ package org.systers.mentorship.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_request_pager.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.Relationship
@@ -14,13 +14,13 @@ import org.systers.mentorship.view.adapters.RequestsAdapter
 /**
  * This fragment is instantiated per each tab from the RequestsFragment ViewPager
  */
-class RequestPagerFragment: BaseFragment() {
+class RequestPagerFragment : BaseFragment() {
 
     companion object {
         /**
          * Creates an instance of [RequestPagerFragment]
          */
-        fun newInstance(requestsList: List<Relationship>, emptyListText: String) : BaseFragment {
+        fun newInstance(requestsList: List<Relationship>, emptyListText: String): BaseFragment {
 
             val args = Bundle()
             args.putParcelableArrayList(Constants.REQUEST_LIST, ArrayList(requestsList))
@@ -66,7 +66,7 @@ class RequestPagerFragment: BaseFragment() {
 
         setView()
     }
-    
+
     private fun setView() {
         val filtered = requestsList.filter {
             val id = it.id

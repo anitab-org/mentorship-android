@@ -1,7 +1,7 @@
 package org.systers.mentorship.remote
 
-import androidx.annotation.NonNull
 import android.text.TextUtils
+import androidx.annotation.NonNull
 import okhttp3.Interceptor
 import okhttp3.Response
 import org.systers.mentorship.utils.PreferenceManager
@@ -9,7 +9,7 @@ import org.systers.mentorship.utils.PreferenceManager
 /**
  * Represents a custom HTTP requests interceptor
  */
-class CustomInterceptor: Interceptor {
+class CustomInterceptor : Interceptor {
 
     var preferenceManager: PreferenceManager = PreferenceManager()
 

@@ -1,12 +1,14 @@
 package org.systers.mentorship.viewmodels
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.User
@@ -14,13 +16,11 @@ import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.responses.CustomResponse
 import org.systers.mentorship.utils.CommonUtils
 import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     var tag = ProfileViewModel::class.java.simpleName!!
 
@@ -108,4 +108,3 @@ class ProfileViewModel: ViewModel() {
                 })
     }
 }
-
