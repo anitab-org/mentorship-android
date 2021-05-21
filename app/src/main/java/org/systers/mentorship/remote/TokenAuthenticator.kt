@@ -16,9 +16,9 @@ class TokenAuthenticator : Authenticator {
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val LOGIN_PATH = "/login"
     override fun authenticate(route: Route?, response: Response): Request? {
-        if (response.code == 401) {
+        if (response.code() == 401) {
 
-            if (LOGIN_PATH == response.request.url.encodedPath) {
+            if (LOGIN_PATH == response.request().url().encodedPath()) {
                 return null
             }
 
@@ -28,6 +28,6 @@ class TokenAuthenticator : Authenticator {
             ContextCompat.startActivity(MentorshipApplication.getContext(), intent, null)
             return null
         }
-        return response.request.newBuilder().build()
+        return response.request().newBuilder().build()
     }
 }
