@@ -8,17 +8,13 @@ import org.systers.mentorship.R
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.ChangePasswordFragment
 
-
 class SettingsActivity : BaseActivity() {
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
-
 
         supportActionBar?.title = getString(R.string.settings)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

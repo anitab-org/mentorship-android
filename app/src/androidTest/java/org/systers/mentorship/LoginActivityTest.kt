@@ -7,15 +7,20 @@ import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.android.material.textfield.TextInputLayout
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -30,7 +35,6 @@ import org.junit.runner.RunWith
 import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.view.activities.LoginActivity
 import org.systers.mentorship.view.activities.MainActivity
-
 
 /**
  * This class specifies the UI test for LoginActivity
@@ -64,7 +68,7 @@ class LoginActivityTest {
         IdlingRegistry.getInstance().unregister(CountingIdlingResourceSingleton.countingIdlingResource)
     }
 
-    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
+    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
         return onView(allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }
@@ -74,7 +78,7 @@ class LoginActivityTest {
         /**
          * This simply implements the null check, checks the type and then casts.
          */
-        fun hasTextInputLayoutErrorText(expectedErrorText : String) : Matcher<View> {
+        fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
             return object : TypeSafeMatcher<View>() {
                 /**
@@ -86,7 +90,7 @@ class LoginActivityTest {
                  * The description to be built or appended to.
                  */
                 override fun describeTo(description: Description?) {
-                    //("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    // ("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 /**
@@ -125,7 +129,6 @@ class LoginActivityTest {
         // Checks that the error message in both the editTexts appears after button click
         onView(withId(R.id.tiUsername)).check(matches(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR)))
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
-
     }
 
     /**
@@ -165,7 +168,7 @@ class LoginActivityTest {
      * with:
      * username: PRESENT, incorrect
      * password: PRESENT, incorrect
-     * expected: Incorrect credentials error 
+     * expected: Incorrect credentials error
      */
     @Test
     fun testLoginButtonClickedWhenDataIsIncorrect() {

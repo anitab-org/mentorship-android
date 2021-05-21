@@ -22,7 +22,6 @@ class UserDataManager {
         return apiManager.userService.getVerifiedUsers()
     }
 
-
     /**
      * This will call the getVerifiedUsers(pagination) method of UserService interface
      * @return an Observable of a list of [User]
@@ -30,7 +29,6 @@ class UserDataManager {
     suspend fun getUsers(paginationRequest: PaginationRequest): List<User> {
         return apiManager.userService.getVerifiedUsers(paginationRequest.pagination)
     }
-
 
     /**
      * This will call the getUser method of UserService interface
@@ -71,5 +69,4 @@ class UserDataManager {
     suspend fun getHomeStats(): HomeStatistics {
         return apiManager.userService.getHomeStats()
     }
-
 }

@@ -10,7 +10,6 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
-
 /**
  * Object to store utilities such as a [Gson] instance
  */

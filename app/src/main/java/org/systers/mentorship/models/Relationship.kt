@@ -22,17 +22,18 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class Relationship(
-        val id: Int,
-        val actionUserId: Int,
-        val sentByMe: Boolean,
-        val mentor: RelationUserResponse,
-        val mentee: RelationUserResponse,
-        val creationDate: Float,
-        val acceptDate: Float,
-        val startDate: Float,
-        val endDate: Float,
-        val state: Int,
-        val notes: String): Parcelable {
+    val id: Int,
+    val actionUserId: Int,
+    val sentByMe: Boolean,
+    val mentor: RelationUserResponse,
+    val mentee: RelationUserResponse,
+    val creationDate: Float,
+    val acceptDate: Float,
+    val startDate: Float,
+    val endDate: Float,
+    val state: Int,
+    val notes: String
+) : Parcelable {
     /**
      * This data class represents partial information of user of the system.
      * This is used in APIs not directly related with Users, such as in responses
@@ -42,6 +43,8 @@ data class Relationship(
      * @param name name of the user
      */
     @Parcelize
-    data class RelationUserResponse (val id: Int,
-                                     val name: String): Parcelable
+    data class RelationUserResponse(
+        val id: Int,
+        val name: String
+    ) : Parcelable
 }

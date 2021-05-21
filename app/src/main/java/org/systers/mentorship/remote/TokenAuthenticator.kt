@@ -11,7 +11,7 @@ import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.activities.LoginActivity
 
-class TokenAuthenticator: Authenticator{
+class TokenAuthenticator : Authenticator {
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
     private val LOGIN_PATH = "/login"

@@ -2,8 +2,7 @@ package org.systers.mentorship.view.fragments
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_requests.*
@@ -27,9 +26,7 @@ class RequestsFragment : BaseFragment() {
         val TAG = RelationFragment::class.java.simpleName
     }
 
-    private val requestsViewModel by lazy {
-        ViewModelProviders.of(this).get(RequestsViewModel::class.java)
-    }
+    private val requestsViewModel: RequestsViewModel by viewModels()
     private val activityCast by lazy { activity as MainActivity }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_requests
@@ -40,28 +37,28 @@ class RequestsFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRequests.setOnRefreshListener { fetchNewest() }
 
-        requestsViewModel.successful.observe(this, Observer {
+        requestsViewModel.successful.observe(viewLifecycleOwner, {
             successful ->
             srlRequests.isRefreshing = false
             if (successful != null) {
                 if (successful) {
-                    requestsViewModel.pendingSuccessful.observe(this, Observer {
+                    requestsViewModel.pendingSuccessful.observe(viewLifecycleOwner, {
                         successful ->
                         activityCast.hideProgressDialog()
                         if (successful != null) {
-                            if (successful){
+                            if (successful) {
                                 requestsViewModel.allRequestsList?.let { allRequestsList ->
                                     vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, requestsViewModel.pendingAllRequestsList, requireActivity())
 //                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
-                                    TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests) {tab, position ->
-                                        when(position){
+                                    TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests) { tab, position ->
+                                        when (position) {
                                             0 -> {
                                                 tab.text = context?.getString(R.string.pending)
                                             }
-                                            1  -> {
+                                            1 -> {
                                                 tab.text = context?.getString(R.string.past)
                                             }
-                                            2  -> {
+                                            2 -> {
                                                 tab.text = context?.getString(R.string.all)
                                             }
                                         }
@@ -93,7 +90,7 @@ class RequestsFragment : BaseFragment() {
         }
     }
 
-    private fun fetchNewest()  {
+    private fun fetchNewest() {
         srlRequests.isRefreshing = true
         requestsViewModel.getAllMentorshipRelations()
         requestsViewModel.getAllPendingMentorshipRelations()
