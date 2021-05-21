@@ -24,7 +24,6 @@ class MembersViewModel : ViewModel() {
     lateinit var message: String
     var userList: ArrayList<User> = arrayListOf()
 
-
     /**
      * Fetches users list from getUsers method of the UserService
      */
@@ -45,4 +44,3 @@ class MembersViewModel : ViewModel() {
         }
     }
 }
-

@@ -35,7 +35,6 @@ class RequestDetailViewModel : ViewModel() {
         }
     }
 
-
     /**
      * Rejects a mentorship request
      * @param requestId id of the mentorship request
@@ -68,4 +67,3 @@ class RequestDetailViewModel : ViewModel() {
         }
     }
 }
-

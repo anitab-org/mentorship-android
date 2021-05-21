@@ -51,7 +51,5 @@ class RelationViewModel : ViewModel() {
                 successfulCancel.postValue(false)
             }
         }
-
     }
 }
-

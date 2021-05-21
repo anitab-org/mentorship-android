@@ -4,7 +4,11 @@ import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.requests.ChangePassword
 import org.systers.mentorship.remote.responses.CustomResponse
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.QueryMap
 
 /**
  * This interface describes the methods related to Users REST API
@@ -24,8 +28,7 @@ interface UserService {
      * @return an observable instance of a list of [User]s
      */
     @GET("users/verified")
-   suspend fun getVerifiedUsers(@QueryMap pagination:Map<String, String>): List<User>
-
+    suspend fun getVerifiedUsers(@QueryMap pagination: Map<String, String>): List<User>
 
     /**
      * This function returns all users, with email verified, of the system
@@ -33,7 +36,6 @@ interface UserService {
      */
     @GET("users/verified")
     suspend fun getVerifiedUsers(): List<User>
-
 
     /**
      * This function returns a user's public profile of the system

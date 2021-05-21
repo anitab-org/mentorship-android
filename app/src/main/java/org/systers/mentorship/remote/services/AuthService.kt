@@ -26,5 +26,5 @@ interface AuthService {
      * @return an observable instance of the [CustomResponse]
      */
     @POST("register")
-    suspend fun register(@Body register: Register) : CustomResponse
+    suspend fun register(@Body register: Register): CustomResponse
 }

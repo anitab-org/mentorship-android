@@ -34,8 +34,6 @@ class MemberProfileViewModel : ViewModel() {
                 message = CommonUtils.getErrorMessage(throwable, tag)
                 successful.postValue(false)
             }
-
         }
     }
 }
-

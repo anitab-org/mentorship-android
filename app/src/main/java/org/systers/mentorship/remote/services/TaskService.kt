@@ -3,7 +3,11 @@ package org.systers.mentorship.remote.services
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.requests.CreateTask
 import org.systers.mentorship.remote.responses.CustomResponse
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 /**
  * This interface describes the methods related to Mentorship Task REST API
@@ -36,5 +40,5 @@ interface TaskService {
      */
     @POST("mentorship_relation/{relation_id}/task")
     suspend fun addTaskToMentorshipRelation(@Path("relation_id") relationId: Int, @Body createTask: CreateTask): CustomResponse
-    //only 'description' field from Task model needed.
+    // only 'description' field from Task model needed.
 }

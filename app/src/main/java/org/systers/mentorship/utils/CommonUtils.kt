@@ -3,12 +3,12 @@ package org.systers.mentorship.utils
 import android.util.Log
 import androidx.annotation.NonNull
 import com.google.gson.Gson
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.remote.responses.CustomResponse
 import retrofit2.HttpException
-import java.io.IOException
-import java.util.concurrent.TimeoutException
 
 /**
  * Object to store utilities such as a [Gson] instance
@@ -48,5 +48,4 @@ object CommonUtils {
             }
         }
     }
-
 }

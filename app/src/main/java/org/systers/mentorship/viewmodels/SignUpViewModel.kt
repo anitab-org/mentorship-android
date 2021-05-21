@@ -34,7 +34,5 @@ class SignUpViewModel : ViewModel() {
                 successful.postValue(false)
             }
         }
-
     }
 }
-

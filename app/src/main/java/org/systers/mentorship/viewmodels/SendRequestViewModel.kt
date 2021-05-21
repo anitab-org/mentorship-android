@@ -34,7 +34,5 @@ class SendRequestViewModel : ViewModel() {
                 successful.postValue(false)
             }
         }
-
     }
 }
-

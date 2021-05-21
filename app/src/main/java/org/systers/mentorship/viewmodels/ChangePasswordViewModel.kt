@@ -31,6 +31,5 @@ class ChangePasswordViewModel : ViewModel() {
                 successfulUpdate.postValue(false)
             }
         }
-
     }
 }
