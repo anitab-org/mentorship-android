@@ -1,5 +1,8 @@
 package org.systers.mentorship.remote.datamanager
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.systers.mentorship.models.HomeStatistics
 import org.systers.mentorship.models.User
 import org.systers.mentorship.remote.ApiManager
@@ -10,7 +13,7 @@ import org.systers.mentorship.remote.responses.CustomResponse
 /**
  * This class represents the data manager related to Users API
  */
-class UserDataManager {
+class UserDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
 
     private val apiManager = ApiManager.instance
 
@@ -19,7 +22,7 @@ class UserDataManager {
      * @return an Observable of a list of [User]
      */
     suspend fun getUsers(): List<User> {
-        return apiManager.userService.getVerifiedUsers()
+        return withContext(dispatcher) { apiManager.userService.getVerifiedUsers() }
     }
 
     /**
@@ -27,7 +30,7 @@ class UserDataManager {
      * @return an Observable of a list of [User]
      */
     suspend fun getUsers(paginationRequest: PaginationRequest): List<User> {
-        return apiManager.userService.getVerifiedUsers(paginationRequest.pagination)
+        return withContext(dispatcher) { apiManager.userService.getVerifiedUsers(paginationRequest.pagination) }
     }
 
     /**
@@ -35,7 +38,7 @@ class UserDataManager {
      * @return an Observable of [User]
      */
     suspend fun getUser(userId: Int): User {
-        return apiManager.userService.getUser(userId)
+        return withContext(dispatcher) { apiManager.userService.getUser(userId) }
     }
 
     /**
@@ -43,7 +46,7 @@ class UserDataManager {
      * @return an Observable of [User]
      */
     suspend fun getUser(): User {
-        return apiManager.userService.getUser()
+        return withContext(dispatcher) { apiManager.userService.getUser() }
     }
 
     /**
@@ -51,7 +54,7 @@ class UserDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun updateUser(user: User): CustomResponse {
-        return apiManager.userService.updateUser(user)
+        return withContext(dispatcher) { apiManager.userService.updateUser(user) }
     }
 
     /**
@@ -59,7 +62,7 @@ class UserDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun updatePassword(changePassword: ChangePassword): CustomResponse {
-        return apiManager.userService.updatePassword(changePassword)
+        return withContext(dispatcher) { apiManager.userService.updatePassword(changePassword) }
     }
 
     /**
@@ -67,6 +70,6 @@ class UserDataManager {
      * @return an observable of [HomeStatistics]
      */
     suspend fun getHomeStats(): HomeStatistics {
-        return apiManager.userService.getHomeStats()
+        return withContext(dispatcher) { apiManager.userService.getHomeStats() }
     }
 }

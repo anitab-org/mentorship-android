@@ -1,5 +1,8 @@
 package org.systers.mentorship.remote.datamanager
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.RelationshipRequest
@@ -8,7 +11,7 @@ import org.systers.mentorship.remote.responses.CustomResponse
 /**
  * This class represents the data manager related to Mentorship Relation API
  */
-class RelationDataManager {
+class RelationDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
 
     private val apiManager = ApiManager.instance
 
@@ -18,7 +21,7 @@ class RelationDataManager {
      * @return an Observable of a list of [Relationship]
      */
     suspend fun getAllRelationsAndRequests(): List<Relationship> {
-        return apiManager.relationService.getAllRelationships()
+        return withContext(dispatcher) { apiManager.relationService.getAllRelationships() }
     }
 
     /**
@@ -27,7 +30,7 @@ class RelationDataManager {
      * @return an Observable of a list of [Relationship]s
      */
     suspend fun getAllPendingRelationsAndRequests(): List<Relationship> {
-        return apiManager.relationService.getAllPendingRelationships()
+        return withContext(dispatcher) { apiManager.relationService.getAllPendingRelationships() }
     }
 
     /**
@@ -36,7 +39,7 @@ class RelationDataManager {
      * @return an Observable of a list of [Relationship]
      */
     suspend fun getPastRelationships(): List<Relationship> {
-        return apiManager.relationService.getPastRelationships()
+        return withContext(dispatcher) { apiManager.relationService.getPastRelationships() }
     }
 
     /**
@@ -45,7 +48,7 @@ class RelationDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun acceptRelationship(relationId: Int): CustomResponse {
-        return apiManager.relationService.acceptRelationship(relationId)
+        return withContext(dispatcher) { apiManager.relationService.acceptRelationship(relationId) }
     }
 
     /**
@@ -54,7 +57,7 @@ class RelationDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun rejectRelationship(relationId: Int): CustomResponse {
-        return apiManager.relationService.rejectRelationship(relationId)
+        return withContext(dispatcher) { apiManager.relationService.rejectRelationship(relationId) }
     }
 
     /**
@@ -63,7 +66,7 @@ class RelationDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun deleteRelationship(relationId: Int): CustomResponse {
-        return apiManager.relationService.deleteRelationship(relationId)
+        return withContext(dispatcher) { apiManager.relationService.deleteRelationship(relationId) }
     }
 
     /**
@@ -72,7 +75,7 @@ class RelationDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun cancelRelationship(relationId: Int): CustomResponse {
-        return apiManager.relationService.cancelRelationship(relationId)
+        return withContext(dispatcher) { apiManager.relationService.cancelRelationship(relationId) }
     }
 
     /**
@@ -81,7 +84,7 @@ class RelationDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun sendRequest(relationshipRequest: RelationshipRequest): CustomResponse {
-        return apiManager.relationService.sendRequest(relationshipRequest)
+        return withContext(dispatcher) { apiManager.relationService.sendRequest(relationshipRequest) }
     }
 
     /**
@@ -89,6 +92,6 @@ class RelationDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun getCurrentRelationship(): Relationship {
-        return apiManager.relationService.getCurrentRelationship()
+        return withContext(dispatcher) { apiManager.relationService.getCurrentRelationship() }
     }
 }

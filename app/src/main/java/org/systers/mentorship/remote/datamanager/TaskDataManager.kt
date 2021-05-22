@@ -1,5 +1,8 @@
 package org.systers.mentorship.remote.datamanager
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.CreateTask
@@ -8,7 +11,7 @@ import org.systers.mentorship.remote.responses.CustomResponse
 /**
  * This class represents the data manager related to Mentorship Task API
  */
-class TaskDataManager {
+class TaskDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
 
     private val apiManager = ApiManager.instance
 
@@ -18,7 +21,7 @@ class TaskDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun getAllTasks(relationId: Int): List<Task> {
-        return apiManager.taskService.getAllTasksFromMentorshipRelation(relationId)
+        return withContext(dispatcher) { apiManager.taskService.getAllTasksFromMentorshipRelation(relationId) }
     }
 
     /**
@@ -27,7 +30,7 @@ class TaskDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun completeTask(relationId: Int, taskId: Int): CustomResponse {
-        return apiManager.taskService.completeTaskFromMentorshipRelation(relationId, taskId)
+        return withContext(dispatcher) { apiManager.taskService.completeTaskFromMentorshipRelation(relationId, taskId) }
     }
 
     /**
@@ -37,6 +40,6 @@ class TaskDataManager {
      * @return an Observable of [CustomResponse]
      */
     suspend fun addTask(relationId: Int, createTask: CreateTask): CustomResponse {
-        return apiManager.taskService.addTaskToMentorshipRelation(relationId, createTask)
+        return withContext(dispatcher) { apiManager.taskService.addTaskToMentorshipRelation(relationId, createTask) }
     }
 }

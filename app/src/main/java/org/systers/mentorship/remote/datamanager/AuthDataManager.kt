@@ -1,5 +1,8 @@
 package org.systers.mentorship.remote.datamanager
 
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.Login
 import org.systers.mentorship.remote.requests.Register
@@ -9,7 +12,7 @@ import org.systers.mentorship.remote.responses.CustomResponse
 /**
  * This class represents the data manager related to Authentication API
  */
-class AuthDataManager {
+class AuthDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
 
     private val apiManager = ApiManager.instance
 
@@ -19,7 +22,9 @@ class AuthDataManager {
      * @return an Observable AuthToken
      */
     suspend fun login(login: Login): AuthToken {
-        return apiManager.authService.login(login)
+        return withContext(dispatcher) {
+            apiManager.authService.login(login)
+        }
     }
 
     /**
@@ -29,6 +34,6 @@ class AuthDataManager {
      * @return an Observable CustomResponse
      */
     suspend fun register(register: Register): CustomResponse {
-        return apiManager.authService.register(register)
+        return withContext(dispatcher) { apiManager.authService.register(register) }
     }
 }
