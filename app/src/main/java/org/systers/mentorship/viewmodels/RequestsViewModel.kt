@@ -31,7 +31,7 @@ class RequestsViewModel : ViewModel() {
     fun getAllMentorshipRelations() {
         viewModelScope.launch {
             try {
-                allRequestsList = relationDataManager.getAllRelationsAndRequests()
+                allRequestsList = relationDataManager.getAllRelationsAndRequests().sortedByDescending { it.creationDate }
                 successful.postValue(true)
             } catch (throwable: Throwable) {
                 message = CommonUtils.getErrorMessage(throwable, tag)
@@ -46,11 +46,11 @@ class RequestsViewModel : ViewModel() {
     fun getAllPendingMentorshipRelations() {
         viewModelScope.launch {
             try {
-                pendingAllRequestsList = relationDataManager.getAllPendingRelationsAndRequests()
-                successful.postValue(true)
+                pendingAllRequestsList = relationDataManager.getAllPendingRelationsAndRequests().sortedByDescending { it.creationDate }
+                pendingSuccessful.postValue(true)
             } catch (throwable: Throwable) {
                 message = CommonUtils.getErrorMessage(throwable, tag)
-                successful.postValue(false)
+                pendingSuccessful.postValue(false)
             }
         }
     }
@@ -64,7 +64,7 @@ class RequestsViewModel : ViewModel() {
     fun getPastMentorshipRelations() {
         viewModelScope.launch {
             try {
-                pastRequestsList = relationDataManager.getPastRelationships()
+                pastRequestsList = relationDataManager.getPastRelationships().sortedByDescending { it.creationDate }
                 successful.postValue(true)
             } catch (throwable: Throwable) {
                 message = CommonUtils.getErrorMessage(throwable, tag)
