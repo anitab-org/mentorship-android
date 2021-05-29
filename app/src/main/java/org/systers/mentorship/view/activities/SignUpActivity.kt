@@ -35,6 +35,14 @@ class SignUpActivity : BaseActivity() {
     private var isAvailableForBoth: Boolean = false
     private var hasEmptyFields: Boolean = true
     private val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private val usernamePattern = "^[a-zA-Z0-9_]+\$"
+    private val namePattern = "^[a-zA-Z\\s\\-]+\$"
+    private val usernameMaxLength = 30
+    private val usernameMinLength = 5
+    private val nameMaxLength = 30
+    private val nameMinLength = 2
+    private val passwordMaxLength = 64
+    private val passwordMinLength = 8
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +55,7 @@ class SignUpActivity : BaseActivity() {
                     navigateToLoginActivity()
                 } else {
                     Snackbar.make(getRootView(), signUpViewModel.message, Snackbar.LENGTH_LONG)
-                            .show()
+                        .show()
                 }
                 CountingIdlingResourceSingleton.decrement()
             }
@@ -55,7 +63,8 @@ class SignUpActivity : BaseActivity() {
 
         tvTC.movementMethod = LinkMovementMethod.getInstance()
         fun View.hideKeyboard() {
-            val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            val inputMethodManager =
+                context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
         }
 
@@ -75,7 +84,15 @@ class SignUpActivity : BaseActivity() {
 
             CountingIdlingResourceSingleton.increment()
             if (validateDetails()) {
-                val requestData = Register(name, username, email, password, true, needsMentoring, isAvailableToMentor)
+                val requestData = Register(
+                    name,
+                    username,
+                    email,
+                    password,
+                    true,
+                    needsMentoring,
+                    isAvailableToMentor
+                )
                 signUpViewModel.register(requestData)
                 showProgressDialog(getString(R.string.signing_up))
             } else CountingIdlingResourceSingleton.decrement()
@@ -84,19 +101,23 @@ class SignUpActivity : BaseActivity() {
             navigateToLoginActivity()
         }
         cbTC.setOnCheckedChangeListener { _, b ->
-            btnSignUp.isEnabled = b && !hasEmptyFields && (isAvailableToMentor || needsMentoring || isAvailableForBoth)
+            btnSignUp.isEnabled =
+                b && !hasEmptyFields && (isAvailableToMentor || needsMentoring || isAvailableForBoth)
         }
         cbMentee.setOnCheckedChangeListener { _, b ->
             needsMentoring = b
-            btnSignUp.isEnabled = (b || isAvailableToMentor || isAvailableForBoth) && !hasEmptyFields && cbTC.isChecked
+            btnSignUp.isEnabled =
+                (b || isAvailableToMentor || isAvailableForBoth) && !hasEmptyFields && cbTC.isChecked
         }
         cbMentor.setOnCheckedChangeListener { _, b ->
             isAvailableToMentor = b
-            btnSignUp.isEnabled = (b || needsMentoring || isAvailableForBoth) && !hasEmptyFields && cbTC.isChecked
+            btnSignUp.isEnabled =
+                (b || needsMentoring || isAvailableForBoth) && !hasEmptyFields && cbTC.isChecked
         }
         cbBoth.setOnCheckedChangeListener { _, b ->
             isAvailableForBoth = b
-            btnSignUp.isEnabled = (b || isAvailableToMentor || needsMentoring) && !hasEmptyFields && cbTC.isChecked
+            btnSignUp.isEnabled =
+                (b || isAvailableToMentor || needsMentoring) && !hasEmptyFields && cbTC.isChecked
         }
 
         validateDetailsOnRuntime()
@@ -239,12 +260,24 @@ class SignUpActivity : BaseActivity() {
         if (name.isBlank()) {
             tiName.error = getString(R.string.error_empty_name)
             isValid = false
+        } else if (name.length < nameMinLength || name.length > nameMaxLength) {
+            tiName.error = getString(R.string.error_name_too_short_or_long)
+            isValid = false
+        } else if (!name.matches(namePattern.toRegex())) {
+            tiName.error = getString(R.string.error_name_invalid)
+            isValid = false
         } else {
             tiName.error = null
         }
 
         if (username.isBlank()) {
             tiUsername.error = getString(R.string.error_empty_username)
+            isValid = false
+        } else if (username.length < usernameMinLength || username.length > usernameMaxLength) {
+            tiUsername.error = getString(R.string.error_username_too_short_or_long)
+            isValid = false
+        } else if (!username.matches(usernamePattern.toRegex())) {
+            tiUsername.error = getString(R.string.error_username_invalid)
             isValid = false
         } else {
             tiUsername.error = null
@@ -262,6 +295,9 @@ class SignUpActivity : BaseActivity() {
             isValid = false
         } else if (!password.checkPasswordSecurity()) {
             tiPassword.error = getString(R.string.error_password_too_weak)
+            isValid = false
+        } else if (password.length < passwordMinLength || password.length > passwordMaxLength) {
+            tiPassword.error = getString(R.string.error_password_too_short_or_long)
             isValid = false
         } else {
             tiPassword.error = null
