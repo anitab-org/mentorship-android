@@ -6,9 +6,9 @@ name: Build
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, ui-jetpack-compose ]
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, ui-jetpack-compose ]
 
 jobs:
   build:
