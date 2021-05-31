@@ -179,8 +179,7 @@ fun LoginContent(
                 PasswordTextField(
                     value = password,
                     modifier = Modifier
-                        .focusRequester(passwordFocusRequest)
-                        .focusModifier(),
+                        .focusRequester(passwordFocusRequest),
                     onPasswordChange = onPasswordChange,
                     enabled = username.isEmpty() || password.isEmpty() || isButtonEnabled,
                     onImeAction = { onLoginButtonClick();focusManager.clearFocus() },
