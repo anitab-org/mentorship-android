@@ -68,19 +68,19 @@ object Dependencies {
     object Compose {
         const val UI = "androidx.compose.ui:ui:${Versions.composeVersion}"
         // Tooling support (Previews, etc.)
-        const val Tooling ="androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
+        const val Tooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
         // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-        const val Foundation= "androidx.compose.foundation:foundation:${Versions.composeVersion}"
+        const val Foundation = "androidx.compose.foundation:foundation:${Versions.composeVersion}"
         // Material Design
         const val Material = "androidx.compose.material:material:${Versions.composeVersion}"
         // Material design icons
-        const val Icons= "androidx.compose.material:material-icons-core:${Versions.composeVersion}"
-        const val IconsExtended="androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
+        const val Icons = "androidx.compose.material:material-icons-core:${Versions.composeVersion}"
+        const val IconsExtended = "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
         // Integration with observables
-        const val LiveData="androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
-        const val Activity="androidx.activity:activity-compose:1.3.0-alpha08"
+        const val LiveData = "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
+        const val Activity = "androidx.activity:activity-compose:1.3.0-alpha08"
 
         // UI Tests
-        const val Test="androidx.compose.ui:ui-test-junit4:${Versions.composeVersion}"
+        const val Test = "androidx.compose.ui:ui-test-junit4:${Versions.composeVersion}"
     }
 }

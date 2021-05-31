@@ -5,19 +5,17 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.material.Button
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
@@ -30,8 +28,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
@@ -115,7 +114,6 @@ fun LoginScreen(viewModel: LoginViewModel, onSignUpButtonClick: () -> Unit) {
             snackbarMessage = message
         )
     }
-
 }
 
 @Composable
@@ -142,7 +140,7 @@ fun LoginContent(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.SpaceAround,
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             // This LaunchedEffect will display a snackbar each time the snackbar message changes
@@ -182,7 +180,7 @@ fun LoginContent(
                         .focusRequester(passwordFocusRequest),
                     onPasswordChange = onPasswordChange,
                     enabled = username.isEmpty() || password.isEmpty() || isButtonEnabled,
-                    onImeAction = { onLoginButtonClick();focusManager.clearFocus() },
+                    onImeAction = { onLoginButtonClick(); focusManager.clearFocus() }
                 )
             }
             Column {
@@ -203,7 +201,6 @@ fun LoginContent(
                 ) {
                     Text(text = stringResource(R.string.sign_up))
                 }
-
             }
             Spacer(modifier = Modifier.height(10.dp))
         }
@@ -215,7 +212,6 @@ fun LoginContent(
             snackbarHostState = scaffoldState.snackbarHostState,
             modifier = Modifier.align(Alignment.BottomCenter)
         )
-
     }
 }
 

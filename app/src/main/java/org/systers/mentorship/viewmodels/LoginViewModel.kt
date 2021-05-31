@@ -31,19 +31,19 @@ class LoginViewModel : ViewModel() {
     private val authDataManager: AuthDataManager = AuthDataManager()
 
     private val _username = MutableLiveData("")
-    val username : LiveData<String> = _username
+    val username: LiveData<String> = _username
 
     private val _password = MutableLiveData("")
-    val password : LiveData<String> = _password
+    val password: LiveData<String> = _password
 
     private val _buttonEnabled = MutableLiveData(false)
-    val buttonEnabled : LiveData<Boolean> = _buttonEnabled
+    val buttonEnabled: LiveData<Boolean> = _buttonEnabled
 
     private val _successful = MutableLiveData(false)
-    val successful : LiveData<Boolean> = _successful
+    val successful: LiveData<Boolean> = _successful
 
     private val _message = MutableLiveData<String>()
-    val message : LiveData<String> = _message
+    val message: LiveData<String> = _message
 
     /**
      * Will be used to run the login method of the AuthService
@@ -90,19 +90,18 @@ class LoginViewModel : ViewModel() {
                 })
     }
 
-    fun onUsernameChange(newUsername: String){
+    fun onUsernameChange(newUsername: String) {
         _username.value = newUsername
-        _buttonEnabled.value = !username.value.isNullOrEmpty()  && !password.value.isNullOrEmpty()
-
+        _buttonEnabled.value = !username.value.isNullOrEmpty() && !password.value.isNullOrEmpty()
     }
 
-    fun onPasswordChange(newPassword: String){
+    fun onPasswordChange(newPassword: String) {
         _password.value = newPassword
-        _buttonEnabled.value = !username.value.isNullOrEmpty()  && !password.value.isNullOrEmpty()
+        _buttonEnabled.value = !username.value.isNullOrEmpty() && !password.value.isNullOrEmpty()
     }
 
-    fun onButtonClick(){
+    fun onButtonClick() {
         _message.value = ""
-        login(Login(username.value!!,password.value!!))
+        login(Login(username.value!!, password.value!!))
     }
 }
