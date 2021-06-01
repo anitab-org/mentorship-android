@@ -42,6 +42,8 @@ import org.systers.mentorship.R
 import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.view.CircularIndeterminateProgressBar
 import org.systers.mentorship.view.DefaultSnackBar
+import org.systers.mentorship.view.EmailTextField
+import org.systers.mentorship.view.PasswordTextField
 import org.systers.mentorship.viewmodels.LoginViewModel
 
 /**

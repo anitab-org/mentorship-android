@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.activities
+package org.systers.mentorship.view
 
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
