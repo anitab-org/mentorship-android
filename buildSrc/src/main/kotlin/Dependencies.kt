@@ -7,7 +7,7 @@ object Versions {
     const val targetSdkVersion = 30
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "7.1.0-alpha01"
+    const val gradleBuildTool = "7.1.0-alpha02"
     const val kotlinVersion = "1.4.32"
     const val designSupportLib = "1.1.0-beta01"
     const val swipeRefreshLayout = "1.1.0"
