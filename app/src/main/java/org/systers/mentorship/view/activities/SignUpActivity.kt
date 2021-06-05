@@ -162,7 +162,7 @@ class SignUpActivity : BaseActivity() {
             override fun afterTextChanged(s: Editable?) {
                 if (!s.toString().matches(emailPattern.toRegex())) {
                     tiEmail.error = getString(R.string.valid_error)
-                }else if(s.toString().matches(emailPattern.toRegex())){
+                } else if (s.toString().matches(emailPattern.toRegex())) {
                     tiEmail.error = null
                 }
 
@@ -212,7 +212,7 @@ class SignUpActivity : BaseActivity() {
             override fun afterTextChanged(s: Editable?) {
                 if (!tiPassword.editText?.text.toString().contentEquals(s.toString())) {
                     tiConfirmPassword.error = getString(R.string.password_not_match)
-                }else if(tiPassword.editText?.text.toString().contentEquals(s.toString())){
+                } else if (tiPassword.editText?.text.toString().contentEquals(s.toString())) {
                     tiConfirmPassword.error = null
                 }
 
@@ -257,7 +257,7 @@ class SignUpActivity : BaseActivity() {
         if (email.isBlank()) {
             tiEmail.error = getString(R.string.error_empty_email)
             isValid = false
-        } else if(!email.matches(emailPattern.toRegex())) {
+        } else if (!email.matches(emailPattern.toRegex())) {
             tiEmail.error = getString(R.string.valid_error)
             isValid = false
         } else {
