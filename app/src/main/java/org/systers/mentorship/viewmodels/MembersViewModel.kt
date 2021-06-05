@@ -16,6 +16,7 @@ import org.systers.mentorship.remote.datamanager.UserDataManager
 import org.systers.mentorship.remote.requests.PaginationRequest
 import org.systers.mentorship.utils.CommonUtils
 import org.systers.mentorship.utils.Constants.ITEMS_PER_PAGE
+import org.systers.mentorship.utils.NetworkStateReceiver
 import retrofit2.HttpException
 
 /**
@@ -56,6 +57,9 @@ class MembersViewModel : ViewModel() {
                             is IOException -> {
                                 message = MentorshipApplication.getContext()
                                         .getString(R.string.error_please_check_internet)
+                                NetworkStateReceiver.isOnline.observeForever {
+                                    if (it) getUsers(isRefresh)
+                                }
                             }
                             is TimeoutException -> {
                                 message = MentorshipApplication.getContext()

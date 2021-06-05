@@ -4,6 +4,7 @@
     package="org.systers.mentorship">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MentorshipApplication"
@@ -14,6 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="${usesCleartextTraffic}">
+        <receiver android:name=".utils.NetworkStateReceiver"
+            android:label="NetworkStateReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".view.activities.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />
