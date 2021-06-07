@@ -7,8 +7,7 @@ object Versions {
     const val targetSdkVersion = 28
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "4.1.2"
-    const val dataBinding = "3.2.0-alpha11"
+    const val gradleBuildTool = "4.2.1"
     const val kotlinVersion = "1.4.21"
     const val supportLib = "1.0.0"
     const val designSupportLib = "1.1.0-beta01"
@@ -20,10 +19,7 @@ object Versions {
     const val testRunner = "1.1.0"
     const val espresso = "3.1.0"
     const val espressoIdling = "3.1.1"
-    const val rxJava = "2.1.10"
-    const val rxAndroid = "2.0.2"
-    const val rxKotlin = "2.2.0"
-    const val retrofitVersion = "2.3.0"
+    const val retrofitVersion = "2.9.0"
     const val okHttp3Version = "3.10.0"
     const val archComponents = "2.0.0"
     const val testRule = "1.1.0"
@@ -39,7 +35,6 @@ object Versions {
  */
 object Dependencies {
     const val gradle_build_tool = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
-    const val databinding = "androidx.databinding:compiler:${Versions.dataBinding}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
@@ -52,12 +47,8 @@ object Dependencies {
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     const val espresso_idling_resources = "androidx.test.espresso:espresso-idling-resource:${Versions.espressoIdling}"
     const val espresso_intents = "androidx.test.espresso:espresso-intents:${Versions.espresso}"
-    const val rx_java = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
-    const val rx_android = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
-    const val rx_kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     const val retrofit_gson_converter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
-    const val retrofit_rxjava2_adapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
     const val okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3Version}"
     const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.archComponents}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.archComponents}"
