@@ -22,6 +22,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.google.android.material.textfield.TextInputLayout
+import org.anitab.mentorship.utils.CountingIdlingResourceSingleton
+import org.anitab.mentorship.view.activities.LoginActivity
+import org.anitab.mentorship.view.activities.MainActivity
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Description
@@ -32,9 +35,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.anitab.mentorship.utils.CountingIdlingResourceSingleton
-import org.anitab.mentorship.view.activities.LoginActivity
-import org.anitab.mentorship.view.activities.MainActivity
 
 /**
  * This class specifies the UI test for LoginActivity

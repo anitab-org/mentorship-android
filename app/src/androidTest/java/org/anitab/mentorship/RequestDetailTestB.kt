@@ -6,12 +6,12 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
-import org.junit.Rule
-import org.junit.Test
 import org.anitab.mentorship.models.Relationship
 import org.anitab.mentorship.utils.Constants
 import org.anitab.mentorship.view.activities.MainActivity
 import org.anitab.mentorship.view.activities.RequestDetailActivity
+import org.junit.Rule
+import org.junit.Test
 
 class RequestDetailActivityTestB {
 

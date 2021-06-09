@@ -9,13 +9,13 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
+import org.anitab.mentorship.R
+import org.anitab.mentorship.view.activities.MainActivity
+import org.anitab.mentorship.viewmodels.RelationViewModel
 import org.hamcrest.Matchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.anitab.mentorship.R
-import org.anitab.mentorship.view.activities.MainActivity
-import org.anitab.mentorship.viewmodels.RelationViewModel
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class RelationPagerFragmentTest {

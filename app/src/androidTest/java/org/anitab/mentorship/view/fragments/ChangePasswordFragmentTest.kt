@@ -18,6 +18,8 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.google.android.material.textfield.TextInputLayout
+import org.anitab.mentorship.R
+import org.anitab.mentorship.view.activities.SettingsActivity
 import org.hamcrest.CoreMatchers
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -25,8 +27,6 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.anitab.mentorship.R
-import org.anitab.mentorship.view.activities.SettingsActivity
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ChangePasswordFragmentTest {

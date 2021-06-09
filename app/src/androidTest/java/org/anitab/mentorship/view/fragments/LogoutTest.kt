@@ -14,12 +14,12 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
-import org.junit.Rule
-import org.junit.Test
-import org.junit.runner.RunWith
 import org.anitab.mentorship.R
 import org.anitab.mentorship.view.activities.LoginActivity
 import org.anitab.mentorship.view.activities.SettingsActivity
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class LogoutTest {
