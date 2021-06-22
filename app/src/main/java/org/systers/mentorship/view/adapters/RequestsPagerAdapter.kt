@@ -58,18 +58,22 @@ class RequestsPagerAdapter(
         when (position) {
             TabsIndex.PENDING.value -> {
                 return RequestPagerFragment.newInstance(
-                        pendingRequestsList, context.getString(R.string.empty_pending_requests))
+                    pendingRequestsList, context.getString(R.string.empty_pending_requests)
+                )
             }
             TabsIndex.PAST.value -> {
                 return RequestPagerFragment.newInstance(
-                        pastList, context.getString(R.string.empty_past_requests))
+                    pastList, context.getString(R.string.empty_past_requests)
+                )
             }
             TabsIndex.ALL.value -> {
                 return RequestPagerFragment.newInstance(
-                        allList, context.getString(R.string.empty_requests))
+                    allList, context.getString(R.string.empty_requests)
+                )
             }
         }
         return RequestPagerFragment.newInstance(
-                pendingRequestsList, context.getString(R.string.empty_pending_requests))
+            pendingRequestsList, context.getString(R.string.empty_pending_requests)
+        )
     }
 }

@@ -1,6 +1,8 @@
 package org.systers.mentorship.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -21,7 +23,9 @@ import kotlinx.android.parcel.Parcelize
  * @param notes notes related to the mentorship relation
  */
 @Parcelize
+@Entity(tableName = "Relationships")
 data class Relationship(
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     val actionUserId: Int,
     val sentByMe: Boolean,
@@ -32,6 +36,7 @@ data class Relationship(
     val startDate: Float,
     val endDate: Float,
     val state: Int,
+    var pending: Int = 0,
     val notes: String
 ) : Parcelable {
     /**

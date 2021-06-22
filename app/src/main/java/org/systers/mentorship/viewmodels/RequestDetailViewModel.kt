@@ -1,9 +1,11 @@
 package org.systers.mentorship.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import org.systers.mentorship.db.AppDb
 import org.systers.mentorship.remote.datamanager.RelationDataManager
 import org.systers.mentorship.utils.CommonUtils
 
@@ -23,10 +25,11 @@ class RequestDetailViewModel : ViewModel() {
      * Accepts a mentorship request
      * @param requestId id of the mentorship request
      */
-    fun acceptRequest(requestId: Int) {
+    fun acceptRequest(context: Context, requestId: Int) {
         viewModelScope.launch {
             try {
                 message = relationDataManager.acceptRelationship(requestId).message
+                deleteRelationshipFromDb(context, requestId)
                 successful.postValue(true)
             } catch (throwable: Throwable) {
                 message = CommonUtils.getErrorMessage(throwable, tag)
@@ -39,10 +42,11 @@ class RequestDetailViewModel : ViewModel() {
      * Rejects a mentorship request
      * @param requestId id of the mentorship request
      */
-    fun rejectRequest(requestId: Int) {
+    fun rejectRequest(context: Context, requestId: Int) {
         viewModelScope.launch {
             try {
                 message = relationDataManager.rejectRelationship(requestId).message
+                deleteRelationshipFromDb(context, requestId)
                 successful.postValue(true)
             } catch (throwable: Throwable) {
                 message = CommonUtils.getErrorMessage(throwable, tag)
@@ -55,15 +59,25 @@ class RequestDetailViewModel : ViewModel() {
      * Deletes a mentorship request
      * @param requestId id of the mentorship request
      */
-    fun deleteRequest(requestId: Int) {
+    fun deleteRequest(context: Context, requestId: Int) {
         viewModelScope.launch {
             try {
                 message = relationDataManager.deleteRelationship(requestId).message
+                deleteRelationshipFromDb(context, requestId)
                 successful.postValue(true)
             } catch (throwable: Throwable) {
                 message = CommonUtils.getErrorMessage(throwable, tag)
                 successful.postValue(false)
             }
         }
+    }
+
+    /**
+     * Deletes relationships from the database
+     */
+
+    fun deleteRelationshipFromDb(context: Context, id: Int) = viewModelScope.launch {
+        val relationshipDao = AppDb(context).getRelationshipDao()
+        relationshipDao.deleteRelatioship(id)
     }
 }

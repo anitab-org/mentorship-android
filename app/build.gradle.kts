@@ -69,8 +69,16 @@ dependencies {
     implementation(Dependencies.retrofit_gson_converter)
     implementation(Dependencies.okhttp3_logging_interceptor)
 
+    implementation(Dependencies.room_runtime)
+    implementation(Dependencies.coroutine_core)
+    implementation(Dependencies.coroutine)
+    implementation(Dependencies.room)
+    kapt(Dependencies.room_compiler)
+
     implementation(Dependencies.lifecycle_extensions)
     implementation(Dependencies.lifecycle_viewmodel)
+    implementation(Dependencies.lifecycle_live_data)
+    kapt(Dependencies.lifecycle_compiler)
     implementation(Dependencies.app_intro)
     implementation(Dependencies.circule_image_view)
 
