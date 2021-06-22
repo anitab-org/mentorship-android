@@ -2,15 +2,31 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.systers.mentorship.R
+import org.systers.mentorship.db.AppDb
 import org.systers.mentorship.utils.PreferenceManager
 import org.systers.mentorship.view.fragments.ChangePasswordFragment
+import org.systers.mentorship.viewmodels.SettingsViewModel
 
 class SettingsActivity : BaseActivity() {
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
+    private val settingsViewModel: SettingsViewModel by viewModels()
+
+    private fun deleteAllRelationships() {
+        val relationshipDao = AppDb(this).getRelationshipDao()
+        relationshipDao.getAllRelationships().observe(
+            this,
+            {
+                it.forEach { relationship ->
+                    settingsViewModel.deleteRelationshipFromDb(this, relationship.id)
+                }
+            }
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +42,7 @@ class SettingsActivity : BaseActivity() {
             builder.setMessage(R.string.confirm_logout_msg)
             builder.setPositiveButton(R.string.logout) { _, _ ->
                 preferenceManager.clear()
+                deleteAllRelationships()
                 startActivity(Intent(this, LoginActivity::class.java))
                 finishAffinity()
             }

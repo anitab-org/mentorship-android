@@ -51,11 +51,11 @@ class RequestPagerFragment : BaseFragment() {
     }
 
     private val openRequestDetail: (Relationship) -> Unit =
-            { requestDetail ->
-                val intent = Intent(activity, RequestDetailActivity::class.java)
-                intent.putExtra(Constants.RELATIONSHIP_EXTRA, requestDetail)
-                startActivityForResult(intent, Constants.DELETE_REQUEST_RESULT_ID)
-            }
+        { requestDetail ->
+            val intent = Intent(activity, RequestDetailActivity::class.java)
+            intent.putExtra(Constants.RELATIONSHIP_EXTRA, requestDetail)
+            startActivityForResult(intent, Constants.DELETE_REQUEST_RESULT_ID)
+        }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

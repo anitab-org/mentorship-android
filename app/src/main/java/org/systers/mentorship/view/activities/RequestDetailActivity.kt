@@ -14,6 +14,7 @@ import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
 import org.systers.mentorship.utils.Constants
+import org.systers.mentorship.utils.Constants.isNetworkAvailable
 import org.systers.mentorship.utils.EXTENDED_DATE_FORMAT
 import org.systers.mentorship.utils.convertUnixTimestampIntoStr
 import org.systers.mentorship.utils.getTextWithBoldWord
@@ -72,10 +73,13 @@ class RequestDetailActivity : BaseActivity() {
         }
         val actionUserRole = getString(if (isFromMentee) R.string.mentee else R.string.mentor)
         val requestEndDate = convertUnixTimestampIntoStr(
-                relationResponse.endDate, EXTENDED_DATE_FORMAT)
+            relationResponse.endDate, EXTENDED_DATE_FORMAT
+        )
 
-        val requestSummaryMessage = getString(summaryStrId,
-                otherUserName, actionUserRole, requestEndDate)
+        val requestSummaryMessage = getString(
+            summaryStrId,
+            otherUserName, actionUserRole, requestEndDate
+        )
         tvRequestSummary.text = requestSummaryMessage
 
         if (relationResponse.state == RelationState.PENDING.value) {
@@ -137,7 +141,8 @@ class RequestDetailActivity : BaseActivity() {
             builder.setIcon(android.R.drawable.ic_dialog_alert)
             // performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
-                requestDetailViewModel.deleteRequest(relationResponse.id)
+                if (! isNetworkAvailable(this)) Snackbar.make(getRootView(), "Internet connection is required to delete a request !", Snackbar.LENGTH_LONG).show()
+                else requestDetailViewModel.deleteRequest(this, relationResponse.id)
             }
             // performing cancel action
             builder.setNeutralButton("Cancel") { dialogInterface, which ->
@@ -158,7 +163,8 @@ class RequestDetailActivity : BaseActivity() {
             builder.setIcon(android.R.drawable.ic_dialog_alert)
             // performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
-                requestDetailViewModel.rejectRequest(relationResponse.id)
+                if (! isNetworkAvailable(this)) Snackbar.make(getRootView(), "Internet connection is required to reject a request !", Snackbar.LENGTH_LONG).show()
+                else requestDetailViewModel.rejectRequest(this, relationResponse.id)
             }
             // performing cancel action
             builder.setNeutralButton("Cancel") { dialogInterface, which ->
@@ -179,7 +185,8 @@ class RequestDetailActivity : BaseActivity() {
             builder.setIcon(android.R.drawable.ic_dialog_alert)
             // performing positive action
             builder.setPositiveButton("Yes") { dialogInterface, which ->
-                requestDetailViewModel.acceptRequest(relationResponse.id)
+                if (! isNetworkAvailable(this)) Snackbar.make(getRootView(), "Internet connection is required to accept a request !", Snackbar.LENGTH_LONG).show()
+                else requestDetailViewModel.acceptRequest(this, relationResponse.id)
             }
             // performing cancel action
             builder.setNeutralButton("Cancel") { dialogInterface, which ->
@@ -193,22 +200,25 @@ class RequestDetailActivity : BaseActivity() {
     }
 
     private fun setObservables(relationResponse: Relationship) {
-        requestDetailViewModel.successful.observe(this, {
-            successful ->
-            hideProgressDialog()
-            if (successful != null) {
-                if (successful) {
-                    Toast.makeText(this, requestDetailViewModel.message, Toast.LENGTH_LONG).show()
-                    val previousScreen = Intent(applicationContext, RequestPagerFragment::class.java)
-                    previousScreen.putExtra(Constants.REQUEST_ID, relationResponse.id.toString())
-                    setResult(Constants.DELETE_REQUEST_RESULT_ID, previousScreen)
-                    finish()
-                } else {
-                    Snackbar.make(getRootView(), requestDetailViewModel.message, Snackbar.LENGTH_LONG)
+        requestDetailViewModel.successful.observe(
+            this,
+            {
+                successful ->
+                hideProgressDialog()
+                if (successful != null) {
+                    if (successful) {
+                        Toast.makeText(this, requestDetailViewModel.message, Toast.LENGTH_LONG).show()
+                        val previousScreen = Intent(applicationContext, RequestPagerFragment::class.java)
+                        previousScreen.putExtra(Constants.REQUEST_ID, relationResponse.id.toString())
+                        setResult(Constants.DELETE_REQUEST_RESULT_ID, previousScreen)
+                        finish()
+                    } else {
+                        Snackbar.make(getRootView(), requestDetailViewModel.message, Snackbar.LENGTH_LONG)
                             .show()
+                    }
                 }
             }
-        })
+        )
     }
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
