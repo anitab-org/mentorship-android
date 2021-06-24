@@ -4,7 +4,7 @@ For this Android application, we decided to use Kotlin as the main language.
 
 - **Language:** [Kotlin](https://kotlinlang.org/)
 - **Architecture:** Model View ViewModel (MVVM)
-- **Libraries:** [Retrofit](http://square.github.io/retrofit/), [RxJava](https://github.com/ReactiveX/RxJava), ViewModel, LiveData, DataBinding
+- **Libraries:** [Retrofit](http://square.github.io/retrofit/), ViewModel, LiveData, DataBinding
 
 
 ## Why use Kotlin?
