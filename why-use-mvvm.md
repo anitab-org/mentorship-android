@@ -4,7 +4,7 @@ Developers always prefer a clean and structured code for the projects.
 By organizing the codes according to a design pattern helps in the maintenance of the software
 . By having knowledge of all crucial logic parts of the android application, it is easier to add and remove app features.
 
-Model — View — ViewModel [MVVM](https://developer.android.com/jetpack/guide?gclid=CjwKCAjwtdeFBhBAEiwAKOIy54BbAQsy_XH_sdwfTNM0Ben6F4omB1u3v5rUrEt6JhV7m0CokKUUGxoCRgsQAvD_BwE&gclsrc=aw.ds) is the industry-recognized software architecture pattern that overcomes all drawbacks of MVP and MVC design patterns. MVVM suggests separating the
+Model — View — ViewModel ([MVVM](https://developer.android.com/jetpack/guide?gclid=CjwKCAjwtdeFBhBAEiwAKOIy54BbAQsy_XH_sdwfTNM0Ben6F4omB1u3v5rUrEt6JhV7m0CokKUUGxoCRgsQAvD_BwE&gclsrc=aw.ds)) is the industry-recognized software architecture pattern that overcomes all drawbacks of MVP and MVC design patterns. MVVM suggests separating the
 data presentation logic(Views or UI) from the core business logic part of the application.
  MVVM is the best way to structure code.
  The separate code layers of MVVM are:
