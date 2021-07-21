@@ -3,6 +3,7 @@ package org.systers.mentorship.view.fragments
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -11,6 +12,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.core.view.ViewCompat
@@ -46,6 +48,7 @@ class MembersFragment : BaseFragment() {
     }
 
     private var memberListInitialized = false
+    private var location_check = false
 
     private val membersViewModel: MembersViewModel by viewModels()
     private lateinit var rvAdapter: MembersAdapter
@@ -125,6 +128,27 @@ class MembersFragment : BaseFragment() {
                                 addItemDecoration(dividerItemDecoration)
                                 adapter = rvAdapter
                                 isRecyclerView = true
+                            }
+                        }
+                        else
+                        {
+                            if(filterMap.containsKey("location")&&filterMap["location"] != "")
+                            {
+                                location_check = false
+                                val query = filterMap["location"].toString()
+                                for (user in membersViewModel.userList) {
+                                    // ""+ to convert String to CharSequence
+                                    if (("" + user.location).contains(query, ignoreCase = true)) {
+                                        location_check = true
+                                    }
+                                }
+
+                                if(!location_check)
+                                {
+
+                                    Toast.makeText(activity, "Oops! No member found",
+                                        Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }
                         memberListInitialized = true
