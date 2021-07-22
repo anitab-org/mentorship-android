@@ -116,7 +116,7 @@ The repository has the following permanent branches:
 |![Relations Page](https://user-images.githubusercontent.com/63957920/107955255-955ae500-6fc3-11eb-8d00-2664a2dce0cc.jpeg)|![Tasks Page](https://user-images.githubusercontent.com/63957920/107955267-9724a880-6fc3-11eb-9b20-c11ee5013014.jpeg)|![Members Page](https://user-images.githubusercontent.com/63957920/107955249-9429b800-6fc3-11eb-9a67-9a9cdafcb8ba.jpeg)|
 |![Filter Members Screen](https://user-images.githubusercontent.com/63957920/107955194-81af7e80-6fc3-11eb-8ce7-c08d7e39b22a.jpeg)|![Member Profile](https://user-images.githubusercontent.com/63957920/107955215-8a07b980-6fc3-11eb-90b8-cde542c517bd.jpeg)|![Send Request Page](https://user-images.githubusercontent.com/63957920/107955259-95f37b80-6fc3-11eb-9e4f-5a284d82195a.jpeg)|
 |![Requests Page](https://user-images.githubusercontent.com/63957920/107955257-955ae500-6fc3-11eb-8aec-488ed1cd8e0a.jpeg)|![Settings Screen](https://user-images.githubusercontent.com/63957920/107955260-95f37b80-6fc3-11eb-8862-4e0668c6d6e1.jpeg)|![About Page](https://user-images.githubusercontent.com/63957920/107955159-76f4e980-6fc3-11eb-87f8-464d6e9b9db4.jpeg)|
-|![Change Password Page](https://user-images.githubusercontent.com/63957920/107955177-7bb99d80-6fc3-11eb-8a61-729001a3c330.jpeg)|
+|![Change Password Page](https://user-images.githubusercontent.com/63957920/107955177-7bb99d80-6fc3-11eb-8a61-729001a3c330.jpeg)|![Logout Screen Page](https://user-images.githubusercontent.com/57872757/126679249-89fb62d3-8dd0-4ec8-a8f5-865d92df57bb.jpg)|
 ## Contact
 
 You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
