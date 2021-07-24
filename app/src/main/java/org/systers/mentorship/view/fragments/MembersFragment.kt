@@ -54,8 +54,6 @@ class MembersFragment : BaseFragment() {
     private var isRecyclerView = false
     private var filterMap = hashMapOf(SORT_KEY to SortValues.REGISTRATION_DATE.name)
 
-
-
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -103,7 +101,6 @@ class MembersFragment : BaseFragment() {
             }
         }
 
-
         membersViewModel.successful.observe(viewLifecycleOwner, { successful ->
             (activity as MainActivity).hideProgressDialog()
             srlMembers.isRefreshing = false
@@ -130,19 +127,11 @@ class MembersFragment : BaseFragment() {
                                 adapter = rvAdapter
                                 isRecyclerView = true
                             }
-                        }
-                        else
-                        {
-                            if(filterMap.containsKey("location")&&filterMap["location"] != "")
-                            {
-                                val User_list = membersViewModel.userList
-                                val query = filterMap["location"].toString()
+                        } else {
+                            if (filterMap.containsKey("location") && filterMap["location"] != "") {
 
-                                val location_check = User_list.any {(it.location)?.contains(query, ignoreCase = true) == true }
+                                if (!membersViewModel.userList.any { (it.location)?.contains(filterMap["location"].toString(), ignoreCase = true) == true }) {
 
-
-                                if(!location_check)
-                                {
                                     Toast.makeText(activity, "Oops! No member found",
                                         Toast.LENGTH_SHORT).show()
                                 }
