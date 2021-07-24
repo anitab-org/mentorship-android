@@ -3,7 +3,6 @@ package org.systers.mentorship.view.fragments
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -48,13 +47,14 @@ class MembersFragment : BaseFragment() {
     }
 
     private var memberListInitialized = false
-    private var location_check = false
 
     private val membersViewModel: MembersViewModel by viewModels()
     private lateinit var rvAdapter: MembersAdapter
     private var isLoading = false
     private var isRecyclerView = false
     private var filterMap = hashMapOf(SORT_KEY to SortValues.REGISTRATION_DATE.name)
+
+
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
@@ -103,6 +103,7 @@ class MembersFragment : BaseFragment() {
             }
         }
 
+
         membersViewModel.successful.observe(viewLifecycleOwner, { successful ->
             (activity as MainActivity).hideProgressDialog()
             srlMembers.isRefreshing = false
@@ -134,18 +135,14 @@ class MembersFragment : BaseFragment() {
                         {
                             if(filterMap.containsKey("location")&&filterMap["location"] != "")
                             {
-                                location_check = false
+                                val User_list = membersViewModel.userList
                                 val query = filterMap["location"].toString()
-                                for (user in membersViewModel.userList) {
-                                    // ""+ to convert String to CharSequence
-                                    if (("" + user.location).contains(query, ignoreCase = true)) {
-                                        location_check = true
-                                    }
-                                }
+
+                                val location_check = User_list.any {(it.location)?.contains(query, ignoreCase = true) == true }
+
 
                                 if(!location_check)
                                 {
-
                                     Toast.makeText(activity, "Oops! No member found",
                                         Toast.LENGTH_SHORT).show()
                                 }
