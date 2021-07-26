@@ -131,7 +131,8 @@ class MembersFragment : BaseFragment() {
                         } else {
                             if (!filterMap["location"].isNullOrEmpty()) {
 
-                                if (!membersViewModel.userList.any { (it.location)?.contains(filterMap["location"].toString(), ignoreCase = true) == true }) {
+                                if (!membersViewModel.userList.any { (it.location)
+                                    ?.contains(filterMap["location"]!!, ignoreCase = true) == true }) {
                                     Toast.makeText(activity, "Oops! No member found",
                                         Toast.LENGTH_SHORT).show()
                                 }
