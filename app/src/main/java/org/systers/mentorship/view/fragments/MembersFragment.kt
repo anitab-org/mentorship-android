@@ -131,8 +131,13 @@ class MembersFragment : BaseFragment() {
                         } else {
                             if (!filterMap["location"].isNullOrEmpty()) {
 
-                                if (!membersViewModel.userList.any { (it.location)
-                                    ?.contains(filterMap["location"]!!, ignoreCase = true) == true }) {
+                                // Here we are checking if location from filter
+                                    // matches with location from any user's profile
+                                val check_location = membersViewModel.userList.any {
+                                    (it.location)?.contains(filterMap["location"]!!, ignoreCase = true) == true
+                                }
+
+                                if (!check_location) {
                                     Toast.makeText(activity, "Oops! No member found",
                                         Toast.LENGTH_SHORT).show()
                                 }
