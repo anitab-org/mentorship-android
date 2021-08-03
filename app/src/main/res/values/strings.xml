@@ -69,6 +69,7 @@
     <string name="error_empty_password">Password cannot be empty</string>
     <string name="error_empty_password_confirmation">Password confirmation cannot be empty</string>
     <string name="error_empty_username">Username/Email cannot be empty</string>
+    <string name="error_filter_not_found">Oops! No member found</string>
     <string name="error_name_too_long">Name should have a maximum of %1$d characters</string>
     <string name="error_name_too_short">Name should have a minimum of %1$d characters</string>
     <string name="error_not_matching_passwords">Passwords didn\'t match!</string>
@@ -245,4 +246,5 @@
     <string name="valid_error">Please enter a valid email address</string>
     <string name="welcome">Welcome</string>
     <string name="yes">Yes</string>
+
 </resources>
