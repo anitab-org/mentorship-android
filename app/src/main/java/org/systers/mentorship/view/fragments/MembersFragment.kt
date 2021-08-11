@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.core.view.ViewCompat
@@ -116,15 +117,36 @@ class MembersFragment : BaseFragment() {
                         if (!isRecyclerView) {
                             rvMembers.apply {
                                 layoutManager = LinearLayoutManager(context)
-                                adapter = MembersAdapter(membersViewModel.userList, ::openUserProfile)
+                                adapter =
+                                    MembersAdapter(membersViewModel.userList, ::openUserProfile)
                                 addLoadMoreListener(this)
                                 runLayoutAnimation(this)
 
                                 val dividerItemDecoration = DividerItemDecoration(
-                                        this.context, DividerItemDecoration.VERTICAL)
+                                    this.context, DividerItemDecoration.VERTICAL
+                                )
                                 addItemDecoration(dividerItemDecoration)
                                 adapter = rvAdapter
                                 isRecyclerView = true
+                            }
+                        } else {
+                            if (!filterMap["interests"].isNullOrEmpty()) {
+
+                                val hasUsersWithInterests = membersViewModel.userList.any {
+                                    (it.interests)
+                                        ?.contains(
+                                            filterMap["interests"]!!,
+                                            ignoreCase = true
+                                        ) == true
+                                }
+
+                                if (!hasUsersWithInterests) {
+                                    Toast.makeText(
+                                        activity,
+                                        getString(R.string.error_filter_not_found),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
                         }
                         memberListInitialized = true
