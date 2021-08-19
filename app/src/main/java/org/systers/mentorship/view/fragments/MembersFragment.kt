@@ -131,6 +131,23 @@ class MembersFragment : BaseFragment() {
                                 isRecyclerView = true
                             }
                         } else {
+                            if (!filterMap["location"].isNullOrEmpty()) {
+
+                                val hasUsersWithLocation = membersViewModel.userList.any {
+                                    (it.location)?.contains(
+                                        filterMap["location"]!!,
+                                        ignoreCase = true
+                                    ) == true
+                                }
+
+                                if (!hasUsersWithLocation) {
+                                    Toast.makeText(
+                                        activity, getString(R.string.error_filter_not_found),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+
                             if (!filterMap["interests"].isNullOrEmpty()) {
 
                                 val hasUsersWithInterests = membersViewModel.userList.any {
@@ -145,23 +162,6 @@ class MembersFragment : BaseFragment() {
                                     Toast.makeText(
                                         activity,
                                         getString(R.string.error_filter_not_found),
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
-
-                            if (!filterMap["location"].isNullOrEmpty()) {
-
-                                val hasUsersWithLocation = membersViewModel.userList.any {
-                                    (it.location)?.contains(
-                                        filterMap["location"]!!,
-                                        ignoreCase = true
-                                    ) == true
-                                }
-
-                                if (!hasUsersWithLocation) {
-                                    Toast.makeText(
-                                        activity, getString(R.string.error_filter_not_found),
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
