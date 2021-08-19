@@ -117,8 +117,9 @@ class MembersFragment : BaseFragment() {
                         if (!isRecyclerView) {
                             rvMembers.apply {
                                 layoutManager = LinearLayoutManager(context)
-                                adapter =
-                                    MembersAdapter(membersViewModel.userList, ::openUserProfile)
+
+                                adapter = MembersAdapter(membersViewModel.userList, ::openUserProfile)
+
                                 addLoadMoreListener(this)
                                 runLayoutAnimation(this)
 
@@ -144,6 +145,23 @@ class MembersFragment : BaseFragment() {
                                     Toast.makeText(
                                         activity,
                                         getString(R.string.error_filter_not_found),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+
+                            if (!filterMap["location"].isNullOrEmpty()) {
+
+                                val hasUsersWithLocation = membersViewModel.userList.any {
+                                    (it.location)?.contains(
+                                        filterMap["location"]!!,
+                                        ignoreCase = true
+                                    ) == true
+                                }
+
+                                if (!hasUsersWithLocation) {
+                                    Toast.makeText(
+                                        activity, getString(R.string.error_filter_not_found),
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }

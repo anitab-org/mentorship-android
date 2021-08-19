@@ -246,4 +246,5 @@
     <string name="valid_error">Please enter a valid email address</string>
     <string name="welcome">Welcome</string>
     <string name="yes">Yes</string>
+
 </resources>
