@@ -134,6 +134,7 @@ class MembersFragment : BaseFragment() {
                             if (!filterMap["location"].isNullOrEmpty()) {
 
                                 val hasUsersWithLocation = membersViewModel.userList.any {
+
                                     (it.location)?.contains(
                                         filterMap["location"]!!,
                                         ignoreCase = true
