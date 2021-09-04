@@ -16,7 +16,7 @@ For this Android application, we decided to use Kotlin as the main language.
 Since this was a new project we decided to experiment a new tech stack for Android. Since Kotlin was declared as a first class programming language for Android, it started becoming much more popular. You can check a [comparison from Kotlin to Java programming language](https://kotlinlang.org/docs/reference/comparison-to-java.html).
 
 If you're new with kotlin there are many resources from where you can learn more:
-- [Try Kotlin](https://try.kotlinlang.org/) 
+- [Try Kotlin](https://try.kotlinlang.org/)
 - [Kotlin Koans](https://kotlinlang.org/docs/tutorials/koans.html) - This tutorial walks you through a series of exercises to get familiar with Kotlin
 - [Kotlin for Android Developers](https://eu.udacity.com/course/kotlin-for-android-developers--ud888) course on Udacity
 - ... There is a lot of information regarding Kotlin spread across blog posts, video tutorials, open sourced projects... You can always use Google about this and find awesome resources!

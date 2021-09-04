@@ -11,17 +11,17 @@ If you want to contribute to the project you will have to create your own copy o
 
 ![](https://user-images.githubusercontent.com/17262180/44107165-12bc11cc-a014-11e8-8de5-547fc4ed45f0.png)
 
-## Clone 
+## Clone
 
 _**Note**: For this you need to install [git](https://git-scm.com/) on your machine. You can download the git tool from [here](https://git-scm.com/downloads)._
 
- - If you have forked the project, run the following command - 
+ - If you have forked the project, run the following command -
 
 `git clone https://github.com/YOUR_GITHUB_USER_NAME/mentorship-android`
 
 where `YOUR_GITHUB_USER_NAME` is your GitHub handle.
 
- - If you haven't forked the project, run the following command - 
+ - If you haven't forked the project, run the following command -
 
 `git clone https://github.com/anitab-org/mentorship-android`
 
@@ -29,7 +29,7 @@ where `YOUR_GITHUB_USER_NAME` is your GitHub handle.
 
 _**Note**: This is only needed if you want to contribute to the project._
 
-When a repository is cloned, it has a default remote named `origin` that points to your fork on GitHub, not the original repository it was forked from. To keep track of the original repository, you should add another remote named upstream. For this project it can be done by running the following command - 
+When a repository is cloned, it has a default remote named `origin` that points to your fork on GitHub, not the original repository it was forked from. To keep track of the original repository, you should add another remote named upstream. For this project it can be done by running the following command -
 
 `git remote add upstream https://github.com/anitab-org/mentorship-android`
 

@@ -3,7 +3,7 @@ id: Mentorship Relation Documentation
 title: Mentorship Relation Documentation
 ---
 
-A **Mentorship Relation** is when two Users, a mentor, and a mentee are matched together to mentor and support each other. This is a 1 to 1 relation, involving just 2 users, during a certain period of time. 
+A **Mentorship Relation** is when two Users, a mentor, and a mentee are matched together to mentor and support each other. This is a 1 to 1 relation, involving just 2 users, during a certain period of time.
 
 A **Mentorship Relation request** is when a User sends a sort of contract in which the other User has to accept so that a mentorship relation can start. This contract contains notes/description, the definition of who will be the mentor and the mentee and the end date of the relation. Currently, this contract cannot be edited after sent by the User.
 
@@ -43,5 +43,3 @@ The next table explains more of the image above.
 ----
 
 _If you feel this documentation can be improved or has a bug please contact us at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/) or create an issue on GitHub to suggest improvements. We welcome every type of contributions!_
-
-

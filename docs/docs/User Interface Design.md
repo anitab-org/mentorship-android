@@ -4,7 +4,7 @@ title: User Interface Design
 ----
 
 This page presents some UI Designs made for the Mentorship System application.
-If you feel the UI Design can be improved and want to suggest something please discuss it with the community on [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/), we're always open to new ideas! Try to follow the [Material Design guidelines](https://material.io/design/) when suggesting improvements. 
+If you feel the UI Design can be improved and want to suggest something please discuss it with the community on [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/), we're always open to new ideas! Try to follow the [Material Design guidelines](https://material.io/design/) when suggesting improvements.
 
 Do you have an Android device? Here's the link to the latest version of the app: [app-debug.apk](https://github.com/systers/mentorship-android/raw/apk/app-debug.apk)
 
