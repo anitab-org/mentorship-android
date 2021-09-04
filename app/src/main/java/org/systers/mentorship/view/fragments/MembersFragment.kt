@@ -130,7 +130,6 @@ class MembersFragment : BaseFragment() {
                             }
                         } else {
                             if (!filterMap["location"].isNullOrEmpty()) {
-
                                 val hasUsersWithLocation = membersViewModel.userList.any {
 
                                     (it.location)?.contains(filterMap["location"]!!, ignoreCase = true) == true
@@ -143,7 +142,6 @@ class MembersFragment : BaseFragment() {
                             }
 
                             if (!filterMap["interests"].isNullOrEmpty()) {
-
                                 val hasUsersWithInterests = membersViewModel.userList.any {
                                     (it.interests)?.contains(filterMap["interests"]!!, ignoreCase = true) == true
                                 }
