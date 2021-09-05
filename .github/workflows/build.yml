@@ -1,0 +1,56 @@
+# This workflow executes the gradle build.
+# It is triggered on a push or a pull request on develop branch.
+# Generated APKs are uploaded as artifacts
+
+name: Build
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+    name: Build and Generate APK artifacts
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # A complete fetch needed for spotless to ratchet from origin/develop
+          fetch-depth: 0
+
+      # Set up JDK
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+         java-version: 1.8
+
+      # Cache gradle to speed up the build
+      - name: Cache Gradle and Wrapper
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: cache-${{ runner.os }}-${{ matrix.jdk }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      
+      # Grant Permission to Execute gradlew
+      - name: Grant Permission to Execute
+        run: chmod +x gradlew
+      
+      # Build
+      - name: Build
+        run: bash ./gradlew build --stacktrace
+      
+      # Upload the generated APKs to the artifacts
+      - name: Upload APKs as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: APKs
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/release/app-release-unsigned.apk

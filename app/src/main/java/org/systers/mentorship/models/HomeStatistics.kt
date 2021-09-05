@@ -16,11 +16,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class HomeStatistics(
-        val name: String,
-        val pendingRequests: Int,
-        val acceptedRequests: Int,
-        val completedRelations: Int,
-        val cancelledRelations: Int,
-        val rejectedRequests: Int,
-        val achievements: List<Task>): Parcelable
-
+    val name: String,
+    val pendingRequests: Int,
+    val acceptedRequests: Int,
+    val completedRelations: Int,
+    val cancelledRelations: Int,
+    val rejectedRequests: Int,
+    val achievements: List<Task>
+) : Parcelable

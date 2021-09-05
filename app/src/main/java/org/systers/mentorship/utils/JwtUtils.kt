@@ -9,7 +9,7 @@ import org.systers.mentorship.remote.responses.JwtPayload
  * @param jwt JSON Web Token in string format
  * @return body/payload of jwt Base64 decoded
  */
-fun decodeJwtPayload(jwt: String) : String {
+fun decodeJwtPayload(jwt: String): String {
     Log.d("JWT itself : ", jwt)
     val jwtParsed = jwt.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
     val base64EncodedBody = jwtParsed[1]
@@ -26,7 +26,7 @@ fun decodeJwtPayload(jwt: String) : String {
  * @param str JSON Web Token payload in string format
  * @return [JwtPayload] holding the token decoded
  */
-fun convertJwtPayloadToObject(str: String) : JwtPayload {
+fun convertJwtPayloadToObject(str: String): JwtPayload {
     return CommonUtils.gson.fromJson(str, JwtPayload::class.java)
 }
 
@@ -34,7 +34,7 @@ fun convertJwtPayloadToObject(str: String) : JwtPayload {
  * Converts the JWT token of the current user to [JwtPayload]
  * @return [JwtPayload] holding the current's user token decoded
  */
-fun getAuthTokenPayload() : JwtPayload {
+fun getAuthTokenPayload(): JwtPayload {
     val decodedJwtBody = decodeJwtPayload(PreferenceManager().authToken)
     return convertJwtPayloadToObject(decodedJwtBody)
 }

@@ -12,11 +12,12 @@ package org.systers.mentorship.remote.requests
  * @param availableToMentor is true if user is available as mentor
 
  */
-data class Register (
-        val name: String,
-        val username: String,
-        val email: String,
-        val password: String,
-        val termsAndConditionsChecked: Boolean,
-        val needMentoring: Boolean,
-        val availableToMentor: Boolean)
+data class Register(
+    val name: String,
+    val username: String,
+    val email: String,
+    val password: String,
+    val termsAndConditionsChecked: Boolean,
+    val needMentoring: Boolean,
+    val availableToMentor: Boolean
+)
