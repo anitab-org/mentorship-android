@@ -5,7 +5,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: 'Mentorship Android',
   tagline: 'Documentation for Mentorship Android',
-  url: 'https://Yash-Raj-Singh.github.io',
+  url: 'https://anitab-org.github.io',
   baseUrl: '/mentorship-android/',
   onBrokenLinks: 'throw',
   trailingSlash: false,
