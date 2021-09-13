@@ -6,11 +6,6 @@
 
 # Mentorship System (Android)
 
-| Branch | [Travis](https://travis-ci.org/) | [Codacy](https://www.codacy.com/) |
-| :---: | :---: | :---: |
-| [master](https://github.com/anitab-org/mentorship-android/tree/master) | [![Build Status](https://img.shields.io/travis/com/anitab-org/mentorship-android/master?logo=travis)](https://travis-ci.org/anitab-org/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=master)](https://www.codacy.com/app/m-murad/mentorship-android) |
-| [develop](https://github.com/anitab-org/mentorship-android/tree/develop) | [![Build Status](https://img.shields.io/travis/com/anitab-org/mentorship-android/develop?logo=travis)](https://travis-ci.org/anitab-org/mentorship-android) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ee27e44e4ac646e0afe440173ea47823?branch=develop)](https://www.codacy.com/app/m-murad/mentorship-android) |
-
 [Mentorship System](https://github.com/anitab-org/mentorship-backend) is an application that allows women in tech to mentor each other, on career development topics, through 1:1 relations for a certain period.
 
 This is the Android client for the Mentorship System.
