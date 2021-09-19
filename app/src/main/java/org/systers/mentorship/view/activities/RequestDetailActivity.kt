@@ -30,7 +30,7 @@ class RequestDetailActivity : BaseActivity() {
         ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
     }
     private val mentorshipRelationResponse by lazy {
-        intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)
+        intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)!!
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
