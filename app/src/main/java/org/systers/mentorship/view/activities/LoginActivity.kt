@@ -2,6 +2,7 @@ package org.systers.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -49,6 +50,7 @@ import org.systers.mentorship.viewmodels.LoginViewModel
  */
 class LoginActivity : BaseActivity() {
     private val loginViewModel: LoginViewModel by viewModels()
+    private val TAG = this::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +81,7 @@ class LoginActivity : BaseActivity() {
             if (tokenExpiredVal == 0)
                 loginViewModel.message.value = "Session Token expired, please login again"
         } catch (exception: Exception) {
+            Log.d(TAG, exception.message ?: "")
         }
     }
 

@@ -7,9 +7,9 @@ object Versions {
     const val targetSdkVersion = 30
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "4.1.2"
+    const val gradleBuildTool = "4.2.1"
     const val kotlinVersion = "1.4.32"
-    const val designSupportLib = "1.1.0-beta01"
+    const val designSupportLib = "1.1.0"
     const val swipeRefreshLayout = "1.1.0"
     const val constraintLayout = "2.0.4"
     const val viewPager2 = "1.0.0"
@@ -60,18 +60,13 @@ object Dependencies {
 
     object Compose {
         const val UI = "androidx.compose.ui:ui:${Versions.composeVersion}"
-        // Tooling support (Previews, etc.)
         const val Tooling = "androidx.compose.ui:ui-tooling:${Versions.composeVersion}"
-        // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
         const val Foundation = "androidx.compose.foundation:foundation:${Versions.composeVersion}"
-        // Material Design
         const val Material = "androidx.compose.material:material:${Versions.composeVersion}"
-        // Material design icons
         const val Icons = "androidx.compose.material:material-icons-core:${Versions.composeVersion}"
         const val IconsExtended = "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
-        // Integration with observables
         const val LiveData = "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
-        const val Activity = "androidx.activity:activity-compose:1.3.0-alpha08"
+        const val Activity = "androidx.activity:activity-compose:1.3.0"
 
         // UI Tests
         const val Test = "androidx.compose.ui:ui-test-junit4:${Versions.composeVersion}"

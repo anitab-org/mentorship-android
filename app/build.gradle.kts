@@ -48,7 +48,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.0-beta07"
+        kotlinCompilerExtensionVersion = Versions.composeVersion
     }
     androidExtensions {
         isExperimental = true
@@ -88,20 +88,13 @@ dependencies {
     implementation(Dependencies.viewPager2)
     implementation(Dependencies.swipe_refresh_layout)
 
-    // Compose Dependencies
     implementation(Dependencies.Compose.UI)
-    // Tooling support (Previews, etc.)
     implementation(Dependencies.Compose.Tooling)
-    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
     implementation(Dependencies.Compose.Foundation)
-    // Material Design
     implementation(Dependencies.Compose.Material)
-    // Material design icons
     implementation(Dependencies.Compose.Icons)
     implementation(Dependencies.Compose.IconsExtended)
-    // Integration with observables
     implementation(Dependencies.Compose.LiveData)
     implementation(Dependencies.Compose.Activity)
-    // UI Tests
     androidTestImplementation(Dependencies.Compose.Test)
 }
