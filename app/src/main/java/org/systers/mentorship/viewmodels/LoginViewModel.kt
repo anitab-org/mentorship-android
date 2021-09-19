@@ -1,6 +1,5 @@
 package org.systers.mentorship.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -40,15 +39,15 @@ class LoginViewModel : ViewModel() {
      * @param login a login request object containing the credentials
      */
     fun login(login: Login) {
-       _buttonEnabled.value = false
+        _buttonEnabled.value = false
         viewModelScope.launch {
             try {
                 preferenceManager.putAuthToken(authDataManager.login(login).accessToken)
                 _successful.value = true
             } catch (throwable: Throwable) {
-                message = CommonUtils.getErrorMessage(throwable, tag)
+                message.value = CommonUtils.getErrorMessage(throwable, tag)
                 _successful.value = false
-               _buttonEnabled.value = true
+                _buttonEnabled.value = true
             }
         }
     }

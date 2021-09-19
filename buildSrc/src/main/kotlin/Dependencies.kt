@@ -2,12 +2,12 @@
  * Contains the versions of the dependencies being used
  */
 object Versions {
-    const val compileSdkVersion = 28
+    const val compileSdkVersion = 30
     const val minSdkVersion = 21
     const val targetSdkVersion = 30
     const val versionCode = 1
     const val versionName = "1"
-    const val gradleBuildTool = "7.1.0-alpha02"
+    const val gradleBuildTool = "4.1.2"
     const val kotlinVersion = "1.4.32"
     const val designSupportLib = "1.1.0-beta01"
     const val swipeRefreshLayout = "1.1.0"
@@ -27,7 +27,7 @@ object Versions {
     const val appCompat = "1.3.0"
     const val circleImageView = "3.0.1"
     const val fragmentKtx = "1.3.4"
-    const val composeVersion = "1.0.0-beta07"
+    const val composeVersion = "1.0.2"
 }
 
 /**

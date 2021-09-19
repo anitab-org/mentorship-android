@@ -32,9 +32,9 @@ android {
         getByName("debug") {
             manifestPlaceholders["usesCleartextTraffic"] = true
         }
-//        create("debug_localhost") {
-//            initWith(getByName("debug"))
-//        }
+        create("debug_localhost") {
+            initWith(getByName("debug"))
+        }
     }
 
     compileOptions {
