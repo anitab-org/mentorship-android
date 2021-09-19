@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.core.view.ViewCompat
@@ -117,6 +118,7 @@ class MembersFragment : BaseFragment() {
                             rvMembers.apply {
                                 layoutManager = LinearLayoutManager(context)
                                 adapter = MembersAdapter(membersViewModel.userList, ::openUserProfile)
+
                                 addLoadMoreListener(this)
                                 runLayoutAnimation(this)
 
@@ -125,6 +127,18 @@ class MembersFragment : BaseFragment() {
                                 addItemDecoration(dividerItemDecoration)
                                 adapter = rvAdapter
                                 isRecyclerView = true
+                            }
+                        } else {
+                            if (!filterMap["location"].isNullOrEmpty()) {
+
+                                val hasUsersWithLocation = membersViewModel.userList.any {
+                                    (it.location)?.contains(filterMap["location"]!!, ignoreCase = true) == true
+                                }
+
+                                if (!hasUsersWithLocation) {
+                                    Toast.makeText(activity, getString(R.string.error_filter_not_found),
+                                        Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }
                         memberListInitialized = true

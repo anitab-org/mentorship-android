@@ -75,13 +75,8 @@ dependencies {
     androidTestImplementation(Dependencies.ext_junit)
     implementation(Dependencies.espresso_idling_resources)
 
-    implementation(Dependencies.rx_java)
-    implementation(Dependencies.rx_android)
-    implementation(Dependencies.rx_kotlin)
-
     implementation(Dependencies.retrofit)
     implementation(Dependencies.retrofit_gson_converter)
-    implementation(Dependencies.retrofit_rxjava2_adapter)
     implementation(Dependencies.okhttp3_logging_interceptor)
 
     implementation(Dependencies.lifecycle_viewmodel)
