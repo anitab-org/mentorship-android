@@ -18,7 +18,6 @@ android {
     }
     buildFeatures {
         dataBinding = true
-        // Enables Jetpack Compose for this module
         compose = true
     }
 
@@ -44,14 +43,10 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
-        useIR = true
     }
 
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeVersion
-    }
-    androidExtensions {
-        isExperimental = true
     }
 }
 
