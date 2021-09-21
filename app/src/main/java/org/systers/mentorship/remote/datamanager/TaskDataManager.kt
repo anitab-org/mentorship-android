@@ -1,6 +1,8 @@
 package org.systers.mentorship.remote.datamanager
 
-import io.reactivex.Observable
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.ApiManager
 import org.systers.mentorship.remote.requests.CreateTask
@@ -9,7 +11,7 @@ import org.systers.mentorship.remote.responses.CustomResponse
 /**
  * This class represents the data manager related to Mentorship Task API
  */
-class TaskDataManager {
+class TaskDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
 
     private val apiManager = ApiManager.instance
 
@@ -18,8 +20,8 @@ class TaskDataManager {
      * @param relationId mentorship relation id
      * @return an Observable of [CustomResponse]
      */
-    fun getAllTasks(relationId: Int): Observable<List<Task>> {
-        return apiManager.taskService.getAllTasksFromMentorshipRelation(relationId)
+    suspend fun getAllTasks(relationId: Int): List<Task> {
+        return withContext(dispatcher) { apiManager.taskService.getAllTasksFromMentorshipRelation(relationId) }
     }
 
     /**
@@ -27,8 +29,8 @@ class TaskDataManager {
      * @param relationId mentorship relation id
      * @return an Observable of [CustomResponse]
      */
-    fun completeTask(relationId: Int, taskId: Int): Observable<CustomResponse> {
-        return apiManager.taskService.completeTaskFromMentorshipRelation(relationId, taskId)
+    suspend fun completeTask(relationId: Int, taskId: Int): CustomResponse {
+        return withContext(dispatcher) { apiManager.taskService.completeTaskFromMentorshipRelation(relationId, taskId) }
     }
 
     /**
@@ -37,7 +39,7 @@ class TaskDataManager {
      * @param createTask object to serialize task description
      * @return an Observable of [CustomResponse]
      */
-    fun addTask(relationId: Int, createTask: CreateTask): Observable<CustomResponse> {
-        return apiManager.taskService.addTaskToMentorshipRelation(relationId, createTask)
+    suspend fun addTask(relationId: Int, createTask: CreateTask): CustomResponse {
+        return withContext(dispatcher) { apiManager.taskService.addTaskToMentorshipRelation(relationId, createTask) }
     }
 }
