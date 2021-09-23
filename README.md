@@ -1,5 +1,6 @@
 
 [![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg?logo=zulip)](https://anitab-org.zulipchat.com/#narrow/stream/222534-mentorship-system)
+[![project chat](https://img.shields.io/badge/Docusauras%20-2.0.0--alpha.72-brightgreen)](https://anitab-org.github.io/stem-diverse-tv/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg?logo=GNU)](http://www.gnu.org/licenses/gpl-3.0)
 [![GitHub forks](https://img.shields.io/github/forks/anitab-org/mentorship-android?style=social)](https://github.com/anitab-org/mentorship-android/network)
 [![GitHub stars](https://img.shields.io/github/stars/anitab-org/mentorship-android?style=social)](https://github.com/anitab-org/mentorship-android/stargazers)
