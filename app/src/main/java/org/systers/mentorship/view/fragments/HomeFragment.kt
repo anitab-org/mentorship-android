@@ -6,8 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -23,9 +22,7 @@ import org.systers.mentorship.viewmodels.HomeViewModel
  */
 class HomeFragment : BaseFragment() {
 
-    private val homeViewModel by lazy {
-        ViewModelProviders.of(this).get(HomeViewModel::class.java)
-    }
+    private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var achievementsAdapter: AchievementsAdapter
 
@@ -38,7 +35,7 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_home
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
         return binding.root
     }
@@ -64,9 +61,8 @@ class HomeFragment : BaseFragment() {
 
         setHasOptionsMenu(true)
 
-
         with(homeViewModel) {
-            userStats.observe(viewLifecycleOwner, Observer { stats ->
+            userStats.observe(viewLifecycleOwner, { stats ->
                 srlHome.isRefreshing = false
                 binding.stats = stats
                 if (stats?.achievements?.isEmpty() != false) {
@@ -79,7 +75,7 @@ class HomeFragment : BaseFragment() {
                 }
             })
 
-            message.observe(viewLifecycleOwner, Observer { message ->
+            message.observe(viewLifecycleOwner, { message ->
                 Snackbar.make(homeContainer, message.toString(), Snackbar.LENGTH_SHORT).show()
             })
         }
@@ -97,9 +93,8 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun fetchNewest()  {
+    private fun fetchNewest() {
         srlHome.isRefreshing = true
         homeViewModel.getHomeStats()
     }
 }
-

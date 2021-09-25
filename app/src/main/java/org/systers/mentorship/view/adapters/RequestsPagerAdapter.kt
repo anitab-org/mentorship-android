@@ -1,8 +1,9 @@
 package org.systers.mentorship.view.adapters
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.systers.mentorship.MentorshipApplication
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
@@ -19,10 +20,10 @@ import org.systers.mentorship.view.fragments.RequestPagerFragment
  * @param fm fragment manager
  */
 class RequestsPagerAdapter(
-        private val requestsList: List<Relationship>,
-        fm: FragmentManager,
-        private val pendingRequestsList: List<Relationship>
-) : FragmentPagerAdapter(fm) {
+    private val requestsList: List<Relationship>,
+    private val pendingRequestsList: List<Relationship>,
+    fragmentActivity: FragmentActivity
+) : FragmentStateAdapter(fragmentActivity) {
 
     /**
      * This class represents the number and index of each tab of the layout
@@ -51,39 +52,24 @@ class RequestsPagerAdapter(
         }
     }
 
-    override fun getItem(position: Int): Fragment {
-        when(position){
+    override fun getItemCount(): Int = Constants.TOTAL_REQUEST_TABS
+
+    override fun createFragment(position: Int): Fragment {
+        when (position) {
             TabsIndex.PENDING.value -> {
                 return RequestPagerFragment.newInstance(
                         pendingRequestsList, context.getString(R.string.empty_pending_requests))
             }
-            TabsIndex.PAST.value  -> {
+            TabsIndex.PAST.value -> {
                 return RequestPagerFragment.newInstance(
                         pastList, context.getString(R.string.empty_past_requests))
             }
-            TabsIndex.ALL.value  -> {
+            TabsIndex.ALL.value -> {
                 return RequestPagerFragment.newInstance(
                         allList, context.getString(R.string.empty_requests))
             }
         }
         return RequestPagerFragment.newInstance(
                 pendingRequestsList, context.getString(R.string.empty_pending_requests))
-    }
-
-    override fun getCount(): Int = Constants.TOTAL_REQUEST_TABS
-
-    override fun getPageTitle(position: Int): CharSequence? {
-        when(position){
-            TabsIndex.PENDING.value -> {
-                return context.getString(R.string.pending)
-            }
-            TabsIndex.PAST.value  -> {
-                return context.getString(R.string.past)
-            }
-            TabsIndex.ALL.value  -> {
-                return context.getString(R.string.all)
-            }
-        }
-        return context.getString(R.string.pending)
     }
 }

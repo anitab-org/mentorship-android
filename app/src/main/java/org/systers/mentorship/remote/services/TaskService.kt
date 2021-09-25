@@ -1,10 +1,13 @@
 package org.systers.mentorship.remote.services
 
-import io.reactivex.Observable
 import org.systers.mentorship.models.Task
 import org.systers.mentorship.remote.requests.CreateTask
 import org.systers.mentorship.remote.responses.CustomResponse
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 /**
  * This interface describes the methods related to Mentorship Task REST API
@@ -17,7 +20,7 @@ interface TaskService {
      * @return an observable instance of a list of [Task]s
      */
     @GET("mentorship_relation/{relation_id}/tasks")
-    fun getAllTasksFromMentorshipRelation(@Path("relation_id") relationId: Int): Observable<List<Task>>
+    suspend fun getAllTasksFromMentorshipRelation(@Path("relation_id") relationId: Int): List<Task>
 
     /**
      * This function marks a task from a mentorship relation as complete
@@ -26,7 +29,7 @@ interface TaskService {
      * @return an observable instance of <CustomResponse>
      */
     @PUT("mentorship_relation/{relation_id}/task/{task_id}/complete")
-    fun completeTaskFromMentorshipRelation(@Path("relation_id") relationId: Int, @Path("task_id") taskId: Int): Observable<CustomResponse>
+    suspend fun completeTaskFromMentorshipRelation(@Path("relation_id") relationId: Int, @Path("task_id") taskId: Int): CustomResponse
 
     /**
      * This function creates a new task
@@ -36,6 +39,6 @@ interface TaskService {
      * @return an observable instance of <CustomResponse>
      */
     @POST("mentorship_relation/{relation_id}/task")
-    fun addTaskToMentorshipRelation(@Path("relation_id") relationId: Int, @Body createTask: CreateTask): Observable<CustomResponse>
-    //only 'description' field from Task model needed.
+    suspend fun addTaskToMentorshipRelation(@Path("relation_id") relationId: Int, @Body createTask: CreateTask): CustomResponse
+    // only 'description' field from Task model needed.
 }

@@ -7,15 +7,20 @@ import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.android.material.textfield.TextInputLayout
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -31,7 +36,6 @@ import org.systers.mentorship.utils.CountingIdlingResourceSingleton
 import org.systers.mentorship.view.activities.LoginActivity
 import org.systers.mentorship.view.activities.MainActivity
 
-
 /**
  * This class specifies the UI test for LoginActivity
  */
@@ -39,7 +43,7 @@ import org.systers.mentorship.view.activities.MainActivity
 class LoginActivityTest {
     private val EMPTY_USERNAME_ERROR = "Username/Email cannot be empty"
     private val EMPTY_PASSWORD_ERROR = "Password cannot be empty"
-    private val INCORRECT_CREDENTIALS_ERROR = "Something went wrong"
+    private val INCORRECT_CREDENTIALS_ERROR = "Username or password is wrong."
 
     private val INCORRECT_TEST_USERNAME = "blah"
     private val INCORRECT_TEST_PASSWORD = "blah"
@@ -64,7 +68,7 @@ class LoginActivityTest {
         IdlingRegistry.getInstance().unregister(CountingIdlingResourceSingleton.countingIdlingResource)
     }
 
-    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId : Int) : ViewInteraction {
+    private fun findEditTextInTextInputLayout(@IdRes textInputLayoutId: Int): ViewInteraction {
 
         return onView(allOf(isDescendantOfA(withId(textInputLayoutId)), isAssignableFrom(EditText::class.java)))
     }
@@ -74,7 +78,7 @@ class LoginActivityTest {
         /**
          * This simply implements the null check, checks the type and then casts.
          */
-        fun hasTextInputLayoutErrorText(expectedErrorText : String) : Matcher<View> {
+        fun hasTextInputLayoutErrorText(expectedErrorText: String): Matcher<View> {
 
             return object : TypeSafeMatcher<View>() {
                 /**
@@ -86,7 +90,7 @@ class LoginActivityTest {
                  * The description to be built or appended to.
                  */
                 override fun describeTo(description: Description?) {
-                    //("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    // ("not implemented") //To change body of created functions use File | Settings | File Templates.
                 }
 
                 /**
@@ -116,6 +120,7 @@ class LoginActivityTest {
      * with:
      * username: EMPTY
      * password: EMPTY
+     * expected: Empty username and password error
      */
     @Test
     fun testLoginButtonClickedWhenUsernameAndPasswordAreEmpty() {
@@ -124,7 +129,6 @@ class LoginActivityTest {
         // Checks that the error message in both the editTexts appears after button click
         onView(withId(R.id.tiUsername)).check(matches(hasTextInputLayoutErrorText(EMPTY_USERNAME_ERROR)))
         onView(withId(R.id.tiPassword)).check(matches(hasTextInputLayoutErrorText(EMPTY_PASSWORD_ERROR)))
-
     }
 
     /**
@@ -132,6 +136,7 @@ class LoginActivityTest {
      * with:
      * username: EMPTY
      * password: PRESENT
+     * expected : Empty username error
      */
     @Test
     fun testLoginButtonClickedWhenUsernameIsEmptyAndPasswordIsFilled() {
@@ -147,6 +152,7 @@ class LoginActivityTest {
      * with:
      * username: PRESENT, correct
      * password: EMPTY
+     * expected: empty password error
      */
     @Test
     fun testLoginButtonClickedWhenUsernameIsFilledAndPasswordIsEmpty() {
@@ -162,6 +168,7 @@ class LoginActivityTest {
      * with:
      * username: PRESENT, incorrect
      * password: PRESENT, incorrect
+     * expected: Incorrect credentials error
      */
     @Test
     fun testLoginButtonClickedWhenDataIsIncorrect() {
@@ -177,6 +184,7 @@ class LoginActivityTest {
      * by the user are correct.
      * username: PRESENT
      * password: PRESENT
+     * expected: Intent to main activity
      */
     @Test
     fun testLoginButtonClickedWhenDataIsCorrect() {
@@ -193,6 +201,7 @@ class LoginActivityTest {
      * button is clicked with:
      * username: PRESENT, incorrect
      * password: PRESENT, correct
+     * expected: Incorrect credentials error
      */
     @Test
     fun testLoginButtonWhenOnlyUsernameIsIncorrect() {
@@ -208,6 +217,7 @@ class LoginActivityTest {
      * button is clicked with:
      * username: PRESENT, correct
      * password: PRESENT, incorrect
+     * expected: Incorrect credentials error
      */
     @Test
     fun testLoginButtonWhenOnlyPasswordIsIncorrect() {
