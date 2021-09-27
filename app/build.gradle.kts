@@ -2,46 +2,51 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-
     id("kotlin-android-extensions")
 }
 android {
-    compileSdkVersion(Versions.compileSdkVersion)
+
+    compileSdk = Versions.compileSdkVersion
     defaultConfig {
         applicationId = "org.anitab.mentorship"
-        minSdkVersion(Versions.minSdkVersion)
-        targetSdkVersion(Versions.targetSdkVersion)
+        minSdk = Versions.minSdkVersion
+        targetSdk = Versions.targetSdkVersion
         versionCode = Versions.versionCode
         versionName = Versions.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+    buildFeatures {
+        dataBinding = true
+        compose = true
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            setManifestPlaceholders(mutableMapOf("usesCleartextTraffic" to false))
+            manifestPlaceholders["usesCleartextTraffic"] = false
         }
         getByName("debug") {
-            setManifestPlaceholders(mutableMapOf("usesCleartextTraffic" to true))
+            manifestPlaceholders["usesCleartextTraffic"] = true
         }
         create("debug_localhost") {
             initWith(getByName("debug"))
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        dataBinding = true
-    }
-    androidExtensions {
-        isExperimental = true
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeVersion
     }
 }
 
@@ -69,7 +74,6 @@ dependencies {
     implementation(Dependencies.retrofit_gson_converter)
     implementation(Dependencies.okhttp3_logging_interceptor)
 
-    implementation(Dependencies.lifecycle_extensions)
     implementation(Dependencies.lifecycle_viewmodel)
     implementation(Dependencies.app_intro)
     implementation(Dependencies.circule_image_view)
@@ -78,4 +82,14 @@ dependencies {
 
     implementation(Dependencies.viewPager2)
     implementation(Dependencies.swipe_refresh_layout)
+
+    implementation(Dependencies.Compose.UI)
+    implementation(Dependencies.Compose.Tooling)
+    implementation(Dependencies.Compose.Foundation)
+    implementation(Dependencies.Compose.Material)
+    implementation(Dependencies.Compose.Icons)
+    implementation(Dependencies.Compose.IconsExtended)
+    implementation(Dependencies.Compose.LiveData)
+    implementation(Dependencies.Compose.Activity)
+    androidTestImplementation(Dependencies.Compose.Test)
 }

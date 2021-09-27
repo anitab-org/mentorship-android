@@ -42,6 +42,15 @@ class FilterActivity : BaseActivity() {
         map = intent?.extras?.get(FILTER_MAP) as HashMap<String, String>?
         initializeViews()
         initializeClickListeners()
+        cardSortNameAZ.setOnClickListener {
+            buttonOnClickSort(it)
+        }
+        cardSortRegistrationDate.setOnClickListener {
+            buttonOnClickSort(it)
+        }
+        cardSortNameZA.setOnClickListener {
+            buttonOnClickSort(it)
+        }
     }
 
     private fun initializeViews() {
@@ -190,8 +199,8 @@ class FilterActivity : BaseActivity() {
         previousSelectionSort = view
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home)
             onBackPressed()
         return super.onOptionsItemSelected(item)
     }
