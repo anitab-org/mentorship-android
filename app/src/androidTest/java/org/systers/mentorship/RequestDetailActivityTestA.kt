@@ -1,4 +1,4 @@
-package org.systers.mentorship
+package org.anitab.mentorship
 
 import android.content.Intent
 import androidx.test.espresso.Espresso.onView
@@ -8,10 +8,10 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.rule.ActivityTestRule
 import org.junit.Rule
 import org.junit.Test
-import org.systers.mentorship.models.Relationship
-import org.systers.mentorship.utils.Constants
-import org.systers.mentorship.view.activities.MainActivity
-import org.systers.mentorship.view.activities.RequestDetailActivity
+import org.anitab.mentorship.models.Relationship
+import org.anitab.mentorship.utils.Constants
+import org.anitab.mentorship.view.activities.MainActivity
+import org.anitab.mentorship.view.activities.RequestDetailActivity
 
 class RequestDetailActivityTestA {
 

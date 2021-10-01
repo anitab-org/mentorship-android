@@ -1,4 +1,4 @@
-package org.systers.mentorship
+package org.anitab.mentorship
 
 import android.widget.EditText
 import androidx.annotation.IdRes
@@ -20,7 +20,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.systers.mentorship.view.activities.MainActivity
+import org.anitab.mentorship.view.activities.MainActivity
 
 @RunWith(AndroidJUnit4::class)
 class EditProfileFragmentTest {

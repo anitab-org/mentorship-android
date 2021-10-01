@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.fragments
+package org.anitab.mentorship.view.fragments
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -13,9 +13,9 @@ import org.hamcrest.Matchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.systers.mentorship.R
-import org.systers.mentorship.view.activities.MainActivity
-import org.systers.mentorship.viewmodels.RelationViewModel
+import org.anitab.mentorship.R
+import org.anitab.mentorship.view.activities.MainActivity
+import org.anitab.mentorship.viewmodels.RelationViewModel
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class RelationPagerFragmentTest {

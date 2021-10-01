@@ -1,4 +1,4 @@
-package org.systers.mentorship
+package org.anitab.mentorship
 
 import android.content.ComponentName
 import android.view.View
@@ -32,9 +32,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.systers.mentorship.utils.CountingIdlingResourceSingleton
-import org.systers.mentorship.view.activities.LoginActivity
-import org.systers.mentorship.view.activities.MainActivity
+import org.anitab.mentorship.utils.CountingIdlingResourceSingleton
+import org.anitab.mentorship.view.activities.LoginActivity
+import org.anitab.mentorship.view.activities.MainActivity
 
 /**
  * This class specifies the UI test for LoginActivity

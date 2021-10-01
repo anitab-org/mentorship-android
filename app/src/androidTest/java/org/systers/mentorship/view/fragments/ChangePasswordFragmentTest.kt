@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.fragments
+package org.anitab.mentorship.view.fragments
 
 import android.view.View
 import android.widget.EditText
@@ -25,8 +25,8 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.systers.mentorship.R
-import org.systers.mentorship.view.activities.SettingsActivity
+import org.anitab.mentorship.R
+import org.anitab.mentorship.view.activities.SettingsActivity
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ChangePasswordFragmentTest {

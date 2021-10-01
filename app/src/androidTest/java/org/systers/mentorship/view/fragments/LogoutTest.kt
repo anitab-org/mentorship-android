@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.fragments
+package org.anitab.mentorship.view.fragments
 
 import android.content.ComponentName
 import androidx.test.espresso.Espresso.onView
@@ -17,9 +17,9 @@ import androidx.test.rule.ActivityTestRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.systers.mentorship.R
-import org.systers.mentorship.view.activities.LoginActivity
-import org.systers.mentorship.view.activities.SettingsActivity
+import org.anitab.mentorship.R
+import org.anitab.mentorship.view.activities.LoginActivity
+import org.anitab.mentorship.view.activities.SettingsActivity
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class LogoutTest {
