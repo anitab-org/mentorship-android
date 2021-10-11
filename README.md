@@ -30,6 +30,10 @@ This is the Android client for the Mentorship System.
 * A member can delete their account.
 * A member can change their account password anytime.
 
+## Project Roadmap
+
+To learn more about the project's goals and progress, check out [Mentorship Roadmap](https://github.com/orgs/anitab-org/projects/2).
+
 ## Setting up the project
 
 To setup the project locally read these wiki pages and follow the instructions:
