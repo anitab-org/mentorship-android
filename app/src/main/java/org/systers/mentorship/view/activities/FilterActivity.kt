@@ -66,13 +66,13 @@ class FilterActivity : BaseActivity() {
             }
         }
 
-        if (map?.get(NEED_MENTORING_KEY) == "true") {
+        if (map?.get(NEED_MENTORING_KEY) == resources.getString(R.string._true)) {
             cardFilterNeedMentoring.setBackgroundResource(R.drawable.background_rounded_primary)
             tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
                     resources, R.color.white, null))
             needMentoring = true
         }
-        if (map?.get(AVAILABLE_TO_MENTOR_KEY) == "true") {
+        if (map?.get(AVAILABLE_TO_MENTOR_KEY) == resources.getString(R.string._true)) {
             cardFilterAvailableToMentor.setBackgroundResource(R.drawable.background_rounded_primary)
             tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
                     resources, R.color.white, null))

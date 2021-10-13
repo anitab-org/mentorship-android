@@ -21,9 +21,11 @@
     <string name="activity_not_found_exception_error">Cannot Find an app that can open the Requested Link.</string>
     <string name="add_new_task">Add a new task</string>
     <string name="age">Age</string>
+    <string name="alert">Alert</string>
     <string name="all">All</string>
     <string name="app_name">Mentorship System</string>
     <string name="apply_filter">Apply filter</string>
+    <string name="authorization">Authorization</string>
     <string name="available_to_be_mentor_mentee">Available to be a:</string>
     <string name="available_to_mentor">Available to mentor</string>
     <string name="available_to_mentor_and_mentee">Available to mentor and be a mentee</string>
@@ -90,6 +92,7 @@
     <string name="feedback_category">Category</string>
     <string name="feedback_email">example@email.com</string>
     <string name="feedback_emailhint">Your email ID</string>
+    <string name="feedback_discard_text">Are you sure you want to Discard?</string>
     <string name="feedback_experience">How was your experience?</string>
     <string name="feedback_feedbackmessagehint">Describe your experience here</string>
     <string name="feedback_feedbacktxt">Do you have a suggestion or want to report a bug?\nLet us know in the field
@@ -140,6 +143,7 @@
     <string name="mentee_label">Mentee:</string>
     <string name="mentor">Mentor</string>
     <string name="mentor_label">Mentor:</string>
+    <string name="mentor_role_selection_msg">Please select your role for the mentorship relation</string>
     <string name="model_task_1">Add Projects section to CV</string>
     <string name="model_task_2">Prepare questions for Job Interview X</string>
     <string name="model_task_3">Share a Professional update on Twitter</string>
@@ -202,13 +206,17 @@
     <string name="relation_state_message">This relation was %1$s!</string>
     <string name="relationpage_btntext">Find members</string>
     <string name="request_detail">Request Detail</string>
+    <string name="request_detail_reject_request_msg">Are you sure you want to reject request?</string>
+    <string name="request_detail_delete_request_msg">Are you sure you want to delete request?</string>
     <string name="request_direction_formatted">%1$s %2$s</string>
     <string name="request_sent_by_current_user_message">You want to be %1$s\'s %2$s until %3$s</string>
     <string name="request_sent_by_other_user_message">%1$s wants to be your %2$s until %3$s</string>
     <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="save">Save</string>
+    <string name="search_members">Search members</string>
     <string name="search_something">Search something</string>
     <string name="send_request">Send Request</string>
+    <string name="session_token_expired_msg">Session token expired, please login again</string>
     <string name="settings">Settings</string>
     <string name="sign_up">Sign Up</string>
     <string name="signing_up">Signing up…</string>
@@ -232,6 +240,7 @@
     <string name="to_do">To do</string>
     <string name="transition_name">transition_name</string>
     <string name="transition_profile_img">transition_profile_img</string>
+    <string name="_true">true</string>
     <string name="undraw_attribution">
         Images in the app intro slider are from
         <b>undraw.co</b>

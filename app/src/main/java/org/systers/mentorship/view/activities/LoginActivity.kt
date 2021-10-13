@@ -30,19 +30,18 @@ class LoginActivity : BaseActivity() {
         etUsername.addTextChangedListener(textWatcher)
         etPassword.addTextChangedListener(textWatcher)
 
-        loginViewModel.successful.observe(this, {
-            successful ->
+        loginViewModel.successful.observe(this, { successful ->
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
                     Toast.makeText(this, R.string.logging_successful, Toast.LENGTH_LONG)
-                            .show()
+                        .show()
                     intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
                     Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
-                            .show()
+                        .show()
                 }
                 CountingIdlingResourceSingleton.decrement()
             }
@@ -67,8 +66,13 @@ class LoginActivity : BaseActivity() {
         try {
             val tokenExpiredVal = intent.extras!!.getInt(Constants.TOKEN_EXPIRED_EXTRA)
             if (tokenExpiredVal == 0)
-                Snackbar.make(getRootView(), "Session token expired, please login again", Snackbar.LENGTH_LONG).show()
-        } catch (exception: Exception) {}
+                Snackbar.make(
+                    getRootView(),
+                    resources.getString(R.string.session_token_expired_msg),
+                    Snackbar.LENGTH_LONG
+                ).show()
+        } catch (exception: Exception) {
+        }
 
         checkFieldsForEmptyValues()
     }
