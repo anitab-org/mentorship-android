@@ -161,16 +161,16 @@ class FeedbackActivity : BaseActivity(), View.OnClickListener {
 
         val builder = AlertDialog.Builder(this)
         // set title for alert dialog
-        builder.setTitle("Alert")
+        builder.setTitle(resources.getString(R.string.alert))
         // set message for alert dialog
-        builder.setMessage("Are you sure you want to Discard?")
+        builder.setMessage(resources.getString(R.string.feedback_discard_text))
         builder.setIcon(android.R.drawable.ic_dialog_alert)
         // performing positive action
-        builder.setPositiveButton("Yes") { dialogInterface, which ->
+        builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, which ->
             super.onBackPressed()
         }
         // performing cancel action
-        builder.setNeutralButton("Cancel") { dialogInterface, which ->
+        builder.setNeutralButton(resources.getString(R.string.cancel)) { dialogInterface, which ->
         }
         // Create the AlertDialog
         val alertDialog: AlertDialog = builder.create()
