@@ -25,6 +25,7 @@
     <string name="all">All</string>
     <string name="app_name">Mentorship System</string>
     <string name="apply_filter">Apply filter</string>
+    <string name="authorization">Authorization</string>
     <string name="available_to_be_mentor_mentee">Available to be a:</string>
     <string name="available_to_mentor">Available to mentor</string>
     <string name="available_to_mentor_and_mentee">Available to mentor and be a mentee</string>
@@ -239,6 +240,7 @@
     <string name="to_do">To do</string>
     <string name="transition_name">transition_name</string>
     <string name="transition_profile_img">transition_profile_img</string>
+    <string name="_true">true</string>
     <string name="undraw_attribution">
         Images in the app intro slider are from
         <b>undraw.co</b>
