@@ -18,6 +18,7 @@ import org.systers.mentorship.utils.Constants.LOCATION_KEY
 import org.systers.mentorship.utils.Constants.NEED_MENTORING_KEY
 import org.systers.mentorship.utils.Constants.SKILLS_KEY
 import org.systers.mentorship.utils.Constants.SORT_KEY
+import org.systers.mentorship.utils.Constants.TRUE
 import org.systers.mentorship.view.fragments.MembersFragment
 
 class FilterActivity : BaseActivity() {
@@ -66,13 +67,13 @@ class FilterActivity : BaseActivity() {
             }
         }
 
-        if (map?.get(NEED_MENTORING_KEY) == resources.getString(R.string._true)) {
+        if (map?.get(NEED_MENTORING_KEY) == TRUE) {
             cardFilterNeedMentoring.setBackgroundResource(R.drawable.background_rounded_primary)
             tvFilterNeedMentoring.setTextColor(ResourcesCompat.getColor(
                     resources, R.color.white, null))
             needMentoring = true
         }
-        if (map?.get(AVAILABLE_TO_MENTOR_KEY) == resources.getString(R.string._true)) {
+        if (map?.get(AVAILABLE_TO_MENTOR_KEY) == TRUE) {
             cardFilterAvailableToMentor.setBackgroundResource(R.drawable.background_rounded_primary)
             tvFilterAvailableToMentor.setTextColor(ResourcesCompat.getColor(
                     resources, R.color.white, null))

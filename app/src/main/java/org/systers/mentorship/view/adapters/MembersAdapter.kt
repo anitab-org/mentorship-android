@@ -1,6 +1,5 @@
 package org.systers.mentorship.view.adapters
 
-import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.Constants.INTERESTS_KEY
 import org.systers.mentorship.utils.Constants.LOCATION_KEY
 import org.systers.mentorship.utils.Constants.SKILLS_KEY
+import org.systers.mentorship.utils.Constants.TRUE
 import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
 import org.systers.mentorship.utils.UsersDiffCallback
 import org.systers.mentorship.view.fragments.MembersFragment
@@ -100,12 +100,12 @@ class MembersAdapter(
             }
         }
 
-        if (map[Constants.NEED_MENTORING_KEY] == Resources.getSystem().getString(R.string._true))
+        if (map[Constants.NEED_MENTORING_KEY] == TRUE)
             newFilteredList = newFilteredList.filter {
                 it.needMentoring == true
             } as MutableList<User>
 
-        if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == Resources.getSystem().getString(R.string._true))
+        if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == TRUE)
             newFilteredList = newFilteredList.filter {
                 it.availableToMentor == true
             } as MutableList<User>

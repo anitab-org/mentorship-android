@@ -4,6 +4,7 @@ object Constants {
 
     const val ITEMS_PER_PAGE = 20
     const val TOTAL_REQUEST_TABS = 3
+    const val AUTH_HEADER = "Authorization"
     const val MEMBER_USER_ID = "member_user_id"
     const val REQUEST_LIST = "request_list"
     const val REQUEST_EMPTY_LIST_TEXT = "request_empty_list_text"
@@ -20,4 +21,5 @@ object Constants {
     const val LOCATION_KEY = "location"
     const val SKILLS_KEY = "skills"
     const val TOKEN_EXPIRED_EXTRA = "JsonAuthTokenExpired"
+    const val TRUE = "true"
 }

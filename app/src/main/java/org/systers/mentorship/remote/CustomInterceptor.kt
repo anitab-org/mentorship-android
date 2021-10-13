@@ -1,11 +1,10 @@
 package org.systers.mentorship.remote
 
-import android.content.res.Resources
 import android.text.TextUtils
 import androidx.annotation.NonNull
 import okhttp3.Interceptor
 import okhttp3.Response
-import org.systers.mentorship.R
+import org.systers.mentorship.utils.Constants.AUTH_HEADER
 import org.systers.mentorship.utils.PreferenceManager
 
 /**
@@ -23,10 +22,7 @@ class CustomInterceptor : Interceptor {
         val accessToken = preferenceManager.authToken
 
         if (!TextUtils.isEmpty(accessToken)) {
-            builder.header(
-                Resources.getSystem().getString(R.string.authorization),
-                preferenceManager.authToken
-            )
+            builder.header(AUTH_HEADER, preferenceManager.authToken)
         }
 
         val request = builder.build()
