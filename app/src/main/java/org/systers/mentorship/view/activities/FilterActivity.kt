@@ -3,8 +3,8 @@ package org.systers.mentorship.view.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
+import android.view.MenuItem
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.res.ResourcesCompat
@@ -18,7 +18,6 @@ import org.systers.mentorship.utils.Constants.LOCATION_KEY
 import org.systers.mentorship.utils.Constants.NEED_MENTORING_KEY
 import org.systers.mentorship.utils.Constants.SKILLS_KEY
 import org.systers.mentorship.utils.Constants.SORT_KEY
-import org.systers.mentorship.utils.Constants.TRUE
 import org.systers.mentorship.view.fragments.MembersFragment
 
 class FilterActivity : BaseActivity() {
@@ -30,6 +29,10 @@ class FilterActivity : BaseActivity() {
     private var availableToMentor = false
 
     private var map: HashMap<String, String>? = hashMapOf()
+
+    companion object {
+        private const val TRUE = "true"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

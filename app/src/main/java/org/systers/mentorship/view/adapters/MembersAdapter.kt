@@ -38,6 +38,10 @@ class MembersAdapter(
     private var filterMap = hashMapOf(Constants.SORT_KEY to MembersFragment.SortValues.REGISTRATION_DATE.name)
     private var filteredUserList = mutableListOf<User>()
 
+    companion object {
+        private const val TRUE = "true"
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersViewHolder =
             MembersViewHolder(
                     LayoutInflater.from(parent.context)
