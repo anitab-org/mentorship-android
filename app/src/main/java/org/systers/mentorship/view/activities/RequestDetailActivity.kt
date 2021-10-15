@@ -13,7 +13,13 @@ import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.systers.mentorship.R
 import org.systers.mentorship.models.RelationState
 import org.systers.mentorship.models.Relationship
-import org.systers.mentorship.utils.*
+import org.systers.mentorship.utils.Constants.DELETE_REQUEST_RESULT_ID
+import org.systers.mentorship.utils.Constants.RELATIONSHIP_EXTRA
+import org.systers.mentorship.utils.Constants.REQUEST_ID
+import org.systers.mentorship.utils.EXTENDED_DATE_FORMAT
+import org.systers.mentorship.utils.convertUnixTimestampIntoStr
+import org.systers.mentorship.utils.getTextWithBoldWord
+import org.systers.mentorship.utils.getUnixTimestampInMilliseconds
 import org.systers.mentorship.view.fragments.RequestPagerFragment
 import org.systers.mentorship.viewmodels.RequestDetailViewModel
 
@@ -26,7 +32,7 @@ class RequestDetailActivity : BaseActivity() {
         ViewModelProviders.of(this).get(RequestDetailViewModel::class.java)
     }
     private val mentorshipRelationResponse by lazy {
-        intent.getParcelableExtra<Relationship>(Constants.RELATIONSHIP_EXTRA)
+        intent.getParcelableExtra<Relationship>(RELATIONSHIP_EXTRA)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -202,8 +208,8 @@ class RequestDetailActivity : BaseActivity() {
                     Toast.makeText(this, requestDetailViewModel.message, Toast.LENGTH_LONG).show()
                     val previousScreen =
                         Intent(applicationContext, RequestPagerFragment::class.java)
-                    previousScreen.putExtra(Constants.REQUEST_ID, relationResponse.id.toString())
-                    setResult(Constants.DELETE_REQUEST_RESULT_ID, previousScreen)
+                    previousScreen.putExtra(REQUEST_ID, relationResponse.id.toString())
+                    setResult(DELETE_REQUEST_RESULT_ID, previousScreen)
                     finish()
                 } else {
                     Snackbar.make(
