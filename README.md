@@ -86,6 +86,8 @@ To run the existing UI tests follow the steps given below:
 
 ## Documentation
 
+To learn more about the project's goals and progress, check out [Mentorship Roadmap](https://github.com/orgs/anitab-org/projects/2).
+
 To learn more about this app you can look at [this project's wiki](https://github.com/anitab-org/mentorship-android/wiki).
 
 Check out the design history at [User Interface Design](https://github.com/anitab-org/mentorship-android/wiki/User-Interface-Design).
