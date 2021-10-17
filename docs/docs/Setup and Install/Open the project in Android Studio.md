@@ -3,7 +3,7 @@ id: Open Project
 title: Open the project in Android Studio
 ---
 
-_**Note**: If you haven't cloned the project, please visit [this](https://github.com/systers/mentorship-android/wiki/Fork,-Clone-&-Remote) page and follow the instructions._
+_**Note**: If you haven't cloned the project, please visit [this](https://github.com/anitab-org/mentorship-android/wiki/Fork,-Clone-&-Remote) page and follow the instructions._
 
 If you have cloned the project its time to open it. The recommended IDE for the project is [Android Studio](https://developer.android.com/studio/). You can download the latest version of Android studio [here](https://developer.android.com/studio/#downloads).
 

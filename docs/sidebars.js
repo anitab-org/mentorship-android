@@ -6,8 +6,8 @@ module.exports = {
     },
     {
       type: 'link',
-      label: 'About Systers',
-      href: 'http://systers.io/'
+      label: 'About Anitab.org',
+      href: 'https://anitab-org.github.io'
     },
     {
       type: "doc",
