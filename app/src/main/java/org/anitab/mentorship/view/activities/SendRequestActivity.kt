@@ -96,7 +96,7 @@ class SendRequestActivity : BaseActivity() {
                 }
                 else -> {
 
-                    Snackbar.make(getRootView(), "Please select your role for the mentorship relation", Snackbar.LENGTH_LONG)
+                    Snackbar.make(getRootView(), resources.getString(R.string.mentor_role_selection_msg), Snackbar.LENGTH_LONG)
                             .show()
                     return@setOnClickListener
                 }
