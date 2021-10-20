@@ -17,7 +17,6 @@ import org.systers.mentorship.utils.Constants
 import org.systers.mentorship.utils.Constants.INTERESTS_KEY
 import org.systers.mentorship.utils.Constants.LOCATION_KEY
 import org.systers.mentorship.utils.Constants.SKILLS_KEY
-import org.systers.mentorship.utils.Constants.TRUE
 import org.systers.mentorship.utils.NON_VALID_VALUE_REPLACEMENT
 import org.systers.mentorship.utils.UsersDiffCallback
 import org.systers.mentorship.view.fragments.MembersFragment
