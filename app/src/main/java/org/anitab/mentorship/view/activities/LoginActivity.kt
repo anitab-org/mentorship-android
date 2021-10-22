@@ -34,14 +34,12 @@ class LoginActivity : BaseActivity() {
             hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    Toast.makeText(this, R.string.logging_successful, Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(this, R.string.logging_successful, Toast.LENGTH_LONG).show()
                     intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG)
-                        .show()
+                    Snackbar.make(getRootView(), loginViewModel.message, Snackbar.LENGTH_LONG).show()
                 }
                 CountingIdlingResourceSingleton.decrement()
             }

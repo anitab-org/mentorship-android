@@ -1,4 +1,4 @@
-package org.systers.mentorship.view.activities
+package org.anitab.mentorship.view.activities
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -131,16 +131,16 @@ class RequestDetailActivity : BaseActivity() {
         btnDelete.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             // set title for alert dialog
-            builder.setTitle("Alert")
+            builder.setTitle(resources.getString(R.string.alert))
             // set message for alert dialog
-            builder.setMessage("Are you sure you want to delete request?")
+            builder.setMessage(resources.getString(R.string.request_detail_delete_request_msg))
             builder.setIcon(android.R.drawable.ic_dialog_alert)
             // performing positive action
-            builder.setPositiveButton("Yes") { dialogInterface, which ->
+            builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, which ->
                 requestDetailViewModel.deleteRequest(relationResponse.id)
             }
             // performing cancel action
-            builder.setNeutralButton("Cancel") { dialogInterface, which ->
+            builder.setNeutralButton(resources.getString(R.string.cancel)) { dialogInterface, which ->
             }
             // Create the AlertDialog
             val alertDialog: AlertDialog = builder.create()
@@ -152,16 +152,16 @@ class RequestDetailActivity : BaseActivity() {
         btnReject.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             // set title for alert dialog
-            builder.setTitle("Alert")
+            builder.setTitle(resources.getString(R.string.alert))
             // set message for alert dialog
-            builder.setMessage("Are you sure you want to reject request?")
+            builder.setMessage(resources.getString(R.string.request_detail_reject_request_msg))
             builder.setIcon(android.R.drawable.ic_dialog_alert)
             // performing positive action
-            builder.setPositiveButton("Yes") { dialogInterface, which ->
+            builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, which ->
                 requestDetailViewModel.rejectRequest(relationResponse.id)
             }
             // performing cancel action
-            builder.setNeutralButton("Cancel") { dialogInterface, which ->
+            builder.setNeutralButton(resources.getString(R.string.cancel)) { dialogInterface, which ->
             }
             // Create the AlertDialog
             val alertDialog: AlertDialog = builder.create()
@@ -173,16 +173,16 @@ class RequestDetailActivity : BaseActivity() {
         btnAccept.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             // set title for alert dialog
-            builder.setTitle("Alert")
+            builder.setTitle(resources.getString(R.string.alert))
             // set message for alert dialog
-            builder.setMessage("Are you sure you want to accept request?")
+            builder.setMessage(resources.getString(R.string.request_detail_accept_request_msg))
             builder.setIcon(android.R.drawable.ic_dialog_alert)
             // performing positive action
-            builder.setPositiveButton("Yes") { dialogInterface, which ->
+            builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, which ->
                 requestDetailViewModel.acceptRequest(relationResponse.id)
             }
             // performing cancel action
-            builder.setNeutralButton("Cancel") { dialogInterface, which ->
+            builder.setNeutralButton(resources.getString(R.string.cancel)) { dialogInterface, which ->
             }
             // Create the AlertDialog
             val alertDialog: AlertDialog = builder.create()

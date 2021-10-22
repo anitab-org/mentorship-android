@@ -48,7 +48,7 @@
     <string name="completed_relations">Completed Relations</string>
     <string name="confirm_cancel_relation">Yes</string>
     <string name="confirm_logout">Confirm logout</string>
-    <string name="confirm_logout_msg">Are you sure you want to logout?</string>
+    <string name="confirm_logout_msg">Are you sure you want to logout</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="create_task_success">Task created</string>
     <string name="current_new_password_should_not_same">Current and New passwords should not be same</string>
@@ -206,6 +206,7 @@
     <string name="relation_state_message">This relation was %1$s!</string>
     <string name="relationpage_btntext">Find members</string>
     <string name="request_detail">Request Detail</string>
+    <string name="request_detail_accept_request_msg">"Are you sure you want to accept request?"</string>
     <string name="request_detail_reject_request_msg">Are you sure you want to reject request?</string>
     <string name="request_detail_delete_request_msg">Are you sure you want to delete request?</string>
     <string name="request_direction_formatted">%1$s %2$s</string>
