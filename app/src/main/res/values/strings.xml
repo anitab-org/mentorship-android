@@ -206,7 +206,7 @@
     <string name="relation_state_message">This relation was %1$s!</string>
     <string name="relationpage_btntext">Find members</string>
     <string name="request_detail">Request Detail</string>
-    <string name="request_detail_accept_request_msg">"Are you sure you want to accept request?"</string>
+    <string name="request_detail_accept_request_msg">Are you sure you want to accept request?</string>
     <string name="request_detail_reject_request_msg">Are you sure you want to reject request?</string>
     <string name="request_detail_delete_request_msg">Are you sure you want to delete request?</string>
     <string name="request_direction_formatted">%1$s %2$s</string>
