@@ -140,6 +140,7 @@ class MembersFragment : BaseFragment() {
                                         Toast.LENGTH_SHORT).show()
                                 }
                             }
+                            //new code
                             if (!filterMap["skills"].isNullOrEmpty()) {
 
                                 val hasUsersWithSkills = membersViewModel.userList.any {
