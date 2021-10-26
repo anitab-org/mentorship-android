@@ -48,7 +48,7 @@
     <string name="completed_relations">Completed Relations</string>
     <string name="confirm_cancel_relation">Yes</string>
     <string name="confirm_logout">Confirm logout</string>
-    <string name="confirm_logout_msg">Are you sure you want to logout</string>
+    <string name="confirm_logout_msg">Are you sure you want to logout?</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="create_task_success">Task created</string>
     <string name="current_new_password_should_not_same">Current and New passwords should not be same</string>
