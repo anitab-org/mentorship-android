@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -142,7 +143,12 @@ class TasksFragment(private var mentorshipRelation: Relationship) : BaseFragment
 
         builder.setPositiveButton(appContext.getString(R.string.save)) { _, _ ->
             val editTextAddTask = dialogLayout.findViewById<EditText>(R.id.etAddTask)
-            taskViewModel.addTask(mentorshipRelation.id, CreateTask(editTextAddTask.text.toString()))
+
+            //Validation of Task Description text before posting it to backend
+            if(editTextAddTask.text.isEmpty())
+                Toast.makeText(context,"Task description is empty!!",Toast.LENGTH_SHORT).show();
+            else
+                taskViewModel.addTask(mentorshipRelation.id, CreateTask(editTextAddTask.text.toString()))
         }
         builder.setNegativeButton(appContext.getString(R.string.cancel)) { dialogInterface, i ->
             dialogInterface.dismiss()

@@ -1,5 +1,7 @@
 package org.anitab.mentorship.viewmodels
 
+import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -56,8 +58,9 @@ class TasksViewModel : ViewModel() {
     fun addTask(relationId: Int, createTask: CreateTask) {
         viewModelScope.launch {
             try {
-                taskDataManager.addTask(relationId, createTask)
-                successfulAdd.postValue(true)
+                    taskDataManager.addTask(relationId, createTask)
+                    successfulAdd.postValue(true)
+
             } catch (throwable: Throwable) {
                 message = CommonUtils.getErrorMessage(throwable, tag)
                 successfulAdd.postValue(false)

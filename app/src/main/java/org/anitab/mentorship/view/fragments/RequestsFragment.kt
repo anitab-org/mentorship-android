@@ -37,20 +37,25 @@ class RequestsFragment : BaseFragment() {
         setHasOptionsMenu(true)
         srlRequests.setOnRefreshListener { fetchNewest() }
 
-        requestsViewModel.successful.observe(viewLifecycleOwner, {
-            successful ->
+        requestsViewModel.successful.observe(viewLifecycleOwner) { successful ->
             srlRequests.isRefreshing = false
             if (successful != null) {
                 if (successful) {
-                    requestsViewModel.pendingSuccessful.observe(viewLifecycleOwner, {
-                        successful ->
+                    requestsViewModel.pendingSuccessful.observe(viewLifecycleOwner) { successful ->
                         activityCast.hideProgressDialog()
                         if (successful != null) {
                             if (successful) {
                                 requestsViewModel.allRequestsList?.let { allRequestsList ->
-                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(allRequestsList, requestsViewModel.pendingAllRequestsList, requireActivity())
+                                    vpMentorshipRequests.adapter = RequestsPagerAdapter(
+                                        allRequestsList,
+                                        requestsViewModel.pendingAllRequestsList,
+                                        requireActivity()
+                                    )
 //                                    tlMentorshipRequests.setupWithViewPager(vpMentorshipRequests)
-                                    TabLayoutMediator(tlMentorshipRequests, vpMentorshipRequests) { tab, position ->
+                                    TabLayoutMediator(
+                                        tlMentorshipRequests,
+                                        vpMentorshipRequests
+                                    ) { tab, position ->
                                         when (position) {
                                             0 -> {
                                                 tab.text = context?.getString(R.string.pending)
@@ -66,7 +71,7 @@ class RequestsFragment : BaseFragment() {
                                 }
                             }
                         }
-                    })
+                    }
                 } else {
                     view?.let {
                         requestsViewModel.message?.let { message ->
@@ -75,7 +80,7 @@ class RequestsFragment : BaseFragment() {
                     }
                 }
             }
-        })
+        }
 
         fetchNewest()
     }
