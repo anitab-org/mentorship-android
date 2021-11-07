@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
@@ -28,6 +27,7 @@ import org.anitab.mentorship.utils.Constants.FILTER_MAP
 import org.anitab.mentorship.utils.Constants.FILTER_REQUEST_CODE
 import org.anitab.mentorship.utils.Constants.SORT_KEY
 import org.anitab.mentorship.utils.EndlessRecyclerScrollListener
+import org.anitab.mentorship.utils.SingletonUserList
 import org.anitab.mentorship.view.activities.FilterActivity
 import org.anitab.mentorship.view.activities.MainActivity
 import org.anitab.mentorship.view.activities.MemberProfileActivity
@@ -60,36 +60,23 @@ class MembersFragment : BaseFragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_members, menu)
         menu.findItem(R.id.search_item)?.let { searchItem ->
-            val searchView = searchItem.actionView as SearchView
-            searchView.queryHint = "Search members"
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextChange(newText: String): Boolean {
-                    if (memberListInitialized)
-                        searchUsers(newText)
-                    return false
+            searchItem.setOnMenuItemClickListener {
+                if (!isLoading) {
+                    val backStackCount =
+                        requireActivity().supportFragmentManager.backStackEntryCount
+                    if (backStackCount == 0) switchFragment(
+                        SearchMembersFragment.newInstance(),
+                        R.string.fragment_title_search_members
+                    )
+                    true
+                } else {
+                    Toast.makeText(requireContext(), "Data still loading", Toast.LENGTH_LONG).show()
+                    false
                 }
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    return false
-                }
-            })
+            }
         }
     }
 
-    fun searchUsers(query: String) {
-        val userList = arrayListOf<User>()
-        for (user in membersViewModel.userList) {
-            // ""+ to convert String to CharSequence
-            if (("" + user.username).contains(query, ignoreCase = true)) {
-                userList.add(user)
-            }
-        }
-        rvMembers.apply {
-            layoutManager = LinearLayoutManager(context)
-            addLoadMoreListener(this)
-            adapter = MembersAdapter(userList, ::openUserProfile)
-        }
-        tvEmptyList.visibility = View.GONE
-    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
@@ -116,12 +103,17 @@ class MembersFragment : BaseFragment() {
                     } else {
                         if (!isRecyclerView) {
                             rvMembers.apply {
-                                layoutManager = LinearLayoutManager(context)
-                                adapter = MembersAdapter(membersViewModel.userList, ::openUserProfile)
+                                /**
+                                 * temporarily storing user list data to singleton class for sharing
+                                 * with SearchMembersFragment
+                                 */
+                                SingletonUserList.userList = membersViewModel.userList
 
+                                // recyclerview setting
                                 addLoadMoreListener(this)
                                 runLayoutAnimation(this)
-
+                                layoutManager = LinearLayoutManager(context)
+                                adapter = MembersAdapter(membersViewModel.userList, ::openUserProfile)
                                 val dividerItemDecoration = DividerItemDecoration(
                                         this.context, DividerItemDecoration.VERTICAL)
                                 addItemDecoration(dividerItemDecoration)

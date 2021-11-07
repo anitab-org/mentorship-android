@@ -112,6 +112,7 @@
     <string name="fragment_title_profile">My Profile</string>
     <string name="fragment_title_relation">Current Relation</string>
     <string name="fragment_title_requests">Mentorship Requests</string>
+    <string name="fragment_title_search_members">Search Members</string>
     <string name="from">From</string>
     <string name="github_repository">Github Repository</string>
     <string name="i_will_be_a">I will be a …</string>
@@ -203,6 +204,8 @@
     <string name="request_sent_by_other_user_message">%1$s wants to be your %2$s until %3$s</string>
     <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="save">Save</string>
+    <string name="search_members">Search members</string>
+    <string name="search_something">Search something</string>
     <string name="send_request">Send Request</string>
     <string name="settings">Settings</string>
     <string name="sign_up">Sign Up</string>
