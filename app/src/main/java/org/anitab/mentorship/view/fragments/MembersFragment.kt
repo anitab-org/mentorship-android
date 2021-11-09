@@ -3,6 +3,7 @@ package org.anitab.mentorship.view.fragments
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.util.*
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -155,16 +156,20 @@ class MembersFragment : BaseFragment() {
     }
 
     private fun addLoadMoreListener(recyclerView: RecyclerView) {
-        recyclerView.addOnScrollListener(object :
+        try {
+            recyclerView.addOnScrollListener(object :
                 EndlessRecyclerScrollListener(recyclerView.layoutManager as LinearLayoutManager) {
-            override fun onLoadMore(page: Int, totalItemsCount: Int) {
-                if (!isLoading) {
-                    fetchNewest(false)
-                    isLoading = true
-                    pbMembers.visibility = View.VISIBLE
+                override fun onLoadMore(page: Int, totalItemsCount: Int) {
+                    if (!isLoading) {
+                        fetchNewest(false)
+                        isLoading = true
+                        pbMembers.visibility = View.VISIBLE
+                    }
                 }
-            }
-        })
+            })
+        } catch (e: Exception) {
+            Log.d("MembersFragment", "addLoadMoreListener: ${e.message}")
+        }
     }
 
     private fun openUserProfile(memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) {
