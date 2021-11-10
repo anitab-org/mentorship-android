@@ -20,14 +20,16 @@
         <androidx.appcompat.widget.SearchView
             android:id="@+id/svSearchMembers"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:queryHint="@string/search_members"
+            style="@style/SearchViewStyle"
+            android:layout_height="40dp"
+            android:theme="@style/SearchViewStyle"
+            app:queryHint="@string/search_membershint"
             android:layout_margin="@dimen/margin_normal"
             android:layout_weight="2" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tvCancelSearch"
-            style="@style/Widget.AppCompat.Button.Colored"
+            android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -35,6 +37,8 @@
             android:padding="@dimen/margin_normal"
             android:text="@string/cancel"
             android:textSize="14sp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

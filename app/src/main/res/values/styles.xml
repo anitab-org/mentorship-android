@@ -71,4 +71,14 @@
     <style name="ExpandedToolbarTextStyle">
         <item name="android:textSize">@dimen/expanded_toolbar_text_size</item>
     </style>
+
+    <style
+        name="SearchViewStyle"
+        parent="Widget.AppCompat.SearchView">
+        <item name="android:background">@drawable/background_rounded_primary</item>
+        <item name="android:colorForeground">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

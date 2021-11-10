@@ -2,7 +2,6 @@ package org.anitab.mentorship.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.*
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,8 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.core.view.ViewCompat
-import androidx.recyclerview.widget.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.bottomNavigation
 import kotlinx.android.synthetic.main.fragment_members_search.*
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.User
@@ -79,14 +77,12 @@ class SearchMembersFragment : BaseFragment() {
         return userList
     }
 
-
     private fun setDataInRecyclerview(searchedMembers: ArrayList<User>) {
         // updating adapter with searched members list
         membersAdapter.updateUsersList(filterMap, searchedMembers)
         // showing the updated members list in recyclerview
         rvSearchedMembers.apply { adapter = membersAdapter }
     }
-
 
     // To open clicked item profile in MemberProfile activity
     private fun openUserProfile(
@@ -105,7 +101,6 @@ class SearchMembersFragment : BaseFragment() {
 
         startActivity(intent, options.toBundle())
     }
-
 
     private fun goBack() {
         // hiding keyboard and removing current fragment

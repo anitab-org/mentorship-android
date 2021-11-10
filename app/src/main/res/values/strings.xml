@@ -205,6 +205,7 @@
     <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="save">Save</string>
     <string name="search_members">Search members</string>
+    <string name="search_membershint">search username</string>
     <string name="search_something">Search something</string>
     <string name="send_request">Send Request</string>
     <string name="settings">Settings</string>

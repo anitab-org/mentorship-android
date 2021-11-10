@@ -3,7 +3,7 @@ package org.anitab.mentorship.view.fragments
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
-import android.util.*
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -20,7 +20,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_members.*
+import kotlinx.android.synthetic.main.fragment_members.pbMembers
+import kotlinx.android.synthetic.main.fragment_members.rvMembers
+import kotlinx.android.synthetic.main.fragment_members.srlMembers
+import kotlinx.android.synthetic.main.fragment_members.tvEmptyList
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.utils.Constants
