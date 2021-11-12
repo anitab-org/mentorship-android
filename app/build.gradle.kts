@@ -57,7 +57,6 @@ dependencies {
     implementation(Dependencies.design)
     implementation(Dependencies.constraint_layout)
     implementation(Dependencies.appCompat)
-    implementation("androidx.fragment:fragment-testing:1.3.6")
     testImplementation(Dependencies.junit)
     androidTestImplementation(Dependencies.test_runner)
     androidTestImplementation(Dependencies.test_rules)

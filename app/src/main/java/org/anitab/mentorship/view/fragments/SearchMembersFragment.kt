@@ -33,6 +33,7 @@ class SearchMembersFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // re-enabling visibility of bottom navigation
         (activity as MainActivity).bottomNavigation.visibility = View.GONE
 
         membersAdapter = MembersAdapter(arrayListOf<User>(), ::openUserProfile)
@@ -67,13 +68,11 @@ class SearchMembersFragment : BaseFragment() {
     }
 
     private fun searchMember(memberKeyword: String): ArrayList<User> {
-        pbSearchMembers.visibility = View.VISIBLE
         val userList = arrayListOf<User>()
         for (user in SingletonUserList.userList) {
             // ""+ to convert String to CharSequence
             if (("" + user.username).contains(memberKeyword, ignoreCase = true)) userList.add(user)
         }
-        pbSearchMembers.visibility = View.INVISIBLE
         return userList
     }
 
