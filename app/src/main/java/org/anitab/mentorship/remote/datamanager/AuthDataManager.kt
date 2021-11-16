@@ -34,6 +34,10 @@ class AuthDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.
      * @return an Observable CustomResponse
      */
     suspend fun register(register: Register): CustomResponse {
-        return withContext(dispatcher) { apiManager.authService.register(register) }
+        try {
+            return withContext(dispatcher) { apiManager.authService.register(register) }
+        } catch (throwable: Throwable) {
+            throw Exception("Something went wrong")
+        }
     }
 }
