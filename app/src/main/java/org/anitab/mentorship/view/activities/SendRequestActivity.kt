@@ -8,9 +8,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 import kotlinx.android.synthetic.main.activity_send_request.*
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.RelationState
@@ -22,6 +19,8 @@ import org.anitab.mentorship.utils.getAuthTokenPayload
 import org.anitab.mentorship.utils.getUnixTimestampInMilliseconds
 import org.anitab.mentorship.viewmodels.RequestsViewModel
 import org.anitab.mentorship.viewmodels.SendRequestViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * This activity will show a Mentorship request detail from the Requests List
@@ -76,7 +75,7 @@ class SendRequestActivity : BaseActivity() {
         tvRequestEndDate.text = editable
     }
 
-    private fun populateView(userName: String, otherUserId: Int, currentUserId: Int) {
+    private fun populateView(userName: String?, otherUserId: Int, currentUserId: Int) {
         tvOtherUserName.text = userName
         btnSendRequest.setOnClickListener {
             val mentorId: Int

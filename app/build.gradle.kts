@@ -78,4 +78,5 @@ dependencies {
 
     implementation(Dependencies.viewPager2)
     implementation(Dependencies.swipe_refresh_layout)
+    implementation(Dependencies.datastore)
 }

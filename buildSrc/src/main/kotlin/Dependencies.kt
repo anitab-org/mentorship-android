@@ -2,7 +2,7 @@
  * Contains the versions of the dependencies being used
  */
 object Versions {
-    const val compileSdkVersion = 28
+    const val compileSdkVersion = 30
     const val minSdkVersion = 19
     const val targetSdkVersion = 28
     const val versionCode = 1
@@ -28,6 +28,7 @@ object Versions {
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
     const val fragmentKtx = "1.2.5"
+    const val datastoreVersion = "1.0.0"
 }
 
 /**
@@ -58,4 +59,5 @@ object Dependencies {
     const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+    const val datastore = "androidx.datastore:datastore-preferences:${Versions.datastoreVersion}"
 }

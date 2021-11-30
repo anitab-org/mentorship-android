@@ -13,11 +13,7 @@ import kotlinx.android.synthetic.main.activity_request_detail.*
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.RelationState
 import org.anitab.mentorship.models.Relationship
-import org.anitab.mentorship.utils.Constants
-import org.anitab.mentorship.utils.EXTENDED_DATE_FORMAT
-import org.anitab.mentorship.utils.convertUnixTimestampIntoStr
-import org.anitab.mentorship.utils.getTextWithBoldWord
-import org.anitab.mentorship.utils.getUnixTimestampInMilliseconds
+import org.anitab.mentorship.utils.*
 import org.anitab.mentorship.view.fragments.RequestPagerFragment
 import org.anitab.mentorship.viewmodels.RequestDetailViewModel
 
@@ -39,9 +35,9 @@ class RequestDetailActivity : BaseActivity() {
         supportActionBar?.title = getString(R.string.request_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        populateView(mentorshipRelationResponse)
-        setObservables(mentorshipRelationResponse)
-        setOnClickListeners(mentorshipRelationResponse)
+        populateView(mentorshipRelationResponse!!)
+        setObservables(mentorshipRelationResponse!!)
+        setOnClickListeners(mentorshipRelationResponse!!)
     }
 
     private fun populateView(relationResponse: Relationship) {
