@@ -1,5 +1,10 @@
 package org.anitab.mentorship.remote.datamanager
 
+import androidx.lifecycle.LiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -21,8 +26,11 @@ class UserDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.
      * This will call the getVerifiedUsers method of UserService interface
      * @return an Observable of a list of [User]
      */
-    suspend fun getUsers(): List<User> {
-        return withContext(dispatcher) { apiManager.userService.getVerifiedUsers() }
+    fun getUsers(): LiveData<PagingData<User>> {
+        return Pager(
+            config = PagingConfig(pageSize = 25, enablePlaceholders = false),
+            pagingSourceFactory = { UserPagingSource(apiManager.userService) }
+        ).liveData
     }
 
     /**

@@ -1,8 +1,11 @@
 package org.anitab.mentorship.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import kotlinx.coroutines.launch
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.datamanager.UserDataManager
@@ -42,5 +45,9 @@ class MembersViewModel : ViewModel() {
                 successful.postValue(false)
             }
         }
+    }
+
+    fun getUsersLiveData(): LiveData<PagingData<User>> {
+        return userDataManager.getUsers().cachedIn(viewModelScope)
     }
 }
