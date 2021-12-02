@@ -14,6 +14,7 @@ object Versions {
     const val swipeRefreshLayout = "1.1.0"
     const val constraintLayout = "1.1.3"
     const val viewPager2 = "1.0.0"
+    const val paging3 = "3.0.0"
     const val junit = "4.12"
     const val extJunit = "1.1.1"
     const val testRunner = "1.1.0"
@@ -58,4 +59,5 @@ object Dependencies {
     const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+    const val paging3 = "androidx.paging:paging-runtime:${Versions.paging3}"
 }
