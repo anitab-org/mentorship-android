@@ -4,10 +4,9 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.services.UserService
+import org.anitab.mentorship.utils.Constants.START_PAGE_INDEX
 import retrofit2.HttpException
 import java.io.IOException
-
-private const val STARTING_PAGE_INDEX = 1
 
 class UserPagingSource(private val service: UserService) : PagingSource<Int, User>() {
 
@@ -19,17 +18,17 @@ class UserPagingSource(private val service: UserService) : PagingSource<Int, Use
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, User> {
+        val pageIndex = params.key ?: START_PAGE_INDEX
         return try {
-            val pageIndex = params.key ?: STARTING_PAGE_INDEX
-            val response: List<User> = service.getVerifiedUsers()
+            val response: List<User> = service.getVerifiedUsers(pageIndex, params.loadSize)
 
             LoadResult.Page(
                 data = response,
-                prevKey = if (pageIndex == STARTING_PAGE_INDEX) null else pageIndex - 1,
-                nextKey = pageIndex + 1
+                prevKey = if (pageIndex == START_PAGE_INDEX) null else pageIndex - 1,
+                nextKey = if (response.isEmpty()) null else pageIndex + 1
             )
         } catch (e: IOException) {
-            LoadResult.Error(IOException("Please check internet connection"))
+            LoadResult.Error(e)
         } catch (e: HttpException) {
             LoadResult.Error(e)
         }

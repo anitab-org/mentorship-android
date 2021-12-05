@@ -4,11 +4,7 @@ import org.anitab.mentorship.models.HomeStatistics
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.requests.ChangePassword
 import org.anitab.mentorship.remote.responses.CustomResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.QueryMap
+import retrofit2.http.*
 
 /**
  * This interface describes the methods related to Users REST API
@@ -35,7 +31,10 @@ interface UserService {
      * @return an observable instance of a list of [User]s
      */
     @GET("users/verified")
-    suspend fun getVerifiedUsers(): List<User>
+    suspend fun getVerifiedUsers(
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int
+    ): List<User>
 
     /**
      * This function returns a user's public profile of the system

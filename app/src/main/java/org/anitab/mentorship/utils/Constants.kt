@@ -3,6 +3,7 @@ package org.anitab.mentorship.utils
 object Constants {
 
     const val ITEMS_PER_PAGE = 20
+    const val START_PAGE_INDEX = 1
     const val TOTAL_REQUEST_TABS = 3
     const val MEMBER_USER_ID = "member_user_id"
     const val REQUEST_LIST = "request_list"

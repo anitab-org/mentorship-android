@@ -201,6 +201,7 @@
     <string name="request_direction_formatted">%1$s %2$s</string>
     <string name="request_sent_by_current_user_message">You want to be %1$s\'s %2$s until %3$s</string>
     <string name="request_sent_by_other_user_message">%1$s wants to be your %2$s until %3$s</string>
+    <string name="retry">Retry</string>
     <string name="same_request_already_sent">You have already sent a similar request to\u0020</string>
     <string name="save">Save</string>
     <string name="send_request">Send Request</string>

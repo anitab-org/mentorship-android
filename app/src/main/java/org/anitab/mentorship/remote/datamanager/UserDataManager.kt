@@ -14,6 +14,7 @@ import org.anitab.mentorship.remote.ApiManager
 import org.anitab.mentorship.remote.requests.ChangePassword
 import org.anitab.mentorship.remote.requests.PaginationRequest
 import org.anitab.mentorship.remote.responses.CustomResponse
+import org.anitab.mentorship.utils.Constants.ITEMS_PER_PAGE
 
 /**
  * This class represents the data manager related to Users API
@@ -23,12 +24,18 @@ class UserDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.
     private val apiManager = ApiManager.instance
 
     /**
-     * This will call the getVerifiedUsers method of UserService interface
-     * @return an Observable of a list of [User]
+     * This will call the getVerifiedUsers(pagination) method of UserService interface
+     * @return stream of [User] list pagingData with the help of Pager class.
      */
     fun getUsers(): LiveData<PagingData<User>> {
         return Pager(
-            config = PagingConfig(pageSize = 25, enablePlaceholders = false),
+            config = PagingConfig(
+                pageSize = ITEMS_PER_PAGE,
+                enablePlaceholders = false,
+                maxSize = 30,
+                prefetchDistance = 5,
+                initialLoadSize = ITEMS_PER_PAGE
+            ),
             pagingSourceFactory = { UserPagingSource(apiManager.userService) }
         ).liveData
     }
