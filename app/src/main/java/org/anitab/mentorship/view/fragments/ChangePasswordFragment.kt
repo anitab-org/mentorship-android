@@ -9,9 +9,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_change_password.*
 import kotlinx.android.synthetic.main.fragment_change_password.view.*
+import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
 import org.anitab.mentorship.remote.requests.ChangePassword
 import org.anitab.mentorship.utils.checkPasswordSecurity
@@ -29,7 +30,14 @@ class ChangePasswordFragment : DialogFragment() {
         fun newInstance() = ChangePasswordFragment()
     }
 
-    private val changePasswordViewModel: ChangePasswordViewModel by viewModels()
+    private val changePasswordViewModel: ChangePasswordViewModel by lazy {
+        requireActivity().run {
+            ViewModelProviders.of(
+                this@ChangePasswordFragment,
+                Injection.provideViewModelFactory(requireContext())
+            ).get(ChangePasswordViewModel::class.java)
+        }
+    }
     private lateinit var changePasswordView: View
     private lateinit var currentPassword: String
     private lateinit var newPassword: String
@@ -40,14 +48,23 @@ class ChangePasswordFragment : DialogFragment() {
 
             if (successful != null) {
                 when {
-                    successful -> Toast.makeText(activity, getString(R.string.password_updated), Toast.LENGTH_SHORT).show()
-                    else -> Toast.makeText(activity, changePasswordViewModel.message, Toast.LENGTH_SHORT).show()
+                    successful -> Toast.makeText(
+                        activity,
+                        getString(R.string.password_updated),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    else -> Toast.makeText(
+                        activity,
+                        changePasswordViewModel.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
             dismiss()
         })
 
-        changePasswordView = LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
+        changePasswordView =
+            LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(getString(R.string.change_password))
         builder.setView(changePasswordView)
@@ -56,15 +73,19 @@ class ChangePasswordFragment : DialogFragment() {
             dialog.cancel()
         }
         val passwordDialog = builder.create()
-        passwordDialog.setOnShowListener { passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false }
+        passwordDialog.setOnShowListener {
+            passwordDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false
+        }
 
-        changePasswordView.tilConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
+        changePasswordView.tilConfirmPassword.editText?.addTextChangedListener(object :
+            TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(confirmPasswordEditable: Editable?) {
-                passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = confirmPasswordEditable!!.isNotEmpty()
+                passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled =
+                    confirmPasswordEditable!!.isNotEmpty()
             }
         })
         return passwordDialog
@@ -105,7 +126,12 @@ class ChangePasswordFragment : DialogFragment() {
             confirmPassword = changePasswordView.tilConfirmPassword?.editText?.text.toString()
 
             if (validatePassword() && validateConfirmedPassword()) {
-                changePasswordViewModel.changeUserPassword(ChangePassword(currentPassword, newPassword))
+                changePasswordViewModel.changeUserPassword(
+                    ChangePassword(
+                        currentPassword,
+                        newPassword
+                    )
+                )
             }
         }
     }
@@ -116,11 +142,13 @@ class ChangePasswordFragment : DialogFragment() {
         var isValid = true
 
         if (currentPassword == newPassword) {
-            changePasswordView.tilNewPassword?.error = getString(R.string.current_new_password_should_not_same)
+            changePasswordView.tilNewPassword?.error =
+                getString(R.string.current_new_password_should_not_same)
             isValid = false
         } else {
             if (!newPassword.checkPasswordSecurity()) {
-                changePasswordView.tilNewPassword?.error = getString(R.string.error_password_too_weak)
+                changePasswordView.tilNewPassword?.error =
+                    getString(R.string.error_password_too_weak)
                 isValid = false
             } else {
                 changePasswordView.tilNewPassword?.error = null

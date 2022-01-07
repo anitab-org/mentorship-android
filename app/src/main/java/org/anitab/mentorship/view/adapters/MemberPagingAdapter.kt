@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import org.anitab.mentorship.R
 import org.anitab.mentorship.databinding.ListMemberItemBinding
 import org.anitab.mentorship.models.User
-import org.anitab.mentorship.utils.Constants
-import org.anitab.mentorship.view.fragments.MembersFragment
 
 class MemberPagingAdapter(
     private val openDetailFunction: (memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) -> Unit
@@ -34,7 +32,6 @@ class MemberPagingAdapter(
         )
     }
 
-
     inner class MemberViewHolder(
         private val binding: ListMemberItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -44,10 +41,8 @@ class MemberPagingAdapter(
                 binding.apply {
                     user = data
                     executePendingBindings()
-                    data.id?.let { id ->
-                        listMemberItemContainer.setOnClickListener {
-                            openDetailFunction(id, circleImageView, tvName)
-                        }
+                    listMemberItemContainer.setOnClickListener {
+                        openDetailFunction(data.id, circleImageView, tvName)
                     }
 
                     val animation = AnimationUtils.loadAnimation(
@@ -60,17 +55,15 @@ class MemberPagingAdapter(
             }
         }
     }
+}
 
-
-    private class MemberDiffUtilCallback : DiffUtil.ItemCallback<User>() {
-        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
-        }
-
+private class MemberDiffUtilCallback : DiffUtil.ItemCallback<User>() {
+    override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+        return oldItem.id == newItem.id
     }
 
+    override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+        return oldItem.hashCode() == newItem.hashCode()
+    }
 }
+

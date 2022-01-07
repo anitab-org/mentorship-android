@@ -26,9 +26,7 @@ class ApiManager {
 
         val instance: ApiManager
             get() {
-                if (apiManager == null) {
-                    apiManager = ApiManager()
-                }
+                if (apiManager == null) apiManager = ApiManager()
                 return apiManager as ApiManager
             }
     }

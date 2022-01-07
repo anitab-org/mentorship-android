@@ -4,7 +4,12 @@ import org.anitab.mentorship.models.HomeStatistics
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.requests.ChangePassword
 import org.anitab.mentorship.remote.responses.CustomResponse
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 /**
  * This interface describes the methods related to Users REST API

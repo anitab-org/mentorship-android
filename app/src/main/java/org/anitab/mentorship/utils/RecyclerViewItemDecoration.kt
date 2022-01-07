@@ -18,8 +18,6 @@ class RecyclerViewItemDecoration :
         val totalCount = parent.adapter!!.itemCount
         if (itemPosition >= 0 && itemPosition <= totalCount - 1) {
             outRect.bottom = decorationHeightWidth
-
         }
     }
-
 }

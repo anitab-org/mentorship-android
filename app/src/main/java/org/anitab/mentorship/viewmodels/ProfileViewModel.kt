@@ -11,11 +11,11 @@ import org.anitab.mentorship.utils.CommonUtils
 /**
  * This class represents the [ViewModel] used for ProfileFragment
  */
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(
+    private val userDataManager: UserDataManager
+) : ViewModel() {
 
     var tag = ProfileViewModel::class.java.simpleName
-
-    private val userDataManager: UserDataManager = UserDataManager()
 
     val successfulGet: MutableLiveData<Boolean> = MutableLiveData()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()

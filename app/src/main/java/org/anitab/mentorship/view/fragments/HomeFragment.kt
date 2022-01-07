@@ -6,11 +6,12 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
 import org.anitab.mentorship.databinding.FragmentHomeBinding
 import org.anitab.mentorship.view.adapters.AchievementsAdapter
@@ -22,7 +23,14 @@ import org.anitab.mentorship.viewmodels.HomeViewModel
  */
 class HomeFragment : BaseFragment() {
 
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by lazy {
+        requireActivity().run {
+            ViewModelProviders.of(
+                this@HomeFragment,
+                Injection.provideViewModelFactory(requireContext())
+            ).get(HomeViewModel::class.java)
+        }
+    }
     private lateinit var binding: FragmentHomeBinding
     private lateinit var achievementsAdapter: AchievementsAdapter
 
@@ -35,7 +43,11 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_home
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
         return binding.root
     }

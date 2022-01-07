@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.paging.ExperimentalPagingApi
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.anitab.mentorship.R
@@ -28,6 +29,7 @@ class MainActivity : BaseActivity() {
 
     private val preferenceManager: PreferenceManager = PreferenceManager()
 
+    @ExperimentalPagingApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,6 +44,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    @ExperimentalPagingApi
     private val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {

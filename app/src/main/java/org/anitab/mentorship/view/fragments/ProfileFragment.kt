@@ -8,9 +8,10 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_profile.*
+import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
 import org.anitab.mentorship.databinding.FragmentProfileBinding
 import org.anitab.mentorship.viewmodels.ProfileViewModel
@@ -29,12 +30,24 @@ class ProfileFragment : BaseFragment() {
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
-    private val profileViewModel: ProfileViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by lazy {
+        requireActivity().run {
+            ViewModelProviders.of(
+                this@ProfileFragment,
+                Injection.provideViewModelFactory(requireContext())
+            ).get(ProfileViewModel::class.java)
+        }
+    }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_profile
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        fragmentProfileBinding = DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        fragmentProfileBinding =
+            DataBindingUtil.inflate(inflater, getLayoutResourceId(), container, false)
         return fragmentProfileBinding.root
     }
 
@@ -45,15 +58,16 @@ class ProfileFragment : BaseFragment() {
 
         srlProfile.setOnRefreshListener { fetchNewest() }
 
-        profileViewModel.successfulGet.observe(viewLifecycleOwner, {
-            successful ->
+        profileViewModel.successfulGet.observe(viewLifecycleOwner, { successful ->
             srlProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {
                     fragmentProfileBinding.user = profileViewModel.user
                 } else {
-                    Snackbar.make(fragmentProfileBinding.root, profileViewModel.message,
-                            Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(
+                        fragmentProfileBinding.root, profileViewModel.message,
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
             }
         })
@@ -69,11 +83,17 @@ class ProfileFragment : BaseFragment() {
         return when (item.itemId) {
             R.id.menu_edit_profile -> {
                 if (fragmentProfileBinding.user != null) {
-                    val editProfileFragment: EditProfileFragment = EditProfileFragment.newInstance(profileViewModel.user)
+                    val editProfileFragment: EditProfileFragment =
+                        EditProfileFragment.newInstance(profileViewModel.user)
                     editProfileFragment.setOnDismissListener {
                         fetchNewest()
                     }
-                    fragmentManager?.let { editProfileFragment.show(it, getString(R.string.fragment_title_edit_profile)) }
+                    fragmentManager?.let {
+                        editProfileFragment.show(
+                            it,
+                            getString(R.string.fragment_title_edit_profile)
+                        )
+                    }
                 }
                 true
             }

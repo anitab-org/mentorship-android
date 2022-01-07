@@ -1,9 +1,12 @@
 package org.anitab.mentorship.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.filter
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.datamanager.UserDataManager
@@ -14,11 +17,13 @@ import org.anitab.mentorship.utils.Constants.ITEMS_PER_PAGE
 /**
  * This class represents the [ViewModel] component used for the Members Activity
  */
-class MembersViewModel : ViewModel() {
+class MembersViewModel(
+    private val userDataManager: UserDataManager
+) : ViewModel() {
 
     var tag = MembersViewModel::class.java.simpleName
 
-    private val userDataManager: UserDataManager = UserDataManager()
+    /*private val userDataManager: UserDataManager = UserDataManager()*/
 
     val successful: MutableLiveData<Boolean> = MutableLiveData()
     var currentPage = 1
@@ -35,7 +40,14 @@ class MembersViewModel : ViewModel() {
                 currentPage = 1
             }
             try {
-                userList.addAll(userDataManager.getUsers(PaginationRequest(currentPage, ITEMS_PER_PAGE)))
+                userList.addAll(
+                    userDataManager.getUsers(
+                        PaginationRequest(
+                            currentPage,
+                            ITEMS_PER_PAGE
+                        )
+                    )
+                )
                 currentPage++
                 successful.postValue(true)
             } catch (throwable: Throwable) {
@@ -45,8 +57,8 @@ class MembersViewModel : ViewModel() {
         }
     }
 
-    fun getUsersLiveData(): LiveData<PagingData<User>> {
-        return userDataManager.getUsers()
-            .cachedIn(viewModelScope)
+    @ExperimentalPagingApi
+    fun getUsersLiveData(): Flow<PagingData<User>> {
+        return userDataManager.getUsers().cachedIn(viewModelScope)
     }
 }

@@ -79,5 +79,10 @@ dependencies {
     implementation(Dependencies.viewPager2)
     implementation(Dependencies.swipe_refresh_layout)
 
+    implementation(Dependencies.room_ktx)
+    implementation(Dependencies.room_runtime)
+    kapt(Dependencies.room_compiler)
+    implementation(Dependencies.room_paging)
+
     implementation(Dependencies.paging3)
 }

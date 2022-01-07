@@ -11,7 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProviders
+import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
 import org.anitab.mentorship.databinding.FragmentEditProfileBinding
 import org.anitab.mentorship.models.User
@@ -31,23 +32,35 @@ class EditProfileFragment : DialogFragment() {
          * Creates an instance of EditProfileFragment
          */
         fun newInstance(user: User): EditProfileFragment {
-            tempUser = user.copy(id = null, username = null, email = null)
+            tempUser = user.copy(id = 0, username = null, email = null)
             return EditProfileFragment()
         }
     }
 
-    private val profileViewModel: ProfileViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by lazy {
+        requireActivity().run {
+            ViewModelProviders.of(
+                this@EditProfileFragment,
+                Injection.provideViewModelFactory(requireContext())
+            ).get(ProfileViewModel::class.java)
+        }
+    }
     private lateinit var editProfileBinding: FragmentEditProfileBinding
     private lateinit var onDismissListener: DialogInterface.OnDismissListener
     private lateinit var currentUser: User
     lateinit var builder: AlertDialog
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         profileViewModel.successfulUpdate.observe(this, { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG)
+                        .show()
                     profileViewModel.getProfile()
                     dismiss()
                 } else {
@@ -61,8 +74,10 @@ class EditProfileFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
-                R.layout.fragment_edit_profile, null, false)
+        editProfileBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(context),
+            R.layout.fragment_edit_profile, null, false
+        )
 
         editProfileBinding.user = tempUser.copy()
         currentUser = tempUser.copy()

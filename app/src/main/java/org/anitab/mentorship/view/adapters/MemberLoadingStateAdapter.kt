@@ -17,7 +17,7 @@ class MemberLoadingStateAdapter(private val retry: () -> Unit) :
     ) {
 
         holder.binding.apply {
-            when(loadState) {
+            when (loadState) {
                 is LoadState.Loading -> {
                     pbMembersListState.isVisible = true
                     btnRetry.isVisible = false

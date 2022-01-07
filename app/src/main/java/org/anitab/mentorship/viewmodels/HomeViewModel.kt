@@ -13,10 +13,11 @@ import org.anitab.mentorship.utils.SingleLiveEvent
 /**
  * This class represents the ViewModel for the HomeFragment
  */
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val userDataManager: UserDataManager
+) : ViewModel() {
 
     private val tag = this::class.java.simpleName
-    private val userDataManager by lazy { UserDataManager() }
 
     private val _userStats = MutableLiveData<HomeStatistics>()
     private val _message = SingleLiveEvent<String>()

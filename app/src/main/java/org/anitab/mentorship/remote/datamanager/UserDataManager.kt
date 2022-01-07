@@ -1,13 +1,13 @@
 package org.anitab.mentorship.remote.datamanager
 
-import androidx.lifecycle.LiveData
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.liveData
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import org.anitab.mentorship.local.UserDatabase
 import org.anitab.mentorship.models.HomeStatistics
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.ApiManager
@@ -19,25 +19,29 @@ import org.anitab.mentorship.utils.Constants.ITEMS_PER_PAGE
 /**
  * This class represents the data manager related to Users API
  */
-class UserDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
-
-    private val apiManager = ApiManager.instance
+class UserDataManager(
+    private val apiManager: ApiManager,
+    private val userDatabase: UserDatabase,
+    private val dispatcher: CoroutineDispatcher
+) {
 
     /**
-     * This will call the getVerifiedUsers(pagination) method of UserService interface
-     * @return stream of [User] list pagingData with the help of Pager class.
+     * This will call the getAllUsers() method from UserDao interface
+     * @return stream of [User] list as PagingData with the help of [UserRemoteMediator]
+     * which manages making network call and storing user list in room db.
      */
-    fun getUsers(): LiveData<PagingData<User>> {
+    @ExperimentalPagingApi
+    fun getUsers(): Flow<PagingData<User>> {
+        val pagingSourceFactory = { userDatabase.userDao().getAllUsers() }
+
         return Pager(
             config = PagingConfig(
                 pageSize = ITEMS_PER_PAGE,
-                enablePlaceholders = false,
-                maxSize = 30,
-                prefetchDistance = 5,
-                initialLoadSize = ITEMS_PER_PAGE
+                enablePlaceholders = false
             ),
-            pagingSourceFactory = { UserPagingSource(apiManager.userService) }
-        ).liveData
+            remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
     }
 
     /**
