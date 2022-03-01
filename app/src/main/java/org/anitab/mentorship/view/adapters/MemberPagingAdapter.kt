@@ -13,7 +13,7 @@ import org.anitab.mentorship.databinding.ListMemberItemBinding
 import org.anitab.mentorship.models.User
 
 class MemberPagingAdapter(
-    private val openDetailFunction: (memberId: Int, sharedImageView: ImageView, sharedTextView: TextView) -> Unit
+    private val openDetailFunction: (memberId: User) -> Unit
 ) : PagingDataAdapter<User, MemberPagingAdapter.MemberViewHolder>(MemberDiffUtilCallback()) {
 
     private var lastPosition = -1
@@ -42,7 +42,7 @@ class MemberPagingAdapter(
                     user = data
                     executePendingBindings()
                     listMemberItemContainer.setOnClickListener {
-                        openDetailFunction(data.id, circleImageView, tvName)
+                        openDetailFunction(data)
                     }
 
                     val animation = AnimationUtils.loadAnimation(

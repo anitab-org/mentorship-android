@@ -27,6 +27,14 @@ class MemberProfileActivity : BaseActivity() {
             ).get(MemberProfileViewModel::class.java)
         }
     }
+    private val profileViewModel: ProfileViewModel by lazy {
+        this.run {
+            ViewModelProviders.of(
+                this,
+                Injection.provideViewModelFactory(this)
+            ).get(ProfileViewModel::class.java)
+        }
+    }
     private lateinit var userProfile: User
     private lateinit var currentUser: User
 
@@ -35,53 +43,25 @@ class MemberProfileActivity : BaseActivity() {
         setContentView(R.layout.activity_member_profile)
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val profileViewModel: ProfileViewModel by lazy {
-            this.run {
-                ViewModelProviders.of(
-                    this,
-                    Injection.provideViewModelFactory(this)
-                ).get(ProfileViewModel::class.java)
-            }
-        }
-        profileViewModel.successfulGet.observe(this, { successful ->
-            if (successful != null) {
-                if (successful) {
-                    setCurrentUser(profileViewModel.user)
-                } else {
-                    Snackbar.make(getRootView(), profileViewModel.message, Snackbar.LENGTH_LONG)
-                        .show()
-                }
-            }
-        })
-        profileViewModel.getProfile()
 
+        // reading & setting passed member data to UI and to viewmodel. Showing snackbar if any error
+        val member: User? = intent.getParcelableExtra(Constants.MEMBER_USER_EXTRAS)
+        member?.let {
+            setUserProfile(it)
+            memberProfileViewModel.userId = it.id
+        } ?: Snackbar.make(
+            getRootView(),
+            "No member data was passed",
+            Snackbar.LENGTH_LONG
+        ).show()
+
+
+        // Refresh data from network on swipe down gesture
         srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
-        memberProfileViewModel.successful.observe(this, { successful ->
-            srlMemberProfile.isRefreshing = false
-            if (successful != null) {
-                if (successful) {
-                    setUserProfile(memberProfileViewModel.userProfile)
-                } else {
-                    Snackbar.make(
-                        getRootView(),
-                        memberProfileViewModel.message,
-                        Snackbar.LENGTH_LONG
-                    )
-                        .show()
-                }
-            }
-        })
-
-        val memberId = intent.getIntExtra(Constants.MEMBER_USER_ID, -1)
-
-        memberProfileViewModel.userId = memberId
-
-        fetchNewest()
-
         btnSendRequest.setOnClickListener {
-            if (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?: false) &&
-                (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?: false))
+            if (userProfile.availableToMentor == true && userProfile.needMentoring != true &&
+                (currentUser.availableToMentor == true && currentUser.needMentoring != true)
             ) {
                 Snackbar.make(
                     getRootView(),
@@ -96,12 +76,43 @@ class MemberProfileActivity : BaseActivity() {
                 startActivity(intent)
             }
         }
+
+        setObservers()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
+
+    private fun setObservers() {
+        // observing from profile viewmodel
+        profileViewModel.successfulGet.observe(this) { successful ->
+            if (successful != null) {
+                if (successful) {
+                    setCurrentUser(profileViewModel.user)
+                } else {
+                    Snackbar.make(getRootView(), profileViewModel.message, Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            }
+        }
+        profileViewModel.getProfile()
+
+        // observing from member profile viewmodel
+        memberProfileViewModel.successful.observe(this) { successful ->
+            srlMemberProfile.isRefreshing = false
+            if (successful != null) {
+                if (successful) {
+                    setUserProfile(memberProfileViewModel.userProfile)
+                } else {
+                    Snackbar.make(
+                        getRootView(),
+                        memberProfileViewModel.message,
+                        Snackbar.LENGTH_LONG
+                    )
+                        .show()
+                }
+            }
+        }
     }
+
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
@@ -109,13 +120,10 @@ class MemberProfileActivity : BaseActivity() {
                 onBackPressed()
                 true
             }
-            R.id.menu_refresh -> {
-                fetchNewest()
-                true
-            }
             else -> super.onOptionsItemSelected(menuItem)
         }
     }
+
 
     private fun fetchNewest() {
         srlMemberProfile.isRefreshing = true
@@ -168,8 +176,12 @@ class MemberProfileActivity : BaseActivity() {
         setTextViewStartingWithBoldSpan(
             tvSlackUsername, getString(R.string.slack_username), user.slackUsername
         )
-        if (!user.availableToMentor!! && !user.needMentoring!!)
-            btnSendRequest.isEnabled = false
+
+        user.run {
+            if ((availableToMentor == null || availableToMentor == false)
+                && (needMentoring == null || needMentoring == false)
+            ) btnSendRequest.isEnabled = false
+        }
     }
 
     override fun onDestroy() {

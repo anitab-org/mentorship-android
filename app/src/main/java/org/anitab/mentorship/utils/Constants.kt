@@ -5,7 +5,7 @@ object Constants {
     const val ITEMS_PER_PAGE = 20
     const val START_PAGE_INDEX = 1
     const val TOTAL_REQUEST_TABS = 3
-    const val MEMBER_USER_ID = "member_user_id"
+    const val MEMBER_USER_EXTRAS = "member_user_extras"
     const val REQUEST_LIST = "request_list"
     const val REQUEST_EMPTY_LIST_TEXT = "request_empty_list_text"
     const val RELATIONSHIP_EXTRA = "relationship_extra"

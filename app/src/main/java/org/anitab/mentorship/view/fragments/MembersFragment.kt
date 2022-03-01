@@ -3,12 +3,6 @@ package org.anitab.mentorship.view.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
-import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +14,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
+import org.anitab.mentorship.models.User
 import org.anitab.mentorship.utils.Constants
 import org.anitab.mentorship.utils.Constants.FILTER_MAP
 import org.anitab.mentorship.utils.Constants.FILTER_REQUEST_CODE
@@ -126,21 +121,15 @@ class MembersFragment : BaseFragment() {
         }
     }
 
-    private fun openUserProfile(
-        memberId: Int,
-        sharedImageView: ImageView,
-        sharedTextView: TextView
-    ) {
-        val intent = Intent(activity, MemberProfileActivity::class.java)
-        intent.putExtra(Constants.MEMBER_USER_ID, memberId)
-        val imgAnim = Pair.create<View, String>(
-            sharedImageView,
-            ViewCompat.getTransitionName(sharedTextView)!!
-        )
-
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(baseActivity, imgAnim)
-
-        startActivity(intent, options.toBundle())
+    // On click method on recyclerview member item
+    private fun openUserProfile(member: User?) {
+        member?.let {
+            val intent = Intent(activity, MemberProfileActivity::class.java)
+            intent.putExtra(Constants.MEMBER_USER_EXTRAS, it)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            /*val options = ActivityOptionsCompat.makeSceneTransitionAnimation(baseActivity)*/
+            startActivity(intent)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

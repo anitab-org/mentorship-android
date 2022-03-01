@@ -31,8 +31,7 @@ class MemberProfileViewModel(
                 userProfile = userDataManager.getUser(userId)
                 successful.postValue(true)
             } catch (throwable: Throwable) {
-                message = CommonUtils.getErrorMessage(throwable, tag)
-                successful.postValue(false)
+                throwable.message
             }
         }
     }
