@@ -13,8 +13,8 @@ This is the Android client for the Mentorship System.
 
 ## Features
 * Once the App is installed, the user can view an onboarding screen that introduces the app and gives the user an idea of how it works.
-* A member gets an option to be a Mentor, Mentee, or Both.
-* A member can build/customize the app profile with a username, bio, skills, interests, location, occupation, etc. anytime.
+* A member gets an option to be a Mentor, a Mentee, or Both.
+* A member can build/customize the app profile with their username, bio, skills, interests, location, occupation, etc. anytime.
 * A member can read and know more about the Mentorship System including the terms and conditions, privacy and policy, and code of conduct.
 * A member can directly access the AnitaB-org Github repo, Zulip chat, and website from this App.
 * A member can refresh every page.
