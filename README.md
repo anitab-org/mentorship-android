@@ -115,7 +115,7 @@ The repository has the following permanent branches:
 |![Filter Members Screen](https://user-images.githubusercontent.com/63957920/107955194-81af7e80-6fc3-11eb-8ce7-c08d7e39b22a.jpeg)|![Member Profile](https://user-images.githubusercontent.com/63957920/107955215-8a07b980-6fc3-11eb-90b8-cde542c517bd.jpeg)|![Send Request Page](https://user-images.githubusercontent.com/63957920/107955259-95f37b80-6fc3-11eb-9e4f-5a284d82195a.jpeg)|
 |![Requests Page](https://user-images.githubusercontent.com/63957920/107955257-955ae500-6fc3-11eb-8aec-488ed1cd8e0a.jpeg)|![Settings Screen](https://user-images.githubusercontent.com/63957920/107955260-95f37b80-6fc3-11eb-8862-4e0668c6d6e1.jpeg)|![About Page](https://user-images.githubusercontent.com/63957920/107955159-76f4e980-6fc3-11eb-87f8-464d6e9b9db4.jpeg)|
 |![Change Password Page](https://user-images.githubusercontent.com/63957920/107955177-7bb99d80-6fc3-11eb-8a61-729001a3c330.jpeg)|![Logout Screen Page](https://user-images.githubusercontent.com/57872757/126679249-89fb62d3-8dd0-4ec8-a8f5-865d92df57bb.jpg)|![Feedback Page](https://user-images.githubusercontent.com/80174214/177856734-c163d725-960c-411a-b9ac-695acd92ee79.jpg)|
-![Feedback Successful Submission Page](https://user-images.githubusercontent.com/80174214/177857016-23b7315d-f07d-445d-9bb4-7d208af51e28.jpg)|
+|![Feedback Successful Submission Page](https://user-images.githubusercontent.com/80174214/177857016-23b7315d-f07d-445d-9bb4-7d208af51e28.jpg)|
 
 
 ## Contact
