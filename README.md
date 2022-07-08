@@ -117,9 +117,6 @@ The repository has the following permanent branches:
 |![Change Password Page](https://user-images.githubusercontent.com/63957920/107955177-7bb99d80-6fc3-11eb-8a61-729001a3c330.jpeg)|![Logout Screen Page](https://user-images.githubusercontent.com/57872757/126679249-89fb62d3-8dd0-4ec8-a8f5-865d92df57bb.jpg)|![Feedback Page](https://user-images.githubusercontent.com/80174214/177859400-48e9df98-e03d-4958-ae85-264c61f92b80.jpg)|
 |![Feedback Submission Success Screen](https://user-images.githubusercontent.com/80174214/177859510-446ecd3b-f1a7-493e-8f2b-ed21d593727b.jpg)|
 
-
-
-
 ## Contact
 
 You can reach our community at [AnitaB.org Open Source Zulip](https://anitab-org.zulipchat.com/).
