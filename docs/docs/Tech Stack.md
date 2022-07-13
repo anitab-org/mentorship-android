@@ -42,7 +42,7 @@ The different code layers of MVVM are:
 • **ViewModel:** It acts as an intermediate between View and the Model by providing data for the UI components like fragments or activities. 
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/80174214/178808735-ade037d1-c72f-4165-8c2b-3f25da252d0b.jpg" width="532" height="324">
+  <img src="https://user-images.githubusercontent.com/80174214/178808735-ade037d1-c72f-4165-8c2b-3f25da252d0b.jpg" width="532" height="324">
 </p>
 
 #### Why choose MVVM over other architectural pattern?
@@ -64,4 +64,4 @@ MVVM overcomes the drawbacks of MVC and MVP architecture in the following ways:
 - ViewModel does not hold any kind of reference to the View.
 - Many-to-one relationship exists between View and ViewModel, which is not the case for MVP.
 - No triggering methods to update the View.
-- Easy to manage.
+- Enhances reusability of code and makes project files easier to maintain.
