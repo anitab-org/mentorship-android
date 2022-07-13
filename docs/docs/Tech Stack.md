@@ -27,9 +27,9 @@ We considered using [flutter](https://flutter.io/) as a solution for the mobile 
 
 Nonetheless, the community had [a brief discussion about this](https://systers-opensource.slack.com/archives/CAE8QK41L/p1531508427000351) on [Systers Open Source Slack](http://systers.io/slack-systers-opensource/). The outcome of this was that using flutter was a good way to develop and iOS and Android version of the application at the same time and that this could be done in the future, for example on next open source programs (e.g.: Google Summer of Code).
 
-## Why use MVVM architecture?
 
-#### What is MVVM architecture? 
+## Why use MVVM architecture?
+***What is MVVM architecture?***
 
 MVVM or Model—View—ViewModel is an industry-acknowledged architecture pattern that addresses *Separation of Concern* by suggesting separation of the UI logic from the core business or back-end logic part of an application.
 
@@ -45,7 +45,7 @@ The different code layers of MVVM are:
   <img src="https://user-images.githubusercontent.com/80174214/178808735-ade037d1-c72f-4165-8c2b-3f25da252d0b.jpg" width="532" height="324"/>
 </p>
 
-#### Why choose MVVM over other architectural pattern?
+***Why choose MVVM over other architectural pattern?***
 
 We chose to go with MVVM architecture for this Android application because of the following important key elements that set it apart from MVC  and MVP architecture:
 
