@@ -29,4 +29,14 @@ Nonetheless, the community had [a brief discussion about this](https://systers-o
 
 ## Why use MVVM architecture?
 
-TODO TODO TODO
+### What is MVVM architecture? 
+
+MVVM or Model—View—ViewModel is an industry-acknowledged architecture pattern that addresses *Separation of Concern* by suggesting separation of the UI logic from the core business or back-end logic part of an application.
+
+The different code layers of MVVM are:
+
+• **Model:** This layer is responsible for abstration of data from different data resources, i.e., local SQLite database or a web service. Working together with ViewModel, it fetches and saves the data.
+
+• **View:** The purpose of this layer is to inform the ViewModel about user's action and doesn't contain any business logic.
+
+• **ViewModel:** It acts as an intermediate between View and the Model by providing data for the UI components like fragments or activities. 
