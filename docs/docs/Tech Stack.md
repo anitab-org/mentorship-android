@@ -37,6 +37,14 @@ The different code layers of MVVM are:
 
 • **Model:** This layer is responsible for abstration of data from different data resources, i.e., local SQLite database or a web service. Working together with ViewModel, it fetches and saves the data.
 
-• **View:** The purpose of this layer is to inform the ViewModel about user's action and doesn't contain any business logic.
+• **View:** The purpose of this layer is to inform the ViewModel about user's action. Therefore, it doesn't contain any business logic.
 
 • **ViewModel:** It acts as an intermediate between View and the Model by providing data for the UI components like fragments or activities. 
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/80174214/178808735-ade037d1-c72f-4165-8c2b-3f25da252d0b.jpg" width="532" height="324">
+</p>
+
+### Why choose MVVM over other architectural pattern?
+
+The important key elements to implement the MVVM are **testability**, **maintainability**, and **extensibility**.
