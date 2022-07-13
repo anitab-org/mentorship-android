@@ -29,7 +29,7 @@ Nonetheless, the community had [a brief discussion about this](https://systers-o
 
 ## Why use MVVM architecture?
 
-### What is MVVM architecture? 
+#### What is MVVM architecture? 
 
 MVVM or Model—View—ViewModel is an industry-acknowledged architecture pattern that addresses *Separation of Concern* by suggesting separation of the UI logic from the core business or back-end logic part of an application.
 
@@ -45,17 +45,18 @@ The different code layers of MVVM are:
 <img src="https://user-images.githubusercontent.com/80174214/178808735-ade037d1-c72f-4165-8c2b-3f25da252d0b.jpg" width="532" height="324">
 </p>
 
-### Why choose MVVM over other architectural pattern?
+#### Why choose MVVM over other architectural pattern?
 
 We chose to go with MVVM architecture for this Android application because of the following important key elements that set it apart from MVC  and MVP architecture:
 
-1. **Testability**
- 
-2. **Maintainability**
+- **Testability**
 
-3. **Modularity**
+- **Modularity**
 
-4. **Extensibility**
+- **Maintainability**
+
+- **Extensibility**
+
 
 MVVM overcomes the drawbacks of MVC and MVP architecture in the following ways:
 
@@ -63,3 +64,4 @@ MVVM overcomes the drawbacks of MVC and MVP architecture in the following ways:
 - ViewModel does not hold any kind of reference to the View.
 - Many-to-one relationship exists between View and ViewModel, which is not the case for MVP.
 - No triggering methods to update the View.
+- Easy to manage.
