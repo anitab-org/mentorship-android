@@ -42,7 +42,7 @@ The different code layers of MVVM are:
 • **ViewModel:** It acts as an intermediate between View and the Model by providing data for the UI components like fragments or activities. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/80174214/178808735-ade037d1-c72f-4165-8c2b-3f25da252d0b.jpg" width="532" height="324">
+  <img src="https://user-images.githubusercontent.com/80174214/178808735-ade037d1-c72f-4165-8c2b-3f25da252d0b.jpg" width="532" height="324" />
 </p>
 
 #### Why choose MVVM over other architectural pattern?
