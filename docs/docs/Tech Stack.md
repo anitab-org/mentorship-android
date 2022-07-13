@@ -47,4 +47,19 @@ The different code layers of MVVM are:
 
 ### Why choose MVVM over other architectural pattern?
 
-The important key elements to implement the MVVM are **testability**, **maintainability**, and **extensibility**.
+We chose to go with MVVM architecture for this Android application because of the following important key elements that set it apart from MVC  and MVP architecture:
+
+1. **Testability**
+ 
+2. **Maintainability**
+
+3. **Modularity**
+
+4. **Extensibility**
+
+MVVM overcomes the drawbacks of MVC and MVP architecture in the following ways:
+
+- Offers better modular structure (wherein modules are independent) as compared to what MVC provides and hence the former eases separate unit testing. Also, the code is event-driven. 
+- ViewModel does not hold any kind of reference to the View.
+- Many-to-one relationship exists between View and ViewModel, which is not the case for MVP.
+- No triggering methods to update the View.
