@@ -29,7 +29,7 @@
  
 ![6](https://user-images.githubusercontent.com/76740999/178975230-30076def-9099-4ae4-8f7d-5c438c6df704.png)
 
-- Let's say if we need to add `implementation(Dependencies.retrofit)` dependency to our project, we will paste the dependency under the `dependencies` section and `click` on the `Sync now` button at the top right so that it can fetch the library files and add it into our project. Once it's done we can add codes related to the library you have added in your modules In our example above, the full build.gradle file code is as below.
+- Let's say if we need to add `implementation(Dependencies.retrofit)` dependency to our project, we will paste the dependency under the `dependencies` section and `click` on the `Sync now` button at the top right so that it can fetch the library files and add it into our project. Once it's done we can add codes related to the library.
 
 ![7](https://user-images.githubusercontent.com/76740999/178977117-dd9c7161-1130-40a8-ab61-6fe4370f531e.png)
 
