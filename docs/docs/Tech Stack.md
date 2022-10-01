@@ -39,7 +39,7 @@ The different code layers of MVVM are:
 
 • **View:** The purpose of this layer is to inform the ViewModel about user's action. Therefore, it doesn't contain any business logic.
 
-• **ViewModel:** It acts as an intermediate between View and the Model by providing data for the UI components like fragments or activities. 
+• **ViewModel:** It acts as an intermediate between View and the Model by providing data for the UI components like fragments or activities.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/80174214/178808735-ade037d1-c72f-4165-8c2b-3f25da252d0b.jpg" width="532" height="324"/>
@@ -60,7 +60,7 @@ We chose to go with MVVM architecture for this Android application because of th
 
 MVVM overcomes the drawbacks of MVC and MVP architecture in the following ways:
 
-- Offers better modular structure (wherein modules are independent) as compared to what MVC provides and hence the former eases separate unit testing. Also, the code is event-driven. 
+- Offers better modular structure (wherein modules are independent) as compared to what MVC provides and hence the former eases separate unit testing. Also, the code is event-driven.
 - ViewModel does not hold any kind of reference to the View.
 - Many-to-one relationship exists between View and ViewModel, which is not the case for MVP.
 - No triggering methods to update the View.
