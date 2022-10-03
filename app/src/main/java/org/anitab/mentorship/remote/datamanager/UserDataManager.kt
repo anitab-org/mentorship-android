@@ -12,7 +12,6 @@ import org.anitab.mentorship.models.HomeStatistics
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.ApiManager
 import org.anitab.mentorship.remote.requests.ChangePassword
-import org.anitab.mentorship.remote.requests.PaginationRequest
 import org.anitab.mentorship.remote.responses.CustomResponse
 import org.anitab.mentorship.utils.Constants.ITEMS_PER_PAGE
 
@@ -30,7 +29,7 @@ class UserDataManager(
      * @return stream of [User] list as PagingData with the help of [UserRemoteMediator]
      * which manages making network call and storing user list in room db.
      */
-    @ExperimentalPagingApi
+    @OptIn(ExperimentalPagingApi::class)
     fun getUsers(): Flow<PagingData<User>> {
         val pagingSourceFactory = { userDatabase.userDao().getAllUsers() }
 
@@ -42,14 +41,6 @@ class UserDataManager(
             remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
             pagingSourceFactory = pagingSourceFactory
         ).flow
-    }
-
-    /**
-     * This will call the getVerifiedUsers(pagination) method of UserService interface
-     * @return an Observable of a list of [User]
-     */
-    suspend fun getUsers(paginationRequest: PaginationRequest): List<User> {
-        return withContext(dispatcher) { apiManager.userService.getVerifiedUsers(paginationRequest.pagination) }
     }
 
     /**

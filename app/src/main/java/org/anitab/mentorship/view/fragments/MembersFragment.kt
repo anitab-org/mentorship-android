@@ -7,9 +7,10 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
-import kotlinx.android.synthetic.main.fragment_members.*
+import kotlinx.android.synthetic.main.fragment_members.rvMembers
+import kotlinx.android.synthetic.main.fragment_members.srlMembers
+import kotlinx.android.synthetic.main.fragment_members.tvEmptyList
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.anitab.mentorship.Injection
@@ -48,24 +49,16 @@ class MembersFragment : BaseFragment() {
         }
     }
     private lateinit var memberAdapter: MemberPagingAdapter
-    private var isLoading = false
     private var filterMap = hashMapOf(SORT_KEY to SortValues.REGISTRATION_DATE.name)
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
-    @OptIn(ExperimentalPagingApi::class)
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
         memberAdapter = MemberPagingAdapter(::openUserProfile)
 
-        srlMembers.setOnRefreshListener {
-            memberAdapter.refresh()
-            if (!isLoading) {
-                fetchNewest(true)
-                isLoading = true
-            }
-        }
+        srlMembers.setOnRefreshListener { memberAdapter.refresh() }
 
         setUpAdapter()
         setObserver()
@@ -79,11 +72,10 @@ class MembersFragment : BaseFragment() {
         }
     }
 
-    @ExperimentalPagingApi
     private fun setObserver() {
         lifecycleScope.launch {
             lifecycle.whenStarted {
-                membersViewModel.getUsersLiveData().collect { data ->
+                membersViewModel.userListLiveData.collect { data ->
                     memberAdapter.submitData(viewLifecycleOwner.lifecycle, data)
 
                     showMemberListLoadingState()
@@ -145,7 +137,7 @@ class MembersFragment : BaseFragment() {
                 true
             }
             R.id.menu_refresh -> {
-                fetchNewest(true)
+                memberAdapter.refresh()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -165,10 +157,5 @@ class MembersFragment : BaseFragment() {
         NAMEAZ,
         NAMEZA,
         REGISTRATION_DATE
-    }
-
-    private fun fetchNewest(isRefresh: Boolean) {
-        srlMembers.isRefreshing = isRefresh
-        membersViewModel.getUsers(isRefresh)
     }
 }
