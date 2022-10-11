@@ -48,8 +48,7 @@ class UserDataManager(
      * @return an Observable of [User]
      */
     suspend fun getUser(userId: Int): User {
-        return withContext(dispatcher) {
-            apiManager.userService.getUser(userId) }
+        return withContext(dispatcher) { apiManager.userService.getUser(userId) }
     }
 
     /**
