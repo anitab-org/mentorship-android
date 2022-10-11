@@ -121,7 +121,7 @@
     <string name="intro_prefs_first_run">intro_prefs_key</string>
     <string name="location">Location</string>
     <string name="logging_in">Logging in…</string>
-    <string name="logging_successful">Logging successful</string>
+    <string name="logging_successful">Login successful</string>
     <string name="login">Login</string>
     <string name="logo">Logo</string>
     <string name="logout">Logout</string>
