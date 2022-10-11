@@ -37,7 +37,7 @@ data class User(
     @field:SerializedName("organization") var organization: String? = null,
     @field:SerializedName("interests") var interests: String? = null,
     @field:SerializedName("skills") var skills: String? = null,
-    @field:SerializedName("needMentoring") var needMentoring: Boolean? = null,
-    @field:SerializedName("availableToMentor") var availableToMentor: Boolean? = null,
-    @field:SerializedName("slackUsername") var slackUsername: String? = null
+    @field:SerializedName("need_mentoring") var needMentoring: Boolean? = null,
+    @field:SerializedName("available_to_mentor") var availableToMentor: Boolean? = null,
+    @field:SerializedName("slack_username") var slackUsername: String? = null
 ) : Parcelable
