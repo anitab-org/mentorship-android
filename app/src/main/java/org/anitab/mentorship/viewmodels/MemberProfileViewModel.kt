@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.datamanager.UserDataManager
-import org.anitab.mentorship.utils.CommonUtils
 
 /**
  * This class represents the [ViewModel] component used for the MemberProfileActivity

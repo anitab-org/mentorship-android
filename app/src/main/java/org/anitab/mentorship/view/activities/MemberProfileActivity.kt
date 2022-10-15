@@ -2,7 +2,6 @@ package org.anitab.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
@@ -55,7 +54,6 @@ class MemberProfileActivity : BaseActivity() {
             Snackbar.LENGTH_LONG
         ).show()
 
-
         // Refresh data from network on swipe down gesture
         srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
@@ -79,7 +77,6 @@ class MemberProfileActivity : BaseActivity() {
 
         setObservers()
     }
-
 
     private fun setObservers() {
         // observing from profile viewmodel
@@ -113,7 +110,6 @@ class MemberProfileActivity : BaseActivity() {
         }
     }
 
-
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             android.R.id.home -> {
@@ -123,7 +119,6 @@ class MemberProfileActivity : BaseActivity() {
             else -> super.onOptionsItemSelected(menuItem)
         }
     }
-
 
     private fun fetchNewest() {
         srlMemberProfile.isRefreshing = true
@@ -178,8 +173,8 @@ class MemberProfileActivity : BaseActivity() {
         )
 
         user.run {
-            if ((availableToMentor == null || availableToMentor == false)
-                && (needMentoring == null || needMentoring == false)
+            if ((availableToMentor == null || availableToMentor == false) &&
+                (needMentoring == null || needMentoring == false)
             ) btnSendRequest.isEnabled = false
         }
     }

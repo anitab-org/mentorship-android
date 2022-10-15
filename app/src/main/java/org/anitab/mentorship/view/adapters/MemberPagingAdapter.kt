@@ -3,8 +3,6 @@ package org.anitab.mentorship.view.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -66,4 +64,3 @@ private class MemberDiffUtilCallback : DiffUtil.ItemCallback<User>() {
         return oldItem.hashCode() == newItem.hashCode()
     }
 }
-

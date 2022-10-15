@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
 import androidx.paging.LoadState
-import kotlinx.android.synthetic.main.fragment_members.tvEmptyList
 import kotlinx.android.synthetic.main.fragment_members.fabFilter
 import kotlinx.android.synthetic.main.fragment_members.rvMembers
 import kotlinx.android.synthetic.main.fragment_members.srlMembers
+import kotlinx.android.synthetic.main.fragment_members.tvEmptyList
 import kotlinx.coroutines.launch
 import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
@@ -25,7 +25,6 @@ import org.anitab.mentorship.view.adapters.MemberLoadingStateAdapter
 import org.anitab.mentorship.view.adapters.MemberPagingAdapter
 import org.anitab.mentorship.viewmodels.ListFilter
 import org.anitab.mentorship.viewmodels.MembersViewModel
-
 
 /**
  * The fragment is responsible for showing all the members of the system in a list format
@@ -152,4 +151,3 @@ class MembersFragment : BaseFragment() {
         popup.show()
     }
 }
-

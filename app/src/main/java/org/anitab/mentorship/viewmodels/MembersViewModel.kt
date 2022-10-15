@@ -1,8 +1,8 @@
 package org.anitab.mentorship.viewmodels
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -31,7 +31,6 @@ class MembersViewModel(userDataManager: UserDataManager) : ViewModel() {
     // setting default filter sa no filter
     private var selectedUserFilter = ListFilter.NO_FILTER
 
-
     init {
         userList.addSource(userListNoFilter) { list ->
             if (selectedUserFilter == ListFilter.NO_FILTER) {
@@ -58,7 +57,7 @@ class MembersViewModel(userDataManager: UserDataManager) : ViewModel() {
         }
     }
 
-    fun getFilteredUserList(filter: ListFilter) = when(filter) {
+    fun getFilteredUserList(filter: ListFilter) = when (filter) {
         ListFilter.NO_FILTER -> userListNoFilter.value?.let { userList.value = it }
         ListFilter.NEED_MENTORING -> userLisFilterByNeedMentoring.value?.let { userList.value = it }
         ListFilter.AVAILABLE_TO_MENTOR -> userListFilterByAvailableToMentor.value?.let { userList.value = it }
