@@ -53,7 +53,6 @@ configurations.all {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(Dependencies.kotlin_stdlib)
     implementation(Dependencies.design)
     implementation(Dependencies.constraint_layout)
     implementation(Dependencies.appCompat)
