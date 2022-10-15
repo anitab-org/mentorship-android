@@ -1,7 +1,9 @@
 package org.anitab.mentorship.remote.datamanager
 
+import androidx.lifecycle.map
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
+import androidx.paging.filter
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -55,7 +57,7 @@ class UserDataManager(
      */
     @OptIn(ExperimentalPagingApi::class)
     fun getUsersWhoAreAvailableToMentor(): LiveData<PagingData<User>> {
-        val pagingSourceFactory = { userDatabase.userDao().getUsersWhoAreAvailableToMentor() }
+        val pagingSourceFactory = { userDatabase.userDao().getAllUsers() }
 
         return Pager(
             config = PagingConfig(
@@ -65,6 +67,7 @@ class UserDataManager(
             remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
             pagingSourceFactory = pagingSourceFactory
         ).liveData
+            .map { pagingData -> pagingData.filter { user -> user.availableToMentor != null && user.availableToMentor == true } }
     }
 
     /**
@@ -74,7 +77,7 @@ class UserDataManager(
      */
     @OptIn(ExperimentalPagingApi::class)
     fun getUsersWhoAreNeedMentoring(): LiveData<PagingData<User>> {
-        val pagingSourceFactory = { userDatabase.userDao().getUsersWhoAreNeedMentoring() }
+        val pagingSourceFactory = { userDatabase.userDao().getAllUsers() }
 
         return Pager(
             config = PagingConfig(
@@ -84,6 +87,7 @@ class UserDataManager(
             remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
             pagingSourceFactory = pagingSourceFactory
         ).liveData
+            .map { pagingData -> pagingData.filter { user -> user.needMentoring != null && user.needMentoring == true } }
     }
 
     /**
@@ -93,7 +97,7 @@ class UserDataManager(
      */
     @OptIn(ExperimentalPagingApi::class)
     fun getUserWhoHaveSkills(): LiveData<PagingData<User>> {
-        val pagingSourceFactory = { userDatabase.userDao().getUserWhoHaveSkills() }
+        val pagingSourceFactory = { userDatabase.userDao().getAllUsers() }
 
         return Pager(
             config = PagingConfig(
@@ -103,6 +107,7 @@ class UserDataManager(
             remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
             pagingSourceFactory = pagingSourceFactory
         ).liveData
+            .map { pagingData -> pagingData.filter { user -> user.skills != null } }
     }
 
     /** Paging 3 user data management end **/

@@ -16,15 +16,6 @@ interface UserDao {
     @Query("SELECT * from user_table")
     fun getAllUsers(): PagingSource<Int, User>
 
-    @Query("SELECT * from user_table WHERE availableToMentor=1 ORDER BY name")
-    fun getUsersWhoAreAvailableToMentor(): PagingSource<Int, User>
-
-    @Query("SELECT * from user_table WHERE needMentoring=1 ORDER BY name")
-    fun getUsersWhoAreNeedMentoring(): PagingSource<Int, User>
-
-    @Query("SELECT * from user_table WHERE skills!=null ORDER BY name")
-    fun getUserWhoHaveSkills(): PagingSource<Int, User>
-
     @Query("DELETE from user_table")
     suspend fun clearAllUsers()
 }

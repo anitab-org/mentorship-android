@@ -1,12 +1,9 @@
 package org.anitab.mentorship.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MediatorLiveData
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import androidx.paging.filter
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.map
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.datamanager.UserDataManager
 
