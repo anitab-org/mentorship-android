@@ -1,11 +1,12 @@
 package org.anitab.mentorship.remote.datamanager
 
+import androidx.lifecycle.LiveData
+import androidx.paging.PagingData
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.liveData
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import org.anitab.mentorship.local.UserDatabase
 import org.anitab.mentorship.models.HomeStatistics
@@ -24,13 +25,16 @@ class UserDataManager(
     private val dispatcher: CoroutineDispatcher
 ) {
 
+    /** Paging 3 user data management starts **/
+
     /**
      * This will call the getAllUsers() method from UserDao interface
      * @return stream of [User] list as PagingData with the help of [UserRemoteMediator]
      * which manages making network call and storing user list in room db.
      */
+
     @OptIn(ExperimentalPagingApi::class)
-    fun getUsers(): Flow<PagingData<User>> {
+    fun getAllUsers(): LiveData<PagingData<User>> {
         val pagingSourceFactory = { userDatabase.userDao().getAllUsers() }
 
         return Pager(
@@ -40,8 +44,68 @@ class UserDataManager(
             ),
             remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
             pagingSourceFactory = pagingSourceFactory
-        ).flow
+        ).liveData
     }
+
+    /**
+     * This will call the getUsersWhoAreAvailableToMentor() method from UserDao interface
+     * @return stream of [User] list, who are available to be mentored as PagingData with
+     * the help of [UserRemoteMediator] which manages making network call and storing user
+     * list in room db.
+     */
+    @OptIn(ExperimentalPagingApi::class)
+    fun getUsersWhoAreAvailableToMentor(): LiveData<PagingData<User>> {
+        val pagingSourceFactory = { userDatabase.userDao().getUsersWhoAreAvailableToMentor() }
+
+        return Pager(
+            config = PagingConfig(
+                pageSize = ITEMS_PER_PAGE,
+                enablePlaceholders = false
+            ),
+            remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
+            pagingSourceFactory = pagingSourceFactory
+        ).liveData
+    }
+
+    /**
+     * This will call the getUsersWhoAreNeedMentoring() method from UserDao interface
+     * @return stream of [User] list, who are need mentoring as PagingData with the help of
+     * [UserRemoteMediator] which manages making network call and storing user list in room db.
+     */
+    @OptIn(ExperimentalPagingApi::class)
+    fun getUsersWhoAreNeedMentoring(): LiveData<PagingData<User>> {
+        val pagingSourceFactory = { userDatabase.userDao().getUsersWhoAreNeedMentoring() }
+
+        return Pager(
+            config = PagingConfig(
+                pageSize = ITEMS_PER_PAGE,
+                enablePlaceholders = false
+            ),
+            remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
+            pagingSourceFactory = pagingSourceFactory
+        ).liveData
+    }
+
+    /**
+     * This will call the getUserWhoHaveSkills() method from UserDao interface
+     * @return stream of [User] list, who have at least 1 skill as PagingData with the help of
+     * [UserRemoteMediator] which manages making network call and storing user list in room db.
+     */
+    @OptIn(ExperimentalPagingApi::class)
+    fun getUserWhoHaveSkills(): LiveData<PagingData<User>> {
+        val pagingSourceFactory = { userDatabase.userDao().getUserWhoHaveSkills() }
+
+        return Pager(
+            config = PagingConfig(
+                pageSize = ITEMS_PER_PAGE,
+                enablePlaceholders = false
+            ),
+            remoteMediator = UserRemoteMediator(apiManager.userService, userDatabase),
+            pagingSourceFactory = pagingSourceFactory
+        ).liveData
+    }
+
+    /** Paging 3 user data management end **/
 
     /**
      * This will call the getUser method of UserService interface
