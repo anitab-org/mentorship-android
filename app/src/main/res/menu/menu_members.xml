@@ -2,15 +2,20 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/search_item"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="search something"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="always" />
+        android:id="@+id/allMembers"
+        android:title="@string/all_members" />
+
     <item
-        android:id="@+id/action_filter"
-        android:icon="@drawable/ic_filter_white_24dp"
-        android:title="@string/filter"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/availableToMentor"
+        android:title="@string/available_to_mentor" />
+
+    <item
+        android:id="@+id/needMentoring"
+        android:title="@string/need_mentoring" />
+
+    <item
+        android:id="@+id/haveSkill"
+        android:title="@string/have_skill" />
 </menu>

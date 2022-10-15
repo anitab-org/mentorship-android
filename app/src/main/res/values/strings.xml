@@ -22,6 +22,7 @@
     <string name="add_new_task">Add a new task</string>
     <string name="age">Age</string>
     <string name="all">All</string>
+    <string name="all_members">All members</string>
     <string name="app_name">Mentorship System</string>
     <string name="apply_filter">Apply filter</string>
     <string name="available_to_be_mentor_mentee">Available to be a:</string>
@@ -114,6 +115,7 @@
     <string name="fragment_title_requests">Mentorship Requests</string>
     <string name="from">From</string>
     <string name="github_repository">Github Repository</string>
+    <string name="have_skill">Have skill</string>
     <string name="i_will_be_a">I will be a …</string>
     <string name="input"> Please fill in the input fields and/or assign a rating</string>
     <string name="interests">Interests</string>

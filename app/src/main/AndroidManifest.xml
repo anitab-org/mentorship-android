@@ -20,9 +20,6 @@
         <activity android:name=".view.activities.AboutActivity" />
         <activity android:name=".view.activities.FeedbackActivity" />
         <activity
-            android:name=".view.activities.FilterActivity"
-            android:theme="@style/FilterTheme" />
-        <activity
             android:name=".view.activities.SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">

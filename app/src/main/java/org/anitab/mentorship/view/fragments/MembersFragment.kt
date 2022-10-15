@@ -3,29 +3,29 @@ package org.anitab.mentorship.view.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.PopupMenu
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
 import androidx.paging.LoadState
+import kotlinx.android.synthetic.main.fragment_members.tvEmptyList
+import kotlinx.android.synthetic.main.fragment_members.fabFilter
 import kotlinx.android.synthetic.main.fragment_members.rvMembers
 import kotlinx.android.synthetic.main.fragment_members.srlMembers
-import kotlinx.android.synthetic.main.fragment_members.tvEmptyList
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.utils.Constants
-import org.anitab.mentorship.utils.Constants.FILTER_MAP
-import org.anitab.mentorship.utils.Constants.FILTER_REQUEST_CODE
-import org.anitab.mentorship.utils.Constants.SORT_KEY
 import org.anitab.mentorship.utils.RecyclerViewItemDecoration
-import org.anitab.mentorship.view.activities.FilterActivity
 import org.anitab.mentorship.view.activities.MemberProfileActivity
 import org.anitab.mentorship.view.adapters.MemberLoadingStateAdapter
 import org.anitab.mentorship.view.adapters.MemberPagingAdapter
+import org.anitab.mentorship.viewmodels.ListFilter
 import org.anitab.mentorship.viewmodels.MembersViewModel
+
 
 /**
  * The fragment is responsible for showing all the members of the system in a list format
@@ -40,6 +40,8 @@ class MembersFragment : BaseFragment() {
         fun newInstance() = MembersFragment()
     }
 
+    private lateinit var memberAdapter: MemberPagingAdapter
+
     private val membersViewModel: MembersViewModel by lazy {
         requireActivity().run {
             ViewModelProviders.of(
@@ -48,22 +50,31 @@ class MembersFragment : BaseFragment() {
             ).get(MembersViewModel::class.java)
         }
     }
-    private lateinit var memberAdapter: MemberPagingAdapter
-    private var filterMap = hashMapOf(SORT_KEY to SortValues.REGISTRATION_DATE.name)
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
+
+        // initializing MemberPagingAdaptermember
         memberAdapter = MemberPagingAdapter(::openUserProfile)
 
-        srlMembers.setOnRefreshListener { memberAdapter.refresh() }
-
+        // calling adapter and livedata observer methods
         setUpAdapter()
         setObserver()
+
+        // setting member list refresh listener
+        srlMembers.setOnRefreshListener { memberAdapter.refresh() }
+
+        // setting member list filter option fab
+        with(fabFilter) {
+            setOnClickListener { view -> view?.let { showListFilterPopup(it) } }
+            show()
+        }
     }
 
+    // Setting up member list recyclerview adapter and item decor
     private fun setUpAdapter() {
         rvMembers.apply {
             addItemDecoration(RecyclerViewItemDecoration())
@@ -72,18 +83,20 @@ class MembersFragment : BaseFragment() {
         }
     }
 
+    // Setting observer to viewmodel to listen changes in member list livedata
     private fun setObserver() {
         lifecycleScope.launch {
             lifecycle.whenStarted {
-                membersViewModel.userListLiveData.collect { data ->
-                    memberAdapter.submitData(viewLifecycleOwner.lifecycle, data)
+                showMemberListLoadingState()
 
-                    showMemberListLoadingState()
+                membersViewModel.userList.observe(viewLifecycleOwner) { data ->
+                    memberAdapter.submitData(viewLifecycleOwner.lifecycle, data)
                 }
             }
         }
     }
 
+    // Setting member list loading states
     private fun showMemberListLoadingState() {
         memberAdapter.addLoadStateListener { loadState ->
             if (loadState.refresh is LoadState.Loading) {
@@ -105,7 +118,7 @@ class MembersFragment : BaseFragment() {
                     if (memberAdapter.snapshot().isEmpty()) {
                         tvEmptyList.apply {
                             isVisible = true
-                            text = it.error.message
+                            text = it.error.message ?: "No such users available"
                         }
                     }
                 }
@@ -119,43 +132,24 @@ class MembersFragment : BaseFragment() {
             val intent = Intent(activity, MemberProfileActivity::class.java)
             intent.putExtra(Constants.MEMBER_USER_EXTRAS, it)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            /*val options = ActivityOptionsCompat.makeSceneTransitionAnimation(baseActivity)*/
             startActivity(intent)
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_filter -> {
-                val intent = Intent(context, FilterActivity::class.java)
-                intent.putExtra(FILTER_MAP, filterMap)
-                startActivityForResult(intent, FILTER_REQUEST_CODE)
-                activity?.overridePendingTransition(
-                    R.anim.anim_slide_from_bottom,
-                    R.anim.anim_stay
-                )
-                true
+    // Show member list filter option pop-up
+    private fun showListFilterPopup(view: View) {
+        val popup = PopupMenu(requireContext(), view)
+        popup.inflate(R.menu.menu_members)
+        popup.setOnMenuItemClickListener { item: MenuItem? ->
+            when (item!!.itemId) {
+                R.id.allMembers -> membersViewModel.getFilteredUserList(ListFilter.NO_FILTER)
+                R.id.availableToMentor -> membersViewModel.getFilteredUserList(ListFilter.AVAILABLE_TO_MENTOR)
+                R.id.needMentoring -> membersViewModel.getFilteredUserList(ListFilter.NEED_MENTORING)
+                R.id.haveSkill -> membersViewModel.getFilteredUserList(ListFilter.HAVE_SKILL)
             }
-            R.id.menu_refresh -> {
-                memberAdapter.refresh()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+            true
         }
-    }
-
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == FILTER_REQUEST_CODE && resultCode == RESULT_OK) {
-            filterMap = data?.extras?.get(FILTER_MAP) as HashMap<String, String>?
-                    ?: hashMapOf(SORT_KEY to SortValues.REGISTRATION_DATE.name)
-            rvAdapter.updateUsersList(filterMap, membersViewModel.userList)
-        }
-    }*/
-
-    enum class SortValues {
-        NAMEAZ,
-        NAMEZA,
-        REGISTRATION_DATE
+        popup.show()
     }
 }
+

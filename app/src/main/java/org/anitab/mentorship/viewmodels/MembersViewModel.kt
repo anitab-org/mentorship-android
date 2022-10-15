@@ -3,7 +3,9 @@ package org.anitab.mentorship.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.datamanager.UserDataManager
 
@@ -13,20 +15,21 @@ import org.anitab.mentorship.remote.datamanager.UserDataManager
 class MembersViewModel(userDataManager: UserDataManager) : ViewModel() {
 
     private val userListNoFilter: LiveData<PagingData<User>> =
-        userDataManager.getAllUsers()
+        userDataManager.getAllUsers().cachedIn(viewModelScope)
 
     private val userLisFilterByNeedMentoring: LiveData<PagingData<User>> =
-        userDataManager.getUsersWhoAreNeedMentoring()
+        userDataManager.getUsersWhoAreNeedMentoring().cachedIn(viewModelScope)
 
     private val userListFilterByAvailableToMentor: LiveData<PagingData<User>> =
-        userDataManager.getUsersWhoAreAvailableToMentor()
+        userDataManager.getUsersWhoAreAvailableToMentor().cachedIn(viewModelScope)
 
     private val userListFilterByHaveSkill: LiveData<PagingData<User>> =
-        userDataManager.getUserWhoHaveSkills()
+        userDataManager.getUserWhoHaveSkills().cachedIn(viewModelScope)
 
     val userList = MediatorLiveData<PagingData<User>>()
 
-    private var selectedUserFilter = ListFilter.NEED_MENTORING
+    // setting default filter sa no filter
+    private var selectedUserFilter = ListFilter.NO_FILTER
 
 
     init {
