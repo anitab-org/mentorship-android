@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.datamanager.UserDataManager
+import org.anitab.mentorship.utils.CommonUtils
 
 /**
  * This class represents the [ViewModel] component used for the MemberProfileActivity
@@ -13,6 +14,8 @@ import org.anitab.mentorship.remote.datamanager.UserDataManager
 class MemberProfileViewModel(
     private val userDataManager: UserDataManager
 ) : ViewModel() {
+
+    private var tag = MemberProfileViewModel::class.java.simpleName
 
     val successful: MediatorLiveData<Boolean> = MediatorLiveData()
     lateinit var message: String
@@ -28,7 +31,8 @@ class MemberProfileViewModel(
                 userProfile = userDataManager.getUser(userId)
                 successful.postValue(true)
             } catch (throwable: Throwable) {
-                throwable.message
+                message = CommonUtils.getErrorMessage(throwable, tag)
+                successful.postValue(false)
             }
         }
     }
