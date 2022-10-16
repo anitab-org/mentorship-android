@@ -12,8 +12,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_change_password.tilConfirmPassword
 import kotlinx.android.synthetic.main.fragment_change_password.tilNewPassword
-import kotlinx.android.synthetic.main.fragment_change_password.view.tilCurrentPassword
 import kotlinx.android.synthetic.main.fragment_change_password.view.tilConfirmPassword
+import kotlinx.android.synthetic.main.fragment_change_password.view.tilCurrentPassword
 import kotlinx.android.synthetic.main.fragment_change_password.view.tilNewPassword
 import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
