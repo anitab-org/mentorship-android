@@ -14,8 +14,6 @@ class MemberProfileViewModel(
     private val userDataManager: UserDataManager
 ) : ViewModel() {
 
-    var tag = MemberProfileViewModel::class.java.simpleName
-
     val successful: MediatorLiveData<Boolean> = MediatorLiveData()
     lateinit var message: String
     lateinit var userProfile: User
