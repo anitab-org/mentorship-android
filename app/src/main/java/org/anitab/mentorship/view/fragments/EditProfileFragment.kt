@@ -50,17 +50,12 @@ class EditProfileFragment : DialogFragment() {
     private lateinit var currentUser: User
     lateinit var builder: AlertDialog
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         profileViewModel.successfulUpdate.observe(this, { successful ->
             (activity as MainActivity).hideProgressDialog()
             if (successful != null) {
                 if (successful) {
-                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(context, getText(R.string.update_successful), Toast.LENGTH_LONG).show()
                     profileViewModel.getProfile()
                     dismiss()
                 } else {
@@ -74,10 +69,8 @@ class EditProfileFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        editProfileBinding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.fragment_edit_profile, null, false
-        )
+        editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
+            R.layout.fragment_edit_profile, null, false)
 
         editProfileBinding.user = tempUser.copy()
         currentUser = tempUser.copy()
