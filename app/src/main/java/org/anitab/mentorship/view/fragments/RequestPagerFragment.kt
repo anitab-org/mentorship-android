@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_request_pager.*
+import kotlinx.android.synthetic.main.fragment_request_pager.rvRequestsList
+import kotlinx.android.synthetic.main.fragment_request_pager.tvEmptyList
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.Relationship
 import org.anitab.mentorship.utils.Constants

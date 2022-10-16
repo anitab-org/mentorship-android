@@ -54,7 +54,7 @@ class ProfileFragment : BaseFragment() {
         srlProfile.setOnRefreshListener { fetchNewest() }
 
         profileViewModel.successfulGet.observe(viewLifecycleOwner, {
-                successful ->
+            successful ->
             srlProfile.isRefreshing = false
             if (successful != null) {
                 if (successful) {
