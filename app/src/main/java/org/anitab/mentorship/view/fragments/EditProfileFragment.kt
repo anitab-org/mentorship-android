@@ -70,7 +70,7 @@ class EditProfileFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         editProfileBinding = DataBindingUtil.inflate(LayoutInflater.from(context),
-            R.layout.fragment_edit_profile, null, false)
+                R.layout.fragment_edit_profile, null, false)
 
         editProfileBinding.user = tempUser.copy()
         currentUser = tempUser.copy()
