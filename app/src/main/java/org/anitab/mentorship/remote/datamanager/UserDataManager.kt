@@ -9,6 +9,7 @@ import androidx.paging.PagingData
 import androidx.paging.filter
 import androidx.paging.liveData
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.anitab.mentorship.local.UserDatabase
 import org.anitab.mentorship.models.HomeStatistics
@@ -24,7 +25,7 @@ import org.anitab.mentorship.utils.Constants.ITEMS_PER_PAGE
 class UserDataManager(
     private val apiManager: ApiManager,
     private val userDatabase: UserDatabase,
-    private val dispatcher: CoroutineDispatcher
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
     /** Paging 3 user data management starts **/
