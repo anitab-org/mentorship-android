@@ -39,16 +39,24 @@ class ChangePasswordFragment : DialogFragment() {
     private lateinit var confirmPassword: String
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        changePasswordViewModel.successfulUpdate.observe(this) { successful ->
+        changePasswordViewModel.successfulUpdate.observe(this, { successful ->
 
             if (successful != null) {
                 when {
-                    successful -> Toast.makeText(activity, getString(R.string.password_updated), Toast.LENGTH_SHORT).show()
-                    else -> Toast.makeText(activity, changePasswordViewModel.message, Toast.LENGTH_SHORT).show()
+                    successful -> Toast.makeText(
+                        activity,
+                        getString(R.string.password_updated),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    else -> Toast.makeText(
+                        activity,
+                        changePasswordViewModel.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
             dismiss()
-        }
+        })
 
         changePasswordView = LayoutInflater.from(context).inflate(R.layout.fragment_change_password, null)
         val builder = AlertDialog.Builder(requireContext())
@@ -59,7 +67,7 @@ class ChangePasswordFragment : DialogFragment() {
             dialog.cancel()
         }
         val passwordDialog = builder.create()
-        passwordDialog.setOnShowListener { passwordDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false }
+        passwordDialog.setOnShowListener { passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = false }
 
         changePasswordView.tilConfirmPassword.editText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -67,7 +75,7 @@ class ChangePasswordFragment : DialogFragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(confirmPasswordEditable: Editable?) {
-                passwordDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = confirmPasswordEditable!!.isNotEmpty()
+                passwordDialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.isEnabled = confirmPasswordEditable!!.isNotEmpty()
             }
         })
         return passwordDialog
