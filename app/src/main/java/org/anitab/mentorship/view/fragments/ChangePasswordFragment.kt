@@ -43,16 +43,8 @@ class ChangePasswordFragment : DialogFragment() {
 
             if (successful != null) {
                 when {
-                    successful -> Toast.makeText(
-                        activity,
-                        getString(R.string.password_updated),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    else -> Toast.makeText(
-                        activity,
-                        changePasswordViewModel.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    successful -> Toast.makeText(activity, getString(R.string.password_updated), Toast.LENGTH_SHORT).show()
+                    else -> Toast.makeText(activity, changePasswordViewModel.message, Toast.LENGTH_SHORT).show()
                 }
             }
             dismiss()
