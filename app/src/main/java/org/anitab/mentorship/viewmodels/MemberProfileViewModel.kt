@@ -11,12 +11,10 @@ import org.anitab.mentorship.utils.CommonUtils
 /**
  * This class represents the [ViewModel] component used for the MemberProfileActivity
  */
-class MemberProfileViewModel(
-    private val userDataManager: UserDataManager
-) : ViewModel() {
+class MemberProfileViewModel : ViewModel() {
 
     private var tag = MemberProfileViewModel::class.java.simpleName
-
+    private val userDataManager: UserDataManager = UserDataManager()
     val successful: MediatorLiveData<Boolean> = MediatorLiveData()
     lateinit var message: String
     lateinit var userProfile: User

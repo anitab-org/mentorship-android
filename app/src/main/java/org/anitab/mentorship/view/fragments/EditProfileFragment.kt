@@ -11,8 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProviders
-import org.anitab.mentorship.Injection
+import androidx.fragment.app.viewModels
 import org.anitab.mentorship.R
 import org.anitab.mentorship.databinding.FragmentEditProfileBinding
 import org.anitab.mentorship.models.User
@@ -37,14 +36,7 @@ class EditProfileFragment : DialogFragment() {
         }
     }
 
-    private val profileViewModel: ProfileViewModel by lazy {
-        requireActivity().run {
-            ViewModelProviders.of(
-                this@EditProfileFragment,
-                Injection.provideViewModelFactory(requireContext())
-            ).get(ProfileViewModel::class.java)
-        }
-    }
+    private val profileViewModel: ProfileViewModel by viewModels()
     private lateinit var editProfileBinding: FragmentEditProfileBinding
     private lateinit var onDismissListener: DialogInterface.OnDismissListener
     private lateinit var currentUser: User

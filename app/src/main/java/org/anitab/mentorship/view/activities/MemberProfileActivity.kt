@@ -3,7 +3,7 @@ package org.anitab.mentorship.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProviders
+import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_member_profile.btnSendRequest
 import kotlinx.android.synthetic.main.activity_member_profile.srlMemberProfile
@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_member_profile.tvOrganization
 import kotlinx.android.synthetic.main.activity_member_profile.tvSkills
 import kotlinx.android.synthetic.main.activity_member_profile.tvSlackUsername
 import kotlinx.android.synthetic.main.activity_member_profile.tvUsername
-import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.utils.Constants
@@ -31,22 +30,8 @@ import org.anitab.mentorship.viewmodels.ProfileViewModel
  */
 class MemberProfileActivity : BaseActivity() {
 
-    private val memberProfileViewModel: MemberProfileViewModel by lazy {
-        this.run {
-            ViewModelProviders.of(
-                this,
-                Injection.provideViewModelFactory(this)
-            ).get(MemberProfileViewModel::class.java)
-        }
-    }
-    private val profileViewModel: ProfileViewModel by lazy {
-        this.run {
-            ViewModelProviders.of(
-                this,
-                Injection.provideViewModelFactory(this)
-            ).get(ProfileViewModel::class.java)
-        }
-    }
+    private val memberProfileViewModel: MemberProfileViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
 
     private lateinit var userProfile: User
     private lateinit var currentUser: User

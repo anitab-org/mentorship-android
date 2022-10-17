@@ -12,7 +12,9 @@ import org.anitab.mentorship.remote.datamanager.UserDataManager
 /**
  * This class represents the [ViewModel] component used for the Members Activity
  */
-class MembersViewModel(userDataManager: UserDataManager) : ViewModel() {
+class MembersViewModel : ViewModel() {
+
+    private val userDataManager: UserDataManager = UserDataManager()
 
     private val userListNoFilter: LiveData<PagingData<User>> =
         userDataManager.getAllUsers().cachedIn(viewModelScope)

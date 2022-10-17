@@ -11,7 +11,7 @@ import androidx.paging.liveData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.anitab.mentorship.local.UserDatabase
+import org.anitab.mentorship.Injection
 import org.anitab.mentorship.models.HomeStatistics
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.ApiManager
@@ -22,11 +22,10 @@ import org.anitab.mentorship.utils.Constants.ITEMS_PER_PAGE
 /**
  * This class represents the data manager related to Users API
  */
-class UserDataManager(
-    private val apiManager: ApiManager,
-    private val userDatabase: UserDatabase,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
+class UserDataManager(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
+
+    private val apiManager = ApiManager.instance
+    private val userDatabase = Injection.provideUserDatabase()
 
     /** Paging 3 user data management starts **/
 

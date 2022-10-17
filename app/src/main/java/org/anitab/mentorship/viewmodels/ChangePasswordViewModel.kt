@@ -11,11 +11,10 @@ import org.anitab.mentorship.utils.CommonUtils
 /**
  * This class represents the [ViewModel] used for ChangePasswordFragment
  */
-class ChangePasswordViewModel(
-    private val userDataManager: UserDataManager
-) : ViewModel() {
+class ChangePasswordViewModel : ViewModel() {
 
     private val tag = this::class.java.simpleName
+    private val userDataManager: UserDataManager = UserDataManager()
     val successfulUpdate: MutableLiveData<Boolean> = MutableLiveData()
     lateinit var message: String
 

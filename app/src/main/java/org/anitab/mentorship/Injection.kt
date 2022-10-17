@@ -1,13 +1,6 @@
 package org.anitab.mentorship
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProvider
-import kotlinx.coroutines.Dispatchers
 import org.anitab.mentorship.local.UserDatabase
-import org.anitab.mentorship.remote.ApiManager
-import org.anitab.mentorship.remote.datamanager.UserDataManager
-import org.anitab.mentorship.viewmodels.ViewModelFactory
-
 /**
  * Class that handles object creation.
  * Like this, objects can be passed as parameters in the constructors and then replaced for
@@ -16,17 +9,12 @@ import org.anitab.mentorship.viewmodels.ViewModelFactory
 object Injection {
 
     /**
-     * Creates an instance of [UserDataManager] based on the [ApiManager] and a
-     * [UserDatabase] - local cache
+     * Provides context of [MentorshipApplication]
      */
-    private fun provideUserDataManager(context: Context): UserDataManager =
-        UserDataManager(ApiManager.instance, UserDatabase.getInstance(context), Dispatchers.IO)
+    private fun provideApplicationContext() = MentorshipApplication.getContext()
 
     /**
-     * Provides the [ViewModelProvider.Factory] that is then used to get a reference to
-     * ViewModel objects.
+     * Provides an instance of [UserDatabase]
      */
-    fun provideViewModelFactory(context: Context): ViewModelProvider.Factory {
-        return ViewModelFactory(provideUserDataManager(context))
-    }
+    fun provideUserDatabase(): UserDatabase = UserDatabase.getInstance(provideApplicationContext())
 }

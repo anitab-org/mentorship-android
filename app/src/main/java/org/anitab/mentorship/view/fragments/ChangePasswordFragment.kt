@@ -9,13 +9,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import kotlinx.android.synthetic.main.fragment_change_password.tilConfirmPassword
 import kotlinx.android.synthetic.main.fragment_change_password.tilNewPassword
 import kotlinx.android.synthetic.main.fragment_change_password.view.tilConfirmPassword
 import kotlinx.android.synthetic.main.fragment_change_password.view.tilCurrentPassword
 import kotlinx.android.synthetic.main.fragment_change_password.view.tilNewPassword
-import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
 import org.anitab.mentorship.remote.requests.ChangePassword
 import org.anitab.mentorship.utils.checkPasswordSecurity
@@ -33,14 +32,7 @@ class ChangePasswordFragment : DialogFragment() {
         fun newInstance() = ChangePasswordFragment()
     }
 
-    private val changePasswordViewModel: ChangePasswordViewModel by lazy {
-        requireActivity().run {
-            ViewModelProviders.of(
-                this@ChangePasswordFragment,
-                Injection.provideViewModelFactory(requireContext())
-            ).get(ChangePasswordViewModel::class.java)
-        }
-    }
+    private val changePasswordViewModel: ChangePasswordViewModel by viewModels()
     private lateinit var changePasswordView: View
     private lateinit var currentPassword: String
     private lateinit var newPassword: String

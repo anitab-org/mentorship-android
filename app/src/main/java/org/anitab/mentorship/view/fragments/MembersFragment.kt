@@ -6,7 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
 import androidx.paging.LoadState
@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.fragment_members.rvMembers
 import kotlinx.android.synthetic.main.fragment_members.srlMembers
 import kotlinx.android.synthetic.main.fragment_members.tvEmptyList
 import kotlinx.coroutines.launch
-import org.anitab.mentorship.Injection
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.utils.Constants
@@ -40,14 +39,7 @@ class MembersFragment : BaseFragment() {
 
     private lateinit var memberAdapter: MemberPagingAdapter
 
-    private val membersViewModel: MembersViewModel by lazy {
-        requireActivity().run {
-            ViewModelProviders.of(
-                this@MembersFragment,
-                Injection.provideViewModelFactory(requireContext())
-            ).get(MembersViewModel::class.java)
-        }
-    }
+    private val membersViewModel: MembersViewModel by viewModels()
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_members
 
@@ -88,6 +80,7 @@ class MembersFragment : BaseFragment() {
                 showMemberListLoadingState()
 
                 membersViewModel.userList.observe(viewLifecycleOwner) { data ->
+                    rvMembers.smoothScrollToPosition(0)
                     memberAdapter.submitData(viewLifecycleOwner.lifecycle, data)
                 }
             }
