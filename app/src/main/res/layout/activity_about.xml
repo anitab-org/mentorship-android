@@ -119,7 +119,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/our_github_link"
+                        android:text="@string/our_github_repo"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold" />
