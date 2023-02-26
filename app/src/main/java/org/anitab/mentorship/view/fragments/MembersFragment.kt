@@ -140,6 +140,17 @@ class MembersFragment : BaseFragment() {
                                         Toast.LENGTH_SHORT).show()
                                 }
                             }
+                            if (!filterMap["skills"].isNullOrEmpty()) {
+
+                                val hasUsersWithSkills = membersViewModel.userList.any {
+                                    (it.skills)?.contains(filterMap["skills"]!!, ignoreCase = true) == true
+                                }
+
+                                if (!hasUsersWithSkills) {
+                                    Toast.makeText(activity, getString(R.string.error_filter_not_found),
+                                        Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
                         memberListInitialized = true
                         tvEmptyList.visibility = View.GONE
