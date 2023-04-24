@@ -37,6 +37,10 @@ class MembersAdapter(
     private var filterMap = hashMapOf(Constants.SORT_KEY to MembersFragment.SortValues.REGISTRATION_DATE.name)
     private var filteredUserList = mutableListOf<User>()
 
+    companion object {
+        private const val TRUE = "true"
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MembersViewHolder =
             MembersViewHolder(
                     LayoutInflater.from(parent.context)
@@ -99,12 +103,12 @@ class MembersAdapter(
             }
         }
 
-        if (map[Constants.NEED_MENTORING_KEY] == "true")
+        if (map[Constants.NEED_MENTORING_KEY] == TRUE)
             newFilteredList = newFilteredList.filter {
                 it.needMentoring == true
             } as MutableList<User>
 
-        if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == "true")
+        if (map[Constants.AVAILABLE_TO_MENTOR_KEY] == TRUE)
             newFilteredList = newFilteredList.filter {
                 it.availableToMentor == true
             } as MutableList<User>
