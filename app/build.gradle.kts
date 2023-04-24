@@ -53,7 +53,6 @@ configurations.all {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(Dependencies.kotlin_stdlib)
     implementation(Dependencies.design)
     implementation(Dependencies.constraint_layout)
     implementation(Dependencies.appCompat)
@@ -78,4 +77,11 @@ dependencies {
 
     implementation(Dependencies.viewPager2)
     implementation(Dependencies.swipe_refresh_layout)
+
+    implementation(Dependencies.room_ktx)
+    implementation(Dependencies.room_runtime)
+    kapt(Dependencies.room_compiler)
+    implementation(Dependencies.room_paging)
+
+    implementation(Dependencies.paging3)
 }

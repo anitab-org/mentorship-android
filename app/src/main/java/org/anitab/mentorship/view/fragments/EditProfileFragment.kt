@@ -31,7 +31,7 @@ class EditProfileFragment : DialogFragment() {
          * Creates an instance of EditProfileFragment
          */
         fun newInstance(user: User): EditProfileFragment {
-            tempUser = user.copy(id = null, username = null, email = null)
+            tempUser = user.copy(id = 0, username = null, email = null)
             return EditProfileFragment()
         }
     }

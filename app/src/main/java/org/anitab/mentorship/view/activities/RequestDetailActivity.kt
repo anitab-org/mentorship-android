@@ -39,9 +39,11 @@ class RequestDetailActivity : BaseActivity() {
         supportActionBar?.title = getString(R.string.request_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        populateView(mentorshipRelationResponse)
-        setObservables(mentorshipRelationResponse)
-        setOnClickListeners(mentorshipRelationResponse)
+        mentorshipRelationResponse?.let {
+            populateView(it)
+            setObservables(it)
+            setOnClickListeners(it)
+        }
     }
 
     private fun populateView(relationResponse: Relationship) {

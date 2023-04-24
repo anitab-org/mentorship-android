@@ -17,13 +17,6 @@
     </style>
 
     <style
-        name="FilterTheme"
-        parent="AppTheme">
-        <item name="android:actionBarStyle">@style/CustomActionBarStyle</item>
-        <item name="actionBarStyle">@style/CustomActionBarStyle</item>
-    </style>
-
-    <style
         name="CustomActionBarStyle"
         parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="android:background">@color/white</item>

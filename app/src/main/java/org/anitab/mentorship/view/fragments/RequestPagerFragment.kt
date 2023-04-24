@@ -4,7 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_request_pager.*
+import kotlinx.android.synthetic.main.fragment_request_pager.rvRequestsList
+import kotlinx.android.synthetic.main.fragment_request_pager.tvEmptyList
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.Relationship
 import org.anitab.mentorship.utils.Constants
@@ -44,8 +45,8 @@ class RequestPagerFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         arguments?.let {
-            requestsList = it.getParcelableArrayList(Constants.REQUEST_LIST)
-            emptyListText = it.getString(Constants.REQUEST_EMPTY_LIST_TEXT)
+            requestsList = it.getParcelableArrayList(Constants.REQUEST_LIST) ?: mutableListOf()
+            emptyListText = it.getString(Constants.REQUEST_EMPTY_LIST_TEXT).toString()
         }
         setView()
     }

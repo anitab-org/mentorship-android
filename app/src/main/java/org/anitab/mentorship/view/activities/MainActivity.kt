@@ -6,7 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.bottomNavigation
+import kotlinx.android.synthetic.main.activity_main.toolbar
 import org.anitab.mentorship.R
 import org.anitab.mentorship.utils.PreferenceManager
 import org.anitab.mentorship.view.fragments.HomeFragment

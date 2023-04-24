@@ -1,6 +1,9 @@
 package org.anitab.mentorship.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -20,19 +23,21 @@ import kotlinx.android.parcel.Parcelize
  * @param availableToMentor true, if user is available to mentor, false if otherwise
  * @param slackUsername Slack username
  */
+
+@Entity(tableName = "user_table")
 @Parcelize
 data class User(
-    var id: Int? = null,
-    var username: String? = null,
-    var name: String? = null,
-    var email: String? = null,
-    var bio: String? = null,
-    var location: String? = null,
-    var occupation: String? = null,
-    var organization: String? = null,
-    var interests: String? = null,
-    var skills: String? = null,
-    var needMentoring: Boolean? = null,
-    var availableToMentor: Boolean? = null,
-    var slackUsername: String? = null
+    @PrimaryKey @field:SerializedName("id") var id: Int,
+    @field:SerializedName("username") var username: String? = null,
+    @field:SerializedName("name") var name: String? = null,
+    @field:SerializedName("email") var email: String? = null,
+    @field:SerializedName("bio") var bio: String? = null,
+    @field:SerializedName("location") var location: String? = null,
+    @field:SerializedName("occupation") var occupation: String? = null,
+    @field:SerializedName("organization") var organization: String? = null,
+    @field:SerializedName("interests") var interests: String? = null,
+    @field:SerializedName("skills") var skills: String? = null,
+    @field:SerializedName("need_mentoring") var needMentoring: Boolean? = null,
+    @field:SerializedName("available_to_mentor") var availableToMentor: Boolean? = null,
+    @field:SerializedName("slack_username") var slackUsername: String? = null
 ) : Parcelable

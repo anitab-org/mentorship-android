@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.srlProfile
 import org.anitab.mentorship.R
 import org.anitab.mentorship.databinding.FragmentProfileBinding
 import org.anitab.mentorship.viewmodels.ProfileViewModel
@@ -25,7 +25,6 @@ class ProfileFragment : BaseFragment() {
          * Creates an instance of ProfileFragment
          */
         fun newInstance() = ProfileFragment()
-        val TAG: String = ProfileFragment::class.java.simpleName
     }
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding

@@ -2,18 +2,19 @@
  * Contains the versions of the dependencies being used
  */
 object Versions {
-    const val compileSdkVersion = 28
+    const val compileSdkVersion = 31
     const val minSdkVersion = 19
-    const val targetSdkVersion = 28
+    const val targetSdkVersion = 31
     const val versionCode = 1
     const val versionName = "1"
     const val gradleBuildTool = "4.2.1"
-    const val kotlinVersion = "1.4.21"
+    const val kotlinVersion = "1.5.0"
     const val supportLib = "1.0.0"
     const val designSupportLib = "1.1.0-beta01"
     const val swipeRefreshLayout = "1.1.0"
     const val constraintLayout = "1.1.3"
     const val viewPager2 = "1.0.0"
+    const val paging3 = "3.1.0"
     const val junit = "4.12"
     const val extJunit = "1.1.1"
     const val testRunner = "1.1.0"
@@ -23,11 +24,12 @@ object Versions {
     const val okHttp3Version = "3.10.0"
     const val archComponents = "2.0.0"
     const val testRule = "1.1.0"
-    const val supportAnnotation = "1.0.0"
+    const val supportAnnotation = "1.1.0"
     const val appIntro = "5.1.0"
     const val appCompat = "1.0.2"
     const val circleImageView = "3.0.1"
     const val fragmentKtx = "1.2.5"
+    const val room = "2.4.0"
 }
 
 /**
@@ -37,7 +39,6 @@ object Dependencies {
     const val gradle_build_tool = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
-    const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlinVersion}"
     const val design = "com.google.android.material:material:${Versions.designSupportLib}"
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val junit = "junit:junit:${Versions.junit}"
@@ -58,4 +59,9 @@ object Dependencies {
     const val fragment_ktx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
+    const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
+    const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
+    const val room_paging = "androidx.room:room-paging:${Versions.room}"
+    const val paging3 = "androidx.paging:paging-runtime:${Versions.paging3}"
 }

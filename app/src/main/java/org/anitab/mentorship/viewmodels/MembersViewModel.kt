@@ -1,46 +1,72 @@
 package org.anitab.mentorship.viewmodels
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.remote.datamanager.UserDataManager
-import org.anitab.mentorship.remote.requests.PaginationRequest
-import org.anitab.mentorship.utils.CommonUtils
-import org.anitab.mentorship.utils.Constants.ITEMS_PER_PAGE
 
 /**
  * This class represents the [ViewModel] component used for the Members Activity
  */
 class MembersViewModel : ViewModel() {
 
-    var tag = MembersViewModel::class.java.simpleName
-
     private val userDataManager: UserDataManager = UserDataManager()
 
-    val successful: MutableLiveData<Boolean> = MutableLiveData()
-    var currentPage = 1
-    lateinit var message: String
-    var userList: ArrayList<User> = arrayListOf()
+    private val userListNoFilter: LiveData<PagingData<User>> =
+        userDataManager.getAllUsers().cachedIn(viewModelScope)
 
-    /**
-     * Fetches users list from getUsers method of the UserService
-     */
-    fun getUsers(isRefresh: Boolean) {
-        viewModelScope.launch {
-            if (isRefresh) {
-                userList.clear()
-                currentPage = 1
+    private val userLisFilterByNeedMentoring: LiveData<PagingData<User>> =
+        userDataManager.getUsersWhoAreNeedMentoring().cachedIn(viewModelScope)
+
+    private val userListFilterByAvailableToMentor: LiveData<PagingData<User>> =
+        userDataManager.getUsersWhoAreAvailableToMentor().cachedIn(viewModelScope)
+
+    private val userListFilterByHaveSkill: LiveData<PagingData<User>> =
+        userDataManager.getUserWhoHaveSkills().cachedIn(viewModelScope)
+
+    val userList = MediatorLiveData<PagingData<User>>()
+
+    // setting default filter sa no filter
+    private var selectedUserFilter = ListFilter.NO_FILTER
+
+    init {
+        userList.addSource(userListNoFilter) { list ->
+            if (selectedUserFilter == ListFilter.NO_FILTER) {
+                list?.let { userList.value = it }
             }
-            try {
-                userList.addAll(userDataManager.getUsers(PaginationRequest(currentPage, ITEMS_PER_PAGE)))
-                currentPage++
-                successful.postValue(true)
-            } catch (throwable: Throwable) {
-                message = CommonUtils.getErrorMessage(throwable, tag)
-                successful.postValue(false)
+        }
+
+        userList.addSource(userLisFilterByNeedMentoring) { list ->
+            if (selectedUserFilter == ListFilter.NEED_MENTORING) {
+                list?.let { userList.value = it }
+            }
+        }
+
+        userList.addSource(userListFilterByAvailableToMentor) { list ->
+            if (selectedUserFilter == ListFilter.AVAILABLE_TO_MENTOR) {
+                list?.let { userList.value = it }
+            }
+        }
+
+        userList.addSource(userListFilterByHaveSkill) { list ->
+            if (selectedUserFilter == ListFilter.HAVE_SKILL) {
+                list?.let { userList.value = it }
             }
         }
     }
+
+    fun getFilteredUserList(filter: ListFilter) = when (filter) {
+        ListFilter.NO_FILTER -> userListNoFilter.value?.let { userList.value = it }
+        ListFilter.NEED_MENTORING -> userLisFilterByNeedMentoring.value?.let { userList.value = it }
+        ListFilter.AVAILABLE_TO_MENTOR -> userListFilterByAvailableToMentor.value?.let { userList.value = it }
+        ListFilter.HAVE_SKILL -> userListFilterByHaveSkill.value?.let { userList.value = it }
+    }.also { selectedUserFilter = filter }
+}
+
+enum class ListFilter {
+    NO_FILTER, NEED_MENTORING, AVAILABLE_TO_MENTOR, HAVE_SKILL
 }

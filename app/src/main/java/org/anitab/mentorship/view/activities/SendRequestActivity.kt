@@ -44,7 +44,7 @@ class SendRequestActivity : BaseActivity() {
         tvRequestEndDate.isEnabled = false
         supportActionBar?.title = getString(R.string.send_request)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val otherUserName = intent.getStringExtra(OTHER_USER_NAME_INTENT_EXTRA)
+        val otherUserName = intent.getStringExtra(OTHER_USER_NAME_INTENT_EXTRA).toString()
         val otherUserId = intent.getIntExtra(OTHER_USER_ID_INTENT_EXTRA, 0)
         val currentUserId = getAuthTokenPayload().identity
         setObservables()

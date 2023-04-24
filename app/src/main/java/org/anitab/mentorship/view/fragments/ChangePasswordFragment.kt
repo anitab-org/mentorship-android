@@ -10,8 +10,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import kotlinx.android.synthetic.main.fragment_change_password.*
-import kotlinx.android.synthetic.main.fragment_change_password.view.*
+import kotlinx.android.synthetic.main.fragment_change_password.tilConfirmPassword
+import kotlinx.android.synthetic.main.fragment_change_password.tilNewPassword
+import kotlinx.android.synthetic.main.fragment_change_password.view.tilConfirmPassword
+import kotlinx.android.synthetic.main.fragment_change_password.view.tilCurrentPassword
+import kotlinx.android.synthetic.main.fragment_change_password.view.tilNewPassword
 import org.anitab.mentorship.R
 import org.anitab.mentorship.remote.requests.ChangePassword
 import org.anitab.mentorship.utils.checkPasswordSecurity

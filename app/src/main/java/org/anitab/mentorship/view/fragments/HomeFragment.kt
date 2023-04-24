@@ -10,7 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.homeContainer
+import kotlinx.android.synthetic.main.fragment_home.rvAchievements
+import kotlinx.android.synthetic.main.fragment_home.srlHome
+import kotlinx.android.synthetic.main.fragment_home.tvNoAchievements
 import org.anitab.mentorship.R
 import org.anitab.mentorship.databinding.FragmentHomeBinding
 import org.anitab.mentorship.view.adapters.AchievementsAdapter
@@ -31,7 +34,6 @@ class HomeFragment : BaseFragment() {
          * Creates an instance of HomeFragment
          */
         fun newInstance() = HomeFragment()
-        val TAG: String = HomeFragment::class.java.simpleName
     }
 
     override fun getLayoutResourceId(): Int = R.layout.fragment_home

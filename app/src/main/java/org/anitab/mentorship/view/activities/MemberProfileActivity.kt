@@ -2,11 +2,22 @@ package org.anitab.mentorship.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_member_profile.*
+import kotlinx.android.synthetic.main.activity_member_profile.btnSendRequest
+import kotlinx.android.synthetic.main.activity_member_profile.srlMemberProfile
+import kotlinx.android.synthetic.main.activity_member_profile.tvAvailableToMentor
+import kotlinx.android.synthetic.main.activity_member_profile.tvBio
+import kotlinx.android.synthetic.main.activity_member_profile.tvInterests
+import kotlinx.android.synthetic.main.activity_member_profile.tvLocation
+import kotlinx.android.synthetic.main.activity_member_profile.tvName
+import kotlinx.android.synthetic.main.activity_member_profile.tvNeedMentoring
+import kotlinx.android.synthetic.main.activity_member_profile.tvOccupation
+import kotlinx.android.synthetic.main.activity_member_profile.tvOrganization
+import kotlinx.android.synthetic.main.activity_member_profile.tvSkills
+import kotlinx.android.synthetic.main.activity_member_profile.tvSlackUsername
+import kotlinx.android.synthetic.main.activity_member_profile.tvUsername
 import org.anitab.mentorship.R
 import org.anitab.mentorship.models.User
 import org.anitab.mentorship.utils.Constants
@@ -18,7 +29,10 @@ import org.anitab.mentorship.viewmodels.ProfileViewModel
  * This activity will show the public profile of a user of the system
  */
 class MemberProfileActivity : BaseActivity() {
+
     private val memberProfileViewModel: MemberProfileViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
+
     private lateinit var userProfile: User
     private lateinit var currentUser: User
 
@@ -27,46 +41,27 @@ class MemberProfileActivity : BaseActivity() {
         setContentView(R.layout.activity_member_profile)
         supportActionBar?.title = getString(R.string.member_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val profileViewModel: ProfileViewModel by viewModels()
-        profileViewModel.successfulGet.observe(this, {
-            successful ->
-            if (successful != null) {
-                if (successful) {
-                    setCurrentUser(profileViewModel.user)
-                } else {
-                    Snackbar.make(getRootView(), profileViewModel.message, Snackbar.LENGTH_LONG)
-                            .show()
-                }
-            }
-        })
-        profileViewModel.getProfile()
 
+        /**
+         * getting passed member, showing UI and saving on to memberProfileViewModel.
+         * Showing snackbar if any error.
+         */
+        val member: User? = intent.getParcelableExtra(Constants.MEMBER_USER_EXTRAS)
+        member?.let {
+            setUserProfile(it)
+            memberProfileViewModel.userId = it.id
+        } ?: Snackbar.make(getRootView(), getString(R.string.error_filter_not_found), Snackbar.LENGTH_LONG)
+            .show()
+
+        // Refresh data from network on swipe down gesture
         srlMemberProfile.setOnRefreshListener { fetchNewest() }
 
-        memberProfileViewModel.successful.observe(this, {
-            successful ->
-            srlMemberProfile.isRefreshing = false
-            if (successful != null) {
-                if (successful) {
-                    setUserProfile(memberProfileViewModel.userProfile)
-                } else {
-                    Snackbar.make(getRootView(), memberProfileViewModel.message, Snackbar.LENGTH_LONG)
-                            .show()
-                }
-            }
-        })
-
-        val memberId = intent.getIntExtra(Constants.MEMBER_USER_ID, -1)
-
-        memberProfileViewModel.userId = memberId
-
-        fetchNewest()
-
         btnSendRequest.setOnClickListener {
-            if (userProfile?.availableToMentor ?: false && !(userProfile?.needMentoring ?:false) &&
-                    (currentUser?.availableToMentor ?: false && !(currentUser?.needMentoring ?:false))) {
+            if (userProfile.availableToMentor == true && userProfile.needMentoring != true &&
+                (currentUser.availableToMentor == true && currentUser.needMentoring != true)
+            ) {
                 Snackbar.make(getRootView(), getString(R.string.both_users_only_available_to_mentor), Snackbar.LENGTH_LONG)
-                        .show()
+                    .show()
             } else {
                 val intent = Intent(this@MemberProfileActivity, SendRequestActivity::class.java)
                 intent.putExtra(SendRequestActivity.OTHER_USER_ID_INTENT_EXTRA, userProfile.id)
@@ -74,70 +69,94 @@ class MemberProfileActivity : BaseActivity() {
                 startActivity(intent)
             }
         }
+
+        setObservers()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
+    private fun setObservers() {
+        // observing from profile viewmodel
+        profileViewModel.successfulGet.observe(this) { successful ->
+            if (successful != null) {
+                if (successful) {
+                    setCurrentUser(profileViewModel.user)
+                } else {
+                    Snackbar.make(getRootView(), profileViewModel.message, Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            }
+        }
+        profileViewModel.getProfile()
+
+        // observing from member profile viewmodel
+        memberProfileViewModel.successful.observe(this) { successful ->
+            srlMemberProfile.isRefreshing = false
+            if (successful != null) {
+                if (successful) {
+                    setUserProfile(memberProfileViewModel.userProfile)
+                } else {
+                    Snackbar.make(getRootView(), memberProfileViewModel.message, Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            }
+        }
     }
 
+    // To set back button
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 true
             }
-            R.id.menu_refresh -> {
-                fetchNewest()
-                true
-            }
             else -> super.onOptionsItemSelected(menuItem)
         }
     }
 
+    // Called when swipe down to refresh triggered
     private fun fetchNewest() {
         srlMemberProfile.isRefreshing = true
         memberProfileViewModel.getUserProfile()
     }
 
+    // To set current user profile data
     private fun setCurrentUser(user: User) {
         currentUser = user
     }
+
+    // Setting user data to textviews
     private fun setUserProfile(user: User) {
         userProfile = user
         tvName.text = user.name
 
+        // checker for available to mentor
         if (user.availableToMentor != null) {
-            setTextViewStartingWithBoldSpan(
-                    tvAvailableToMentor,
-                    getString(R.string.available_to_mentor),
-                    if (user.availableToMentor!!)
-                        getString(R.string.yes) else getString(R.string.no))
+            setTextViewStartingWithBoldSpan(tvAvailableToMentor, getString(R.string.available_to_mentor),
+                if (user.availableToMentor == true) getString(R.string.yes) else getString(R.string.no)
+            )
         }
+
+        // checker for need mentoring
         if (user.needMentoring != null) {
-            setTextViewStartingWithBoldSpan(
-                    tvNeedMentoring,
-                    getString(R.string.need_mentoring),
-                    if (user.needMentoring!!)
-                        getString(R.string.yes) else getString(R.string.no))
+            setTextViewStartingWithBoldSpan(tvNeedMentoring, getString(R.string.need_mentoring),
+                if (user.needMentoring == true) getString(R.string.yes) else getString(R.string.no)
+            )
         }
+
         setTextViewStartingWithBoldSpan(tvBio, getString(R.string.bio), user.bio)
-        setTextViewStartingWithBoldSpan(
-                tvLocation, getString(R.string.location), user.location)
-        setTextViewStartingWithBoldSpan(
-                tvOrganization, getString(R.string.organization), user.organization)
-        setTextViewStartingWithBoldSpan(
-                tvOccupation, getString(R.string.occupation), user.occupation)
-        setTextViewStartingWithBoldSpan(
-                tvInterests, getString(R.string.interests), user.interests)
-        setTextViewStartingWithBoldSpan(
-                tvSkills, getString(R.string.skills), user.skills)
-        setTextViewStartingWithBoldSpan(
-                tvUsername, getString(R.string.username), user.username)
-        setTextViewStartingWithBoldSpan(
-                tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
-        if (!user.availableToMentor!! && !user.needMentoring!!)
-            btnSendRequest.isEnabled = false
+        setTextViewStartingWithBoldSpan(tvLocation, getString(R.string.location), user.location)
+        setTextViewStartingWithBoldSpan(tvOrganization, getString(R.string.organization), user.organization)
+        setTextViewStartingWithBoldSpan(tvOccupation, getString(R.string.occupation), user.occupation)
+        setTextViewStartingWithBoldSpan(tvInterests, getString(R.string.interests), user.interests)
+        setTextViewStartingWithBoldSpan(tvSkills, getString(R.string.skills), user.skills)
+        setTextViewStartingWithBoldSpan(tvUsername, getString(R.string.username), user.username)
+        setTextViewStartingWithBoldSpan(tvSlackUsername, getString(R.string.slack_username), user.slackUsername)
+
+        // disable 'send request' button when [availableToMentor] & [needMentoring] is null or false
+        user.run {
+            if ((availableToMentor == null || availableToMentor == false) &&
+                (needMentoring == null || needMentoring == false)
+            ) btnSendRequest.isEnabled = false
+        }
     }
 
     override fun onDestroy() {
