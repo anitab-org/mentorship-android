@@ -1,10 +1,13 @@
 package org.anitab.mentorship.view.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import org.anitab.mentorship.R
 import org.anitab.mentorship.view.activities.BaseActivity
 
 /**
@@ -29,4 +32,18 @@ abstract class BaseFragment : Fragment() {
      */
     val baseActivity: BaseActivity
         get() = activity as BaseActivity
+
+    protected fun hideKeyboard(view: View) {
+        val inputManager = baseActivity
+            .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager
+            .RESULT_UNCHANGED_SHOWN)
+    }
+
+    fun switchFragment(fragment: Fragment, tag: Int) {
+        val fragmentTransaction = baseActivity.supportFragmentManager.beginTransaction()
+        fragmentTransaction
+            .replace(R.id.container, fragment, getString(tag))
+            .commit()
+    }
 }
